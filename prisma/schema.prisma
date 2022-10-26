@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id                    String   @id @default(cuid())
+  name                 String
+  phone                String
+  vin                  String
+  numberSpareParts     String
+  comment              String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model ClientNeedCall {
+  id                    String   @id @default(cuid())
+  name                 String
+  phone                String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model ClientSales {
+  id                    String   @id @default(cuid())
+  name                 String
+  phone                String
+  vin                  String
+  title                String
+  comment              String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model CalcTo {
+  id            String   @id @default(cuid())
+  brendName     String
+  model         String
+  complectation String
+  mileage       String
+  carAge        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ClientTradein {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  carYear   String
+  carModal  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Admin {
+  id           String    @id @default(cuid())
+  login        String    @unique
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  sessions     Session[]
+}
+
+model Sales {
+  id           String   @id @default(cuid())
+  title        String
+  shortDesc    String
+  description  String
+  filterMain   String
+  detailFilter String
+  img          String
+  price        String
+  active       Boolean
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+
+
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  expires      DateTime
+  adminId      String
+  admin        Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
