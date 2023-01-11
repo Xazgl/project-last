@@ -1,13 +1,13 @@
 import { QuestionAnswer } from "@mui/icons-material"
-import { Sales } from "@prisma/client"
+import { Offer} from "@prisma/client"
 import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import SaleBlock from "../../src/component/exeed/saleBlock"
 import { MainBanner } from '../../src/component/MainBanner'
-import { Menu } from "../../src/component/Menu"
+import { MenuBar } from "../../src/component/Menu"
 import { Map } from '../../src/component/Map'
+import SaleBlock from "../../src/component/exeed/SaleBlock"
 
 
 
@@ -58,7 +58,7 @@ const CardSale: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Подробнее о Акции</title>
+                <title>Подробнее о Специальном предложении</title>
                 <meta name="description" content="Work with me" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

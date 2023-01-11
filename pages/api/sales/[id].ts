@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (req.method === 'POST') {
                 const { active } = req.body
                 if (typeof active === 'boolean' && typeof id === 'string') {
-                    const updSale = await db.sales.update({
+                    const updSale = await db.offer.update({
                         where: { id },
                         data: { active }
                     })

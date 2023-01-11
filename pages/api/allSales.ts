@@ -9,7 +9,7 @@ export default async function findSales(req: NextApiRequest, res: NextApiRespons
             //const token = req.cookies['sid']
             //const admin = await checkSession(token)
            // if (admin) {
-                const sales = await db.sales.findMany()
+                const sales = await db.offer.findMany()
                 debugger
                 res.send(sales)
                 debugger

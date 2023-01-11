@@ -1,0 +1,26 @@
+api/sendmailMain заявки с формы на главной страницы 
+api/sendmaijob  отправка резюм
+
+
+
+
+
+
+
+
+1.Эти файлы по ссылкам забирать в базу новые или старые авто
+https://export.maxposter.ru/tradedealer/4587-45874.xml 
+https://export.maxposter.ru/tradedealer/4586-45864.xml 
+https://export.maxposter.ru/tradedealer/4579-45794.xml 
+https://export.maxposter.ru/tradedealer/4578-45784.xml 
+https://export.maxposter.ru/tradedealer/4576-45764.xml 
+https://export.maxposter.ru/tradedealer/4575-45754.xml 
+https://export.maxposter.ru/tradedealer/4574-45744.xml 
+https://export.maxposter.ru/tradedealer/4573-45734.xml 
+https://export.maxposter.ru/tradedealer/4572-45724.xml 
+https://export.maxposter.ru/tradedealer/4571-45714.xml
+
+2.Класть в избранное (аналог корзины) и в сравнение без авторизации пользователя 
+3.Посмотреть созданную схему в БД
+4.Как получать описание в редактор из базы 
+4.Фильтры 3 фильтра в разделе вакансий  и много в разделе авто

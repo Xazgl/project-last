@@ -10,45 +10,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
-  id                    String   @id @default(cuid())
-  name                 String
-  phone                String
-  vin                  String
-  numberSpareParts     String
-  comment              String
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+model ClientParts {
+  id            String   @id @default(cuid())
+  name          String
+  phone         String
+  vin           String
+  IntSpareParts String
+  comment       String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model ClientNeedCall {
-  id                    String   @id @default(cuid())
-  name                 String
-  phone                String
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  office    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model ClientSales {
-  id                    String   @id @default(cuid())
-  name                 String
-  phone                String
-  vin                  String
-  title                String
-  comment              String
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
-}
-
-model CalcTo {
-  id            String   @id @default(cuid())
-  brendName     String
-  model         String
-  complectation String
-  mileage       String
-  carAge        String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+model CalcCredit {
+  id         String   @id @default(cuid())
+  name       String
+  priceCar   String
+  firstMoney String
+  month      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model ClientTradein {
@@ -70,23 +59,6 @@ model Admin {
   sessions     Session[]
 }
 
-model Sales {
-  id           String   @id @default(cuid())
-  title        String
-  shortDesc    String
-  description  String
-  filterMain   String
-  detailFilter String
-  img          String
-  price        String
-  active       Boolean
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-
-
-
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -96,3 +68,197 @@ model Session {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Offer {
+  id                 String   @id @default(cuid())
+  title              String
+  shortDesc          String
+  description        String
+  filterMainPeople   String//фильтр (Новые авто, бу, владельцам)
+  detailFilterBrand  String
+  detailFilterMode   String
+  img                String
+  price              String
+  active             Boolean
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+enum FILTER1 {
+  NEW
+  OLD
+  OWNER
+}
+
+enum Brand {
+  CHERY
+  EXEED
+  HYUNDAI
+  KIA
+  MITSUBISHI
+  NISSAN
+  RENAULT
+  VOLKSWAGEN
+  UAZ
+  SUBARU
+  JAGUAR
+  LANDROVER
+  SUZUKI
+  JEEP
+  OPEL
+  PEUGEOT
+  FAW
+  HISUN
+  GEELY
+  allCar
+}
+
+model DealerModel {
+  id      String  @id @default(cuid())
+  id_1c   Int     @unique //id дилера их 1С
+  name    String?
+  address String? //адрес ДЦ poe_id
+  phone   String?
+  cars    Car[]
+}
+
+model CarModel {
+  id              String @id @default(cuid())
+  id_1c           Int    @unique
+  brandId         String
+  modelId_1c      Int
+  brandName       String //бренд
+  modelName       String
+  categoryId_1c   Int //легковая или грузовая
+  categoryIdName  String
+  generationId_1c Int //поколение 
+  generationIName String
+  cars            Car[]
+}
+
+model CarModification {
+  id            String  @id @default(cuid())
+  id_1c         Int     @unique // modification
+  name          String? // пример 2.0 AMT (197 л.с.) 4WD
+  engineType    String? // тип двигателя и топливо
+  engineVolume  String? // объем двигателя
+  enginePower   String? // л.с двигателя
+  gearboxType   String? //коробка передач 
+  driveType     String? // привод
+  bodyType      String? // тип кузова 
+  bodyDoorCount Int? // кол. дверей
+  steeringWheel String? // руль левый или правый 
+  length        String? //длинна авто
+  width         String? //ширина авто
+  cars          Car[]
+  // expenditure       String? //расход топлива
+  // capacityTank      String? //объем бака
+  //trunk             String? //тип багажника
+  // volumeTrunk       String? //объем багажника
+  // consumptionCombi  String? //расход смешанный
+  // consumptionCity   String? //расход в городе
+  // consumptionTrack  String? //расход на трассе
+  // speedMax          String? //максимальная скорость
+  // overlocking       String? //разгон сек
+}
+
+model CarComplectation {
+  id       String  @id @default(cuid())
+  id_1c    Int     @unique // сomplectation
+  name     String // пример Sport Edition
+  seatsCar String? //места колличество 
+  cars     Car[]
+}
+
+model Extras {
+  id        String @id @default(cuid())
+  groupId   Int
+  groupName String
+  name      String
+  cars      Car[]
+}
+
+model Car {
+  id                 String            @id @default(cuid())
+  id_1c              String            @unique
+  usedOrNew          String //новая или БУ
+  color              String //цвет 
+  bodyColorMetallic  String //цвет металик 
+  mileage            String? //пробег
+  mileageUnit        String? // единцы пробега  км или мили
+  vin                String            @unique
+  year               String? //год выпуска
+  img                String[] // много картинок
+  priceMonth         Float? //стоимость месяц
+  price              Float? //стоимость всего
+  special_price      Float? //спец цена
+  specialOffer       Float? // спец предложение 
+  tradeinDiscount    Float? // скидка трейд
+  creditDiscount     Float? // скидка
+  insuranceDiscount  Float? // скидка ?
+  desc               String? //описание
+  active             Boolean           @default(true)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  CarModel           CarModel?         @relation(fields: [carModelId], references: [id])
+  carModelId         String?
+  extras             Extras[]
+  CarModification    CarModification?  @relation(fields: [carModificationId], references: [id])
+  carModificationId  String?
+  CarComplectation   CarComplectation? @relation(fields: [carComplectationId], references: [id])
+  carComplectationId String?
+  DealerModel        DealerModel?      @relation(fields: [dealerModelId], references: [id])
+  dealerModelId      String?
+  availability       String
+}
+
+model Vacancy {
+  id              String @id @default(cuid())
+  name            String //имя
+  surname         String //фамилия
+  patronymic      String //отчество
+  phone           String //телефон
+  salary          String //заработная плата
+  companyName     String //опыт работы название 
+  companyPosition String //опыт работы должность
+  startData       String //опыт работы от
+  endData         String //опыт работы до
+  text            String? //причины увольнения
+  textTwo         String? //пожелания
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  title       String //должность
+  description String //описание
+  salary      String //зп
+  exp         Exp      @default(ZERO) //опыт работы 
+  office      Office   @default(ARKONT_GK) //ДЦ
+  city        City     @default(VLG) //город по умолчанию ВЛГ
+  carBrend    String //бренд ДЦ
+  active      Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum City {
+  VLG @map("Волгоград")
+  VLZ @map("Волжский")
+}
+
+enum Office {
+  ARKONT_GK      @map("ГК Арконт")
+  ARKONT_VOLZSKY @map("Renault Арконт Волжский")
+  ARKONT_KIA     @map("KIA Арконт")
+  ARKONT_NISSAN  @map("Nissan Арконт")
+}
+
+enum Exp {
+  ZERO     @map("Без опыта")
+  BEGINNER @map("от 1 года")
+  MIDDLE   @map("от 3 лет")
+}
+
+//коризна для сравнениня нескольких моделей хранящихся в рамках одной не авторизированной сессии и избранное 

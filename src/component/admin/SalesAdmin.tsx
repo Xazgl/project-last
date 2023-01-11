@@ -1,14 +1,14 @@
 import { FilterFrames, Height } from '@mui/icons-material'
 import { Button, ImageList, ImageListItem, Input, TextField } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
-import { Sales } from '@prisma/client'
+import { Offer } from '@prisma/client'
 import React, { ChangeEvent, Suspense, useCallback, useMemo, useRef } from 'react'
 import { Dispatch, FormEvent, MouseEvent, SetStateAction, useEffect, useState } from 'react'
 import salesOne from '/public/images/sales.webp'
 import salesTwo from '/public/images/sales2.webp'
 import salesThree from '/public/images/sales3.webp'
 import ImageIcon from '@mui/material/Icon';
-import { AllSaleDto } from '../../../@types'
+import { AllOffersDto } from '../../../@types'
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -19,162 +19,613 @@ import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 // import MyEditor from './Editor' ниже отключен рендер на сервере 
 const MyEditor = dynamic(() => import("./Editor"), { ssr: false })
 
-
-type MiniList = {
+type MainList = {
     id: number,
     name: string,
 }
 
-type MainList = {
+type CarList = {
     id: number,
     name: string,
-    miniFilterList: MiniList[]
+    modelCar: MainList[]
 }
 
 const mainFilterList: MainList[] = [
     {
         id: 1,
-        name: 'Диагностика',
-        miniFilterList: [
-            {
-                id: 1,
-                name: 'Диагностика подвески',
-
-            },
-            {
-                id: 2,
-                name: 'Электродиагностика',
-
-
-            },
-            {
-                id: 3,
-                name: 'Инспекционный осмотр',
-            },
-            {
-                id: 4,
-                name: 'Диагностика кондиционера',
-            },
-            {
-                id: 5,
-                name: 'Проверка двигателя',
-            },
-            {
-                id: 6,
-                name: 'Агрегатная диагностика',
-            }
-        ],
+        name: 'NEW'
     },
     {
         id: 2,
-        name: 'Кузовной ремонт',
-        miniFilterList: [
-            {
-                id: 1,
-                name: 'Лакокрасочные работы',
-
-            },
-            {
-                id: 2,
-                name: 'Вытягивание вмятин',
-
-
-            },
-            {
-                id: 3,
-                name: 'Безокрасочный ремонт',
-            },
-            {
-                id: 4,
-                name: 'Полировка',
-            },
-            {
-                id: 5,
-                name: 'Нанесение керамики',
-            },
-            {
-                id: 6,
-                name: 'Оклейка бронепленкой',
-            }
-        ],
-
+        name: 'OLD'
     },
     {
         id: 3,
-        name: 'Покраска',
-        miniFilterList: [
-            {
-                id: 1,
-                name: 'Восстановление лакокрасочного покрытия',
-
-            },
-            {
-                id: 2,
-                name: 'Бронирование (оклейка бронепленкой)',
-            },
-        ],
-    },
-    {
-        id: 4,
-        name: 'Агрегатный ремонт',
-        miniFilterList: [
-            {
-                id: 1,
-                name: 'Без подраздела',
-
-            },
-        ],
-    },
-    {
-        id: 5,
-        name: 'Шиномонтаж',
-        miniFilterList: [
-            {
-                id: 1,
-                name: 'Без подраздела',
-
-            },
-        ],
+        name: 'OWNER'
     },
 ]
 
+export const brendFilterList: CarList[] = [
+    {
+        id: 1,
+        name: 'CHERY',
+        modelCar: [
+            {
+                id: 1,
+                name: 'TIGGO 4',
+            },
+            {
+                id: 2,
+                name: 'TIGGO 4 PRO',
+            },
+            {
+                id: 3,
+                name: 'TIGGO 7 PRO',
+            },
+            {
+                id: 4,
+                name: 'TIGGO 8',
+            },
+            {
+                id: 5,
+                name: 'TIGGO 8 PRO',
+            },
+        ]
+    },
+    {
+        id: 2,
+        name: 'EXEED',
+        modelCar: [
+            {
+                id: 1,
+                name: 'LX',
+            },
+            {
+                id: 2,
+                name: 'VX',
+            },
+            {
+                id: 3,
+                name: 'TXL',
+            },
+            {
+                id: 4,
+                name: 'LX-AWD',
+            },
+        ]
+    },
+    {
+        id: 3,
+        name: 'HYUNDAI',
+        modelCar: [
+            {
+                id: 1,
+                name: 'SOLARIS',
+            },
+            {
+                id: 2,
+                name: 'ELANTRA',
+            },
+            {
+                id: 3,
+                name: 'SONATA',
+            },
+            {
+                id: 4,
+                name: 'CRETA',
+            },
+            {
+                id: 5,
+                name: 'TUCSON',
+            },
+            {
+                id: 6,
+                name: 'STARIA',
+            },
+            {
+                id: 7,
+                name: 'SANTA FE',
+            },
+            {
+                id: 8,
+                name: 'PALISADE',
+            },
+        ]
+    },
+    {
+        id: 4,
+        name: 'KIA',
+        modelCar: [
+            {
+                id: 1,
+                name: 'PICANTO',
+            },
+            {
+                id: 2,
+                name: 'RIO',
+            },
+            {
+                id: 3,
+                name: 'CEED',
+            },
+            {
+                id: 4,
+                name: 'CERATO',
+            },
+            {
+                id: 5,
+                name: 'K5',
+            },
+            {
+                id: 6,
+                name: 'SOUL',
+            },
+            {
+                id: 7,
+                name: 'SELTOS',
+            },
+            {
+                id: 8,
+                name: 'SPORTAGE',
+            },
+            {
+                id: 9,
+                name: 'SORENTO',
+            },
+            {
+                id: 10,
+                name: 'MOHAVE',
+            }
+        ]
+    },
+    {
+        id: 5,
+        name: 'MITSUBISHI',
+        modelCar: [
+            {
+                id: 1,
+                name: 'ASX',
+            },
+            {
+                id: 2,
+                name: 'L200',
+            },
+            {
+                id: 3,
+                name: 'CEED',
+            },
+            {
+                id: 4,
+                name: 'CERATO',
+            },
+            {
+                id: 5,
+                name: 'OUTLANDER',
+            },
+            {
+                id: 6,
+                name: 'PAJERO',
+            },
+            {
+                id: 7,
+                name: 'ECLIPSE',
+            },
+        ]
+    },
+    {
+        id: 6,
+        name: 'NISSAN',
+        modelCar: [
+            {
+                id: 1,
+                name: 'QASHQAI',
+            },
+            {
+                id: 2,
+                name: 'X-TRAIL',
+            },
+            {
+                id: 3,
+                name: 'TERRANO',
+            },
+            {
+                id: 4,
+                name: 'PATHFINDER',
+            },
+            {
+                id: 5,
+                name: 'MURANO',
+            },
+            {
+                id: 6,
+                name: 'Все модели',
+            },
+        ]
+
+    },
+    {
+        id: 7,
+        name: 'RENAULT',
+        modelCar: [
+            {
+                id: 1,
+                name: 'LOGAN',
+            },
+            {
+                id: 2,
+                name: 'SANDERO',
+            },
+            {
+                id: 3,
+                name: 'DUSTER',
+            },
+            {
+                id: 4,
+                name: 'KAPTUR',
+            },
+            {
+                id: 5,
+                name: 'ARKANE',
+            },
+            {
+                id: 6,
+                name: 'MASTER',
+            },
+            {
+                id: 7,
+                name: 'Все модели',
+            },
+            {
+                id: 8,
+                name: 'Кроссоверы',
+            },
+            {
+                id: 9,
+                name: 'Легковые',
+            },
+        ]
+    },
+    {
+        id: 8,
+        name: 'VOLKSWAGEN',
+        modelCar: [
+            {
+                id: 1,
+                name: 'POLO',
+            },
+            {
+                id: 2,
+                name: 'JETTA',
+            },
+            {
+                id: 3,
+                name: 'PASSAT',
+            },
+            {
+                id: 4,
+                name: 'GOLF',
+            },
+            {
+                id: 5,
+                name: 'TAOS',
+            },
+            {
+                id: 6,
+                name: 'TIGUAN',
+            },
+            {
+                id: 7,
+                name: 'TOURAEG',
+            },
+            {
+                id: 8,
+                name: 'TERAMONT',
+            },
+            {
+                id: 9,
+                name: 'Все модели',
+            },
+            {
+                id: 10,
+                name: 'Кроссоверы',
+            },
+            {
+                id: 11,
+                name: 'Легковые',
+            }
+        ]
+    },
+    {
+        id: 9,
+        name: 'UAZ',
+        modelCar: [
+            {
+                id: 1,
+                name: 'PATRIOT',
+            },
+            {
+                id: 2,
+                name: 'PROFI',
+            },
+            {
+                id: 3,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 10,
+        name: 'SUBARU',
+        modelCar: [
+            {
+                id: 1,
+                name: 'XV',
+            },
+            {
+                id: 2,
+                name: 'FORESTER',
+            },
+            {
+                id: 3,
+                name: 'OUTBACK',
+            },
+            {
+                id: 4,
+                name: 'Все модели',
+            },
+            {
+                id: 5,
+                name: 'Кроссоверы',
+            },
+            {
+                id: 6,
+                name: 'Легковые',
+            }
+        ]
+
+    },
+    {
+        id: 11,
+        name: 'JAGUAR',
+        modelCar: [
+            {
+                id: 1,
+                name: 'F-PACE',
+            },
+            {
+                id: 2,
+                name: 'E-PACE',
+            },
+            {
+                id: 3,
+                name: 'I-PACE',
+            },
+            {
+                id: 4,
+                name: 'F-TYPE',
+            },
+            {
+                id: 5,
+                name: 'XF',
+            },
+            {
+                id: 6,
+                name: 'Все модели',
+            },
+            {
+                id: 7,
+                name: 'Кроссоверы',
+            },
+            {
+                id: 8,
+                name: 'Легковые',
+            }
+        ]
+    },
+    {
+        id: 12,
+        name: 'LANDROVER',
+        modelCar: [
+            {
+                id: 1,
+                name: 'SPORT',
+            },
+            {
+                id: 2,
+                name: 'VELAR',
+            },
+            {
+                id: 3,
+                name: 'EVOQUE',
+            },
+            {
+                id: 4,
+                name: 'DISCOVERY',
+            },
+            {
+                id: 5,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 13,
+        name: 'SUZUKI',
+        modelCar: [
+            {
+                id: 1,
+                name: 'VITARA',
+            },
+            {
+                id: 2,
+                name: 'SX4',
+            },
+            {
+                id: 3,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 14,
+        name: 'JEEP',
+        modelCar: [
+            {
+                id: 1,
+                name: 'COMPASS',
+            },
+            {
+                id: 2,
+                name: 'GRAND CHEROKEE',
+            },
+            {
+                id: 3,
+                name: 'WRANGLER',
+            },
+            {
+                id: 4,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 15,
+        name: 'OPEL',
+        modelCar: [
+            {
+                id: 1,
+                name: 'CROSSLAND',
+            },
+            {
+                id: 2,
+                name: 'GRANDLAND X',
+            },
+            {
+                id: 3,
+                name: 'COMBO LIFE',
+            },
+            {
+                id: 4,
+                name: 'COMBO',
+            },
+            {
+                id: 5,
+                name: 'VIVARO',
+            },
+            {
+                id: 6,
+                name: 'ZAFIRA',
+            },
+            {
+                id: 7,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 16,
+        name: 'PEUGEOT',
+        modelCar: [
+            {
+                id: 1,
+                name: 'PARTNER',
+            },
+            {
+                id: 2,
+                name: 'TRAVELLER',
+            },
+            {
+                id: 3,
+                name: 'BOXER',
+            },
+            {
+                id: 4,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 17,
+        name: 'FAW',
+        modelCar: [
+            {
+                id: 1,
+                name: 'BESTUNE T77',
+            },
+            {
+                id: 2,
+                name: 'BESTURN X40',
+            },
+            {
+                id: 3,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 18,
+        name: 'HISUN',
+        modelCar: [
+            {
+                id: 1,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 19,
+        name: 'GEELY',
+        modelCar: [
+            {
+                id: 1,
+                name: 'COOLRAY',
+            },
+            {
+                id: 2,
+                name: 'ATLAS',
+            },
+            {
+                id: 3,
+                name: 'TUGELLA',
+            },
+            {
+                id: 4,
+                name: 'Все модели',
+            },
+        ]
+    },
+    {
+        id: 20,
+        name: 'allCar',
+        modelCar: [
+            {
+                id: 1,
+                name: 'Все модели',
+            },
+        ]
+    }
+]
 
 
 type SalesAdminProps = {}
 
 export function SalesAdminComponent({ }: SalesAdminProps) {
-    const [sales, setSales] = useState<Sales[]>([])
+    const [sales, setSales] = useState<Offer[]>([])
     const [showAdd, setShowAdd] = useState(false)
     const fileRef = useRef<HTMLInputElement>(null)
 
     const [title, setTitle] = useState('')
     const [shortDesc, setShortDesc] = useState('')
     const [description, setDescription] = useState('')
+    const [filterMainPeopleResult, setFilterMainPeopleResult] = useState(0)
+    const [detailFilterBrandResult, setDetailFilterBrandResult] = useState(0)
+    const [detailFilterModelResult, setDetailFilterModelResult] = useState(0)
     const [price, setPrice] = useState('')
     const [mainFilt, setMainFilt] = useState(0)// id фильтра 
     const [miniFilter, setMiniFilter] = useState(0)// id под фильтра 
     const [image, setImage] = useState<File | null>(null)
 
     const imageURL = useMemo(() => image ? URL.createObjectURL(image) : '', [image])
-
-
-    /////////////////////////////////////////////my custom text editor
-    const [selectText, setSelectText] = useState('')
-    const [selectTextAnswer, setSelectTextAnswer] = useState('')
-    const [cursorStart, setCursorStart] = useState('')
-    const [cursorEnd, setCursorEnd] = useState('')
-    const textRef = useRef(null);
-
-    function consolText() {
-        setCursorStart(textRef.current.selectionStart);
-        setCursorEnd(textRef.current.selectionEnd);
-        setSelectTextAnswer(textRef.current.value.substring(textRef.current.selectionStart, textRef.current.selectionEnd))
-    }
-
-    useEffect(() => {
-        console.log(selectTextAnswer)
-    }, [cursorStart, cursorEnd])
-
 
 
 
@@ -199,7 +650,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
     });
     /////////////////////////////////////////////
 
-    const updateSale = useCallback(async ({ id, active }: Pick<AllSaleDto, 'id' | 'active'>) => {
+    const updateSale = useCallback(async ({ id, active }: Pick<AllOffersDto, 'id' | 'active'>) => {
         const res = await fetch('/api/sales/' + id, {
             method: 'POST',
             headers: {
@@ -223,12 +674,12 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
         { field: 'description', headerName: 'description', width: 100 },
         { field: 'shortDesc', headerName: 'description', width: 130 },
         {
-            field: 'img', headerName: 'Изображение', width: 300, renderCell: (params: GridRenderCellParams<any, AllSaleDto>) => {
+            field: 'img', headerName: 'Изображение', width: 300, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
                 return <img className="imgCustom" src={'/uploads/' + params.row.img} />
             }
         },
         {
-            field: 'status', headerName: 'Статус акции', width: 130, renderCell: (params: GridRenderCellParams<any, AllSaleDto>) => {
+            field: 'status', headerName: 'Статус акции', width: 130, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
                 const { id, active } = params.row
                 return <button onClick={() => updateSale({ id, active })}>{active.toString()}</button>
                 // return params.row.statusElem as React.ReactNode
@@ -248,15 +699,19 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
 
     async function addSale(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        const filterMain = mainFilterList.find(service => service.id === mainFilt)?.name
-        const detailFilter = mainFilterList.find(service => service.id === mainFilt)?.miniFilterList.find(type => type.id === miniFilter)?.name
+    
+        const filterMainPeople = mainFilterList.find(type => type.id === filterMainPeopleResult)?.name
+        const detailFilterBrand = brendFilterList.find(brend => brend.id === detailFilterBrandResult)?.name
+        const detailFilterMode = brendFilterList.find(brend => brend.id === detailFilterBrandResult)?.modelCar.find(type => type.id === detailFilterModelResult)?.name
+        
         const formData = new FormData()
         formData.append('title', title)
         formData.append('shortDesc', shortDesc)
         formData.append('description', description)
         formData.append('price', price)
-        formData.append('filterMain', filterMain)
-        formData.append('detailFilter', detailFilter)
+        formData.append('filterMainPeople', filterMainPeople)
+        formData.append('detailFilterBrand', detailFilterBrand)
+        formData.append('detailFilterMode', detailFilterMode)
         try {
             if (image) formData.append('image', image)
             const res = await fetch('/api/sales', {
@@ -264,16 +719,18 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                 body: formData
             })
             if (res.ok) {
-                const newSale: Sales = await res.json()
+                const newSale: Offer = await res.json()
                 setSales(prevSales => {
                     return [...prevSales, newSale]
                 })
                 setShowAdd(false)
                 setTitle('')
                 setShortDesc('')
+                setDescription('')
                 setPrice('')
-                setMainFilt(0)
-                setMiniFilter(0)
+                setFilterMainPeopleResult(0)
+                setDetailFilterBrandResult(0)
+                setDetailFilterModelResult(0)
                 setImage(null)
             }
         } catch (error) {
@@ -300,15 +757,6 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                 <div className='background'>
                     <div className='column'>
                         <form onSubmit={addSale}>
-                            {/* <div className='row'>
-                                <div style={styles.editor} onClick={focusEditor}>
-                                    <Editor
-                                        ref={editor}
-                                        editorState={editorState}
-                                        onChange={editorState => setEditorState(editorState)}
-                                    />
-                                </div>
-                            </div> */}
                             <div className='row'>
                                 <TextField label="title" variant="outlined" value={title}
                                     onChange={e => setTitle(e.target.value)} />
@@ -322,30 +770,26 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                                     <MyEditor setDescription={setDescription} />
                                 </Suspense>
                             </div>
-
-                            {/* <div className='row'>
-                                <TextField label="description" variant="outlined" value={description}
-                                    onChange={e => setDescription(e.target.value)} ref={textRef} />
-                            </div> */}
-                            {/* <div className='row'>
-                                <textarea ref={textRef} value={selectText} onChange={e => setSelectText(e.target.value)}></textarea>
-                                <button onClick={consolText}>узнать выделенный текст</button>
-                            </div> */}
                             <div className='row'>
                                 <TextField label="price" variant="outlined" placeholder='От 20 %' value={price}
                                     onChange={e => setPrice(e.target.value)} />
                             </div>
                             <div className='row'>
-                                <select className="selectModel" value={mainFilt} name="filterMain" onChange={event => setMainFilt(+event.target.value)}>
-                                    <option value={0} selected disabled>Выберите раздел услуги</option>
-                                    {mainFilterList.map(saleMain => <option key={saleMain.id} value={saleMain.id}>{saleMain.name}</option>)}
+                                <select className="selectModel" value={filterMainPeopleResult} name="filterMainPeopleResult" onChange={event => setFilterMainPeopleResult(+event.target.value)}>
+                                    <option value={0} selected disabled>Выберите тип</option>
+                                    {mainFilterList.map(filterType => <option key={filterType.id} value={filterType.id}>{filterType.name}</option>)}
                                 </select>
                             </div>
-
                             <div className='row'>
-                                <select className="selectModel" value={miniFilter} name="detailFilter" onChange={event => setMiniFilter(+event.target.value)}>
-                                    <option value={0} selected disabled>Выберите подраздел</option>
-                                    {mainFilterList.find(saleMain => saleMain.id === mainFilt)?.miniFilterList.map(type => <option key={type.id} value={type.id}>{type.name}</option>)}
+                                <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran" onChange={event => setDetailFilterBrandResult(+event.target.value)}>
+                                    <option value={0} selected disabled>Выберите бренд</option>
+                                    {brendFilterList.map(filterBrend => <option key={filterBrend.id} value={filterBrend.id}>{filterBrend.name}</option>)}
+                                </select>
+                            </div>
+                            <div className='row'>
+                                <select className="selectModel" value={detailFilterModelResult} name="detailFilter" onChange={event => setDetailFilterModelResult(+event.target.value)}>
+                                    <option value={0} selected disabled>Выберите модель</option>
+                                    {brendFilterList.find(filterBrend => filterBrend.id === detailFilterBrandResult)?.modelCar.map(type => <option key={type.id} value={type.id}>{type.name}</option>)}
                                 </select>
                             </div>
                             <div className='row'>Рекомендуемый размер изображения 277 на 230 px</div>
@@ -358,13 +802,13 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                                     accept=".jpg,.jpeg,.png,.webp" />
                             </div>
                             <div className='row'>
-                                <Button type='submit'>Создать акцию</Button>
+                                <Button type='submit'>Создать предложение</Button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div className='row'>
-                    <ImageList sx={{ width: 300, height: 300 }} cols={1} rowHeight={164}>
+                    <ImageList sx={{ width: '300px', height: '300px' }} cols={1} rowHeight={164}>
                         <ImageListItem>
                             <img
                                 src={`${imageURL}`}
@@ -375,8 +819,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                     </ImageList>
                 </div>
 
-
-                <style jsx>{` 
+        <style jsx>{` 
                 .background {
                     display: flex;
                     justify-content: center;

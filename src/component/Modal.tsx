@@ -59,6 +59,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
         showModal ? 'modalBackground_show' : '',
         closeStarting ? 'modalBackground_close-starting' : '',
     ]
+    
     return <>
         <div className={className.join(' ')} style={{ color: 'red' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
             if (event.target === backgroundEl.current) closeModal()

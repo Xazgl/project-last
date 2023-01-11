@@ -39,27 +39,28 @@ apiRoute.post(async (req, res, next) => {
     next(new Error('Auth required'))
 }, async (req, res) => {
     const img: string = req.file ? req.file.filename : ''
-    const { title, shortDesc, description, filterMain, detailFilter, price } = req.body as CreateSaleDto
+    const { title, shortDesc, description, filterMainPeople,  detailFilterBrand, detailFilterMode, price } = req.body as CreateSaleDto
     try {
         try {
             const loginSchema = z.object({
                 title: z.string().min(2).max(30),
                 shortDesc: z.string().min(2).max(60),
                 description: z.string().min(2).max(300),
-                filterMain: z.string(),
-                detailFilter: z.string(),
+                filterMainPeople: z.string().max(50),
+                detailFilterBrand: z.string().max(50),
+                detailFilterMode: z.string().max(100),
                 price: z.string().min(2).max(20)
             })
-            const { title, shortDesc, description, filterMain, detailFilter, price } = loginSchema.parse(req.body)
+            const { title, shortDesc, description, filterMainPeople, detailFilterBrand, detailFilterMode, price } = loginSchema.parse(req.body)
         } catch {
             res.status(404).send({ message: "Ошибка валидации на сервере" })
         }
-        const newSale = await db.sales.create({
+        const newSale = await db.offer.create({
             data: {
-                title, shortDesc, description, filterMain, detailFilter, price, active: true, img
+                title, shortDesc, description,filterMainPeople, detailFilterBrand, detailFilterMode, price, active: true, img
             }
         })
-        res.send(newSale)
+        res.status(200).send(newSale)
     } catch (error) {
         console.error(error)
         res.status(500).send({ message: "Ошибка сервера" })
@@ -69,7 +70,7 @@ apiRoute.post(async (req, res, next) => {
 
 apiRoute.get(async (req, res) => {
     try {
-        const sales = await db.sales.findMany()
+        const sales = await db.offer.findMany()
         res.send(sales)
     } catch (error) {
         console.error(error)
@@ -86,7 +87,7 @@ apiRoute.put(async (req, res, next) => {
     next(new Error('Auth required'))
 }, async (req, res) => {
     const img: string = req.file ? req.file.filename : ''
-    const {id, title, shortDesc, description, filterMain, detailFilter, price } = req.body as UpdateSaleDto
+    const {id, title, shortDesc, description,filterMainPeople, detailFilterBrand, detailFilterMode, price } = req.body as UpdateSaleDto
     try {
         try {
             const loginSchema = z.object({
@@ -101,10 +102,10 @@ apiRoute.put(async (req, res, next) => {
         } catch {
             res.status(404).send({ message: "Ошибка валидации на сервере" })
         }
-        const newSale = await db.sales.update({
+        const newSale = await db.offer.update({
             where:{id},
             data: {
-                title, shortDesc, description, filterMain, detailFilter, price, active: true, img
+                title, shortDesc, description,filterMainPeople, detailFilterBrand, detailFilterMode, price, active: true, img
             }
         })
         res.send(newSale)

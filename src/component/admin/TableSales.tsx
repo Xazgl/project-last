@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
-import { Client, ClientTradein, Sales } from '@prisma/client';
+import { Offer} from '@prisma/client';
 import { useCallback, useEffect, useState } from 'react';
-import { AllSaleDto } from '../../../@types';
+import { AllOffersDto } from '../../../@types';
 import Link from 'next/link';
 
 
 
 export function TableSales() {
-  const [sales, setSales] = useState<AllSaleDto[]>([])
+  const [sales, setSales] = useState<AllOffersDto []>([])
   const [statusSale, setStatusSale] = useState(true)
 
-  const updateSale = useCallback(async ({ id, active }: Pick<AllSaleDto, 'id' | 'active'>) => {
+  const updateSale = useCallback(async ({ id, active }: Pick<AllOffersDto , 'id' | 'active'>) => {
     const res = await fetch('/api/sales/' + id, {
       method: 'POST',
       headers: {
@@ -28,9 +28,7 @@ export function TableSales() {
     }
   }, [sales])
 
-
-
-  const deleteSale = useCallback(async ({ id }: Pick<AllSaleDto, 'id'>) => {
+  const deleteSale = useCallback(async ({ id }: Pick<AllOffersDto , 'id'>) => {
     const res = await fetch('/api/salesdel/' + id, {
       method: 'POST',
       headers: {
@@ -48,10 +46,10 @@ export function TableSales() {
     async function start() {
       const res = await fetch('/api/allSales')
       if (res.ok) {
-        const sales: Sales[] = await res.json()
+        const sales: Offer[] = await res.json()
         setSales(sales.map(sale => {
-          const { id, title, shortDesc, description, price, filterMain, detailFilter, img, active, createdAt } = sale
-          return { id, title, shortDesc, description, price, filterMain, detailFilter, img, active, createdAt }
+          const { id, title, shortDesc, description, price,filterMainPeople , detailFilterBrand, detailFilterMode, img, active, createdAt,updatedAt } = sale
+          return { id, title, shortDesc, description, price,filterMainPeople , detailFilterBrand, detailFilterMode, img, active, createdAt ,updatedAt }
         }))
       }
     }
@@ -62,29 +60,30 @@ export function TableSales() {
     { field: 'id', headerName: 'ID', width: 10 },
     { field: 'title', headerName: 'Название', width: 200 },
     { field: 'shortDesc', headerName: 'Краткое описание', width: 200 },
-    { field: 'description', headerName: 'Описание', width: 200 },
+    { field: 'description', headerName: 'Описание', width: 300 },
     { field: 'price', headerName: 'Скидка или цена', width: 150 },
-    { field: 'filterMain', headerName: 'Вид услуги', width: 150 },
-    { field: 'detailFilter', headerName: 'Услуга', width: 150 },
+    { field: 'filterMainPeople', headerName: 'Предлож для', width: 150 },
+    { field: 'detailFilterBrand', headerName: 'Бренд', width: 150 },
+    { field: 'detailFilterMode', headerName: 'Модель', width: 150 },
     {
-      field: 'picture', headerName: 'Изображение', width: 300, renderCell: (params: GridRenderCellParams<any, AllSaleDto>) => {
+      field: 'picture', headerName: 'Изображение', width: 300, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
         return <img style={{ backgroundSize: 'cover', width: '100%' }} src={'/uploads/' + params.row.img} />
       }
     },
     {
-      field: 'status', headerName: 'Статус акции', width: 130, renderCell: (params: GridRenderCellParams<any, AllSaleDto>) => {
+      field: 'status', headerName: 'Статус акции', width: 130, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
         const { id, active } = params.row
         return <button style={{ background: 'blue', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => updateSale({ id, active })}>{active.toString()}</button>
       }
     },
     {
-      field: 'createdAt', headerName: 'Удаление', width: 130, renderCell: (params: GridRenderCellParams<any, AllSaleDto>) => {
+      field: 'createdAt', headerName: 'Удаление', width: 130, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
         const { id } = params.row
         return <button style={{ background: 'red', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => deleteSale({ id })}>Удалить</button>
       }
     },
     {
-      field: 'createdAt2', headerName: 'Редактирование', width: 150, renderCell: (params: GridRenderCellParams<any, AllSaleDto>) => {
+      field: 'createdAt2', headerName: 'Редактирование', width: 150, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
         const { id } = params.row
         return <Link href={{
           pathname: '/admin/card/[id]',
