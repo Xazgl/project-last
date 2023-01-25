@@ -21,6 +21,7 @@ import hisun from '/public/images/logo-brends/hisun.jpg';
 import geely from '/public/images/logo-brends/geely.jpg';
 import exeed from '/public/images/logo-brends/exeed.jpg';
 import usedcars from '/public/images/logo-brends/usedcars.jpg';
+import lovol from '/public/images/logo-brends/lov.png';
 
 
 
@@ -52,6 +53,9 @@ export function Labels() {
                     </div>
                     <div className="label" >
                         <img alt="" src={kia.src} title="" ></img>
+                    </div>
+                    <div className="label" >
+                        <img alt="" src={lovol.src} title="" ></img>
                     </div>
                     <div className="label" >
                         <img alt="" src={landrov.src} title="" ></img>
@@ -154,19 +158,22 @@ export function Labels() {
                       width: 44px;
                       height: 45px;
                     }
-                }
-                @media(max-width: 460px) {
                     .labels {
-                      gap:10px;
+                      gap:8px;
+                    }
+                }
+                @media(max-width: 540px) {
+                    .labels {
+                      gap:5px;
                     }
                 }
                 @media(max-width: 350px) {
                     .labels {
-                      gap:2px;
+                      gap:5px;
                     }
                     img {
-                      width: 35px;
-                      height: 35px;
+                      width: 27px;
+                      height: 27px;
                     }
                 }
                 @media(max-width: 250px) {

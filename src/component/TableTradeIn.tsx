@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Client, ClientTradein } from '@prisma/client';
 import { useEffect, useState } from 'react';
-import { ClientеTradeInDto} from '../../@types';
+import { ClientеTradeInDto} from '../../@types/dto';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width:20},

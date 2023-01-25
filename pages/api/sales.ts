@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import db from '../../prisma';
 import nextConnect from 'next-connect';
 import multer from 'multer';
-import { CreateSaleDto, UpdateSaleDto } from '../../@types';
+import { CreateSaleDto, UpdateSaleDto } from '../../@types/dto';
 import checkSession from "../../src/services/checkCookie";
 import helmet from "helmet";
 import { z } from 'zod';

@@ -1,0 +1,314 @@
+{
+  "id": [
+    "3574602"
+  ],
+  "vin": [
+    "LFP83APE7M1D34823"
+  ],
+  "uin": [
+    ""
+  ],
+  "dealer": [
+    {
+      "_": "Арконт FAW Волгоград",
+      "$": {
+        "id": "4587"
+      }
+    }
+  ],
+  "category": [
+    {
+      "_": "Легковые",
+      "$": {
+        "id": "1"
+      }
+    }
+  ],
+  "subcategory": [
+    ""
+  ],
+  "type": [
+    "new"
+  ],
+  "year": [
+    "2021"
+  ],
+  "brand": [
+    {
+      "_": "FAW",
+      "$": {
+        "id": "35"
+      }
+    }
+  ],
+  "model": [
+    {
+      "_": "Besturn X40",
+      "$": {
+        "id": "10258"
+      }
+    }
+  ],
+  "generation": [
+    {
+      "_": "I",
+      "$": {
+        "id": "10259"
+      }
+    }
+  ],
+  "bodyConfiguration": [
+    {
+      "_": "Внедорожник 5 дв.",
+      "$": {
+        "id": "8958"
+      }
+    }
+  ],
+  "modification": [
+    {
+      "_": "1.6 AT (108 л.с.)",
+      "$": {
+        "id": "69386"
+      }
+    }
+  ],
+  "complectation": [
+    {
+      "_": "Luxury",
+      "$": {
+        "id": "12947"
+      }
+    }
+  ],
+  "brandComplectationCode": [
+    ""
+  ],
+  "engineType": [
+    "petrol"
+  ],
+  "engineVolume": [
+    "1598"
+  ],
+  "enginePower": [
+    "108"
+  ],
+  "bodyNumber": [
+    ""
+  ],
+  "bodyType": [
+    "suv"
+  ],
+  "bodyDoorCount": [
+    "5"
+  ],
+  "bodyColor": [
+    "black"
+  ],
+  "bodyColorMetallic": [
+    "0"
+  ],
+  "driveType": [
+    "front"
+  ],
+  "gearboxType": [
+    "automatic"
+  ],
+  "gearboxGearCount": [
+    ""
+  ],
+  "steeringWheel": [
+    "left"
+  ],
+  "mileage": [
+    "0"
+  ],
+  "mileageUnit": [
+    "km"
+  ],
+  "price": [
+    "1760000"
+  ],
+  "special_price": [
+    "0"
+  ],
+  "specialOffer": [
+    "0"
+  ],
+  "specialOfferPreviousPrice": [
+    ""
+  ],
+  "priceWithDiscount": [
+    ""
+  ],
+  "tradeinDiscount": [
+    "0"
+  ],
+  "creditDiscount": [
+    "0"
+  ],
+  "insuranceDiscount": [
+    "0"
+  ],
+  "availability": [
+    "available"
+  ],
+  "ptsType": [
+    ""
+  ],
+  "country": [
+    ""
+  ],
+  "operatingTime": [
+    ""
+  ],
+  "ecoClass": [
+    ""
+  ],
+  "driveWheel": [
+    ""
+  ],
+  "axisCount": [
+    ""
+  ],
+  "brakeType": [
+    ""
+  ],
+  "cabinType": [
+    ""
+  ],
+  "maximumPermittedMass": [
+    ""
+  ],
+  "saddleHeight": [
+    ""
+  ],
+  "cabinSuspension": [
+    ""
+  ],
+  "chassisSuspension": [
+    ""
+  ],
+  "length": [
+    ""
+  ],
+  "width": [
+    ""
+  ],
+  "bodyVolume": [
+    ""
+  ],
+  "bucketVolume": [
+    ""
+  ],
+  "tractionClass": [
+    ""
+  ],
+  "refrigeratorClass": [
+    ""
+  ],
+  "craneArrowRadius": [
+    ""
+  ],
+  "craneArrowLength": [
+    ""
+  ],
+  "craneArrowPayload": [
+    ""
+  ],
+  "loadHeight": [
+    ""
+  ],
+  "photoCount": [
+    "1"
+  ],
+  "description": [
+    "Этот автомобиль ждет Вас в наличии, у официального дилера FAW АРКОНТ\n \nВНИМАНИЕ! Ставки по кредиту снижены! \nВыгодные условия по программе трейд-ин в FAW АРКОНТ:\n- Выкупим ваш автомобиль в любом состоянии и обменяем на новый FAW с выгодой.\n- Принимаем автомобили любых производителей и любого года выпуска.\n- Оценим Ваш автомобиль по рыночной цене!\n \n \n \nЗвоните сейчас и получите персональное предложение на покупку нового FAW!\nПодробности уточняйте у менеджера отдела продаж FAW АРКОНТ.\nАрконт - официальный дилер FAW в Волгограде.\nЖдем Вас по адресу: г. Волгоград, ул. Вильнюсская, 42/2\nАрконт - 30 лет безграничной автомобильности!"
+  ],
+  "poi_id": [
+    "Волгоград, Вильнюсская улица, 42/2"
+  ],
+  "ownersCount": [
+    "0"
+  ],
+  "extras": [
+    {
+      "group": [
+        {
+          "$": {
+            "id": "1",
+            "name": "Активная безопасность"
+          },
+          "element": [
+            {
+              "_": "Антиблокировочная система",
+              "$": {
+                "id": "1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "photos": [
+    {
+      "photo": [
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/4aaeda0eb1065cad79057b04ee589266.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/cda665f9440e59587d410ffea9d84e4f.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/4610801b832912bc66edc0e755b5156d.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/ebf2fb31f7b62ac11d27db5b24f2ee5a.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/248f853575c04e41c760ba795217bea4.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/7832702c97badc8410c6fbd6fe5444e3.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/d829c1de5a5d23cd45f8bcc335ff06ac.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/f7eecfd2045f4b41bf54548fda203530.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/8a88129bfef86c53b3e9a3c3b7795a05.jpg?sid=43",
+        "https://s1.maxposter.ru/photo/4587/3574602/orig/35f98030983cf66413318d57a0cbb439.jpg?sid=43"
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "phone": [
+        {
+          "_": "+7 (844) 220-47-05",
+          "$": {
+            "number": "78442204705",
+            "callFrom": "8",
+            "callTo": "20"
+          }
+        }
+      ]
+    }
+  ],
+  "brandColorCode": [
+    ""
+  ],
+  "brandInteriorCode": [
+    ""
+  ],
+  "certificationProgram": [
+    ""
+  ],
+  "acquisitionSource": [
+    ""
+  ],
+  "acquisitionDate": [
+    "2022-09-29"
+  ],
+  "production": [
+    ""
+  ],
+  "equipment": [
+    ""
+  ],
+  "equipmentPrice": [
+    ""
+  ],
+  "comment": [
+    ""
+  ],
+  "withVAT": [
+    "Нет"
+  ]
+}

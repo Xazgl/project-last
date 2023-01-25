@@ -8,7 +8,8 @@
     "start": "next start",
     "migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
-    "lint": "next lint"
+    "lint": "next lint",
+    "xml:init:db": "nodemon --watch ./xmlTasks ./xmlTasks/index.js"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
@@ -38,7 +39,7 @@
     "helmet": "^6.0.0",
     "imask": "^6.4.2",
     "multer": "^1.4.4",
-    "nanoid": "^3.3.2",
+    "nanoid": "^3.3.4",
     "next": "12.1.0",
     "next-connect": "^0.12.2",
     "nodemailer": "^6.7.3",

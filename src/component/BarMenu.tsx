@@ -135,15 +135,15 @@ export default function BarMenu() {
 
 
       <style jsx>{`
-@media(min-width: 700px) {
-    .bar {
-      display:none;
-    }
-}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dongle&family=Montserrat&family=Roboto:wght@300;400;500;700&display=swap');
 
 
+.bar {
+  display: block;
+  width: 100%;
+}
 
 .title {
   display: flex;
@@ -202,6 +202,12 @@ li {
   font-size: 16px;
 }
 
+
+@media(min-width: 800px) {
+    .bar {
+      display:none;
+    }
+}
 
 @media(max-width: 500px) {
   .span {

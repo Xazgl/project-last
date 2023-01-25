@@ -2,6 +2,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
+import db, { Car } from '../../prisma'
 import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import { MenuBar } from '../../src/component/Menu'
@@ -9,7 +10,7 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 
-const AllNewCarPage: NextPage = () => {
+const AllNewCarPage: NextPage <{ cars: Car[] }> = ({ cars }) => {
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
@@ -28,7 +29,7 @@ const AllNewCarPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBar refs={{ refSales, refContact, refAdvatages }} />
-      <NewCarComponent  setShowModal={setShowModal}  />
+      <NewCarComponent  setShowModal={setShowModal} cars={cars}  />
       {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
 
       {
@@ -41,6 +42,30 @@ const AllNewCarPage: NextPage = () => {
 
     </>
   )
+}
+
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cars = await db.car.findMany(
+              {
+                  where: {
+                      active: true,
+                  },
+                  include: {
+                      CarModel: true,
+                      CarComplectation: true,
+                      CarModification: true,
+                      extras: true,
+                      DealerModel: true,
+                  }
+              }
+  )
+
+  return {
+    props: {
+      cars: JSON.parse(JSON.stringify(cars)),
+    }
+  }
 }
 
 export default AllNewCarPage

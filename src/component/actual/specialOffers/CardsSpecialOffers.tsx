@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Link from 'next/link';
-import { AllOffersDto } from '../../../../@types';
+import { AllOffersDto } from '../../../../@types/dto';
 import { GetServerSideProps } from 'next';
 import db from '../../../../prisma';
 
@@ -284,7 +284,7 @@ export function CardsSpecialOffers() {
     ]
 
 
-     function reversalCard() {
+    function reversalCard() {
         setOpenStarting(true)
         setTimeout(() => {
             setCloseStarting(false)
@@ -316,7 +316,7 @@ export function CardsSpecialOffers() {
                     <div className="cards">
                         {
                             sales.map(sale => {
-                                return <div className={className.join(' ')}  ref={refCard} key={sale.id}  onClick={(event) => {if(event.target === refCard.current) reversalCard() }}>
+                                return <div className={className.join(' ')} ref={refCard} key={sale.id} onClick={(event) => { if (event.target === refCard.current) reversalCard() }}>
                                     <div className="column" >
                                         <img style={{
                                             backgroundSize: 'cover', width: '100%',

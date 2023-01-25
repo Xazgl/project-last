@@ -34,12 +34,16 @@ export function MenuBar({ refs }: MuneProps) {
   return <nav>
     <ul className="bar">
       <li className="menuEL">
-        <div className="label"></div>
+        <Link href={'/'}>
+          <div className="label"></div>
+        </Link>
       </li>
       <li className="menuEL" id="catalog">
         <Link href={'/calcToPage'}><span>Каталог </span></Link>
         <ul className="bottomUl">
-          <li className="f">Автомобили в наличии</li>
+          <Link href={'/catalog/new-car'}>
+            <li className="f">Автомобили в наличии</li>
+          </Link>
           <li className="f">Автомобили с пробегом</li>
           <Link href={'/catalog/tradein'}>
             <li className="f">Онлайн-оценка автомобиля</li>
@@ -222,11 +226,11 @@ export function MenuBar({ refs }: MuneProps) {
         }
 
       }
-    @media(max-width: 700px) {
-      ul {
-         display:none;
-        z-index:none;
-      }
+    @media(max-width: 900px) {
+      .bar {
+          display: none;
+        }
+     
 }
     `}</style>
   </nav>

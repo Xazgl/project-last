@@ -8,7 +8,7 @@ import { Modal } from '../src/component/Modal'
 import { TradeinModal } from '../src/component/ModalTwo'
 import { useEffect, useRef, useState } from 'react'
 import BarMenu from '../src/component/BarMenu'
-import db, { Sales } from '../prisma'
+import db, {Car} from '../prisma'
 import { Map } from '../src/component/Map'
 
 import { Cards } from '../src/component/exeed/Cards'
@@ -23,23 +23,16 @@ import { QuestionForm } from '../src/component/actual/QuestionForm'
 import { FooterMain } from '../src/component/actual/FooterMain'
 
 
-
-
-
-
-const Home: NextPage<{ sales: Sales[] }> = ({ sales }) => {
+const Home: NextPage<{ cars: Car[] }> = ({ cars }) => {
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
-
 
   const refSales = useRef<HTMLDivElement>(null)
   const refTop = useRef<HTMLDivElement>(null)
   const refContact = useRef<HTMLDivElement>(null)
   const refAdvatages = useRef<HTMLDivElement>(null)
   const refFooter = useRef<HTMLDivElement>(null)
-
-
 
   // const [modelName, setModelName] = useState<string>(null)
   // useEffect(() => {
@@ -58,9 +51,10 @@ const Home: NextPage<{ sales: Sales[] }> = ({ sales }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBar refs={{ refSales, refContact, refAdvatages }} />
+      <BarMenu />
       <MainCard />
       <Labels />
-      <NewCar />
+      <NewCar cars={cars} />
       <OldCar/>
       <QuestionForm />
       <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
@@ -87,19 +81,28 @@ const Home: NextPage<{ sales: Sales[] }> = ({ sales }) => {
 
 export default Home
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cars = await db.car.findMany(
+              {
+                  where: {
+                      active: true,
+                  },
+                  include: {
+                      CarModel: true,
+                      CarComplectation: true,
+                      CarModification: true,
+                      extras: true,
+                      DealerModel: true,
+                  }
+              }
+  )
 
-//   const sales = await db.sales.findMany({
-//     where: {
-//       active: true
-//     }
-//   })
-//   return {
-//     props: {
-//       sales: JSON.parse(JSON.stringify(sales)),
-//     }
-//   }
-// }
+  return {
+    props: {
+      cars: JSON.parse(JSON.stringify(cars)),
+    }
+  }
+}
 
 
 

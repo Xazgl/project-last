@@ -7,9 +7,19 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import exeed from '/public/images/logo-brends/exeed.jpg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Dispatch, FormEvent, SetStateAction, useMemo, useState } from "react"
+import { Dispatch, FormEvent, SetStateAction, useEffect, useMemo, useState } from "react"
 import { Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Slider, TextField } from "@mui/material";
 import { brendFilterList } from "../../admin/SalesAdmin";
+import suv from '/public/images/carBodyTyp/suv.svg'
+import crossover from '/public/images/carBodyTyp/crossover.svg'
+import hatchback from '/public/images/carBodyTyp/hatchback.svg'
+import liftback from '/public/images/carBodyTyp/liftback.svg'
+import minivan from '/public/images/carBodyTyp/minivan.svg'
+import sedan from '/public/images/carBodyTyp/sedan.svg'
+import { Car } from "@prisma/client";
+import CarFilterSidebar from "./CarFilterSidebar";
+import FilteredNewCars from "./FilteredNewCars";
+
 
 type OfficesList = {
     id: number,
@@ -29,185 +39,28 @@ type NewOrOldList = {
 }
 
 
-export function NewCarComponent({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>> }) {
+type Props = {
+    setShowModal: Dispatch<SetStateAction<boolean>>,
+    cars: Car[],
+}
+
+export function NewCarComponent({ setShowModal, cars }: Props) {
+
+    const [filteredCars, setFilteredCars] = useState(cars)
 
     function showModal(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setShowModal(true)
     }
 
-    const [type, setType] = useState('')
-
-    const [filterMainPeopleResult, setFilterMainPeopleResult] = useState(0)
-    const [detailFilterBrandResult, setDetailFilterBrandResult] = useState(0)
-    const [detailFilterModelResult, setDetailFilterModelResult] = useState(0)
-    const [numberBegin, setNumberBegin] = useState()
-    const [numberEnd, setNumberEnd] = useState()
-
-    const [color, setColor] = useState('')
-
-    function calculateValue(value: number) {
-        return 2 ** value;
-    }
-
     return (
         <>
             <div className="background">
-                <div className="sideBar">
-                    <div className="rowSideBar" id="center" >
-                        <ButtonGroup
-                            disableElevation
-                            variant="outlined"
-                            aria-label="Disabled elevation buttons"
-                        >
-                            <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => setType('Новые')}>Новые</Button>
-                            <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => setType('С пробегом')} >С пробегом</Button>
-                        </ButtonGroup>
-                    </div>
-                    <div className="rowSideBar" id="center" >
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <Typography sx={{ fontSize: '14px' }}>Дилерские центры</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <FormGroup>
-                                    {type !== 'С пробегом' &&
-                                        <>
-                                            <FormControlLabel control={<Checkbox />} label="Chery Арконт" />
-                                            <FormControlLabel control={<Checkbox />} label="EXEED Арконт" />
-                                            <FormControlLabel control={<Checkbox />} label="FAW Арконт" />
-                                            <FormControlLabel control={<Checkbox />} label="Hyundai Арконт" />
-                                            <FormControlLabel control={<Checkbox />} label="KIA Арконт" />
-                                            <FormControlLabel control={<Checkbox />} label="Mitsubishi Арконт на Землячке" />
-                                            <FormControlLabel control={<Checkbox />} label="Renault Арконт Волгоград" />
-                                            <FormControlLabel control={<Checkbox />} label="Nissan Арконт на Еременко 7Б" />
-                                            <FormControlLabel control={<Checkbox />} label="Volkswagen Арконт на Монолите" />
-                                        </>
-                                    }
-
-                                    {type === 'С пробегом' &&
-                                        <>
-                                            <FormControlLabel control={<Checkbox />} label="Арконт с пробегом на Землячке" />
-                                            <FormControlLabel control={<Checkbox />} label="Арконт с пробегом в Волжском" />
-                                        </>
-                                    }
-                                </FormGroup>
-                            </AccordionDetails>
-                        </Accordion>
-                    </div>
-                    <div className="rowSideBar" id="column" >
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <Typography sx={{ fontSize: '14px' }}>Стоимость</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <input type="number"
-                                    className="name"
-                                    id="name"
-                                    name="name"
-                                    placeholder="от 2 000 000"
-                                    required
-                                    value={numberBegin}
-                                    onChange={event => setNumberBegin(+event.target.value)}
-                                />
-                                <Slider
-                                    size="small"
-                                    defaultValue={numberBegin}
-                                    aria-label="Small"
-                                    valueLabelDisplay="auto"
-                                    min={0}
-                                    step={100000}
-                                    max={6999999}
-                                    onChange={event => setNumberBegin(+event.target.value)}
-                                />
-                                <input type="number"
-                                    className="name"
-                                    id="name"
-                                    name="name"
-                                    placeholder="до 3 000 000"
-                                    required
-                                    value={numberEnd}
-                                    onChange={event => setNumberEnd(+event.target.value)}
-                                />
-                                <Slider
-                                    size="small"
-                                    defaultValue={numberEnd}
-                                    aria-label="Small"
-                                    valueLabelDisplay="auto"
-                                    min={0}
-                                    step={100000}
-                                    max={7000000}
-                                    onChange={event => setNumberEnd(+event.target.value)}
-                                />
-                            </AccordionDetails>
-                        </Accordion>
-                    </div>
-                    <div className="rowSideBar" id="column" >
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <Typography sx={{ fontSize: '14px' }}>Бренд</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran" onChange={event => setDetailFilterBrandResult(+event.target.value)}>
-                                    <option value={0} selected disabled>Выберите бренд</option>
-                                    {brendFilterList.map(filterBrend => <option key={filterBrend.id} value={filterBrend.id}>{filterBrend.name}</option>)}
-                                </select>
-                            </AccordionDetails>
-                        </Accordion>
-                    </div>
-
-                    {detailFilterBrandResult > 0 &&
-                        <div className="rowSideBar" id="column" >
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography sx={{ fontSize: '14px' }}>Модель</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <select className="selectModel" value={detailFilterModelResult} name="detailFilter" onChange={event => setDetailFilterModelResult(+event.target.value)}>
-                                        <option value={0} selected disabled>Выберите модель</option>
-                                        {brendFilterList.find(filterBrend => filterBrend.id === detailFilterBrandResult)?.modelCar.map(type => <option key={type.id} value={type.id}>{type.name}</option>)}
-                                    </select>
-                                </AccordionDetails>
-                            </Accordion>
-                        </div>
-                    }
-                    <div className="rowSideBar" id="column" >
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <Typography sx={{ fontSize: '14px' }}>Цвет</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <div  id="color" >
-                                    <div style={{ display: 'flex', background: 'red', width: '20px', height: '20px' }}></div>
-                                    <div style={{ display: 'flex', background: 'black', width: '20px', height: '20px' }}></div>
-                                    <div style={{ display: 'flex', background: 'white', width: '20px', height: '20px' }}></div>
-                                </div>
-                            </AccordionDetails>
-                        </Accordion>
-                    </div>
+                <CarFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars}/>
+                <div className="carBlock">
+                    <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal} />
                 </div>
-                <div className="carBlock"></div>
-            </div>
+            </div >
             <style jsx>{`
                 .background {
                     display:flex; 
@@ -227,7 +80,7 @@ export function NewCarComponent({ setShowModal }: { setShowModal: Dispatch<SetSt
                     display:flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 300px;
+                    width: 400px;
                     height: auto;
                     border:solid 2px black;
                     overflow: auto;
@@ -241,8 +94,6 @@ export function NewCarComponent({ setShowModal }: { setShowModal: Dispatch<SetSt
                     border-bottom: 1px solid #d4d3d3;
                 }
 
-
-
                 #center{
                     display:flex;
                     justify-content: center;
@@ -252,6 +103,13 @@ export function NewCarComponent({ setShowModal }: { setShowModal: Dispatch<SetSt
                     display:flex;
                     flex-direction: column;
                     width: 100%;
+                }
+
+                #carBodyType{
+                    display:flex;
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: center;
                 }
 
                 #row {
@@ -286,7 +144,23 @@ export function NewCarComponent({ setShowModal }: { setShowModal: Dispatch<SetSt
                     border:solid 1px #005baa;
                     font-size:16px;
                 }
-               
+                
+                .carTypeDiv {
+                   display: flex;
+                   justify-content: center;
+                   height: 50px;
+                   width: 120px;
+                   padding: 5px;
+                   border-radius: 7px;
+                }
+
+                .imgCarType{
+                     cursor: pointer;
+                }
+
+                .carTypeDiv:hover {
+                    background-color: #d4d3d3
+                }
 
                 @media(max-width: 1200px) {
                     .MainBanner { 

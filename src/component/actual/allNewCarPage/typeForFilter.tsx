@@ -15,16 +15,27 @@ export  type NewOrOldList = {
     offices: OfficesList[]
 }
 
+export type FilterUserOptions = {
+    carType?: 'new' | 'used'
+    dealerOffice?: string[]
+    minPrice?: number
+    maxPrice?: number
+    brandName?: string[]
+    modelName?: string[],
+    colorName?: string[],
+    gearBoxName?:string[],
+}
 
-const filterList:NewOrOldList = [
-    {   id: 1,
-        name: 'Новые',
-        offices : [
-            {
 
-            }
+// const filterList:NewOrOldList = [
+//     {   id: 1,
+//         name: 'Новые',
+//         offices : [
+//             {
 
-        ]
-    }
+//             }
 
-]
+//         ]
+//     }
+
+// ]

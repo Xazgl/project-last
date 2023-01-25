@@ -11,16 +11,21 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { AllCarDto } from "../../../@types/dto";
+import { Car } from "@prisma/client";
+import { Circle } from "@mui/icons-material";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-export function NewCar() {
+export function NewCar({ cars }: { cars: Car[] }) {
 
     const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
     const [filterClosed, setFilterClosed] = useState(false);
+    const [carArr, setCarArr] = useState<AllCarDto[]>(
+        Array.isArray(cars) && cars.length ? Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
 
 
     const newFiltRef = useRef(null)
@@ -38,6 +43,27 @@ export function NewCar() {
         console.log(filterOpen)
     }
 
+
+    // useEffect(() => {
+    //     async function start() {
+    //         const res = await fetch('/api/allCars')
+    //         if (res.ok) {
+    //             const cars: Car[] = await res.json()
+    //             // console.log(cars)
+
+    //             let customCars = Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)])
+    //             setCarArr(customCars.map(car => {
+    //                 const { id, id_1c, color, bodyColorMetallic, mileage, mileageUnit, vin, year, img, priceMonth, price, special_price, specialOffer, tradeinDiscount, creditDiscount, insuranceDiscount, desc, active, carModelId, carModificationId, carComplectationId, dealerModelId, availability, createdAt } = car
+    //                 return { id, id_1c, color, bodyColorMetallic, mileage, mileageUnit, vin, year, img, priceMonth, price, special_price, specialOffer, tradeinDiscount, creditDiscount, insuranceDiscount, desc, active, carModelId, carModificationId, carComplectationId, dealerModelId, availability, createdAt }
+    //             }))
+    //         }
+    //     }
+    //     start()
+    //     console.log(carArr)
+    // }, [])
+
+    console.log(cars)
+
     return (
         <>
             <div className="background" >
@@ -47,88 +73,50 @@ export function NewCar() {
                         onClick={(event) => { if (event.target === newFiltRef.current) active() }}>Новые поступления</div>
                     <div className="el" id={id.join(' ')} ref={saleFiltRef} onClick={() => setActiveFilter('sale')}>Скидка</div>
                 </div>
-                <div className="cardsSlider">
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                </div>
+                {carArr.length > 0 ?
+                    (<div className="cardsSlider">
+                        {
+                            carArr.map(car => {
+                                return <Link href={{
+                                    pathname: '/catalog/car/[id]',
+                                    query: { id: car.id }
+                                }}>
+                                    <div className="card">
+                                        <div className="imgDiv">
+                                            <img src={car.img[0]} className="cardImg"></img>
+                                        </div>
+                                        <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
+                                        <div className="cardDesc">
+                                            <div className="elDesc">АИ-95</div>
+                                            <div className="elDesc">{(Math.round((car.CarModification.engineVolume) * 100) / 100000).toFixed(1)} л.</div>
+                                            <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
+                                            {car.CarModification.driverType === 'front' &&
+                                                <div className="elDesc">FWD</div>
+                                            }
+                                            {car.CarModification.driverType === 'full_4wd' &&
+                                                <div className="elDesc">4WD</div>
+                                            }
+                                            <div className="elDesc">{(car.CarModification.driverType)}FWD</div>
+                                            <div className="elDesc">MT</div>
+                                        </div>
+                                        <div className="cardPrice">{car.price} Р </div>
+                                        <div className="cardPriceMonth">
+                                            <button className="btn">от {Math.round(car.priceMonth)} Р/мес</button>
+                                        </div>
+                                        <div className="credit">
+                                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            })
+                        }
+                    </div>)
+                    : null
+                }
+                {
+                    carArr.length <= 0 &&
+                    <h1>Авто в пути</h1>
+                }
                 <div className="btnDiv">
                     <button className="btnAllCar">Смотреть все новые автомобили</button>
                 </div>
@@ -164,7 +152,7 @@ export function NewCar() {
                 .background {
                     display:flex; 
                     width: 100%;
-                    height: 700px;
+                    height: 750px;
                     justify-content: center; 
                     align-items: center;
                     margin-top:10px;
@@ -231,9 +219,11 @@ export function NewCar() {
 
                 .card:hover {    
                     transform: scale(1.03);
-                   -webkit-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.2);
-                   -moz-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.2);
-                   box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.2);
+                   -webkit-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.9);
+                   -moz-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.9);
+                   box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.09);
+                   height: 450px;
+                   border: none;
                 }
 
                 .imgDiv {
@@ -247,6 +237,7 @@ export function NewCar() {
                     display: flex;
                     width: 221px;
                     height: 166px;
+                    border-radius: 7px;
                 }
 
                 .cardTitle {
@@ -326,10 +317,15 @@ export function NewCar() {
                     text-align: center;
                     align-items: center;
                     width: 100%;
-                    height: 100%;
+                    height: 60px;
                     border-top:1px solid #deded8;
                     transition: 1s;
                     margin-top:-10em;
+                    cursor: pointer;
+                }
+
+                .credit:hover {
+                    background-color:#0088ff;;
                 }
                 
                 .card:hover .credit {
@@ -353,7 +349,7 @@ export function NewCar() {
 
                 .card:hover .pricCredit{
                     color:white;
- ;
+ 
                 }
 
 
@@ -391,26 +387,51 @@ export function NewCar() {
                 
                
                 @media(max-width: 1200px) {
-                    .MainBanner { 
-                        background-size: cover;
+                    .background {
+                     height: 100%;
                     }
                 }
-                @media(max-width: 900px) {
-                    .title { 
-                        font-size:30px;
+
+                @media(max-width: 1000px) {
+                    .cardsSlider{
+                        flex-wrap: wrap;
+                        width: auto;
+                        justify-content: center;
+                        height: auto;
+                    }
+                    .btnDiv {
+                        margin-top: 20px;
                     }
                 }
+
                 @media(max-width: 720px) {
-                    .title { 
-                        font-size:25px;
+                    .card:hover .credit {
+                       display: none;
                     }
-                    .titleMini {
-                        font-size:15px;
+                    .card:hover {    
+                    transform: scale(1);
+                    height: auto;
+                   }
+                   .card{
+                    height: auto;
+                   }
+
+                   .cardImg{
+                      width: 100%;
+                      height: auto;
+                      border-radius: 0;
                     }
-                    .MainBanner { 
-                        height: 400px;
+
+                    .cardPriceMonth{
+                        margin-bottom:10px;
+                    }
+
+                    .btn {
+                        width: 80%;
+                        height: 35px;
                     }
                 }
+            
                 @media(max-width: 540px) {
                     .title { 
                         font-size:18px;

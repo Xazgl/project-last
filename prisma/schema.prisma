@@ -124,15 +124,14 @@ model DealerModel {
 
 model CarModel {
   id              String @id @default(cuid())
-  id_1c           Int    @unique
-  brandId         String
-  modelId_1c      Int
+  id_1c           Int      //бренд id
+  modelId_1c      Int     @unique
   brandName       String //бренд
   modelName       String
   categoryId_1c   Int //легковая или грузовая
   categoryIdName  String
-  generationId_1c Int //поколение 
-  generationIName String
+  generationId_1c Int?   //поколение 
+  generationIName String? //
   cars            Car[]
 }
 
@@ -174,9 +173,10 @@ model Extras {
   id        String @id @default(cuid())
   groupId   Int
   groupName String
-  name      String
+  name      String @unique
   cars      Car[]
 }
+
 
 model Car {
   id                 String            @id @default(cuid())
@@ -200,15 +200,15 @@ model Car {
   active             Boolean           @default(true)
   createdAt          DateTime          @default(now())
   updatedAt          DateTime          @updatedAt
-  CarModel           CarModel?         @relation(fields: [carModelId], references: [id])
-  carModelId         String?
+  CarModel           CarModel?         @relation(fields: [carModelId], references: [modelId_1c])
+  carModelId         Int?
   extras             Extras[]
-  CarModification    CarModification?  @relation(fields: [carModificationId], references: [id])
-  carModificationId  String?
-  CarComplectation   CarComplectation? @relation(fields: [carComplectationId], references: [id])
-  carComplectationId String?
-  DealerModel        DealerModel?      @relation(fields: [dealerModelId], references: [id])
-  dealerModelId      String?
+  CarModification    CarModification?  @relation(fields: [carModificationId], references: [id_1c])
+  carModificationId  Int?
+  CarComplectation   CarComplectation? @relation(fields: [carComplectationId], references: [id_1c])
+  carComplectationId Int?
+  DealerModel        DealerModel?      @relation(fields: [dealerModelId], references: [id_1c])
+  dealerModelId      Int?
   availability       String
 }
 

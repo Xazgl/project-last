@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
 import { CalcTo, Client, ClientNeedCall, ClientSales, ClientTradein } from '@prisma/client';
 import { useCallback, useEffect, useState } from 'react';
-import {AllClientNeedCall} from '../../../@types';
+import {AllClientNeedCall} from '../../../@types/dto';
 
 
 

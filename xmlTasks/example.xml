@@ -1,0 +1,332 @@
+<vehicles>
+    <vehicle>
+        <id>3574602</id>
+        <vin>LFP83APE7M1D34823</vin>
+        <uin />
+        <dealer id="4587">Арконт FAW Волгоград</dealer>
+        <category id="1">Легковые</category>
+        <subcategory />
+        <type>new</type>
+        <year>2021</year>
+        <brand id="35">FAW</brand>
+        <model id="10258">Besturn X40</model>
+        <generation id="10259">I</generation>
+        <bodyConfiguration id="8958">Внедорожник 5 дв.</bodyConfiguration>
+        <modification id="69386">1.6 AT (108 л.с.)</modification>
+        <complectation id="12947">Luxury</complectation>
+        <brandComplectationCode />
+        <engineType>petrol</engineType>
+        <engineVolume>1598</engineVolume>
+        <enginePower>108</enginePower>
+        <bodyNumber />
+        <bodyType>suv</bodyType>
+        <bodyDoorCount>5</bodyDoorCount>
+        <bodyColor>black</bodyColor>
+        <bodyColorMetallic>0</bodyColorMetallic>
+        <driveType>front</driveType>
+        <gearboxType>automatic</gearboxType>
+        <gearboxGearCount />
+        <steeringWheel>left</steeringWheel>
+        <mileage>0</mileage>
+        <mileageUnit>km</mileageUnit>
+        <price>1760000</price>
+        <special_price>0</special_price>
+        <specialOffer>0</specialOffer>
+        <specialOfferPreviousPrice />
+        <priceWithDiscount />
+        <tradeinDiscount>0</tradeinDiscount>
+        <creditDiscount>0</creditDiscount>
+        <insuranceDiscount>0</insuranceDiscount>
+        <availability>available</availability>
+        <ptsType />
+        <country />
+        <operatingTime />
+        <ecoClass />
+        <driveWheel />
+        <axisCount />
+        <brakeType />
+        <cabinType />
+        <maximumPermittedMass />
+        <saddleHeight />
+        <cabinSuspension />
+        <chassisSuspension />
+        <length />
+        <width />
+        <bodyVolume />
+        <bucketVolume />
+        <tractionClass />
+        <refrigeratorClass />
+        <craneArrowRadius />
+        <craneArrowLength />
+        <craneArrowPayload />
+        <loadHeight />
+        <photoCount>1</photoCount>
+        <description>
+<![CDATA[ Этот автомобиль ждет Вас в наличии, у официального дилера FAW АРКОНТ ВНИМАНИЕ! Ставки по кредиту снижены! Выгодные условия по программе трейд-ин в FAW АРКОНТ: - Выкупим ваш автомобиль в любом состоянии и обменяем на новый FAW с выгодой. - Принимаем автомобили любых производителей и любого года выпуска. - Оценим Ваш автомобиль по рыночной цене! Звоните сейчас и получите персональное предложение на покупку нового FAW! Подробности уточняйте у менеджера отдела продаж FAW АРКОНТ. Арконт - официальный дилер FAW в Волгограде. Ждем Вас по адресу: г. Волгоград, ул. Вильнюсская, 42/2 Арконт - 30 лет безграничной автомобильности! ]]>
+</description>
+        <poi_id>
+<![CDATA[ Волгоград, Вильнюсская улица, 42/2 ]]>
+</poi_id>
+        <ownersCount>0</ownersCount>
+        <extras>
+            <group id="1" name="Активная безопасность">
+                <element id="1">Антиблокировочная система</element>
+            </group>
+        </extras>
+        <photos>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/4aaeda0eb1065cad79057b04ee589266.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/cda665f9440e59587d410ffea9d84e4f.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/4610801b832912bc66edc0e755b5156d.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/ebf2fb31f7b62ac11d27db5b24f2ee5a.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/248f853575c04e41c760ba795217bea4.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/7832702c97badc8410c6fbd6fe5444e3.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/d829c1de5a5d23cd45f8bcc335ff06ac.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/f7eecfd2045f4b41bf54548fda203530.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/8a88129bfef86c53b3e9a3c3b7795a05.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574602/orig/35f98030983cf66413318d57a0cbb439.jpg?sid=43</photo>
+        </photos>
+        <phones>
+            <phone number="78442204705" callFrom="8" callTo="20">+7 (844) 220-47-05</phone>
+        </phones>
+        <brandColorCode />
+        <brandInteriorCode />
+        <certificationProgram />
+        <acquisitionSource />
+        <acquisitionDate>2022-09-29</acquisitionDate>
+        <production />
+        <equipment />
+        <equipmentPrice />
+        <comment />
+        <withVAT>Нет</withVAT>
+    </vehicle>
+    <vehicle>
+        <id>3574604</id>
+        <vin>LFP83APE4M1D30406</vin>
+        <uin />
+        <dealer id="4587">Арконт FAW Волгоград</dealer>
+        <category id="1">Легковые</category>
+        <subcategory />
+        <type>new</type>
+        <year>2021</year>
+        <brand id="35">FAW</brand>
+        <model id="10258">Besturn X40</model>
+        <generation id="10259">I</generation>
+        <bodyConfiguration id="8958">Внедорожник 5 дв.</bodyConfiguration>
+        <modification id="69385">1.6 MT (108 л.с.)</modification>
+        <complectation id="12945">Luxury</complectation>
+        <brandComplectationCode />
+        <engineType>petrol</engineType>
+        <engineVolume>1598</engineVolume>
+        <enginePower>108</enginePower>
+        <bodyNumber />
+        <bodyType>suv</bodyType>
+        <bodyDoorCount>5</bodyDoorCount>
+        <bodyColor>red</bodyColor>
+        <bodyColorMetallic>0</bodyColorMetallic>
+        <driveType>front</driveType>
+        <gearboxType>manual</gearboxType>
+        <gearboxGearCount />
+        <steeringWheel>left</steeringWheel>
+        <mileage>0</mileage>
+        <mileageUnit>km</mileageUnit>
+        <price>1700000</price>
+        <special_price>0</special_price>
+        <specialOffer>0</specialOffer>
+        <specialOfferPreviousPrice />
+        <priceWithDiscount />
+        <tradeinDiscount>0</tradeinDiscount>
+        <creditDiscount>0</creditDiscount>
+        <insuranceDiscount>0</insuranceDiscount>
+        <availability>available</availability>
+        <ptsType />
+        <country />
+        <operatingTime />
+        <ecoClass />
+        <driveWheel />
+        <axisCount />
+        <brakeType />
+        <cabinType />
+        <maximumPermittedMass />
+        <saddleHeight />
+        <cabinSuspension />
+        <chassisSuspension />
+        <length />
+        <width />
+        <bodyVolume />
+        <bucketVolume />
+        <tractionClass />
+        <refrigeratorClass />
+        <craneArrowRadius />
+        <craneArrowLength />
+        <craneArrowPayload />
+        <loadHeight />
+        <photoCount>1</photoCount>
+        <description>
+<![CDATA[ Этот автомобиль ждет Вас в наличии, у официального дилера FAW АРКОНТ ВНИМАНИЕ! Ставки по кредиту снижены! Выгодные условия по программе трейд-ин в FAW АРКОНТ: - Выкупим ваш автомобиль в любом состоянии и обменяем на новый FAW с выгодой. - Принимаем автомобили любых производителей и любого года выпуска. - Оценим Ваш автомобиль по рыночной цене! Звоните сейчас и получите персональное предложение на покупку нового FAW! Подробности уточняйте у менеджера отдела продаж FAW АРКОНТ. Арконт - официальный дилер FAW в Волгограде. Ждем Вас по адресу: г. Волгоград, ул. Вильнюсская, 42/2 Арконт - 30 лет безграничной автомобильности! ]]>
+</description>
+        <poi_id>
+<![CDATA[ Волгоград, Вильнюсская улица, 42/2 ]]>
+</poi_id>
+        <ownersCount>0</ownersCount>
+        <extras>
+            <group id="1" name="Активная безопасность">
+                <element id="1">Антиблокировочная система</element>
+            </group>
+        </extras>
+        <photos>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/2470125220e9157e57f6dead83af1f6c.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/c6b8cef3a6e07aa5211a7d5470605e0f.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/0d82eb3df1ca90cbbbde8ae0cf7db699.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/da73031b536fb7dc903602c6004a5f37.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/99f041ab4415421b57633f38b879d6d1.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/fd7bc7f66e4fd14d1c5498deb12fe158.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/39edad2fede8d1c04525f484df72c213.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/4729ac7b0fa1dec34e2c08ec55799e31.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/f1a7c284ad897f87b1085d2036782b0f.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3574604/orig/8ed07db5f987e4d6a0b5cca1a63bd605.jpg?sid=43</photo>
+        </photos>
+        <phones>
+            <phone number="78442204705" callFrom="8" callTo="20">+7 (844) 220-47-05</phone>
+        </phones>
+        <brandColorCode />
+        <brandInteriorCode />
+        <certificationProgram />
+        <acquisitionSource />
+        <acquisitionDate>2022-09-29</acquisitionDate>
+        <production />
+        <equipment />
+        <equipmentPrice />
+        <comment />
+        <withVAT>Нет</withVAT>
+    </vehicle>
+    <vehicle>
+        <id>3743059</id>
+        <vin>LFP83APE0M1D30757</vin>
+        <uin />
+        <dealer id="4587">Арконт FAW Волгоград</dealer>
+        <category id="1">Легковые</category>
+        <subcategory />
+        <type>new</type>
+        <year>2021</year>
+        <brand id="35">FAW</brand>
+        <model id="10258">Besturn X40</model>
+        <generation id="10259">I</generation>
+        <bodyConfiguration id="8958">Внедорожник 5 дв.</bodyConfiguration>
+        <modification id="69385">1.6 MT (108 л.с.)</modification>
+        <complectation id="12946">Basic</complectation>
+        <brandComplectationCode />
+        <engineType>petrol</engineType>
+        <engineVolume>1598</engineVolume>
+        <enginePower>108</enginePower>
+        <bodyNumber />
+        <bodyType>suv</bodyType>
+        <bodyDoorCount>5</bodyDoorCount>
+        <bodyColor>black</bodyColor>
+        <bodyColorMetallic>0</bodyColorMetallic>
+        <driveType>front</driveType>
+        <gearboxType>manual</gearboxType>
+        <gearboxGearCount />
+        <steeringWheel>left</steeringWheel>
+        <mileage>0</mileage>
+        <mileageUnit>km</mileageUnit>
+        <price>1630000</price>
+        <special_price>0</special_price>
+        <specialOffer>0</specialOffer>
+        <specialOfferPreviousPrice />
+        <priceWithDiscount />
+        <tradeinDiscount>0</tradeinDiscount>
+        <creditDiscount>0</creditDiscount>
+        <insuranceDiscount>0</insuranceDiscount>
+        <availability>available</availability>
+        <ptsType />
+        <country />
+        <operatingTime />
+        <ecoClass />
+        <driveWheel />
+        <axisCount />
+        <brakeType />
+        <cabinType />
+        <maximumPermittedMass />
+        <saddleHeight />
+        <cabinSuspension />
+        <chassisSuspension />
+        <length />
+        <width />
+        <bodyVolume />
+        <bucketVolume />
+        <tractionClass />
+        <refrigeratorClass />
+        <craneArrowRadius />
+        <craneArrowLength />
+        <craneArrowPayload />
+        <loadHeight />
+        <photoCount>1</photoCount>
+        <description>
+<![CDATA[ Этот автомобиль ждет Вас в наличии, у официального дилера FAW АРКОНТ ВНИМАНИЕ! Ставки по кредиту снижены! Выгодные условия по программе трейд-ин в FAW АРКОНТ: - Выкупим ваш автомобиль в любом состоянии и обменяем на новый FAW с выгодой. - Принимаем автомобили любых производителей и любого года выпуска. - Оценим Ваш автомобиль по рыночной цене! Звоните сейчас и получите персональное предложение на покупку нового FAW! Подробности уточняйте у менеджера отдела продаж FAW АРКОНТ. Арконт - официальный дилер FAW в Волгограде. Ждем Вас по адресу: г. Волгоград, ул. Вильнюсская, 42/2 Арконт - 30 лет безграничной автомобильности! ]]>
+</description>
+        <poi_id>
+<![CDATA[ Волгоград, Вильнюсская улица, 42/2 ]]>
+</poi_id>
+        <ownersCount>0</ownersCount>
+        <extras>
+            <group id="1" name="Активная безопасность">
+                <element id="1">Антиблокировочная система</element>
+            </group>
+        </extras>
+        <photos>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/108e8eb1a0c221b2d48a8d42717d1581.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/e663dd4bd7195bbdda41afd03424f9ab.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/808b06d1fff5a732b0ad6cca98c6f794.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/bb661dcb6245b03dc177128fcd62f3d1.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/067c3f626eff723d63670aedd6bd8304.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/e232ffb6f7a9508e75ede3062a34a5bc.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/c45ff5977f9167a3c39018976b91ae18.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/da0d032bfcc17801ac111abf7e3698f3.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/c4994646f5f020a17e9f13b45f53ba1c.jpg?sid=43</photo>
+            <photo>
+                https://s1.maxposter.ru/photo/4587/3743059/orig/e914b92bdfe790bd1308286483d0ee6c.jpg?sid=43</photo>
+        </photos>
+        <phones>
+            <phone number="78442204705" callFrom="8" callTo="20">+7 (844) 220-47-05</phone>
+        </phones>
+        <brandColorCode />
+        <brandInteriorCode />
+        <certificationProgram />
+        <acquisitionSource />
+        <acquisitionDate>2022-12-07</acquisitionDate>
+        <production />
+        <equipment />
+        <equipmentPrice />
+        <comment />
+        <withVAT>Нет</withVAT>
+    </vehicle>
+</vehicles>

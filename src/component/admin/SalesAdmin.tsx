@@ -8,7 +8,7 @@ import salesOne from '/public/images/sales.webp'
 import salesTwo from '/public/images/sales2.webp'
 import salesThree from '/public/images/sales3.webp'
 import ImageIcon from '@mui/material/Icon';
-import { AllOffersDto } from '../../../@types'
+import { AllOffersDto } from '../../../@types/dto'
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";

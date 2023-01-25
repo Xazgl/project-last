@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
 import { Offer} from '@prisma/client';
 import { useCallback, useEffect, useState } from 'react';
-import { AllOffersDto } from '../../../@types';
+import { AllOffersDto } from '../../../@types/dto';
 import Link from 'next/link';
 
 

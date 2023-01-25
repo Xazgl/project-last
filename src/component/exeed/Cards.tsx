@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Link from 'next/link';
-import { AllSaleDto } from '../../../@types';
+import { AllSaleDto } from '../../../@types/dto';
 import { GetServerSideProps } from 'next';
 import db from '../../../prisma';
 

@@ -3,7 +3,7 @@ import { Button, CircularProgress, ImageList, ImageListItem, TextField } from "@
 import { ChangeEvent, FormEvent, Suspense, useEffect, useMemo, useRef, useState } from "react"
 import ImageIcon from '@mui/material/Icon';
 import { Sales } from '@prisma/client';
-import { AllSaleDto } from '../../../@types';
+import { AllSaleDto } from '../../../@types/dto';
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
