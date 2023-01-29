@@ -19,12 +19,12 @@ import { Circle } from "@mui/icons-material";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-export function NewCar({ cars }: { cars: Car[] }) {
+export function NewCar({ cars }: { cars: AllCarDto }) {
 
     const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
     const [filterClosed, setFilterClosed] = useState(false);
-    const [carArr, setCarArr] = useState<AllCarDto[]>(
+    const [carArr, setCarArr] = useState<AllCarDto>(
         Array.isArray(cars) && cars.length ? Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
 
 
@@ -62,7 +62,6 @@ export function NewCar({ cars }: { cars: Car[] }) {
     //     console.log(carArr)
     // }, [])
 
-    console.log(cars)
 
     return (
         <>
@@ -88,20 +87,20 @@ export function NewCar({ cars }: { cars: Car[] }) {
                                         <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
                                         <div className="cardDesc">
                                             <div className="elDesc">АИ-95</div>
-                                            <div className="elDesc">{(Math.round((car.CarModification.engineVolume) * 100) / 100000).toFixed(1)} л.</div>
+                                            <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume))* 100) / 100000).toFixed(1)} л.</div>
                                             <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
-                                            {car.CarModification.driverType === 'front' &&
+                                            {car.CarModification.driveType === 'front' &&
                                                 <div className="elDesc">FWD</div>
                                             }
-                                            {car.CarModification.driverType === 'full_4wd' &&
+                                            {car.CarModification.driveType === 'full_4wd' &&
                                                 <div className="elDesc">4WD</div>
                                             }
-                                            <div className="elDesc">{(car.CarModification.driverType)}FWD</div>
+                                            <div className="elDesc">{(car.CarModification.driveType)}FWD</div>
                                             <div className="elDesc">MT</div>
                                         </div>
                                         <div className="cardPrice">{car.price} Р </div>
                                         <div className="cardPriceMonth">
-                                            <button className="btn">от {Math.round(car.priceMonth)} Р/мес</button>
+                                            <button className="btn">от {Math.round(Number(car.priceMonth))} Р/мес</button>
                                         </div>
                                         <div className="credit">
                                             <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>

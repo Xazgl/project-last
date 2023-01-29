@@ -1,10 +1,10 @@
-import {  Offer, Car, CarComplectation, CarModel, CarModification, DealerModel, Extras } from "@prisma/client";
+import {  Offer, Car, CarComplectation, CarModel, CarModification, DealerModel, Extras, ClientTradein } from "@prisma/client";
 
 // export type ClientDto = Omit<Client, 'updatedAt'>
-// export type ClientеTradeInDto = Omit<ClientеTradeIn, 'updatedAt'>
+export type ClientеTradeInDto = Omit<ClientTradein , 'updatedAt'>
 
 export type CreateSaleDto = Pick<Offer, 'title' | 'shortDesc'| 'description' | 'filterMainPeople' | 'detailFilterBrand' | 'detailFilterMode' | 'price'  |'price'>
-export type AllOffersDto = Pick<Offer, 'id' | 'title'  | 'shortDesc'|'description'  | 'filterMainPeople' |'detailFilterBrand' |'detailFilterMode' | 'img' | 'active' |'createdAt'>
+export type AllOffersDto = Pick<Offer, 'id' | 'title'  | 'shortDesc'|'description'  | 'filterMainPeople' |'detailFilterBrand' |'detailFilterMode' | 'img' | 'active' | 'price' |'createdAt'>
 // export type AllCarDto = Pick<Car, 'id' | 'id_1c' | 'color'  | 'bodyColorMetallic' | 'mileage'  | 'mileageUnit' |'vin' |'year' | 'img' |'priceMonth' | 'price' | 'special_price' | 'specialOffer' | 'tradeinDiscount' | 'creditDiscount' | 'insuranceDiscount' | 'desc' | 'active' | 'carModelId' | 'carModificationId' |'carComplectationId' | 'dealerModelId' |'availability' | 'createdAt' >
 
 export type CarDto = Car & {
@@ -14,7 +14,9 @@ export type CarDto = Car & {
     extras: Extras[];
     DealerModel: DealerModel;
 }
-export type AllCarDto = CarDto[]
+
+export type AllCarDto = CarDto[];
+
 
 export type UpdateSaleDto = Pick<Offer, 'id' | 'title' | 'shortDesc'| 'description' | 'filterMainPeople' | 'detailFilterBrand' | 'detailFilterMode' | 'price' | 'img' | 'active' |'createdAt'>
 

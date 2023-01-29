@@ -8,7 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { GetServerSideProps } from 'next/types';
-import db from '../../../prisma';
 import Link from 'next/link';
 
 type JobProps = {
@@ -67,82 +66,12 @@ function getStyles(name: string, selectName: string, theme: Theme) {
     };
 }
 
-
 export function CardsOffers({ setShowModal, job }: JobProps) {
     const theme = useTheme();
     const [officeSelect, setOfficeSelect] = React.useState('');
     const [expSelect, setExpSelect] = React.useState('');
     const [citySelect, setCitySelect] = React.useState('');
     const [salaries, setSalaries] = React.useState(job);
-
-    // Для филтра по городам  1
-    // const [citySelect, setCitySelect] = useState('')
-    // const [changeSale, setChangeSale] = useState<Sales[]>(sales)
-    // async function ChangeSalection() {
-    //     if (citySelect !== '') {
-    //         setChangeSale(await db.sales.findMany({
-    //             where: {
-    //                 active: true,
-    //                 city: citySelect
-    //             }
-    //         }))
-    //     }
-    // }
-
-
-    //     Для филтра по городам  2
-    //     const [citySelect,setCitySelect] =useState('')
-    //     const cityAnswer = city.find(city=>city.id===citySelect)?name
-
-    //    function findCity(){
-    //    const getServerSideProps: GetServerSideProps = async (context) => {
-    //         if(cityAnswer!==0) {
-    //             const sales =await db.sales.findMany ({
-    //                 where:{
-    //                     active:true,
-    //                     city:{cityAnswer}
-    //                 }
-    //             })
-    //                 return {
-    //                     props:{
-    //                         sales:JSON.parse(JSON.stringify(sales)),
-    //                     }
-    //                 }
-
-    //         }
-    //     }
-
-    // function showModal(event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) {
-    //     setShowModal(true)
-    // }
-
-    // const handleChange = (event: SelectChangeEvent<typeof citySelect>) => {
-    //     const value = event.target.value;
-    //     setCitySelect(
-    //         // On autofill we get a stringified value.
-    //         typeof value === 'string' ? value.split(',') : value,
-    //     );
-    // };
-    // const handleChange2 = (event: SelectChangeEvent<typeof  Select>) => {
-    //     const { target: { value }  } = event;
-    //     setCitySelect(
-    //         // On autofill we get a stringified value.
-    //         typeof value === 'string' ? value.split(',') : value,
-    //     );
-    // };
-    // const handleChange3 = (event: SelectChangeEvent<typeof  citySelect>) => {
-    //     const { target: { value }  } = event;
-    //     setCitySelect(
-    //         // On autofill we get a stringified value.
-    //         typeof value === 'string' ? value.split(',') : value,
-    //     );
-    // };
-
-
-    //Старый вариант фильтра 
-    // const findObjKey = (obj: { [key: string]: string }, value: string) => {
-    //     return Object.entries(obj).find(([key, value]) => key === value)[0]
-    // }
 
    
     const findObjKey =  (obj: { [key: string]: string }, value: string) => {
@@ -166,21 +95,6 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
 
         }
     }
-
-    //    //MORE
-    //    async function moreInformation(id: string) {
-    //     res.query
-    //         const res = await fetch('/api/job/' + id, {
-    //           method: 'POST',
-    //           headers: {
-    //             'Content-Type': 'application/json'
-    //           },
-    //           body: JSON.stringify({ id:id })
-    //         })
-    //         if (res.ok) {
-    //           console.log(res)
-    //             }
-    //         }
 
 
 

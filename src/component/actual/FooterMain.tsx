@@ -27,7 +27,7 @@ type Footer = {
 export function FooterMain({ setShowTradeInModal, refs }: Footer) {
 
   function showModalTradeIn(event: React.FormEvent<HTMLFormElement>) {
-    // event.preventDefault()
+    event.preventDefault()
     setShowTradeInModal(true)
   }
 
@@ -66,7 +66,7 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
           <Link href="/service">
             <div className="el">СЕРВИС АРКОНТ</div>
           </Link>
-          <div className="el" onClick={() => showModalTradeIn()}>TRADE-IN</div>
+          <div className="el" onClick={(event) => showModalTradeIn()}>TRADE-IN</div>
         </div>
         <div className="column">
           <Link href="/servicePage">

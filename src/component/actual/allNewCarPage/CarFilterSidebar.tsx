@@ -17,9 +17,34 @@ import sedan from '/public/images/carBodyTyp/sedan.svg'
 import { Car } from "@prisma/client";
 import RangeSlider from './RangeSlider';
 import { FilterUserOptions } from './typeForFilter';
-import { brandNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
+import { brandNameFilter, carBodyTypeNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
 import { AllCarDto } from '../../../../@types/dto';
 import { nanoid } from 'nanoid';
+import { LogoArr } from './FilteredNewCars';
+
+import chery from '/public/images/logo-around/chery.webp';
+import chevrolet from '/public/images/logo-around/chevrolet.webp';
+import datsun from '/public/images/logo-around/datsun.webp';
+import exeed from '/public/images/logo-around/exeed.webp';
+import faw from '/public/images/logo-around/faw.webp';
+import ford from '/public/images/logo-around/ford.webp';
+import hisun from '/public/images/logo-around/hisun.webp';
+import hyundai from '/public/images/logo-around/hyundai.webp';
+import jeep from '/public/images/logo-around/jeep.webp';
+import kia from '/public/images/logo-around/kia.webp';
+import landrover from '/public/images/logo-around/landrover.webp';
+import mithsubishi from '/public/images/logo-around/mithsubishi.webp';
+import nissan from '/public/images/logo-around/nissan.webp';
+import renault from '/public/images/logo-around/renault.webp';
+import subaru from '/public/images/logo-around/subaru.webp';
+import suzuki from '/public/images/logo-around/suzuki.webp';
+import uaz from '/public/images/logo-around/uaz.webp';
+import usedcars34 from '/public/images/logo-around/usedcars34.webp';
+import volkswagen from '/public/images/logo-around/volkswagen.webp';
+import opel from '/public/images/logo-around/opel.webp';
+import jaguar from '/public/images/logo-around/jaguar.webp';
+import lovol from '/public/images/logo-around/lovol.webp';
+import peugeot from '/public/images/logo-around/peugeot.webp';
 
 type Props = {
     cars: AllCarDto,
@@ -36,7 +61,143 @@ type Props = {
 //     modelName?: string[]
 // }
 
+
+const LogoList: LogoArr[] = [
+    {
+        id: 1,
+        name: 'Chery',
+        img: `${chery.src}`
+    },
+    {
+        id: 2,
+        name: 'Chevrolet',
+        img: `${chevrolet.src}`
+    },
+    {
+        id: 3,
+        name: 'Datsun',
+        img: `${datsun.src}`
+    },
+    {
+        id: 4,
+        name: 'EXEED',
+        img: `${exeed.src}`
+    },
+    {
+        id: 5,
+        name: 'FAW',
+        img: `${faw.src}`
+    },
+    {
+        id: 6,
+        name: 'Ford',
+        img: `${ford.src}`
+    },
+    {
+        id: 7,
+        name: 'Hisun',
+        img: `${hisun.src}`
+    },
+    {
+        id: 7,
+        name: 'Hyundai',
+        img: `${hyundai.src}`
+    },
+    {
+        id: 8,
+        name: 'Jeep',
+        img: `${jeep.src}`
+    },
+    {
+        id: 9,
+        name: 'Kia',
+        img: `${kia.src}`
+    },
+    {
+        id: 10,
+        name: 'Land Rover',
+        img: `${landrover.src}`
+    },
+    {
+        id: 11,
+        name: 'Mitsubishi',
+        img: `${mithsubishi.src}`
+    },
+    {
+        id: 12,
+        name: 'Nissan',
+        img: `${nissan.src}`
+    },
+    {
+        id: 13,
+        name: 'Renault',
+        img: `${renault.src}`
+    },
+    {
+        id: 14,
+        name: 'Subaru',
+        img: `${subaru.src}`
+    },
+    {
+        id: 15,
+        name: 'Suzuki',
+        img: `${suzuki.src}`
+    },
+    {
+        id: 16,
+        name: 'AUC',
+        img: `${usedcars34.src}`
+    },
+    {
+        id: 17,
+        name: 'Volkswagen',
+        img: `${volkswagen.src}`
+    },
+    {
+        id: 18,
+        name: 'Opel',
+        img: `${opel.src}`
+    },
+    {
+        id: 19,
+        name: 'Jaguar',
+        img: `${jaguar.src}`
+    },
+    {
+        id: 20,
+        name: 'LOVOL',
+        img: `${lovol.src}`
+    },
+    {
+        id: 21,
+        name: 'Peugeot',
+        img: `${peugeot.src}`
+    },
+]
+
 function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
+
+
+    const [carType, setCarType] = useState('')
+
+    const [filterMainPeopleResult, setFilterMainPeopleResult] = useState(0)
+    const [detailFilterBrandResult, setDetailFilterBrandResult] = useState('')
+    const [detailFilterModelResult, setDetailFilterModelResult] = useState(0)
+    const [minPrice, setMinPrice] = useState<number>(0)
+    const [maxPrice, setMaxPrice] = useState<number>(20000000)
+    const [color, setColor] = useState('')
+    const [carBodyType, setCarBodyType] = useState('')
+    const [checkedTypeGearBox, setCheckedTypeGearBox] = useState([true, false]);
+    const [checkedDriveType, setCheckedDriveType] = useState([true, false]);
+    const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
+    const [valueSliderPrice, setValueSliderPrice] = React.useState<number[]>([minPrice, maxPrice]);
+
+
+    useEffect(() => {
+        setMaxPrice(Math.max(...cars.map(car => car.price)))
+    }, [])
+
+
 
     const [currentFilter, setCurrentFilter] = useState<FilterUserOptions>({
         dealerOffice: [],
@@ -44,6 +205,11 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
         modelName: [],
         colorName: [],
         gearBoxName: [],
+        carBodyTypeName: [],
+        driverTypeName: [],
+        engineTypeName: [],
+        minPrice: null,
+        maxPrice: null
     })
 
     const changeFilter = (filter: FilterUserOptions) => {
@@ -62,6 +228,9 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     && colorNameFilter(car, currentFilter)
                     && priceFilter(car, currentFilter)
                     && gearBoxNameFilter(car, currentFilter)
+                    && driverTypeNameFilter(car, currentFilter)
+                    && carBodyTypeNameFilter(car, currentFilter)
+                    && engineTypeNameFilter(car, currentFilter)
             })
         })
     }, [currentFilter])
@@ -72,14 +241,25 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
             brands: [],
             models: [],
             colors: [],
+            price: [],
             gearBoxTypes: [],
-        } as { dealers: string[], brands: string[], models: string[], colors: string[], gearBoxTypes: string[] }
+            carsBodyTypes: [],
+            driverTypes: [],
+            engineTypes: [],
+        } as {
+            dealers: string[], brands: string[], models: string[], colors: string[], price: number[], gearBoxTypes: string[],
+            carsBodyTypes: string[], driverTypes: string[], engineTypes: string[]
+        }
         filteredCars.forEach(car => {
             filteredCarsProps.dealers.push(car.DealerModel.name)
             filteredCarsProps.brands.push(car.CarModel.brandName)
             filteredCarsProps.models.push(car.CarModel.modelName)
             filteredCarsProps.colors.push(car.color)
+            filteredCarsProps.price.push(car.price)
             filteredCarsProps.gearBoxTypes.push(car.CarModification.gearboxType)
+            filteredCarsProps.carsBodyTypes.push(car.CarModification.bodyType)
+            filteredCarsProps.driverTypes.push(car.CarModification.driveType)
+            filteredCarsProps.engineTypes.push(car.CarModification.engineType)
         })
         console.log(filteredCars, 'отфильтрованные машины')
         return {
@@ -87,31 +267,18 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
             brands: [...new Set(filteredCarsProps.brands)], // TODO es6-set polyfill
             models: [...new Set(filteredCarsProps.models)],
             colors: [...new Set(filteredCarsProps.colors)],
+            price: [...new Set(filteredCarsProps.price)],
             gearBoxTypes: [...new Set(filteredCarsProps.gearBoxTypes)],
+            carsBodyTypes: [...new Set(filteredCarsProps.carsBodyTypes)],
+            driverTypes: [...new Set(filteredCarsProps.driverTypes)],
+            engineTypes: [...new Set(filteredCarsProps.engineTypes)],
 
             // brands: [...new Set(filteredCars.map(car => car.CarModel.brandName))],
         }
 
     }, [filteredCars])
 
-    const [carType, setCarType] = useState('')
 
-    const [filterMainPeopleResult, setFilterMainPeopleResult] = useState(0)
-    const [detailFilterBrandResult, setDetailFilterBrandResult] = useState('')
-    const [detailFilterModelResult, setDetailFilterModelResult] = useState(0)
-    const [minPrice, setMinPrice] = useState<number>(0)
-    const [maxPrice, setMaxPrice] = useState<number>(20000000)
-    const [color, setColor] = useState('')
-    const [carBodyType, setCarBodyType] = useState('')
-    const [checkedTypeGearBox, setCheckedTypeGearBox] = useState([true, false]);
-    const [checkedDriveType, setCheckedDriveType] = useState([true, false]);
-    const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
-
-    useEffect(() => {
-        setMaxPrice(Math.max(...cars.map(car => car.price)))
-    }, [])
-
-    const [valueSliderPrice, setValueSliderPrice] = React.useState<number[]>([minPrice, maxPrice]);
 
     //TypeGearBox
     const allCheckedTypeGearBox = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,21 +328,79 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
         changeFilter({ brandName: detailFilterBrandResult })
     }, [detailFilterBrandResult])
 
+    // подставлям в массив currentFilter
+    useEffect(() => {
+        setCurrentFilter(prevFilterState => {
+            return { ...prevFilterState, minPrice: valueSliderPrice[0], maxPrice: valueSliderPrice[1] }
+        })
+        changeFilter({
+            minPrice: valueSliderPrice[0],
+            maxPrice: valueSliderPrice[1]
+        })
+    }, [valueSliderPrice])
 
+    function gearBoxName(x) {
+        if (x === 'automatic') {
+            return 'Автомат'
+        }
+        if (x === 'robotized') {
+            return 'Автомат'
+        }
+        if (x === 'variator') {
+            return 'Вариатор'
+        }
+        if (x === 'manual') {
+            return 'Механика'
+        }
+    }
+
+    function carBodyImgChange(x) {
+        if (x === 'suv') {
+            return crossover
+        }
+        if (x === 'sedan') {
+            return sedan
+        }
+        if (x === 'hatchback') {
+            return hatchback
+        }
+        if (x === 'liftback') {
+            return liftback
+        }
+        if (x === 'minivan' || 'compactvan') {
+            return minivan
+        }
+
+    }
+
+    function driverTypeName(x) {
+        if (x === 'full_4wd') {
+            return 'Полный'
+        }
+        if (x === 'front') {
+            return 'Передний'
+        }
+    }
+
+    function engineTypeName(x) {
+        if (x === 'diesel') {
+            return 'дизель'
+        }
+        if (x === 'petrol') {
+            return 'бензин'
+        }
+    }
+
+    function logoFind(LogoList, str) {
+        if (LogoList.find(brend => brend.name === str)) {
+            const imgLogo = LogoList.find(brend => brend.name === str)?.img
+            return imgLogo
+        }
+    }
 
     useEffect(() => {
         console.log(currentFilter)
     }, [currentFilter])
-
-    // const allCheckedTypeGearBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setCheckedTypeGearBox([event.target.checked, event.target.checked]);
-    // };
-    // const automatiCheckedTypeGearBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setCheckedTypeGearBox([event.target.checked, checkedTypeGearBox[1]]);
-    // };
-    // const notAutomatiCheckedTypeGearBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setCheckedTypeGearBox([checkedTypeGearBox[0], event.target.checked]);
-    // };
 
     useEffect(() => {
         console.log(allCheckedTypeGearBox, automatiCheckedTypeGearBox, notAutomatiCheckedTypeGearBox)
@@ -230,28 +455,6 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                     />
                                 )
                                 }
-                                {/* {carType !== 'old' &&
-                                    <>
-                                        <FormControlLabel control={<Checkbox />} label="Chery Арконт" />
-                                        <FormControlLabel control={<Checkbox />} label="EXEED Арконт" />
-                                        <FormControlLabel control={<Checkbox />} label="FAW Арконт" />
-                                        <FormControlLabel control={<Checkbox />} label="Hyundai Арконт" />
-                                        <FormControlLabel control={<Checkbox />} label="KIA Арконт" />
-                                        <FormControlLabel control={<Checkbox />} label="Mitsubishi Арконт на Землячке" />
-                                        <FormControlLabel control={<Checkbox />} label="Renault Арконт Волгоград" />
-                                        <FormControlLabel control={<Checkbox />} label="Nissan Арконт на Еременко 7Б" />
-                                        <FormControlLabel control={<Checkbox />} label="Volkswagen Арконт на Монолите" />
-                                    </>
-                                } */}
-
-
-
-                                {carType === 'old' &&
-                                    <>
-                                        <FormControlLabel control={<Checkbox />} label="Арконт с пробегом на Землячке" />
-                                        <FormControlLabel control={<Checkbox />} label="Арконт с пробегом в Волжском" />
-                                    </>
-                                }
                             </FormGroup>
                         </AccordionDetails>
                     </Accordion>
@@ -269,47 +472,9 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             <RangeSlider
                                 minPrice={minPrice}
                                 maxPrice={maxPrice}
-                                valueSliderPrice={valueSliderPrice} 
+                                valueSliderPrice={valueSliderPrice}
                                 setValueSliderPrice={setValueSliderPrice}
                             />
-                            {/* <input type="number"
-                    className="name"
-                    id="name"
-                    name="name"
-                    placeholder="от 2 000 000"
-                    required
-                    value={minPrice}
-                    onChange={event => setMinPrice(+event.target.value)}
-                />
-                <Slider
-                    size="small"
-                    defaultValue={minPrice}
-                    aria-label="Small"
-                    valueLabelDisplay="auto"
-                    min={0}
-                    step={100000}
-                    max={6999999}
-                    onChange={event => setMinPrice(+event.target.value)}
-                />
-                <input type="number"
-                    className="name"
-                    id="name"
-                    name="name"
-                    placeholder="до 3 000 000"
-                    required
-                    value={maxPrice}
-                    onChange={event => setMaxPrice(+event.target.value)}
-                />
-                <Slider
-                    size="small"
-                    defaultValue={maxPrice}
-                    aria-label="Small"
-                    valueLabelDisplay="auto"
-                    min={0}
-                    step={100000}
-                    max={7000000}
-                    onChange={event => setMaxPrice(+event.target.value)}
-                /> */}
                         </AccordionDetails>
                     </Accordion>
                 </div>
@@ -328,25 +493,9 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                 <option value={0} selected disabled>Выберите бренд</option>
                                 {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
                             </select>
-
-                            {/* <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
-                                    onChange={(event) => setCurrentFilter(prevFilterState => {
-                                        if (prevFilterState.brandName?.includes(brand)) {
-                                            return {
-                                                ...prevFilterState,
-                                                brandName: prevFilterState.brandName.filter(el => el !== brand)
-                                            }
-                                        }
-                                        return { ...prevFilterState, brandName: [...prevFilterState.brandName, (event.target.value)] }
-                                    })}
-                                >
-                                    <option value={0} selected disabled>Выберите бренд</option>
-                                    {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
-                                </select>  */}
                         </AccordionDetails>
                     </Accordion>
                 </div>
-
                 {detailFilterBrandResult !== null && detailFilterBrandResult !== undefined &&
                     <div className="rowSideBar" id="column" >
                         <Accordion>
@@ -433,7 +582,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                     <FormControlLabel
                                         key={gearBox}
                                         control={<Checkbox />}
-                                        label={gearBox}
+                                        label={gearBoxName(gearBox)}
                                         onClick={() => {
                                             setCurrentFilter(prevFilterState => {
                                                 if (prevFilterState.gearBoxName?.includes(gearBox)) {
@@ -448,34 +597,6 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                     />
                                 )}
                             </FormGroup>
-
-                            {/* // <FormControlLabel
-                            //     label="Любая"
-                            //     control={
-                            //         <Checkbox
-                            //             checked={checkedTypeGearBox[0] && checkedTypeGearBox[1]}
-                            //             indeterminate={checkedTypeGearBox[0] !== checkedTypeGearBox[1]}
-                            //             onChange={
-                            //                 allCheckedTypeGearBox
-                            //             }
-                            //         />
-                            //     }
-                            // />
-                            // <FormControlLabel
-                            //     label="Автоматическая"
-                            //     control={<Checkbox checked={checkedTypeGearBox[0]} onChange={automatiCheckedTypeGearBox} />}
-                            // />
-                            // {checkedTypeGearBox[0] === true &&
-                            //     <FormGroup sx={{ paddingLeft: '30px' }}>
-                            //         <FormControlLabel control={<Checkbox defaultChecked />} label="Автомат" />
-                            //         <FormControlLabel control={<Checkbox defaultChecked />} label="Вариатор" />
-                            //     </FormGroup>
-                            // }
-                            // <FormControlLabel
-                            //     label="Механическая"
-                            //     control={<Checkbox checked={checkedTypeGearBox[1]} onChange={notAutomatiCheckedTypeGearBox} />}
-                            // /> */}
-
                         </AccordionDetails>
                     </Accordion>
                 </div>
@@ -490,53 +611,27 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <div id="carBodyType" >
-                                <div className="carTypeDiv">
-                                    <img
-                                        className="imgCarType"
-                                        src={minivan.src}
-                                        onClick={event => setCarBodyType('minivan')}
-                                        alt="Минивэн"
-                                    />
-                                </div>
-                                <div className="carTypeDiv">
-                                    <img
-                                        className="imgCarType"
-                                        src={crossover.src}
-                                        onClick={event => setCarBodyType('crossover')}
-                                        alt="Кроссовер"
-                                    />
-                                </div>
-                                <div className="carTypeDiv">
-                                    <img
-                                        className="imgCarType"
-                                        src={suv.src}
-                                        onClick={event => setCarBodyType('suv')}
-                                        alt="Внедорожник"
-                                    />
-                                </div>
-                                <div className="carTypeDiv">
-                                    <img
-                                        className="imgCarType"
-                                        src={liftback.src}
-                                        onClick={event => setCarBodyType('liftback')}
-                                        alt="Лифтбэк"
-                                    />
-                                </div>
-                                <div className="carTypeDiv">
-                                    <img
-                                        className="imgCarType"
-                                        src={sedan.src}
-                                        onClick={event => setCarBodyType('sedan')}
-                                        alt="Седан"
-                                    />
-                                </div>
-                                <div className="carTypeDiv">
-                                    <img
-                                        className="imgCarType"
-                                        src={hatchback.src}
-                                        onClick={event => setCarBodyType('hatchback')} alt="Хэтчбек"
-                                    />
-                                </div>
+                                {filteredProps.carsBodyTypes.map(bodyType =>
+                                    <div className="carTypeDiv">
+                                        <img
+                                            className="imgCarType"
+                                            src={carBodyImgChange(bodyType).src}
+                                            onClick={() => {
+                                                setCurrentFilter(prevFilterState => {
+                                                    if (prevFilterState.carBodyTypeName?.includes(bodyType)) {
+                                                        return {
+                                                            ...prevFilterState,
+                                                            carBodyTypeName: prevFilterState.carBodyTypeName.filter(el => el !== bodyType)
+                                                        }
+                                                    }
+                                                    return { ...prevFilterState, carBodyTypeName: [...prevFilterState.carBodyTypeName, bodyType] }
+                                                })
+                                            }}
+                                            alt={bodyType}
+                                        />
+
+                                    </div>
+                                )}
                             </div>
                         </AccordionDetails>
                     </Accordion>
@@ -552,24 +647,28 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className="rowSideBar" id="column" >
-                                <FormControlLabel
-                                    label="Любой"
-                                    control={
-                                        <Checkbox
-                                            checked={checkedDriveType[0] && checkedDriveType[1]}
-                                            indeterminate={checkedDriveType[0] !== checkedDriveType[1]}
-                                            onChange={allCheckedDriveType}
+                                <FormGroup>
+                                    {filteredProps.driverTypes.map(driver =>
+                                        <FormControlLabel
+                                            key={driver}
+                                            control={<Checkbox />}
+                                            label={driverTypeName(driver)}
+                                            onClick={() => {
+                                                setCurrentFilter(prevFilterState => {
+                                                    if (prevFilterState.driverTypeName?.includes(driver)) {
+                                                        return {
+                                                            ...prevFilterState,
+                                                            driverTypeName: prevFilterState.driverTypeName.filter(el => el !== driver)
+                                                        }
+                                                    }
+                                                    return { ...prevFilterState, driverTypeName: [...prevFilterState.driverTypeName, driver] }
+                                                })
+                                            }}
                                         />
+                                    )
                                     }
-                                />
-                                <FormControlLabel
-                                    label="Полный"
-                                    control={<Checkbox checked={checkedDriveType[0]} onChange={checkedDriveTypeFull} />}
-                                />
-                                <FormControlLabel
-                                    label="Передний"
-                                    control={<Checkbox checked={checkedDriveType[1]} onChange={checkedDriveTypeNotFull} />}
-                                />
+
+                                </FormGroup>
                             </div>
                         </AccordionDetails>
                     </Accordion>
@@ -585,24 +684,25 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className="rowSideBar" id="column" >
-                                <FormControlLabel
-                                    label="Любой"
-                                    control={
-                                        <Checkbox
-                                            checked={checkedFuelType[0] && checkedFuelType[1]}
-                                            indeterminate={checkedFuelType[0] !== checkedFuelType[1]}
-                                            onChange={allCheckedFuelType}
-                                        />
-                                    }
-                                />
-                                <FormControlLabel
-                                    label="Бензин"
-                                    control={<Checkbox checked={checkedFuelType[0]} onChange={checkedFuelTypePetrol} />}
-                                />
-                                <FormControlLabel
-                                    label="Дизель"
-                                    control={<Checkbox checked={checkedFuelType[1]} onChange={checkedFuelTypeDisel} />}
-                                />
+                                {filteredProps.engineTypes.map(engine =>
+                                    <FormControlLabel
+                                        key={engine}
+                                        control={<Checkbox />}
+                                        label={engineTypeName(engine)}
+                                        onClick={() => {
+                                            setCurrentFilter(prevFilterState => {
+                                                if (prevFilterState.engineTypeName?.includes(engine)) {
+                                                    return {
+                                                        ...prevFilterState,
+                                                        engineTypeName: prevFilterState.engineTypeName.filter(el => el !== engine)
+                                                    }
+                                                }
+                                                return { ...prevFilterState, engineTypeName: [...prevFilterState.engineTypeName, engine] }
+                                            })
+                                        }}
+                                    />
+                                )
+                                }
                             </div>
                         </AccordionDetails>
                     </Accordion>
@@ -622,7 +722,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     flex-direction: column;
                     align-items: center;
                     width: 400px;
-                    height: auto;
+                    height: 110vh;
                     border:solid 2px black;
                     overflow: auto;
                 }
@@ -703,65 +803,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     background-color: #d4d3d3
                 }
 
-                @media(max-width: 1200px) {
-                    .MainBanner { 
-                        background-size: cover;
+               
+                @media(max-width: 600px) {
+                    .sideBar{
+                        display: none;
                     }
                 }
-                @media(max-width: 900px) {
-                    .title { 
-                        font-size:30px;
-                    }
-                }
-                @media(max-width: 720px) {
-                    .title { 
-                        font-size:25px;
-                    }
-                    .titleMini {
-                        font-size:15px;
-                    }
-                    .MainBanner { 
-                        height: 400px;
-                    }
-                }
-                @media(max-width: 540px) {
-                    .title { 
-                        font-size:18px;
-                    }
-                    .titleMini {
-                        font-size:12px;
-                    }
-                    .MainBanner { 
-                        height: 250px;
-                    }
-                }
-                @media(max-width: 350px) {
-                    .title { 
-                        font-size:12px;
-                    }
-                    .titleMini {
-                        font-size:9px;
-                    }
-                    .MainBanner { 
-                        height: 150px;
-                    }
-                }
-                @media(max-width: 250px) {
-                    .title { 
-                        font-size:9px;
-                        margin-top:10px;
-                    }
-                    .titleMini {
-                        font-size:7px;
-                    }
-                    .MainBanner { 
-                        height: 130px;
-                    }
-                    .titleMini{
-                        margin-bottom:00px;
-                        margin-top:10px;
-                    }
-                }
+                
             `}</style>
         </>
     )

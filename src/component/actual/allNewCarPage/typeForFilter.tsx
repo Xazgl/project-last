@@ -24,6 +24,9 @@ export type FilterUserOptions = {
     modelName?: string[],
     colorName?: string[],
     gearBoxName?:string[],
+    driverTypeName?:string[],
+    carBodyTypeName?:string[],
+    engineTypeName?: string[],
 }
 
 

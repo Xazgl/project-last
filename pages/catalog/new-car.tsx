@@ -2,6 +2,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
+import { AllCarDto} from '../../@types/dto'
 import db, { Car } from '../../prisma'
 import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import { FooterMain } from '../../src/component/actual/FooterMain'
@@ -10,7 +11,7 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 
-const AllNewCarPage: NextPage <{ cars: Car[] }> = ({ cars }) => {
+const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)

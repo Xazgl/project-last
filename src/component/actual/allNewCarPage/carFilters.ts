@@ -19,11 +19,14 @@ export function dealerOfficeFilter(car: CarDto, currentFilter: FilterUserOptions
 
 export function brandNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
     if (currentFilter.brandName?.length) {
+        console.log(currentFilter.brandName , 'currentFilterbrandName') // то что выбрал
+        console.log(car.CarModel.brandName , 'carCarModelbrandName')   // то что из базы 
         return currentFilter.brandName.includes(car.CarModel.brandName)  // TODO массив брендов  или будет один
     }
     // [].some
     return true
 }
+
 
 export function modelNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
     if (currentFilter.modelName?.length) {
@@ -36,7 +39,7 @@ export function modelNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
 
 export function colorNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
     if (currentFilter.colorName?.length) {
-        return currentFilter.colorName.includes(car.CarModel.color)  
+         return currentFilter.colorName.includes(car.color)  
     }
     // [].some
     return true
@@ -56,10 +59,37 @@ export function priceFilter(car: CarDto, currentFilter: FilterUserOptions) {
 }
 
 
-
 export function gearBoxNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
     if (currentFilter.gearBoxName?.length) {
         return currentFilter.gearBoxName?.includes(car.CarModification.gearboxType)  
+    }
+    // [].some
+    return true
+}
+
+
+export function carBodyTypeNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
+    if (currentFilter.carBodyTypeName?.length) {
+        return currentFilter.carBodyTypeName.includes(car.CarModification.bodyType)  
+    }
+    // [].some
+    return true
+}
+
+
+export function driverTypeNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
+    if (currentFilter.driverTypeName?.length) {
+        return currentFilter.driverTypeName.includes(car.CarModification.driveType)  
+    }
+    // [].some
+    return true
+}
+
+
+
+export function engineTypeNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
+    if (currentFilter.engineTypeName?.length) {
+        return currentFilter.engineTypeName.includes(car.CarModification.engineType)  
     }
     // [].some
     return true

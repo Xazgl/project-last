@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         if (req.method === 'GET') {
             if (typeof id === 'string') {
-                const answer= await db.sales.findUnique({
+                const answer= await db.offer.findUnique({
                     where: { 
                         id: id },
                 })

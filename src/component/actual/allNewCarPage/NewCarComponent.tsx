@@ -19,6 +19,9 @@ import sedan from '/public/images/carBodyTyp/sedan.svg'
 import { Car } from "@prisma/client";
 import CarFilterSidebar from "./CarFilterSidebar";
 import FilteredNewCars from "./FilteredNewCars";
+import CarFilterSidebarMobile from "./CarFilterSidebarMobile";
+import { AllCarDto } from "../../../../@types/dto";
+
 
 
 type OfficesList = {
@@ -41,7 +44,7 @@ type NewOrOldList = {
 
 type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    cars: Car[],
+    cars: AllCarDto,
 }
 
 export function NewCarComponent({ setShowModal, cars }: Props) {
@@ -56,7 +59,9 @@ export function NewCarComponent({ setShowModal, cars }: Props) {
     return (
         <>
             <div className="background">
-                <CarFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars}/>
+            < CarFilterSidebarMobile cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
+
+                <CarFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
                 <div className="carBlock">
                     <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal} />
                 </div>
@@ -134,8 +139,7 @@ export function NewCarComponent({ setShowModal, cars }: Props) {
                 .carBlock {
                     display:flex;
                     width: 100%;
-                    height: 100vh;
-                    border:solid 2px black;
+                    height: auto;
                 }
 
                 select {
@@ -162,65 +166,14 @@ export function NewCarComponent({ setShowModal, cars }: Props) {
                     background-color: #d4d3d3
                 }
 
-                @media(max-width: 1200px) {
-                    .MainBanner { 
-                        background-size: cover;
+              
+                @media(max-width: 600px) {
+                    .background {  
+                        flex-direction: column;
                     }
                 }
-                @media(max-width: 900px) {
-                    .title { 
-                        font-size:30px;
-                    }
-                }
-                @media(max-width: 720px) {
-                    .title { 
-                        font-size:25px;
-                    }
-                    .titleMini {
-                        font-size:15px;
-                    }
-                    .MainBanner { 
-                        height: 400px;
-                    }
-                }
-                @media(max-width: 540px) {
-                    .title { 
-                        font-size:18px;
-                    }
-                    .titleMini {
-                        font-size:12px;
-                    }
-                    .MainBanner { 
-                        height: 250px;
-                    }
-                }
-                @media(max-width: 350px) {
-                    .title { 
-                        font-size:12px;
-                    }
-                    .titleMini {
-                        font-size:9px;
-                    }
-                    .MainBanner { 
-                        height: 150px;
-                    }
-                }
-                @media(max-width: 250px) {
-                    .title { 
-                        font-size:9px;
-                        margin-top:10px;
-                    }
-                    .titleMini {
-                        font-size:7px;
-                    }
-                    .MainBanner { 
-                        height: 130px;
-                    }
-                    .titleMini{
-                        margin-bottom:00px;
-                        margin-top:10px;
-                    }
-                }
+                
+                
             `}</style>
         </>
     )

@@ -4,7 +4,7 @@ import db from '../../prisma';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        const { name, phone, vin, numberSpareParts, comment } = req.body
+        const { name, phone, vin, IntSpareParts, comment } = req.body
         try {
             //письмо
             let testEmailAccount = await nodemailer.createTestAccount()
@@ -21,16 +21,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 from: '"Заявка на подбор запчасти" UriyAPKOHT@yandex.ru',
                 to: 'UriyAPKOHT@yandex.ru',
                 subject: 'Заявка на подбор запчасти ',
-                text: `Заявка  на подбор запчасти от ${name} ${phone} VIN ${vin} ариткул запчасти ${numberSpareParts},комментарий к заявке ${comment} с chery-arkont.ru`,
+                text: `Заявка  на подбор запчасти от ${name} ${phone} VIN ${vin} ариткул запчасти ${IntSpareParts},комментарий к заявке ${comment} с chery-arkont.ru`,
                 html:
-                    `Заявка  на подбор запчасти от ${name} ${phone} VIN ${vin} ариткул запчасти ${numberSpareParts},комментарий к заявке ${comment} с chery-arkont.ru`,
+                    `Заявка  на подбор запчасти от ${name} ${phone} VIN ${vin} ариткул запчасти ${ IntSpareParts},комментарий к заявке ${comment} с chery-arkont.ru`,
             })
             //регистрация в базу
-            const clientSend = await db.client.create({data: {
+            const clientSend = await db.clientParts.create({data: {
                 name, 
                 phone, 
                 vin, 
-                numberSpareParts, 
+                IntSpareParts, 
                 comment,
             }})
             res.status(200).send(clientSend);

@@ -12,18 +12,6 @@ type MapNewProps = {
 }
 
 export function Map({ refs }: MapNewProps) {
-  // useEffect(() => {
-  //     let script = document.createElement('script');
-  //     script.async = true;
-  //     script.src = 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5d0eb9f3144dba9594c054da1284695fa0ceeaf5f15349948c0309e8fff904c3&amp;width=100%25&amp;height=720&amp;lang=ru_RU&amp;scroll=true'
-  //     document.body.append(script);
-  //     return () => {
-  //         const ymaps = document.querySelector('body ymaps')
-  //         ymaps?.remove()
-  //         console.log('Unmount');
-  //     }
-  // }, [])
-
 
 
 

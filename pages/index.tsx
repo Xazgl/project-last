@@ -21,9 +21,10 @@ import { NewCar } from '../src/component/actual/NewCar'
 import { OldCar } from '../src/component/actual/OldCar'
 import { QuestionForm } from '../src/component/actual/QuestionForm'
 import { FooterMain } from '../src/component/actual/FooterMain'
+import { AllCarDto } from '../@types/dto'
 
 
-const Home: NextPage<{ cars: Car[] }> = ({ cars }) => {
+const Home: NextPage<{ cars: AllCarDto }> = ({ cars }) => {
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)

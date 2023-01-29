@@ -9,9 +9,8 @@ const  AdminTable: NextPage = () => {
     return (
       <>
         <AdminLayout title="Admin">
-          <TableService />
+          {/* <TableService /> */}
           <TableTradeIn />
-          <TableClientSales />
         </AdminLayout>
       </>
     )

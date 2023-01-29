@@ -1,7 +1,6 @@
 
 import { IMaskInput } from "react-imask"
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import banner from '/public/images/backTo.jpg'
 import { Checkbox } from "@mui/material";
 
 type Office = {

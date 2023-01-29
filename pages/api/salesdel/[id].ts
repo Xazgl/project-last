@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (admin) {
             if (req.method === 'POST') {
                 if (typeof id === 'string') {
-                    const updSale = await db.sales.delete({
+                    const updSale = await db.offer.delete({
                         where: { id },
                     })
                     res.send('Success')
