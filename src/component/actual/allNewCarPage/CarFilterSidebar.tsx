@@ -475,6 +475,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                 valueSliderPrice={valueSliderPrice}
                                 setValueSliderPrice={setValueSliderPrice}
                             />
+                            
                         </AccordionDetails>
                     </Accordion>
                 </div>

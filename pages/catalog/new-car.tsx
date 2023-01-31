@@ -6,6 +6,7 @@ import { AllCarDto} from '../../@types/dto'
 import db, { Car } from '../../prisma'
 import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import { FooterMain } from '../../src/component/actual/FooterMain'
+import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
@@ -30,6 +31,7 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBar refs={{ refSales, refContact, refAdvatages }} />
+      <BarMenu />
       <NewCarComponent  setShowModal={setShowModal} cars={cars}  />
       {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
 

@@ -440,18 +440,18 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                                 aria-label="Disabled elevation buttons"
                                 sx={{width:'100%'}}
                             >
-                                <Button sx={{ width: '100%', height: '40px', fontSize: '11px' }} onClick={(event) => {
+                                <Button sx={{ width: '100%', height: '40px', fontSize: '11px',backgroundColor:'white' }} onClick={(event) => {
                                     setCarType('new')
                                     changeFilter({ carType: 'new' })
                                 }}>Новые</Button>
-                                <Button sx={{ width: '100%', height: '40px', fontSize: '11px' }} onClick={(event) => {
+                                <Button sx={{ width: '100%', height: '40px', fontSize: '11px',backgroundColor:'white' }} onClick={(event) => {
                                     setCarType('old')
                                     changeFilter({ carType: 'used' })
                                 }} >С пробегом</Button>
                             </ButtonGroup>
                         </div>
                         <div className="rowSideBar" id="center" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -485,7 +485,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                             </Accordion>
                         </div>
                         <div className="rowSideBar" id="column" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -499,50 +499,12 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                                         maxPrice={maxPrice}
                                         valueSliderPrice={valueSliderPrice}
                                         setValueSliderPrice={setValueSliderPrice}
-                                    />
-                                    {/* <input type="number"
-                    className="name"
-                    id="name"
-                    name="name"
-                    placeholder="от 2 000 000"
-                    required
-                    value={minPrice}
-                    onChange={event => setMinPrice(+event.target.value)}
-                />
-                <Slider
-                    size="small"
-                    defaultValue={minPrice}
-                    aria-label="Small"
-                    valueLabelDisplay="auto"
-                    min={0}
-                    step={100000}
-                    max={6999999}
-                    onChange={event => setMinPrice(+event.target.value)}
-                />
-                <input type="number"
-                    className="name"
-                    id="name"
-                    name="name"
-                    placeholder="до 3 000 000"
-                    required
-                    value={maxPrice}
-                    onChange={event => setMaxPrice(+event.target.value)}
-                />
-                <Slider
-                    size="small"
-                    defaultValue={maxPrice}
-                    aria-label="Small"
-                    valueLabelDisplay="auto"
-                    min={0}
-                    step={100000}
-                    max={7000000}
-                    onChange={event => setMaxPrice(+event.target.value)}
-                /> */}
+                                    /> 
                                 </AccordionDetails>
                             </Accordion>
                         </div>
                         <div className="rowSideBar" id="column" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -597,7 +559,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                         }
 
                         <div className="rowSideBar" id="column" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -631,7 +593,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                             </Accordion>
                         </div>
                         <div className="rowSideBar" id="column" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -700,7 +662,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                             </Accordion>
                         </div>
                         <div className="rowSideBar" id="column" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -748,7 +710,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                             </Accordion>
                         </div>
                         <div className="rowSideBar" id="column" >
-                            <Accordion>
+                            <Accordion sx={{width:'100%'}}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"

@@ -7,10 +7,10 @@ import { Dispatch, SetStateAction, useRef } from "react";
 type ModelProps = {
     showModal: boolean,    
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    imgSrc: string
+    carImg: string
 }
 
-export function ModalImg({showModal, setShowModal, imgSrc}: ModelProps) {
+export function ModalImg({showModal, setShowModal, carImg}: ModelProps) {
     const [closeStarting, setCloseStarting] = useState(false)
     function closeModal() {
         setCloseStarting(true)
@@ -82,7 +82,7 @@ export function ModalImg({showModal, setShowModal, imgSrc}: ModelProps) {
             .modalWindow {
                 height: 500px;
                 width: 700px;
-                background-image: url('${imgSrc}');
+                background-image: url('${carImg}');
                 background-position: center center;
                 background-repeat: no-repeat;
                 overflow: hidden;

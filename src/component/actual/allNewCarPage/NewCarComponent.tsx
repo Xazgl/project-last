@@ -170,6 +170,7 @@ export function NewCarComponent({ setShowModal, cars }: Props) {
                 @media(max-width: 600px) {
                     .background {  
                         flex-direction: column;
+                        margin-top: 10px;
                     }
                 }
                 

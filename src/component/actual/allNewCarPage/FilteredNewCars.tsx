@@ -41,11 +41,11 @@ import opel from '/public/images/logo-around/opel.webp';
 import jaguar from '/public/images/logo-around/jaguar.webp';
 import lovol from '/public/images/logo-around/lovol.webp';
 import peugeot from '/public/images/logo-around/peugeot.webp';
-import {  AllCarDto } from '../../../../@types/dto';
+import { AllCarDto } from '../../../../@types/dto';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
-  filteredCars:  AllCarDto,
+  filteredCars: AllCarDto,
 }
 
 export type LogoArr = {
@@ -246,11 +246,11 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
   return (
     <>
       <div className='background'>
-        <div className='cards'>
+        <div className='cards' id="desktop">
           {filteredCars.map(car =>
             <Card sx={{
               width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
-               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
               '&:hover .credit': {
                 display: 'flex',
@@ -293,7 +293,6 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
-                  {/* Комплектация: {car.CarComplectation.name} */}
                   <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
                   <div className='priceMonth'>
                     <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
@@ -323,10 +322,77 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
                 <span className="consultation" >Получить консультацию</span>
               </button>
             </Card>
+          )}
+        </div>
 
-            // <div className='card'>
-            //   <h1>{car.id}</h1>
-            // </div>
+        <div className='cards' id="mob">
+          {filteredCars.map(car =>
+            <Card sx={{
+              width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
+              flexDirection: 'column', transition: ' 0.2s linear',
+              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
+              '&:hover .credit': {
+                display: 'flex',
+                transition: '1s',
+                animation: 'credit-open.5s',
+                marginTop: '400px',
+                backgroundColor: '#0c7ee1',
+                position: 'absolute'
+              }
+            }} >
+              <CardHeader sx={{ height: 40 }}
+                avatar={
+                  <Avatar sx={{}} aria-label="recipe"
+                    src={logoFind(LogoList, car.CarModel.brandName)}>
+
+                  </Avatar>
+                }
+
+                action={
+                  <IconButton aria-label="settings" sx={{ gap: '6px' }}>
+                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
+                    <AddRoadIcon sx={{ '&:hover': { color: 'green' } }} />
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                title={car.CarModel.brandName}
+                subheader={car.CarModel.modelName}
+              />
+
+              <div className='row'>
+                <div className='column'>
+                  <Link href={{
+                    pathname: '/catalog/car/[id]',
+                    query: { id: car.id }
+                  }}>
+                    <CardMedia
+                      component="img"
+                      width="210"
+                      height="100%"
+                      image={car.img[0]}
+                      sx={{ borderRadius: '5px' }}
+                      alt="Paella dish"
+                    />
+                  </Link>
+                </div>
+                <div className='column'>
+                  <CardContent sx={{ padding: '10px', paddingTop: '25px' }}>
+                    <Typography variant="body2" color="text.secondary"
+                      sx={{ fontSize: '11px' }}
+                    >
+                      <div className='column'>
+                        <div>{car.CarModification.name} </div>
+                        <div>{driverTypeStr(car.CarModification.driveType)}</div>
+                      </div>
+                      <div className='price' id="priceModbile">{numberWithSpaces(Number(car.price))} ₽</div>
+                      <div className='priceMonth' id='priceMonth'>
+                        <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
+                      </div>
+                    </Typography>
+                  </CardContent>
+                </div>
+              </div>
+            </Card>
           )}
         </div>
       </div>
@@ -447,11 +513,61 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
       background-color:#0088ff;
     }
 
-    @media(max-width: 720px) {
-      .background {  
-          
-        }
-     }
+    #mob{
+      display: none;
+      gap:10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      flex-wrap: nowrap;
+    }
+
+    .row {
+      display:flex;
+      flex-direction: row;
+    }
+
+    .column {
+      display:flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    #priceModbile{
+      font-size: 17px;
+      height: 30px;
+      margin-top:15px;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    #priceMonth {
+      width: 100%;
+      height: auto;
+      font-weight: bold;
+      margin-top:20px;
+    }
+
+    @media(max-width: 640px) {
+      #desktop{
+        display: none;
+      }
+      #mob{
+        display: flex;
+      } 
+      .btn {
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+      }
+
+      .office{
+        font-size: 9px;
+      }
+      .background{
+        height: auto;
+      }
+    }
             
   `}</style>
     </>
