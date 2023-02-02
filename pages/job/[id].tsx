@@ -56,7 +56,7 @@ const Job: NextPage = () => {
                 <meta name="description" content="Work with me" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MenuBar refs={{ refSales, refContact, refAdvatages }} />
+            <MenuBar />
             <More job={job} setOpen={setOpen} />
             {open=== true &&
                 <VacancyForm  job={job} />

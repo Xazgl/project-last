@@ -1,6 +1,6 @@
 import { Circle } from "@mui/icons-material";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -12,41 +12,44 @@ import AddRoadIcon from '@mui/icons-material/AddRoad';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 type Props = {
+    car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>
 }
 
 
+export function InfoCarHeader({ car, showModal, setShowModal, setCarImg }: Props) {
 
-export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
+    // const router = useRouter()
+    // const [car, setCar] = useState<CarDto>(null) // TODO: написать тип ДТО {}
+    // const { id } = router.query
+    // useEffect(() => {
+    //     async function start() {
+    //         const res = await fetch('/api/car/' + router.query.id, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //         })
+    //         if (res.ok) {
+    //             const carFetch = await res.json()
+    //             console.log(carFetch);
+    //             setCar(carFetch)
+    //         }
+    //     }
+    //     if (router.isReady) {
+    //         start()
+    //         console.log('start');
 
-    const router = useRouter()
-    const [car, setCar] = useState<CarDto>(null) // TODO: написать тип ДТО {}
-
-    const { id } = router.query
+    //     }
+    // }, [router.isReady]);
 
 
-    useEffect(() => {
-        async function start() {
-            const res = await fetch('/api/car/' + router.query.id, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            if (res.ok) {
-                const carFetch = await res.json()
-                console.log(carFetch);
-                setCar(carFetch)
-            }
-        }
-        if (router.isReady) {
-            start()
-            console.log('start');
-
-        }
-    }, [router.isReady]);
+    // const carPhoto = useMemo(() => {
+    //     if(car !== null)
+    //    return car.img[0]
+    // }, [car])
 
 
 
@@ -61,14 +64,36 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
 
     return (
         <>
-            <div className="background">
+            <div className="background" id ="desktop">
                 {car !== null ?
                     <>
-                        <div className="row">
-                            <ImageList sx={{ width: '100%', height: '800px' }} cols={4} rowHeight={'auto'}>
+                        <div className="row" style={{ width: '100%', height: 'auto' }}>
+                            {/* <div style={{
+                                flexDirection: 'column', width: '50%',
+                                overflow: 'hidden'
+                            }}>
+
+                                <ImageList sx={{ width: '80%', height: 'auto' }} cols={1} rowHeight={'auto'}>
+                                <ImageListItem key={1} >
+                                    <img
+                                        src={`${car.img[0]}`}
+                                        alt={car.img[0]}
+                                        loading="lazy"
+                                        className="headerPhoto"
+                                        style={{ objectFit: 'fill' }}
+                                    />
+                                      </ImageListItem>
+                                              </ImageList>
+                                    {/* <div className="headerPhoto" style={{backgroundImage: `${url(car.img[0])}` }}></div> 
+                            </div>
+
+                             <div style={{ flexDirection: 'column', width: '50%' }}> */}
+
+
+                            <ImageList sx={{ width: '100%', height: '100%' }} cols={8} rowHeight={'auto'}>
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
-                                        sx={{ cursor: 'pointer' }}
+                                        sx={{ cursor: 'zoom-in' }}
                                     >
                                         <img
                                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
@@ -80,40 +105,8 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
                                     </ImageListItem>
                                 ))}
                             </ImageList>
+                            {/* </div> */}
                         </div>
-                        {/* <div className="rowColumn">
-                            <div className="column" id="text">
-                                <div className="rowColumn">
-                                    <div className="name">{car.CarModel.brandName} {car.CarModel.modelName} {car.CarComplectation.name}
-                                    </div>
-                                </div>
-                                <div className="rowColumn">
-                                    <div className="desc">
-                                        <Circle sx={{ color: 'green' }} />
-                                        <span>В наличии</span>
-                                        <span>{car.DealerModel.name} <RoomIcon sx={{ fontSize: '15px' }} /></span>
-                                        <a href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
-
-                                    </div>
-                                </div>
-                                <div className="rowColumn" style={{ gap: 30, marginTop: '20px' }}>
-                                    <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
-                                    <div className="btnName">
-                                        <Button variant="contained" sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px' }}>Купить онлайн</Button>
-                                    </div>
-                                </div>
-                                <div className="rowColumn" style={{ gap: 30, marginTop: '50px' }}>
-                                    <div className="name" style={{ fontSize: '18px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
-                                    <div className="btnName">
-                                        <Button variant="outlined" sx={{ fontWeight: 'bold', height: '50px' }}>Рассчитать кредит</Button>
-                                    </div>
-                                </div>
-                                <div className="rowColumn" style={{ gap: 15, marginTop: '50px' }}>
-                                    <FavoriteIcon sx={{ '&:hover': { color: 'red' }, fontSize: '35px' }} />
-                                    <AddRoadIcon sx={{ '&:hover': { color: 'green' }, fontSize: '35px' }} />
-                                </div>
-                            </div>
-                        </div> */}
                         <div className="backgroundDesc" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'center' }}>
                             <div className="desc" style={{
                                 display: 'flex', width: '1000px', height: '300px', gap: '80px',
@@ -136,9 +129,10 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
                                             <AddRoadIcon sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
                                         </div>
-                                        <div className="Icon" id="tradeIn" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '250px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <span>Записаться на оценку</span>
-                                            <AutorenewIcon  sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                        <div id="tradeIn">
+                                            <button className="btnTradeIn"> Записаться на оценку
+                                                <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +149,6 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
                                             <Button variant="outlined" sx={{ fontWeight: 'bold', height: '50px' }}>Рассчитать кредит</Button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -169,20 +162,26 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
                     </>
                     : <Circle />
                 }
-
-                {/* .desc{
-                    display:flex;
-                    gap:30px;
-                    color: #7b7979;
-                    font-size: 18px;
-                } */}
             </div>
+
+
+                
             <style jsx>{`
                 .background {
                     display:flex; 
                     width: 100%;
                     height:auto;
                     flex-direction: column;
+                }
+
+                .headerPhoto {
+                    background-color:black;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    object-fit: cover;
+                    width: 100%;
+                    height:auto;
+
                 }
 
                 .row{
@@ -202,11 +201,38 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
                     padding-left:50px;
                 }
 
-                #text {
-                   justify-content: center;
-                   align-items: center;
+
+                #tradeIn { 
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: center; 
+                    border-radius: 7px; 
+                    width: 250px;  
+                    height: 60px; 
+                    border: 1px solid #a19f9f; 
                 }
 
+                .btnTradeIn{
+                    display: flex;
+                    justify-content: center; 
+                    align-items: center;
+                    text-align:center;
+                    width:100%;
+                    height:100%;
+                    background-color: transparent;
+                    border:none;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                .btnTradeIn:hover  {
+                    background-color: #005baa;
+                    color:white;
+                    border:none;
+                }
+
+               
                 .rowColumn{
                     display: flex;
                     width: 100%;
@@ -223,6 +249,13 @@ export function InfoCar({ showModal, setShowModal, setCarImg }: Props) {
                     width: auto;
                     height: auto;
                 }
+
+                @media (max-width: 1000px) {
+                   #desktop{
+                      display:none
+                    }
+                }
+
 
 
             `}</style>

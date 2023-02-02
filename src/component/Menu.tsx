@@ -11,14 +11,16 @@ const hundler = (event: React.SyntheticEvent) => {
   event.preventDefault()
 }
 
-type MuneProps = {
-  refs: {
-    refSales: MutableRefObject<HTMLDivElement>,
-    refContact: MutableRefObject<HTMLDivElement>,
-    refAdvatages: MutableRefObject<HTMLDivElement>
-  }
-}
-export function MenuBar({ refs }: MuneProps) {
+// type MuneProps = {
+//   refs: {
+//     refSales: MutableRefObject<HTMLDivElement>,
+//     refContact: MutableRefObject<HTMLDivElement>,
+//     refAdvatages: MutableRefObject<HTMLDivElement>
+//   }
+// }
+// export functionMenuBar({ refs }: MuneProps) {
+
+  export function MenuBar() {
 
   const [show, setShow] = useState(false)
   const [closeStarting, setCloseStarting] = useState(false)
@@ -95,7 +97,6 @@ export function MenuBar({ refs }: MuneProps) {
         font-family: 'TacticSans-Reg','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:21px;
-        position: fixed;
         width: 100%;
         background-color:white;
         border:none;
@@ -113,7 +114,6 @@ export function MenuBar({ refs }: MuneProps) {
         font-family: 'TacticSans-Reg','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:18px;
-        position: fixed;
         width: 100%;
         background-color:white;
         border:none;

@@ -94,22 +94,16 @@ export function ModalImg({showModal, setShowModal, carImg}: ModelProps) {
                   width: 600px;
                 }
             }
-            @media(max-width: 900px) {
-                .modalWindow {
-                 height: 300px;
-                  width: 400px;
-                }
-            }
             @media(max-width: 600px) {
                 .modalWindow {
-                 height: 200px;
-                  width: 300px;
+                 height: 300px;
+                  width: 500px;
                 }
             }
-            @media(max-width: 350px) {
+            @media(max-width: 360px) {
                 .modalWindow {
-                 height: 100px;
-                  width: 200px;
+                 height: 200px;
+                  width: 100%;
                 }
             }
             
