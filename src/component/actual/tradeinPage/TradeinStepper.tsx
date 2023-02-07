@@ -1,10 +1,22 @@
 
-import { ChangeEvent, FormEvent, MutableRefObject, useState } from "react";
+import { ChangeEvent, FormEvent, MutableRefObject, useEffect, useState } from "react";
 import { Dispatch, SetStateAction, useRef } from "react";
 import IMask from 'imask';
 import { IMaskInput } from "react-imask";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { withTheme } from "@emotion/react";
+import LastPageIcon from '@mui/icons-material/LastPage';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 //let phoneMask = document.getElementsByClassName('phone');
 // let maskOptions = {
@@ -20,6 +32,7 @@ type MuneProps = {
 }
 
 
+
 export function TradeinStepper({ refs }: MuneProps) {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -27,6 +40,11 @@ export function TradeinStepper({ refs }: MuneProps) {
     const [carYear, setCarYear] = useState('')
     const [nextPage, setNextPage] = useState(0)
     const [prevPage, setPrevPage] = useState(nextPage)
+
+
+    const [activeStep, setActiveStep] = useState(0);
+
+
 
     //@ts-ignore
     function nextQuestion() {
@@ -72,8 +90,79 @@ export function TradeinStepper({ refs }: MuneProps) {
     }
 
 
+    const [data, setData] = useState(new Date())
+
+
+
+
+    const steps = [
+        {
+            label: 'Введите ваше имя',
+            description:
+                <TextField id="outlined-basic" label="Алексей"
+                    variant="outlined"
+                    required
+                    value={name}
+                    onChange={event => setName(event.target.value)}
+                />
+
+        },
+        {
+            label: 'Введите ваше телефон',
+            description:
+                <IMaskInput
+                    style={{
+                        fontSize: '18px',
+                        height: '1.4375',
+                        marginTop: '40px',
+                        border: 'solid 1px rgba(0, 0, 0, 0.23)',
+                        padding: '16.5px 14px',
+                        borderRadius: '5px'
+                    }}
+                    className="phone"
+                    mask={'+{7}(000)000-00-00'}
+                    placeholder="+7___ ___ __ __"
+                    required
+                    value={phone}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => setPhone(event.target.value)}
+                />
+        },
+        {
+            label: 'Год выпуска вашего авто',
+            description:
+                <TextField id="outlined-basic" label="2007"
+                    variant="outlined"
+                    required
+                    value={carYear}
+                    onChange={event => setCarYear(event.target.value)}
+                />
+        },
+        {
+            label: 'Модель вашего авто',
+            description:
+                <TextField id="outlined-basic" label="KIA RIO"
+                    variant="outlined"
+                    required
+                    value={carModal}
+                    onChange={event => setCarModal(event.target.value)}
+                />
+        },
+    ];
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
     return <>
-        <div className="modalBackground"  ref={refs.refForm}>
+        <div className="modalBackground" ref={refs.refForm}>
             <div className="modalWindow" id="modalWindow">
                 <div className="mb-2"><span id="modalTitle"></span></div>
                 <div className="modalEl">
@@ -104,12 +193,12 @@ export function TradeinStepper({ refs }: MuneProps) {
                                         height: '45px',
                                         marginTop: '40px',
                                         width: '100%',
-                                        border:'solid 2px #005baa',
+                                        border: 'solid 1px #d4d3d3',
                                         padding: '10px 10px'
                                     }}
                                     className="phone"
                                     mask={'+{7}(000)000-00-00'}
-                                    placeholder="+7 ___ ___ __ __"
+                                    placeholder="+7___ ___ __ __"
                                     required
                                     value={phone}
                                     onChange={(event: ChangeEvent<HTMLInputElement>) => setPhone(event.target.value)}
@@ -124,7 +213,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                                 <label htmlFor="carYear" className="form-label"></label>
                                 <input type="number"
                                     placeholder="2007"
-                                    min="1990" max="2030"
+                                    min="2000" max={data.getUTCFullYear()}
                                     value={carYear}
                                     onChange={event => setCarYear(event.target.value)} />
                             </div>
@@ -154,8 +243,8 @@ export function TradeinStepper({ refs }: MuneProps) {
                     </form>
                 </div>
                 <div className="twoBtn">
-                    <button className="btn" onClick={() => { nextPage > 0 ? setNextPage(nextPage - 1) : setNextPage(nextPage) }}>Назад</button>
-                    <button className="btn" onClick={nextQuestion}>Далее</button>
+                    <button className="btn" onClick={() => { nextPage > 0 ? setNextPage(nextPage - 1) : setNextPage(nextPage) }}> <FirstPageIcon />Назад</button>
+                    <button className="btn" onClick={nextQuestion}> Далее  <LastPageIcon /> </button>
                 </div>
                 {nextPage === 0 &&
                     <div className="line">
@@ -193,6 +282,60 @@ export function TradeinStepper({ refs }: MuneProps) {
                     </div>
                 }
             </div>
+
+
+            <div className="mobileStepper"  ref={refs.refForm}>
+                <h1>Оцените авто</h1>
+                <Stepper activeStep={activeStep} orientation="vertical">
+                    {steps.map((step, index) => (
+                        <Step key={step.label}>
+                            <StepLabel
+                                optional={
+                                    index === 4 ? (
+                                        <Typography variant="caption">Последний шаг</Typography>
+                                    ) : null
+                                }
+                            >
+                                {step.label}
+                            </StepLabel>
+                            <StepContent>
+                                <Typography>{step.description}</Typography>
+                                <Box sx={{ mb: 2,padding:'0' }}>
+                                    <div>
+                                        <Button
+                                            variant="contained"
+                                            onClick={handleNext}
+                                            sx={{ mt: 1, mr: 1 }}
+                                        >
+                                            {index === steps.length - 1 ? 'Перейти к отправке' : 'Далее'}
+                                        </Button>
+                                        <Button
+                                            disabled={index === 0}
+                                            onClick={handleBack}
+                                            sx={{ mt: 1, mr: 1 }}
+                                        >
+                                            Назад
+                                        </Button>
+                                    </div>
+                                </Box>
+                            </StepContent>
+                        </Step>
+                    ))}
+                </Stepper>
+                {activeStep === steps.length && (
+                    <Paper square elevation={0} sx={{ p: 3 }}>
+                        <Typography sx={{color:'#bbb8b89c'}}>Вы прошли все шаги</Typography>
+                        <form onSubmit={sendmailTradein}>
+                            <Button type="submit" sx={{ mt: 1, mr: 1, width:"200px"  }}  variant="contained" endIcon={<SendIcon />}>
+                                Отправить
+                            </Button>
+                        </form>
+                        <Button onClick={handleReset} sx={{ mt: 1, mr: 1, width:"200px" }}  variant="contained" startIcon={<DeleteIcon />}  >
+                            Сбросить
+                        </Button>
+                    </Paper>
+                )}
+            </div>
         </div>
 
         <style jsx>{`
@@ -221,7 +364,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 align-items:center;
                 width:700;
                 margin-top:30px;
-                background:#fdb913;
+                background:#005baa3a;
                 width: 700px;
                 height: 7px;
                 transition: 0.3s;
@@ -275,7 +418,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 height: 500px;
                 width: 900px;
                 align-items: center;
-                background-color: #f8f8f8e3;
+                background-color: #000000cf;
                 flex-direction: column;
             }
            
@@ -298,7 +441,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 height: 45px;
                 width: 100%;
                 padding: 10px 10px;
-                border:solid 2px #005baa;
+                border: 1px solid #d4d3d3;
             }
 
             .btn-modal {
@@ -314,6 +457,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 font-weight: 400;
                 font-weight: bold;
                 margin-top: 40px;
+                cursor: pointer;
             }
 
             .btn-modal:hover {
@@ -337,12 +481,18 @@ export function TradeinStepper({ refs }: MuneProps) {
                 color: white;
                 font-size: 18px;
                 background-color: #005baa;
-                width: 200px;
+                width: 140px;
                 height: 40px;
                 font-weight: 400;
                 margin-top:20px;
                 font-weight: bold;
                 border:none;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                gap:5px;
+                cursor: pointer;
             }
 
             .btn:hover {
@@ -361,7 +511,7 @@ export function TradeinStepper({ refs }: MuneProps) {
             }
             
             #modalTitle {
-                color: #005baa;;
+                color: white;
                 font-size:30px;
                 font-family: 'TacticSans-Reg','sans-serif';
                 font-weight: bold;
@@ -373,7 +523,7 @@ export function TradeinStepper({ refs }: MuneProps) {
             }
 
             #modalMiniTitle {
-                color: black;
+                color: white;
                 font-size:20px;
                 font-family: 'TacticSans-Reg','sans-serif';
                 font-weight: bold;
@@ -383,53 +533,63 @@ export function TradeinStepper({ refs }: MuneProps) {
                 margin: 15px;
             }
 
-        @media(max-width: 700px) {
-          #modalTitle {
-           font-size:23px;
-          }
-          .mb-2 {
-            font-size:23px; 
-          }
-          .btn-modal {
-            width: 100px;
-            height: 30px;
-            font-size: 15px;
-          }
-          .btn-modal:hover {
-            font-size: 16px;
-          }
-          input {
-                font-size: 15px;
-                height: 35px;
-          }
+
+            .mobileStepper {
+                height: auto;
+                width: 100%;
+                display: none;
+                justify-content: center;
+                flex-direction: column;
+                padding: 20px;
+            }
+
+        @media(max-width: 900px) {
           .modalWindow {
-            height: 460px;
-            width: 300px;
+            width: 600px;
+            height: 450px;
+          }
+
+          .line{
+            width: 90%;
+          }
+
+          .twoBtn {
+            width: 90%;
+          }
+
+          .btn {
+            font-size: 16px;
+            width: 110px;
+          }
+
+          #modalTitle {
+            margin-top:0px;
           }
         }
-        @media(max-width: 350px) {
-          #modalTitle {
-           font-size:18px;
+
+        @media(max-width: 620px) {
+          .modalWindow {
+            width: 500px;
+            height: 400px;
           }
-          .mb-2 {
-            font-size:18px; 
-          }
-          .btn-modal {
-            width: 100px;
-            height: 23px;
-            font-size: 15px;
-          }
-          .btn-modal:hover {
-            font-size: 16px;
+
+          .question {
+            height: 100px;
+            gap: 5px;
           }
           input {
-                font-size: 13px;
-                height: 20px;
+            margin-top:10px;
           }
-          .modalWindow {
-            height: 370px;
-            width: 230px;
-          }
+        }
+
+        @media(max-width: 540px) {
+            .modalWindow {
+                display: none;
+            }
+
+            .mobileStepper {
+                display: flex;
+            }
         }
       `}
         </style>

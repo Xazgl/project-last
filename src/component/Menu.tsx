@@ -56,13 +56,15 @@ const hundler = (event: React.SyntheticEvent) => {
         </ul>
       </li>
       <li className="menuEL">
-        <a onClick={(e) => {
+        {/* <a onClick={(e) => {
           e.preventDefault()
           refs.refSales.current.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           })
-        }}><span>Услуги</span></a>
+        }}> */}
+          <span>Услуги</span>
+          {/* </a> */}
       </li>
       <li className="menuEL" >
         <Link href={'/'}><span>Владельцам</span></Link>
@@ -155,6 +157,7 @@ const hundler = (event: React.SyntheticEvent) => {
         position:relative;
         flex-direction: column;
         align-items: center;
+        cursor: pointer;
       }
 
       span::after{

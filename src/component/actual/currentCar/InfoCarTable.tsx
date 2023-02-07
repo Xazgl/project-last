@@ -6,6 +6,13 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Accordion, AccordionDetails, AccordionSummary, Button, CardMedia, styled, Typography } from "@mui/material";
 
+import suv from '/public/images/carBodyTyp/suv.svg'
+import crossover from '/public/images/carBodyTyp/crossover.svg'
+import hatchback from '/public/images/carBodyTyp/hatchback.svg'
+import liftback from '/public/images/carBodyTyp/liftback.svg'
+import minivan from '/public/images/carBodyTyp/minivan.svg'
+import sedan from '/public/images/carBodyTyp/sedan.svg'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -17,6 +24,9 @@ type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>
 }
+
+
+
 
 
 export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props) {
@@ -65,6 +75,24 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
     }
 
 
+    function carBodyImgChange(x) {
+        if (x === 'suv') {
+            return crossover
+        }
+        if (x === 'sedan') {
+            return sedan
+        }
+        if (x === 'hatchback') {
+            return hatchback
+        }
+        if (x === 'liftback') {
+            return liftback
+        }
+        if (x === 'minivan' || 'compactvan') {
+            return minivan
+        }
+
+    }
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -154,25 +182,57 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                                         <Box sx={{ flexGrow: 1 }}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={4}>
-                                                    <Item sx={{color:'#1565c0' }}>Цвет кузова</Item>
+                                                    <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Цвет кузова</Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
-                                                    <Item  sx={{color:'#1565c0' }}>Год </Item>
+                                                    <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Год </Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
-                                                    <Item  sx={{color:'#1565c0' }}>Кузов</Item>
+                                                    <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Кузов</Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
                                                     <Item><Circle sx={{ backgroundColor: `${car.color}`, borderRadius: '50px' }} /></Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
-                                                    <Item>{car.year}</Item>
+                                                    <Item sx={{ fontSize:'17px' }}>{car.year}</Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
-                                                    <Item>{car.CarModification.bodyType}</Item>
+                                                    <Item sx={{ color: 'black' }}>
+                                                        {/* {car.CarModification.bodyType} */}
+
+                                                        <img
+                                                            width={'100%'}
+                                                            height={'100%'}
+                                                            className="imgCarType"
+                                                            src={carBodyImgChange(car.CarModification.bodyType).src}
+                                                            alt={car.CarModification.bodyType}
+                                                        />
+                                                    </Item>
                                                 </Grid>
                                             </Grid>
+                                            <Grid container spacing={2} sx={{marginTop:'20px'}}>
+                                                        <Grid item xs={4}>
+                                                            <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Двигатель</Item>
+                                                        </Grid>
+                                                        <Grid item xs={4}>
+                                                            <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Привод</Item>
+                                                        </Grid>
+                                                        <Grid item xs={4}>
+                                                            <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Коробка</Item>
+                                                        </Grid>
+                                                        <Grid item xs={4}>
+                                                            <Item sx={{boxShadow:'none',fontSize:'16x' }}>{car.CarModification.enginePower} Л.С.</Item>
+                                                        </Grid>
+                                                        <Grid item xs={4}>
+                                                            <Item sx={{ fontFamily:'15px',boxShadow:'none' }}>{driverTypeStr(car.CarModification.driveType)}</Item>
+                                                        </Grid>
+                                                        <Grid item xs={4}>
+                                                            <Item sx={{ fontFamily:'15px', boxShadow:'none' }}>{gearBoxName(car.CarModification.gearboxType)}</Item>
+                                                        </Grid>
+                                                    </Grid>
+
                                         </Box>
+                                        
                                     </AccordionDetails>
                                 </Accordion>
                             </div>

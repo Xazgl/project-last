@@ -8,6 +8,7 @@ import { CarSale } from '../../src/component/actual/tradeinPage/CarSale'
 import { MainBannerTradeIn } from '../../src/component/actual/tradeinPage/MainBannerTradeIn'
 import { TradeInForm } from '../../src/component/actual/tradeinPage/TradeInForm'
 import { TradeinStepper } from '../../src/component/actual/tradeinPage/TradeinStepper'
+import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
@@ -32,6 +33,7 @@ const SpecialOffersPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBar  />
+      <BarMenu />
       <CardsSpecialOffers />
       {/* <TradeInForm /> */}
       <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />

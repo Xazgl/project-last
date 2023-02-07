@@ -724,7 +724,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     align-items: center;
                     width: 400px;
                     height: 110vh;
-                    border:solid 2px black;
+                    border:1px solid #d4d3d3;
                     overflow: auto;
                 }
 

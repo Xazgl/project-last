@@ -230,7 +230,7 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
                                     <div className="rowColumn">
                                         <Button variant="outlined"
                                             sx={{
-                                                width: '100%', height: '100%', border: 'solid 2px #005baa',fontWeight:'bold',
+                                                width: '100%', height: '100%', border: 'solid 2px #005baa', fontWeight: 'bold',
                                                 backgroundColor: '#005baa', color: 'white',
                                                 '&:hover': {
                                                     backgroundColor: "white",
@@ -317,6 +317,43 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
                     flex-direction: column;
                     width: 600px;
                     height: 100%;
+                }
+
+                
+                @media(max-width: 1050px) {
+                    .backgroundBlock{
+                        width:800px;
+                    }
+                }
+
+                @media(max-width: 800px) {
+                    .backgroundBlock{
+                        width:100%;
+                    }
+                }
+
+                @media(max-width: 600px) {
+                    .row{
+                        height: auto;
+                        flex-direction: column-reverse;
+                    }
+                    .background {
+                        height: auto;
+                    }
+
+                    .rightColumn {
+                        width: 100%;
+                    }
+
+                    .leftColumn {
+                        width: 100%;
+                    }
+                }
+                
+                @media(max-width: 360px) {
+                    .priceHeader{
+                       font-size:14px
+                    }
                 }
 
             `}</style>

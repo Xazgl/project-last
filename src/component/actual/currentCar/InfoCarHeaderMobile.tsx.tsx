@@ -32,12 +32,20 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
 
     return (
         <>
-            <div className="background" id ="mobile">
+            <div className="background" id="mobile">
                 {car !== null ?
                     <>
-                        <div className="row" style={{ width: '100%', height: 'auto' }}>
-                            
-                            <ImageList sx={{ width: '100%', height: '100%' }} cols={8} rowHeight={'auto'}>
+                        <div className="row"  id="rowHeader" style={{ width: '100%', height: 'auto' }}>
+                            <div className="imgMobile">
+                                <img
+                                    src={`${car.img[0]}?w=164&h=164&fit=crop&auto=format`}
+                                    srcSet={`${car.img[0]}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                    alt={car.img[0]}
+                                    loading="lazy"
+                                    style={{display:'flex',width:'100%',height:'100%'}}
+                                />
+                            </div>
+                            <ImageList sx={{ width: '100%', height: '100%' , gridTemplateColumns: { xl: 'repeat(8, 1fr)', lg: 'repeat(8, 1fr)', md: 'repeat(8, 1fr)', sm: 'repeat(6, 1fr)', xs: 'repeat(4, 1fr)' }   }} cols={8} rowHeight={'auto'}>
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
                                         sx={{ cursor: 'zoom-in' }}
@@ -58,9 +66,9 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
                             <div className="desc" style={{
                                 display: 'flex', width: '100%', height: 'auto',
                                 flexDirection: 'column', alignItems: 'start', marginTop: '50px',
-                                padding:'30px'
+                                padding: '30px'
                             }}>
-                                <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', alignItems:'center', padding: '5px' }}>
+                                <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', alignItems: 'center', padding: '5px' }}>
                                     <div className="name">{car.CarModel.brandName} {car.CarModel.modelName} {car.CarComplectation.name}</div>
                                     <div className="rowColumn" style={{ display: 'flex', marginTop: '10px', justifyContent: 'space-between', alignItems: 'baseline', flexDirection: 'column' }} >
                                         <span><Circle sx={{ color: 'green', fontSize: '12px' }} />  В наличии</span>
@@ -68,7 +76,7 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
                                         <a href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
                                     </div>
 
-                                    <div className="rowIcon"  style={{ gap: 15, marginTop: '50px',justifyContent:'center' }}>
+                                    <div className="rowIcon" style={{ gap: 15, marginTop: '50px', justifyContent: 'center' }}>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
                                             <FavoriteIcon sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
                                         </div>
@@ -82,18 +90,18 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', padding: '5px' }}>
-                                    <div className="rowColumn" style={{  marginTop: '20px' ,flexDirection: 'column',alignItems:'center',gap:'10px'  }}>
+                                    <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
-                                            <Button variant="contained" sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px',width:'100%' }}>Купить онлайн</Button>
+                                            <Button variant="contained" sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', width: '100%' }}>Купить онлайн</Button>
                                         </div>
                                     </div>
-                                    <div className="rowColumn" style={{ marginTop: '20px',flexDirection: 'column',alignItems:'center',gap:'10px' }}>
+                                    <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                                         <div className="name" style={{ fontSize: '15px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
-                                            <Button variant="outlined" sx={{ fontWeight: 'bold', height: '50px',width:'100%' }}>Рассчитать</Button>
+                                            <Button variant="outlined" sx={{ fontWeight: 'bold', height: '50px', width: '100%' }}>Рассчитать</Button>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +120,7 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
             </div>
 
 
-                
+
             <style jsx>{`
                 .background {
                     display:flex; 
@@ -208,6 +216,13 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
                       display:none
                 }
 
+                .imgMobile {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    height: auto;
+                }
+
                 @media (max-width: 1000px) {
                    #mobile{
                       display:flex;
@@ -224,10 +239,17 @@ export function InfoCarHeaderMobile({ car, showModal, setShowModal, setCarImg }:
                     .rowIcon {
                         display:none;
                     }
+   
                 }
               
 
                 @media (max-width: 360px) {
+                    .imgMobile  {
+                        display: flex;
+                    }
+                    #rowHeader{
+                        flex-direction: column;
+                    }
                     .btnName{
                       width:250px;
                     }

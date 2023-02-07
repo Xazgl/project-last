@@ -13,6 +13,7 @@ import { Banner } from '../../src/component/actual/job/Banner'
 import { CompanyMini } from '../../src/component/actual/job/CompanyMini'
 import { Staff } from '../../src/component/actual/job/Staff'
 import { CardsOffers } from '../../src/component/actual/job/CardsOffersJob'
+import BarMenu from '../../src/component/BarMenu'
 
 
 const JobPage: NextPage<{ job:  Job[] }> = ({ job }) => {
@@ -34,6 +35,7 @@ const JobPage: NextPage<{ job:  Job[] }> = ({ job }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBar />
+      <BarMenu />
       <MainBanner />
       <CardsOffers job={job} setShowModal={setShowModal} />
       <Banner setShowModal={setShowModal}  />

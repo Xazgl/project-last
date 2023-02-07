@@ -1,5 +1,5 @@
 import { Car } from '@prisma/client'
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -233,7 +233,7 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
     }
   }
 
-  function showModal(event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) {
+  function showModal(event: MouseEventHandler<HTMLButtonElement>) {
     setShowModal(true)
   }
 
@@ -330,7 +330,7 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
             <Card sx={{
               width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', transition: ' 0.2s linear',
-              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
+              '&:hover': { transform: 'scale(1.04)' },
               '&:hover .credit': {
                 display: 'flex',
                 transition: '1s',
@@ -427,6 +427,8 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
       padding: 20px;
       justify-content: center;
       overflow: auto;
+      border-top: 1px solid #d4d3d3;
+      background-color: #f5f2f261;
     }
     
     .cards {

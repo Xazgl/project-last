@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Button, CardMedia, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Button, CardMedia, Checkbox, FormControlLabel, FormGroup, Typography } from "@mui/material";
 
 import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -74,12 +74,22 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                                     ИЗ ЧЕГО СКЛАДЫВАЕТСЯ ЦЕНА?
                                 </div>
                                 <div className="salesBlock">
-                                    <FormGroup><h3>ДОСТУПНЫЕ ВЫГОДЫ</h3>
-                                        <FormControlLabel control={<Checkbox defaultChecked />} label="ПО TRADE-IN" />
-                                        <FormControlLabel control={<Checkbox defaultChecked />} label="ПРИ ПОКУПКЕ В КРЕДИТ" />
-                                        <FormControlLabel control={<Checkbox defaultChecked />} label="ПРИ СТРАХОВАНИИ" />
-                                        <FormControlLabel control={<Checkbox defaultChecked />} label="ПРИ ПОКУПКЕ ДОП. ОБОРУДОВАНИЯ" />
-                                        <FormControlLabel control={<Checkbox defaultChecked />} label="ДОПОЛНИТЕЛЬНО" />
+                                    <FormGroup ><h3>ДОСТУПНЫЕ ВЫГОДЫ</h3>
+                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                            label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
+                                                ПО TRADE-IN</Typography>} />
+                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                            label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
+                                                ПРИ ПОКУПКЕ В КРЕДИТ</Typography>} />
+                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                            label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
+                                                ПРИ СТРАХОВАНИИ</Typography>} />
+                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                            label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
+                                                ПРИ ПОКУПКЕ ДОП. ОБОРУДОВАНИЯ</Typography>} />
+                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                            label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
+                                                ДОПОЛНИТЕЛЬНО</Typography>} />
                                     </FormGroup>
                                 </div>
                                 <div className="answerBlock">
@@ -201,7 +211,39 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                     margin-top: 10px;
                 }
 
+                @media(max-width: 1050px) {
+                    .backgroundBlock{
+                        width: auto;
+                    }
+                }
 
+                @media(max-width: 400px) {
+                    .background {
+                          padding: 1px;
+                    }
+
+                    .answerBlock {
+                        margin-top:0px;
+                    }
+
+                    .saleBlock{
+                       font-size:15px
+                    }
+                    .priceBlock {
+                        width: auto;
+                        height: auto;
+                    }
+                    .row {
+                        align-items: start;
+                        flex-direction: column;
+                    }
+                }
+
+                @media(max-width: 360px) {
+                    .priceHeader{
+                       font-size:14px
+                    }
+                }
 
             `}</style>
         </>)

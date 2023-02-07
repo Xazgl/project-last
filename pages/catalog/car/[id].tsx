@@ -58,7 +58,6 @@ const CarPage: NextPage = () => {
             <InfoCredit car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoOffice car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
 
-
             {
                 showModal && <ModalImg carImg={carImg} showModal={showModal} setShowModal={setShowModal} />
             }

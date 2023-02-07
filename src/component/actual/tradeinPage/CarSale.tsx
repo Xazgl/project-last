@@ -1,17 +1,21 @@
-import Link from "next/link";
-import Image from 'next/image';
-import banner from '/public/images/job.webp'
-import { MutableRefObject, useState } from "react";
+
+import { Dispatch, SetStateAction } from "react";
 
 type MuneProps = {
-    refs: {
-        refForm: MutableRefObject<HTMLDivElement>,
-    }
+    setCarPrice: Dispatch<SetStateAction<string>>,
+    carPrice: string,
+    setShowModalPrice: Dispatch<SetStateAction<boolean>>
 }
 
 
-export function CarSale() {
-    const [carPrice, setCarPrice] = useState('')
+
+export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps) {
+
+    function showModalPrice(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        setShowModalPrice(true)
+    }
+
     return (
         <>
             <div className="background">
@@ -27,9 +31,21 @@ export function CarSale() {
                                 onChange={event => setCarPrice(event.target.value)} />
                             <h6>Мы подберем удобный вариант продажи вашего автомобиля</h6>
                         </div>
-                        <div className="rowEl" >
-                            <button>Продать автомобиль</button>
-                        </div>
+                        {carPrice > '' &&
+                            <div className="rowEl" >
+                                <form onSubmit={()=> showModalPrice}  style={{width:'100%',height:'100%'}}>
+                                    <button className="btn" type="submit">Продать автомобиль</button>
+                                </form>
+                            </div>
+                        }
+
+                        {carPrice <= '' &&
+                            <div className="rowEl" >
+                                <button className="btn" disabled>Продать автомобиль</button>
+                            </div>
+                        }
+
+
                     </div>
                     {/* <div className="miniCard">Мы подберем удобный вариант продажи вашего автомобиля</div> */}
                 </div>
@@ -90,24 +106,131 @@ export function CarSale() {
                     font-size: 21px;
                 }
 
-                button {
+                .btn {
                     width: 300px;
                     height: 100%;
                     background-color:  #005baa;
                     color:white;
                     border:none;
                     font-size: 16px;
+                    cursor: pointer;
                 }
 
-                button:hover {
+
+                .btn:disabled {
+                    width: 300px;
+                    height: 100%;
+                    color: #d4d3d3;
+                    border: 1px solid #d4d3d3;
+                    background-color: transparent;
+                    font-size: 16px;
+                }
+
+                .btn:hover {
                     background-color: black;
                 }
 
-                @media(max-width: 1200px) {
-                    .MainBanner { 
-                        background-size: cover;
+                .btn:disabled:hover {
+                    background-color: transparent
+                }
+
+
+                @media(max-width: 800px) {
+                    .row { 
+                        flex-direction: column;
+                        height: auto;
+                    }
+
+                    button {
+                        height: 50px;
+                        width: 400px;
+                    }
+
+                    .card {
+                        padding: 35px;
+                        width: 100%;
                     }
                 }
+
+                @media(max-width: 500px) {
+
+                    .titleCard{
+                        text-align: center;
+                        font-size: 25px;
+                    }
+
+                    .row { 
+                        flex-direction: column;
+                        height: auto;
+                    }
+
+                    button {
+                        height: 45px;
+                        width: 300px;
+                    }
+
+                    input {
+                      height: 45px;
+                      width: 300px;
+                    }
+
+                    .card {
+                        padding: 35px;
+                        width: 100%;
+                    }
+                }
+
+                @media(max-width: 360px) {
+                    .background{
+                        height: auto;
+                    }
+
+                    .card {
+                        padding:15px;
+                    }
+
+                    button {
+                        height: 45px;
+                        width: 250px;
+                        font-size: 16px;
+                    }
+
+                    input {
+                      height: 45px;
+                      width: 250px;
+                      font-size: 16px;
+                    }
+
+                    .titleCard{
+                        font-size: 22px;
+                        font-weight: bold;
+                    }
+                }
+
+                @media(max-width: 280px) {
+                    .card {
+                        padding:15px;
+                    }
+
+                    button {
+                        height: 40px;
+                        width: 200px;
+                        font-size: 14px;
+                    }
+
+                    input {
+                      height: 40px;
+                      width: 200px;
+                      font-size: 14px;
+                    }
+
+                    .titleCard{
+                        font-size: 18px;
+                    }
+
+                }
+
+
                 
             `}</style>
         </>

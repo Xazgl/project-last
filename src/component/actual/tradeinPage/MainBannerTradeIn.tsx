@@ -1,17 +1,24 @@
 import Link from "next/link";
 import Image from 'next/image';
 import banner from '/public/images/1.jpg'
-import { MutableRefObject } from "react";
+import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from "react";
 
 type MuneProps = {
+    setShowModal: Dispatch<SetStateAction<boolean>>,
     refs: {
         refForm: MutableRefObject<HTMLDivElement>,
     }
 }
 
 
-export function MainBannerTradeIn({ refs }: MuneProps) {
+export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
+
+    function showModal(event: MouseEventHandler<HTMLButtonElement>) {
+        setShowModal(true)
+    }
+
     return (
+
         <>
             <div className="MainBanner">
                 {/* <Image
@@ -37,7 +44,7 @@ export function MainBannerTradeIn({ refs }: MuneProps) {
                             >Оценить авто онлайн</button>
                         </div>
                         <div className="сol">
-                            <button className="btn">Оценить в дилерском центре</button>
+                                <button className="btn"  onClick={showModal} >Оценить в дилерском центре</button>
                         </div>
                     </div>
                 </div>
@@ -92,17 +99,18 @@ export function MainBannerTradeIn({ refs }: MuneProps) {
                     font-family: 'OpelNextW01-Regular', 'sans-serif';
                     transition: transform.1s;
                     width: 300px;
-                    height: 52px;
-                    background: transparent;
+                    height: 55px;
+                    background:#005baa;
                     border: 1px solid white;
                     font-weight: bold;
                     margin-top:35px;
                     color:white;
                     font-size: 16px;
+                    cursor: pointer;
                 }
 
                 .btn:hover{
-                    transform: scale(0.95);
+                    transform: scale(0.98);
                     background-color: #eab330;
                     color:black;
                     border: 1px solid black;
@@ -138,28 +146,49 @@ export function MainBannerTradeIn({ refs }: MuneProps) {
                         height: 400px;
                     }
                 }
-                @media(max-width: 540px) {
+                @media(max-width: 640px) {
                     .title { 
-                        font-size:18px;
+                        font-size:40px;
                     }
+
                     .titleMini {
-                        font-size:12px;
+                        flex-direction: column;
+                        margin-top: 0px;
+                        width: 400px;
                     }
                     .MainBanner { 
-                        height: 250px;
+                        height: 600px;
+                    }
+
+
+                    .btn {
+                        margin-top:10px;
+                        width: 100%;
+                        text-align: center;
                     }
                 }
-                @media(max-width: 350px) {
-                    .title { 
-                        font-size:12px;
-                    }
-                    .titleMini {
-                        font-size:9px;
-                    }
+                @media(max-width:400px) {
                     .MainBanner { 
-                        height: 150px;
+                        height: 350px;
+                    }
+
+                    .titleMini {
+                        width: 300px;
+                    }
+
+                    .btn {
+                        margin-top:10px;
+                        width: 100%;
+                        text-align: center;
+                        height: 42px;
+                        font-size: 13px;
+                    }
+
+                    .title { 
+                        font-size:30px;
                     }
                 }
+
                 @media(max-width: 250px) {
                     .title { 
                         font-size:9px;

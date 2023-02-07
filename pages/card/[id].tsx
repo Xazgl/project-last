@@ -6,6 +6,8 @@ import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
 import { MenuBar } from "../../src/component/Menu"
 import { Map } from '../../src/component/Map'
+import { MainBanner } from "../../src/component/actual/job/MainBanner"
+import BarMenu from "../../src/component/BarMenu"
 // import SaleBlock from "../../src/component/exeed/SaleBlock"
 
 
@@ -61,8 +63,8 @@ const CardSale: NextPage = () => {
                     <meta name="description" content="Work with me" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                {/* <Menu refs={{ refSales, refContact, refAdvatages }}/> */}
-                <MainBanner  refs={{ refTop }}/>
+                <MainBanner />
+                <BarMenu />
                 {/* <SaleBlock description={description} title={title}/> */}
                 <Map  refs={{ refTop, refContact }}/>
 

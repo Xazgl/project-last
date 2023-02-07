@@ -33,9 +33,10 @@ model ClientNeedCall {
 model CalcCredit {
   id         String   @id @default(cuid())
   name       String
-  priceCar   String
-  firstMoney String
-  month      String
+  phone      String
+  firstPrice String
+  carName    String
+  month      Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
