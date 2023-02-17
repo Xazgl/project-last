@@ -37,7 +37,7 @@ const TradeInPage: NextPage = () => {
       <MenuBar />
       <BarMenu />
       <MainBannerTradeIn setShowModal={setShowModal} refs={{ refForm }} />
-      <CarSale  setCarPrice={setCarPrice} carPrice={carPrice}   setShowModalPrice={setShowModalPrice}/>
+      <CarSale  setCarPrice={setCarPrice} carPrice={carPrice}  setShowModalPrice={setShowModalPrice}/>
       <TradeinStepper refs={{ refForm }} />
       {/* <TradeInForm /> */}
       <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
@@ -51,7 +51,7 @@ const TradeInPage: NextPage = () => {
       }
 
       {
-        showModalPrice && <ModalPrice showModalPrice={showModalPrice} setShowModalPrice={setShowModalPrice} />
+        showModalPrice && <ModalPrice   carPrice={carPrice} showModalPrice={showModalPrice} setShowModalPrice={setShowModalPrice} />
       }
 
     </>

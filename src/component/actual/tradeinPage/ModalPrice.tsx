@@ -7,12 +7,13 @@ import { Dispatch, SetStateAction, useRef } from "react";
 import { IMaskInput } from "react-imask";
 import CloseIcon from '@mui/icons-material/Close';
 
-type ModelProps = {
+type ModelPropsPrice = {
     showModalPrice: boolean,
-    setShowModalPrice: Dispatch<SetStateAction<boolean>>
+    setShowModalPrice: Dispatch<SetStateAction<boolean>>,
+    carPrice: string
 }
 
-export function ModalPrice({ showModalPrice, setShowModalPrice }: ModelProps) {
+export function ModalPrice({ showModalPrice, setShowModalPrice, carPrice }: ModelPropsPrice) {
     const [closeStarting, setCloseStarting] = useState(false)
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -61,6 +62,12 @@ export function ModalPrice({ showModalPrice, setShowModalPrice }: ModelProps) {
         closeStarting ? 'modalBackground_close-starting' : '',
     ]
 
+
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      }
+    
+
     return <>
         <div className={className.join(' ')} style={{ color: 'red' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
             if (event.target === backgroundEl.current) closeModal()
@@ -76,6 +83,9 @@ export function ModalPrice({ showModalPrice, setShowModalPrice }: ModelProps) {
                 </div>
                 <div className="mb-2"><span id="modalTitle">Получить консультацию</span></div>
                 <div className="modalEl">
+                    <div className="mb-3">
+                        <h3>Желаемая сумма: {numberWithSpaces(Math.round(Number(carPrice)))} ₽</h3>
+                    </div>
                     <form id="submit-form" onSubmit={sendmail}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label"></label>

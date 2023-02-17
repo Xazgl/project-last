@@ -6,10 +6,10 @@ import { Editor, RawDraftContentState } from "react-draft-wysiwyg";
 import { draftjsToMd } from "draftjs-md-converter";
 
 type MyEditorProps = {
-    setDescription: React.Dispatch<React.SetStateAction<string>>
+  setDescription: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function MyEditor({setDescription}: MyEditorProps) {
+export default function MyEditor({ setDescription }: MyEditorProps) {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -26,7 +26,11 @@ export default function MyEditor({setDescription}: MyEditorProps) {
 
   return (
     <div
-      style={{ border: "1px solid black", minHeight: "6em", cursor: "text" }}
+      style={{
+        border: "1px solid #d4d3d3", minHeight: "6em", cursor: "text", width: "100%",
+        height:'300px',
+        padding: '5px'
+      }}
       onClick={focusEditor}
     >
       <Editor
@@ -35,8 +39,8 @@ export default function MyEditor({setDescription}: MyEditorProps) {
         onEditorStateChange={onEditorStateChange}
         placeholder="Write something!"
         onChange={(contentRaw) => {
-            // console.log(draftjsToMd(contentRaw))
-            setDescription(draftjsToMd(contentRaw))
+          // console.log(draftjsToMd(contentRaw))
+          setDescription(draftjsToMd(contentRaw))
         }}
       />
     </div>

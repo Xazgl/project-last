@@ -98,7 +98,7 @@ export function TableSales() {
 
   return (
     <>
-      <div className="title" >Акции</div>
+      <div className="title" >Специальные предложения </div>
       <div className="table" style={{ height: 500, width: '100%' }}>
         <DataGrid
           rows={sales}

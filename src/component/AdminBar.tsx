@@ -11,12 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import label from '/public/images/label.png'
 import Link from 'next/link';
 
 
 const pages = [{
-   text: `На главную`,
-   href: '/admin'
+  text: `На главную`,
+  href: '/admin'
 }];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -33,16 +34,16 @@ const AdminBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ fontFamily: 'Montserrat', backgroundColor: 'black', color: 'red', marginTop: '50px' }}>
+    <AppBar position="static" sx={{ fontFamily: 'Montserrat', backgroundColor: 'black', color: '#005baa', }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            CHERY ADMIN
+            ADMIN   <div className="label"></div>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -90,7 +91,7 @@ const AdminBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            CHERY ADMIN
+            Arkont ADMIN
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -106,9 +107,16 @@ const AdminBar = () => {
 
         </Toolbar>
       </Container>
-
+      <style jsx>{` 
+        .label {
+          width: 200px;
+          height: 40px;
+          background-image: url('${label.src}');
+          background-repeat:no-repeat;
+          background-size:contain;
+        }
+      `}</style>
     </AppBar>
-
   );
 };
 export default AdminBar;

@@ -190,7 +190,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     const [checkedTypeGearBox, setCheckedTypeGearBox] = useState([true, false]);
     const [checkedDriveType, setCheckedDriveType] = useState([true, false]);
     const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
-    const [valueSliderPrice, setValueSliderPrice] = React.useState<number[]>([minPrice, maxPrice]);
+    const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
 
     useEffect(() => {
@@ -198,7 +198,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     }, [])
 
 
-
+    //Конкретные выбранные фильтры 
     const [currentFilter, setCurrentFilter] = useState<FilterUserOptions>({
         dealerOffice: [],
         brandName: null,
@@ -219,29 +219,29 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     }
 
     useEffect(() => {
-        setFilteredCars(prevFilteredCars => {
-            return prevFilteredCars.filter(car => {
-                return carTypeFilter(car, currentFilter)
-                    && dealerOfficeFilter(car, currentFilter)
-                    && brandNameFilter(car, currentFilter)
-                    && modelNameFilter(car, currentFilter)
-                    && colorNameFilter(car, currentFilter)
-                    && priceFilter(car, currentFilter)
-                    && gearBoxNameFilter(car, currentFilter)
-                    && driverTypeNameFilter(car, currentFilter)
-                    && carBodyTypeNameFilter(car, currentFilter)
-                    && engineTypeNameFilter(car, currentFilter)
-            })
-        })
+        setFilteredCars(cars.filter(car => {
+            return carTypeFilter(car, currentFilter)
+                && dealerOfficeFilter(car, currentFilter)
+                && brandNameFilter(car, currentFilter)
+                && modelNameFilter(car, currentFilter)
+                && colorNameFilter(car, currentFilter)
+                && priceFilter(car, currentFilter)
+                && gearBoxNameFilter(car, currentFilter)
+                && driverTypeNameFilter(car, currentFilter)
+                && carBodyTypeNameFilter(car, currentFilter)
+                && engineTypeNameFilter(car, currentFilter)
+        }))
     }, [currentFilter])
 
+
+    //filteredProps выводит все возможные фильтры для выбора по данным из БД
     const filteredProps = useMemo(() => {
         let filteredCarsProps = {
             dealers: [],
             brands: [],
             models: [],
             colors: [],
-            price: [],
+            // price: [],
             gearBoxTypes: [],
             carsBodyTypes: [],
             driverTypes: [],
@@ -255,7 +255,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
             filteredCarsProps.brands.push(car.CarModel.brandName)
             filteredCarsProps.models.push(car.CarModel.modelName)
             filteredCarsProps.colors.push(car.color)
-            filteredCarsProps.price.push(car.price)
+            // filteredCarsProps.price.push(car.price)
             filteredCarsProps.gearBoxTypes.push(car.CarModification.gearboxType)
             filteredCarsProps.carsBodyTypes.push(car.CarModification.bodyType)
             filteredCarsProps.driverTypes.push(car.CarModification.driveType)
@@ -267,17 +267,19 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
             brands: [...new Set(filteredCarsProps.brands)], // TODO es6-set polyfill
             models: [...new Set(filteredCarsProps.models)],
             colors: [...new Set(filteredCarsProps.colors)],
-            price: [...new Set(filteredCarsProps.price)],
+            // price: [...new Set(filteredCarsProps.price)],
             gearBoxTypes: [...new Set(filteredCarsProps.gearBoxTypes)],
             carsBodyTypes: [...new Set(filteredCarsProps.carsBodyTypes)],
             driverTypes: [...new Set(filteredCarsProps.driverTypes)],
             engineTypes: [...new Set(filteredCarsProps.engineTypes)],
+
 
             // brands: [...new Set(filteredCars.map(car => car.CarModel.brandName))],
         }
 
     }, [filteredCars])
 
+    console.log(filteredProps, 'filteredProps')
 
 
     //TypeGearBox
@@ -319,20 +321,43 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
         setCheckedDriveType([checkedDriveType[0], event.target.checked]);
     };
 
+    function resetFilteredCars() {
+        setFilteredCars(cars)
+    }
 
-    //подставлям бренд в массив currentFilter (он пока не массив строк, а строка)
-    useEffect(() => {
+    function selectBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+        setDetailFilterBrandResult(event.target.value)
+        if (event.target.value === 'Null') resetFilteredCars()
         setCurrentFilter(prevFilterState => {
-            return { ...prevFilterState, brandName: detailFilterBrandResult }
+            const brandName = event.target.value === 'Null' 
+                ? null
+                : [...(prevFilterState.brandName ?? []), event.target.value]
+            console.log(brandName)
+            return { 
+                ...prevFilterState, 
+                brandName
+            }
+            // return { ...prevFilterState, brandName: event.target.value }
         })
-        changeFilter({ brandName: detailFilterBrandResult })
-    }, [detailFilterBrandResult])
+        // changeFilter({ brandName: [event.target.value] })
+    }
+    //подставлям бренд в массив currentFilter (он пока не массив строк, а строка)
+    // useEffect(() => {
+    //     setCurrentFilter(prevFilterState => {
+    //         return { 
+    //             ...prevFilterState, 
+    //             brandName: detailFilterBrandResult === 'Null' ? ([]) : [...prevFilterState.brandName, detailFilterBrandResult]
+    //         }
+    //         // return { ...prevFilterState, brandName: detailFilterBrandResult }
+    //     })
+    //     changeFilter({ brandName: [detailFilterBrandResult] })
+    // }, [detailFilterBrandResult])
 
     // подставлям в массив currentFilter
     useEffect(() => {
-        setCurrentFilter(prevFilterState => {
-            return { ...prevFilterState, minPrice: valueSliderPrice[0], maxPrice: valueSliderPrice[1] }
-        })
+        // setCurrentFilter(prevFilterState => {
+        //     return { ...prevFilterState, minPrice: valueSliderPrice[0], maxPrice: valueSliderPrice[1] }
+        // })
         changeFilter({
             minPrice: valueSliderPrice[0],
             maxPrice: valueSliderPrice[1]
@@ -475,7 +500,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                 valueSliderPrice={valueSliderPrice}
                                 setValueSliderPrice={setValueSliderPrice}
                             />
-                            
+
                         </AccordionDetails>
                     </Accordion>
                 </div>
@@ -490,8 +515,8 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
-                                onChange={event => setDetailFilterBrandResult(event.target.value)}>
-                                <option value={0} selected disabled>Выберите бренд</option>
+                                onChange={selectBrandHandler}>
+                                <option value={'Null'} selected >Выберите бренд</option>
                                 {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
                             </select>
                         </AccordionDetails>

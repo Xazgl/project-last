@@ -16,6 +16,12 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
         setShowModalPrice(true)
     }
 
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      }
+
+
+      
     return (
         <>
             <div className="background">
@@ -23,17 +29,18 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                     <div className="titleCard">Знаете, сколько стоит ваш автомобиль?</div>
                     <div className="row">
                         <div className="rowEl" >
-                            <input type="text"
+                            <input type="number"
                                 name="name"
                                 placeholder="Оценка вашего авто,₽"
                                 required
-                                value={carPrice}
+                                max={20000000} //TODO ценам ограничения и валдация, ен работает  numberWithSpaces
+                                value={carPrice} 
                                 onChange={event => setCarPrice(event.target.value)} />
                             <h6>Мы подберем удобный вариант продажи вашего автомобиля</h6>
                         </div>
                         {carPrice > '' &&
                             <div className="rowEl" >
-                                <form onSubmit={()=> showModalPrice}  style={{width:'100%',height:'100%'}}>
+                                <form onSubmit={showModalPrice}  style={{width:'100%',height:'100%'}}>
                                     <button className="btn" type="submit">Продать автомобиль</button>
                                 </form>
                             </div>

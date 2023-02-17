@@ -19,8 +19,8 @@ export function dealerOfficeFilter(car: CarDto, currentFilter: FilterUserOptions
 
 export function brandNameFilter(car: CarDto, currentFilter: FilterUserOptions) {
     if (currentFilter.brandName?.length) {
-        console.log(currentFilter.brandName , 'currentFilterbrandName') // то что выбрал
-        console.log(car.CarModel.brandName , 'carCarModelbrandName')   // то что из базы 
+        // console.log(currentFilter.brandName , 'currentFilterbrandName') // то что выбрал
+        // console.log(car.CarModel.brandName , 'carCarModelbrandName')   // то что из базы 
         return currentFilter.brandName.includes(car.CarModel.brandName)  // TODO массив брендов  или будет один
     }
     // [].some

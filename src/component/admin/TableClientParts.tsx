@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
-import {  ClientNeedCall } from '@prisma/client';
+import {ClientParts} from '@prisma/client';
 import { useCallback, useEffect, useState } from 'react';
-import {AllClientNeedCall} from '../../../@types/dto';
+import { AllClientParts } from '../../../@types/dto';
 
 
 
-export function TableClientNeedCall() {
-  const [applicationsCalc, setApplicationsCalc,] = useState<AllClientNeedCall[]>([])
+export function TableClientParts() {
+  const [applicationsCalc, setApplicationsCalc,] = useState<AllClientParts[]>([])
 
   
   useEffect(() => {
     async function start() {
-      const res = await fetch('/api/allClientNeedCall')
+      const res = await fetch('/api/allClientParts')
       if (res.ok) {
-        const applicationsCalcTo:  ClientNeedCall[] = await res.json()
+        const applicationsCalcTo: AllClientParts[] = await res.json()
         setApplicationsCalc(applicationsCalcTo.map(applicationTo => {
-          const { id, name, phone, office, createdAt } = applicationTo
-          return { id, name, phone,office, createdAt }
+          const { id, name, phone, vin, IntSpareParts , comment, createdAt } = applicationTo
+          return { id, name, phone, vin, IntSpareParts , comment, createdAt }
         }))
       }
     }
     start()
   }, [])
 
-  const deleteCalcTo = useCallback(async ({ id }: Pick<AllClientNeedCall, 'id'>) => {
-    const res = await fetch('/api/clientneddcalldel/' + id, {
+  const deleteCalcTo = useCallback(async ({ id }: Pick<AllClientParts, 'id'>) => {
+    const res = await fetch('/api/clientsalesdel/' + id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,9 +42,11 @@ const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 20 },
   { field: 'name', headerName: 'Имя', width: 200 },
   { field: 'phone', headerName: 'Телефон', width: 200 },
-  { field: 'office', headerName: 'ДЦ для посещения', width: 300 },
+  { field: 'vin', headerName: 'VIN', width: 300 },
+  { field: 'IntSpareParts', headerName: 'Код запаасной части', width: 150 },
+  { field: 'comment', headerName: 'Комментарий к заказу', width: 300 },
   {
-    field: 'delete', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, AllClientNeedCall>) => {
+    field: 'delete', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, AllClientParts>) => {
       const { id } = params.row
       return <button style={{ background: 'red', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => deleteCalcTo({ id })}>Удалить</button>
     }
@@ -56,7 +58,7 @@ const columns: GridColDef[] = [
 
 return (
   <>
-    <div className="title">Заявка на обратную связь</div>
+    <div className="title" >Клиенты по акциям</div>
     <div className="table" style={{ height: 500, width: '100%' }}>
       <DataGrid
         rows={applicationsCalc}
@@ -69,6 +71,8 @@ return (
 
 
     <style jsx>{`
+
+
 
        .title {
         display: flex;
@@ -92,9 +96,9 @@ return (
         overflow: hidden;
         border-radius: 5px;
         object-fit: cover;
-       }
+    }
 
-       .imgDiv{
+    .imgDiv{
         display:flex; 
         height: 100%;
         width: 100px;
@@ -102,7 +106,7 @@ return (
         background-repeat: no-repeat;
         overflow: hidden;
         border-radius: 5px;
-       }
+    }
   
       `}</style>
 

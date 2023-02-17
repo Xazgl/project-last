@@ -24,11 +24,14 @@ export function Login() {
             console.log(result);
         }
     }
-    
+
     return (
         <>
             <div className="background">
                 <form className="form" onSubmit={submit}>
+                    <div className="mb-3">
+                        <h1 className="loginTitle" >АРКОНТ ADMIN</h1>
+                    </div>
                     <div className="mb-3">
                         <label>
                             <input className="input" placeholder="Логин" value={login} onChange={(event) => setLogin(event.target.value)} type="text" />
@@ -47,80 +50,107 @@ export function Login() {
 
             <style jsx>{`
 
-
-.background{
-    display: flex;
-    justify-content: center;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 100vh;
-    background-position: center center;
-    background: rgba(0, 0, 0, .10);
-    background-blend-mode: darken;
-    background-image: url('${admin.src}');
-    background-repeat:no-repeat;
-    background-size: cover;
-}
-
-.form {
-    display:flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items:center;
-}
-
-.mb-3 {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    margin-top:30px;
-}
-
-input {
-    width: 500px;
-    height: 50px;
-    font-family: 'Montserrat', 'sans-serif';
-    font-size: 20px;
-}
-
-.btn {
-    font-family: 'Montserrat', 'sans-serif';
-    transition: transform.3s ;
-    color: #ffffff;
-    background-color: #48484d;
-    width: 500px;
-    height: 50px;
-    font-size: 20px;
-}
-
-.btn:hover {
-
-    transform: scale(0.99);
-    box-shadow: -3px 15px 9px 3px rgba(34, 60, 80, 0.2);
-} 
-
-@media(max-width: 600px) {
-    .input {
-      width: 300px;
-      height: 40px;
+    @keyframes neon-1 {
+        from {
+            text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(191, 226, 255, 0.52), 0 0 21px rgba(191, 226, 255, 0.92), 0 0 34px rgba(191, 226, 255, 0.78), 0 0 54px rgba(191, 226, 255, 0.92);
+        }
+        to {
+            text-shadow: 0 0 6px rgba(202, 228, 225, 0.98), 0 0 30px rgba(202, 228, 225, 0.42), 0 0 12px rgba(191, 226, 255, 0.58), 0 0 22px rgba(191, 226, 255, 0.84), 0 0 38px rgba(191, 226, 255, 0.88), 0 0 60px #FFF;
+        }
     }
+    
+    .background{
+        display: flex;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 88vh;
+        background-position: center center;
+        background: rgba(0, 0, 0, .10);
+        background-blend-mode: darken;
+        background-image: url('${admin.src}');
+        background-repeat:no-repeat;
+        background-size: cover;
+        align-items: center;
+    }
+    
+    .form {
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items:center;
+    }
+    
+    .mb-3 {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin-top:30px;
+    }
+    
+    input {
+        width: 500px;
+        height: 50px;
+        font-family: 'Montserrat', 'sans-serif';
+        font-size: 20px;
+    }
+    
     .btn {
-     width: 300px;
-     height: 40px;  
+        font-family: 'Montserrat', 'sans-serif';
+        transition: transform.3s ;
+        color: #ffffff;
+        background-color: #005baa;
+        width: 500px;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
     }
-}
-@media(max-width: 320px) {
-    .input {
-      width: 250px;
-
+    
+    .btn:hover {
+        background-color: #012d54;
+    } 
+    
+    .loginTitle{
+        font-size: 70px;
+        font-weight: 600;
+        background-image: linear-gradient(to left, #005baa,white);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: neon-1 .1s ease-in-out infinite alternate;
+        text-align: center;
     }
-    .btn {
-     width: 250px;
+    
+    
+    @media(max-width: 600px) {
 
+        .loginTitle{
+            font-size: 40px;
+        }
+        
+        .input {
+          width: 300px;
+          height: 40px;
+        }
+        .btn {
+         width: 300px;
+         height: 40px;  
+        }
     }
-}
-`}</style>
+    @media(max-width: 320px) {
+        .input {
+          width: 250px;
+        }
 
-        </>)
+        .loginTitle{
+            font-size: 30px;
+        }
+        
+        .btn {
+         width: 250px;
+    
+        }
+    }
+  `}</style></>)
 }

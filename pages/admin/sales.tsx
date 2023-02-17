@@ -16,10 +16,19 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from "react"
+import { TableClientCredit } from "../../src/component/admin/TableClientCredit"
+import { TableClientParts } from "../../src/component/admin/TableClientParts"
+import { TableCars } from "../../src/component/admin/TableCars"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { ModalImg } from "../../src/component/ModalImg"
+import { AddCarAdmin2 } from "../../src/component/admin/AddCarAdmin2"
+
 
 const AdminTable: NextPage = () => {
   const router = useRouter()
 
+  const [showModal, setShowModal] = useState(false)
+  const [carImg, setCarImg] = useState('')
   const [expanded, setExpanded] = useState<string | false>(false);
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -32,15 +41,57 @@ const AdminTable: NextPage = () => {
 
   return (
     <>
-      {data && <div>{data.login}</div>}
+      {data && <div style={{
+        width: '100%', height: '35px', display: 'flex', justifyContent: 'start',
+        backgroundColor: '#005baa', color: 'white', paddingLeft: '15px', alignItems: 'center'
+      }}>
+        <Typography sx={{ fontSize: '16px' }}><AccountCircleIcon /> Добро пожаловать, {data.login}</Typography></div>}
       {isSuccess &&
-        <AdminLayout title="Chery Admin">
-          <SalesAdminComponent />
-          <TableSales />
+        <AdminLayout title="Аrkont Admin">
+
           {/* <TableCalcTo />
             <TableClientSales />
             <TableClientNeedCall /> */}
+
           <div style={{ marginTop: '30px' }}>
+            <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                aria-controls="panel3bh-content"
+                id="panel3bh-header"
+                sx={{ backgroundColor: "#2e2e2e", color: "white", borderBottom: 'solid 1px white ' }}
+              >
+                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'TacticSans-Reg' }}>
+                  Таблица Новые Авто + снять с продажи + добавить
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <AddCarAdmin2 />
+                  <TableCars setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                aria-controls="panel3bh-content"
+                id="panel3bh-header"
+                sx={{ backgroundColor: "#2e2e2e", color: "white", borderBottom: 'solid 1px white ' }}
+              >
+                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'TacticSans-Reg' }}>
+                  Таблица Спецпредложения и добавить новое
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <SalesAdminComponent />
+                  <TableSales />
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
@@ -58,7 +109,26 @@ const AdminTable: NextPage = () => {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+
+            <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                aria-controls="panel2bh-content"
+                id="panel2bh-header"
+                sx={{ backgroundColor: "#2e2e2e", color: "white", borderBottom: 'solid 1px white ' }}
+              >
+                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'TacticSans-Reg' }}>
+                  Таблица Клиенты заявки по кредиту
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <TableClientCredit />
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
+            {/* <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
                 aria-controls="panel2bh-content"
@@ -74,7 +144,26 @@ const AdminTable: NextPage = () => {
                   <TableClientSales />
                 </Typography>
               </AccordionDetails>
+            </Accordion> */}
+
+            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                aria-controls="panel2bh-content"
+                id="panel2bh-header"
+                sx={{ backgroundColor: "#2e2e2e", color: "white", borderBottom: 'solid 1px white ' }}
+              >
+                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'TacticSans-Reg' }}>
+                  Таблица Клиенты по запчастям
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <TableClientParts />
+                </Typography>
+              </AccordionDetails>
             </Accordion>
+
             <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
@@ -92,6 +181,7 @@ const AdminTable: NextPage = () => {
                 </Typography>
               </AccordionDetails>
             </Accordion>
+
             {/* <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -112,6 +202,10 @@ const AdminTable: NextPage = () => {
       }
       {isLoading && <p>Loading..</p>}
       {error && <p>Error occurred!</p>}
+
+      {
+        showModal && <ModalImg carImg={carImg} showModal={showModal} setShowModal={setShowModal} />
+      }
     </>
   )
 }

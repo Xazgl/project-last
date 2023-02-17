@@ -15,6 +15,7 @@ const AdminLayout: React.FC<{title: string}> = ({children, title}) => {
         </Head>
         {/* <MenuBar  refs= {refs}/> */}
         <AdminBar />
+        <BarMenu />
         {children}
     </>
     )
