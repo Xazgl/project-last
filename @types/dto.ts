@@ -1,4 +1,4 @@
-import {  Offer, Car, CarComplectation, CarModel, CarModification, DealerModel, Extras, ClientTradein, ClientNeedCall, CalcCredit, ClientParts } from "@prisma/client";
+import {  Offer, Car, CarComplectation, CarModel, CarModification, DealerModel, Extras, ClientTradein, ClientNeedCall, CalcCredit, ClientParts, UsedCars } from "@prisma/client";
 
 // export type ClientDto = Omit<Client, 'updatedAt'>
 export type ClientеTradeInDto = Omit<ClientTradein , 'updatedAt'>
@@ -16,6 +16,9 @@ export type CarDto = Car & {
 }
 
 export type AllCarDto = CarDto[];
+
+
+export type AllUsedCarDto = UsedCars[];
 
 
 export type UpdateSaleDto = Pick<Offer, 'id' | 'title' | 'shortDesc'| 'description' | 'filterMainPeople' | 'detailFilterBrand' | 'detailFilterMode' | 'price' | 'img' | 'active' |'createdAt'>

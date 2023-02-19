@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "UsedCars" ALTER COLUMN "count" SET DATA TYPE TEXT,
+ALTER COLUMN "categoryId" SET DATA TYPE TEXT;
