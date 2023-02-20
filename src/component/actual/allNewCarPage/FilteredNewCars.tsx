@@ -1,6 +1,6 @@
 import { Car } from '@prisma/client'
 import React, { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -42,6 +42,8 @@ import jaguar from '/public/images/logo-around/jaguar.webp';
 import lovol from '/public/images/logo-around/lovol.webp';
 import peugeot from '/public/images/logo-around/peugeot.webp';
 import { AllCarDto } from '../../../../@types/dto';
+import { Button, createTheme, useMediaQuery } from '@mui/material';
+import { width } from '@mui/system';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -237,11 +239,9 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
     setShowModal(true)
   }
 
-  // {
-  //   filteredCars.map(car =>
-  //     console.log(car.id)
-  //   )
-  // }
+
+
+
 
   return (
     <>
@@ -285,9 +285,11 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
                   component="img"
                   height="194"
                   image={car.img[0]}
-                  sx={{ cursor: 'pointer' }}
+                  sx={{
+                    cursor: 'pointer',
+                  }}
 
-                  alt="Paella dish"
+                  alt="car"
                 />
               </Link>
               <CardContent>
@@ -326,71 +328,65 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
         </div>
 
         <div className='cards' id="mob">
-          {filteredCars.map(car =>
+        {filteredCars.map(car =>
             <Card sx={{
-              width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', transition: ' 0.2s linear',
-              '&:hover': { transform: 'scale(1.04)' },
-              '&:hover .credit': {
-                display: 'flex',
-                transition: '1s',
-                animation: 'credit-open.5s',
-                marginTop: '400px',
-                backgroundColor: '#0c7ee1',
-                position: 'absolute'
-              }
+              width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
-              <CardHeader sx={{ height: 40 }}
+              <CardHeader
+                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
                     src={logoFind(LogoList, car.CarModel.brandName)}>
-
                   </Avatar>
                 }
-
                 action={
-                  <IconButton aria-label="settings" sx={{ gap: '6px' }}>
-                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
-                    <AddRoadIcon sx={{ '&:hover': { color: 'green' } }} />
-                    <MoreVertIcon />
+                  <IconButton aria-label="settings" sx={{
+                    marginTop: '-10px',
+                    marginRight: '-5px'
+                  }}>
+                    <IconButton aria-label="add to favorites">
+                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
+                    </IconButton>
                   </IconButton>
                 }
                 title={car.CarModel.brandName}
                 subheader={car.CarModel.modelName}
               />
 
-              <div className='row'>
-                <div className='column'>
-                  <Link href={{
-                    pathname: '/catalog/car/[id]',
-                    query: { id: car.id }
-                  }}>
-                    <CardMedia
-                      component="img"
-                      width="210"
-                      height="100%"
-                      image={car.img[0]}
-                      sx={{ borderRadius: '5px' }}
-                      alt="Paella dish"
-                    />
-                  </Link>
-                </div>
-                <div className='column'>
-                  <CardContent sx={{ padding: '10px', paddingTop: '25px' }}>
-                    <Typography variant="body2" color="text.secondary"
-                      sx={{ fontSize: '11px' }}
-                    >
-                      <div className='column'>
-                        <div>{car.CarModification.name} </div>
-                        <div>{driverTypeStr(car.CarModification.driveType)}</div>
-                      </div>
-                      <div className='price' id="priceModbile">{numberWithSpaces(Number(car.price))} ₽</div>
-                      <div className='priceMonth' id='priceMonth'>
-                        <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
-                      </div>
-                    </Typography>
-                  </CardContent>
-                </div>
+              <Link href={{
+                pathname: '/catalog/car/[id]',
+                query: { id: car.id }
+              }}>
+                <CardMedia
+                  component="img"
+                  height="180px"
+                  image={car.img[0]}
+                  sx={{
+                    cursor: 'pointer',
+                    backgroundSize: 'contain'
+                  }}
+
+                  alt="car"
+                />
+              </Link>
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
+                  <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
+                  <div className='priceMonth'>
+                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
+                  </div>
+                  <div className='office'>
+                    <span>{car.DealerModel.name}</span>    <RoomIcon />
+                  </div>
+                </Typography>
+              </CardContent>
+              <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
+                <Button variant="contained"
+                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                  onClick={showModal}>Получить консультацию</Button>
               </div>
             </Card>
           )}
@@ -506,6 +502,7 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
       transition: 1.2s;
       margin-top:-10em;
       cursor: pointer;
+      border:none;
       color:white;
       font-size:16px;
       text-align: center;
@@ -557,8 +554,8 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
       #mob{
         display: flex;
       } 
+
       .btn {
-        width: 100px;
         height: 30px;
         font-size: 12px;
       }
@@ -570,6 +567,19 @@ function FilteredNewCars({ setShowModal, filteredCars }: Props) {
         height: auto;
       }
     }
+
+    @media(max-width: 400px) {
+      .btn {
+        width: 90%
+      }
+      h3{
+        font-weight: 300;
+      }
+    }
+
+  
+
+  
             
   `}</style>
     </>

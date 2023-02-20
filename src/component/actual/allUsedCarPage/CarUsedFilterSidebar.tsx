@@ -6,7 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Slider, TextField } from "@mui/material";
+import { Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Link, Slider, TextField } from "@mui/material";
 import { brendFilterList } from "../../admin/SalesAdmin";
 import suv from '/public/images/carBodyTyp/suv.svg'
 import crossover from '/public/images/carBodyTyp/crossover.svg'
@@ -17,7 +17,7 @@ import sedan from '/public/images/carBodyTyp/sedan.svg'
 import { Car } from "@prisma/client";
 import RangeSlider from './RangeSliderUsed';
 import { FilterUserOptions } from './typeForFilterUsed';
-import { brandNameFilter, carBodyTypeNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
+import { brandNameFilter, carBodyTypeNameFilter, colorNameFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
 import { AllUsedCarDto } from '../../../../@types/dto';
 import { nanoid } from 'nanoid';
 import { LogoArr } from './FilteredUsedCars';
@@ -324,12 +324,12 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
         setDetailFilterBrandResult(event.target.value)
         if (event.target.value === 'Null') resetFilteredCars()
         setCurrentFilter(prevFilterState => {
-            const brandName = event.target.value === 'Null' 
+            const brandName = event.target.value === 'Null'
                 ? null
                 : [...(prevFilterState.brandName ?? []), event.target.value]
             console.log(brandName)
-            return { 
-                ...prevFilterState, 
+            return {
+                ...prevFilterState,
                 brandName
             }
             // return { ...prevFilterState, brandName: event.target.value }
@@ -362,21 +362,69 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
 
 
     function carBodyImgChange(x) {
-        if (x === 'suv') {
+        if (x === 'Внедорожник 5 дв.' || 'Внедорожник 3 дв.') {
             return crossover
         }
-        if (x === 'sedan') {
+        // if (x === 'Внедорожник 3 дв.') {
+        //     return crossover
+        // }
+        if (x === 'Седан') {
             return sedan
         }
-        if (x === 'hatchback') {
+        if (x === 'Хэтчбек 5 дв.') {
             return hatchback
         }
-        if (x === 'liftback') {
+        if (x === 'Лифтбэк 5 дв.') {
             return liftback
         }
-        if (x === 'minivan' || 'compactvan') {
+        if (x === 'Минивэн' || 'compactvan') {
             return minivan
         }
+
+        //    let typeBody = x.toString().replace(/^([\S]+)/)
+        // if (x.toString().indexOf('Внедорожник') === 'Внедорожник') {
+        //     return crossover
+        // }
+        // if (x.toString().indexOf('Седан') === 'Седан') {
+        //     return sedan
+        // }
+        // if ( x.toString().indexOf('Хэтчбек') === 'Хэтчбек') {
+        //     return hatchback
+        // }
+        // if (x.toString().indexOf('Лифтбэк') === 'Лифтбэк') {
+        //     return liftback
+        // }
+        // if (x.toString().indexOf('Лифтбэк') === 'Лифтбэк') {
+        //     return minivan
+        // }
+        // if (x.toString().indexOf('Купэ') === 'Купэ') {
+        //     return minivan
+        // }
+
+        // if (x === 'Внедорожник 5 дв.') {
+        //     return crossover
+        // }
+        // if (x === 'Внедорожник 3 дв.') {
+        //     return crossover
+        // }
+        // if (x === 'Седан') {
+        //     return sedan
+        // }
+        // if (x === 'Хэтчбек 5 дв.') {
+        //     return hatchback
+        // }
+        // if (x === 'Хэтчбек 3 дв.') {
+        //     return hatchback
+        // }
+        // if (x === 'Лифтбэк') {
+        //     return liftback
+        // }
+        // if (x === 'Минивэн') {
+        //     return minivan
+        // }
+        // if (x === 'Купэ') {
+        //     return minivan
+        // }
 
     }
 
@@ -422,11 +470,14 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         variant="outlined"
                         aria-label="Disabled elevation buttons"
                     >
-                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
-                            setCarType('new')
-                            // changeFilter({ carType: 'new' })
-                        }}>Новые</Button>
-                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
+                        <Link href={'/catalog/new-car'} sx={{textDecoration:'none'}}>
+                            <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
+                                setCarType('new')
+                                // changeFilter({ carType: 'new' })
+                            }}>Новые</Button>
+                        </Link>
+
+                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px'}} onClick={(event) => {
                             setCarType('old')
                             // changeFilter({ carType: 'used' })
                         }} >С пробегом</Button>
@@ -533,14 +584,12 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                                 })
                                             }}
                                         />
-                                    )
-                                    }
+                                    )}
                                 </div>
                             </AccordionDetails>
                         </Accordion>
                     </div>
                 }
-
                 <div className="rowSideBar" id="column" >
                     <Accordion>
                         <AccordionSummary
@@ -551,10 +600,12 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             <Typography sx={{ fontSize: '14px' }}>Цвет</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <div id="color" >
+                            <FormGroup>
                                 {filteredProps.colors.map(color =>
-                                    <div
-                                        //  onClick={() => setColor(color)}
+                                    <FormControlLabel
+                                        key={color}
+                                        control={<Checkbox />}
+                                        label={color}
                                         onClick={() => {
                                             setCurrentFilter(prevFilterState => {
                                                 if (prevFilterState.colorName?.includes(color)) {
@@ -566,15 +617,16 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                                 return { ...prevFilterState, colorName: [...prevFilterState.colorName, color] }
                                             })
                                         }}
-                                        style={{
-                                            background: color, width: '30px',
-                                            height: '30px', cursor: 'pointer'
-                                        }}></div>
+                                    />
                                 )}
-                            </div>
+                            </FormGroup>
                         </AccordionDetails>
                     </Accordion>
                 </div>
+
+
+
+
                 <div className="rowSideBar" id="column" >
                     <Accordion>
                         <AccordionSummary

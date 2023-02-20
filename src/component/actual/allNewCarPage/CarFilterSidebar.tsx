@@ -6,7 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Slider, TextField } from "@mui/material";
+import { Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Link, Slider, TextField } from "@mui/material";
 import { brendFilterList } from "../../admin/SalesAdmin";
 import suv from '/public/images/carBodyTyp/suv.svg'
 import crossover from '/public/images/carBodyTyp/crossover.svg'
@@ -192,6 +192,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
     const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
+    const [expanded, setExpanded] = React.useState<string | false>('panel1');
+
+    const handleChangeBar =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+        setExpanded(newExpanded ? panel : false);
+    };
+
 
     useEffect(() => {
         setMaxPrice(Math.max(...cars.map(car => car.price)))
@@ -329,12 +336,12 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
         setDetailFilterBrandResult(event.target.value)
         if (event.target.value === 'Null') resetFilteredCars()
         setCurrentFilter(prevFilterState => {
-            const brandName = event.target.value === 'Null' 
+            const brandName = event.target.value === 'Null'
                 ? null
                 : [...(prevFilterState.brandName ?? []), event.target.value]
             console.log(brandName)
-            return { 
-                ...prevFilterState, 
+            return {
+                ...prevFilterState,
                 brandName
             }
             // return { ...prevFilterState, brandName: event.target.value }
@@ -444,10 +451,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             setCarType('new')
                             changeFilter({ carType: 'new' })
                         }}>Новые</Button>
-                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
-                            setCarType('old')
-                            changeFilter({ carType: 'used' })
-                        }} >С пробегом</Button>
+
+                        <Link href={'/catalog/used-car'} sx={{ textDecoration: 'none' }}>
+                            <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
+                                setCarType('old')
+                                changeFilter({ carType: 'used' })
+                            }} >С пробегом</Button>
+                        </Link>
                     </ButtonGroup>
                 </div>
                 <div className="rowSideBar" id="center" >

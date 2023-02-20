@@ -59,8 +59,7 @@ export function NewCarComponent({ setShowModal, cars }: Props) {
     return (
         <>
             <div className="background">
-            < CarFilterSidebarMobile cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
-
+                <CarFilterSidebarMobile cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
                 <CarFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
                 <div className="carBlock">
                     <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal} />

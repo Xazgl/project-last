@@ -11,16 +11,19 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { AllUsedCarDto } from "../../../@types/dto";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-export function OldCar() {
+export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
     const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
     const [filterClosed, setFilterClosed] = useState(false);
+    const [carArr, setCarArr] = useState<AllUsedCarDto>(
+        Array.isArray(carsUsed) && carsUsed.length ? Array(4).fill(0).map(el => carsUsed[Math.floor(Math.random() * carsUsed.length)]) : [])
 
 
     const newFiltRef = useRef(null)
@@ -38,6 +41,27 @@ export function OldCar() {
         console.log(filterOpen)
     }
 
+
+    function matchesEngine(engine) {
+        let arr = engine.toString().split(/\s*,\s*/)
+        return arr[2].replace(/\s/g, '');
+    }
+
+    function gearboxType(gearbox) {
+        if (gearbox === 'Механическая') {
+            return 'MT'
+        } else {
+            return 'АТ'
+
+        }
+    }
+
+
+    function engineArrStr(engine) {
+        let arr = engine.toString().split(/\s*,\s*/)
+        return arr[1]
+    }
+
     return (
         <>
             <div className="background" >
@@ -48,93 +72,50 @@ export function OldCar() {
                     <div className="el" id={id.join(' ')} ref={saleFiltRef} onClick={() => setActiveFilter('sale')}>Скидка</div>
                 </div>
                 <div className="cardsSlider">
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardMileage">180 000 км</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardMileage">180 000 км</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardMileage">180 000 км</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="imgDiv">
-                            <img src={car.src} className="cardImg" ></img>
-                        </div>
-                        <div className="cardTitle">Renault Sandero</div>
-                        <div className="cardMileage">180 000 км</div>
-                        <div className="cardDesc">
-                            <div className="elDesc">АИ-95</div>
-                            <div className="elDesc">1.6 л.</div>
-                            <div className="elDesc">113 л.с. </div>
-                            <div className="elDesc">FWD </div>
-                            <div className="elDesc">MT </div>
-                        </div>
-                        <div className="cardPrice">3 000 0089 Р  </div>
-                        <div className="cardPriceMonth">
-                            <button className="btn">от 25 467 Р/мес</button>
-                        </div>
-                        <div className="credit">
-                            <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                        </div>
-                    </div>
+                    {carArr.length > 0 ?
+                        (<div className="cardsSlider">
+                            {
+                                carArr.map(car => {
+                                    return <Link href={{
+                                        pathname: '/catalog/car/[id]',
+                                        query: { id: car.id }
+                                    }}>
+                                        <div className="card">
+                                            <div className="imgDiv">
+                                                <img src={car.picture[0]} className="cardImg"></img>
+                                            </div>
+                                            <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
+                                            <div className="cardDesc">
+                                                <div className="elDesc">АИ-95</div>
+                                                <div className="elDesc">{engineArrStr(car.engine)} </div>
+                                                <div className="elDesc">{matchesEngine(car.engine)}</div>
+                                                {car.driverType === 'Передний' &&
+                                                    <div className="elDesc">FWD</div>
+                                                }
+                                                {car.driverType === 'Полный' &&
+                                                    <div className="elDesc">4WD</div>
+                                                }
+                                                <div className="elDesc">{gearboxType(car.gearboxType)}</div>
+                                            </div>
+                                            <div className="cardPrice">{car.price} Р </div>
+                                            <div className="cardPriceMonth">
+                                                <button className="btn">от {Math.round(Number(car.price) / 150)} Р/мес</button>
+                                            </div>
+                                            <div className="credit">
+                                                <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                })
+                            }
+                        </div>)
+                        : null
+                    }
                 </div>
                 <div className="btnDiv">
-                    <button className="btnAllCar">Смотреть все автомобили с пробегом</button>
+                    <Link href={'/catalog/used-car'}>
+                        <button className="btnAllCar">Смотреть все автомобили с пробегом</button>
+                    </Link>
                 </div>
             </div>
             <style jsx>{`
@@ -252,6 +233,7 @@ export function OldCar() {
                     display: flex;
                     width: 221px;
                     height: 166px;
+                    border-radius: 7px;
                 }
 
                 .cardTitle {

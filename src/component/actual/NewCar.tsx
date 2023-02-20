@@ -87,7 +87,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                                         <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
                                         <div className="cardDesc">
                                             <div className="elDesc">АИ-95</div>
-                                            <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume))* 100) / 100000).toFixed(1)} л.</div>
+                                            <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume)) * 100) / 100000).toFixed(1)} л.</div>
                                             <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
                                             {car.CarModification.driveType === 'front' &&
                                                 <div className="elDesc">FWD</div>
@@ -95,7 +95,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                                             {car.CarModification.driveType === 'full_4wd' &&
                                                 <div className="elDesc">4WD</div>
                                             }
-                                            <div className="elDesc">{(car.CarModification.driveType)}FWD</div>
+                                            {/* <div className="elDesc">{(car.CarModification.driveType)}FWD</div> */}
                                             <div className="elDesc">MT</div>
                                         </div>
                                         <div className="cardPrice">{car.price} Р </div>
@@ -117,7 +117,9 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     <h1>Авто в пути</h1>
                 }
                 <div className="btnDiv">
-                    <button className="btnAllCar">Смотреть все новые автомобили</button>
+                    <Link href={'/catalog/new-car'}>
+                        <button className="btnAllCar">Смотреть все новые автомобили</button>
+                    </Link>
                 </div>
             </div>
             <style jsx>{`

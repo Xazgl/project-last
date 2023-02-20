@@ -42,6 +42,7 @@ import jaguar from '/public/images/logo-around/jaguar.webp';
 import lovol from '/public/images/logo-around/lovol.webp';
 import peugeot from '/public/images/logo-around/peugeot.webp';
 import { AllUsedCarDto } from '../../../../@types/dto';
+import { Button } from '@mui/material';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -243,6 +244,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
   //   )
   // }
 
+  function upFirst(engine) {
+    return engine.charAt(0).toUpperCase() + engine.slice(1)
+  }
+
   return (
     <>
       <div className='background'>
@@ -256,7 +261,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 display: 'flex',
                 transition: '1s',
                 animation: 'credit-open.5s',
-                marginTop: '400px',
+                marginTop: '330px',
                 backgroundColor: '#0c7ee1',
                 position: 'absolute'
               }
@@ -292,10 +297,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                  {car.modelFullName } / {driverTypeStr(car.driverType)}
+                  {upFirst(car.engine)} / {car.driverType} / Пробег {numberWithSpaces(car.mileage)} км
                   <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
                   <div className='priceMonth'>
-                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.price)/150))} ₽/мес</button>
+                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
                   </div>
                   {/* <div className='office'>
                     <span>{car.DealerModel.name}</span>    <RoomIcon />
@@ -328,69 +333,60 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
         <div className='cards' id="mob">
           {filteredCars.map(car =>
             <Card sx={{
-              width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', transition: ' 0.2s linear',
-              '&:hover': { transform: 'scale(1.04)' },
-              '&:hover .credit': {
-                display: 'flex',
-                transition: '1s',
-                animation: 'credit-open.5s',
-                marginTop: '400px',
-                backgroundColor: '#0c7ee1',
-                position: 'absolute'
-              }
+              width: '90%', height: 430, display: 'flex', border: '1px  solid transparent',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
-              <CardHeader sx={{ height: 40 }}
+              <CardHeader
+                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
                     src={logoFind(LogoList, car.vendor)}>
-
                   </Avatar>
                 }
-
                 action={
-                  <IconButton aria-label="settings" sx={{ gap: '6px' }}>
-                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
-                    <AddRoadIcon sx={{ '&:hover': { color: 'green' } }} />
-                    <MoreVertIcon />
+                  <IconButton aria-label="settings" sx={{
+                    marginTop: '-10px',
+                    marginRight: '-5px'
+                  }}>
+                    <IconButton aria-label="add to favorites">
+                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
+                    </IconButton>
                   </IconButton>
                 }
                 title={car.vendor}
                 subheader={car.modelShortName}
               />
 
-              <div className='row'>
-                <div className='column'>
-                  <Link href={{
-                    pathname: '/catalog/car/[id]',
-                    query: { id: car.id }
-                  }}>
-                    <CardMedia
-                      component="img"
-                      width="210"
-                      height="100%"
-                      image={car.picture[0]}
-                      sx={{ borderRadius: '5px' }}
-                      alt="Paella dish"
-                    />
-                  </Link>
-                </div>
-                <div className='column'>
-                  <CardContent sx={{ padding: '10px', paddingTop: '25px' }}>
-                    <Typography variant="body2" color="text.secondary"
-                      sx={{ fontSize: '11px' }}
-                    >
-                      <div className='column'>
-                        <div>{car.modelShortName} </div>
-                        <div>{driverTypeStr(car.driverType)}</div>
-                      </div>
-                      <div className='price' id="priceModbile">{numberWithSpaces(Number(car.price))} ₽</div>
-                      <div className='priceMonth' id='priceMonth'>
-                        <button className="btn">от {numberWithSpaces(Math.round(Number(car.price)/150))} ₽/мес</button>
-                      </div>
-                    </Typography>
-                  </CardContent>
-                </div>
+              <Link href={{
+                pathname: '/catalog/car/[id]',
+                query: { id: car.id }
+              }}>
+                <CardMedia
+                  component="img"
+                  height="160px"
+                  image={car.picture[0]}
+                  sx={{
+                    cursor: 'pointer',
+                    backgroundSize: 'contain'
+                  }}
+
+                  alt="car"
+                />
+              </Link>
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  {upFirst(car.engine)} / {car.driverType} привод / Пробег {numberWithSpaces(car.mileage)} км
+                  <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
+                  <div className='priceMonth'>
+                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
+                  </div>
+                </Typography>
+              </CardContent>
+              <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
+                <Button variant="contained"
+                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                  onClick={showModal}>Получить консультацию</Button>
               </div>
             </Card>
           )}
@@ -456,7 +452,6 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       justify-content: start;
       width: 80%;
       height: 35px;
-
     }
 
     .btn {
@@ -480,7 +475,6 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       background-color:#005baa; 
       color:white;
       transform: scale(0.99);
-
     }
 
     ul {
@@ -509,6 +503,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       color:white;
       font-size:16px;
       text-align: center;
+      border:none;
     }
 
     .credit:hover {
@@ -568,6 +563,15 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       }
       .background{
         height: auto;
+      }
+    }
+
+    @media(max-width: 400px) {
+      .btn {
+        width: 90%
+      }
+      h3{
+        font-weight: 300;
       }
     }
             
