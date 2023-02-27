@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import Link from "next/link";
-import { MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 // import styles from "./Menu.module.css";
 import label from '/public/images/label.png'
 import DehazeIcon from '@mui/icons-material/Dehaze';
@@ -11,16 +11,9 @@ const hundler = (event: React.SyntheticEvent) => {
   event.preventDefault()
 }
 
-// type MuneProps = {
-//   refs: {
-//     refSales: MutableRefObject<HTMLDivElement>,
-//     refContact: MutableRefObject<HTMLDivElement>,
-//     refAdvatages: MutableRefObject<HTMLDivElement>
-//   }
-// }
-// export functionMenuBar({ refs }: MuneProps) {
 
-  export function MenuBar() {
+
+export function MenuBar() {
 
   const [show, setShow] = useState(false)
   const [closeStarting, setCloseStarting] = useState(false)
@@ -33,6 +26,20 @@ const hundler = (event: React.SyntheticEvent) => {
     closeStarting ? 'modalBackground_close-starting' : '',
   ]
 
+  useEffect(() => {
+    const res = fetch(`/api/sessionClient`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(res => {
+      if (!res.ok) {
+        console.error(res)
+      }
+    })
+  }, [])
+
+
   return <nav>
     <ul className="bar">
       <li className="menuEL">
@@ -41,12 +48,14 @@ const hundler = (event: React.SyntheticEvent) => {
         </Link>
       </li>
       <li className="menuEL" id="catalog">
-        <Link href={'/calcToPage'}><span>Каталог </span></Link>
+        <span>Каталог </span>
         <ul className="bottomUl">
           <Link href={'/catalog/new-car'}>
             <li className="f">Автомобили в наличии</li>
           </Link>
-          <li className="f">Автомобили с пробегом</li>
+          <Link href={'/catalog/used-car'}>
+            <li className="f">Автомобили с пробегом</li>
+          </Link>
           <Link href={'/catalog/tradein'}>
             <li className="f">Онлайн-оценка автомобиля</li>
           </Link>
@@ -55,25 +64,66 @@ const hundler = (event: React.SyntheticEvent) => {
           </Link>
         </ul>
       </li>
-      <li className="menuEL">
-        {/* <a onClick={(e) => {
-          e.preventDefault()
-          refs.refSales.current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          })
-        }}> */}
-          <span>Услуги</span>
-          {/* </a> */}
+      <li className="menuEL" id="catalog">
+        <span>Услуги</span>
+        <ul className="bottomUl">
+          <Link href={'/catalog/new-car'}>
+            <li className="f">Кредитный калькулятор</li>
+          </Link>
+          <Link href={'/services/insurance'}>
+            <li className="f">Страхование</li>
+          </Link>
+          <Link href={'/services/insurance'}>
+            <li className="f">Выкуп автомобилей</li>
+          </Link>
+          <Link href={'/services/accident-assistant'}>
+            <li className="f">Аварийный комиссар</li>
+          </Link>
+          <Link href={'/services/number-for-cars'}>
+            <li className="f">Изготовление номерных знаков</li>
+          </Link>
+        </ul>
       </li>
-      <li className="menuEL" >
-        <Link href={'/'}><span>Владельцам</span></Link>
+
+      <li className="menuEL" id="catalog">
+        <span>Владельцам</span>
+        <ul className="bottomUl">
+          <Link href={'/catalog/special-offers'}>
+            <li className="f">Спец предложения сервиса</li>
+          </Link>
+          <Link href={'/car-repair/service-form'}>
+            <li className="f">Сервис</li>
+          </Link>
+          <Link href={'https://ckr.arkont.ru/'}>
+            <li className="f">Кузовной ремонт</li>
+          </Link>
+          <Link href={'https://gbo.arkont.ru/'}>
+            <li className="f">Перевод авто на газ</li>
+          </Link>
+          <Link href={'/services/tires'}>
+            <li className="f">Шиномонтаж</li>
+          </Link>
+          <Link href={'/services/special'}>
+            <li className="f">Дисконтная программа SPECIAL</li>
+          </Link>
+        </ul>
       </li>
       <li className="menuEL" >
         <Link href={'/job/joball'}><span>Вакансии</span></Link>
       </li>
-      <li className="menuEL" >
-        <Link href={'/'}><span>О Компании</span></Link>
+      <li className="menuEL" id="catalog">
+        <span>О компании</span>
+        <ul className="bottomUl">
+          <Link href={'/catalog/special-offers'}>
+            <li className="f">Контакты</li>
+          </Link>
+          <Link href={'/car-repair/service-form'}>
+            <li className="f">Охрана труда</li>
+          </Link>
+          <Link href={'https://gbo.arkont.ru/'}>
+            <li className="f">Напишите нам</li>
+          </Link>
+        </ul>
       </li>
       {/* <li className="menuEL">
             <a onClick={(e) => {
@@ -87,7 +137,7 @@ const hundler = (event: React.SyntheticEvent) => {
       {/* <li className="menuEL">
             <a href="tel:+78442222222"><span>+7(8442)22-70-72</span></a>
           </li> */}
-    </ul>
+    </ul >
 
 
 
@@ -236,5 +286,5 @@ const hundler = (event: React.SyntheticEvent) => {
      
 }
     `}</style>
-  </nav>
+  </nav >
 }

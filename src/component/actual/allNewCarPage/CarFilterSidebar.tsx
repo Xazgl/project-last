@@ -192,12 +192,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
     const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
-    const [expanded, setExpanded] = React.useState<string | false>('panel1');
-
-    const handleChangeBar =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-        setExpanded(newExpanded ? panel : false);
-    };
+  
 
 
     useEffect(() => {

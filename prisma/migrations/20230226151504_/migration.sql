@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Offer" ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "detailFilterMode" DROP NOT NULL,
+ALTER COLUMN "img" DROP NOT NULL,
+ALTER COLUMN "price" DROP NOT NULL,
+ALTER COLUMN "filterMainPeople" DROP NOT NULL,
+ALTER COLUMN "detailFilterBrand" DROP NOT NULL;

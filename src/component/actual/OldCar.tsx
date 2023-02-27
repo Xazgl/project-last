@@ -42,7 +42,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
     }
 
 
-    function matchesEngine(engine) {
+     function matchesEngine(engine) {
         let arr = engine.toString().split(/\s*,\s*/)
         return arr[2].replace(/\s/g, '');
     }

@@ -9,6 +9,7 @@ export default async function sendmailMain(req: NextApiRequest, res: NextApiResp
             name: z.string().min(2).max(20),
             phone: z.string().min(2).max(20),
             officeName: z.string().min(2).max(50),
+            comment: z.string().min(0).max(300),
         })
         const adminFromReq = clinetSchema.parse(req.body)
         try {
@@ -27,15 +28,16 @@ export default async function sendmailMain(req: NextApiRequest, res: NextApiResp
                 from: '"Заявка с arkont.ru" UriyAPKOHT@yandex.ru',
                 to: 'UriyAPKOHT@yandex.ru',
                 subject: `Заявка с arkont.ru `,
-                text: `Заявка  от ${adminFromReq.name} ${adminFromReq.phone} ${ adminFromReq.officeName} arkont.ru`,
+                text: `Заявка  от ${adminFromReq.name} ${adminFromReq.phone} ${ adminFromReq.officeName} arkont.ru ${adminFromReq.comment}`,
                 html:
-                `Заявка  от ${adminFromReq.name} ${adminFromReq.phone} ${ adminFromReq.officeName} arkont.ru`,
+                `Заявка  от ${adminFromReq.name} ${adminFromReq.phone} ${ adminFromReq.officeName} arkont.ru ${adminFromReq.comment}`,
             })
             //регистрация в базу
             const clientSend = await db.clientNeedCall.create({data: {
                 name:adminFromReq.name, 
                 phone:adminFromReq.phone, 
-                office:adminFromReq.officeName
+                office:adminFromReq.officeName,
+                comment:adminFromReq.comment,
             }})
             res.status(200).send(clientSend);
         } catch (error) {

@@ -26,6 +26,7 @@ model ClientNeedCall {
   name      String
   phone     String
   office    String
+  comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -70,16 +71,56 @@ model Session {
   updatedAt    DateTime @updatedAt
 }
 
+model SessionClient {
+  id           String              @id @default(cuid())
+  sessionToken String              @unique
+  expires      DateTime
+  favoriteCars FavoriteCarsToCar[]
+  watchedCars  WatchedCarsToCar[]
+  compareCars  CompareCarsToCar[]
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  Car          Car?                @relation(fields: [carId], references: [id])
+  carId        String?
+}
+
+model FavoriteCarsToCar {
+  session   SessionClient @relation(fields: [sessionId], references: [id])
+  sessionId String
+  car       Car           @relation(fields: [carId], references: [id])
+  carId     String
+
+  @@id([sessionId, carId])
+}
+
+model WatchedCarsToCar {
+  session   SessionClient @relation(fields: [sessionId], references: [id])
+  sessionId String
+  car       Car           @relation(fields: [carId], references: [id])
+  carId     String
+
+  @@id([sessionId, carId])
+}
+
+model CompareCarsToCar {
+  session   SessionClient @relation(fields: [sessionId], references: [id])
+  sessionId String
+  car       Car           @relation(fields: [carId], references: [id])
+  carId     String
+
+  @@id([sessionId, carId])
+}
+
 model Offer {
   id                String   @id @default(cuid())
   title             String
   shortDesc         String
-  description       String
-  filterMainPeople  String //фильтр (Новые авто, бу, владельцам)
-  detailFilterBrand String
-  detailFilterMode  String
-  img               String
-  price             String
+  description       String?
+  filterMainPeople  String? //фильтр (Новые авто, бу, владельцам)
+  detailFilterBrand String?
+  detailFilterMode  String?
+  img               String?
+  price             String?
   active            Boolean
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
@@ -179,14 +220,14 @@ model Extras {
 }
 
 model Car {
-  id                 String            @id @default(cuid())
-  id_1c              String            @unique
+  id                 String              @id @default(cuid())
+  id_1c              String              @unique
   usedOrNew          String //новая или БУ
   color              String //цвет 
   bodyColorMetallic  String //цвет металик 
   mileage            String? //пробег
   mileageUnit        String? // единцы пробега  км или мили
-  vin                String            @unique
+  vin                String              @unique
   year               String? //год выпуска
   img                String[] // много картинок
   priceMonth         Float? //стоимость месяц
@@ -197,53 +238,57 @@ model Car {
   creditDiscount     Float? // скидка
   insuranceDiscount  Float? // скидка ?
   desc               String? //описание
-  active             Boolean           @default(true)
-  createdAt          DateTime          @default(now())
-  updatedAt          DateTime          @updatedAt
-  CarModel           CarModel?         @relation(fields: [carModelId], references: [modelId_1c])
+  active             Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  sessionClients     SessionClient[]
+  CarModel           CarModel?           @relation(fields: [carModelId], references: [modelId_1c])
   carModelId         Int?
   extras             Extras[]
-  CarModification    CarModification?  @relation(fields: [carModificationId], references: [id_1c])
+  CarModification    CarModification?    @relation(fields: [carModificationId], references: [id_1c])
   carModificationId  Int?
-  CarComplectation   CarComplectation? @relation(fields: [carComplectationId], references: [id_1c])
+  CarComplectation   CarComplectation?   @relation(fields: [carComplectationId], references: [id_1c])
   carComplectationId Int?
-  DealerModel        DealerModel?      @relation(fields: [dealerModelId], references: [id_1c])
+  DealerModel        DealerModel?        @relation(fields: [dealerModelId], references: [id_1c])
   dealerModelId      Int?
   availability       String
+  FavoriteCarsToCar  FavoriteCarsToCar[]
+  WatchedCarsToCar   WatchedCarsToCar[]
+  CompareCarsToCar   CompareCarsToCar[]
 }
 
 model UsedCars {
-  id                    String  @id @default(cuid())
-  offersId              String  @unique
+  id                    String   @id @default(cuid())
+  offersId              String   @unique
   vendor                String //KIA
   modelFullName         String //Sorento 2.2d AMT (199 л.с.) 4WD 2020
   price                 Float? //цена
-  enable_auto_discounts Boolean @default(false)
+  enable_auto_discounts Boolean  @default(false)
   currencyId            String?
   count                 String?
   categoryId            String?
-  delivery              Boolean @default(false)
-  pickup                Boolean @default(true)
-  store                 Boolean @default(true)
+  delivery              Boolean  @default(false)
+  pickup                Boolean  @default(true)
+  store                 Boolean  @default(true)
   description           String?
   sales_notes           String?
   picture               String[] // много картинок
   typePrefix            String //новая или БУ
-  manufacturer_warranty Boolean @default(false)
+  manufacturer_warranty Boolean  @default(false)
   url                   String? //ссылка на avto.ru
   mileage               String? //пробег
   year                  String? //год выпуска
   bodyType              String? //Внедорожник 5 дв.
   steeringWheel         String? // руль левый или правый 
-  color                 String?//цвет
-  pts                   String?//ПТС
-  numberOfOwners        String?//количество владельцев
-  engine                String?//дизель, 2.2 л, 199 л. с.
-  driverType            String?// привод
-  gearboxType           String?// коробка
-  generation            String?//поколение
-  modelShortName        String?//Sorento
-  active                Boolean @default(true)
+  color                 String? //цвет
+  pts                   String? //ПТС
+  numberOfOwners        String? //количество владельцев
+  engine                String? //дизель, 2.2 л, 199 л. с.
+  driverType            String? // привод
+  gearboxType           String? // коробка
+  generation            String? //поколение
+  modelShortName        String? //Sorento
+  active                Boolean  @default(true)
 }
 
 model Vacancy {
@@ -275,6 +320,17 @@ model Job {
   active      Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Offices {
+  id      String  @id @default(cuid())
+  name    String?
+  brend   String?
+  address String?
+  phone   String?
+  img     String?
+  logo    String?
+  type    String?
 }
 
 enum City {

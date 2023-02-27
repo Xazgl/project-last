@@ -18,172 +18,18 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
 
-import chery from '/public/images/logo-around/chery.webp';
-import chevrolet from '/public/images/logo-around/chevrolet.webp';
-import datsun from '/public/images/logo-around/datsun.webp';
-import exeed from '/public/images/logo-around/exeed.webp';
-import faw from '/public/images/logo-around/faw.webp';
-import ford from '/public/images/logo-around/ford.webp';
-import hisun from '/public/images/logo-around/hisun.webp';
-import hyundai from '/public/images/logo-around/hyundai.webp';
-import jeep from '/public/images/logo-around/jeep.webp';
-import kia from '/public/images/logo-around/kia.webp';
-import landrover from '/public/images/logo-around/landrover.webp';
-import mithsubishi from '/public/images/logo-around/mithsubishi.webp';
-import nissan from '/public/images/logo-around/nissan.webp';
-import renault from '/public/images/logo-around/renault.webp';
-import subaru from '/public/images/logo-around/subaru.webp';
-import suzuki from '/public/images/logo-around/suzuki.webp';
-import uaz from '/public/images/logo-around/uaz.webp';
-import usedcars34 from '/public/images/logo-around/usedcars34.webp';
-import volkswagen from '/public/images/logo-around/volkswagen.webp';
-import opel from '/public/images/logo-around/opel.webp';
-import jaguar from '/public/images/logo-around/jaguar.webp';
-import lovol from '/public/images/logo-around/lovol.webp';
-import peugeot from '/public/images/logo-around/peugeot.webp';
 import { AllUsedCarDto } from '../../../../@types/dto';
 import { Button } from '@mui/material';
+import { logoFind, LogoList } from './services/servicesUsedCars';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
   filteredCars: AllUsedCarDto,
 }
 
-export type LogoArr = {
-  id: number,
-  name: string
-  img: string,
-}
-
-
-const LogoList: LogoArr[] = [
-  {
-    id: 1,
-    name: 'Chery',
-    img: `${chery.src}`
-  },
-  {
-    id: 2,
-    name: 'Chevrolet',
-    img: `${chevrolet.src}`
-  },
-  {
-    id: 3,
-    name: 'Datsun',
-    img: `${datsun.src}`
-  },
-  {
-    id: 4,
-    name: 'EXEED',
-    img: `${exeed.src}`
-  },
-  {
-    id: 5,
-    name: 'FAW',
-    img: `${faw.src}`
-  },
-  {
-    id: 6,
-    name: 'Ford',
-    img: `${ford.src}`
-  },
-  {
-    id: 7,
-    name: 'Hisun',
-    img: `${hisun.src}`
-  },
-  {
-    id: 7,
-    name: 'Hyundai',
-    img: `${hyundai.src}`
-  },
-  {
-    id: 8,
-    name: 'Jeep',
-    img: `${jeep.src}`
-  },
-  {
-    id: 9,
-    name: 'Kia',
-    img: `${kia.src}`
-  },
-  {
-    id: 10,
-    name: 'Land Rover',
-    img: `${landrover.src}`
-  },
-  {
-    id: 11,
-    name: 'Mitsubishi',
-    img: `${mithsubishi.src}`
-  },
-  {
-    id: 12,
-    name: 'Nissan',
-    img: `${nissan.src}`
-  },
-  {
-    id: 13,
-    name: 'Renault',
-    img: `${renault.src}`
-  },
-  {
-    id: 14,
-    name: 'Subaru',
-    img: `${subaru.src}`
-  },
-  {
-    id: 15,
-    name: 'Suzuki',
-    img: `${suzuki.src}`
-  },
-  {
-    id: 16,
-    name: 'AUC',
-    img: `${usedcars34.src}`
-  },
-  {
-    id: 17,
-    name: 'Volkswagen',
-    img: `${volkswagen.src}`
-  },
-  {
-    id: 18,
-    name: 'Opel',
-    img: `${opel.src}`
-  },
-  {
-    id: 19,
-    name: 'Jaguar',
-    img: `${jaguar.src}`
-  },
-  {
-    id: 20,
-    name: 'LOVOL',
-    img: `${lovol.src}`
-  },
-  {
-    id: 21,
-    name: 'Peugeot',
-    img: `${peugeot.src}`
-  },
-]
 
 
 function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
-
-  // useState(() => {
-  //   if(filteredCars.length <=0) {
-  //     setCarArr(Array.isArray(filteredCars) && filteredCars.length ? Array(40).fill(0).map(el => filteredCars[Math.floor(Math.random() * filteredCars.length)])
-  //     )
-  //   }
-
-  // }, [])
-
-  // const [carArr, setCarArr] = useState<Car[]>(
-  //   Array.isArray(filteredCars) && filteredCars.length ? Array(40).fill(0).map(el => filteredCars[Math.floor(Math.random() * filteredCars.length)]) : [])
-
-  // console.log(carArr)
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -191,11 +37,6 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     setExpanded(!expanded);
   };
 
-  // {
-  //   filteredCars.map(car =>
-  //     console.log(car.id)
-  //   )
-  // }
 
   interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -218,31 +59,11 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
   }
 
 
-  function logoFind(LogoList, str) {
-    if (LogoList.find(brend => brend.name === str)) {
-      const imgLogo = LogoList.find(brend => brend.name === str)?.img
-      return imgLogo
-    }
-  }
-
-  function driverTypeStr(x) {
-    if (x === 'front') {
-      return "Передний привод"
-    }
-    if (x === 'full_4wd') {
-      return "Полный привод"
-    }
-  }
-
   function showModal(event: MouseEventHandler<HTMLButtonElement>) {
     setShowModal(true)
   }
 
-  // {
-  //   filteredCars.map(car =>
-  //     console.log(car.id)
-  //   )
-  // }
+
 
   function upFirst(engine) {
     return engine.charAt(0).toUpperCase() + engine.slice(1)
@@ -283,7 +104,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               />
 
               <Link href={{
-                pathname: '/catalog/car/[id]',
+                pathname: '/catalog/used-car/[id]',
                 query: { id: car.id }
               }}>
                 <CardMedia
