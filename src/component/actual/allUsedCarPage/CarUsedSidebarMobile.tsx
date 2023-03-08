@@ -465,7 +465,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                 <Link href={'/catalog/used-car'} sx={{ textDecoration: 'none' }}>
                                     <Button sx={{ width: '120px', height: '40px', fontSize: '11px', backgroundColor: 'white' }} onClick={(event) => {
                                         setCarType('old')
-                                    }} >С пробегом  <CheckIcon sx={{fontSize: '14px'}}/></Button>
+                                    }} >С пробегом  <CheckIcon sx={{ fontSize: '14px' }} /></Button>
                                 </Link>
                             </ButtonGroup>
                         </div>
@@ -715,6 +715,14 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                 </AccordionDetails>
                             </Accordion>
                         </div>
+                        <div className="rowSideBar" id="column" >
+                            <Button
+                                variant="outlined"
+                                sx={{ width: '100%', fontSize: '12px', height: '40px' }}
+                                onClick={resetFilteredCars}>
+                                Сбросить фильтры
+                            </Button>
+                        </div >
                         {/* <div className="rowSideBar" id="column" >
                             <Accordion sx={{ width: '100%' }}>
                                 <AccordionSummary

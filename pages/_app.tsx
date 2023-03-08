@@ -1,17 +1,19 @@
+
 import * as React from 'react';
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import { QueryClient, QueryClientProvider } from 'react-query'
-import createEmotionCache from '../mui/createEmotionCache';
 import theme from '../mui/theme';
-import '../styles/globals.css';
+import createEmotionCache from '../mui/createEmotionCache';
+import { Head } from 'next/document';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-const queryClient = new QueryClient() 
+const queryClient = new QueryClient()
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {

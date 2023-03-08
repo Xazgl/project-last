@@ -45,9 +45,10 @@ type NewOrOldList = {
 type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
     cars: AllCarDto,
+    setShowModalFavorite:Dispatch<SetStateAction<boolean>>,
 }
 
-export function NewCarComponent({ setShowModal, cars }: Props) {
+export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: Props) {
 
     const [filteredCars, setFilteredCars] = useState(cars)
 
@@ -62,7 +63,7 @@ export function NewCarComponent({ setShowModal, cars }: Props) {
                 <CarFilterSidebarMobile cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
                 <CarFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
                 <div className="carBlock">
-                    <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal} />
+                    <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} />
                 </div>
             </div >
             <style jsx>{`

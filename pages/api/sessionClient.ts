@@ -9,7 +9,16 @@ import { z } from 'zod';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         try {
-            if (!req.cookies['clientToken']) {
+            const currentCookie = req.cookies['clientToken']
+            const currentSession = currentCookie
+                ? (await db.sessionClient.findUnique({
+                    where: {
+                        sessionToken: currentCookie
+                    }
+                }))
+                : null
+
+            if (!currentSession) {
                 // sessions
                 const sessionToken = nanoid(36)
                 const expires = new Date(Date.now() + 60 * 60 * 24 * 365 * 5 * 1000)
@@ -20,9 +29,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         expires,
                     }
                 })
-                res.send({ sessionToken })
+                return res.send({ sessionToken })
             }
-            res.end()
+            return res.send({ sessionToken: currentSession.sessionToken })
         } catch (error) {
             res.status(500).send({ message: "Ошибка в базе данных" })
         }

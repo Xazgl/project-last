@@ -42,6 +42,32 @@ model CalcCredit {
   updatedAt  DateTime @updatedAt
 }
 
+model CalcInsurance {
+  id                 String  @id @default(cuid())
+  name               String
+  phone              String
+  equipment          String
+  year               String
+  power              String
+  carNumber          String
+  city               String
+  carBrendName       String
+  carModel           String
+  price              String
+  officeName         String
+  insuranceTypeKASKO Boolean
+  insuranceTypeOSAGO Boolean
+  alarmSystem        Boolean
+  carDeposit         Boolean
+  installmentPlan    Boolean
+  drivers            Json[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+
+
 model ClientTradein {
   id        String   @id @default(cuid())
   name      String
@@ -80,8 +106,8 @@ model SessionClient {
   compareCars  CompareCarsToCar[]
   createdAt    DateTime            @default(now())
   updatedAt    DateTime            @updatedAt
-  Car          Car?                @relation(fields: [carId], references: [id])
-  carId        String?
+  // Car          Car?                @relation(fields: [carId], references: [id])
+  // carId        String?
 }
 
 model FavoriteCarsToCar {
@@ -241,7 +267,7 @@ model Car {
   active             Boolean             @default(true)
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
-  sessionClients     SessionClient[]
+  // sessionClients     SessionClient[]
   CarModel           CarModel?           @relation(fields: [carModelId], references: [modelId_1c])
   carModelId         Int?
   extras             Extras[]
@@ -325,12 +351,12 @@ model Job {
 model Offices {
   id      String  @id @default(cuid())
   name    String?
-  brend   String?
+  label   String?
+  photo   String?
+  city    String?
   address String?
   phone   String?
-  img     String?
-  logo    String?
-  type    String?
+  brend   String?
 }
 
 enum City {

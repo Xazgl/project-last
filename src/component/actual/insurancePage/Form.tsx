@@ -111,28 +111,29 @@ export function Form() {
     const [phone, setPhone] = useState('') //Телефон
     const [checked, setChecked] = useState(false);
     const [disabledBtn, setDisabledBtn] = useState(true)
-
-
-
-    useEffect(() => {
-        if (checked === true && name > '' && phone > '') {
-            // formBtn.current.disable = false
-            setDisabledBtn(false)
-        } else {
-            setDisabledBtn(true)
-        }
-    }, [checked, name, phone, officeId])
-
-    // const [yearMan, setYearMan] = useState('') //возраст
-    // const [exp, setExp] = useState('') //стаж
-    // const [gender, setGender] = useState('') //пол
-
     const [drivers, setDrivers] = useState<Driver[]>([{
         id: 0,
         yearsOld: '',
         gender: 'Мужской',
         exp: ''
     }]) //водители
+    const [carBrendName, setCarBrendName] = useState('')  
+    const [officeName, setOfficeName] = useState('')  
+
+
+    useEffect(() => {
+        setCarBrendName(brendList.find(brend => brend.id === carBrand)?.name)
+        setOfficeName(officeList.find(dealer => dealer.id === officeId)?.name)
+        if (checked === true && name > '' && phone > '' && equipment > '' &&
+            year > '' && power > '' && carNumber > '' && city > '' && drivers.length > 0 &&
+            carBrendName > '' && carModel > '' && price > '' && officeName > '') {
+            // formBtn.current.disable = false
+            setDisabledBtn(false)
+        } else {
+            setDisabledBtn(true)
+        }
+    }, [checked, name, phone, equipment, year, power, carNumber, city, carModel, price, officeName, carBrendName, drivers])
+
 
     const formBtn = useRef(null)
 
@@ -140,28 +141,48 @@ export function Form() {
         setChecked(event.target.checked);
     };
 
-
     const className = [
         'btn',
         disabledBtn === false ? 'btn_show' : '',
     ]
 
-
     async function sendmail(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         if (checked === true) {
-            const res = await fetch('/api/sendmailMain', {
+            const res = await fetch('/api/sendmailInsurance', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, phone })
+                body: JSON.stringify({
+                    name, phone, equipment, year, power, carNumber, city,
+                    carModel, price, officeName, carBrendName, insuranceTypeKASKO, 
+                    insuranceTypeOSAGO,alarmSystem, carDeposit, installmentPlan, drivers
+                })
             })
             if (res.ok) {
                 const result = await res.json()
+                console.log("Ваша заявка успешно отправлена")
             }
         }
     }
+
+    // async function allIsurance(event: FormEvent<HTMLFormElement>) {
+    //     event.preventDefault()
+    //     if (checked === true) {
+    //         const res = await fetch('/api/allIsurance', {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //         })
+    //         if (res.ok) {
+    //             const result = await res.json()
+    //             console.log(result)
+    //         }
+    //     }
+    // }
+
 
     return (
         <>
@@ -305,8 +326,14 @@ export function Form() {
                                             name="name"
                                             placeholder="2023"
                                             required
-                                            value={equipment}
-                                            onChange={event => setEquipment(event.target.value)} />
+                                            value={year}
+                                            onChange={
+                                                event => {
+                                                    if (!/^\d{0,4}$/.test(event.target.value)) return;
+                                                    setYear(event.target.value)
+                                                }
+                                            }
+                                        />
                                     </Box>
                                     <Box
                                         sx={{
@@ -318,9 +345,9 @@ export function Form() {
                                         }}
                                     >
                                         <div className="inputTitleMini">Гос номер</div>
-                                        <input type="number"
+                                        <input type="text"
                                             name="name"
-                                            placeholder="A001AA 00"
+                                            placeholder="A001AA 01"
                                             required
                                             value={carNumber}
                                             onChange={event => setCarNumber(event.target.value)} />
@@ -350,10 +377,16 @@ export function Form() {
                                         <div className="inputTitleMini">Мощность</div>
                                         <input type="text"
                                             name="name"
-                                            placeholder="110 л.с"
+                                            placeholder="110 (л.с)"
                                             required
                                             value={power}
-                                            onChange={event => setPower(event.target.value)} />
+                                            onChange={
+                                                event => {
+                                                    if (!/^\d{0,3}$/.test(event.target.value)) return;
+                                                    setPower(event.target.value)
+                                                }
+                                            }
+                                        />
                                     </Box>
                                     <Box
                                         sx={{
@@ -369,8 +402,8 @@ export function Form() {
                                             name="name"
                                             placeholder="Москва"
                                             required
-                                            value={power}
-                                            onChange={event => setPower(event.target.value)} />
+                                            value={city}
+                                            onChange={event => setCity(event.target.value)} />
                                     </Box>
                                 </Box>
                             </div>
@@ -406,7 +439,7 @@ export function Form() {
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Данные по водителям</div>
-                                <DriversForm  setDrivers={setDrivers} drivers={drivers}/>
+                                <DriversForm setDrivers={setDrivers} drivers={drivers} />
                             </div>
 
                             <div className="divForm">

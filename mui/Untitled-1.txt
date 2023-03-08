@@ -1,0 +1,12 @@
+/uploads/offices/chery.jpeg
+/uploads/offices/hyundai.jpeg
+/uploads/offices/mitsu.jpeg
+/uploads/offices/no_photo.png  
+/uploads/offices/uaz.jpeg
+/uploads/offices/used-zeml.jpeg
+/uploads/offices/exeed.jpeg
+/uploads/offices/kia.jpeg
+/uploads/offices/nissan.jpeg
+/uploads/offices/renault.jpeg
+/uploads/offices/used-vlz.jpeg
+/uploads/offices/volk.jpeg

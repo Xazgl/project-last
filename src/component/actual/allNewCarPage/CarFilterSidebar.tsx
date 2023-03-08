@@ -192,7 +192,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
     const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
-  
+
 
 
     useEffect(() => {
@@ -738,6 +738,14 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionDetails>
                     </Accordion>
                 </div>
+                <div className="rowSideBar" id="column" >
+                    <Button
+                        variant="outlined"
+                        sx={{ width: '100%', fontSize: '12px', height: '40px' }}
+                        onClick={resetFilteredCars}>
+                        Сбросить фильтры
+                    </Button>
+                </div >
             </div >
             <style jsx>{`
 

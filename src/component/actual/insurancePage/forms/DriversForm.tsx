@@ -21,12 +21,15 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                     return <DriverCurrentForm key={driver.id} driver={driver} setDrivers={setDrivers} />
                 })
             }
-            <Button onClick={() => {setDrivers(drivers => [...drivers, {
+            <Button
+            sx={{marginTop:'20px'}}
+            variant="contained"
+            onClick={() => {setDrivers(drivers => [...drivers, {
                 id: drivers.length, 
                 yearsOld: '',
                 exp: '',
                 gender: 'Мужской'
-            }])}}>Добавить нового</Button>
+            }])}}>Добавить водителя</Button>
 
 
             <style jsx>{`

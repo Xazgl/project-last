@@ -9,6 +9,7 @@ import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
+import { ModalFavorite } from '../../src/component/ModalFavorite'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 
@@ -16,6 +17,9 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
+  
+  const [showModalFavorite, setShowModalFavorite] = useState(false)
+
   const refSales = useRef<HTMLDivElement>(null)
   const refTop = useRef<HTMLDivElement>(null)
   const refContact = useRef<HTMLDivElement>(null)
@@ -32,7 +36,7 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
       </Head>
       <MenuBar />
       <BarMenu />
-      <NewCarComponent  setShowModal={setShowModal} cars={cars}  />
+      <NewCarComponent  setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} cars={cars}  />
       {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
 
       {
@@ -43,9 +47,13 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
         showTradeInModal && <TradeinModal showTradeInModal={showTradeInModal} setShowTradeInModal={setShowTradeInModal} />
       }
 
+      {
+        showModalFavorite && <ModalFavorite showModalFavorite={showModalFavorite}  setShowModalFavorite={setShowModalFavorite} cars={cars} />
+      }
     </>
   )
 }
+
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

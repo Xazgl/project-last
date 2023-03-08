@@ -53,128 +53,6 @@ type Props = {
     filteredCars: AllUsedCarDto
 }
 
-// type FilterUserOptions = {
-//     carType?: 'new' | 'old'
-//     dillerOffice?: string[]
-//     minPrice?: number
-//     maxPrice?: number
-//     brandName?: string[]
-//     modelName?: string[]
-// }
-
-
-const LogoList: LogoArr[] = [
-    {
-        id: 1,
-        name: 'Chery',
-        img: `${chery.src}`
-    },
-    {
-        id: 2,
-        name: 'Chevrolet',
-        img: `${chevrolet.src}`
-    },
-    {
-        id: 3,
-        name: 'Datsun',
-        img: `${datsun.src}`
-    },
-    {
-        id: 4,
-        name: 'EXEED',
-        img: `${exeed.src}`
-    },
-    {
-        id: 5,
-        name: 'FAW',
-        img: `${faw.src}`
-    },
-    {
-        id: 6,
-        name: 'Ford',
-        img: `${ford.src}`
-    },
-    {
-        id: 7,
-        name: 'Hisun',
-        img: `${hisun.src}`
-    },
-    {
-        id: 7,
-        name: 'Hyundai',
-        img: `${hyundai.src}`
-    },
-    {
-        id: 8,
-        name: 'Jeep',
-        img: `${jeep.src}`
-    },
-    {
-        id: 9,
-        name: 'Kia',
-        img: `${kia.src}`
-    },
-    {
-        id: 10,
-        name: 'Land Rover',
-        img: `${landrover.src}`
-    },
-    {
-        id: 11,
-        name: 'Mitsubishi',
-        img: `${mithsubishi.src}`
-    },
-    {
-        id: 12,
-        name: 'Nissan',
-        img: `${nissan.src}`
-    },
-    {
-        id: 13,
-        name: 'Renault',
-        img: `${renault.src}`
-    },
-    {
-        id: 14,
-        name: 'Subaru',
-        img: `${subaru.src}`
-    },
-    {
-        id: 15,
-        name: 'Suzuki',
-        img: `${suzuki.src}`
-    },
-    {
-        id: 16,
-        name: 'AUC',
-        img: `${usedcars34.src}`
-    },
-    {
-        id: 17,
-        name: 'Volkswagen',
-        img: `${volkswagen.src}`
-    },
-    {
-        id: 18,
-        name: 'Opel',
-        img: `${opel.src}`
-    },
-    {
-        id: 19,
-        name: 'Jaguar',
-        img: `${jaguar.src}`
-    },
-    {
-        id: 20,
-        name: 'LOVOL',
-        img: `${lovol.src}`
-    },
-    {
-        id: 21,
-        name: 'Peugeot',
-        img: `${peugeot.src}`
-    },
-]
 
 function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
 
@@ -428,30 +306,8 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
 
     }
 
-    function driverTypeName(x) {
-        if (x === 'full_4wd') {
-            return 'Полный'
-        }
-        if (x === 'front') {
-            return 'Передний'
-        }
-    }
 
-    function engineTypeName(x) {
-        if (x === 'diesel') {
-            return 'дизель'
-        }
-        if (x === 'petrol') {
-            return 'бензин'
-        }
-    }
 
-    function logoFind(LogoList, str) {
-        if (LogoList.find(brend => brend.name === str)) {
-            const imgLogo = LogoList.find(brend => brend.name === str)?.img
-            return imgLogo
-        }
-    }
 
     useEffect(() => {
         console.log(currentFilter)
@@ -470,14 +326,14 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         variant="outlined"
                         aria-label="Disabled elevation buttons"
                     >
-                        <Link href={'/catalog/new-car'} sx={{textDecoration:'none'}}>
+                        <Link href={'/catalog/new-car'} sx={{ textDecoration: 'none' }}>
                             <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
                                 setCarType('new')
                                 // changeFilter({ carType: 'new' })
                             }}>Новые</Button>
                         </Link>
 
-                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px'}} onClick={(event) => {
+                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
                             setCarType('old')
                             // changeFilter({ carType: 'used' })
                         }} >С пробегом</Button>
@@ -733,6 +589,14 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionDetails>
                     </Accordion>
                 </div>
+                <div className="rowSideBar" id="column" >
+                    <Button
+                        variant="outlined"
+                        sx={{ width: '100%', fontSize: '12px', height: '40px' }}
+                        onClick={resetFilteredCars}>
+                        Сбросить фильтры
+                    </Button>
+                </div >
                 {/* <div className="rowSideBar" id="column" >
                     <Accordion>
                         <AccordionSummary

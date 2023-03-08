@@ -22,6 +22,7 @@ import { TableCars } from "../../src/component/admin/TableCars"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ModalImg } from "../../src/component/ModalImg"
 import { AddCarAdmin2 } from "../../src/component/admin/AddCarAdmin2"
+import { DealerAdd } from "../../src/component/admin/DealerAdd"
 
 
 const AdminTable: NextPage = () => {
@@ -182,6 +183,25 @@ const AdminTable: NextPage = () => {
               </AccordionDetails>
             </Accordion>
 
+
+            <Accordion expanded={expanded === 'panel8'} onChange={handleChange('panel8')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                aria-controls="panel3bh-content"
+                id="panel3bh-header"
+                sx={{ backgroundColor: "#2e2e2e", color: "white", borderBottom: 'solid 1px white ' }}
+              >
+                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'TacticSans-Reg' }}>
+                  Таблица Дилеров + интеграция дилеров
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  <DealerAdd />
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
             {/* <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -200,8 +220,8 @@ const AdminTable: NextPage = () => {
           </div>
         </AdminLayout>
       }
-      {isLoading && <p>Loading..</p>}
-      {error && <p>Error occurred!</p>}
+      {isLoading && <div>Loading..</div>}
+      {error && <div>Error occurred!</div>}
 
       {
         showModal && <ModalImg carImg={carImg} showModal={showModal} setShowModal={setShowModal} />

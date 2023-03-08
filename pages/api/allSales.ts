@@ -10,9 +10,9 @@ export default async function findSales(req: NextApiRequest, res: NextApiRespons
             //const admin = await checkSession(token)
            // if (admin) {
                 const sales = await db.offer.findMany()
-                debugger
+
                 res.send(sales)
-                debugger
+
            // } else {
             //    res.status(403).send({ message: "Нет прав доступа" })
             //}

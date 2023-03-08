@@ -66,118 +66,6 @@ type Props = {
 // }
 
 
-const LogoList: LogoArr[] = [
-    {
-        id: 1,
-        name: 'Chery',
-        img: `${chery.src}`
-    },
-    {
-        id: 2,
-        name: 'Chevrolet',
-        img: `${chevrolet.src}`
-    },
-    {
-        id: 3,
-        name: 'Datsun',
-        img: `${datsun.src}`
-    },
-    {
-        id: 4,
-        name: 'EXEED',
-        img: `${exeed.src}`
-    },
-    {
-        id: 5,
-        name: 'FAW',
-        img: `${faw.src}`
-    },
-    {
-        id: 6,
-        name: 'Ford',
-        img: `${ford.src}`
-    },
-    {
-        id: 7,
-        name: 'Hisun',
-        img: `${hisun.src}`
-    },
-    {
-        id: 7,
-        name: 'Hyundai',
-        img: `${hyundai.src}`
-    },
-    {
-        id: 8,
-        name: 'Jeep',
-        img: `${jeep.src}`
-    },
-    {
-        id: 9,
-        name: 'Kia',
-        img: `${kia.src}`
-    },
-    {
-        id: 10,
-        name: 'Land Rover',
-        img: `${landrover.src}`
-    },
-    {
-        id: 11,
-        name: 'Mitsubishi',
-        img: `${mithsubishi.src}`
-    },
-    {
-        id: 12,
-        name: 'Nissan',
-        img: `${nissan.src}`
-    },
-    {
-        id: 13,
-        name: 'Renault',
-        img: `${renault.src}`
-    },
-    {
-        id: 14,
-        name: 'Subaru',
-        img: `${subaru.src}`
-    },
-    {
-        id: 15,
-        name: 'Suzuki',
-        img: `${suzuki.src}`
-    },
-    {
-        id: 16,
-        name: 'AUC',
-        img: `${usedcars34.src}`
-    },
-    {
-        id: 17,
-        name: 'Volkswagen',
-        img: `${volkswagen.src}`
-    },
-    {
-        id: 18,
-        name: 'Opel',
-        img: `${opel.src}`
-    },
-    {
-        id: 19,
-        name: 'Jaguar',
-        img: `${jaguar.src}`
-    },
-    {
-        id: 20,
-        name: 'LOVOL',
-        img: `${lovol.src}`
-    },
-    {
-        id: 21,
-        name: 'Peugeot',
-        img: `${peugeot.src}`
-    },
-]
 
 function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
 
@@ -416,12 +304,6 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
         }
     }
 
-    function logoFind(LogoList, str) {
-        if (LogoList.find(brend => brend.name === str)) {
-            const imgLogo = LogoList.find(brend => brend.name === str)?.img
-            return imgLogo
-        }
-    }
 
     useEffect(() => {
         console.log(currentFilter)
@@ -761,6 +643,14 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                                 </AccordionDetails>
                             </Accordion>
                         </div>
+                        <div className="rowSideBar" id="column" >
+                            <Button
+                                variant="outlined"
+                                sx={{ width: '100%', fontSize: '12px', height: '40px' }}
+                                onClick={resetFilteredCars}>
+                                Сбросить фильтры
+                            </Button>
+                        </div >
                     </AccordionDetails>
                 </Accordion >
             </div >

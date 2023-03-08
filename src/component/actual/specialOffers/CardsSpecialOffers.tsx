@@ -1,5 +1,5 @@
 import { Offer } from '@prisma/client'
-import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react'
+import { Dispatch, MutableRefObject, SetStateAction, useEffect, useMemo, useState } from 'react'
 import banner from '/public/images/10.jpg'
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { AllOffersDto } from '../../../../@types/dto';
 import { GetServerSideProps } from 'next';
 import db from '../../../../prisma';
+import { detailBrandFilter, detailModeFilter, mainPeopleFilter } from './carFilters';
 
 type Office = {
     id: number,
@@ -218,7 +219,12 @@ const filterNameerList: MainList[] = [
 ]
 
 
-export function CardsSpecialOffers() {
+type Props = {
+    setShowModal: Dispatch<SetStateAction<boolean>>,
+    offers: Offer[],
+}
+
+export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
     const theme = useTheme();
     const [filterName, setFilterName] = React.useState(0);
@@ -226,56 +232,121 @@ export function CardsSpecialOffers() {
     const [openStarting, setOpenStarting] = useState(false)
     const [closeStarting, setCloseStarting] = useState(false)
 
+    const [filteredOffers, setFilteredOffers] = useState<Offer[]>(offers)
+
+
+    const [detailFilterMainPeopleResult, setDetailFilterMainPeople] = useState('')
+    const [detailFilterBrandResult, setDetailFilterBrandPeople] = useState('')
+    const [detailFilterModeResult, setDetailFilterModePeople] = useState('')
+
+
     const filterMain = filterNameerList.find(service => service.id === filterName)?.name
 
     const refCard = React.useRef<HTMLDivElement>(null)
 
 
+    //Конкретные выбранные фильтры 
+    const [currentFilter, setCurrentFilter] = useState({
+        filterMainPeople: [],
+        detailFilterBrand: [],
+        detailFilterMode: [],
+    })
+
+    const changeFilter = (filter) => {
+        setCurrentFilter(prevFilterState => {
+            return { ...prevFilterState, ...filter }
+        })
+    }
+
+    useEffect(() => {
+        setFilteredOffers(offers.filter(offer => {
+            return mainPeopleFilter(offer, currentFilter)
+                && detailBrandFilter(offer, currentFilter)
+                && detailModeFilter(offer, currentFilter)
+        }))
+    }, [currentFilter])
 
 
-    React.useEffect(() => {
-        async function start() {
-            const res = await fetch('/api/allSales')
-            if (res.ok) {
-                const sales: Offer[] = await res.json()
-                setSales(sales.map(sale => {
-                    const { id, title, shortDesc, description, price, filterMainPeople, detailFilterBrand, detailFilterMode, img, active, createdAt, updatedAt } = sale
-                    return { id, title, shortDesc, description, price, filterMainPeople, detailFilterBrand, detailFilterMode, img, active, createdAt, updatedAt }
-                }))
-            }
+    //filteredProps выводит все возможные фильтры для выбора по данным из БД
+    const filteredProps = useMemo(() => {
+        let filteredOffersProps = {
+            filterMainPeople: [],
+            detailFilterBrand: [],
+            detailFilterMode: [],
+        } as {
+            filterMainPeople: string[],
+            detailFilterBrand: string[],
+            detailFilterMode: string[],
         }
-        start()
-    }, [])
+        filteredOffers.forEach(office => {
+            filteredOffersProps.filterMainPeople.push(office.filterMainPeople)
+            filteredOffersProps.detailFilterBrand.push(office.detailFilterBrand)
+            filteredOffersProps.detailFilterMode.push(office.detailFilterMode)
+        })
+        console.log(filteredOffers, 'отфильтрованные акции')
+        return {
+            filterMainPeople: [...new Set(filteredOffersProps.filterMainPeople)],
+            detailFilterBrand: [...new Set(filteredOffersProps.detailFilterBrand)],
+            detailFilterMode: [...new Set(filteredOffersProps.detailFilterMode)],
+        }
+
+    }, [filteredOffers])
+
+    console.log(filteredProps, 'filteredProps')
 
 
-    //    const refSales = React.useRef<HTMLDivElement>(null)
+    function resetFilteredOffers() {
+        setFilteredOffers(offers)
+    }
 
-    // React.useEffect(() => {
-    //     async function startFilter() {
-    //         console.log(filterMain)
-    //         const res = await fetch('/api/filter', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Accept': 'application/json'
-    //             },
-    //             body: JSON.stringify(filterMain)
-    //         })
-    //         if (res.ok) {
-    //             // const answer=await res.json()
-    //             // console.log(answer)
-    //             const sales: Sales[] = await res.json()
-    //             console.log(sales)
-    //             setSales(sales.map(sale => {
-    //                 const { id, title, shortDesc, price, description, filterMain, detailFilter, img, active, createdAt } = sale
-    //                 // const { ...set, description } = sale
-    //                 // return set
-    //                 return { id, title, shortDesc, price, description, filterMain, detailFilter, img, active, createdAt }
-    //             }))
-    //         }
-    //     }
-    //     startFilter()
-    // }, [filterName])
+
+
+    function selectFilterMainPeopleHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+        setDetailFilterMainPeople(event.target.value)
+        if (event.target.value === 'Null') resetFilteredOffers()
+        setCurrentFilter(prevFilterState => {
+            const filterMainPeople = event.target.value === 'Null'
+                ? null
+                : [...(prevFilterState.filterMainPeople ?? []), event.target.value]
+            console.log(filterMainPeople)
+            return {
+                ...prevFilterState,
+                filterMainPeople
+            }
+        })
+    }
+
+
+    function selectDetailFilterBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+        setDetailFilterBrandPeople(event.target.value)
+        if (event.target.value === 'Null') resetFilteredOffers()
+        setCurrentFilter(prevFilterState => {
+            const detailFilterBrand = event.target.value === 'Null'
+                ? null
+                : [...(prevFilterState.detailFilterBrand ?? []), event.target.value]
+            console.log(detailFilterBrand)
+            return {
+                ...prevFilterState,
+                detailFilterBrand
+            }
+        })
+    }
+
+
+    function selectDetailFilterModeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+        setDetailFilterModePeople(event.target.value)
+        if (event.target.value === 'Null') resetFilteredOffers()
+        setCurrentFilter(prevFilterState => {
+            const detailFilterMode = event.target.value === 'Null'
+                ? null
+                : [...(prevFilterState.detailFilterMode ?? []), event.target.value]
+            console.log(detailFilterMode)
+            return {
+                ...prevFilterState,
+                detailFilterMode
+            }
+        })
+    }
 
     const className = [
         'card',
@@ -302,9 +373,24 @@ export function CardsSpecialOffers() {
             <div className='selector'>
                 <div className='center'>
                     <div className='rowFilter'>
-                        <select className="selectModel" value={filterName} name="filterMain" onChange={event => setFilterName(+event.target.value)}>
-                            <option value={0} selected disabled>ФИЛЬТР:ВСЕ</option>
-                            {filterNameerList.map(saleMain => <option key={saleMain.id} value={saleMain.id}>{saleMain.name}</option>)}
+                        <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
+                            onChange={selectFilterMainPeopleHandler}>
+                            <option value={'Null'} selected >Выберите тип авто</option>
+                            {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain}</option>)}
+                        </select>
+                    </div>
+                    <div className='rowFilter'>
+                        <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
+                            onChange={selectDetailFilterBrandHandler}>
+                            <option value={'Null'} selected >Выберите бренд</option>
+                            {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain}</option>)}
+                        </select>
+                    </div>
+                    <div className='rowFilter'>
+                        <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
+                            onChange={selectDetailFilterModeHandler}>
+                            <option value={'Null'} selected >Выберите модель</option>
+                            {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain}</option>)}
                         </select>
                     </div>
                 </div>
@@ -312,11 +398,14 @@ export function CardsSpecialOffers() {
 
 
             <div className="background">
-                {sales.length > 0 &&
+                {filteredOffers.length > 0 &&
                     <div className="cards">
                         {
-                            sales.map(sale => {
-                                return <div className={className.join(' ')} ref={refCard} key={sale.id} onClick={(event) => { if (event.target === refCard.current) reversalCard() }}>
+                            filteredOffers.map(offer => {
+                                return <div className={className.join(' ')} 
+                                
+                                
+                                ref={refCard} key={offer.id} onClick={(event) => { if (event.target === refCard.current) reversalCard() }}>
                                     <div className="column" >
                                         <img style={{
                                             backgroundSize: 'cover', width: '100%',
@@ -324,17 +413,17 @@ export function CardsSpecialOffers() {
                                             objectFit: 'cover'
 
                                         }}
-                                            src={'/uploads/' + sale.img} />
+                                            src={'/uploads/' + offer.img} />
 
                                         <div className="contentCard">
-                                            <div className='titleCard'>{sale.title}</div>
-                                            <div className='textCard'>{sale.shortDesc}</div>
+                                            <div className='titleCard'>{offer.title}</div>
+                                            <div className='textCard'>{offer.shortDesc}</div>
                                             <div className='row'>
-                                                <div className='salesDiv'>{sale.price}</div>
+                                                <div className='salesDiv'>{offer.price}</div>
                                                 <div className='btnDiv'>
                                                     <Link href={{
                                                         pathname: '/card/[id]',
-                                                        query: { id: sale.id }
+                                                        query: { id: offer.id }
                                                     }}>
                                                         <button className='btnModal'>Узнать больше	&#10095;</button>
                                                     </Link>
@@ -363,7 +452,6 @@ export function CardsSpecialOffers() {
             </div>
 
             <style jsx>{`
-
 
                 .background {
                     display:flex; 
@@ -834,3 +922,10 @@ export function CardsSpecialOffers() {
 
 //     return <div>Акции не обнаружены</div>
 // }
+
+
+
+
+
+
+

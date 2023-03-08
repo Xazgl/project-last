@@ -114,13 +114,13 @@ export function MenuBar() {
       <li className="menuEL" id="catalog">
         <span>О компании</span>
         <ul className="bottomUl">
-          <Link href={'/catalog/special-offers'}>
+          <Link href={'/company/contact'}>
             <li className="f">Контакты</li>
           </Link>
-          <Link href={'/car-repair/service-form'}>
+          <Link href={'/company/protection'}>
             <li className="f">Охрана труда</li>
           </Link>
-          <Link href={'https://gbo.arkont.ru/'}>
+          <Link href={'/company/send'}>
             <li className="f">Напишите нам</li>
           </Link>
         </ul>

@@ -1,8 +1,9 @@
 // @ts-check
 
 const { PrismaClient } = require("@prisma/client");
+const { AxiosError } = require("axios");
 const fs = require('fs/promises');
-const { nanoid } = require("nanoid");
+// const { nanoid } = require("nanoid");
 const path = require("path");
 const xml2js = require('xml2js')
 const carsLinks = require('./cars.json') || [] //ссылка на файлы от Макспостера
@@ -36,15 +37,31 @@ async function start() {
          * @type {import('./vehicle').Vehicle[] } 
          */
         const vehicles = (await Promise.all(carsLinks.map(async (carLink) => {
-            const res = await axios.get(carLink)
-            const xml = await parser.parseStringPromise(res.data)
-            return xml.vehicles.vehicle
-        }))).flat()
-        // console.log(vehicles[0].phones[0].phone[0]._)
+            try {
+                const res = await axios.get(carLink)
+                const xml = await parser.parseStringPromise(res.data)
+                //  if(xml.vehicles.length > 0) {
+                // console.log(`ответ ${(xml.vehicles.vehicle)}`)
+                return xml.vehicles.vehicle
+                //  } else {
+                //     return null
+                //  }              
+            } catch (error) {
+                if (error instanceof AxiosError)
+                    console.error(error.code + ': ' + error.message)
+                return null
+            }
+        }))).filter(veh => veh !== null).flat()
+        // const result = vehicles.filter(arrayVehicle => arrayVehicle !== undefined);
+        // console.log(result)
+
+
+        // console.log(vehicles[0])
         // console.log(Number(vehicles[0].complectation['$']))         
         // fs.writeFile('./vehicle.json', JSON.stringify(vehicles[0], null, 2))
         // vehicles.forEach(async (vehicle) => {
         for (const vehicle of vehicles) {
+            console.log(vehicle.vin[0])
             const car = await db.car.findUnique({
                 where: {
                     vin: vehicle.vin[0],
@@ -230,7 +247,7 @@ async function startOld() {
         }))).flat()
 
         for (const offer of offers) {
-            // console.log(offer.vendor[0])
+            // console.log(offer)
             // console.log(offer.$.id)
             // console.log(offer.param[0]._)//пробег
             // console.log(offer.param[1]._)//год
@@ -280,7 +297,8 @@ async function startOld() {
                             picture: {
                                 set: offer.picture[0]
                             },
-                            typePrefix: offer.typePrefix[0],
+                            // typePrefix: offer.typePrefix[0],
+                            typePrefix: 'used',
                             manufacturer_warranty: bool(offer.manufacturer_warranty[0]),
                             url: offer.url[0],
                             mileage: offer.param[0]._,
@@ -299,8 +317,8 @@ async function startOld() {
                     })
 
                 } catch (error) {
-                    console.error(error)
-                    console.log('id: ' + offer.$.id,)
+                    // console.error(error)
+                    // console.log('id: ' + offer.$.id,)
                 }
             } else {
                 // console.log(car);
@@ -339,4 +357,4 @@ async function startOld() {
     }
 }
 
-startOld()
+// startOld()
