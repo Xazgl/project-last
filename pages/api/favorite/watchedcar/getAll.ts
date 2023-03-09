@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import db from "../../../prisma"
+import db from "../../../../prisma"
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -8,13 +8,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (clientToken) {
             if (req.method === 'GET') {
                 if (typeof clientToken === 'string') {
-                    const favoriteCarUser = await db.sessionClient.findUnique(
+                    const watchedCarUser = await db.sessionClient.findUnique(
                         {
                             where: {
                                 sessionToken: clientToken,
                             },
                             include: {
-                               favoriteCars: {
+                               watchedCars: {
                                 select:{
                                     car: {
                                         include: {
@@ -30,10 +30,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             }
                         }
                     )
-                   return  res.status(200).send({ favoriteCarUser })
+                    res.send({ watchedCarUser })
+
                 }
             }
-           return res.status(401).send({ message: 'не тот маршрут' })
+            return res.status(401).send({ message: 'не тот маршрут' })
         }
     } catch (error) {
         console.error(error)

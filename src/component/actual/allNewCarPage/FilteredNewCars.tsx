@@ -12,16 +12,21 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
+import HistoryIcon from '@mui/icons-material/History';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CompareIcon from '@mui/icons-material/Compare';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
 
+
 import { AllCarDto } from '../../../../@types/dto';
-import { Button, createTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, createTheme, useMediaQuery } from '@mui/material';
 import { LogoList } from './type/typeNewCar';
 import { driverTypeStr, logoFind, numberWithSpaces } from './servicesNewCar/service';
+import { FastForwardRounded } from '@mui/icons-material';
 
 
 type Props = {
@@ -48,6 +53,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
   // console.log(carArr)
 
   const [expanded, setExpanded] = React.useState(false);
+
+  const [colorIcon, setColorIcon] = React.useState(false);
+
+  const [favArr, setFavArr] = React.useState([]);
+  const [watchedArr, setWatchedArr] = React.useState([]);
+  const [compareArr, setCompareArr] = React.useState([]);
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -78,7 +90,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
     setShowModalFavorite(true)
   }
 
-   async function  addToFavorite(id){
+  async function addToFavorite(id) {
     const res = await fetch('/api/favorite/' + id, {
       method: 'POST',
       headers: {
@@ -87,9 +99,118 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
     })
     if (res.ok) {
       console.log(res)
+      async function start() {
+        const res = await fetch('/api/favorite/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setFavArr(result.favoriteCarUser.favoriteCars)
+            :
+            setFavArr(null)
+        }
+      }
+      start()
     }
   }
 
+
+  async function deleteToFavorite(id) {
+    const res = await fetch('/api/favorite/del/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function start() {
+        const res = await fetch('/api/favorite/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setFavArr(result.favoriteCarUser.favoriteCars)
+            :
+            setFavArr(null)
+        }
+      }
+      start()
+    }
+  }
+
+
+
+
+  async function addToCompare(id) {
+    const res = await fetch('/api/favorite/compare/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function startCompare() {
+        const res = await fetch('/api/favorite/compare/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setCompareArr(result.compareCarUser.compareCars)
+            :
+            setCompareArr(null)
+        }
+      }
+      startCompare()
+    }
+  }
+
+  async function deleteToCompare(id) {
+    const res = await fetch('/api/favorite/compare/del/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function start() {
+        const res = await fetch('/api/favorite/compare/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setCompareArr(result.compareCarUser.compareCars)
+            :
+            setCompareArr(null)
+        }
+      }
+      start()
+    }
+  }
+
+  // при загрузке дает избранное, сравнение
   useEffect(() => {
     async function start() {
       const res = await fetch('/api/favorite/getAll', {
@@ -99,15 +220,91 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
         }
       })
       if (res.ok) {
-        console.log(res)
+        const result = await res.json()
+        result !== undefined ?
+          setFavArr(result.favoriteCarUser.favoriteCars)
+          :
+          setFavArr(null)
+      }
+      const resComapre = await fetch('/api/favorite/compare/getAll', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (resComapre.ok) {
+        const resultCompare = await resComapre.json()
+        resultCompare !== undefined ?
+          setCompareArr(resultCompare.compareCarUser.compareCars)
+          :
+          setCompareArr(null)
+      }
+      const resWatched = await fetch('/api/favorite/watchedcar/getAll', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (resWatched.ok) {
+        const resultWatched = await resWatched.json()
+        resultWatched !== undefined ?
+          setWatchedArr(resultWatched.watchedCarUser.watchedCars)
+          :
+          setWatchedArr(null)
       }
     }
     start()
-  }, [])
 
+
+  }, [])
   return (
     <>
       <div className='background'>
+        {favArr.length > 0 &&
+          <Box
+            sx={{
+              display: 'flex', position: 'fixed', flexDirection: 'column', bottom: '0', right: '0',
+              width: 'auto', height: 'auto', marginBottom: '20px',
+            }}
+          >
+
+            <HistoryIcon
+              sx={{
+                display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                '&:hover': { color: 'black' }
+              }}
+            />
+            <Typography
+              sx={{
+                display: 'flex', fontSize: '17px', justifyContent: 'center'
+              }}
+            >{watchedArr.length}</Typography>
+            <CompareIcon
+              sx={{
+                display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                '&:hover': { color: 'green' }
+              }}
+            />
+            <Typography
+              sx={{
+                display: 'flex', fontSize: '17px', justifyContent: 'center'
+              }}
+            >{compareArr.length}</Typography>
+            <Link href={'/catalog/favorite-cars'}>
+              <FavoriteBorderIcon
+                sx={{
+                  display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                  '&:hover': { color: 'red' }
+                }}
+              />
+            </Link>
+            <Typography
+              sx={{
+                display: 'flex', fontSize: '17px', justifyContent: 'center'
+              }}
+            >{favArr.length}</Typography>
+          </Box>
+        }
         <div className='cards' id="desktop">
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
@@ -168,12 +365,24 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
               </CardContent>
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                  <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
-                    onClick={() => addToFavorite(car.id)}
-                  />
+                  {favArr.find(carFav => carFav.car.id === car.id) ?
+                    <FavoriteIcon sx={{ color: 'red' }}
+                      onClick={() => deleteToFavorite(car.id)}
+                    /> :
+                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                      onClick={() => addToFavorite(car.id)}
+                    />
+                  }
                 </IconButton>
                 <IconButton aria-label="share">
-                  <AddRoadIcon sx={{ '&:hover': { color: 'green' } }} />
+                  {compareArr.find(carCompar => carCompar.car.id === car.id) ?
+                    <AddRoadIcon sx={{ color: 'green' }}
+                      onClick={() => deleteToCompare(car.id)}
+                    /> :
+                    <AddRoadIcon sx={{ '&:hover': { color: 'green' } }}
+                      onClick={() => addToCompare(car.id)}
+                    />
+                  }
                 </IconButton>
                 {/* <ExpandMore
                     expand={expanded}
@@ -211,7 +420,14 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                     marginRight: '-5px'
                   }}>
                     <IconButton aria-label="add to favorites">
-                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
+                      {favArr.find(carFav => carFav.car.id === car.id) ?
+                        <FavoriteIcon sx={{ color: 'red' }}
+                          onClick={() => deleteToFavorite(car.id)}
+                        /> :
+                        <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                          onClick={() => addToFavorite(car.id)}
+                        />
+                      }
                     </IconButton>
                   </IconButton>
                 }

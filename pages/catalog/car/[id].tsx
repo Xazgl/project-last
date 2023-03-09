@@ -34,6 +34,16 @@ const CarPage: NextPage = () => {
                 console.log(carFetch);
                 setCar(carFetch)
             }
+            const resWatched = await fetch('/api/favorite/watchedcar/' + router.query.id, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resWatched.ok) {
+                const carWatched = await  resWatched.json()
+                console.log(carWatched);
+            }
         }
         if (router.isReady) {
             start()
@@ -41,6 +51,7 @@ const CarPage: NextPage = () => {
 
         }
     }, [router.isReady]);
+
 
     return (
         <>

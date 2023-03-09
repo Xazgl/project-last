@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import db from "../../../prisma"
+import db from "../../../../prisma"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         },
                     })
 
-                    const currentCar = await db.favoriteCarsToCar.findFirst({
+                    const currentCar = await db.compareCarsToCar.findFirst({
                         where: {
                             carId: id,
                             sessionId: user.id
@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     })
 
                     if (!currentCar) {
-                        const carFavorite = await db.favoriteCarsToCar.create({
+                        const carCompare= await db.compareCarsToCar.create({
                             data: {
                                 car: {
                                     connect: {
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 }
                             }
                         })
-                        res.status(200).send(carFavorite)
+                        res.status(200).send(carCompare)
                     } else {
                         res.status(200).send('Машина уже добавлена')
                     }
