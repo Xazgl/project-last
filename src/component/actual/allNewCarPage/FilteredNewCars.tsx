@@ -18,6 +18,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CompareIcon from '@mui/icons-material/Compare';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
 
@@ -260,51 +261,65 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
   return (
     <>
       <div className='background'>
-        {favArr.length > 0 &&
-          <Box
-            sx={{
-              display: 'flex', position: 'fixed', flexDirection: 'column', bottom: '0', right: '0',
-              width: 'auto', height: 'auto', marginBottom: '20px',
-            }}
-          >
-
-            <HistoryIcon
-              sx={{
-                display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
-                '&:hover': { color: 'black' }
-              }}
-            />
-            <Typography
-              sx={{
-                display: 'flex', fontSize: '17px', justifyContent: 'center'
-              }}
-            >{watchedArr.length}</Typography>
-            <CompareIcon
-              sx={{
-                display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
-                '&:hover': { color: 'green' }
-              }}
-            />
-            <Typography
-              sx={{
-                display: 'flex', fontSize: '17px', justifyContent: 'center'
-              }}
-            >{compareArr.length}</Typography>
-            <Link href={'/catalog/favorite-cars'}>
-              <FavoriteBorderIcon
+        <Box
+          sx={{
+            display: 'flex', position: 'fixed', flexDirection: 'column', bottom: '0', right: '0',
+            width: 'auto', height: 'auto', marginBottom: '20px',
+          }}
+        >
+          {watchedArr.length > 0 &&
+            (<>
+              <Link href={'/catalog/watched-cars'}>
+                <HistoryIcon
+                  sx={{
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    '&:hover': { color: 'black' }
+                  }}
+                />
+              </Link>
+              <Typography
                 sx={{
-                  display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
-                  '&:hover': { color: 'red' }
+                  display: 'flex', fontSize: '17px', justifyContent: 'center'
                 }}
-              />
-            </Link>
-            <Typography
-              sx={{
-                display: 'flex', fontSize: '17px', justifyContent: 'center'
-              }}
-            >{favArr.length}</Typography>
-          </Box>
-        }
+              >{watchedArr.length}</Typography>
+            </>)
+          }
+          {compareArr.length > 0 &&
+            (<>
+              <Link href={'/catalog/compare-cars'}>
+                <CompareIcon
+                  sx={{
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    '&:hover': { color: 'green' }
+                  }}
+                />
+              </Link>
+              <Typography
+                sx={{
+                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                }}
+              >{compareArr.length}</Typography>
+            </>)
+          }
+          {favArr.length > 0 &&
+            (<>
+              <Link href={'/catalog/favorite-cars'}>
+                <FavoriteBorderIcon
+                  sx={{
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    '&:hover': { color: 'red' }
+                  }}
+                />
+              </Link>
+              <Typography
+                sx={{
+                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                }}
+              >{favArr.length}</Typography>
+            </>)
+          }
+        </Box>
+
         <div className='cards' id="desktop">
           {filteredCars.map(car =>
             <Card key={car.id} sx={{

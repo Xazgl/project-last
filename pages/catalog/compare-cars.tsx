@@ -1,15 +1,11 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type {NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
-import { AllCarDto } from '../../@types/dto'
-import db, { Car } from '../../prisma'
-import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
-import FavoriteCars from '../../src/component/actual/favoriteCarPage/FavoriteCards'
+import CompareCars from '../../src/component/actual/compareCarPage/CompareCards'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
-import { ModalFavorite } from '../../src/component/ModalFavorite'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 
@@ -19,7 +15,7 @@ const FavoriteCarPage: NextPage = () => {
 
     const [showModal, setShowModal] = useState(false)
     const [showTradeInModal, setShowTradeInModal] = useState(false)
-    const [favArr, setFavArr] = useState([]);
+    const [compareArr, setCompareArr] = useState([]);
 
 
     const refSales = useRef<HTMLDivElement>(null)
@@ -32,7 +28,7 @@ const FavoriteCarPage: NextPage = () => {
 
     useEffect(() => {
         async function start() {
-            const res = await fetch('/api/favorite/getAll', {
+            const res = await fetch('/api/favorite/compare/getAll', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,11 +36,13 @@ const FavoriteCarPage: NextPage = () => {
             })
             if (res.ok) {
                 const result = await res.json()
-                setFavArr(result.favoriteCarUser.favoriteCars)
+                setCompareArr(result.compareCarUser.compareCars)
             }
         }
         start()
     }, [])
+
+
 
 
     return (
@@ -56,7 +54,7 @@ const FavoriteCarPage: NextPage = () => {
             </Head>
             <MenuBar />
             <BarMenu />
-            <FavoriteCars favArr={favArr} setFavArr={setFavArr} setShowModal={setShowModal} />
+            <CompareCars compareArr={compareArr} setCompareArr={setCompareArr} setShowModal={setShowModal} />
             {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
 
             {

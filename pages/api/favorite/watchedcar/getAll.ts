@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             }
                         }
                     )
-                    res.send({ watchedCarUser })
+                   return  res.send({ watchedCarUser })
 
                 }
             }

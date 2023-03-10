@@ -197,7 +197,7 @@ const AdminTable: NextPage = () => {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  <DealerAdd />
+                  {/* <DealerAdd /> */}
                 </Typography>
               </AccordionDetails>
             </Accordion>

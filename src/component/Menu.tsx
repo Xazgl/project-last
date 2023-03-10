@@ -67,15 +67,15 @@ export function MenuBar() {
       <li className="menuEL" id="catalog">
         <span>Услуги</span>
         <ul className="bottomUl">
-          <Link href={'/catalog/new-car'}>
+          {/* <Link href={'/catalog/new-car'}>
             <li className="f">Кредитный калькулятор</li>
-          </Link>
+          </Link> */}
           <Link href={'/services/insurance'}>
             <li className="f">Страхование</li>
           </Link>
-          <Link href={'/services/insurance'}>
+          {/* <Link href={'/services/insurance'}>
             <li className="f">Выкуп автомобилей</li>
-          </Link>
+          </Link> */}
           <Link href={'/services/accident-assistant'}>
             <li className="f">Аварийный комиссар</li>
           </Link>

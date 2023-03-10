@@ -9,28 +9,29 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import CompareIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
-
+import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
 import { AllCarDto } from '../../../../@types/dto';
 import { Button, CircularProgress } from '@mui/material';
 import { driverTypeStr, logoFind, numberWithSpaces } from '../allNewCarPage/servicesNewCar/service';
 import { LogoList } from '../allNewCarPage/type/typeNewCar';
+import { gearBoxName } from './function';
 
 
 
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
-  favArr: any,
-  setFavArr: Dispatch<SetStateAction<any[]>>,
+  compareArr: any,
+  setCompareArr: Dispatch<SetStateAction<any[]>>,
 }
 
 
 
-function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
+function CompareCars({ setShowModal, setCompareArr, compareArr }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -61,8 +62,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
   }
 
 
-  async function deleteToFavorite(id) {
-    const res = await fetch('/api/favorite/del/' + id, {
+  async function deleteToCompare(id) {
+    const res = await fetch('/api/favorite/compare/del/' + id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -71,7 +72,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
     if (res.ok) {
       console.log(res)
       async function start() {
-        const res = await fetch('/api/favorite/getAll', {
+        const res = await fetch('/api/favorite/compare/getAll', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -81,9 +82,9 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
           // console.log(res)
           const result = await res.json()
           result !== undefined ?
-            setFavArr(result.favoriteCarUser.favoriteCars)
+            setCompareArr(result.compareCarUser.compareCars)
             :
-            setFavArr(null)
+            setCompareArr(null)
         }
       }
       start()
@@ -92,14 +93,14 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
 
   return (
     <>
-      <div className='divTitle'>Избранное</div>
+      <div className='divTitle'>Сравните разные авто</div>
       <div className='background'>
-        {favArr !== null ?
+        {compareArr !== null ?
           (<>
             <div className='cards' id="desktop">
-              {favArr.map(car => {
+              {compareArr.map(car => {
                 return <Card key={car.car.id} sx={{
-                  width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
+                  width: 345, height:600, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
                   '&:hover .credit': {
@@ -144,7 +145,14 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                   </Link>
                   <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                      {car.car.CarModification.name} / {driverTypeStr(car.car.CarModification.driveType)}
+                      <ul>
+                        <li>Двигатель: {car.car.CarModification.name}</li>
+                        <li>{driverTypeStr(car.car.CarModification.driveType)}</li>
+                        <li>Трансмиссия: {gearBoxName(car.car.CarModification.gearboxType)}</li>
+                        <li>Комплектация: {car.car.CarComplectation.name}</li>
+                        <li>Кол-во дверей: {car.car.CarModification.bodyDoorCount}</li>
+                      </ul>
+
                       <div className='price'><h3>{numberWithSpaces(Number(car.car.price))} ₽</h3></div>
                       <div className='priceMonth'>
                         <button className="btn">от {numberWithSpaces(Math.round(Number(car.car.priceMonth)))} ₽/мес</button>
@@ -156,8 +164,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                   </CardContent>
                   <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
-                      <FavoriteIcon sx={{ color: 'red' }}
-                        onClick={() => deleteToFavorite(car.car.id)}
+                      <RemoveRoadIcon  sx={{ color: 'green' }}
+                        onClick={() => deleteToCompare(car.car.id)}
                       />
                     </IconButton>
                     <IconButton aria-label="share">
@@ -173,9 +181,9 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
             </div>
 
             <div className='cards' id="mob">
-              {favArr.map(car =>
+              {compareArr.map(car =>
                 <Card key={car.car.id} sx={{
-                  width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
+                  width: '90%', height: 600, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
                 }} >
@@ -192,8 +200,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                         marginRight: '-5px'
                       }}>
                         <IconButton aria-label="add to favorites">
-                          <FavoriteIcon sx={{ color: 'red' }}
-                            onClick={() => deleteToFavorite(car.car.id)}
+                          <RemoveRoadIcon  sx={{ color: 'green' }}
+                            onClick={() => deleteToCompare(car.car.id)}
                           />
                         </IconButton>
                       </IconButton>
@@ -220,10 +228,16 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                   </Link>
                   <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                      {car.car.CarModification.name} / {driverTypeStr(car.car.CarModification.driveType)}
+                    <ul>
+                        <li>Двигатель: {car.car.CarModification.name}</li>
+                        <li>{driverTypeStr(car.car.CarModification.driveType)}</li>
+                        <li>Трансмиссия: {gearBoxName(car.car.CarModification.gearboxType)}</li>
+                        <li>Комплектация: {car.car.CarComplectation.name}</li>
+                        <li>Кол-во дверей: {car.car.CarModification.bodyDoorCount}</li>
+                      </ul>
                       <div className='price'><h3>{numberWithSpaces(Number(car.car.price))} ₽</h3></div>
                       <div className='priceMonth'>
-                        <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
+                        <button className="btn">от {numberWithSpaces(Math.round(Number(car.car.priceMonth)))} ₽/мес</button>
                       </div>
                       <div className='office'>
                         <span>{car.car.DealerModel.name}</span>    <RoomIcon />
@@ -243,8 +257,6 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
           <CircularProgress />
         }
       </div>
-
-
 
       <style jsx>{`              
       @keyframes credit-open {
@@ -415,7 +427,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       }
       #mob{
         display: flex;
-      } 
+      }
 
       .divTitle {
         font-size:40px;
@@ -455,4 +467,4 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
   )
 }
 
-export default FavoriteCars
+export default CompareCars

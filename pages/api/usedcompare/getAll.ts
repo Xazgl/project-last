@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import db from "../../../../prisma"
+import db from "../../../prisma"
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -14,17 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 sessionToken: clientToken,
                             },
                             include: {
-                               compareCars: {
+                               compareUsedCars: {
                                 select:{
-                                    car: {
-                                        include: {
-                                            CarModel: true,
-                                            CarComplectation: true,
-                                            CarModification: true,
-                                            extras: true,
-                                            DealerModel: true,
-                                        }
-                                    }
+                                    car: {}
                                 }
                                }
                             }

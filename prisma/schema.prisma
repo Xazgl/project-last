@@ -43,7 +43,7 @@ model CalcCredit {
 }
 
 model CalcInsurance {
-  id                 String  @id @default(cuid())
+  id                 String   @id @default(cuid())
   name               String
   phone              String
   equipment          String
@@ -61,12 +61,9 @@ model CalcInsurance {
   carDeposit         Boolean
   installmentPlan    Boolean
   drivers            Json[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }
-
-
-
 
 model ClientTradein {
   id        String   @id @default(cuid())
@@ -98,14 +95,17 @@ model Session {
 }
 
 model SessionClient {
-  id           String              @id @default(cuid())
-  sessionToken String              @unique
-  expires      DateTime
-  favoriteCars FavoriteCarsToCar[]
-  watchedCars  WatchedCarsToCar[]
-  compareCars  CompareCarsToCar[]
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
+  id               String                  @id @default(cuid())
+  sessionToken     String                  @unique
+  expires          DateTime
+  favoriteCars     FavoriteCarsToCar[]
+  favoriteUsedCars FavoriteUsedCarsToCar[]
+  watchedCars      WatchedCarsToCar[]
+  watchedUsedCars  WatchedUsedCarsToCar[]
+  compareCars      CompareCarsToCar[]
+  compareUsedCars  CompareUsedCarsToCar[]
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
   // Car          Car?                @relation(fields: [carId], references: [id])
   // carId        String?
 }
@@ -114,6 +114,15 @@ model FavoriteCarsToCar {
   session   SessionClient @relation(fields: [sessionId], references: [id])
   sessionId String
   car       Car           @relation(fields: [carId], references: [id])
+  carId     String
+
+  @@id([sessionId, carId])
+}
+
+model FavoriteUsedCarsToCar {
+  session   SessionClient @relation(fields: [sessionId], references: [id])
+  sessionId String
+  car       UsedCars      @relation(fields: [carId], references: [id])
   carId     String
 
   @@id([sessionId, carId])
@@ -128,10 +137,28 @@ model WatchedCarsToCar {
   @@id([sessionId, carId])
 }
 
+model WatchedUsedCarsToCar {
+  session   SessionClient @relation(fields: [sessionId], references: [id])
+  sessionId String
+  car       UsedCars      @relation(fields: [carId], references: [id])
+  carId     String
+
+  @@id([sessionId, carId])
+}
+
 model CompareCarsToCar {
   session   SessionClient @relation(fields: [sessionId], references: [id])
   sessionId String
   car       Car           @relation(fields: [carId], references: [id])
+  carId     String
+
+  @@id([sessionId, carId])
+}
+
+model CompareUsedCarsToCar {
+  session   SessionClient @relation(fields: [sessionId], references: [id])
+  sessionId String
+  car       UsedCars      @relation(fields: [carId], references: [id])
   carId     String
 
   @@id([sessionId, carId])
@@ -284,23 +311,23 @@ model Car {
 }
 
 model UsedCars {
-  id                    String   @id @default(cuid())
-  offersId              String   @unique
+  id                    String                  @id @default(cuid())
+  offersId              String                  @unique
   vendor                String //KIA
   modelFullName         String //Sorento 2.2d AMT (199 л.с.) 4WD 2020
   price                 Float? //цена
-  enable_auto_discounts Boolean  @default(false)
+  enable_auto_discounts Boolean                 @default(false)
   currencyId            String?
   count                 String?
   categoryId            String?
-  delivery              Boolean  @default(false)
-  pickup                Boolean  @default(true)
-  store                 Boolean  @default(true)
+  delivery              Boolean                 @default(false)
+  pickup                Boolean                 @default(true)
+  store                 Boolean                 @default(true)
   description           String?
   sales_notes           String?
   picture               String[] // много картинок
   typePrefix            String //новая или БУ
-  manufacturer_warranty Boolean  @default(false)
+  manufacturer_warranty Boolean                 @default(false)
   url                   String? //ссылка на avto.ru
   mileage               String? //пробег
   year                  String? //год выпуска
@@ -314,7 +341,10 @@ model UsedCars {
   gearboxType           String? // коробка
   generation            String? //поколение
   modelShortName        String? //Sorento
-  active                Boolean  @default(true)
+  active                Boolean                 @default(true)
+  FavoriteUsedCarsToCar FavoriteUsedCarsToCar[]
+  WatchedUsedCarsToCar  WatchedUsedCarsToCar[]
+  CompareUsedCarsToCar  CompareUsedCarsToCar[]
 }
 
 model Vacancy {

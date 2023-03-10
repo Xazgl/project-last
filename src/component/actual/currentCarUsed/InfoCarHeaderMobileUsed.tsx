@@ -10,11 +10,12 @@ type Props = {
     car: UsedCars,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
+    setCarImg: Dispatch<SetStateAction<string>>,
+    setCar: Dispatch<SetStateAction<UsedCars>>,
 }
 
 
-export function InfoCarHeaderMobileUsed({ car, showModal, setShowModal, setCarImg }: Props) {
+export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setCarImg }: Props) {
 
     function showModalImg(x) {
         setShowModal(true)
@@ -23,6 +24,99 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setShowModal, setCarIm
 
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    async function addToFavorite(id) {
+        const res = await fetch('/api/usedfavorite/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+        }
+    }
+
+
+    async function deleteToFavorite(id) {
+        const res = await fetch('/api/usedfavorite/del/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+
+        }
+    }
+
+    async function addToCompare(id) {
+        const res = await fetch('/api/usedcompare/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+
+
+        }
+    }
+
+    async function deleteToCompare(id) {
+        const res = await fetch('/api/usedcompare/del/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+
+        }
     }
 
     return (
@@ -54,10 +148,29 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setShowModal, setCarIm
                                     </div>
                                     <div className="rowIcon" style={{ gap: 15, marginTop: '50px', justifyContent: 'center' }}>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <FavoriteIcon sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            {car.FavoriteUsedCarsToCar.length <= 0 &&
+                                                <FavoriteIcon
+                                                    onClick={() => addToFavorite(car.id)}
+                                                    sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            }
+                                            {car.FavoriteUsedCarsToCar.length > 0 &&
+                                                <FavoriteIcon
+                                                    onClick={() => deleteToFavorite(car.id)}
+                                                    sx={{ color: 'red', fontSize: '30px' }} />
+                                            }
                                         </div>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <AddRoadIcon sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            {car.CompareUsedCarsToCar.length <= 0 &&
+                                                <AddRoadIcon
+                                                    onClick={() => addToCompare(car.id)}
+                                                    sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            }
+                                            {car.CompareUsedCarsToCar.length > 0 &&
+                                                <AddRoadIcon
+                                                    onClick={() => deleteToCompare(car.id)}
+                                                    sx={{ color: 'green', fontSize: '30px' }} />
+                                            }
+
                                         </div>
                                         <div id="tradeIn">
                                             <button className="btnTradeIn"> Записаться на оценку
@@ -90,7 +203,7 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setShowModal, setCarIm
                         </div>
 
                     </>
-                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
                         <CircularProgress />
                     </Box>
                 }

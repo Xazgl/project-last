@@ -2,7 +2,7 @@ import { Circle } from "@mui/icons-material";
 import { Dispatch, SetStateAction } from "react";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress, Link } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
@@ -12,12 +12,12 @@ type Props = {
     car: UsedCars,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
+    setCarImg: Dispatch<SetStateAction<string>>,
+    setCar: Dispatch<SetStateAction<UsedCars>>,
 }
 
 
-export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCarImg }: Props) {
-
+export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCar, setCarImg }: Props) {
 
     function showModalImg(x) {
         setShowModal(true)
@@ -28,50 +28,111 @@ export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCarImg }: P
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
+
+    async function addToFavorite(id) {
+        const res = await fetch('/api/usedfavorite/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+        }
+    }
+
+
+    async function deleteToFavorite(id) {
+        const res = await fetch('/api/usedfavorite/del/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+
+        }
+    }
+
+
+
+
+    async function addToCompare(id) {
+        const res = await fetch('/api/usedcompare/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+
+
+        }
+    }
+
+    async function deleteToCompare(id) {
+        const res = await fetch('/api/usedcompare/del/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/usedcar/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                console.log(carFetch);
+                setCar(carFetch)
+            }
+
+        }
+    }
+
+
+
     return (
         <>
             <div className="background" id="desktop">
                 {car !== null ?
                     <>
                         <div className="row" style={{ width: '100%', height: 'auto' }}>
-                            {/* <div style={{
-                                flexDirection: 'column', width: '50%',
-                                overflow: 'hidden'
-                            }}>
-
-                                <ImageList sx={{ width: '80%', height: 'auto' }} cols={1} rowHeight={'auto'}>
-                                <ImageListItem key={1} >
-                                    <img
-                                        src={`${car.img[0]}`}
-                                        alt={car.img[0]}
-                                        loading="lazy"
-                                        className="headerPhoto"
-                                        style={{ objectFit: 'fill' }}
-                                    />
-                                      </ImageListItem>
-                                              </ImageList>
-                                    {/* <div className="headerPhoto" style={{backgroundImage: `${url(car.img[0])}` }}></div> 
-                            </div>
-
-                             <div style={{ flexDirection: 'column', width: '50%' }}> */}
-
-                            {/* ''
-                            <ImageList sx={{ width: '1000px', height: '600px' }} cols={1} rowHeight={'auto'}>
-                                {car.picture.map((item) => (
-                                    <ImageListItem key={item}
-                                        sx={{ cursor: 'zoom-in' }}
-                                    >
-                                        <img
-                                            src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                                            srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                            alt={item}
-                                            loading="lazy"
-                                            onClick={() => showModalImg(item)}
-                                        />
-                                    </ImageListItem>
-                                ))}
-                            </ImageList> */}
-                            {/* </div> */}
                             <Box sx={{ display: 'flex', width: '100%', height: '650px', justifyContent: 'center' }}>
                                 {car.picture.map((item) => (
                                     <img
@@ -103,15 +164,36 @@ export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCarImg }: P
                                     </div>
                                     <div className="rowColumn" style={{ gap: 15, marginTop: '50px' }}>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <FavoriteIcon sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            {car.FavoriteUsedCarsToCar.length <= 0 &&
+                                                <FavoriteIcon
+                                                    onClick={() => addToFavorite(car.id)}
+                                                    sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            }
+                                            {car.FavoriteUsedCarsToCar.length > 0 &&
+                                                <FavoriteIcon
+                                                    onClick={() => deleteToFavorite(car.id)}
+                                                    sx={{ color: 'red', fontSize: '30px' }} />
+                                            }
                                         </div>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <AddRoadIcon sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            {car.CompareUsedCarsToCar.length <= 0 &&
+                                                <AddRoadIcon
+                                                    onClick={() => addToCompare(car.id)}
+                                                    sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            }
+                                            {car.CompareUsedCarsToCar.length > 0 &&
+                                                <AddRoadIcon
+                                                    onClick={() => deleteToCompare(car.id)}
+                                                    sx={{ color: 'green', fontSize: '30px' }} />
+                                            }
                                         </div>
                                         <div id="tradeIn">
-                                            <button className="btnTradeIn"> Записаться на оценку
-                                                <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
-                                            </button>
+                                            <Link href={'/catalog/tradein'}>
+
+                                                <button className="btnTradeIn"> Записаться на оценку
+                                                    <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -139,9 +221,9 @@ export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCarImg }: P
                         </div>
 
                     </>
-                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
-                    <CircularProgress />
-                </Box>
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
 

@@ -1,6 +1,6 @@
 
 import React, { Dispatch, SetStateAction } from 'react'
-import { styled, useTheme } from '@mui/material/styles';
+import { styled} from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,32 +9,26 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
-
-import { AllCarDto } from '../../../../@types/dto';
 import { Button, CircularProgress } from '@mui/material';
 import { driverTypeStr, logoFind, numberWithSpaces } from '../allNewCarPage/servicesNewCar/service';
 import { LogoList } from '../allNewCarPage/type/typeNewCar';
 
 
-
-
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
-  favArr: any,
-  setFavArr: Dispatch<SetStateAction<any[]>>,
+  watchedArr: any,
+  setWatchedArr: Dispatch<SetStateAction<any[]>>,
 }
 
 
 
-function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
+function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
-
-
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -61,8 +55,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
   }
 
 
-  async function deleteToFavorite(id) {
-    const res = await fetch('/api/favorite/del/' + id, {
+  async function deleteToWatched(id) {
+    const res = await fetch('/api/favorite/watchedcar/del/' + id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -71,7 +65,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
     if (res.ok) {
       console.log(res)
       async function start() {
-        const res = await fetch('/api/favorite/getAll', {
+        const res = await fetch('/api/favorite/watchedcar/getAll', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -81,9 +75,9 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
           // console.log(res)
           const result = await res.json()
           result !== undefined ?
-            setFavArr(result.favoriteCarUser.favoriteCars)
+            setWatchedArr(result.watchedCarUser.watchedCars)
             :
-            setFavArr(null)
+            setWatchedArr(null)
         }
       }
       start()
@@ -92,12 +86,12 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
 
   return (
     <>
-      <div className='divTitle'>Избранное</div>
+      <div className='divTitle'>Просмотренные авто</div>
       <div className='background'>
-        {favArr !== null ?
+        {watchedArr !== null ?
           (<>
             <div className='cards' id="desktop">
-              {favArr.map(car => {
+              {watchedArr.map(car => {
                 return <Card key={car.car.id} sx={{
                   width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
@@ -156,8 +150,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                   </CardContent>
                   <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
-                      <FavoriteIcon sx={{ color: 'red' }}
-                        onClick={() => deleteToFavorite(car.car.id)}
+                      <DeleteIcon sx={{ color: 'black' }}
+                        onClick={() => deleteToWatched(car.car.id)}
                       />
                     </IconButton>
                     <IconButton aria-label="share">
@@ -173,7 +167,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
             </div>
 
             <div className='cards' id="mob">
-              {favArr.map(car =>
+              {watchedArr.map(car =>
                 <Card key={car.car.id} sx={{
                   width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
@@ -192,8 +186,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                         marginRight: '-5px'
                       }}>
                         <IconButton aria-label="add to favorites">
-                          <FavoriteIcon sx={{ color: 'red' }}
-                            onClick={() => deleteToFavorite(car.car.id)}
+                          <DeleteIcon sx={{ color: 'red' }}
+                            onClick={() => deleteToWatched(car.car.id)}
                           />
                         </IconButton>
                       </IconButton>
@@ -455,4 +449,4 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
   )
 }
 
-export default FavoriteCars
+export default WatchedCars

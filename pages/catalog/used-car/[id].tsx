@@ -40,6 +40,8 @@ const CarPage: NextPage = () => {
         }
     }, [router.isReady]);
 
+
+
     return (
         <>
             <Head>
@@ -49,8 +51,8 @@ const CarPage: NextPage = () => {
             </Head>
             <MenuBar />
             <BarMenu />
-            <InfoCarHeaderUsed car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-            <InfoCarHeaderMobileUsed car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <InfoCarHeaderUsed car={car} setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <InfoCarHeaderMobileUsed car={car} setCar={setCar}  setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoCarTableUsed car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoSaleUsed car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoCreditUsed car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />

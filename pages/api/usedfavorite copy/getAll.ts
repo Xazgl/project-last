@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import db from "../../../../prisma"
+import db from "../../../prisma"
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -8,32 +8,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (clientToken) {
             if (req.method === 'GET') {
                 if (typeof clientToken === 'string') {
-                    const compareCarUser = await db.sessionClient.findUnique(
+                    const favoriteCarUser = await db.sessionClient.findUnique(
                         {
                             where: {
                                 sessionToken: clientToken,
                             },
                             include: {
-                               compareCars: {
+                               favoriteUsedCars: {
                                 select:{
-                                    car: {
-                                        include: {
-                                            CarModel: true,
-                                            CarComplectation: true,
-                                            CarModification: true,
-                                            extras: true,
-                                            DealerModel: true,
-                                        }
-                                    }
+                                    car: {}
                                 }
                                }
                             }
                         }
                     )
-                  return   res.send({ compareCarUser })
+                   return  res.status(200).send({ favoriteCarUser })
                 }
             }
-            return res.status(401).send({ message: 'не тот маршрут' })
+           return res.status(401).send({ message: 'не тот маршрут' })
         }
     } catch (error) {
         console.error(error)

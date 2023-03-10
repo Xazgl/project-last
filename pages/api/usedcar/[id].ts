@@ -9,6 +9,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const answer = await db.usedCars.findUnique({
                     where: {
                         id: id
+                    },
+                    include:{
+                        FavoriteUsedCarsToCar:true,
+                        CompareUsedCarsToCar:true,
                     }
                 })
                 res.status(200).send(answer)

@@ -62,8 +62,8 @@ const CarPage: NextPage = () => {
             </Head>
             <MenuBar />
             <BarMenu />
-            <InfoCarHeader car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-            <InfoCarHeaderMobile car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <InfoCarHeader car={car}   setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <InfoCarHeaderMobile car={car} setCar={setCar}  setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoCarTable car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoSale car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoCredit car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />

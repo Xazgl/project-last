@@ -16,6 +16,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         CarModification: true,
                         extras: true,
                         DealerModel: true,
+                        FavoriteCarsToCar:true,
+                        CompareCarsToCar:true,
                     }
                 })
                 res.status(200).send(answer)

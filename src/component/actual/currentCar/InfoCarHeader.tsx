@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Button, CardMedia } from "@mui/material";
+import { Button, CardMedia, Link } from "@mui/material";
 
 import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -15,42 +15,12 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
+    setCarImg: Dispatch<SetStateAction<string>>,
+    setCar: Dispatch<SetStateAction<CarDto>>,
 }
 
 
-export function InfoCarHeader({ car, showModal, setShowModal, setCarImg }: Props) {
-
-    // const router = useRouter()
-    // const [car, setCar] = useState<CarDto>(null) // TODO: написать тип ДТО {}
-    // const { id } = router.query
-    // useEffect(() => {
-    //     async function start() {
-    //         const res = await fetch('/api/car/' + router.query.id, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //         })
-    //         if (res.ok) {
-    //             const carFetch = await res.json()
-    //             console.log(carFetch);
-    //             setCar(carFetch)
-    //         }
-    //     }
-    //     if (router.isReady) {
-    //         start()
-    //         console.log('start');
-
-    //     }
-    // }, [router.isReady]);
-
-
-    // const carPhoto = useMemo(() => {
-    //     if(car !== null)
-    //    return car.img[0]
-    // }, [car])
-
+export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg }: Props) {
 
 
     function showModalImg(x) {
@@ -62,9 +32,100 @@ export function InfoCarHeader({ car, showModal, setShowModal, setCarImg }: Props
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
+    async function addToFavorite(id) {
+        const res = await fetch('/api/favorite/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/car/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                setCar(carFetch)
+            }
+
+        }
+    }
+
+
+    async function deleteToFavorite(id) {
+        const res = await fetch('/api/favorite/del/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            if (res.ok) {
+                const resCurrentCar = await fetch('/api/car/' + id, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                if (resCurrentCar.ok) {
+                    const carFetch = await resCurrentCar.json()
+                    setCar(carFetch)
+                }
+            }
+        }
+    }
+
+
+    async function addToCompare(id) {
+        const res = await fetch('/api/favorite/compare/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            if (res.ok) {
+                const resCurrentCar = await fetch('/api/car/' + id, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                if (resCurrentCar.ok) {
+                    const carFetch = await resCurrentCar.json()
+                    setCar(carFetch)
+                }
+            }
+        }
+    }
+
+    async function deleteToCompare(id) {
+        const res = await fetch('/api/favorite/compare/del/' + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.ok) {
+            const resCurrentCar = await fetch('/api/car/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resCurrentCar.ok) {
+                const carFetch = await resCurrentCar.json()
+                setCar(carFetch)
+            }
+        }
+    }
+
     return (
         <>
-            <div className="background" id ="desktop">
+            <div className="background" id="desktop">
                 {car !== null ?
                     <>
                         <div className="row" style={{ width: '100%', height: 'auto' }}>
@@ -124,15 +185,35 @@ export function InfoCarHeader({ car, showModal, setShowModal, setCarImg }: Props
                                     </div>
                                     <div className="rowColumn" style={{ gap: 15, marginTop: '50px' }}>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <FavoriteIcon sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            {car.FavoriteCarsToCar.length <= 0 &&
+                                                <FavoriteIcon
+                                                    onClick={() => addToFavorite(car.id)}
+                                                    sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            }
+                                            {car.FavoriteCarsToCar.length > 0 &&
+                                                <FavoriteIcon
+                                                    onClick={() => deleteToFavorite(car.id)}
+                                                    sx={{ color: 'red', fontSize: '30px' }} />
+                                            }
                                         </div>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
-                                            <AddRoadIcon sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            {car.CompareCarsToCar.length <= 0 &&
+                                                <AddRoadIcon
+                                                    onClick={() => addToCompare(car.id)}
+                                                    sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                            }
+                                            {car.CompareCarsToCar.length > 0 &&
+                                                <AddRoadIcon
+                                                    onClick={() => deleteToCompare(car.id)}
+                                                    sx={{ color: 'green', fontSize: '30px' }} />
+                                            }
                                         </div>
                                         <div id="tradeIn">
-                                            <button className="btnTradeIn"> Записаться на оценку
-                                                <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
-                                            </button>
+                                            <Link href={'/catalog/tradein'}>
+                                                <button className="btnTradeIn"> Записаться на оценку
+                                                    <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                </button>
+                                            </Link >
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +246,7 @@ export function InfoCarHeader({ car, showModal, setShowModal, setCarImg }: Props
             </div>
 
 
-                
+
             <style jsx>{`
                 .background {
                     display:flex; 

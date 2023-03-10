@@ -1,5 +1,5 @@
 import { Car } from '@prisma/client'
-import React, { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react'
+import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -12,14 +12,18 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
+import HistoryIcon from '@mui/icons-material/History';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CompareIcon from '@mui/icons-material/Compare';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
 
 import { AllUsedCarDto } from '../../../../@types/dto';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { logoFind, LogoList } from './services/servicesUsedCars';
 
 type Props = {
@@ -28,15 +32,16 @@ type Props = {
 }
 
 
-
 function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
+  const [favArr, setFavArr] = React.useState([]);
+  const [watchedArr, setWatchedArr] = React.useState([]);
+  const [compareArr, setCompareArr] = React.useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
 
   interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -58,20 +63,242 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
 
-
   function showModal(event: MouseEventHandler<HTMLButtonElement>) {
     setShowModal(true)
   }
-
-
 
   function upFirst(engine) {
     return engine.charAt(0).toUpperCase() + engine.slice(1)
   }
 
+  async function addToFavorite(id) {
+    const res = await fetch('/api/usedfavorite/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function start() {
+        const res = await fetch('/api/usedfavorite/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setFavArr(result.favoriteCarUser.favoriteUsedCars)
+            :
+            setFavArr(null)
+        }
+      }
+      start()
+    }
+  }
+
+
+  async function deleteToFavorite(id) {
+    const res = await fetch('/api/usedfavorite/del/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function start() {
+        const res = await fetch('/api/usedfavorite/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          console.log(result)
+          result !== undefined ?
+            setFavArr(result.favoriteCarUser.favoriteUsedCars)
+            :
+            setFavArr(null)
+        }
+      }
+      start()
+    }
+  }
+
+
+  async function addToCompare(id) {
+    const res = await fetch('/api/usedcompare/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function startCompare() {
+        const res = await fetch('/api/usedcompare/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setCompareArr(result.compareCarUser.compareUsedCars)
+            :
+            setCompareArr(null)
+        }
+      }
+      startCompare()
+    }
+  }
+
+  async function deleteToCompare(id) {
+    const res = await fetch('/api/usedcompare/del/' + id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      console.log(res)
+      async function start() {
+        const res = await fetch('/api/usedcompare/getAll', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        if (res.ok) {
+          // console.log(res)
+          const result = await res.json()
+          result !== undefined ?
+            setCompareArr(result.compareCarUser.compareUsedCars)
+            :
+            setCompareArr(null)
+        }
+      }
+      start()
+    }
+  }
+
+  // при загрузке дает избранное, сравнение
+  useEffect(() => {
+    async function start() {
+      const res = await fetch('/api/usedfavorite/getAll', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (res.ok) {
+        const result = await res.json()
+        result !== undefined ?
+          setFavArr(result.favoriteCarUser.favoriteUsedCars)
+          :
+          setFavArr(null)
+      }
+      const resComapre = await fetch('/api/usedcompare/getAll', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (resComapre.ok) {
+        const resultCompare = await resComapre.json()
+        resultCompare !== undefined ?
+          setCompareArr(resultCompare.compareCarUser.compareUsedCars)
+          :
+          setCompareArr(null)
+      }
+      const resWatched = await fetch('/api/usedwatched/getAll', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (resWatched.ok) {
+        const resultWatched = await resWatched.json()
+        resultWatched !== undefined ?
+          setWatchedArr(resultWatched.watchedCarUser.watchedUsedCars)
+          :
+          setWatchedArr(null)
+      }
+    }
+    start()
+  }, [])
+
   return (
     <>
       <div className='background'>
+        <Box
+          sx={{
+            display: 'flex', position: 'fixed', flexDirection: 'column', bottom: '0', right: '0',
+            width: 'auto', height: 'auto', marginBottom: '20px',
+          }}
+        >
+          {watchedArr.length > 0 &&
+            (<>
+              <Link href={'/catalog/watched-cars'}>
+                <HistoryIcon
+                  sx={{
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    '&:hover': { color: 'black' }
+                  }}
+                />
+              </Link>
+              <Typography
+                sx={{
+                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                }}
+              >{watchedArr.length}</Typography>
+            </>)
+          }
+          {compareArr.length > 0 &&
+            (<>
+              <Link href={'/catalog/compare-cars'}>
+                <CompareIcon
+                  sx={{
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    '&:hover': { color: 'green' }
+                  }}
+                />
+              </Link>
+              <Typography
+                sx={{
+                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                }}
+              >{compareArr.length}</Typography>
+            </>)
+          }
+          {favArr.length > 0 &&
+            (<>
+              <Link href={'/catalog/favorite-cars'}>
+                <FavoriteBorderIcon
+                  sx={{
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    '&:hover': { color: 'red' }
+                  }}
+                />
+              </Link>
+              <Typography
+                sx={{
+                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                }}
+              >{favArr.length}</Typography>
+            </>)
+          }
+        </Box>
+
+
         <div className='cards' id="desktop">
           {filteredCars.map(car =>
             <Card sx={{
@@ -130,21 +357,27 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               </CardContent>
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                  <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
+                  {favArr.find(carFav => carFav.car.id === car.id) ?
+                    <FavoriteIcon sx={{ color: 'red' }}
+                      onClick={() => deleteToFavorite(car.id)}
+                    /> :
+                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                      onClick={() => addToFavorite(car.id)}
+                    />
+                  }
                 </IconButton>
                 <IconButton aria-label="share">
-                  <AddRoadIcon sx={{ '&:hover': { color: 'green' } }} />
+                  {compareArr.find(carCompar => carCompar.car.id === car.id) ?
+                    <AddRoadIcon sx={{ color: 'green' }}
+                      onClick={() => deleteToCompare(car.id)}
+                    /> :
+                    <AddRoadIcon sx={{ '&:hover': { color: 'green' } }}
+                      onClick={() => addToCompare(car.id)}
+                    />
+                  }
                 </IconButton>
-                {/* <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </ExpandMore> */}
               </CardActions>
-              <button className="credit" onClick={showModal}>
+              <button className="credit" onClick={() => showModal}>
                 <span className="consultation" >Получить консультацию</span>
               </button>
             </Card>
@@ -170,9 +403,14 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                     marginTop: '-10px',
                     marginRight: '-5px'
                   }}>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }} />
-                    </IconButton>
+                    {favArr.find(carFav => carFav.car.id === car.id) ?
+                      <FavoriteIcon sx={{ color: 'red' }}
+                        onClick={() => deleteToFavorite(car.id)}
+                      /> :
+                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                        onClick={() => addToFavorite(car.id)}
+                      />
+                    }
                   </IconButton>
                 }
                 title={car.vendor}
@@ -207,7 +445,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
                   sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
-                  onClick={showModal}>Получить консультацию</Button>
+                  onClick={() => showModal}>Получить консультацию</Button>
               </div>
             </Card>
           )}

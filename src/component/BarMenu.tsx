@@ -20,11 +20,13 @@ export default function BarMenu() {
 
         >
           <Typography sx={{ fontFamily: 'TacticSans-Reg' }}>
-            <div className="logo"></div>
+            <Link href={'/'}>
+              <div className="logo"></div>
+            </Link>
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ paddingLeft: '0' }}>
-          <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px',color:"#005baa" }}>
+          <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>
             <ul className={"menu"}>
               <li className={"menuEl"}>
                 <Accordion>
@@ -33,14 +35,22 @@ export default function BarMenu() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px',color:"#005baa" }}>Каталог</Typography>
+                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>Каталог</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
-                      <li className="barTwoLevel">Автомобили в наличии</li>
-                      <li className="barTwoLevel">Автомобили с пробегом</li>
-                      <li className="barTwoLevel">Онлайн-оценка автомобиля</li>
-                      <li className="barTwoLevel">Специальные предложения</li>
+                      <Link href={'/catalog/new-car'}>
+                        <li className="barTwoLevel">Автомобили в наличии</li>
+                      </Link>
+                      <Link href={'/catalog/used-car'}>
+                        <li className="barTwoLevel">Автомобили с пробегом</li>
+                      </Link>
+                      <Link href={'/catalog/tradein'}>
+                        <li className="barTwoLevel">Онлайн-оценка автомобиля</li>
+                      </Link>
+                      <Link href={'/catalog/special-offers'}>
+                        <li className="barTwoLevel">Специальные предложения</li>
+                      </Link>
                     </ul>
                   </AccordionDetails>
                 </Accordion>
@@ -52,15 +62,23 @@ export default function BarMenu() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px',color:"#005baa" }}>Услуги</Typography>
+                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>Услуги</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
-                      <li className="barTwoLevel">Кредитный калькулятор</li>
-                      <li className="barTwoLevel">Страхование</li>
-                      <li className="barTwoLevel">Выкуп автомобилей</li>
-                      <li className="barTwoLevel">Аварийный комиссар</li>
-                      <li className="barTwoLevel">Изготовление номерных знаков</li>
+                      {/* <Link href={'/catalog/new-car'}>
+                        <li className="barTwoLevel">Кредитный калькулятор</li>
+                      </Link> */}
+                      <Link href={'/services/insurance'}>
+                        <li className="barTwoLevel">Страхование</li>
+                      </Link>
+                      {/* <li className="barTwoLevel">Выкуп автомобилей</li> */}
+                      <Link href={'/services/accident-assistant'}>
+                        <li className="barTwoLevel">Аварийный комиссар</li>
+                      </Link>
+                      <Link href={'/services/number-for-cars'}>
+                        <li className="barTwoLevel">Изготовление номерных знаков</li>
+                      </Link>
                     </ul>
                   </AccordionDetails>
                 </Accordion>
@@ -72,17 +90,28 @@ export default function BarMenu() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px',color:"#005baa" }}>Владельцам</Typography>
+                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>Владельцам</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
-                      <li className="barTwoLevel">Специальные предложения сервиса</li>
-                      <li className="barTwoLevel">Сервис</li>
-                      <li className="barTwoLevel">Кузовной ремонт</li>
-                      <li className="barTwoLevel">Перевод авто на газ</li>
-                      <li className="barTwoLevel">Продать авто</li>
-                      <li className="barTwoLevel">Арконт SPECIAL</li>
-                      <li className="barTwoLevel">Шиномонтаж</li>
+                      <Link href={'/catalog/special-offers'}>
+                        <li className="barTwoLevel">Специальные предложения сервиса</li>
+                      </Link>
+                      <Link href={'/car-repair/service-form'}>
+                        <li className="barTwoLevel">Сервис</li>
+                      </Link>
+                      <Link href={'https://ckr.arkont.ru/'}>
+                        <li className="barTwoLevel">Кузовной ремонт</li>
+                      </Link>
+                      <Link href={'https://gbo.arkont.ru/'}>
+                        <li className="barTwoLevel">Перевод авто на газ</li>
+                      </Link>
+                      <Link href={'/services/special'}>
+                        <li className="barTwoLevel">Арконт SPECIAL</li>
+                      </Link>
+                      <Link href={'/services/tires'}>
+                        <li className="barTwoLevel">Шиномонтаж</li>
+                      </Link>
                     </ul>
                   </AccordionDetails>
                 </Accordion>
@@ -94,13 +123,15 @@ export default function BarMenu() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px',color:"#005baa" }}>
+                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>
                       Работа в Арконт
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
-                      <li className="barTwoLevel"><Link href={'/job/joball'}><span>Вакансии</span></Link></li>
+                      <Link href={'/job/joball'}>
+                        <li className="barTwoLevel"><span>Вакансии</span></li>
+                      </Link>
                     </ul>
                   </AccordionDetails>
                 </Accordion>
@@ -112,15 +143,21 @@ export default function BarMenu() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px',color:"#005baa" }}>
+                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>
                       О компании
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
-                      <li className="barTwoLevel"><Link href={'/job/joball'}><span>Контакты</span></Link></li>
-                      <li className="barTwoLevel"><Link href={'/job/joball'}><span>Охрана труда</span></Link></li>
-                      <li className="barTwoLevel"><Link href={'/job/joball'}><span>Напишите нам</span></Link></li>
+                      <Link href={'/company/contact'}>
+                        <li className="barTwoLevel"><span>Контакты</span></li>
+                      </Link>
+                      <Link href={'/company/protection'}>
+                        <li className="barTwoLevel"><span>Охрана труда</span></li>
+                      </Link>
+                      <Link href={'/company/send'}>
+                        <li className="barTwoLevel"><span>Напишите нам</span></li>
+                      </Link>
                     </ul>
                   </AccordionDetails>
                 </Accordion>
@@ -174,6 +211,10 @@ ul {
     border-bottom: 1px solid #eaeaea;   
     font-size:20px;
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    justify-content: center;
 }
 
 
@@ -217,14 +258,17 @@ ul {
     font-size:20px;
 }
 }
-@media(max-width: 200px) {
+@media(max-width: 260px) {
   .span {
       margin-top: 5px;
-}
+  }
+  .barTwoLevel {
+     font-size: 14px;
+  } 
 
 }
 `}</style>
-    </div>
+    </div >
 
   );
 }
