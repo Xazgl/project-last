@@ -21,6 +21,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
+import Popover from '@mui/material/Popover';
 
 
 import { AllCarDto } from '../../../../@types/dto';
@@ -60,6 +61,25 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
   const [favArr, setFavArr] = React.useState([]);
   const [watchedArr, setWatchedArr] = React.useState([]);
   const [compareArr, setCompareArr] = React.useState([]);
+
+  const [copied, setCopied] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+
+  const handleCopyLink = (event) => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url)
+      .then(() => setCopied(true))
+      .catch((error) => console.error('Не удалось скопировать ссылку', error));
+      // setAnchorEl(event.currentTarget);
+  };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+
+  // const open = Boolean(anchorEl);
+  // const id = open ? 'simple-popover' : undefined;
 
 
   const handleExpandClick = () => {
@@ -273,13 +293,14 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 <HistoryIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
-                    '&:hover': { color: 'black' }
+                    '&:hover': { color: 'black' }, fontFamily: 'Roboto'
                   }}
                 />
               </Link>
               <Typography
                 sx={{
-                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Roboto'
+
                 }}
               >{watchedArr.length}</Typography>
             </>)
@@ -290,13 +311,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 <CompareIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
-                    '&:hover': { color: 'green' }
+                    '&:hover': { color: 'green' }, fontFamily: 'Roboto'
                   }}
                 />
               </Link>
               <Typography
                 sx={{
-                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Roboto'
                 }}
               >{compareArr.length}</Typography>
             </>)
@@ -307,13 +328,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 <FavoriteBorderIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
-                    '&:hover': { color: 'red' }
+                    '&:hover': { color: 'red' }, fontFamily: 'Roboto'
                   }}
                 />
               </Link>
               <Typography
                 sx={{
-                  display: 'flex', fontSize: '17px', justifyContent: 'center'
+                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Roboto'
                 }}
               >{favArr.length}</Typography>
             </>)
@@ -324,7 +345,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
               '&:hover .credit': {
                 display: 'flex',
@@ -344,7 +365,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 }
                 action={
                   <IconButton aria-label="settings">
-                    <MoreVertIcon />
+                    <MoreVertIcon sx={{ cursor: 'pointer' }} onClick={handleCopyLink} />
                   </IconButton>
                 }
                 title={car.CarModel.brandName}
@@ -362,6 +383,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                   sx={{
                     cursor: 'pointer',
                   }}
+                  loading="lazy"
+                  decoding='async'
 
                   alt="car"
                 />
@@ -463,6 +486,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                     backgroundSize: 'contain'
                   }}
 
+                  loading="lazy"
+                  decoding='async'
                   alt="car"
                 />
               </Link>
@@ -480,7 +505,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                  sx={{ textAlign: 'center', fontSize: '12px', fontFamily: 'Roboto', width: '95%', }}
                   onClick={e => showModal}>Получить консультацию</Button>
               </div>
             </Card>
@@ -565,6 +590,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     .btn:hover {
@@ -584,6 +611,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       margin-top: 10px;
       font-size: 12px;
       align-items: center;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
 
@@ -601,6 +630,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       color:white;
       font-size:16px;
       text-align: center;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     .credit:hover {
@@ -633,6 +664,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       margin-top:15px;
       font-weight: bold;
       width: 100%;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     #priceMonth {
@@ -640,6 +673,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       height: auto;
       font-weight: bold;
       margin-top:20px;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     @media(max-width: 660px) {

@@ -1,10 +1,10 @@
 import { Circle } from "@mui/icons-material";
 import { useRouter } from "next/router";
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, Dispatch, FormEvent, MutableRefObject, SetStateAction, useEffect, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Button, CardMedia, Checkbox, FormControlLabel, FormGroup, Slider, TextField } from "@mui/material";
+import { Box, Button, CardMedia, Checkbox, CircularProgress, FormControlLabel, FormGroup, Slider, TextField } from "@mui/material";
 
 import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -16,11 +16,12 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
+    setCarImg: Dispatch<SetStateAction<string>>,
+    refCredit: MutableRefObject<HTMLDivElement>,
 }
 
 
-export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
+export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
@@ -113,7 +114,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
 
     return (
         <>
-            <div className="background">
+            <div className="background"  ref={refCredit}>
                 {car !== null ?
                     <>
                         <div className="backgroundBlock">
@@ -180,7 +181,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
                                             value={name}
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2'
+                                                borderBottom: 'solid 1px #1976d2',outline:'none',
                                             }}
                                             onChange={event => setName(event.target.value)} />
                                     </div>
@@ -188,7 +189,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
                                         <IMaskInput
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2'
+                                                borderBottom: 'solid 1px #1976d2',outline:'none',
                                             }}
                                             id="inputP"
                                             className="phone"
@@ -221,7 +222,9 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
 
                         </div>
                     </>
-                    : <Circle />
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
             <style jsx>{`
@@ -260,6 +263,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
                     padding: 10px;
                     border: solid 1px #ecebeb;
                     border-radius: 7px;
+                    
                 }
 
                 .column{
@@ -268,9 +272,12 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg }: Props) {
                     align-items: center;
                     justify-content: start;
                     width: 300px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .btn {
+                    font-family: 'Roboto','sans-serif'; 
                     display: flex;
                     justify-content: start;
                     align-items: center;

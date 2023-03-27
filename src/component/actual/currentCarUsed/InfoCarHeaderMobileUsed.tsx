@@ -1,25 +1,33 @@
 import { Circle } from "@mui/icons-material";
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useEffect, useMemo, useState } from "react";
 import { Box, Button, CircularProgress } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
-import { UsedCars } from "@prisma/client";
+import { CarUsedInclude } from "../../../../@types/dto";
+// import { UsedCars } from "@prisma/client";
 
 type Props = {
-    car: UsedCars,
+    car: CarUsedInclude,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>,
-    setCar: Dispatch<SetStateAction<UsedCars>>,
+    setCar: Dispatch<SetStateAction<CarUsedInclude>>,
+    refCredit: MutableRefObject<HTMLDivElement>,
+    showModalImg: boolean,
+    setShowModalImg: Dispatch<SetStateAction<boolean>>,
 }
 
 
-export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setCarImg }: Props) {
+export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setShowModalImg, setCarImg, refCredit }: Props) {
 
-    function showModalImg(x) {
-        setShowModal(true)
+    function showModalImgFunction(x) {
+        setShowModalImg(true)
         setCarImg(x)
+    }
+
+    function showModalFunction() {
+        setShowModal(true)
     }
 
     function numberWithSpaces(x) {
@@ -127,10 +135,11 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                         <div className="row" id="rowHeader" style={{ width: '100%', height: 'auto' }}>
                             <div className="imgMobile">
                                 <img
+                                    loading="lazy"
+                                    decoding='async'
                                     src={`${car.picture[0]}?w=164&h=164&fit=crop&auto=format`}
                                     srcSet={`${car.picture[0]}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                     alt={car.picture[0]}
-                                    loading="lazy"
                                     style={{ display: 'flex', width: '100%', height: '100%' }}
                                 />
                             </div>
@@ -183,13 +192,29 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                                     <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
-                                            <Button variant="contained" sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', width: '100%' }}>Купить онлайн</Button>
+                                            <Button variant="contained"
+                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', width: '100%' }}
+                                                onClick={showModalFunction}
+                                            >Купить онлайн</Button>
                                         </div>
                                     </div>
                                     <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                                         <div className="name" style={{ fontSize: '15px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.price) / 150))}  ₽/месяц</div>
                                         <div className="btnName">
-                                            <Button variant="outlined" sx={{ fontWeight: 'bold', height: '50px', width: '100%' }}>Рассчитать</Button>
+                                            <Button variant="outlined"
+                                                sx={{ fontWeight: 'bold', height: '50px', width: '100%' }}
+                                                onClick={
+                                                    (e) => {
+                                                        e.preventDefault()
+                                                        refCredit.current.scrollIntoView({
+                                                            behavior: 'smooth',
+                                                            block: 'center',
+                                                            inline: 'center'
+                                                        })
+                                                    }
+                                                }
+
+                                            >Рассчитать</Button>
                                         </div>
                                     </div>
                                 </div>
@@ -268,10 +293,15 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                     font-weight: bold;
                 }
 
-                .btnTradeIn:hover  {
+                #tradeIn:hover {
                     background-color: #005baa;
+                    transition: 0.7s;
+                }
+
+                #tradeIn:hover .btnTradeIn {
                     color:white;
                     border:none;
+                    transition:  0.7s;
                 }
 
                

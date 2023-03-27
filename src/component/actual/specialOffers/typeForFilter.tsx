@@ -16,7 +16,7 @@ export type NewOrOldList = {
 }
 
 export type FilterUserOptionsOffer = {
-    filterMainPeople: [],
-    detailFilterBrand: []
-    detailFilterMode: [],
+    filterMainPeople: string[],
+    detailFilterBrand: string[]
+    detailFilterMode: string[],
 }

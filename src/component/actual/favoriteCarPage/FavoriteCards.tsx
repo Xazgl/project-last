@@ -209,6 +209,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                     <CardMedia
                       component="img"
                       height="180px"
+                      loading="lazy"
+                      decoding='async'
                       image={car.car.img[0]}
                       sx={{
                         cursor: 'pointer',
@@ -242,6 +244,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
           :
           <CircularProgress />
         }
+
+
       </div>
 
 
@@ -296,6 +300,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       width: 100%;
       flex-direction: row;
       flex-wrap: wrap;
+      font-family: 'Roboto','sans-serif'; 
+
     }
  
     .price {
@@ -314,6 +320,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       justify-content: start;
       width: 80%;
       height: 35px;
+      font-family: 'Roboto','sans-serif'; 
+
 
     }
 
@@ -332,6 +340,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     .btn:hover {

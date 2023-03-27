@@ -94,6 +94,7 @@ export function Login() {
         height: 50px;
         font-family: 'Montserrat', 'sans-serif';
         font-size: 20px;
+        outline:none;
     }
     
     .btn {

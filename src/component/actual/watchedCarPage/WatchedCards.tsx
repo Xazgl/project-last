@@ -128,6 +128,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
                     <CardMedia
                       component="img"
                       height="194"
+                      loading="lazy"
+                      decoding='async'
                       image={car.car.img[0]}
                       sx={{
                         cursor: 'pointer',
@@ -203,6 +205,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
                     <CardMedia
                       component="img"
                       height="180px"
+                      loading="lazy"
+                      decoding='async'
                       image={car.car.img[0]}
                       sx={{
                         cursor: 'pointer',
@@ -326,6 +330,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     .btn:hover {
@@ -345,6 +351,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       margin-top: 10px;
       font-size: 12px;
       align-items: center;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
 
@@ -362,6 +370,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       color:white;
       font-size:16px;
       text-align: center;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     .credit:hover {
@@ -394,6 +404,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       margin-top:15px;
       font-weight: bold;
       width: 100%;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     #priceMonth {
@@ -401,6 +413,8 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       height: auto;
       font-weight: bold;
       margin-top:20px;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     @media(max-width: 660px) {

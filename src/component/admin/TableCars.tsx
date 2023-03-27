@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
-import { Offer } from '@prisma/client';
 import { useCallback, useEffect, useState, Dispatch, SetStateAction, } from 'react';
 import { AllCarDto, CarDto } from '../../../@types/dto';
 import Link from 'next/link';
@@ -60,11 +59,8 @@ export function TableCars({ showModal, setShowModal, setCarImg }: Props) {
       const res = await fetch('/api/allCars')
       if (res.ok) {
         //@ts-ignore
-        const cars: AllCarDto = await res.json()
+        const cars = await res.json()
         setCars(cars.map(car => {       //TODO тип и как вызвать поля через include
-          // console.log(car)
-          // let modelName = car.CarModel.modelName
-
           const { id, id_1c, color, usedOrNew, mileage, vin, year, img, price, special_price, specialOffer, active, createdAt, updatedAt } = car
           const new_price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽';
           const brand = car.CarModel.brandName
@@ -96,27 +92,27 @@ export function TableCars({ showModal, setShowModal, setCarImg }: Props) {
 
     { field: 'special_price', headerName: 'Спец цена', width: 150 },
     {
-      field: 'picture', headerName: 'Изображение', width: 150, renderCell: (params: GridRenderCellParams<any, AllCarDto>) => {
-        return <img style={{ backgroundSize: 'cover', width: '100%' }}
-          src={params.row.img}
-          onClick={() => showModalImg(params.row.img)}
-          style={{
-            cursor: 'pointer',
-            height: '100%',
-            width: 'auto'
-          }}
+      field: 'picture', headerName: 'Изображение', width: 150, renderCell: (params: GridRenderCellParams<any, CarDto>) => {
+        return <img style={{
+          backgroundSize: 'cover',
+          cursor: 'pointer',
+          height: '100%',
+          width: 'auto',
+        }}
+          src={params.row.img[0]}
+          onClick={() => showModalImg(params.row.img[0])}
         />
         // src={'/uploads/' + params.row.img} />
       }
     },
     {
-      field: 'status', headerName: 'Статус авто', width: 130, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
+      field: 'status', headerName: 'Статус авто', width: 130, renderCell: (params: GridRenderCellParams<any, CarDto>) => {
         const { id, active } = params.row
         return <button style={{ background: 'blue', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => updateSale({ id, active })}>{active.toString()}</button>
       }
     },
     {
-      field: 'createdAt', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
+      field: 'createdAt', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, CarDto>) => {
         const { id } = params.row
         return <button style={{ background: 'red', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => deleteSale({ id })}>Удалить</button>
       }

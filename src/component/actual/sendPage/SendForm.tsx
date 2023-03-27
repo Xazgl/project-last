@@ -166,8 +166,9 @@ export function SendForm() {
                                         width: '100%',
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
-                                        padding: '11px 12px'
-
+                                        padding: '11px 12px',
+                                        outline:'none',
+                                        fontFamily: 'Roboto'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -187,7 +188,7 @@ export function SendForm() {
                                 </select>
                             </div>
                             <div className="divForm" style={{ alignItems: "start" }}>
-                                <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
+                                <div className="inputTitle" style={{ fontSize: '14px',fontFamily: 'Roboto' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                                 <Checkbox
                                     checked={checked}
                                     onChange={handleChange}
@@ -239,7 +240,7 @@ export function SendForm() {
             }
 
             .rightInput {
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -262,7 +263,7 @@ export function SendForm() {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
 
 
@@ -273,7 +274,7 @@ export function SendForm() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
             
@@ -285,7 +286,7 @@ export function SendForm() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
            }
 
@@ -315,7 +316,7 @@ export function SendForm() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
             }
            
 
@@ -323,18 +324,19 @@ export function SendForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
                 padding: '11px 12px';
+                outline:none;
             }
 
             textarea  {
                 width: 100%;
                 height: 200px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
@@ -346,7 +348,7 @@ export function SendForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }

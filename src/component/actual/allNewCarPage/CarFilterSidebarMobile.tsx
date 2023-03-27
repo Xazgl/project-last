@@ -20,7 +20,7 @@ import { FilterUserOptions } from './typeForFilter';
 import { brandNameFilter, carBodyTypeNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
 import { AllCarDto } from '../../../../@types/dto';
 import { nanoid } from 'nanoid';
-import { LogoArr } from './FilteredNewCars';
+
 
 
 import TuneIcon from '@mui/icons-material/Tune';
@@ -646,7 +646,8 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                         <div className="rowSideBar" id="column" >
                             <Button
                                 variant="outlined"
-                                sx={{ width: '100%', fontSize: '12px', height: '40px' }}
+                                sx={{ width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto' 
+                            }}
                                 onClick={resetFilteredCars}>
                                 Сбросить фильтры
                             </Button>
@@ -709,10 +710,14 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 #price {
                     display: flex;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .carBlock {
@@ -727,6 +732,8 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                     height: 30px;
                     border:solid 1px #005baa;
                     font-size:16px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
                 
                 .carTypeDiv {

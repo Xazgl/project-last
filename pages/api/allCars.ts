@@ -15,6 +15,8 @@ export default async function allCars(req: NextApiRequest, res: NextApiResponse)
                         CarModification: true,
                         extras: true,
                         DealerModel: true,
+                        FavoriteCarsToCar:true,
+                        CompareCarsToCar: true,
                     }
                 }
             )

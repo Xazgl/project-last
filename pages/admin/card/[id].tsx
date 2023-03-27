@@ -1,10 +1,10 @@
 import { QuestionAnswer } from "@mui/icons-material"
-import { Sales } from "@prisma/client"
+// import { Sales } from "@prisma/client"
 import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import SaleBlockRedact from "../../../src/component/admin/SaleBlockRedact"
+// import SaleBlockRedact from "../../../src/component/admin/SaleBlockRedact"
 
 
 
@@ -58,7 +58,7 @@ const CardSale: NextPage = () => {
                 <meta name="description" content="Work with me" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <SaleBlockRedact />
+            {/* <SaleBlockRedact /> */}
             {/* <SaleBlockRedact  description={description} shortDesc={shortDesc} title={title} price={price}
              mainFilt={mainFilt} miniFilter={miniFilter} image={image}
             /> */}

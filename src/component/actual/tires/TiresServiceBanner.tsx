@@ -246,12 +246,16 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                 .title  {
                     font-size: 45px;
                     font-weight: bold;
-                    text-align: center
+                    text-align: center;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .titleMini {
                     font-size: 20px;
                     text-align: center;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .banner {
@@ -283,6 +287,8 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                     font-size: 30px;
                     font-weight: bold;
                     margin-top: 10px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .column{

@@ -31,7 +31,7 @@ export function Service({ setShowModal }: { setShowModal: Dispatch<SetStateActio
     align-items:center;
     background-blend-mode: darken;
     background: rgba(0, 0, 0, .40);
-    background-image: url('${banner.src}');
+ 
     background-size: cover;
     width: auto;
     height: 700px;

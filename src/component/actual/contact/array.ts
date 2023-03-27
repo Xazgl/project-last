@@ -1,43 +1,43 @@
-// import chery from '/public/images/logo-around/chery.webp';
-// import chevrolet from '/public/images/logo-around/chevrolet.webp';
-// import datsun from '/public/images/logo-around/datsun.webp';
-// import exeed from '/public/images/logo-around/exeed.webp';
-// import faw from '/public/images/logo-around/faw.webp';
-// import ford from '/public/images/logo-around/ford.webp';
-// import hisun from '/public/images/logo-around/hisun.webp';
-// import hyundai from '/public/images/logo-around/hyundai.webp';
-// import jeep from '/public/images/logo-around/jeep.webp';
-// import kia from '/public/images/logo-around/kia.webp';
-// import landrover from '/public/images/logo-around/landrover.webp';
-// import mithsubishi from '/public/images/logo-around/mithsubishi.webp';
-// import nissan from '/public/images/logo-around/nissan.webp';
-// import renault from '/public/images/logo-around/renault.webp';
-// import subaru from '/public/images/logo-around/subaru.webp';
-// import suzuki from '/public/images/logo-around/suzuki.webp';
-// import uaz from '/public/images/logo-around/uaz.webp';
-// import usedcars34 from '/public/images/logo-around/usedcars34.webp';
-// import volkswagen from '/public/images/logo-around/volkswagen.webp';
-// import opel from '/public/images/logo-around/opel.webp';
-// import jaguar from '/public/images/logo-around/jaguar.webp';
-// import peugeot from '/public/images/logo-around/peugeot.webp';
-// import geely from '/public/images/logo-around/usedCars/gee.png';
-// import lovol from '/public/images/logo-around/usedCars/lov.png';
-// import usedCars from '/public/images/logo-around/usedCars/usedCars.png';
+import chery from '/public/images/logo-around/chery.webp';
+import chevrolet from '/public/images/logo-around/chevrolet.webp';
+import datsun from '/public/images/logo-around/datsun.webp';
+import exeed from '/public/images/logo-around/exeed.webp';
+import faw from '/public/images/logo-around/faw.webp';
+import ford from '/public/images/logo-around/ford.webp';
+import hisun from '/public/images/logo-around/hisun.webp';
+import hyundai from '/public/images/logo-around/hyundai.webp';
+import jeep from '/public/images/logo-around/jeep.webp';
+import kia from '/public/images/logo-around/kia.webp';
+import landrover from '/public/images/logo-around/landrover.webp';
+import mithsubishi from '/public/images/logo-around/mithsubishi.webp';
+import nissan from '/public/images/logo-around/nissan.webp';
+import renault from '/public/images/logo-around/renault.webp';
+import subaru from '/public/images/logo-around/subaru.webp';
+import suzuki from '/public/images/logo-around/suzuki.webp';
+import uaz from '/public/images/logo-around/uaz.webp';
+import usedcars34 from '/public/images/logo-around/usedcars34.webp';
+import volkswagen from '/public/images/logo-around/volkswagen.webp';
+import opel from '/public/images/logo-around/opel.webp';
+import jaguar from '/public/images/logo-around/jaguar.webp';
+import peugeot from '/public/images/logo-around/peugeot.webp';
+import geely from '/public/images/logo-around/usedCars/gee.png';
+import lovol from '/public/images/logo-around/usedCars/lov.png';
+import usedCars from '/public/images/logo-around/usedCars/usedCars.png';
 
 
-// //фото дц
-// import cheryOffice from '/public/images/offices/chery.jpeg';
-// import exeedOffice from '/public/images/offices/exeed.jpeg';
-// import hyundaiOffice from '/public/images/offices/hyundai.jpeg';
-// import kiaOffice from '/public/images/offices/kia.jpeg';
-// import mitsubishiOffice from '/public/images/offices/mitsu.jpeg';
-// import nissanOffice from '/public/images/offices/nissan.jpeg';
-// import withoutPhotoOffice from '/public/images/offices/no_photo.png';
-// import uazOffice from '/public/images/offices/uaz.jpeg';
-// import usedVlzOffice from '/public/images/offices/used-vlz.jpeg';
-// import usedZemlOffice from '/public/images/offices/used-zeml.jpeg';
-// import volkswagenOffice from '/public/images/offices/volk.jpeg';
-// import renaultOffice from '/public/images/offices/renault.jpeg';
+//фото дц
+import cheryOffice from '/public/images/offices/chery.jpeg';
+import exeedOffice from '/public/images/offices/exeed.jpeg';
+import hyundaiOffice from '/public/images/offices/hyundai.jpeg';
+import kiaOffice from '/public/images/offices/kia.jpeg';
+import mitsubishiOffice from '/public/images/offices/mitsu.jpeg';
+import nissanOffice from '/public/images/offices/nissan.jpeg';
+import withoutPhotoOffice from '/public/images/offices/no_photo.png';
+import uazOffice from '/public/images/offices/uaz.jpeg';
+import usedVlzOffice from '/public/images/offices/used-vlz.jpeg';
+import usedZemlOffice from '/public/images/offices/used-zeml.jpeg';
+import volkswagenOffice from '/public/images/offices/volk.jpeg';
+import renaultOffice from '/public/images/offices/renault.jpeg';
 
 
 

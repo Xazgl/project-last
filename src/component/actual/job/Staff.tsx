@@ -29,7 +29,7 @@ export function Staff() {
                     display: flex;
                     justify-content: start;
                     align-items: center;
-                    font-family: 'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:20px;
                     width: 900px;
                  }
@@ -72,7 +72,7 @@ export function Staff() {
 
                  #contentColumn{
                     font-size:15px;
-                    font-family:  'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     justify-content: start;
                     width:60%;
                  }

@@ -7,8 +7,8 @@ import { Admin, getSession, RedirectError, useSession } from "../../src/services
 import { useRouter } from "next/router"
 import { CircularProgress } from "@mui/material"
 import { TableSales } from "../../src/component/admin/TableSales"
-import { TableCalcTo } from "../../src/component/admin/TableCalcTo"
-import { TableClientSales } from "../../src/component/admin/TableClientSales"
+// import { TableCalcTo } from "../../src/component/admin/TableCalcTo"
+// import { TableClientSales } from "../../src/component/admin/TableClientSales"
 import { TableClientNeedCall } from "../../src/component/admin/TableClientNeedCall"
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -22,13 +22,13 @@ import { TableCars } from "../../src/component/admin/TableCars"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ModalImg } from "../../src/component/ModalImg"
 import { AddCarAdmin2 } from "../../src/component/admin/AddCarAdmin2"
-import { DealerAdd } from "../../src/component/admin/DealerAdd"
 
 
 const AdminTable: NextPage = () => {
   const router = useRouter()
 
   const [showModal, setShowModal] = useState(false)
+  const [showModalImg, setShowModalImg] = useState(false)
   const [carImg, setCarImg] = useState('')
   const [expanded, setExpanded] = useState<string | false>(false);
   const handleChange =
@@ -106,7 +106,7 @@ const AdminTable: NextPage = () => {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  <TableCalcTo />
+                  {/* <TableCalcTo /> */}
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -224,7 +224,7 @@ const AdminTable: NextPage = () => {
       {error && <div>Error occurred!</div>}
 
       {
-        showModal && <ModalImg carImg={carImg} showModal={showModal} setShowModal={setShowModal} />
+        showModal && <ModalImg carImg={carImg} showModalImg={showModalImg} setShowModalImg={setShowModalImg} />
       }
     </>
   )

@@ -26,14 +26,16 @@ type Footer = {
 
 export function FooterMain({ setShowTradeInModal, refs }: Footer) {
 
-  function showModalTradeIn(event: React.FormEvent<HTMLFormElement>) {
+
+
+  function showModal(event) {
     event.preventDefault()
     setShowTradeInModal(true)
   }
 
   //MUI
-  const [open, setOpen] = useState(true);
-  const [openTwo, setOpenTwo] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [openTwo, setOpenTwo] = useState(false);
 
   const handleClickTwo = () => {
     setOpenTwo(!openTwo);
@@ -57,25 +59,26 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
               <div className="label"></div>
               <div className="labelDesc" >
                 <span className="descEl">Автомобильная компания</span>
-                <span className="descEl"><a href="tel:+78442200895"  >+7 (844) 220-08-95</a></span>
+                <span className="descEl"><a href="tel:+78442200895" style={{ textDecoration: 'none', color: '#fdb913' }} >+7 (844) 220-08-95</a></span>
               </div>
             </div>
           </Link>
         </div>
         <div className="column">
-          <Link href="/service">
+          <Link href={'/car-repair/service-form'}>
             <div className="el">СЕРВИС АРКОНТ</div>
           </Link>
-          <div className="el" onClick={(event) => showModalTradeIn()}>TRADE-IN</div>
+          <div className="el" onClick={showModal}>TRADE-IN</div>
         </div>
         <div className="column">
-          <Link href="/servicePage">
+          <Link href={'/job/joball'}>
             <div className="el">ВАКАНСИИ</div>
           </Link>
-          <Link href="arkont.ru/owners/diskontnaia-programma-special">
+          <Link href={'/services/special'}>
             <div className="el">АРКОНТ SPECIAL</div>
           </Link>
         </div>
+
         <div className='miniFooter'>
           <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -91,15 +94,19 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
               <ListItemIcon>
                 <SendIcon />
               </ListItemIcon>
-              <ListItemText primary="Написать нам" />
+              <Link href={'/company/send'}>
+                <ListItemText primary="Написать нам" />
+              </Link>
             </ListItemButton>
 
-               
+
             <ListItemButton onClick={Job}>
               <ListItemIcon>
                 <WorkIcon />
               </ListItemIcon>
-              <ListItemText primary="Вакансии" />
+              <Link href={'/job/joball'}>
+                <ListItemText primary="Вакансии" />
+              </Link>
             </ListItemButton>
 
             <ListItemButton onClick={handleClick}>
@@ -115,13 +122,17 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
                   <ListItemIcon>
                     <PhonelinkSetupIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Записаться" />
+                  <Link href={'/car-repair/service-form'}>
+                    <ListItemText primary="Записаться" />
+                  </Link>
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
                     <CurrencyRubleIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Акции" />
+                  <Link href={'/catalog/special-offers'}>
+                    <ListItemText primary="Акции" />
+                  </Link>
                 </ListItemButton>
               </List>
             </Collapse>
@@ -139,13 +150,17 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
                   <ListItemIcon>
                     <CarRentalIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Trade-in" />
+                  <Link href={'/catalog/tradein'}>
+                    <ListItemText primary="Trade-in" />
+                  </Link>
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
                     <CurrencyRubleIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Акции" />
+                  <Link href={'/catalog/special-offers'}>
+                    <ListItemText primary="Акции" />
+                  </Link>
                 </ListItemButton>
               </List>
             </Collapse>
@@ -162,6 +177,9 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
         width: 100%;
         height: 170px;
         align-items: center;
+        background-color: #181b1d;
+
+       
       }
 
       .label {
@@ -179,15 +197,14 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
         flex-direction:column;
         justify-content:center;
         transition: transform.3s ;
-        color:#005baa;
       }
 
       .column {
         display:flex;
         flex-direction:column;
-        font-family: 'TacticSans-Reg','sans-serif'; 
-        font-size: 14px;
+        font-size: 16px;
         width: 200px;
+        font-family: 'Roboto','sans-serif'; ;
       }
 
       .descEl {
@@ -200,8 +217,10 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
         justify-content:center;
         margin-top:20px;
         transition: transform.3s ;
-        color:#005baa;
+        color:white;
         font-size: 15px;
+        cursor: pointer;
+        font-family: 'Roboto','sans-serif'; 
       }
       
       .el:hover {
@@ -224,7 +243,7 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
         .column {
           display:flex;
           flex-direction:column;
-          font-family: 'TacticSans-Reg','sans-serif'; 
+          
           font-size: 14px;
           width: 90px;
           text-align: center;
@@ -242,6 +261,14 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
       @media(max-width: 700px) {
         .footer {
           flex-direction: column;
+          height: auto;
+          background-color:white;
+          border-top: 1px solid #eaeae6;
+          -webkit-box-shadow: 0px -22px 8px -9px rgba(34, 60, 80, 0.18);
+          -moz-box-shadow: 0px -22px 8px -9px rgba(34, 60, 80, 0.18);
+          box-shadow: 0px -22px 8px -9px rgba(34, 60, 80, 0.18);
+          margin-top:30px;
+          padding-top: 10px;
         }
         .column {
           display:none;

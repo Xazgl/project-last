@@ -770,7 +770,7 @@ export function AddCarAdmin2() {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                     width:100%;
+                    width:100%;
                 }
 
                 .column {

@@ -91,7 +91,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                         <div className="mb-3">
                             <label htmlFor="phone" className="form-label"></label>
                             <IMaskInput
-                                style={{ fontSize: '20px', height: '100%', padding: '10px 10px', width: '60%', }}
+                                style={{ fontSize: '20px', height: '100%', padding: '10px 10px', width: '60%',outline:'none' }}
                                 id="inputP"
                                 className="phone"
                                 mask={'+{7}(000)000-00-00'}
@@ -157,7 +157,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 height: 100vh;
                 background-color: rgb(0,0,0, 0.5);
                 align-items: center;
-                font-family: 'TacticSans-Reg','sans-serif';
+                font-family: 'Roboto','sans-serif'; 
             }
 
             .modalBackground_show {
@@ -213,6 +213,9 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 height: 50px;
                 padding: 10px 10px;
                 width: 60%;
+                outline:none;
+                font-family: 'Roboto','sans-serif'; 
+
             }
           
 
@@ -233,6 +236,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 font-weight: bold;
                 text-align: center;
                 align-items: center;
+                font-family: 'Roboto','sans-serif'; 
             }
 
             .btn-modal:hover {

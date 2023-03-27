@@ -1,6 +1,5 @@
 
 import { Dispatch, FormEvent, SetStateAction, useEffect, useMemo, useState } from "react"
-import OfficeFilterSidebarMobile from "./OfficeFilterSidebarMobile";
 import OfficeFilterSidebar from "./OfficeFilterSidebar";
 import FilteredOffice from "./FilteredOffice";
 import { Offices } from "@prisma/client";
@@ -53,6 +52,8 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     font-size: 45px;
                     font-weight: bold;
                     text-align: center;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 #color {
@@ -110,10 +111,14 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 #price {
                     display: flex;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .dealerBlock {
@@ -127,6 +132,8 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     height: 30px;
                     border:solid 1px #005baa;
                     font-size:16px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
                 
                 .carTypeDiv {

@@ -1,18 +1,20 @@
 import { Circle } from "@mui/icons-material";
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, Dispatch, FormEvent, MutableRefObject, SetStateAction, useEffect, useState } from "react";
 import { Box, Button, CircularProgress, Slider, TextField } from "@mui/material";
 import { IMaskInput } from "react-imask";
-import { UsedCars } from "@prisma/client";
+import { CarUsedInclude } from "../../../../@types/dto";
+// import { UsedCars } from "@prisma/client";
 
 type Props = {
-    car: UsedCars,
+    car: CarUsedInclude,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
+    setCarImg: Dispatch<SetStateAction<string>>,
+    refCredit: MutableRefObject<HTMLDivElement>,
 }
 
 
-export function InfoCreditUsed({ car, showModal, setShowModal, setCarImg }: Props) {
+export function InfoCreditUsed({ car, showModal, setShowModal,  refCredit, setCarImg }: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
@@ -52,7 +54,7 @@ export function InfoCreditUsed({ car, showModal, setShowModal, setCarImg }: Prop
 
     return (
         <>
-            <div className="background">
+            <div className="background" ref={refCredit}>
                 {car !== null ?
                     <>
                         <div className="backgroundBlock">
@@ -119,7 +121,7 @@ export function InfoCreditUsed({ car, showModal, setShowModal, setCarImg }: Prop
                                             value={name}
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2'
+                                                borderBottom: 'solid 1px #1976d2',outline:'none',
                                             }}
                                             onChange={event => setName(event.target.value)} />
                                     </div>
@@ -127,7 +129,7 @@ export function InfoCreditUsed({ car, showModal, setShowModal, setCarImg }: Prop
                                         <IMaskInput
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2'
+                                                borderBottom: 'solid 1px #1976d2',outline:'none',
                                             }}
                                             id="inputP"
                                             className="phone"
@@ -160,9 +162,9 @@ export function InfoCreditUsed({ car, showModal, setShowModal, setCarImg }: Prop
 
                         </div>
                     </>
-                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
-                    <CircularProgress />
-                </Box>
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
             <style jsx>{`

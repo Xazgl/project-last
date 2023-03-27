@@ -1,4 +1,4 @@
-import type {NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
 import CompareCars from '../../src/component/actual/compareCarPage/CompareCards'
@@ -11,12 +11,10 @@ import { TradeinModal } from '../../src/component/ModalTwo'
 
 const FavoriteCarPage: NextPage = () => {
 
-
-
     const [showModal, setShowModal] = useState(false)
     const [showTradeInModal, setShowTradeInModal] = useState(false)
     const [compareArr, setCompareArr] = useState([]);
-
+    const [compareArrUsed, setCompareArrUsed] = useState([]);
 
     const refSales = useRef<HTMLDivElement>(null)
     const refTop = useRef<HTMLDivElement>(null)
@@ -25,7 +23,7 @@ const FavoriteCarPage: NextPage = () => {
     const refFooter = useRef<HTMLDivElement>(null)
     const refForm = useRef<HTMLDivElement>(null)
 
-
+    //новые  для сравнения 
     useEffect(() => {
         async function start() {
             const res = await fetch('/api/favorite/compare/getAll', {
@@ -42,6 +40,27 @@ const FavoriteCarPage: NextPage = () => {
         start()
     }, [])
 
+    
+
+    useEffect(() => {
+        async function startCompare() {
+            const res = await fetch('/api/usedcompare/getAll', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (res.ok) {
+                // console.log(res)
+                const result = await res.json()
+                result !== undefined ?
+                    setCompareArrUsed(result.compareCarUser.compareUsedCars)
+                    :
+                    setCompareArrUsed(null)
+            }
+        }
+        startCompare()
+    }, [])
 
 
 
@@ -54,8 +73,12 @@ const FavoriteCarPage: NextPage = () => {
             </Head>
             <MenuBar />
             <BarMenu />
-            <CompareCars compareArr={compareArr} setCompareArr={setCompareArr} setShowModal={setShowModal} />
-            {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+            <CompareCars
+                compareArr={compareArr} setCompareArr={setCompareArr}
+                compareArrUsed={compareArrUsed} setCompareArrUsed={setCompareArrUsed}
+                setShowModal={setShowModal}
+            />
+            <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
 
             {
                 showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

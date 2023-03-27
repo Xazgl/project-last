@@ -464,7 +464,10 @@ export function Form() {
                                         width: '100%',
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
-                                        padding: '11px 12px'
+                                        padding: '11px 12px',
+                                        outline:'none',
+                                        fontFamily: 'Roboto'
+
 
                                     }}
                                     id="inputP"
@@ -520,6 +523,8 @@ export function Form() {
                 width:900px;
                 font-size:45px;
                 font-weight: bold;
+                font-family: 'Roboto','sans-serif'; 
+
             }
             
            .background {
@@ -554,9 +559,11 @@ export function Form() {
             }
 
             .rightInput {
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
+                font-family: 'Roboto','sans-serif'; 
+
                 
             }
 
@@ -577,7 +584,7 @@ export function Form() {
                 justify-content: center;
                 align-items: baseline;
                 width:900px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
 
 
@@ -588,9 +595,11 @@ export function Form() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
+                font-family: 'Roboto','sans-serif'; 
+
            }
            
            .desc {
@@ -599,8 +608,10 @@ export function Form() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
+                font-family: 'Roboto','sans-serif'; 
+
            }
 
            .form {
@@ -631,7 +642,8 @@ export function Form() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
+
            }
            
 
@@ -642,25 +654,26 @@ export function Form() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
            input {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
                 padding: 11px 12px;
                 border:none;
+                outline:none;
            }
 
            select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }
@@ -671,7 +684,7 @@ export function Form() {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'TacticSans-Reg','sans-serif';
+                font-family: 'Roboto','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;

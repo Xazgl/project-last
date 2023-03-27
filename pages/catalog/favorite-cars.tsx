@@ -5,6 +5,7 @@ import { AllCarDto } from '../../@types/dto'
 import db, { Car } from '../../prisma'
 import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import FavoriteCars from '../../src/component/actual/favoriteCarPage/FavoriteCards'
+import FavoriteCardsUsed from '../../src/component/actual/favoriteCarPage/FavoriteCardsUsed'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
@@ -20,6 +21,7 @@ const FavoriteCarPage: NextPage = () => {
     const [showModal, setShowModal] = useState(false)
     const [showTradeInModal, setShowTradeInModal] = useState(false)
     const [favArr, setFavArr] = useState([]);
+    const [favArrUsed, setFavArrUsed] = useState([]);
 
 
     const refSales = useRef<HTMLDivElement>(null)
@@ -47,6 +49,26 @@ const FavoriteCarPage: NextPage = () => {
     }, [])
 
 
+    useEffect(() => {
+        async function start() {
+            const res = await fetch('/api/usedfavorite/getAll', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (res.ok) {
+                const result = await res.json()
+                setFavArrUsed(result.favoriteCarUser.favoriteUsedCars)
+            }
+        }
+        start()
+    }, [])
+
+    
+
+
+
     return (
         <>
             <Head>
@@ -57,7 +79,8 @@ const FavoriteCarPage: NextPage = () => {
             <MenuBar />
             <BarMenu />
             <FavoriteCars favArr={favArr} setFavArr={setFavArr} setShowModal={setShowModal} />
-            {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+            <FavoriteCardsUsed favArrUsed={favArrUsed} setFavArrUsed={setFavArrUsed} setShowModal={setShowModal} />
+            <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
             {
                 showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

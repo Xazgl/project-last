@@ -111,54 +111,54 @@ model SessionClient {
 }
 
 model FavoriteCarsToCar {
-  session   SessionClient @relation(fields: [sessionId], references: [id])
+  session   SessionClient @relation(fields: [sessionId], references: [id] , onDelete: Cascade)
   sessionId String
-  car       Car           @relation(fields: [carId], references: [id])
+  car       Car           @relation(fields: [carId], references: [id],onDelete: Cascade)
   carId     String
 
   @@id([sessionId, carId])
 }
 
 model FavoriteUsedCarsToCar {
-  session   SessionClient @relation(fields: [sessionId], references: [id])
+  session   SessionClient @relation(fields: [sessionId], references: [id],onDelete: Cascade)
   sessionId String
-  car       UsedCars      @relation(fields: [carId], references: [id])
+  car       UsedCars      @relation(fields: [carId], references: [id],onDelete: Cascade)
   carId     String
 
   @@id([sessionId, carId])
 }
 
 model WatchedCarsToCar {
-  session   SessionClient @relation(fields: [sessionId], references: [id])
+  session   SessionClient @relation(fields: [sessionId], references: [id],onDelete: Cascade)
   sessionId String
-  car       Car           @relation(fields: [carId], references: [id])
+  car       Car           @relation(fields: [carId], references: [id],onDelete: Cascade)
   carId     String
 
   @@id([sessionId, carId])
 }
 
 model WatchedUsedCarsToCar {
-  session   SessionClient @relation(fields: [sessionId], references: [id])
+  session   SessionClient @relation(fields: [sessionId], references: [id],onDelete: Cascade)
   sessionId String
-  car       UsedCars      @relation(fields: [carId], references: [id])
+  car       UsedCars      @relation(fields: [carId], references: [id],onDelete: Cascade)
   carId     String
 
   @@id([sessionId, carId])
 }
 
 model CompareCarsToCar {
-  session   SessionClient @relation(fields: [sessionId], references: [id])
+  session   SessionClient @relation(fields: [sessionId], references: [id],onDelete: Cascade)
   sessionId String
-  car       Car           @relation(fields: [carId], references: [id])
+  car       Car           @relation(fields: [carId], references: [id],onDelete: Cascade)
   carId     String
 
   @@id([sessionId, carId])
 }
 
 model CompareUsedCarsToCar {
-  session   SessionClient @relation(fields: [sessionId], references: [id])
+  session   SessionClient @relation(fields: [sessionId], references: [id],onDelete: Cascade)
   sessionId String
-  car       UsedCars      @relation(fields: [carId], references: [id])
+  car       UsedCars      @relation(fields: [carId], references: [id],onDelete: Cascade)
   carId     String
 
   @@id([sessionId, carId])

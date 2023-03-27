@@ -2,6 +2,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
+import { FooterMain } from '../../src/component/actual/FooterMain'
 import { ProtectionTxt } from '../../src/component/actual/protectionPage/ProtectionTxt'
 import { SendForm } from '../../src/component/actual/sendPage/SendForm'
 import BarMenu from '../../src/component/BarMenu'
@@ -31,9 +32,7 @@ const SendPage: NextPage = () => {
       <MenuBar />
       <BarMenu />
       <SendForm />
-    
-
-      {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

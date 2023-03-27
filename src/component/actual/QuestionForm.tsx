@@ -2,6 +2,8 @@
 import { IMaskInput } from "react-imask"
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { Checkbox } from "@mui/material";
+import Script from "next/script";
+import { useForm } from "react-hook-form";
 
 type Office = {
     id: number,
@@ -131,9 +133,45 @@ export function QuestionForm() {
             })
             if (res.ok) {
                 const result = await res.json()
+                console.log(result)
+                //calltouch service
+                let ct_site_id = '57914'
+                // let ct_data = {
+                //     fio: `${name}`,
+                //     phoneNumber: `${phone}`,
+                //     subject: 'Заявка с сайта arkont.ru',
+                //     tags: 'Главная страница,Вопросы',
+                //     comment: `${name} оставил заявку по вопросам тед ${phone} дилерский центр ${officeName}`,
+                //     requestUrl: location.href,
+                //     //@ts-ignore!
+                //     sessionId: window.ct('calltracking_params', '1oroglta').sessionId,
+                // }
+
+                await fetch('https://api.calltouch.ru/calls-service/RestAPI/requests/' + ct_site_id + '/register/', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    //@ts-ignore!
+                    body: `fio=${name}&phoneNumber=${phone}&subject='Заявка с сайта arkont.ru&tags=Главная страница,Вопросы, Opel&comment=${name} оставил заявку по вопросам тед ${phone} дилерский центр ${officeName}&requestUrl=${location.href}&sessionId=${window.ct('calltracking_params', '1oroglta').sessionId}`
+                })
             }
         }
     }
+
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors }
+    } = useForm({
+        defaultValues: {
+            example: "",
+            exampleRequired: ""
+        }
+    });
 
     return (
         <>
@@ -150,10 +188,11 @@ export function QuestionForm() {
                                     className="name"
                                     id="name"
                                     name="name"
-                                    placeholder="Александр"
+                                    placeholder="Ваше имя"
                                     required
                                     value={name}
                                     onChange={event => setName(event.target.value)} />
+
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Телефон* </div>
@@ -165,7 +204,9 @@ export function QuestionForm() {
                                         width: '100%',
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
-                                        padding: '11px 12px'
+                                        padding: '11px 12px',
+                                        outline: 'none',
+                                        fontFamily: 'Roboto'
 
                                     }}
                                     id="inputP"
@@ -205,7 +246,7 @@ export function QuestionForm() {
                     </div>
                 </div>
             </div>
-        <style jsx>{`
+            <style jsx>{`
             
            .background {
                 display:flex; 
@@ -237,7 +278,7 @@ export function QuestionForm() {
             }
 
             .rightInput {
-                font-family: 'TacticSans-Reg','sans-serif'; 
+            font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -260,7 +301,7 @@ export function QuestionForm() {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
 
 
@@ -271,7 +312,7 @@ export function QuestionForm() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
             
@@ -283,7 +324,7 @@ export function QuestionForm() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
            }
 
@@ -313,7 +354,7 @@ export function QuestionForm() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
            
 
@@ -321,18 +362,19 @@ export function QuestionForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
-                padding-left: '11px 12px',
+                padding-left: '11px 12px';
+                outline:none;
            }
 
            select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }
@@ -343,7 +385,7 @@ export function QuestionForm() {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'TacticSans-Reg','sans-serif';
+                font-family: 'Roboto','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;

@@ -18,9 +18,8 @@ import { Car } from "@prisma/client";
 import RangeSlider from './RangeSliderUsed';
 import { FilterUserOptions } from './typeForFilterUsed';
 import { brandNameFilter, carBodyTypeNameFilter, colorNameFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
-import { AllUsedCarDto } from '../../../../@types/dto';
+import { AllUsedCarDto} from '../../../../@types/dto';
 import { nanoid } from 'nanoid';
-import { LogoArr } from './FilteredUsedCars';
 
 import chery from '/public/images/logo-around/chery.webp';
 import chevrolet from '/public/images/logo-around/chevrolet.webp';
@@ -50,7 +49,7 @@ import RangeSliderUsed from './RangeSliderUsed';
 type Props = {
     cars: AllUsedCarDto,
     setFilteredCars: Dispatch<SetStateAction<AllUsedCarDto>>,
-    filteredCars: AllUsedCarDto
+    filteredCars: AllUsedCarDto,
 }
 
 
@@ -327,13 +326,13 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         aria-label="Disabled elevation buttons"
                     >
                         <Link href={'/catalog/new-car'} sx={{ textDecoration: 'none' }}>
-                            <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
+                            <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' ,fontFamily: 'Roboto'}} onClick={(event) => {
                                 setCarType('new')
                                 // changeFilter({ carType: 'new' })
                             }}>Новые</Button>
                         </Link>
 
-                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px' }} onClick={(event) => {
+                        <Button sx={{ width: 'auto', height: '30px', fontSize: '11px',fontFamily: 'Roboto' }} onClick={(event) => {
                             setCarType('old')
                             // changeFilter({ carType: 'used' })
                         }} >С пробегом</Button>
@@ -380,7 +379,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px' }}>Стоимость</Typography>
+                            <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Стоимость</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <RangeSliderUsed
@@ -400,7 +399,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px' }}>Бренд</Typography>
+                            <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Бренд</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
@@ -419,7 +418,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography sx={{ fontSize: '14px' }}>Модель</Typography>
+                                <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Модель</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <div id="column" >
@@ -453,7 +452,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px' }}>Цвет</Typography>
+                            <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Цвет</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <FormGroup>
@@ -490,7 +489,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px' }}>Коробка</Typography>
+                            <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Коробка</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <FormGroup>
@@ -523,7 +522,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px' }}>Тип кузова</Typography>
+                            <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Тип кузова</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div id="carBodyType" >
@@ -559,7 +558,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px' }}>Привод</Typography>
+                            <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Привод</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className="rowSideBar" id="column" >
@@ -592,7 +591,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                 <div className="rowSideBar" id="column" >
                     <Button
                         variant="outlined"
-                        sx={{ width: '100%', fontSize: '12px', height: '40px' }}
+                        sx={{ width: '100%', fontSize: '12px', height: '40px',fontFamily: 'Roboto' }}
                         onClick={resetFilteredCars}>
                         Сбросить фильтры
                     </Button>
@@ -708,6 +707,8 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     height: 30px;
                     border:solid 1px #005baa;
                     font-size:16px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
                 
                 .carTypeDiv {

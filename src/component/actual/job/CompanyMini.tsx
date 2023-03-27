@@ -13,9 +13,9 @@ import { Dispatch, SetStateAction, useState, MouseEvent, FormEvent } from 'react
 
 
 
-export function CompanyMini(){
-    
-  
+export function CompanyMini() {
+
+
 
     return (
         <>
@@ -103,7 +103,7 @@ export function CompanyMini(){
                     padding:5px;
                     width:100%;
                     font-weight: bold;
-                    font-family:  'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:15px;
                     text-align: center;
                 }
@@ -115,7 +115,7 @@ export function CompanyMini(){
                     display:flex;
                     justify-content:center;
                     align-items: center;
-                    font-family:  'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:16px;
                     font-size: 20px;
                     width: 250px;
@@ -168,6 +168,42 @@ export function CompanyMini(){
         border:0;
        
       }
+
+    @media(max-width: 770px) {
+      .content{
+        width: 100%;
+       }
+       .el {
+        width: 100px;
+        height: 100px;
+       }
+    }
+
+    @media(max-width: 550px) {
+       .el {
+        width: 70px;
+        height: 70px;
+       }
+       .elText {
+        font-size: 11px;
+       }
+    }
+
+    @media(max-width: 400px) {
+       .el {
+        width: 70px;
+        height: 70px;
+       }
+       .elText {
+        font-size: 11px;
+       }
+    }
+
+    @media(max-width: 350px) {
+        .content{
+        display: none;
+       }
+    }
                 
 
         `}</style>

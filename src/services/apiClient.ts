@@ -1,6 +1,8 @@
 import axios, {AxiosError} from "axios";
 import { Router, useRouter } from "next/router";
 import { useQuery } from "react-query";
+
+
 const host = process.env.HOST || 'http://localhost:3000'
 // axios instance
 export const apiClient = axios.create({

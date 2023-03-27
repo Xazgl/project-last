@@ -95,6 +95,8 @@ export function AssistentImg(){
                     margin-top:21px;
                     font-size: 16px;
                     justify-content: center;
+                    font-family: 'Roboto','sans-serif'; 
+
             }
 
             @media(max-width: 900px) {

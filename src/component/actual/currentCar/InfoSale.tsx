@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Button, CardMedia, Checkbox, FormControlLabel, FormGroup, Typography } from "@mui/material";
+import { Box, Button, CardMedia, Checkbox, CircularProgress, FormControlLabel, FormGroup, Typography } from "@mui/material";
 
 import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -112,7 +112,9 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                         </div>
 
                     </>
-                    : <Circle />
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
             <style jsx>{`
@@ -200,6 +202,7 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                     color: #005baa;
                     font-size: 30px;
                     font-weight: bold;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .btn {

@@ -130,10 +130,14 @@ export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: P
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 #price {
                     display: flex;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .carBlock {

@@ -28,7 +28,7 @@ export default function MyEditor({ setDescription }: MyEditorProps) {
     <div
       style={{
         border: "1px solid #d4d3d3", minHeight: "6em", cursor: "text", width: "100%",
-        height:'300px',
+        height:'auto',
         padding: '5px'
       }}
       onClick={focusEditor}
@@ -40,6 +40,7 @@ export default function MyEditor({ setDescription }: MyEditorProps) {
         placeholder="Write something!"
         onChange={(contentRaw) => {
           // console.log(draftjsToMd(contentRaw))
+          
           setDescription(draftjsToMd(contentRaw))
         }}
       />

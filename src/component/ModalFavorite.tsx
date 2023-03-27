@@ -100,11 +100,12 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                                     title={car.CarModel.brandName}
                                     subheader={car.CarModel.modelName}
                                 />
-
+{/* 
                                 <Link href={{
                                     pathname: '/catalog/car/[id]',
                                     query: { id: car.id }
                                 }}>
+                                   */}
                                     <CardMedia
                                         component="img"
                                         height="194"
@@ -115,7 +116,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
 
                                         alt="car"
                                     />
-                                </Link>
+                                {/* </Link> */}
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
                                         {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}

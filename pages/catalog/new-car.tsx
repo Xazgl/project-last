@@ -37,7 +37,7 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
       <MenuBar />
       <BarMenu />
       <NewCarComponent  setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} cars={cars}  />
-      {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

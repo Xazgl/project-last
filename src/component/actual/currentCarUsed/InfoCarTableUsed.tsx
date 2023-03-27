@@ -11,10 +11,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { UsedCars } from "@prisma/client";
+import { CarUsedInclude } from "../../../../@types/dto";
+// import { UsedCars } from "@prisma/client";
 
 type Props = {
-    car: UsedCars,
+    car: CarUsedInclude,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>
@@ -218,10 +219,10 @@ export function InfoCarTableUsed({ car, showModal, setShowModal, setCarImg }: Pr
                             </div>
                         </div>
                     </>
-                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
-                    <CircularProgress />
-                </Box>
-                }
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
+                }s
             </div>
             <style jsx>{`
                 .background {
@@ -296,6 +297,7 @@ export function InfoCarTableUsed({ car, showModal, setShowModal, setCarImg }: Pr
                     color:#7b7979;
                     font-weight: 400;
                     font-size: 12px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .columnDesc{
@@ -305,6 +307,8 @@ export function InfoCarTableUsed({ car, showModal, setShowModal, setCarImg }: Pr
                     text-align: center;
                     font-weight: 700;
                     font-size: 13px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .descMobile {

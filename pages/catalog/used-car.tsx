@@ -1,11 +1,9 @@
-
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
-import {  AllUsedCarDto} from '../../@types/dto'
+import {  AllUsedCarDto, CarUsedInclude} from '../../@types/dto'
 import db from '../../prisma'
-import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
-import { UsedCarComponent } from '../../src/component/actual/allUsedCarPage/UsedCarComponent'
+import { UsedCarComponent } from '../../src/component/actual/allUsedCarPage/UsedCarComponent';
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
@@ -13,7 +11,9 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 
-const AllUsedCarPage: NextPage <{ cars: AllUsedCarDto }> = ({ cars }) => {
+// const AllUsedCarPage: NextPage <{ cars: AllUsedCarDto }> = ({ cars }) => {
+  const AllUsedCarPage: NextPage <{ cars: CarUsedInclude[] }> = ({ cars }) => {
+
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
@@ -34,7 +34,7 @@ const AllUsedCarPage: NextPage <{ cars: AllUsedCarDto }> = ({ cars }) => {
       <MenuBar />
       <BarMenu />
       <UsedCarComponent  setShowModal={setShowModal} cars={cars}  />
-      {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

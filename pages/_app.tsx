@@ -6,8 +6,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../mui/theme';
 import createEmotionCache from '../mui/createEmotionCache';
-import { Head } from 'next/document';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -21,6 +21,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />

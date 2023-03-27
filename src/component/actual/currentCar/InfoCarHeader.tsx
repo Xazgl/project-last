@@ -1,10 +1,10 @@
 import { Circle } from "@mui/icons-material";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useEffect, useMemo, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Button, CardMedia, Link } from "@mui/material";
+import { Box, Button, CardMedia, CircularProgress, Link } from "@mui/material";
 
 import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -17,15 +17,22 @@ type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>,
     setCar: Dispatch<SetStateAction<CarDto>>,
+    refCredit: MutableRefObject<HTMLDivElement>,
+    showModalImg: boolean,
+    setShowModalImg: Dispatch<SetStateAction<boolean>>,
 }
 
 
-export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg }: Props) {
+export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarImg, refCredit }: Props) {
 
 
-    function showModalImg(x) {
-        setShowModal(true)
+    function showModalImgFunction(x) {
+        setShowModalImg(true)
         setCarImg(x)
+    }
+
+    function showModalFunction() {
+        setShowModal(true)
     }
 
     function numberWithSpaces(x) {
@@ -161,7 +168,8 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                                             srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                             alt={item}
                                             loading="lazy"
-                                            onClick={() => showModalImg(item)}
+                                            decoding='async'
+                                            onClick={() => showModalImgFunction(item)}
                                         />
                                     </ImageListItem>
                                 ))}
@@ -188,7 +196,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                                             {car.FavoriteCarsToCar.length <= 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => addToFavorite(car.id)}
-                                                    sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                    sx={{ '&:hover': { color: 'red', transition: '0.5s' }, fontSize: '30px', color: '#a19f9f' }} />
                                             }
                                             {car.FavoriteCarsToCar.length > 0 &&
                                                 <FavoriteIcon
@@ -200,7 +208,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                                             {car.CompareCarsToCar.length <= 0 &&
                                                 <AddRoadIcon
                                                     onClick={() => addToCompare(car.id)}
-                                                    sx={{ '&:hover': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                    sx={{ '&:hover': { color: 'green', transition: '0.5s' }, fontSize: '30px', color: '#a19f9f' }} />
                                             }
                                             {car.CompareCarsToCar.length > 0 &&
                                                 <AddRoadIcon
@@ -209,7 +217,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                                             }
                                         </div>
                                         <div id="tradeIn">
-                                            <Link href={'/catalog/tradein'}>
+                                            <Link sx={{ textDecoration: "none" }} href={'/catalog/tradein'}>
                                                 <button className="btnTradeIn"> Записаться на оценку
                                                     <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
                                                 </button>
@@ -221,13 +229,28 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                                     <div className="rowColumn" style={{ gap: 30, marginTop: '20px' }}>
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
-                                            <Button variant="contained" sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px' }}>Купить онлайн</Button>
+                                            <Button variant="contained"
+                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px' }}
+                                                onClick={showModalFunction}
+                                            >Купить онлайн</Button>
                                         </div>
                                     </div>
                                     <div className="rowColumn" style={{ gap: 30, marginTop: '50px' }}>
                                         <div className="name" style={{ fontSize: '18px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
-                                            <Button variant="outlined" sx={{ fontWeight: 'bold', height: '50px' }}>Рассчитать кредит</Button>
+                                            <Button variant="outlined"
+                                                sx={{ fontWeight: 'bold', height: '50px' }}
+                                                onClick={
+                                                    (e) => {
+                                                        e.preventDefault()
+                                                        refCredit.current.scrollIntoView({
+                                                            behavior: 'smooth',
+                                                            block: 'center',
+                                                            inline: 'center'
+                                                        })
+                                                    }
+                                                }
+                                            >Рассчитать кредит</Button>
                                         </div>
                                     </div>
                                 </div>
@@ -237,11 +260,12 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                         <div className="backgroundDescMore" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'center', backgroundColor: '' }}>
                         </div>
                         <div>
-
                         </div>
 
                     </>
-                    : <Circle />
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
 
@@ -305,15 +329,21 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, setCarImg 
                     border-radius: 5px;
                     font-size: 14px;
                     font-weight: bold;
+                    text-decoration: none;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
-                .btnTradeIn:hover  {
+                #tradeIn:hover {
                     background-color: #005baa;
+                    transition: 0.7s;
+                }
+
+                #tradeIn:hover .btnTradeIn {
                     color:white;
                     border:none;
+                    transition:  0.7s;
                 }
 
-               
                 .rowColumn{
                     display: flex;
                     width: 100%;

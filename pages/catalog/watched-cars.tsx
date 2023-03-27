@@ -52,7 +52,7 @@ const WatchedCarPage: NextPage = () => {
             <MenuBar />
             <BarMenu />
             <WatchedCars watchedArr={watchedArr} setWatchedArr={setWatchedArr} setShowModal={setShowModal} />
-            {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+            <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
             {
                 showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

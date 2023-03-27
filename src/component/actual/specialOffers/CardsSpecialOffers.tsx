@@ -239,6 +239,8 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
     const [detailFilterBrandResult, setDetailFilterBrandPeople] = useState('')
     const [detailFilterModeResult, setDetailFilterModePeople] = useState('')
 
+    const [isMouseInside, setIsMouseInside] = useState(false);
+
 
     const filterMain = filterNameerList.find(service => service.id === filterName)?.name
 
@@ -350,8 +352,10 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
     const className = [
         'card',
+        // isMouseInside ? 'card_flip' : 'card_flipReversal',
         openStarting ? 'card_flip' : '',
         closeStarting ? 'card_flipReversal' : '',
+
     ]
 
 
@@ -362,13 +366,17 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
         }, 500)
     }
 
+
+
+
+
     return (
         <>
             <div className="mainNam">
                 <div className="border"></div>
             </div>
             <div className="mainNam" id="title">
-                <span id="mainWords">АКЦИИ</span>
+                <span id="mainWords">Специальные предложения</span>
             </div>
             <div className='selector'>
                 <div className='center'>
@@ -402,10 +410,14 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     <div className="cards">
                         {
                             filteredOffers.map(offer => {
-                                return <div className={className.join(' ')} 
-                                
-                                
-                                ref={refCard} key={offer.id} onClick={(event) => { if (event.target === refCard.current) reversalCard() }}>
+                                return <div className={className.join(' ')}
+                                    ref={refCard} onMouseEnter={() => setIsMouseInside(true)}
+                                    onMouseLeave={() => setIsMouseInside(false)}
+                                    key={offer.id} onClick={(event) => {
+                                        if (event.target === refCard.current)
+                                            reversalCard()
+                                    }}
+                                >
                                     <div className="column" >
                                         <img style={{
                                             backgroundSize: 'cover', width: '100%',
@@ -419,10 +431,14 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                                             <div className='titleCard'>{offer.title}</div>
                                             <div className='textCard'>{offer.shortDesc}</div>
                                             <div className='row'>
-                                                <div className='salesDiv'>{offer.price}</div>
+                                                {offer.price !== '' ?
+                                                    <div className='salesDiv'>{offer.price}</div>
+                                                    :
+                                                    null
+                                                }
                                                 <div className='btnDiv'>
                                                     <Link href={{
-                                                        pathname: '/card/[id]',
+                                                        pathname: '/catalog/special-offers/[id]',
                                                         query: { id: offer.id }
                                                     }}>
                                                         <button className='btnModal'>Узнать больше	&#10095;</button>
@@ -465,40 +481,6 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     
                 }
 
-
-                .card_flip {
-                    transform: rotateY(180deg);
-                    transition: 0.5s;
-                    transform-style:preserve-3d
-                }
-
-                .card:hover{
-                    transform: rotateY(180deg);
-                    transition: 0.5s;
-                    transform-style:preserve-3d
-                }
-
-                .card:hover .titleCard{
-                    display: none;
-                }
-
-                .card:hover .salesDiv{
-                    display: none;
-                }
-
-                .card:hover .textCard{
-                    display:  flex;
-                    transform: rotateY(180deg);
-                    transition: 1s;
-                    cursor: pointer;
-                }
-                .card:hover .btnDiv{
-                    display: flex;
-                    transform: rotateY(180deg);
-                    transition:1s;
-                }
-
-
                 .backgroundQuestion{
                     display:flex; 
                     align-items:center;
@@ -507,6 +489,11 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     background-color:#3d3d3d;
                     flex-direction: column;
                     height: 200px;
+                    padding-top:50px;
+                }
+
+                .card:hover {
+                   transform: scale(1.01);
                 }
                 
                 .titleQuestion{
@@ -542,7 +529,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:row;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'TacticSans-Reg','sans-serif';
+                    font-family: 'Roboto','sans-serif'; 
                     transition: transform.3s;
                     width: 350px;
                     height: 45px;
@@ -564,7 +551,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     text-align: center;
                     flex-direction: row;
                     color:white;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size: 25px;
                 }
 
@@ -586,18 +573,20 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 .selectModel {
                     background-color: transparent;
                     color:white;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     width: 300px;
                     height: 50px;
                     border:solid 2px white;
                     font-size:21px; 
+                    outline: none:
+
                 }
 
               
                 option {
                     background-color: #3d3d3d;
                     color:white;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:21px; 
                 }
                 
@@ -619,7 +608,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     justify-content: center;
                     align-items: center;
                     color:white;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:50px;
                     text-align: center;
                     background-color:#3d3d3d;
@@ -641,7 +630,8 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     display:flex;
                     flex-direction:column;
                     width:450px;
-                    height:400px;
+                    min-height:400px;
+                    max-height:auto;
                     background:white;
                     transition:margin-bottom 500ms;
                     position:relative;
@@ -656,7 +646,8 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
                 .contentCard {
                     width: 100%;
-                    height: 150px;
+                    min-height: 150px;
+                    max-height:auto;
                     flex-direction: column;
                     justify-content: start;
                     padding: 20px;
@@ -686,14 +677,15 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 }
 
                 .textCard {
-                    display:none;
+                    display:flex;
                     justify-content:center;
                     flex-direction:row;
                     font-size:16px; 
                     color:#1b1b1b;
                     justify-content:start;
                     text-align: start;
-                    height: 40px;
+                    min-height: 40px;
+                    max-height: auto;
                 }
 
                 .row {
@@ -703,6 +695,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     justify-content:space-between;
                     width: 100%;
                     height: 20px;
+                    margin-top:3px;
                 }
 
                 .rowFilter{
@@ -724,7 +717,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 }
 
                 .btnDiv {
-                    display:none;
+                    display:flex;
                     justify-content:center;
                     flex-direction:;
                     align-items:center;
@@ -738,7 +731,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'OpelNextW01-Regular', 'sans-serif';
+                    font-family: 'Roboto','sans-serif'; 
                     transition: transform.3s;
                     width: 140px;
                     height: 40px;
@@ -760,7 +753,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     align-items:center;
                     flex-direction:column;
                     color:white;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
                 }
@@ -771,7 +764,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:column;
                     color:white;
                     margin-top:100px;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
                 }

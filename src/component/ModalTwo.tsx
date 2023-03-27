@@ -120,7 +120,8 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
                                      height: '45px',
                                       marginTop: '40px',
                                       width: '100%',
-                                      padding: '10px 10px'
+                                      padding: '10px 10px',
+                                      outline:'none',
                                      }}
                                     className="phone"
                                     mask={'+{7}(000)000-00-00'}
@@ -331,6 +332,7 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
                 height: 45px;
                 width: 100%;
                 padding: 10px 10px;
+                outline:none;
             }
 
             .btn-modal {

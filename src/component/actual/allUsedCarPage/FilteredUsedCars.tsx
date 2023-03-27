@@ -43,6 +43,16 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     setExpanded(!expanded);
   };
 
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url)
+          .then(() => setCopied(true))
+          .catch((error) => console.error('Не удалось скопировать ссылку', error));
+  };
+
   interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
   }
@@ -323,7 +333,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 }
                 action={
                   <IconButton aria-label="settings">
-                    <MoreVertIcon />
+                    <MoreVertIcon  sx= {{cursor:'pointer'}} onClick={handleCopyLink}/>
                   </IconButton>
                 }
                 title={car.vendor}
@@ -340,6 +350,8 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   image={car.picture[0]}
                   sx={{ cursor: 'pointer' }}
 
+                  loading="lazy"
+                  decoding='async'
                   alt="Paella dish"
                 />
               </Link>
@@ -392,10 +404,11 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
               <CardHeader
-                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
+                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center',fontFamily: 'Roboto' }}
                 avatar={
-                  <Avatar sx={{}} aria-label="recipe"
+                  <Avatar sx={{}} aria-label="recipe" 
                     src={logoFind(LogoList, car.vendor)}>
+                      
                   </Avatar>
                 }
                 action={
@@ -430,11 +443,13 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                     backgroundSize: 'contain'
                   }}
 
+                  loading="lazy"
+                  decoding='async'
                   alt="car"
                 />
               </Link>
               <CardContent>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" >
                   {upFirst(car.engine)} / {car.driverType} привод / Пробег {numberWithSpaces(car.mileage)} км
                   <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
                   <div className='priceMonth'>
@@ -444,7 +459,8 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto'
+                }}
                   onClick={() => showModal}>Получить консультацию</Button>
               </div>
             </Card>
@@ -563,6 +579,8 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       font-size:16px;
       text-align: center;
       border:none;
+      font-family: 'Roboto','sans-serif'; 
+
     }
 
     .credit:hover {

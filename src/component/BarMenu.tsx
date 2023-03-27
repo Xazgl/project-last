@@ -13,43 +13,44 @@ export default function BarMenu() {
     <div className='bar'>
       <Accordion>
         <AccordionSummary
-          expandIcon={<DehazeIcon />}
+          expandIcon={<DehazeIcon  />}
           aria-controls="panel1a-content"
           id="panel1a-header"
           sx={{ width: '100%' }}
 
         >
-          <Typography sx={{ fontFamily: 'TacticSans-Reg' }}>
+          <Typography sx={{ fontFamily: 'Roboto' }}>
             <Link href={'/'}>
               <div className="logo"></div>
             </Link>
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ paddingLeft: '0' }}>
-          <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>
+          <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
             <ul className={"menu"}>
               <li className={"menuEl"}>
                 <Accordion>
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    sx={{ backgroundColor: '#005baa' }}
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>Каталог</Typography>
+                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>Каталог</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
                       <Link href={'/catalog/new-car'}>
-                        <li className="barTwoLevel">Автомобили в наличии</li>
+                      <a rel="noopener noreferrer"> <li className="barTwoLevel">Автомобили в наличии</li></a>
                       </Link>
                       <Link href={'/catalog/used-car'}>
-                        <li className="barTwoLevel">Автомобили с пробегом</li>
+                      <a rel="noopener noreferrer">   <li className="barTwoLevel">Автомобили с пробегом</li></a>
                       </Link>
                       <Link href={'/catalog/tradein'}>
-                        <li className="barTwoLevel">Онлайн-оценка автомобиля</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Онлайн-оценка автомобиля</li></a>
                       </Link>
                       <Link href={'/catalog/special-offers'}>
-                        <li className="barTwoLevel">Специальные предложения</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Специальные предложения</li></a>
                       </Link>
                     </ul>
                   </AccordionDetails>
@@ -58,11 +59,12 @@ export default function BarMenu() {
               <li className={"menuEl"}>
                 <Accordion>
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    sx={{ backgroundColor: '#005baa' }}
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>Услуги</Typography>
+                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>Услуги</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
@@ -70,14 +72,14 @@ export default function BarMenu() {
                         <li className="barTwoLevel">Кредитный калькулятор</li>
                       </Link> */}
                       <Link href={'/services/insurance'}>
-                        <li className="barTwoLevel">Страхование</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Страхование</li></a>
                       </Link>
                       {/* <li className="barTwoLevel">Выкуп автомобилей</li> */}
                       <Link href={'/services/accident-assistant'}>
-                        <li className="barTwoLevel">Аварийный комиссар</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Аварийный комиссар</li></a>
                       </Link>
                       <Link href={'/services/number-for-cars'}>
-                        <li className="barTwoLevel">Изготовление номерных знаков</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Изготовление номерных знаков</li></a>
                       </Link>
                     </ul>
                   </AccordionDetails>
@@ -86,31 +88,32 @@ export default function BarMenu() {
               <li className={"menuEl"}>
                 <Accordion>
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    sx={{ backgroundColor: '#005baa' }}
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>Владельцам</Typography>
+                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>Владельцам</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
                       <Link href={'/catalog/special-offers'}>
-                        <li className="barTwoLevel">Специальные предложения сервиса</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Специальные предложения сервиса</li></a>
                       </Link>
                       <Link href={'/car-repair/service-form'}>
-                        <li className="barTwoLevel">Сервис</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Сервис</li></a>
                       </Link>
                       <Link href={'https://ckr.arkont.ru/'}>
-                        <li className="barTwoLevel">Кузовной ремонт</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Кузовной ремонт</li></a>
                       </Link>
                       <Link href={'https://gbo.arkont.ru/'}>
-                        <li className="barTwoLevel">Перевод авто на газ</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Перевод авто на газ</li></a>
                       </Link>
                       <Link href={'/services/special'}>
-                        <li className="barTwoLevel">Арконт SPECIAL</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Арконт SPECIAL</li></a>
                       </Link>
                       <Link href={'/services/tires'}>
-                        <li className="barTwoLevel">Шиномонтаж</li>
+                      <a rel="noopener noreferrer">  <li className="barTwoLevel">Шиномонтаж</li></a>
                       </Link>
                     </ul>
                   </AccordionDetails>
@@ -119,18 +122,19 @@ export default function BarMenu() {
               <li className={"menuEl"}>
                 <Accordion >
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    sx={{ backgroundColor: '#005baa' }}
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>
+                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
                       Работа в Арконт
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
                       <Link href={'/job/joball'}>
-                        <li className="barTwoLevel"><span>Вакансии</span></li>
+                      <a rel="noopener noreferrer">   <li className="barTwoLevel"><span>Вакансии</span></li></a>
                       </Link>
                     </ul>
                   </AccordionDetails>
@@ -139,24 +143,25 @@ export default function BarMenu() {
               <li className={"menuEl"}>
                 <Accordion>
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    sx={{ backgroundColor: '#005baa' }}
                   >
-                    <Typography sx={{ fontFamily: 'TacticSans-Reg', fontSize: '18px', color: "#005baa" }}>
+                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
                       О компании
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
                       <Link href={'/company/contact'}>
-                        <li className="barTwoLevel"><span>Контакты</span></li>
+                      <a rel="noopener noreferrer">      <li className="barTwoLevel"><span>Контакты</span></li></a>
                       </Link>
                       <Link href={'/company/protection'}>
-                        <li className="barTwoLevel"><span>Охрана труда</span></li>
+                      <a rel="noopener noreferrer">     <li className="barTwoLevel"><span>Охрана труда</span></li></a>
                       </Link>
                       <Link href={'/company/send'}>
-                        <li className="barTwoLevel"><span>Напишите нам</span></li>
+                      <a rel="noopener noreferrer">    <li className="barTwoLevel"><span>Напишите нам</span></li></a>
                       </Link>
                     </ul>
                   </AccordionDetails>
@@ -185,7 +190,7 @@ export default function BarMenu() {
 .title {
   display: flex;
   flex-direction:row;
-  font-family: 'TacticSans-Reg','sans-serif'; 
+  font-family: 'Roboto','sans-serif'; 
 }
 .menu {
     display: flex;
@@ -205,9 +210,13 @@ export default function BarMenu() {
   margin-top:20px;
 }
 
-
+a{
+  text-decoration: none;
+        color:black;
+  }
+  
 ul {
-    font-family: 'OpelNextW01-Regular'; 
+    font-family: 'Roboto','sans-serif'; 
     border-bottom: 1px solid #eaeaea;   
     font-size:20px;
     width: 100%;
@@ -223,6 +232,8 @@ ul {
       display: inline-block;
       text-align: center;
       margin-top: 10px;
+      color:#005baa;
+      padding-left:10px;
 }
 
 li {
@@ -248,12 +259,16 @@ li {
     .bar {
       display:none;
     }
+  
 }
 
 @media(max-width: 500px) {
   .span {
       margin-top: 5px;
 }
+.barTwoLevel{
+      color:#776969;
+    }
 ul {
     font-size:20px;
 }

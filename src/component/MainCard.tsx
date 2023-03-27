@@ -12,15 +12,21 @@ export function MainCard() {
     return (
         <>
             <div className="mainCards" >
-                <div className="card" id="service">
-                    <div className="title">Специальные предложeния по сервису</div>
-                </div>
-                <div className="card" id="oldCar">
-                    <div className="title">Автомобили с пробегом</div>
-                </div>
-                <div className="card" id="tradeIn">
-                    <div className="title">Онлайн-оценка автомобиля</div>
-                </div>
+                <Link href={'/catalog/special-offers'}>
+                    <div className="card" id="service">
+                        <div className="title">Специальные предложeния по сервису</div>
+                    </div>
+                </Link>
+                <Link href={'/catalog/used-car'}>
+                    <div className="card" id="oldCar">
+                        <div className="title">Автомобили с пробегом</div>
+                    </div>
+                </Link>
+                <Link href={'/catalog/tradein'}>
+                    <div className="card" id="tradeIn">
+                        <div className="title">Онлайн-оценка автомобиля</div>
+                    </div>
+                </Link>
             </div>
 
             <style jsx>{`
@@ -48,6 +54,7 @@ export function MainCard() {
                     align-items: baseline;
                     border:solid 1px transparent;
                     transition: 0.6s;
+                    cursor: pointer;
                     
                 }
                 

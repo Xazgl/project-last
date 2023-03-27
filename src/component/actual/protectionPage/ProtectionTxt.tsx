@@ -42,7 +42,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт ВВ»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold' ,fontFamily: 'Roboto'}}>ООО «Арконт ВВ»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -67,7 +67,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт Д»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold' ,fontFamily: 'Roboto'}}>ООО «Арконт Д»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -87,7 +87,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт М»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold' ,fontFamily: 'Roboto'}}>ООО «Арконт М»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -116,7 +116,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт Р»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold' ,fontFamily: 'Roboto'}}>ООО «Арконт Р»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -139,7 +139,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт Шина»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold' ,fontFamily: 'Roboto'}}>ООО «Арконт Шина»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -165,7 +165,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт ЯРЛ»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold',fontFamily: 'Roboto' }}>ООО «Арконт ЯРЛ»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -188,7 +188,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Концепт СТ»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold',fontFamily: 'Roboto' }}>ООО «Концепт СТ»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -214,7 +214,7 @@ export function ProtectionTxt({ setShowModal }: Props) {
                                     id="panel1a-header"
                                     sx={{ backgroundColor: '#3d3d3d', color: 'white' }}
                                 >
-                                    <Typography sx={{ fontWeight: 'bold' }}>ООО «Арконт В»</Typography>
+                                    <Typography sx={{ fontWeight: 'bold',fontFamily: 'Roboto'}}>ООО «Арконт В»</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
@@ -259,6 +259,8 @@ export function ProtectionTxt({ setShowModal }: Props) {
                 .title  {
                     font-size: 45px;
                     font-weight: bold;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .banner {
@@ -299,6 +301,8 @@ export function ProtectionTxt({ setShowModal }: Props) {
                 .btn{
                     display:flex; 
                     width: 100%;
+                    font-family: 'Roboto','sans-serif'; 
+
 
                 }
 

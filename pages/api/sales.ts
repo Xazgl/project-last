@@ -36,13 +36,13 @@ apiRoute.post(async (req, res, next) => {
     try {
         const img: string = req.file ? req.file.filename : ''
         const loginSchema = z.object({
-            title: z.string().min(2).max(30),
-            shortDesc: z.string().min(2).max(60),
-            description: z.string().min(2).max(300),
+            title: z.string().min(2).max(50),
+            shortDesc: z.string().min(2).max(150),
+            description: z.string(),
             filterMainPeople: z.string().min(2).max(60),
             detailFilterBrand: z.string().min(2).max(60),
             detailFilterMode: z.string().min(2).max(60),
-            price: z.string().min(3).max(60),
+            price: z.string().max(60),
         })
         const {
             title, shortDesc, description, filterMainPeople, detailFilterBrand, detailFilterMode, price

@@ -18,16 +18,21 @@ const parser = new xml2js.Parser()
 
 async function start() {
     try {
-        if (process.env.NODE_ENV !== 'production') {
-            await db.$transaction([
-                db.car.deleteMany({}),
-                db.carModel.deleteMany({}),
-                db.carModification.deleteMany({}),
-                db.extras.deleteMany({}),
-                db.dealerModel.deleteMany({}),
-                db.carComplectation.deleteMany({}),
-            ])
-        }
+        // if (process.env.NODE_ENV !== 'production') {
+        //     await db.$transaction([
+        //         db.car.deleteMany({}),
+        //         db.carModel.deleteMany({}),
+        //         db.carModification.deleteMany({}),
+        //         db.extras.deleteMany({}),
+        //         db.dealerModel.deleteMany({}),
+        //         db.carComplectation.deleteMany({}),
+        //         db.favoriteCarsToCar.deleteMany({}),
+        //         db.watchedCarsToCar.deleteMany({}),
+        //         db.compareCarsToCar.deleteMany({}),
+        //         db.sessionClient.deleteMany({}),
+        //     ])
+        // }
+
         // console.log(carsLinks)
         // const answer = carsLinks[0]
         // const res = await axios.get(carsLinks[0])
@@ -231,11 +236,15 @@ start()
 
 async function startOld() {
     try {
-        if (process.env.NODE_ENV !== 'production') {
-            await db.$transaction([
-                db.usedCars.deleteMany({}),
-            ])
-        }
+        // if (process.env.NODE_ENV !== 'production') {
+        //     await db.$transaction([
+        //         db.usedCars.deleteMany({}),
+        //         db.favoriteUsedCarsToCar.deleteMany({}),
+        //         db.watchedUsedCarsToCar.deleteMany({}),
+        //         db.compareUsedCarsToCar.deleteMany({}),
+        //         db.sessionClient.deleteMany({}),
+        //     ])
+        // }
         /**
          * @type {import('./offer').Offer[] } 
          */
@@ -277,48 +286,89 @@ async function startOld() {
                 }
             }
 
+
             if (usedCar === null) {
                 try {
-                    const usedCar = await db.usedCars.create({
-                        data: {
-                            offersId: offer.$.id,
-                            vendor: String(offer.vendor[0]),
-                            modelFullName: String(offer.model[0]),
-                            price: Number(offer.price[0]),
-                            enable_auto_discounts: bool(offer.enable_auto_discounts[0]),
-                            currencyId: String(offer.currencyId),
-                            count: String(offer.count),
-                            categoryId: String(offer.categoryId),
-                            delivery: bool(offer.delivery[0]),
-                            pickup: bool(offer.pickup[0]),
-                            store: bool(offer.store[0]),
-                            description: String(offer.description[0]),
-                            sales_notes: String(offer.sales_notes[0]),
-                            picture: {
-                                set: offer.picture[0]
-                            },
-                            // typePrefix: offer.typePrefix[0],
-                            typePrefix: 'used',
-                            manufacturer_warranty: bool(offer.manufacturer_warranty[0]),
-                            url: offer.url[0],
-                            mileage: offer.param[0]._,
-                            year: offer.param[1]._,
-                            bodyType: offer.param[2]._,
-                            steeringWheel: offer.param[3]._,
-                            color: offer.param[4]._,
-                            pts: offer.param[5]._,
-                            numberOfOwners: offer.param[6]._,
-                            engine: offer.param[7]._,
-                            driverType: offer.param[8]._,
-                            gearboxType: offer.param[9]._,
-                            generation: offer.param[10]._,
-                            modelShortName: offer.param[11]._,
-                        }
-                    })
-
+                    if (offer.param.length > 11) {
+                        const usedCar = await db.usedCars.create({
+                            data: {
+                                offersId: offer.$.id,
+                                vendor: String(offer.vendor[0]),
+                                modelFullName: String(offer.model[0]),
+                                price: Number(offer.price[0]),
+                                enable_auto_discounts: bool(offer.enable_auto_discounts[0]),
+                                currencyId: String(offer.currencyId),
+                                count: String(offer.count),
+                                categoryId: String(offer.categoryId),
+                                delivery: bool(offer.delivery[0]),
+                                pickup: bool(offer.pickup[0]),
+                                store: bool(offer.store[0]),
+                                description: String(offer.description[0]),
+                                sales_notes: String(offer.sales_notes[0]),
+                                picture: {
+                                    set: offer.picture[0]
+                                },
+                                // typePrefix: offer.typePrefix[0],
+                                typePrefix: 'used',
+                                manufacturer_warranty: bool(offer.manufacturer_warranty[0]),
+                                url: offer.url[0],
+                                mileage: offer.param[0]._,
+                                year: offer.param[1]._,
+                                bodyType: offer.param[2]._,
+                                steeringWheel: offer.param[3]._,
+                                color: offer.param[4]._,
+                                pts: offer.param[5]._,
+                                numberOfOwners: offer.param[6]._,
+                                engine: offer.param[7]._,
+                                driverType: offer.param[8]._,
+                                gearboxType: offer.param[9]._,
+                                generation: offer.param[10]._,
+                                modelShortName: offer.param[11]._
+                            }
+                        })
+                    } else {
+                        const usedCar = await db.usedCars.create({
+                            data: {
+                                offersId: offer.$.id,
+                                vendor: String(offer.vendor[0]),
+                                modelFullName: String(offer.model[0]),
+                                price: Number(offer.price[0]),
+                                enable_auto_discounts: bool(offer.enable_auto_discounts[0]),
+                                currencyId: String(offer.currencyId),
+                                count: String(offer.count),
+                                categoryId: String(offer.categoryId),
+                                delivery: bool(offer.delivery[0]),
+                                pickup: bool(offer.pickup[0]),
+                                store: bool(offer.store[0]),
+                                description: String(offer.description[0]),
+                                sales_notes: String(offer.sales_notes[0]),
+                                picture: {
+                                    set: offer.picture[0]
+                                },
+                                // typePrefix: offer.typePrefix[0],
+                                typePrefix: 'used',
+                                manufacturer_warranty: bool(offer.manufacturer_warranty[0]),
+                                url: offer.url[0],
+                                mileage: offer.param[0]._,
+                                year: offer.param[1]._,
+                                bodyType: offer.param[2]._,
+                                steeringWheel: offer.param[3]._,
+                                color: offer.param[4]._,
+                                numberOfOwners: offer.param[5]._,
+                                engine: offer.param[6]._,
+                                driverType: offer.param[7]._,
+                                gearboxType: offer.param[8]._,
+                                generation: offer.param[9]._,
+                                modelShortName: offer.param[10]._
+                            }
+                        })
+                    }
                 } catch (error) {
-                    // console.error(error)
-                    // console.log('id: ' + offer.$.id,)
+                    console.error(error)
+                    // console.log(offer.param[5], offer.param.length)
+                    // console.log('id: ' +   offer.id, 'param пробег:' + offer.param[0], 'param год выпуска:' + offer.param[1],'param Кузов:' + offer.param[2],'param Руль:'+ offer.param[3], 
+                    // 'param Цвет:'+ offer.param[4],'param ПТС:'+offer.param[5],'param кол-во владельцев:'+ offer.param[6],'param Двигатель:' +  offer.param[7], 'param Привод:'+ offer.param[8],
+                    // 'param КПП:'+ offer.param[9],'param Поколение:' + offer.param[10], 'param Модель:'+offer.param[11])
                 }
             } else {
                 // console.log(car);
@@ -357,4 +407,4 @@ async function startOld() {
     }
 }
 
-// startOld()
+startOld()

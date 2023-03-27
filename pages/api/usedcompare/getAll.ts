@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 sessionToken: clientToken,
                             },
                             include: {
-                               compareUsedCars: {
+                                compareUsedCars: {
                                 select:{
                                     car: {}
                                 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
-import banner from '/public/images/1.jpg'
+import banner from '/public/images/12.jpg'
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from "react";
 
 type MuneProps = {
@@ -13,7 +13,7 @@ type MuneProps = {
 
 export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
 
-    function showModal(event: MouseEventHandler<HTMLButtonElement>) {
+    function showModal(event) {
         setShowModal(true)
     }
 
@@ -31,7 +31,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                 {/* <img  className="ImgBanner" src={banner.src} alt="opel" /> */}
                 {/* <div  className="ImgBanner2" /> */}
                 <div className="title">
-                    <div>АРКОНТ Trade-In</div>
+                    {/* <div>АРКОНТ Trade-In</div> */}
                     <div className="titleMini">
                         <div className="сol">
                             <button className="btn" onClick={(e) => {
@@ -60,7 +60,8 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     background: rgba(0, 0, 0, 0.304);
                     background-position: center center;
                     background-image: url('${banner.src}');
-                    
+                    background-repeat: no-repeat;
+                    background-color: white;
                 }
                 .title {
                     display:flex;
@@ -68,7 +69,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     align-items:center;
                     flex-direction:column;
                     color:white;
-                    font-family: 'OpelNextW01-Regular', 'sans-serif';
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
                 }
@@ -78,7 +79,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'OpelNextW01-Regular', 'sans-serif';
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
                 }
@@ -96,7 +97,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'OpelNextW01-Regular', 'sans-serif';
+                    font-family: 'Roboto','sans-serif'; 
                     transition: transform.1s;
                     width: 300px;
                     height: 55px;

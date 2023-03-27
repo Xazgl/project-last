@@ -215,7 +215,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     justify-content: center;
                     align-items: center;
                     color:white;
-                    font-family: 'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:40px;
                 }  
 
@@ -289,7 +289,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     font-weight:bold;
                     padding: 9px;
                     flex-wrap: wrap;
-                    font-family:  'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     overflow: hidden;
                 }
 
@@ -302,7 +302,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     font-size:18px; 
                     margin-top:10px;
                     flex-wrap: wrap;
-                    font-family:  'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     text-align: center;
                     margin-top:10px;
                 }
@@ -337,7 +337,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     text-align: center;
                     align-items:center;
                     flex-direction:row;
-                    font-family:  'OpelNextW01-Regular', 'sans-serif'; 
+                    font-family: 'Roboto','sans-serif'; 
                     transition: transform.3s;
                     width: 140px;
                     height: 40px;
@@ -360,7 +360,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     align-items:center;
                     flex-direction:column;
                     color:white;
-                    font-family: 'OpelNextW01-Regular'; 
+                    font-family: 'Roboto','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
                 }
@@ -445,5 +445,5 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
         )
     }
 
-    return <div>Вакансии в данный момент  не обнаружены</div>
+    return <div style={{display:'flex',width:'100%',justifyContent:'center',height:'50px',alignItems:'center',fontFamily:'Roboto',fontSize:'18px'}}>Вакансии в данный момент  не обнаружены</div>
 }

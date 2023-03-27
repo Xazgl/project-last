@@ -1,20 +1,16 @@
-import { FilterFrames, Height } from '@mui/icons-material'
-import { Button, ImageList, ImageListItem, Input, TextField } from '@mui/material'
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
+
+import { Button, ImageList, ImageListItem, Input, TextField, Typography } from '@mui/material'
+import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import { Offer } from '@prisma/client'
 import React, { ChangeEvent, Suspense, useCallback, useMemo, useRef } from 'react'
-import { Dispatch, FormEvent, MouseEvent, SetStateAction, useEffect, useState } from 'react'
-import salesOne from '/public/images/sales.webp'
-import salesTwo from '/public/images/sales2.webp'
-import salesThree from '/public/images/sales3.webp'
+import { FormEvent, useEffect, useState } from 'react'
 import ImageIcon from '@mui/material/Icon';
 import { AllOffersDto } from '../../../@types/dto'
-
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
 import dynamic from "next/dynamic";
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
+import PanoramaIcon from '@mui/icons-material/Panorama';
 
 // import MyEditor from './Editor' ниже отключен рендер на сервере 
 const MyEditor = dynamic(() => import("./Editor"), { ssr: false })
@@ -33,15 +29,15 @@ type CarList = {
 const mainFilterList: MainList[] = [
     {
         id: 1,
-        name: 'NEW'
+        name: 'Новые'
     },
     {
         id: 2,
-        name: 'OLD'
+        name: 'С пробегом'
     },
     {
         id: 3,
-        name: 'OWNER'
+        name: 'Владельцам'
     },
 ]
 
@@ -596,7 +592,7 @@ export const brendFilterList: CarList[] = [
     },
     {
         id: 20,
-        name: 'allCar',
+        name: 'Любой',
         modelCar: [
             {
                 id: 1,
@@ -636,7 +632,6 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
             width: '100%'
         },
         sun: {
-            margin: '30px',
             border: '1px solid gray',
             minHeight: '6em',
             width: '100%'
@@ -668,42 +663,16 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
     }, [sales])
 
 
-    const columns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'title', headerName: 'title', width: 130 },
-        { field: 'description', headerName: 'description', width: 100 },
-        { field: 'shortDesc', headerName: 'description', width: 130 },
-        {
-            field: 'img', headerName: 'Изображение', width: 300, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
-                return <img className="imgCustom" src={'/uploads/' + params.row.img} />
-            }
-        },
-        {
-            field: 'status', headerName: 'Статус акции', width: 130, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
-                const { id, active } = params.row
-                return <button onClick={() => updateSale({ id, active })}>{active.toString()}</button>
-                // return params.row.statusElem as React.ReactNode
-            }
-        },
-    ];
 
-    useEffect(() => {
-        (async function () {
-            const res = await fetch('/api/sales')
-            if (res.ok) {
-                setSales(await res.json())
-            }
-        })()
-    }, [])
-
+ 
 
     async function addSale(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
-    
+
         const filterMainPeople = mainFilterList.find(type => type.id === filterMainPeopleResult)?.name
         const detailFilterBrand = brendFilterList.find(brend => brend.id === detailFilterBrandResult)?.name
         const detailFilterMode = brendFilterList.find(brend => brend.id === detailFilterBrandResult)?.modelCar.find(type => type.id === detailFilterModelResult)?.name
-        
+
         const formData = new FormData()
         formData.append('title', title)
         formData.append('shortDesc', shortDesc)
@@ -756,14 +725,25 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
             <>
                 <div className='background'>
                     <div className='column'>
+                        <div className='row'>
+                            <Typography sx={{ fontWeight: 'bold', fontSize: '35px' }}>Добавить спец. предложение</Typography>
+                        </div>
                         <form onSubmit={addSale}>
                             <div className='row'>
                                 <TextField label="title" variant="outlined" value={title}
+                                    sx={{ width: '100%' }}
                                     onChange={e => setTitle(e.target.value)} />
                             </div>
                             <div className='row'>
                                 <TextField label="shortDesc" variant="outlined" value={shortDesc}
-                                    onChange={e => setShortDesc(e.target.value)} />
+                                    sx={{ width: '100%' }}
+                                    onChange={
+                                        e => {
+                                            if (shortDesc.length > 68) return;
+                                            setShortDesc(e.target.value)
+                                        }
+                                    }
+                                />
                             </div>
                             <div className='row' style={styles.sun} >
                                 <Suspense fallback={`Loading...`}>
@@ -772,7 +752,14 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                             </div>
                             <div className='row'>
                                 <TextField label="price" variant="outlined" placeholder='От 20 %' value={price}
-                                    onChange={e => setPrice(e.target.value)} />
+                                    sx={{ width: '100%' }}
+                                    onChange={
+                                        e => {
+                                            if (price.length > 30) return;
+                                            setPrice(e.target.value)
+                                        }
+                                    }
+                                />
                             </div>
                             <div className='row'>
                                 <select className="selectModel" value={filterMainPeopleResult} name="filterMainPeopleResult" onChange={event => setFilterMainPeopleResult(+event.target.value)}>
@@ -794,15 +781,23 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                             </div>
                             <div className='row'>Рекомендуемый размер изображения 277 на 230 px</div>
                             <div className='row'>
-                                <Button onClick={() => fileRef.current?.click()}>
-                                    <ImageIcon />
+                                <Button onClick={() => fileRef.current?.click()}
+                                    sx={{ width: '100%', textAlign: 'center', display: 'flex', justifyContent: 'center' }}
+                                    variant="outlined"
+                                >
+                                    <PanoramaIcon />
                                     Выбрать изображения
                                 </Button>
                                 <input type='file' onChange={onImageChange} ref={fileRef} style={{ display: 'none' }}
                                     accept=".jpg,.jpeg,.png,.webp" />
                             </div>
                             <div className='row'>
-                                <Button type='submit'>Создать предложение</Button>
+                                <Button type='submit'
+                                    variant="contained"
+                                    sx={{ width: '100%', textAlign: 'center', display: 'flex', justifyContent: 'center' }}
+                                >
+                                    Создать предложение
+                                </Button>
                             </div>
                         </form>
                     </div>
@@ -819,12 +814,12 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                     </ImageList>
                 </div>
 
-        <style jsx>{` 
+                <style jsx>{` 
                 .background {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                     width:100%;
+                    width:100%;
                 }
 
                 .column {
@@ -843,13 +838,14 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                     width: 100%;
                 }
                 select {
-                    width:223px;
+                    width:100%;
                     height: 56px;
                 }
                 .imgCustom {
                     background-size: contain;
                     height: 300px;
                 }
+                
                 
             `}</style>
             </>

@@ -14,6 +14,8 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { AllCarDto } from "../../../@types/dto";
 import { Car } from "@prisma/client";
 import { Circle } from "@mui/icons-material";
+import CircularProgress from "@mui/material/CircularProgress";
+import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
 
 
 // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -67,11 +69,11 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
         <>
             <div className="background" >
                 <div className="title">Новые автомобили</div>
-                <div className="filt">
+                {/* <div className="filt">
                     <div className="el" id={id.join(' ')} ref={newFiltRef}
                         onClick={(event) => { if (event.target === newFiltRef.current) active() }}>Новые поступления</div>
                     <div className="el" id={id.join(' ')} ref={saleFiltRef} onClick={() => setActiveFilter('sale')}>Скидка</div>
-                </div>
+                </div> */}
                 {carArr.length > 0 ?
                     (<div className="cardsSlider">
                         {
@@ -82,7 +84,12 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                                 }}>
                                     <div className="card">
                                         <div className="imgDiv">
-                                            <img src={car.img[0]} className="cardImg"></img>
+                                            <img
+                                                loading="lazy"
+                                                decoding='async'
+                                                src={car.img[0]} 
+                                                className="cardImg">
+                                            </img>
                                         </div>
                                         <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
                                         <div className="cardDesc">
@@ -98,10 +105,10 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                                             {/* <div className="elDesc">{(car.CarModification.driveType)}FWD</div> */}
                                             <div className="elDesc">MT</div>
                                         </div>
-                                        <div className="cardPrice">{car.price} Р </div>
-                                        <div className="cardPriceMonth">
-                                            <button className="btn">от {Math.round(Number(car.priceMonth))} Р/мес</button>
-                                        </div>
+                                        <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
+                                            <div className="cardPriceMonth">
+                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
+                                            </div>
                                         <div className="credit">
                                             <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
                                         </div>
@@ -110,7 +117,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                             })
                         }
                     </div>)
-                    : null
+                    : <CircularProgress />
                 }
                 {
                     carArr.length <= 0 &&
@@ -159,6 +166,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     margin-top:10px;
                     padding:30px;
                     flex-direction: column;
+                    
                 }
 
                 .title {
@@ -170,6 +178,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     font-size: 40px;
                     font-weight: bold;
                     gap:20px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .cardsSlider{
@@ -216,6 +225,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     margin-top: 40px;
                     border-radius: 7px;
                     transition: 0.3s;
+                    cursor: pointer;
                 }
 
                 .card:hover {    
@@ -250,6 +260,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     width: 100%;
                     height: 32px; 
                     color: #005baa;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .cardDesc {
@@ -262,6 +273,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     margin-top:20px;
                     padding-left: 10px;
                     padding-right: 10px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .elDesc{
@@ -287,6 +299,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     line-height: 24px;
                     min-height: 24px;
                     margin-top:5px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .cardPriceMonth{
@@ -296,6 +309,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     justify-content: center;
                     align-items: center;
                     margin-top: 10px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
 
@@ -310,6 +324,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     width: 150px;
                     height: 30px;
                     transition: 0.5s;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .credit {
@@ -323,6 +338,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     transition: 1s;
                     margin-top:-10em;
                     cursor: pointer;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .credit:hover {

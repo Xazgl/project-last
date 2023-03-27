@@ -60,7 +60,7 @@ export function More({ job,setOpen }) {
                  .elCard {
                   width: 100%;
                   font-size: 20px;
-                  font-family: 'TacticSans-Reg','sans-serif'; 
+                  font-family: 'Roboto','sans-serif'; 
                   flex-direction: column;
                   margin-top:10px;
                  }

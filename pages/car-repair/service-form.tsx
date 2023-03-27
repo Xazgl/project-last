@@ -2,6 +2,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
+import db, { Offer } from '../../prisma'
 import { NumbersBanner } from '../../src/component/actual/carNumbers/NumbersBanner'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import { ServiceForm } from '../../src/component/actual/serviceCarPage/ServiceForm'
@@ -12,7 +13,7 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 
-const ServicePage: NextPage  = () => {
+const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
   
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
@@ -33,7 +34,7 @@ const ServicePage: NextPage  = () => {
       <MenuBar />
       <BarMenu />
       <ServiceForm />
-      <CardsSpecialOffers />
+      <CardsSpecialOffers  setShowModal={setShowModal} offers={ offers } />
       <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
       {
@@ -48,6 +49,15 @@ const ServicePage: NextPage  = () => {
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const offers = await db.offer.findMany()
+        
+  return {
+    props: {
+      offers: JSON.parse(JSON.stringify(offers)),
+    }
+  }
+}
 
 
 

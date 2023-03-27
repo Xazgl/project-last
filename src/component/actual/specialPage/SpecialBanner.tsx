@@ -97,7 +97,7 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                         >
                                             <TableCell component="th" scope="row"
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto',
                                                     fontWeight: 'bold'
                                                 }}
                                             >
@@ -105,43 +105,44 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'   
+
                                                 }}
                                                 align="right">{row.T0}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'
                                                 }}
                                                 align="right">{row.T0_1}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'
                                                 }}
                                                 align="right">{row.T0_2}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'
                                                 }}
                                                 align="right">{row.T0_3}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'
                                                 }}
                                                 align="right">{row.T0_4}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'
                                                 }}
                                                 align="right">{row.year_3}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',
+                                                    fontSize: '16px',fontFamily: 'Roboto'
                                                 }}
                                                 align="right">{row.year_5}
                                             </TableCell>

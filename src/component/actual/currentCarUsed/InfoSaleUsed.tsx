@@ -1,10 +1,11 @@
 import { Circle } from "@mui/icons-material";
 import { Dispatch, SetStateAction } from "react";
 import { Box, Button, Checkbox, CircularProgress, FormControlLabel, FormGroup, Typography } from "@mui/material";
-import { UsedCars } from "@prisma/client";
+import { CarUsedInclude } from "../../../../@types/dto";
+// import { UsedCars } from "@prisma/client";
 
 type Props = {
-    car: UsedCars,
+    car: CarUsedInclude,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>
@@ -118,6 +119,8 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     padding: 20px 30px;
                     border-radius: 7px 7px 0 0 ;
                     font-weight: bold;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .salesBlock{
@@ -129,6 +132,8 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     align-items: start;
                     border-bottom:1px solid #e0e0e0;
                     padding: 20px 20px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .answerBlock{
@@ -139,6 +144,8 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     height: auto;
                     align-items: start;
                     padding: 20px 20px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
 
@@ -153,6 +160,8 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     display: flex;
                     text-align: center;
                     justify-content: start;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .price {
@@ -161,6 +170,8 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     color: #005baa;
                     font-size: 30px;
                     font-weight: bold;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .btn {
@@ -170,6 +181,8 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     width: 100%;
                     height: 60px;
                     margin-top: 10px;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 @media(max-width: 1050px) {

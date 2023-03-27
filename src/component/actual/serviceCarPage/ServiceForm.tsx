@@ -166,7 +166,10 @@ export function ServiceForm() {
                                         width: '100%',
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
-                                        padding: '11px 12px'
+                                        padding: '11px 12px',
+                                        outline:'none',
+                                        fontFamily: 'Roboto'
+
 
                                     }}
                                     id="inputP"
@@ -249,7 +252,7 @@ export function ServiceForm() {
             }
 
             .rightInput {
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -272,7 +275,7 @@ export function ServiceForm() {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
 
 
@@ -283,7 +286,7 @@ export function ServiceForm() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
             
@@ -295,7 +298,7 @@ export function ServiceForm() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
            }
 
@@ -325,7 +328,7 @@ export function ServiceForm() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
             }
            
 
@@ -333,18 +336,19 @@ export function ServiceForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
                 padding: '11px 12px';
+                outline:none;
             }
 
             textarea  {
                 width: 100%;
                 height: 200px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
@@ -356,7 +360,7 @@ export function ServiceForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }
@@ -367,7 +371,7 @@ export function ServiceForm() {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'TacticSans-Reg','sans-serif';
+                font-family: 'Roboto','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;

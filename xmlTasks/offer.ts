@@ -1,7 +1,7 @@
 export interface Offer {
 
-    id: string[],
-    offer_id: OfferId[],
+    id: string,
+    $: Id ,
     vendor: string[],
     model: string[],
     price: string[],
@@ -18,39 +18,23 @@ export interface Offer {
     typePrefix: string[],
     manufacturer_warranty: string[],
     url: string[],
-    param: Params,
-
-    // mileage: string[],
-    // year: string[],
-    // bodyType: string[],
-    // steeringWheel: string[],
-    // color: string[],
-    // pts: string[],  //птс
-    // numberofOwners: string[],  //колличество владельцев
-    // engine: string[], //бензин, 2 л, 149 л. с
-    // driveType: string[], //Полный
-    // gearboxType: string[],//Автомат вариатор
-    // generationIName: string[],
-    // modelName: string[],
-
+    param: Param[]
 }
 
 
-export interface OfferId {
-    $: Id;
-    type: Type ;
-}
 
 export interface Id {
     id: string;
+    type:string
 }
 
-export interface Type {
-    str: string;
+export interface Param{
+    _: string;
+    $: $name;
+       
 }
 
-
-
-export interface Params {
-   params:string[]
+export interface $name{
+    name:string
 }
+

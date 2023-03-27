@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Accordion, AccordionDetails, AccordionSummary, Button, CardMedia, styled, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Button, CardMedia, CircularProgress, styled, Typography } from "@mui/material";
 
 import suv from '/public/images/carBodyTyp/suv.svg'
 import crossover from '/public/images/carBodyTyp/crossover.svg'
@@ -194,7 +194,7 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                                                     <Item><Circle sx={{ backgroundColor: `${car.color}`, borderRadius: '50px' }} /></Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
-                                                    <Item sx={{ fontSize:'17px' }}>{car.year}</Item>
+                                                    <Item sx={{ fontSize: '17px' }}>{car.year}</Item>
                                                 </Grid>
                                                 <Grid item xs={4}>
                                                     <Item sx={{ color: 'black' }}>
@@ -210,35 +210,37 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                                                     </Item>
                                                 </Grid>
                                             </Grid>
-                                            <Grid container spacing={2} sx={{marginTop:'20px'}}>
-                                                        <Grid item xs={4}>
-                                                            <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Двигатель</Item>
-                                                        </Grid>
-                                                        <Grid item xs={4}>
-                                                            <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Привод</Item>
-                                                        </Grid>
-                                                        <Grid item xs={4}>
-                                                            <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Коробка</Item>
-                                                        </Grid>
-                                                        <Grid item xs={4}>
-                                                            <Item sx={{boxShadow:'none',fontSize:'16x' }}>{car.CarModification.enginePower} Л.С.</Item>
-                                                        </Grid>
-                                                        <Grid item xs={4}>
-                                                            <Item sx={{ fontFamily:'15px',boxShadow:'none' }}>{driverTypeStr(car.CarModification.driveType)}</Item>
-                                                        </Grid>
-                                                        <Grid item xs={4}>
-                                                            <Item sx={{ fontFamily:'15px', boxShadow:'none' }}>{gearBoxName(car.CarModification.gearboxType)}</Item>
-                                                        </Grid>
-                                                    </Grid>
+                                            <Grid container spacing={2} sx={{ marginTop: '20px' }}>
+                                                <Grid item xs={4}>
+                                                    <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Двигатель</Item>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Привод</Item>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Item sx={{ backgroundColor: '#1565c0', color: 'white', fontWeight: 'bold' }}>Коробка</Item>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Item sx={{ boxShadow: 'none', fontSize: '16x' }}>{car.CarModification.enginePower} Л.С.</Item>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Item sx={{ fontFamily: '15px', boxShadow: 'none' }}>{driverTypeStr(car.CarModification.driveType)}</Item>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Item sx={{ fontFamily: '15px', boxShadow: 'none' }}>{gearBoxName(car.CarModification.gearboxType)}</Item>
+                                                </Grid>
+                                            </Grid>
 
                                         </Box>
-                                        
+
                                     </AccordionDetails>
                                 </Accordion>
                             </div>
                         </div>
                     </>
-                    : <Circle />
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
             <style jsx>{`
@@ -314,6 +316,7 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                     color:#7b7979;
                     font-weight: 400;
                     font-size: 12px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .columnDesc{
@@ -323,6 +326,7 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                     text-align: center;
                     font-weight: 700;
                     font-size: 13px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .descMobile {

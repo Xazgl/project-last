@@ -9,9 +9,10 @@ export default async function sendmailMain(req: NextApiRequest, res: NextApiResp
             name: z.string().min(2).max(20),
             phone: z.string().min(2).max(20),
             officeName: z.string().min(2).max(50),
-            comment: z.string().min(0).max(300),
+            comment: z.string().max(300).optional(),
         })
         const adminFromReq = clinetSchema.parse(req.body)
+        adminFromReq.comment == undefined ? adminFromReq.comment='': adminFromReq.comment
         try {
             //письмо
             let testEmailAccount = await nodemailer.createTestAccount()

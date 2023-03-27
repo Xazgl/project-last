@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CarDto } from "../../../../@types/dto";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Button, CardMedia, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Box, Button, CardMedia, Checkbox, CircularProgress, FormControlLabel, FormGroup } from "@mui/material";
 
 import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -144,7 +144,7 @@ const OfficeList: OfficeArr = [
     },
     {
         id: 22,
-        name: 'UAZ' || 'УАЗ',
+        name: 'УАЗ',
         map: "https://yandex.ru/map-widget/v1/?um=constructor%3Aeb4240831e67244f171338e33f9abec27592451d805d48e6eea90f52161d3b14&amp;source=constructor"
     },
 ]
@@ -241,13 +241,15 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
                                     </div>
                                 </div>
                                 <div className="rightColumn">
-                                    <iframe src={`${map}`} width="100%" height="400" frameborder="0"></iframe>                                </div>
+                                    <iframe src={`${map}`} width="100%" height="400"  frameBorder="0"></iframe>                                </div>
                             </div>
                         </div>
 
 
                     </>
-                    : <Circle />
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
             <style jsx>{`
@@ -281,6 +283,7 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
                     height: 400px;
                     background-color: white;
                     border-radius: 7px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .leftColumn{
@@ -310,6 +313,7 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
                     width:100%;
                     height: 100%;
                     font-size: 15px;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .rightColumn{

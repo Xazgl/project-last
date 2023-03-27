@@ -237,6 +237,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 border:none;
                 font-weight: bold;
                 padding: 11px 12px;
+                outline:none;
            }
 
            select {

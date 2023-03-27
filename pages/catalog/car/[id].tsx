@@ -9,15 +9,21 @@ import { InfoCarTable } from "../../../src/component/actual/currentCar/InfoCarTa
 import { InfoCredit } from "../../../src/component/actual/currentCar/InfoCredit"
 import { InfoOffice } from "../../../src/component/actual/currentCar/InfoOffice"
 import { InfoSale } from "../../../src/component/actual/currentCar/InfoSale"
+import { FooterMain } from "../../../src/component/actual/FooterMain"
 import BarMenu from "../../../src/component/BarMenu"
 import { MenuBar } from "../../../src/component/Menu"
+import { Modal } from "../../../src/component/Modal"
 import { ModalImg } from "../../../src/component/ModalImg"
 
 const CarPage: NextPage = () => {
     const [showModal, setShowModal] = useState(false)
+    const [showModalImg, setShowModalImg] = useState(false)
+    const [showTradeInModal, setShowTradeInModal] = useState(false)
+    const refFooter = useRef<HTMLDivElement>(null)
     const [carImg, setCarImg] = useState('')
     const router = useRouter()
     const [car, setCar] = useState<CarDto>(null) // TODO: написать тип ДТО {}
+    const refCredit = useRef<HTMLDivElement>(null)
 
     const { id } = router.query
 
@@ -41,7 +47,7 @@ const CarPage: NextPage = () => {
                 },
             })
             if (resWatched.ok) {
-                const carWatched = await  resWatched.json()
+                const carWatched = await resWatched.json()
                 console.log(carWatched);
             }
         }
@@ -62,15 +68,25 @@ const CarPage: NextPage = () => {
             </Head>
             <MenuBar />
             <BarMenu />
-            <InfoCarHeader car={car}   setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-            <InfoCarHeaderMobile car={car} setCar={setCar}  setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <InfoCarHeader car={car} refCredit={refCredit} setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal}
+                showModalImg={showModalImg} setShowModalImg={setShowModalImg}
+            />
+            <InfoCarHeaderMobile car={car} refCredit={refCredit} setCar={setCar} setCarImg={setCarImg}
+                showModal={showModal} setShowModal={setShowModal} showModalImg={showModalImg}
+                setShowModalImg={setShowModalImg}
+            />
             <InfoCarTable car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoSale car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-            <InfoCredit car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <InfoCredit car={car} refCredit={refCredit} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
             <InfoOffice car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+            <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
 
             {
-                showModal && <ModalImg carImg={carImg} showModal={showModal} setShowModal={setShowModal} />
+                showModalImg && <ModalImg carImg={carImg} showModalImg={showModalImg} setShowModalImg={setShowModalImg} />
+            }
+
+            {
+                showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
             }
 
         </>

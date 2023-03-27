@@ -62,6 +62,8 @@ export function AssistentTxt() {
                     font-size:18px;
                     justify-content: start;
                     color: #2e2d2d;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .titleMini {
@@ -70,6 +72,8 @@ export function AssistentTxt() {
                     font-size:18px;
                     justify-content: start;
                     color: #0000CD;
+                    font-family: 'Roboto','sans-serif'; 
+
                 }
 
                 .blockDesc{

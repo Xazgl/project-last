@@ -5,17 +5,17 @@ import { FormEvent, useState } from "react";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 type ModelProps = {
-    showModal: boolean,    
-    setShowModal: Dispatch<SetStateAction<boolean>>,
-    carImg: string
+    showModalImg: boolean,    
+    setShowModalImg: Dispatch<SetStateAction<boolean>>,
+    carImg: string,
 }
 
-export function ModalImg({showModal, setShowModal, carImg}: ModelProps) {
+export function ModalImg({showModalImg, setShowModalImg, carImg}: ModelProps) {
     const [closeStarting, setCloseStarting] = useState(false)
     function closeModal() {
         setCloseStarting(true)
         setTimeout(() => {
-            setShowModal(false)
+            setShowModalImg(false)
             setCloseStarting(false)
         }, 500)
     }
@@ -23,7 +23,7 @@ export function ModalImg({showModal, setShowModal, carImg}: ModelProps) {
     const backgroundEl = useRef(null)
     const className = [
         'modalBackground',
-        showModal ? 'modalBackground_show': '',
+        showModalImg ? 'modalBackground_show': '',
         closeStarting ? 'modalBackground_close-starting': '', 
     ]
     return <>    

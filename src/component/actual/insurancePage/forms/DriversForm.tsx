@@ -169,6 +169,7 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 border:none;
                 font-weight: bold;
                 padding: 11px 12px;
+                outline:none;
            }
 
            select {

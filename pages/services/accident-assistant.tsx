@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useRef, useState } from 'react'
 import { AssistentImg } from '../../src/component/actual/assistentPage/AssistentImg'
 import { AssistentTxt } from '../../src/component/actual/assistentPage/AssistentTxt'
+import { MainBannerAssistent } from '../../src/component/actual/assistentPage/MainBannerAssistent'
 
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
@@ -32,6 +33,7 @@ const AssistentPage: NextPage  = () => {
       </Head>
       <MenuBar />
       <BarMenu />
+      <MainBannerAssistent setShowModal={setShowModal}  refs={{refForm}}/>
       <AssistentImg />
       <AssistentTxt />
       <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />

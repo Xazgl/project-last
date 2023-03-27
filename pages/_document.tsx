@@ -4,6 +4,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../mui/theme';
 import createEmotionCache from '../mui/createEmotionCache';
 
+
 export default class MyDocument extends Document {
   render() {
     return (
@@ -17,6 +18,23 @@ export default class MyDocument extends Document {
             // href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             href="/public/Fonts/TacticSansExd-RegIt.woff"
           />
+
+          <link rel="preconnect"
+            href="https://fonts.googleapis.com"
+          />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com" crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;800&display=swap" rel="stylesheet"
+          />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;800&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
+
+
           <link
             rel="stylesheet"
             href="/public/Fonts/TacticSans-RegIt.woff"
@@ -36,6 +54,8 @@ export default class MyDocument extends Document {
 
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
+
+
         </Head>
         <body>
           <Main />

@@ -135,7 +135,7 @@ const OfficeList: OfficeArr = [
     // {
     //     id: 20,
     //     name: 'LOVOL',
-    //     img: `${lovol.src}`
+    //     img: `${lovol.src}`s
     // },
     {
         id: 21,
@@ -144,7 +144,7 @@ const OfficeList: OfficeArr = [
     },
     {
         id: 22,
-        name: 'UAZ' || 'УАЗ',
+        name: 'УАЗ',
         map: "https://yandex.ru/map-widget/v1/?um=constructor%3Aeb4240831e67244f171338e33f9abec27592451d805d48e6eea90f52161d3b14&amp;source=constructor"
     },
 ]
@@ -204,15 +204,15 @@ export function InfoOfficeUsed({ car, showModal, setShowModal, setCarImg }: Prop
                                     </div>
                                 </div>
                                 <div className="rightColumn">
-                                    <iframe src={`${map}`} width="100%" height="400" frameborder="0"></iframe>                                </div>
+                                    <iframe src={`${map}`} width="100%" height="400" ></iframe>                                </div>
                             </div>
                         </div>
 
 
                     </>
-                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
-                    <CircularProgress />
-                </Box>
+                    : <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', widht: '100%', height: "300px" }}>
+                        <CircularProgress />
+                    </Box>
                 }
             </div>
             <style jsx>{`

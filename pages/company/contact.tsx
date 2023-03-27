@@ -33,7 +33,7 @@ const ContactPage: NextPage <{ offices: Offices[] }> = ({ offices }) => {
       <MenuBar />
       <BarMenu />
       <OfficesListComponent setShowModal={setShowModal} offices={ offices }  />
-      {/* <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} /> */}
+      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
