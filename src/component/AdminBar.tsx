@@ -89,7 +89,29 @@ const AdminBar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+              fontFamily: 'sans-serif',
+              fontSize: '24px', // Размер шрифта
+              color: '#0ff', // Цвет текста
+              textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff', // Стили тени текста
+              animation: 'pulse 2s infinite', // Анимация пульсации текста
+              '@keyframes pulse': {
+                '0%': {
+                  opacity: 0.2,
+                  textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff',
+                },
+                '50%': {
+                  opacity: 1,
+                  textShadow: '0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff, 0 0 80px #0ff',
+                },
+                '100%': {
+                  opacity: 0.2,
+                  textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff',
+                },
+              },
+            }}
           >
             Arkont ADMIN
           </Typography>

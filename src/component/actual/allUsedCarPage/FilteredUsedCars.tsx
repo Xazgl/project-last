@@ -22,9 +22,13 @@ import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
 
+import LazyLoad from 'react-lazyload';
+
+
 import { AllUsedCarDto } from '../../../../@types/dto';
 import { Box, Button } from '@mui/material';
 import { logoFind, LogoList } from './services/servicesUsedCars';
+
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -47,10 +51,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = () => {
-      const url = window.location.href;
-      navigator.clipboard.writeText(url)
-          .then(() => setCopied(true))
-          .catch((error) => console.error('Не удалось скопировать ссылку', error));
+    const url = window.location.href;
+    navigator.clipboard.writeText(url)
+      .then(() => setCopied(true))
+      .catch((error) => console.error('Не удалось скопировать ссылку', error));
   };
 
   interface ExpandMoreProps extends IconButtonProps {
@@ -333,7 +337,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 }
                 action={
                   <IconButton aria-label="settings">
-                    <MoreVertIcon  sx= {{cursor:'pointer'}} onClick={handleCopyLink}/>
+                    <MoreVertIcon sx={{ cursor: 'pointer' }} onClick={handleCopyLink} />
                   </IconButton>
                 }
                 title={car.vendor}
@@ -344,7 +348,18 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 pathname: '/catalog/used-car/[id]',
                 query: { id: car.id }
               }}>
-                <CardMedia
+                <LazyLoad height={194}>
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={car.picture[0]}
+                    sx={{ cursor: 'pointer' }}
+                    loading="lazy"
+                    decoding='async'
+                    alt="car"
+                  />
+                </LazyLoad>
+                {/* <CardMedia
                   component="img"
                   height="194"
                   image={car.picture[0]}
@@ -353,7 +368,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   loading="lazy"
                   decoding='async'
                   alt="Paella dish"
-                />
+                /> */}
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -404,11 +419,11 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
               <CardHeader
-                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center',fontFamily: 'Roboto' }}
+                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center', fontFamily: 'Roboto' }}
                 avatar={
-                  <Avatar sx={{}} aria-label="recipe" 
+                  <Avatar sx={{}} aria-label="recipe"
                     src={logoFind(LogoList, car.vendor)}>
-                      
+
                   </Avatar>
                 }
                 action={
@@ -434,19 +449,24 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 pathname: '/catalog/car/[id]',
                 query: { id: car.id }
               }}>
-                <CardMedia
-                  component="img"
-                  height="160px"
-                  image={car.picture[0]}
-                  sx={{
-                    cursor: 'pointer',
-                    backgroundSize: 'contain'
-                  }}
+                <LazyLoad height={160}>
 
-                  loading="lazy"
-                  decoding='async'
-                  alt="car"
-                />
+                  <CardMedia
+                    component="img"
+                    height="160px"
+                    image={car.picture[0]}
+                    sx={{
+                      cursor: 'pointer',
+                      backgroundSize: 'contain'
+                    }}
+
+                    loading="lazy"
+                    decoding='async'
+                    alt="car"
+                  />
+
+                </LazyLoad>
+
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary" >
@@ -459,8 +479,9 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto'
-                }}
+                  sx={{
+                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto'
+                  }}
                   onClick={() => showModal}>Получить консультацию</Button>
               </div>
             </Card>

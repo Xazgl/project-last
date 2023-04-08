@@ -130,6 +130,32 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
         }
     }
 
+
+    const [imgLength, setImgLength] = useState(0)
+    const [colImg, setColImg] = useState(8)
+
+    useEffect(() => {
+        async function howCols() {
+            setImgLength(car.img.length)
+            if (imgLength >= 10) {
+                setColImg(8)
+            } else if (5<imgLength && imgLength <= 8) {
+                setColImg(4)
+            } else if (1<imgLength && imgLength <= 5) {
+                setColImg(3)
+            } else if (imgLength === 1) {
+                setColImg(1)
+            } else {
+                setColImg(8)
+            }
+        }
+        if (car !== null) {
+            howCols()
+            // console.log(colImg)
+        }
+    }, [])
+
+
     return (
         <>
             <div className="background" id="desktop">
@@ -158,7 +184,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                              <div style={{ flexDirection: 'column', width: '50%' }}> */}
 
 
-                            <ImageList sx={{ width: '100%', height: '100%' }} cols={8} rowHeight={'auto'}>
+                            <ImageList sx={{ width: '100%', height: '100%' }} cols={colImg} rowHeight={'auto'}>
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
                                         sx={{ cursor: 'zoom-in' }}

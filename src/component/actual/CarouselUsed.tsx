@@ -11,7 +11,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 // import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { AllCarDto } from "../../../@types/dto";
+import { AllCarDto, AllUsedCarDto } from "../../../@types/dto";
 import { Car } from "@prisma/client";
 import { Circle } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -25,13 +25,13 @@ import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-export function CarouselComponent({ cars }: { cars: AllCarDto }) {
+export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
     const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
     const [filterClosed, setFilterClosed] = useState(false);
-    const [carArr, setCarArr] = useState<AllCarDto>(
-        Array.isArray(cars) && cars.length ? Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
+    const [carArr, setCarArr] = useState<AllUsedCarDto>(
+        Array.isArray(carsUsed) && carsUsed.length ? Array(4).fill(0).map(el => carsUsed[Math.floor(Math.random() * carsUsed.length)]) : [])
 
     // const [carArr, setCarArr] = useState<AllCarDto>(cars)
     const newFiltRef = useRef(null)
@@ -65,12 +65,30 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
         console.log(filterOpen)
     }
 
+    function matchesEngine(engine) {
+        let arr = engine.toString().split(/\s*,\s*/)
+        return arr[2].replace(/\s/g, '');
+    }
 
+    function gearboxType(gearbox) {
+        if (gearbox === 'Механическая') {
+            return 'MT'
+        } else {
+            return 'АТ'
+
+        }
+    }
+
+
+    function engineArrStr(engine) {
+        let arr = engine.toString().split(/\s*,\s*/)
+        return arr[1]
+    }
 
     return (
         <>
             <div className="background" >
-                <div className="title">Новые автомобили</div>
+                <div className="title">Автомобили с пробегом</div>
                 {carArr.length > 0 ?
                     <Box sx={{ maxWidth: 270, flexGrow: 1 }}>
 
@@ -87,27 +105,31 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                         pathname: '/catalog/car/[id]',
                                         query: { id: car.id }
                                     }}>
-                                        <div className="card" key={car.id}>
+                                        <div className="card">
                                             <div className="imgDiv">
-                                                <img src={car.img[0]} className="cardImg"></img>
+                                                <img src={car.picture[0]}
+                                                    loading="lazy"
+                                                    decoding='async'
+                                                    className="cardImg"
+                                                >
+                                                </img>
                                             </div>
-                                            <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
+                                            <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
                                             <div className="cardDesc">
                                                 <div className="elDesc">АИ-95</div>
-                                                <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume)) * 100) / 100000).toFixed(1)} л.</div>
-                                                <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
-                                                {car.CarModification.driveType === 'front' &&
+                                                <div className="elDesc">{engineArrStr(car.engine)} </div>
+                                                <div className="elDesc">{matchesEngine(car.engine)}</div>
+                                                {car.driverType === 'Передний' &&
                                                     <div className="elDesc">FWD</div>
                                                 }
-                                                {car.CarModification.driveType === 'full_4wd' &&
+                                                {car.driverType === 'Полный' &&
                                                     <div className="elDesc">4WD</div>
                                                 }
-                                                {/* <div className="elDesc">{(car.CarModification.driveType)}FWD</div> */}
-                                                <div className="elDesc">MT</div>
+                                                <div className="elDesc">{gearboxType(car.gearboxType)}</div>
                                             </div>
                                             <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
                                             <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
+                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.price / 120)))} Р/мес</button>
                                             </div>
                                             <div className="credit">
                                                 <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
@@ -303,7 +325,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     color: #005baa;
                     font-family: 'Roboto',sans-serif;
 
-                    
                 }
 
                 .cardDesc {
@@ -355,7 +376,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     align-items: center;
                     margin-top: 10px;
                     font-family: 'Roboto',sans-serif;
-
                 }
 
 
@@ -371,7 +391,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     height: 30px;
                     transition: 0.5s;
                     font-family: 'Roboto',sans-serif;
-
                 }
 
                 .credit {
@@ -385,6 +404,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     transition: 1s;
                     margin-top:-10em;
                     cursor: pointer;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .credit:hover {
@@ -424,7 +444,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     align-items: center;
                  }
 
-                 .btnAllCar {
+                .btnAllCar {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -448,7 +468,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     -moz-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;
                     box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;
                 }
-                
                 @media(max-width: 720px) {
                     .background {
                         display: flex;
@@ -506,6 +525,23 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                 @media(max-width: 250px) {
                     .title { 
                         font-size:16px;
+                        margin-top:10px;
+                    }
+                    .titleMini {
+                        font-size:7px;
+                    }
+                    .MainBanner { 
+                        height: 130px;
+                    }
+                    .titleMini{
+                        margin-bottom:00px;
+                        margin-top:10px;
+                    }
+                }
+                    
+                @media(max-width: 250px) {
+                    .title { 
+                        font-size:9px;
                         margin-top:10px;
                     }
                     .titleMini {

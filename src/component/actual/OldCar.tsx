@@ -24,12 +24,21 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
     const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
     const [filterClosed, setFilterClosed] = useState(false);
-    const [carArr, setCarArr] = useState<AllUsedCarDto>(
-        Array.isArray(carsUsed) && carsUsed.length ? Array(4).fill(0).map(el => carsUsed[Math.floor(Math.random() * carsUsed.length)]) : [])
+    // const [carArr, setCarArr] = useState<AllUsedCarDto>(
+    //     Array.isArray(carsUsed) && carsUsed.length ? Array(4).fill(0).map(el => carsUsed[Math.floor(Math.random() * carsUsed.length)]) : [])
 
 
-    const newFiltRef = useRef(null)
-    const saleFiltRef = useRef(null)
+    // const newFiltRef = useRef(null)
+    // const saleFiltRef = useRef(null)
+
+    const [carArr, setCarArr] = useState<AllUsedCarDto>([]);
+    useEffect(() => {
+        if (!Array.isArray(carsUsed ) || !carsUsed .length) {
+            return;
+        }
+        const shuffledCars = Array(4).fill(0).map(el => carsUsed [Math.floor(Math.random() * carsUsed .length)]);
+        setCarArr(shuffledCars);
+    }, [carsUsed ]);
 
 
     const id = [
@@ -84,11 +93,12 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                                     }}>
                                         <div className="card">
                                             <div className="imgDiv">
-                                                <img src={car.picture[0]}
+                                                <img
                                                     loading="lazy"
                                                     decoding='async'
-                                                    className="cardImg"
-                                                >
+                                                    src={car.picture[0]}
+                                                    className="cardImg">
+
                                                 </img>
                                             </div>
                                             <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
@@ -104,9 +114,9 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                                                 }
                                                 <div className="elDesc">{gearboxType(car.gearboxType)}</div>
                                             </div>
-                                            <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
+                                            <div className="cardPrice">{numberWithSpaces(car.price)} ₽</div>
                                             <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.price/120)))} Р/мес</button>
+                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} Р/мес</button>
                                             </div>
                                             <div className="credit">
                                                 <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
@@ -183,7 +193,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         justify-content: start;
         width: 1000px;
         gap:30px;
-        height: 600px;
+        height: 550px;
     }
 
 
@@ -376,20 +386,23 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         font-family: 'Roboto','sans-serif'; 
      }
 
-    .btnAllCar {
+     .btnAllCar {
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        border: 1px solid #deded8;
-        background:transparent;
-        color: #005baa;
+        background:#005baa;
+        color: white;
         width: 350px;
         height: 100%;
         font-size: 18px;
         border-radius: 5px;
         transition: 0.6s;
-    }
+        font-family: 'Roboto',sans-serif;
+        border:none;
+        cursor:pointer;
+     }
+
 
     .btnAllCar:hover {
         background-color: #005baa9b;
@@ -420,6 +433,11 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
     }
 
     @media(max-width: 720px) {
+
+        .background {
+             display:none;
+        }
+
         .card:hover .credit {
            display: none;
         }

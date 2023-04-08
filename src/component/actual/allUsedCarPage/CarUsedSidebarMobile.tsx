@@ -197,7 +197,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
     const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
     const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
-    const [expanded, setExpanded] = React.useState<string | false>('panel1');
+    const [expanded, setExpanded] = React.useState<string | false>(false);
 
     const handleChangeBar =
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -463,10 +463,11 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                 </Link>
 
                                 <Link href={'/catalog/used-car'} sx={{ textDecoration: 'none' }}>
-                                    <Button sx={{ width: '120px', height: '40px',fontFamily: 'Roboto', fontSize: '11px', backgroundColor: 'white' }} onClick={(event) => {
+                                    <Button sx={{ width: '120px', height: '40px', fontFamily: 'Roboto', fontSize: '11px', backgroundColor: 'white' }} onClick={(event) => {
                                         setCarType('old')
-                                    }} >С пробегом  <CheckIcon sx={{ fontSize: '14px' ,fontFamily: 'Roboto'
-                                }} /></Button>
+                                    }} >С пробегом  <CheckIcon sx={{
+                                        fontSize: '14px', fontFamily: 'Roboto'
+                                    }} /></Button>
                                 </Link>
                             </ButtonGroup>
                         </div>
@@ -511,7 +512,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Стоимость</Typography>
+                                    <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Стоимость</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <RangeSliderUsed
@@ -530,7 +531,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Бренд</Typography>
+                                    <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Бренд</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
@@ -549,7 +550,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                         aria-controls="panel1a-content"
                                         id="panel1a-header"
                                     >
-                                        <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Модель</Typography>
+                                        <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Модель</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <div id="column" >
@@ -584,7 +585,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px' ,fontFamily: 'Roboto'}}>Цвет</Typography>
+                                    <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Цвет</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <FormGroup>
@@ -617,7 +618,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Коробка</Typography>
+                                    <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Коробка</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <FormGroup>
@@ -650,7 +651,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Тип кузова</Typography>
+                                    <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Тип кузова</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <div id="carBodyType" >
@@ -686,7 +687,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px',fontFamily: 'Roboto' }}>Привод</Typography>
+                                    <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Привод</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <div className="rowSideBar" id="column" >
@@ -719,7 +720,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                         <div className="rowSideBar" id="column" >
                             <Button
                                 variant="outlined"
-                                sx={{ width: '100%', fontSize: '12px', height: '40px',fontFamily: 'Roboto' }}
+                                sx={{ width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto' }}
                                 onClick={resetFilteredCars}>
                                 Сбросить фильтры
                             </Button>

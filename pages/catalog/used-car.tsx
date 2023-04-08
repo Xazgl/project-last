@@ -68,7 +68,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       cars: JSON.parse(JSON.stringify(cars)),
-    }
+    },
+    revalidate: 60
   }
 }
 

@@ -84,12 +84,13 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
     const [checkedFuelType, setCheckedFuelType] = useState([true, false]);
     const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
-    const [expanded, setExpanded] = React.useState<string | false>('panel1');
+    const [expanded, setExpanded] = React.useState<string | false>(false);
 
     const handleChangeBar =
         (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
+
 
 
     useEffect(() => {
@@ -316,7 +317,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
     return (
         <>
             <div className="sideBar">
-                <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
+            <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
                     sx={{ backgroundColor: '#0076dd', color: 'white', margin: '10px', width: '100%' }}
                 >
                     <AccordionSummary

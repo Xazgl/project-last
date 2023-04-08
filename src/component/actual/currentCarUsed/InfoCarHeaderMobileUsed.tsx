@@ -127,6 +127,7 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
         }
     }
 
+    
     return (
         <>
             <div className="background" id="mobile">

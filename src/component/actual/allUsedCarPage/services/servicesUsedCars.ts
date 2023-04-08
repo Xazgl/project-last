@@ -43,6 +43,7 @@ import porsche from '/public/images/logo-around/usedCars/po.png';
 import skoda from '/public/images/logo-around/usedCars/sh.png';
 import sunYong from '/public/images/logo-around/usedCars/sun.png';
 import toyota from '/public/images/logo-around/usedCars/to.png';
+import haval from '/public/images/logo-around/usedCars/haval.webp';
 
 
 
@@ -101,7 +102,7 @@ export const LogoList: LogoArr[] = [
     },
     {
         id: 9,
-        name: 'KIA',
+        name: 'Kia',
         img: `${kia.src}`
     },
     {
@@ -263,6 +264,11 @@ export const LogoList: LogoArr[] = [
         id: 41,
         name: 'Toyota',
         img: `${toyota.src}`
+    },
+    {
+        id: 42,
+        name: 'Haval',
+        img: `${haval.src}`
     },
 ]
 

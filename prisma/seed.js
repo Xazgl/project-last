@@ -187,9 +187,11 @@ const dealerList = [
 ]
 
 async function startSeed() {
-    const res = await db.offices.createMany({
+    await db.offices.createMany({
         data: dealerList
     })
 }
+
+
 
 startSeed()

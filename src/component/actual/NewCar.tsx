@@ -26,12 +26,22 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
     const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
     const [filterClosed, setFilterClosed] = useState(false);
-    const [carArr, setCarArr] = useState<AllCarDto>(
-        Array.isArray(cars) && cars.length ? Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
+    // const [carArr, setCarArr] = useState<AllCarDto>(
+    //     Array.isArray(cars) && cars.length ? Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
 
 
-    const newFiltRef = useRef(null)
-    const saleFiltRef = useRef(null)
+    // const newFiltRef = useRef(null)
+    // const saleFiltRef = useRef(null)
+
+
+    const [carArr, setCarArr] = useState<AllCarDto>([]);
+    useEffect(() => {
+        if (!Array.isArray(cars ) || !cars .length) {
+            return;
+        }
+        const shuffledCars = Array(4).fill(0).map(el => cars [Math.floor(Math.random() * cars.length)]);
+        setCarArr(shuffledCars);
+    }, [cars]);
 
 
     const id = [
@@ -84,11 +94,9 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                                 }}>
                                     <div className="card">
                                         <div className="imgDiv">
-                                            <img
-                                                loading="lazy"
+                                            <img loading="lazy"
                                                 decoding='async'
-                                                src={car.img[0]} 
-                                                className="cardImg">
+                                                src={car.img[0]} className="cardImg">
                                             </img>
                                         </div>
                                         <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
@@ -106,9 +114,9 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                                             <div className="elDesc">MT</div>
                                         </div>
                                         <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
-                                            <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
-                                            </div>
+                                        <div className="cardPriceMonth">
+                                            <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
+                                        </div>
                                         <div className="credit">
                                             <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
                                         </div>
@@ -187,7 +195,7 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     justify-content: start;
                     width: 1000px;
                     gap:30px;
-                    height: 600px;
+                    height: 550px;
                 }
 
 
@@ -378,20 +386,23 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     align-items: center;
                  }
 
-                .btnAllCar {
+                 .btnAllCar {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    border: 1px solid #deded8;
-                    background:transparent;
-                    color: #005baa;
+                    background:#005baa;
+                    color: white;
                     width: 350px;
                     height: 100%;
                     font-size: 18px;
                     border-radius: 5px;
                     transition: 0.6s;
+                    font-family: 'Roboto',sans-serif;
+                    border:none;
+                    cursor:pointer;
                 }
+
 
                 .btnAllCar:hover {
                     background-color: #005baa9b;
@@ -422,6 +433,9 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                 }
 
                 @media(max-width: 720px) {
+                    .background {
+                        display:none;
+                    }
                     .card:hover .credit {
                        display: none;
                     }

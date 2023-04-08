@@ -22,6 +22,7 @@ import { TableCars } from "../../src/component/admin/TableCars"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ModalImg } from "../../src/component/ModalImg"
 import { AddCarAdmin2 } from "../../src/component/admin/AddCarAdmin2"
+import React from 'react';
 
 
 const AdminTable: NextPage = () => {
@@ -35,6 +36,7 @@ const AdminTable: NextPage = () => {
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+    
   // const { isLoading, error, status , data, isSuccess} = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
   const { isLoading, error, data, isSuccess } = useSession()
   if (isLoading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}><CircularProgress size="lg" /></div>
@@ -42,7 +44,7 @@ const AdminTable: NextPage = () => {
 
   return (
     <>
-      {data && <div style={{
+      {data && data.login && <div style={{
         width: '100%', height: '35px', display: 'flex', justifyContent: 'start',
         backgroundColor: '#005baa', color: 'white', paddingLeft: '15px', alignItems: 'center'
       }}>

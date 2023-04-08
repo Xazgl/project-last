@@ -11,7 +11,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 // import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { AllCarDto } from "../../../@types/dto";
 import { Car } from "@prisma/client";
 import { Circle } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -19,27 +18,21 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Carousel } from "react-responsive-carousel";
 import SwipeableViews from "react-swipeable-views";
-import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
+import { CarDto } from "../../../../@types/dto";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-export function CarouselComponent({ cars }: { cars: AllCarDto }) {
+export function CarouselComponentTest({ car }: { car: CarDto }) {
 
-    const [activeFilter, setActiveFilter] = useState('');
     const [filterOpen, setFilterOpen] = useState(false);
-    const [filterClosed, setFilterClosed] = useState(false);
-    const [carArr, setCarArr] = useState<AllCarDto>(
-        Array.isArray(cars) && cars.length ? Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
+    const [carArr, setCarArr] = useState<CarDto>(car)
 
-    // const [carArr, setCarArr] = useState<AllCarDto>(cars)
-    const newFiltRef = useRef(null)
-    const saleFiltRef = useRef(null)
 
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
-    const maxSteps = carArr.length;
+    const maxSteps = carArr.img.length;
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -54,24 +47,11 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
     };
 
 
-    const id = [
-        'newFilt',
-        filterOpen ? 'newFilt_active' : '',
-        // filterClosed ? 'newFilt_close-starting' : '',
-    ]
-
-    function active() {
-        setFilterOpen(true)
-        console.log(filterOpen)
-    }
-
-
-
     return (
         <>
             <div className="background" >
-                <div className="title">Новые автомобили</div>
-                {carArr.length > 0 ?
+                {/* <div className="title"></div> */}
+                {carArr.img.length > 0 ?
                     <Box sx={{ maxWidth: 270, flexGrow: 1 }}>
 
                         <AutoPlaySwipeableViews
@@ -82,42 +62,17 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                         >
 
                             {
-                                carArr.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
-                                        <div className="card" key={car.id}>
-                                            <div className="imgDiv">
-                                                <img src={car.img[0]} className="cardImg"></img>
-                                            </div>
-                                            <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
-                                            <div className="cardDesc">
-                                                <div className="elDesc">АИ-95</div>
-                                                <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume)) * 100) / 100000).toFixed(1)} л.</div>
-                                                <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
-                                                {car.CarModification.driveType === 'front' &&
-                                                    <div className="elDesc">FWD</div>
-                                                }
-                                                {car.CarModification.driveType === 'full_4wd' &&
-                                                    <div className="elDesc">4WD</div>
-                                                }
-                                                {/* <div className="elDesc">{(car.CarModification.driveType)}FWD</div> */}
-                                                <div className="elDesc">MT</div>
-                                            </div>
-                                            <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
-                                            <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
-                                            </div>
-                                            <div className="credit">
-                                                <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                                            </div>
+                                carArr.img.map(img => {
+                                    return <div className="card" key={img}>
+                                        <div className="imgDiv">
+                                            <img src={img} className="cardImg"></img>
                                         </div>
-                                    </Link>
+                                    </div>
                                 })
                             }
                         </AutoPlaySwipeableViews>
                         <MobileStepper
+                          variant="progress"
                             steps={maxSteps}
                             position="static"
                             activeStep={activeStep}
@@ -127,7 +82,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     onClick={handleNext}
                                     disabled={activeStep === maxSteps - 1}
                                 >
-                                    Далее
+                                    
                                     {theme.direction === 'rtl' ? (
                                         <KeyboardArrowLeft />
                                     ) : (
@@ -142,7 +97,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     ) : (
                                         <KeyboardArrowLeft />
                                     )}
-                                    Назад
+                                    
                                 </Button>
                             }
                         />
@@ -151,15 +106,10 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     <CircularProgress />
                 }
                 {
-                    carArr.length <= 0 &&
+                    carArr.img.length <= 0 &&
                     <h1>Авто в пути</h1>
                 }
 
-                <div className="btnDiv">
-                    <Link href={'/catalog/new-car'}>
-                        <button className="btnAllCar">Смотреть все новые автомобили</button>
-                    </Link>
-                </div>
             </div>
             <style jsx>{`
 
@@ -192,7 +142,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                 .background {
                     display:none; 
                     width: 100%;
-                    height: 630px;
+                    height: auto;
                     justify-content: center; 
                     align-items: center;
                     margin-top:10px;

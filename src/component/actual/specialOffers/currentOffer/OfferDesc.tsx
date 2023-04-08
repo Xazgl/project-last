@@ -1,20 +1,9 @@
 
-import pic1 from '/public/images/logo-assistent/1.png';
-import pic2 from '/public/images/logo-assistent/2.png';
-import pic3 from '/public/images/logo-assistent/3.png';
-import pic4 from '/public/images/logo-assistent/4.png';
-import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import { Button, CircularProgress } from '@mui/material';
 import { Offer } from '@prisma/client';
-import { draftjsToMd, mdToDraftjs } from 'draftjs-md-converter';
-import { ContentState, convertToRaw, EditorState } from 'draft-js';
 import { MutableRefObject, useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
-;
-import remarkParse from 'remark-parse';
-import remarkHtml from 'remark-html';
-import { read } from 'fs';
-import { unified } from 'unified';
 
 type Props = {
     offer: Offer,
@@ -24,44 +13,12 @@ type Props = {
 
 export function OfferDesc({ offer, refForm }: Props) {
 
-    const [desc, setDesc] = useState()
-
-//     useEffect(() => {
-//         async function main() {
-//             const file = await unified()
-//                 .use(remarkParse)
-//                 .use(remarkHtml)
-//                 // .process(await read(offer.description))        
-//     console.log(file)
-// }
-//         // if (offer.description) {
-//         //     main()
-//         // }
-//     }, [])
-
-
 return (
     <>
         <div className="background">
             {offer !== null ?
                 <div className="blockDesc">
-                    <p>{offer.description}</p>
-                    {/* <p className='title'>
-                       {offer.shortDesc}
-                    </p>
-                    <ul><p className="titleMini">АВАРИЙНЫЙ КОМИССАР «АРКОНТ» ПОМОЖЕТ ВАМ:</p>
-                        <li> <DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} /> вызвать сотрудников ГИБДД на место ДТП</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />правильно оформить все документы для возмещения ущерба</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />дать объяснения сотрудникам ГИБДД</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} /> отстоять вашу точку зрения в случае психологического давления</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />провести необходимые замеры и фото-, видеосъёмку</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />при необходимости эвакуировать автомобиль с места ДТП</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />рассчитать предварительную стоимость ремонта</li>
-                    </ul>
-                    <h4 style={{ color: '#0000CD' }}>
-                        ТЕЛЕФОН: +7(8442)52−45−44
-                    </h4> */}
-
+                    <p ><ReactMarkdown>{offer.description}</ReactMarkdown></p>
                     <div className='divBtn'>
                         <Button
                             sx={{

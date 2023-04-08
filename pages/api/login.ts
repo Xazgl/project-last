@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             adminId: adminByLogin.id
                         }
                     })
-                    res.send({ redirectUrl: '/admin/sales' })
+                    res.send({ redirectUrl: '/admin' })
                 } else {
                     res.status(401).send({ status: 'Incorrect credentials' })
                 }

@@ -11,7 +11,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 // import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { AllCarDto } from "../../../@types/dto";
+import { AllCarDto, AllUsedCarDto } from "../../../@types/dto";
 import { Car } from "@prisma/client";
 import { Circle } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -24,14 +24,14 @@ import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
 // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-export function Slider({ cars }: { cars: AllCarDto }) {
+export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     // Переменная для определения количества отображаемых элементов
     const [itemsPerPage, setItemsPerPage] = useState(0);
     const [sliderContainerStyle, setSliderContainerStyle] = useState({})
-    const [carsSlides, setCarsSlides] = useState<AllCarDto>(
-        Array.isArray(cars) && cars.length ? Array(16).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]) : [])
+    const [carsSlides, setCarsSlides] = useState<AllUsedCarDto>(
+        Array.isArray(carsUsed) && carsUsed.length ? Array(16).fill(0).map(el => carsUsed[Math.floor(Math.random() * carsUsed.length)]) : [])
 
     // Определение количества отображаемых элементов в зависимости от ширины экрана
     useEffect(() => {
@@ -79,7 +79,7 @@ export function Slider({ cars }: { cars: AllCarDto }) {
     };
 
     const getSlidesToShow = () => {
-        const slidesToShow: AllCarDto = [];
+        const slidesToShow: AllUsedCarDto = [];
         for (let i = 0; i < itemsPerPage; i++) {
             const index = currentSlide * itemsPerPage + i;
             if (index >= carsSlides.length) {
@@ -92,9 +92,6 @@ export function Slider({ cars }: { cars: AllCarDto }) {
     };
 
     const slides = getSlidesToShow();
-
- 
-    
 
     // const [touchStart, setTouchStart] = useState(0)
     // const handleTouchMove = (e: TouchEvent) => {
@@ -123,13 +120,36 @@ export function Slider({ cars }: { cars: AllCarDto }) {
         }
     };
 
+
+    
+
+    function matchesEngine(engine) {
+        let arr = engine.toString().split(/\s*,\s*/)
+        return arr[2].replace(/\s/g, '');
+    }
+
+    function gearboxType(gearbox) {
+        if (gearbox === 'Механическая') {
+            return 'MT'
+        } else {
+            return 'АТ'
+
+        }
+    }
+
+
+    function engineArrStr(engine) {
+        let arr = engine.toString().split(/\s*,\s*/)
+        return arr[1]
+    }
+
     return (
         <>
             <div className="slider"
                 onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
                 // onTouchMove={handleTouchMove}
                 >
-                <div className="title">Новые автомобили</div>
+                <div className="title">Автомобили с пробегом</div>
                 <div className="slider__container">
                     <div
                         className="slider__slides"
@@ -138,30 +158,35 @@ export function Slider({ cars }: { cars: AllCarDto }) {
                         {slides.length > 0 ?
                             <>
                                 {slides.map(car => {
-                                    return <Link href={{
+                                     return <Link href={{
                                         pathname: '/catalog/car/[id]',
                                         query: { id: car.id }
                                     }}>
                                         <div className="card">
                                             <div className="imgDiv">
-                                                <img src={car.img[0]} className="cardImg"></img>
+                                                <img src={car.picture[0]}
+                                                    loading="lazy"
+                                                    decoding='async'
+                                                    className="cardImg"
+                                                >
+                                                </img>
                                             </div>
-                                            <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
+                                            <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
                                             <div className="cardDesc">
                                                 <div className="elDesc">АИ-95</div>
-                                                <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume)) * 100) / 100000).toFixed(1)} л.</div>
-                                                <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
-                                                {car.CarModification.driveType === 'front' &&
+                                                <div className="elDesc">{engineArrStr(car.engine)} </div>
+                                                <div className="elDesc">{matchesEngine(car.engine)}</div>
+                                                {car.driverType === 'Передний' &&
                                                     <div className="elDesc">FWD</div>
                                                 }
-                                                {car.CarModification.driveType === 'full_4wd' &&
+                                                {car.driverType === 'Полный' &&
                                                     <div className="elDesc">4WD</div>
                                                 }
-                                                <div className="elDesc">MT</div>
+                                                <div className="elDesc">{gearboxType(car.gearboxType)}</div>
                                             </div>
                                             <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
                                             <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
+                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.price/120)))} Р/мес</button>
                                             </div>
                                             <div className="credit">
                                                 <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
@@ -262,7 +287,6 @@ export function Slider({ cars }: { cars: AllCarDto }) {
           overflow: hidden;
           animation: slideAnimation 1s ease-in-out;
           flex-grow:1;
-          transition:  transform 0.3 ease;
         }
 
         .slider__controls {
@@ -323,15 +347,7 @@ export function Slider({ cars }: { cars: AllCarDto }) {
             margin-top: 40px;
             border-radius: 7px;
             transition: 0.3s;
-            cursor: pointer;  
-         
-            animation: slideAnimation 1s ease-in-out;        
-        }
-
-        .card.active {
-            opacity: 1;
-            transform: translateX(0px);
-
+            cursor: pointer;            
         }
 
                 .imgDiv {
@@ -483,7 +499,6 @@ export function Slider({ cars }: { cars: AllCarDto }) {
                     font-size: 18px;
                     border-radius: 5px;
                     transition: 0.6s;
-                    font-family: 'Roboto',sans-serif;
                 }
 
                 .btnAllCar:hover {

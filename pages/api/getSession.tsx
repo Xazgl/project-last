@@ -8,7 +8,7 @@ export default async function getSession(req: NextApiRequest, res: NextApiRespon
       const admin = await checkSession(sid)
       if (admin) {
         const { id, login } = admin.admin
-        return res.send({ id, login })
+        return res.status(200).send({ id, login })
       }
       const host = process.env.NODE_ENV === 'production' ? process.env.HOST : 'http://localhost:3000'
       return res.status(401).send({ redirectUrl: host + '/admin/login' })
