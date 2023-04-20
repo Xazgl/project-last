@@ -60,10 +60,10 @@ export function TableUsedCars({ showModal, setShowModal, setCarImg }: Props) {
         //@ts-ignore
         const cars = await res.json()
         setCars(cars.map(car => {       //TODO тип и как вызвать поля через include
-          const { id, offersId, color,vendor,modelFullName, mileage, year, picture , price, active, createdAt, updatedAt } = car
+          const { id, offersId, color, vendor, modelFullName, mileage, year, picture, price, active, createdAt, updatedAt } = car
           const new_price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽';
           const mileage_new = mileage + ' км'
-          return { id, offersId, vendor,  modelFullName, color, mileage_new,  year, picture , new_price, active, createdAt, updatedAt }
+          return { id, offersId, vendor, modelFullName, color, mileage_new, year, picture, new_price, active, createdAt, updatedAt }
         }))
       }
     }
@@ -86,7 +86,8 @@ export function TableUsedCars({ showModal, setShowModal, setCarImg }: Props) {
           height: '100%',
           width: 'auto',
         }}
-          src={params.row.picture [0]}
+          decoding='async'
+          src={params.row.picture[0]}
           onClick={() => showModalImg(params.row.picture[0])}
         />
       }

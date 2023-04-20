@@ -457,7 +457,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     </ButtonGroup>
                 </div>
                 <div className="rowSideBar" id="center" >
-                    <Accordion>
+                    <Accordion  sx={{width:'100%'}}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
@@ -465,13 +465,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         >
                             <Typography sx={{ fontSize: '14px' }}>Дилерские центры</Typography>
                         </AccordionSummary>
-                        <AccordionDetails>
-                            <FormGroup>
+                        <AccordionDetails    >
+                            <FormGroup >
                                 {filteredProps.dealers.map(dealer =>
                                     <FormControlLabel
                                         key={dealer}
                                         control={<Checkbox />}
-                                        label={dealer}
+                                        label={dealer.replace(/Волгоград|Волжский|Землячке|на|Землячке\s*\(.*?\)|Волгоград|Волжский|на|Землячке\s*\(.*?\)/g, "")}
                                         onClick={() => {
                                             setCurrentFilter(prevFilterState => {
                                                 if (prevFilterState.dealerOffice?.includes(dealer)) {

@@ -30,16 +30,19 @@ const ClientsTable: NextPage = () => {
 
   const [data, setData] = useState(null)
 
+
   useEffect(() => {
     async function start() {
       const res = await fetch('/api/getSession', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache'
         },
       })
       if (res.ok) {
-        setData(res)
+        const answer = await res.json();
+        setData(answer)
         console.log(data)
       } else {
         const host = process.env.NODE_ENV === 'production' ? process.env.HOST : 'http://localhost:3000'
@@ -49,14 +52,21 @@ const ClientsTable: NextPage = () => {
     start()
   }, [])
 
+
   return (
     <>
-      {data && <div style={{
-        width: '100%', height: '35px', display: 'flex', justifyContent: 'start',
-        backgroundColor: '#005baa', color: 'white', paddingLeft: '15px', alignItems: 'center'
-      }}>
-        <Typography sx={{ fontSize: '16px' }}><AccountCircleIcon /> Добро пожаловать, {data.login}</Typography></div>}
-      {data &&
+      {data && data.login ?
+        <div style={{
+          width: '100%', height: '35px', display: 'flex', justifyContent: 'start',
+          backgroundColor: '#005baa', color: 'white', paddingLeft: '15px', alignItems: 'center'
+        }}>
+          <Typography sx={{ fontSize: '16px' }}><AccountCircleIcon /> Добро пожаловать, {data.login}</Typography></div>
+        :
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
+          <CircularProgress />
+        </div>
+      }
+      {data && data.login ?
         <AdminLayout title="Аrkont Admin">
           <div style={{ marginTop: '30px' }}>
             <Accordion expanded={expanded === 'panel15'} onChange={handleChange('panel15')}>
@@ -79,10 +89,11 @@ const ClientsTable: NextPage = () => {
 
           </div>
         </AdminLayout>
+        :
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
+          <CircularProgress />
+        </div>
       }
-      {data == null && <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
-        <CircularProgress />
-      </div>}
 
       {
         showModal && <ModalImg carImg={carImg} showModalImg={showModalImg} setShowModalImg={setShowModalImg} />

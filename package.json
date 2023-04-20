@@ -10,7 +10,8 @@
     "prisma:generate": "prisma generate",
     "lint": "next lint",
     "xml:init:db": "nodemon --watch ./xmlTasks ./xmlTasks/index.js",
-    "seed": "prisma db seed"
+    "seed": "prisma db seed",
+    "postbuild": "next-sitemap"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -43,10 +44,12 @@
     "express": "^4.18.1",
     "helmet": "^6.0.0",
     "imask": "^6.4.2",
+    "ioredis": "^5.3.1",
     "multer": "^1.4.4",
     "nanoid": "^3.3.4",
     "next": "12.1.0",
     "next-connect": "^0.12.2",
+    "next-optimized-images": "^2.6.2",
     "nodemailer": "^ 6.7.3",
     "query": "^0.2.0",
     "react": "^17.0.2",
@@ -63,13 +66,14 @@
     "react-responsive-carousel": "^3.2.23",
     "react-slick": "^0.29.0",
     "react-swipeable-views": "^ 0.14.0",
+    "redis": "^4.6.5",
     "remark": "^14.0.2",
     "remark-html": "^15.0.2",
+    "sharp": "^0.32.0",
     "slick-carousel": "^1.8.1",
     "suneditor": "^2.43.14",
     "suneditor-react": "^ 3.4.1",
     "swiper": "^6.8.4",
-    "unified": "^10.1.2",
     "xml2js": "^0.4.23",
     "zod": "^3.18.0"
   },

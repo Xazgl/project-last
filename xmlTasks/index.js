@@ -152,19 +152,19 @@ async function start() {
                                     }
                                 }
                             },
-                            extras: {
-                                connectOrCreate: {
-                                    where: {
-                                        name: vehicle.extras[0].group[0].element[0]._
-                                    },
-                                    create: {
-                                        groupId: Number(vehicle.extras[0].group[0].$.id),
-                                        groupName: vehicle.extras[0].group[0].$.name,
-                                        // name: vehicle.extras[0].group[0].element[0]._
-                                        name: vehicle.extras[0].group[0].element[0]._
-                                    }
-                                }
-                            },
+                            extras: vehicle.extras && vehicle.extras.length > 0 ? {
+                                connectOrCreate: vehicle.extras.map(extra => ({
+                                  where: {
+                                    name: extra.group[0].element[0]._
+                                  },
+                                  create: {
+                                    groupId: Number(extra.group[0].$.id),
+                                    groupName: extra.group[0].$.name,
+                                    name: extra.group[0].element[0]._
+                                  }
+                                }))
+                              } : 
+                              {},
                             CarModel: {
                                 connectOrCreate: {
                                     where: {

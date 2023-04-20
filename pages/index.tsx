@@ -7,23 +7,17 @@ import { TradeinModal } from '../src/component/ModalTwo'
 import { useEffect, useRef, useState } from 'react'
 import BarMenu from '../src/component/BarMenu'
 import db from '../prisma'
-
 // import { useUtm } from '../src/hooks/useUtm'
 import { MainCard } from '../src/component/MainCard'
 import { Labels } from '../src/component/actual/Labels'
-import { NewCar } from '../src/component/actual/NewCar'
-import { OldCar } from '../src/component/actual/OldCar'
 import { QuestionForm } from '../src/component/actual/QuestionForm'
 import { FooterMain } from '../src/component/actual/FooterMain'
-import { AllCarDto, AllUsedCarDto } from '../@types/dto'
-import { NewCarCarousel } from '../src/component/actual/NewCarCarousel'
+import { AllCarDto, AllUsedCarDto, CarDtoWithoutFavorite } from '../@types/dto'
 import { CarouselComponent } from '../src/component/actual/Carousel'
-import Script from 'next/script'
-import { Slider } from '../src/component/actual/Slider'
-import { SliderUsed } from '../src/component/actual/SliderUsed'
 import { CarouselComponentUsed } from '../src/component/actual/CarouselUsed'
 import { SwiperEl } from '../src/component/actual/slider/Swiper'
 import { SwiperElUsed } from '../src/component/actual/sliderUsed/SwiperUsed'
+import { getDataFromRedis, redisClient } from '../src/services/redis'
 
 
 
@@ -85,18 +79,8 @@ const Home: NextPage<{ cars: AllCarDto, carsUsed: AllUsedCarDto }> = ({ cars, ca
           <CarouselComponentUsed carsUsed={carsUsed} />
         </>
       }
-
       <QuestionForm />
       <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
-
-      {/* <BarMenu />
-      <MainBanner refs={{ refTop }} />
-      <OurAdvantages setShowModal={setShowModal} refs={{ refAdvatages }} /> */}
-      {/* {utm_mdl && <h1>Model name: {utm_mdl}</h1>} */}
-      {/* <Cards sales={sales} />  */}
-      {/* <CardsNew setShowModal={setShowModal} refs={{ refSales }} />
-      <Form />
-      <Map refs={{ refTop, refContact }} /> */}
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
       }
@@ -109,43 +93,75 @@ const Home: NextPage<{ cars: AllCarDto, carsUsed: AllUsedCarDto }> = ({ cars, ca
   )
 }
 
-export default Home
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cars = await db.car.findMany(
-    {
-      where: {
-        active: true,
+  let cars: CarDtoWithoutFavorite[] = []; // Объявление переменной cars
+  let carsUsed: AllUsedCarDto = []; // Объявление переменной carsUsed
+  try {
+    // Получаем данные из Redis и парсим их в массив объектов
+    const carsData: string = await getDataFromRedis('cars');
+    const carsUsedData: string = await getDataFromRedis('carsUsed');
+    
+    if (!carsData) {
+      cars = await db.car.findMany(
+        {
+          where: {
+            active: true,
+          },
+          include: {
+            CarModel: true,
+            CarComplectation: true,
+            CarModification: true,
+            extras: true,
+            DealerModel: true,
+          },
+        }
+      );
+      // Сохраняем данные в Redis на день
+      redisClient.set('cars', JSON.stringify(cars), 'EX', 86400);
+    } else {
+      cars = JSON.parse(carsData) as CarDtoWithoutFavorite[]; // Преобразование строки в массив объектов типа Car
+    }
+
+    if (!carsUsedData) {
+      carsUsed = await db.usedCars.findMany({
+        where: {
+          active: true,
+        }
+      });
+      
+      // Сохраняем данные в Redis
+      redisClient.set('carsUsed', JSON.stringify(carsUsed), 'EX', 86400);
+      (err, reply) => {
+        if (err) {
+          console.log('Ошибка при записи данных в Redis:', err);
+          return;
+        }
+        console.log('Данные успешно записаны в Redis:', reply);
+      }
+    } else {
+      carsUsed = JSON.parse(carsUsedData) as AllUsedCarDto; // Преобразование строки в массив объектов типа UsedCar
+    }
+    // Устанавливаем заголовки Cache-Control и ETag
+    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    return {
+      props: {
+        cars,
+        carsUsed,
       },
-      include: {
-        CarModel: true,
-        CarComplectation: true,
-        CarModification: true,
-        extras: true,
-        DealerModel: true,
-      }
-    }
-  )
-
-  const carsUsed = await db.usedCars.findMany(
-    {
-      where: {
-        active: true,
-      }
-    }
-  )
-
-
-  return {
-    props: {
-      cars: JSON.parse(JSON.stringify(cars)),
-      carsUsed: JSON.parse(JSON.stringify(carsUsed)),
-    }
+    };
+  } catch (error) {
+    console.error('Error querying the database:', error);
+    return {
+      props: {
+        cars: [],
+        carsUsed: [],
+      },
+    };
   }
-}
+};
 
 
-
-
-
-
+export default Home

@@ -27,9 +27,11 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 
+
 # Install app dependencies
 RUN npm install
 RUN npx prisma generate
+
 
 COPY . .
 
@@ -44,6 +46,22 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
+
+
+
+# Install Redis
+# RUN apk add --update redis
+
+# Copy Redis configuration file
+# COPY redis.conf /usr/local/etc/redis/redis.conf  
+
+
+# Set ownership and permissions for Redis configuration file
+# RUN chown redis:redis /usr/local/etc/redis/redis.conf
+
+# Set Redis configuration
+# ENV REDIS_HOST=https://test.opel-arkont-volgograd.ru
+# ENV REDIS_PORT=6379
 
 ENV NODE_ENV=production
 

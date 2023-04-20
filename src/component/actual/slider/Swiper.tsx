@@ -6,14 +6,14 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { NewCarCard } from "./NewCarCard";
 import { AllCarDto, CarDto } from "../../../../@types/dto";
-import banner from '/public/images/BannerNew.jpg'
+import banner from '/public/images/BannerNew.webp'
 
 
 export function SwiperEl({ cars }: { cars: AllCarDto }) {
 
     const [carArr, setCarArr] = useState<AllCarDto>([]);
-    useEffect(() => {
 
+    useEffect(() => {
         if (!Array.isArray(cars) || !cars.length) {
             return;
         }

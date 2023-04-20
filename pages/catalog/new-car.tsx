@@ -2,7 +2,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
-import { AllCarDto} from '../../@types/dto'
+import { AllCarDto, CarDtoWithoutFavorite } from '../../@types/dto'
 import db, { Car } from '../../prisma'
 import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import { FooterMain } from '../../src/component/actual/FooterMain'
@@ -11,13 +11,14 @@ import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { ModalFavorite } from '../../src/component/ModalFavorite'
 import { TradeinModal } from '../../src/component/ModalTwo'
+import { getDataFromRedis, redisClient } from '../../src/services/redis'
 
 
-const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
-  
+const AllNewCarPage: NextPage<{ cars: AllCarDto }> = ({ cars }) => {
+
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
-  
+
   const [showModalFavorite, setShowModalFavorite] = useState(false)
 
   const refSales = useRef<HTMLDivElement>(null)
@@ -36,8 +37,8 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
       </Head>
       <MenuBar />
       <BarMenu />
-      <NewCarComponent  setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} cars={cars}  />
-      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
+      <NewCarComponent setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} cars={cars} />
+      <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
@@ -48,39 +49,94 @@ const AllNewCarPage: NextPage <{ cars: AllCarDto }> = ({ cars }) => {
       }
 
       {
-        showModalFavorite && <ModalFavorite showModalFavorite={showModalFavorite}  setShowModalFavorite={setShowModalFavorite} cars={cars} />
+        showModalFavorite && <ModalFavorite showModalFavorite={showModalFavorite} setShowModalFavorite={setShowModalFavorite} cars={cars} />
       }
     </>
   )
 }
 
 
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cars = await db.car.findMany(
-              {
-                  where: {
-                      active: true,
-                  },
-                  include: {
-                      CarModel: true,
-                      CarComplectation: true,
-                      CarModification: true,
-                      extras: true,
-                      DealerModel: true,
-                  }
-              }
-  )
-
-  return {
-    props: {
-      cars: JSON.parse(JSON.stringify(cars)),
+  let cars: CarDtoWithoutFavorite[] = []; // Объявление переменной cars
+  try {
+    // Получаем данные из Redis и парсим их в массив объектов
+    const carsData: string = await getDataFromRedis('cars');
+    if (!carsData) {
+      cars = await db.car.findMany(
+        {
+          where: {
+            active: true,
+          },
+          include: {
+            CarModel: true,
+            CarComplectation: true,
+            CarModification: true,
+            extras: true,
+            DealerModel: true,
+          },
+        }
+      );
+      // Сохраняем данные в Redis на день
+      redisClient.set('cars', JSON.stringify(cars), 'EX', 86400);
+    } else {
+      cars = JSON.parse(carsData) as CarDtoWithoutFavorite[]; // Преобразование строки в массив объектов типа Car
     }
+    // Устанавливаем заголовки Cache-Control и ETag
+    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    return {
+      props: {
+        cars
+      },
+    };
+  } catch (error) {
+    console.error('Error querying the database:', error);
+    return {
+      props: {
+        cars: []
+      },
+    };
   }
+
+
+
+
+  // try {
+  //   const cars = await db.car.findMany(
+  //     {
+  //       where: {
+  //         active: true,
+  //       },
+  //       include: {
+  //         CarModel: true,
+  //         CarComplectation: true,
+  //         CarModification: true,
+  //         extras: true,
+  //         DealerModel: true,
+  //       }
+  //     }
+  //   )
+
+  //   // Устанавливаем заголовки Cache-Control и ETag
+  //   context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+  //   context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+
+  //   return {
+  //     props: {
+  //       cars: JSON.parse(JSON.stringify(cars)),
+  //     }
+  //   }
+  // } catch (error) {
+  //   console.error('Error querying the database:', error);
+  //   return {
+  //     props: {
+  //       cars: [],
+  //     },
+  //   };
+  // }
 }
 
 export default AllNewCarPage
-
 
 
 

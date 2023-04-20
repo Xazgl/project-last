@@ -1,25 +1,17 @@
 import Link from "next/link";
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
-import car from '/public/images/newcar.jpg';
+import {  useRef, useState } from "react";
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-// import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { AllCarDto } from "../../../@types/dto";
-import { Car } from "@prisma/client";
-import { Circle } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { Carousel } from "react-responsive-carousel";
 import SwipeableViews from "react-swipeable-views";
 import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
+import Image from 'next/image';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -80,7 +72,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                             onChangeIndex={handleStepChange}
                             enableMouseEvents
                         >
-
                             {
                                 carArr.map(car => {
                                     return <Link href={{
@@ -89,7 +80,20 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     }}>
                                         <div className="card" key={car.id}>
                                             <div className="imgDiv">
-                                                <img src={car.img[0]} className="cardImg"></img>
+                                                <img src={car.img[0]} 
+                                                className="cardImg"
+                                                loading="lazy"
+                                                decoding="async"
+                                                alt={car.CarModel.modelName}
+                                                ></img>
+                                                {/* <Image src={car.img[0]}
+                                                    alt="Car Image"
+                                                    width={500}
+                                                    height={300}
+                                                    layout="responsive"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                /> */}
                                             </div>
                                             <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
                                             <div className="cardDesc">
@@ -127,7 +131,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     onClick={handleNext}
                                     disabled={activeStep === maxSteps - 1}
                                 >
-                                    Далее
+                                   
                                     {theme.direction === 'rtl' ? (
                                         <KeyboardArrowLeft />
                                     ) : (
@@ -142,7 +146,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     ) : (
                                         <KeyboardArrowLeft />
                                     )}
-                                    Назад
+                                    
                                 </Button>
                             }
                         />

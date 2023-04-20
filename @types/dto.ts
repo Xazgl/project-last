@@ -17,6 +17,15 @@ export type CarDto = Car & {
     CompareCarsToCar: CompareCarsToCar[],
 }
 
+export type CarDtoWithoutFavorite = Car & {
+    CarModel: CarModel;
+    CarComplectation: CarComplectation;
+    CarModification: CarModification;
+    extras: Extras[];
+    DealerModel: DealerModel,
+}
+
+
 export type CarUsedInclude = UsedCars & {
     FavoriteUsedCarsToCar: FavoriteUsedCarsToCar[],
     CompareUsedCarsToCar: CompareUsedCarsToCar[]

@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
-import {  AllUsedCarDto, CarUsedInclude} from '../../@types/dto'
+import { AllUsedCarDto, CarDtoWithoutFavorite, CarUsedInclude } from '../../@types/dto'
 import db from '../../prisma'
 import { UsedCarComponent } from '../../src/component/actual/allUsedCarPage/UsedCarComponent';
 import { FooterMain } from '../../src/component/actual/FooterMain'
@@ -9,12 +9,13 @@ import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
+import { getDataFromRedis, redisClient } from '../../src/services/redis'
 
 
 // const AllUsedCarPage: NextPage <{ cars: AllUsedCarDto }> = ({ cars }) => {
-  const AllUsedCarPage: NextPage <{ cars: CarUsedInclude[] }> = ({ cars }) => {
+const AllUsedCarPage: NextPage<{ cars: CarUsedInclude[] }> = ({ cars }) => {
 
-  
+
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
   const refSales = useRef<HTMLDivElement>(null)
@@ -33,8 +34,8 @@ import { TradeinModal } from '../../src/component/ModalTwo'
       </Head>
       <MenuBar />
       <BarMenu />
-      <UsedCarComponent  setShowModal={setShowModal} cars={cars}  />
-      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
+      <UsedCarComponent setShowModal={setShowModal} cars={cars} />
+      <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
@@ -50,28 +51,74 @@ import { TradeinModal } from '../../src/component/ModalTwo'
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cars = await db.usedCars.findMany(
-              {
-                  where: {
-                      active: true,
-                  },
-                  // include: {
-                  //     CarModel: true,
-                  //     CarComplectation: true,
-                  //     CarModification: true,
-                  //     extras: true,
-                  //     DealerModel: true,
-                  // }
-              }
-  )
-
-  return {
-    props: {
-      cars: JSON.parse(JSON.stringify(cars)),
-    },
-    revalidate: 60
+  let cars: AllUsedCarDto = []; // Объявление переменной carsUsed
+  try {
+    // Получаем данные из Redis и парсим их в массив объектов
+    const carsUsedData: string = await getDataFromRedis('carsUsed');
+    if (!carsUsedData) {
+      cars = await db.usedCars.findMany({
+        where: {
+          active: true,
+        }
+      });
+      // Сохраняем данные в Redis
+      redisClient.set('carsUsed', JSON.stringify(cars), 'EX', 86400);
+      (err, reply) => {
+        if (err) {
+          console.log('Ошибка при записи данных в Redis:', err);
+          return;
+        }
+        console.log('Данные успешно записаны в Redis:', reply);
+      }
+    } else {
+      cars = JSON.parse(carsUsedData) as AllUsedCarDto; // Преобразование строки в массив объектов типа UsedCar
+    }
+    // Устанавливаем заголовки Cache-Control и ETag
+    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    return {
+      props: {
+        cars: cars
+      },
+    };
+  } catch (error) {
+    console.error('Error querying the database:', error);
+    return {
+      props: {
+        cars: [],
+      },
+    };
   }
-}
+
+
+  // try {
+  //   const cars = await db.usedCars.findMany({
+  //     where: {
+  //       active: true,
+  //     },
+  //   });
+
+  //   // Устанавливаем заголовки Cache-Control и ETag
+  //   context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+  //   context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+
+  //   return {
+  //     props: {
+  //       cars: JSON.parse(JSON.stringify(cars)),
+  //     },
+  //   };
+  // } catch (error) {
+  //   console.error('Error querying the database:', error);
+  //   return {
+  //     props: {
+  //       cars: [],
+  //     },
+  //   };
+  // }
+};
+
+
+
 
 export default AllUsedCarPage
 

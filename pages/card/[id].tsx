@@ -52,7 +52,6 @@ const CardSale: NextPage = () => {
                 }
                 start()
             }
-
         }, [router.isReady]);
 
 

@@ -29,24 +29,34 @@ const AdminBar = () => {
   };
 
   const handleCloseNavMenu = () => {
-
     setAnchorElNav(null);
   };
 
   return (
     <AppBar position="static" sx={{ fontFamily: 'Montserrat', backgroundColor: 'black', color: '#005baa', }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ display: 'flex', alignItems: 'center' }}>
         <Toolbar disableGutters>
           <Typography
             variant="h5"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: 'white', alignItems: 'center' }}
           >
-            ADMIN   <div className="label"></div>
+            <Link href={'/admin'}>
+              <Typography sx={{
+                color: 'rgb(0, 91, 170)',
+                textDecoration: 'none',
+                fontSize: '30px',
+                cursor: 'pointer'
+              }}>
+                ADMIN
+              </Typography>
+            </Link>
+            <Link href={'/admin'}>
+              <div className="label"></div>
+            </Link>
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -77,9 +87,9 @@ const AdminBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.href} onClick={handleCloseNavMenu}>
-                  <Typography >
-                    <Link href={page.href}>{page.text}</Link>
+                <MenuItem key={page.href} onClick={handleCloseNavMenu} >
+                  <Typography sx={{ color: 'white', textDecoration: 'none' }}>
+                    <Link href={'/'}><span style={{ color: 'white' }}>{page.text}</span></Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -115,18 +125,20 @@ const AdminBar = () => {
           >
             Arkont ADMIN
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, color: 'white' }}>
             {pages.map((page) => (
-              <Typography
-                key={page.href}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <Link href={page.href}>{page.text}</Link>
-              </Typography>
-            ))}
+              <Link href={page.href}>
+                <Typography
+                  key={page.href}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.text}
+                </Typography>
+              </Link>)
+            )
+            }
           </Box>
-
         </Toolbar>
       </Container>
       <style jsx>{` 
@@ -136,6 +148,7 @@ const AdminBar = () => {
           background-image: url('${label.src}');
           background-repeat:no-repeat;
           background-size:contain;
+          cursor: pointer;
         }
       `}</style>
     </AppBar>

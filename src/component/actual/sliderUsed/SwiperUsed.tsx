@@ -6,7 +6,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { UsedCarCard } from "./UsedCarCard";
 import { AllUsedCarDto, CarDto } from "../../../../@types/dto";
-import banner from '/public/images/BannerOld.jpg'
+import banner from '/public/images/BannerOld.webp'
 import { UsedCars } from "@prisma/client";
 
 

@@ -23,10 +23,12 @@ import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
 
 import LazyLoad from 'react-lazyload';
+import Image from 'next/image';
+
 
 
 import { AllUsedCarDto } from '../../../../@types/dto';
-import { Box, Button } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
 import { logoFind, LogoList } from './services/servicesUsedCars';
 
 
@@ -348,7 +350,19 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 pathname: '/catalog/used-car/[id]',
                 query: { id: car.id }
               }}>
-                <LazyLoad height={194}>
+                {/* <Image
+                  key={car.picture[0]}
+                  layout="fill"
+                  src={car.picture[0]}
+                  alt="Car"
+                  width={250}
+                  height={194}
+                  placeholder="empty" // Определение типа заглушки
+                  blurDataURL={car.picture[0]} // Указание базового URL для заглушки
+                  loading="lazy"
+                /> */}
+                
+                {/* <LazyLoad height={194} > */}
                   <CardMedia
                     component="img"
                     height="194"
@@ -358,17 +372,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                     decoding='async'
                     alt="car"
                   />
-                </LazyLoad>
-                {/* <CardMedia
-                  component="img"
-                  height="194"
-                  image={car.picture[0]}
-                  sx={{ cursor: 'pointer' }}
-
-                  loading="lazy"
-                  decoding='async'
-                  alt="Paella dish"
-                /> */}
+                {/* </LazyLoad> */}
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary">

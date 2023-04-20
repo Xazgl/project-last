@@ -1,7 +1,7 @@
 //@ts-ignore
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import {  MenuBar } from '../../src/component/Menu'
+import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 import { useEffect, useRef, useState } from 'react'
@@ -14,13 +14,14 @@ import { CompanyMini } from '../../src/component/actual/job/CompanyMini'
 import { Staff } from '../../src/component/actual/job/Staff'
 import { CardsOffers } from '../../src/component/actual/job/CardsOffersJob'
 import BarMenu from '../../src/component/BarMenu'
+import { getDataFromRedis, redisClient } from '../../src/services/redis'
 
 
-const JobPage: NextPage<{ job:  Job[] }> = ({ job }) => {
+const JobPage: NextPage<{ job: Job[] }> = ({ job }) => {
 
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
-  
+
   const refSales = useRef<HTMLDivElement>(null)
   const refTop = useRef<HTMLDivElement>(null)
   const refContact = useRef<HTMLDivElement>(null)
@@ -38,12 +39,12 @@ const JobPage: NextPage<{ job:  Job[] }> = ({ job }) => {
       <BarMenu />
       <MainBanner />
       <CardsOffers job={job} setShowModal={setShowModal} />
-      <Banner setShowModal={setShowModal}  />
+      <Banner setShowModal={setShowModal} />
       <CompanyMini />
       <Staff />
       <QuestionForm />
-      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
-  
+      <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
       }
@@ -59,18 +60,51 @@ const JobPage: NextPage<{ job:  Job[] }> = ({ job }) => {
 export default JobPage
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-
-  const job = await db.job.findMany({
-    where: {
-      active: true
+  let job: Job[] = []; // Объявление переменной job
+  try {
+    // Получаем данные из Redis и парсим их в массив объектов
+    const jobData: string = await getDataFromRedis('job');
+    if (!jobData) {
+      job = await db.job.findMany({
+        where: {
+          active: true
+        }
+      })
+      // Сохраняем данные в Redis на день
+      redisClient.set('job', JSON.stringify(job), 'EX', 14400);
+    } else {
+      job = JSON.parse(jobData) as Job[]; // Преобразование строки в массив объектов типа Car
     }
-  })
-  return {
-    props: {
-      job: JSON.parse(JSON.stringify(job)),
-    }
+    // Устанавливаем заголовки Cache-Control и ETag
+    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    return {
+      props: {
+        job
+      },
+    };
+  } catch (error) {
+    console.error('Error querying the database:', error);
+    return {
+      props: {
+        job: []
+      },
+    };
   }
 }
+
+
+//   job = await db.job.findMany({
+//     where: {
+//       active: true
+//     }
+//   })
+//   return {
+//     props: {
+//       job: JSON.parse(JSON.stringify(job)),
+//     }
+//   }
+// }
 
 
 

@@ -1,7 +1,7 @@
 
 import { Button, CircularProgress } from '@mui/material';
 import { Offer } from '@prisma/client';
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 
