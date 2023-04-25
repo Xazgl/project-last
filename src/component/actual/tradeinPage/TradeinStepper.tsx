@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction, useRef } from "react";
 import IMask from 'imask';
 import { IMaskInput } from "react-imask";
 import { Box, TextField } from "@mui/material";
-import { withTheme } from "@emotion/react";
 import LastPageIcon from '@mui/icons-material/LastPage';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 
@@ -17,20 +16,13 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
-
-//let phoneMask = document.getElementsByClassName('phone');
-// let maskOptions = {
-//     mask:'+{7}(000)000-00-00',
-//}
-//let mask = new IMask(phoneMask, maskOptions)
-
+import MuiModal from "../modalAfterSubmit/MuiModal";
 
 type MuneProps = {
     refs: {
         refForm: MutableRefObject<HTMLDivElement>,
     }
 }
-
 
 
 export function TradeinStepper({ refs }: MuneProps) {
@@ -44,6 +36,7 @@ export function TradeinStepper({ refs }: MuneProps) {
 
     const [activeStep, setActiveStep] = useState(0);
 
+    const [open, setOpen] = useState(false);
 
 
     //@ts-ignore
@@ -73,7 +66,6 @@ export function TradeinStepper({ refs }: MuneProps) {
         }
     }
 
-
     async function sendmailTradein(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const res = await fetch('/api/sendmailTradein', {
@@ -85,6 +77,7 @@ export function TradeinStepper({ refs }: MuneProps) {
         })
         if (res.ok) {
             const result = await res.json()
+            setOpen(true)
             console.log(result);
         }
     }
@@ -288,7 +281,7 @@ export function TradeinStepper({ refs }: MuneProps) {
             </div>
 
 
-            <div className="mobileStepper"  ref={refs.refForm}>
+            <div className="mobileStepper" ref={refs.refForm}>
                 <h1>Оцените авто</h1>
                 <Stepper activeStep={activeStep} orientation="vertical">
                     {steps.map((step, index) => (
@@ -304,7 +297,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                             </StepLabel>
                             <StepContent>
                                 <Typography>{step.description}</Typography>
-                                <Box sx={{ mb: 2,padding:'0' }}>
+                                <Box sx={{ mb: 2, padding: '0' }}>
                                     <div>
                                         <Button
                                             variant="contained"
@@ -328,13 +321,14 @@ export function TradeinStepper({ refs }: MuneProps) {
                 </Stepper>
                 {activeStep === steps.length && (
                     <Paper square elevation={0} sx={{ p: 3 }}>
-                        <Typography sx={{color:'#bbb8b89c'}}>Вы прошли все шаги</Typography>
+                        <Typography sx={{ color: '#bbb8b89c' }}>Вы прошли все шаги</Typography>
+                        <MuiModal open={open} setOpen={setOpen} />
                         <form onSubmit={sendmailTradein}>
-                            <Button type="submit" sx={{ mt: 1, mr: 1, width:"200px"}}  variant="contained" endIcon={<SendIcon />}>
+                            <Button type="submit" sx={{ mt: 1, mr: 1, width: "200px" }} variant="contained" endIcon={<SendIcon />}>
                                 Отправить
                             </Button>
                         </form>
-                        <Button onClick={handleReset} sx={{ mt: 1, mr: 1, width:"200px" }}  variant="contained" startIcon={<DeleteIcon />}  >
+                        <Button onClick={handleReset} sx={{ mt: 1, mr: 1, width: "200px" }} variant="contained" startIcon={<DeleteIcon />}  >
                             Сбросить
                         </Button>
                     </Paper>

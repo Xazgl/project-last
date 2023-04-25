@@ -1,9 +1,8 @@
 
 import { IMaskInput } from "react-imask"
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { Checkbox } from "@mui/material";
-import Script from "next/script";
-import { useForm } from "react-hook-form";
+import {  Checkbox } from "@mui/material";
+import MuiModal from "./modalAfterSubmit/MuiModal";
 
 type Office = {
     id: number,
@@ -90,6 +89,8 @@ const officeList: Office[] = [
     },
 ]
 
+
+
 export function QuestionForm() {
     const [officeId, setOfficeId] = useState(0) //ДЦ
     const [name, setName] = useState('')   //Имя клиента
@@ -98,6 +99,8 @@ export function QuestionForm() {
     const [disabledBtn, setDisabledBtn] = useState(true)
 
     const formBtn = useRef(null)
+
+    const [open, setOpen] = useState(false);
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,6 +136,7 @@ export function QuestionForm() {
             })
             if (res.ok) {
                 const result = await res.json()
+                setOpen(true)
                 console.log(result)
                 //calltouch service
                 // let ct_site_id = '57914'
@@ -235,6 +239,7 @@ export function QuestionForm() {
                                 />
                             </div>
                             <div className="divForm">
+                             <MuiModal open={open}  setOpen={setOpen}/>
                                 <button className={className.join(' ')} ref={formBtn}
                                     type="submit"
                                     disabled={disabledBtn}

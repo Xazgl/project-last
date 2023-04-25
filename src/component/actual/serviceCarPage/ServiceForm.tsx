@@ -1,7 +1,8 @@
 
 import { IMaskInput } from "react-imask"
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { Checkbox } from "@mui/material";
+import {  Checkbox} from "@mui/material";
+import MuiModal from "../modalAfterSubmit/MuiModal";
 
 type Office = {
     id: number,
@@ -99,6 +100,11 @@ export function ServiceForm() {
     const formBtn = useRef(null)
 
 
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
@@ -128,10 +134,11 @@ export function ServiceForm() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ officeName, name, phone,comment})
+                body: JSON.stringify({ officeName, name, phone, comment })
             })
             if (res.ok) {
                 const result = await res.json()
+                setOpen(true)
             }
         }
     }
@@ -167,7 +174,7 @@ export function ServiceForm() {
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
                                         padding: '11px 12px',
-                                        outline:'none',
+                                        outline: 'none',
                                         fontFamily: 'Roboto'
 
 
@@ -191,7 +198,7 @@ export function ServiceForm() {
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Комментарий к заявке</div>
-                                <textarea  
+                                <textarea
                                     className="name"
                                     id="name"
                                     name="comment"
@@ -208,6 +215,7 @@ export function ServiceForm() {
                                 />
                             </div>
                             <div className="divForm">
+                                <MuiModal open={open} setOpen={setOpen} />
                                 <button className={className.join(' ')} ref={formBtn}
                                     type="submit"
                                     disabled={disabledBtn}

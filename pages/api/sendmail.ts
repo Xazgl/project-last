@@ -24,7 +24,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 text: `Заявка  на подбор запчасти от ${name} ${phone} VIN ${vin} ариткул запчасти ${IntSpareParts},комментарий к заявке ${comment} с chery-arkont.ru`,
                 html:
                     `Заявка  на подбор запчасти от ${name} ${phone} VIN ${vin} ариткул запчасти ${ IntSpareParts},комментарий к заявке ${comment} с chery-arkont.ru`,
-            })
+            }).catch((error) => {
+                console.error(error);
+            });
             //регистрация в базу
             const clientSend = await db.clientParts.create({data: {
                 name, 
