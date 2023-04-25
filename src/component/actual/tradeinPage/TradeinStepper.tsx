@@ -330,7 +330,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                     <Paper square elevation={0} sx={{ p: 3 }}>
                         <Typography sx={{color:'#bbb8b89c'}}>Вы прошли все шаги</Typography>
                         <form onSubmit={sendmailTradein}>
-                            <Button type="submit" sx={{ mt: 1, mr: 1, width:"200px"  }}  variant="contained" endIcon={<SendIcon />}>
+                            <Button type="submit" sx={{ mt: 1, mr: 1, width:"200px"}}  variant="contained" endIcon={<SendIcon />}>
                                 Отправить
                             </Button>
                         </form>
@@ -405,6 +405,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 align-items: center;
                 width: 100%;
                 margin-top:50px;
+                padding-bottom: 100px;
             }
 
             

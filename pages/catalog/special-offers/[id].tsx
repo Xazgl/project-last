@@ -3,12 +3,6 @@ import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import { InfoCarHeader } from "../../../src/component/actual/currentCar/InfoCarHeader"
-import { InfoCarHeaderMobile } from "../../../src/component/actual/currentCar/InfoCarHeaderMobile.tsx"
-import { InfoCarTable } from "../../../src/component/actual/currentCar/InfoCarTable"
-import { InfoCredit } from "../../../src/component/actual/currentCar/InfoCredit"
-import { InfoOffice } from "../../../src/component/actual/currentCar/InfoOffice"
-import { InfoSale } from "../../../src/component/actual/currentCar/InfoSale"
 import { FooterMain } from "../../../src/component/actual/FooterMain"
 import { BannerOffer } from "../../../src/component/actual/specialOffers/currentOffer/BannerOffer"
 import { FormOffer } from "../../../src/component/actual/specialOffers/currentOffer/FormOffer"
@@ -16,7 +10,6 @@ import { OfferDesc } from "../../../src/component/actual/specialOffers/currentOf
 import BarMenu from "../../../src/component/BarMenu"
 import { MenuBar } from "../../../src/component/Menu"
 import { Modal } from "../../../src/component/Modal"
-import { ModalImg } from "../../../src/component/ModalImg"
 import { TradeinModal } from "../../../src/component/ModalTwo"
 
 const OfferPage: NextPage = () => {

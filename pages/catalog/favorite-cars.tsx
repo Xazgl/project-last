@@ -1,16 +1,12 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
-import { AllCarDto } from '../../@types/dto'
-import db, { Car } from '../../prisma'
-import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import FavoriteCars from '../../src/component/actual/favoriteCarPage/FavoriteCards'
 import FavoriteCardsUsed from '../../src/component/actual/favoriteCarPage/FavoriteCardsUsed'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
-import { ModalFavorite } from '../../src/component/ModalFavorite'
 import { TradeinModal } from '../../src/component/ModalTwo'
 
 

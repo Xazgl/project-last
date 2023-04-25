@@ -65,7 +65,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
     setShowModal(true)
   }
 
-// удаление новых
+  // удаление новых
   async function deleteToCompare(id) {
     const res = await fetch('/api/favorite/compare/del/' + id, {
       method: 'POST',
@@ -97,7 +97,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
 
 
 
-//удаление с пробегом 
+  //удаление с пробегом 
   async function deleteToCompareUsed(id) {
     const res = await fetch('/api/usedcompare/del/' + id, {
       method: 'POST',
@@ -218,7 +218,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
             <div className='cards' id="mob">
               {compareArr.map(car =>
                 <Card key={car.car.id} sx={{
-                  width: '90%', height: 600, display: 'flex', border: '1px  solid transparent',
+                  width: '90%', height: 500, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
                 }} >
@@ -264,26 +264,26 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                     />
                   </Link>
                   <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                      <ul>
-                        <li>Двигатель: {car.car.CarModification.name}</li>
+                    <Typography sx={{fontSize:'12px'}} color="text.secondary">
+                      <ul style={{padding:'0px'}}>
+                        <li>Двигатель: {car.car.CarModification.name.replace(/\(([^\(\)]*)\)/, '$1').replace(/^\D+/, '')}</li>
                         <li>{driverTypeStr(car.car.CarModification.driveType)}</li>
                         <li>Трансмиссия: {gearBoxName(car.car.CarModification.gearboxType)}</li>
-                        <li>Комплектация: {car.car.CarComplectation.name}</li>
+                        <li>Комплектация: {car.car.CarComplectation.name.replace(/\s*\([^()]*\)\s*/g, '')}</li>
                         <li>Кол-во дверей: {car.car.CarModification.bodyDoorCount}</li>
                       </ul>
                       <div className='price'><h3>{numberWithSpaces(Number(car.car.price))} ₽</h3></div>
                       <div className='priceMonth'>
                         <button className="btn">от {numberWithSpaces(Math.round(Number(car.car.priceMonth)))} ₽/мес</button>
                       </div>
-                      <div className='office'>
+                      {/* <div className='office'>
                         <span>{car.car.DealerModel.name}</span>    <RoomIcon />
-                      </div>
+                      </div> */}
                     </Typography>
                   </CardContent>
                   <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                     <Button variant="contained"
-                      sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                      sx={{ textAlign: 'center', fontSize: '10px', width: '95%', }}
                       onClick={e => showModal}>Получить консультацию</Button>
                   </div>
                 </Card>
@@ -300,7 +300,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
             <div className='cards' id="desktop">
               {compareArrUsed.map(carUsed => {
                 return <Card key={carUsed.car.id} sx={{
-                  width: 345, height: 600, display: 'flex', border: '1px  solid transparent',
+                  width: 345, height: 560, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
                   '&:hover .credit': {
@@ -347,11 +347,11 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                   </Link>
                   <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                      <ul>
+                      <ul style={{padding:'0px'}}>
                         <li>Двигатель: {carUsed.car.engine}</li>
                         <li>{carUsed.car.driverType}</li>
                         <li>Трансмиссия: {carUsed.car.gearboxType}</li>
-                        <li>Пробег: {carUsed.car.mileage}км</li>
+                        {/* <li>Пробег: {carUsed.car.mileage}км</li> */}
                         <li>Кол-во дверей: {carUsed.car.bodyType}</li>
                       </ul>
 
@@ -384,7 +384,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
             <div className='cards' id="mob">
               {compareArrUsed.map(carUsed =>
                 <Card key={carUsed.car.id} sx={{
-                  width: '90%', height: 600, display: 'flex', border: '1px  solid transparent',
+                  width: '90%', height: 500, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
                 }} >
@@ -416,10 +416,10 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                     query: { id: carUsed.car.id }
                   }}>
                     <CardMedia
-                     loading="lazy"
-                     decoding='async'
+                      loading="lazy"
+                      decoding='async'
                       component="img"
-                      height="180px"
+                      height="160px"
                       image={carUsed.car.picture[0]}
                       sx={{
                         cursor: 'pointer',
@@ -430,11 +430,11 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                     />
                   </Link>
                   <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                      <ul>
-                        <li>Двигатель: {carUsed.car.engine}</li>
+                    <Typography sx={{fontSize:'12px'}} color="text.secondary">
+                      <ul style={{padding:'0px'}}>
+                        <li>Двигатель: {carUsed.car.engine.replace(/^\D+/, '')}</li>
                         <li>{driverTypeStr(carUsed.car.driverType)}</li>
-                        <li>Трансмиссия: {gearBoxName(carUsed.car.gearboxType)}</li>
+                        <li>Трансмиссия: {carUsed.car.gearboxType}</li>
                         <li>Пробег: {carUsed.car.mileage}км</li>
                         <li>Кол-во дверей: {carUsed.car.bodyType}</li>
                       </ul>
@@ -449,7 +449,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                   </CardContent>
                   <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                     <Button variant="contained"
-                      sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                      sx={{ textAlign: 'center', fontSize: '10px', width: '95%', }}
                       onClick={e => showModal}>Получить консультацию</Button>
                   </div>
                 </Card>

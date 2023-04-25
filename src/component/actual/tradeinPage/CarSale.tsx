@@ -47,7 +47,7 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                         }
 
                         {carPrice <= '' &&
-                            <div className="rowEl" >
+                            <div className="rowEl"  id="btnDiv">
                                 <button className="btn" disabled>Продать автомобиль</button>
                             </div>
                         }
@@ -167,6 +167,12 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                         padding: 35px;
                         width: 100%;
                     }
+
+                    .btnDiv{
+                        height: 45px;
+                    }
+
+                  
                 }
 
                 @media(max-width: 500px) {

@@ -135,7 +135,7 @@ export function QuestionForm() {
                 const result = await res.json()
                 console.log(result)
                 //calltouch service
-                let ct_site_id = '57914'
+                // let ct_site_id = '57914'
                 // let ct_data = {
                 //     fio: `${name}`,
                 //     phoneNumber: `${phone}`,
@@ -147,31 +147,31 @@ export function QuestionForm() {
                 //     sessionId: window.ct('calltracking_params', '1oroglta').sessionId,
                 // }
 
-                await fetch('https://api.calltouch.ru/calls-service/RestAPI/requests/' + ct_site_id + '/register/', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    //@ts-ignore!
-                    body: `fio=${name}&phoneNumber=${phone}&subject='Заявка с сайта arkont.ru&tags=Главная страница,Вопросы, Opel&comment=${name} оставил заявку по вопросам тед ${phone} дилерский центр ${officeName}&requestUrl=${location.href}&sessionId=${window.ct('calltracking_params', '1oroglta').sessionId}`
-                })
+                // await fetch('https://api.calltouch.ru/calls-service/RestAPI/requests/' + ct_site_id + '/register/', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Accept': 'application/json, text/plain, */*',
+                //         'Content-Type': 'application/x-www-form-urlencoded',
+                //     },
+                //     //@ts-ignore!
+                //     body: `fio=${name}&phoneNumber=${phone}&subject='Заявка с сайта arkont.ru&tags=Главная страница,Вопросы, Opel&comment=${name} оставил заявку по вопросам тед ${phone} дилерский центр ${officeName}&requestUrl=${location.href}&sessionId=${window.ct('calltracking_params', '1oroglta').sessionId}`
+                // })
             }
         }
     }
 
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors }
-    } = useForm({
-        defaultValues: {
-            example: "",
-            exampleRequired: ""
-        }
-    });
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     watch,
+    //     formState: { errors }
+    // } = useForm({
+    //     defaultValues: {
+    //         example: "",
+    //         exampleRequired: ""
+    //     }
+    // });
 
     return (
         <>

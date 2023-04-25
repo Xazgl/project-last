@@ -1,22 +1,14 @@
 import { Modal } from '../../src/component/Modal'
-import { QuestionAnswer } from "@mui/icons-material"
-import { Job } from "@prisma/client"
-import { GetServerSideProps, NextPage } from "next"
+import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
-import { useEffect, useRef, useState } from "react"
-import { FooterMain } from "../../src/component/actual/FooterMain"
-import { MenuBar } from "../../src/component/Menu"
+import { useEffect, useState } from "react"
 import { TradeinModal } from "../../src/component/ModalTwo"
-import BarMenu from '../../src/component/BarMenu'
 import { Corusel1C } from '../../src/component/testArkont/slider/Corusel1C'
 import { CarDto } from '../../@types/dto'
-import db from '../../prisma'
-import { Button, CircularProgress } from '@mui/material'
+import {  CircularProgress } from '@mui/material'
 import { CarouselComponentTest } from '../../src/component/testArkont/sliderMobile/CarouselComponentTest'
-import { UlDesc } from '../../src/component/testArkont/UlDesc'
 import ServiceList from '../../src/component/testArkont/ServiceList'
-import Table from '../../src/component/testArkont/Table'
 
 
 const Corusel: NextPage = () => {

@@ -1,10 +1,7 @@
-import { QuestionAnswer } from "@mui/icons-material"
-import { Offer } from "@prisma/client"
 import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import { MenuBar } from "../../src/component/Menu"
 import { Map } from '../../src/component/Map'
 import { MainBanner } from "../../src/component/actual/job/MainBanner"
 import BarMenu from "../../src/component/BarMenu"

@@ -7,6 +7,7 @@ import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
+import { useRouter } from 'next/router'
 
 
 const FavoriteCarPage: NextPage = () => {
@@ -15,6 +16,9 @@ const FavoriteCarPage: NextPage = () => {
     const [showTradeInModal, setShowTradeInModal] = useState(false)
     const [compareArr, setCompareArr] = useState([]);
     const [compareArrUsed, setCompareArrUsed] = useState([]);
+
+    const router = useRouter()
+
 
     const refSales = useRef<HTMLDivElement>(null)
     const refTop = useRef<HTMLDivElement>(null)
@@ -35,12 +39,13 @@ const FavoriteCarPage: NextPage = () => {
             if (res.ok) {
                 const result = await res.json()
                 setCompareArr(result.compareCarUser.compareCars)
+               
             }
         }
         start()
     }, [])
 
-    
+
 
     useEffect(() => {
         async function startCompare() {
@@ -57,6 +62,8 @@ const FavoriteCarPage: NextPage = () => {
                     setCompareArrUsed(result.compareCarUser.compareUsedCars)
                     :
                     setCompareArrUsed(null)
+
+              
             }
         }
         startCompare()

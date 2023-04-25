@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
 import { AllCarDto, CarDtoWithoutFavorite } from '../../@types/dto'
-import db, { Car } from '../../prisma'
+import db from '../../prisma'
 import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import BarMenu from '../../src/component/BarMenu'
@@ -78,12 +78,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       );
       // Сохраняем данные в Redis на день
       redisClient.set('cars', JSON.stringify(cars), 'EX', 86400);
+      // redisClient.set('cars', JSON.stringify(cars, (key, value) => {
+      //   if (key === 'createdAt') {
+      //     return value.toISOString(); // преобразование даты в строку
+      //   }
+      //   return value;
+      // }), 'EX', 86400);
     } else {
       cars = JSON.parse(carsData) as CarDtoWithoutFavorite[]; // Преобразование строки в массив объектов типа Car
     }
     // Устанавливаем заголовки Cache-Control и ETag
-    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('Cache-Control', 'public, max-age=86400'); // Максимальное время кэширования - 4 часа
     context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    context.res.setHeader('X-XSS-Protection', '1; mode=block');
+    context.res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    context.res.setHeader('X-Content-Type-Options', 'nosniff');
     return {
       props: {
         cars

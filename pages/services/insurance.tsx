@@ -1,10 +1,7 @@
 
-import type { GetServerSideProps, NextPage } from 'next'
+import type {NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
-import { AllCarDto} from '../../@types/dto'
-import db, { Car } from '../../prisma'
-import { NewCarComponent } from '../../src/component/actual/allNewCarPage/NewCarComponent'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import { Form } from '../../src/component/actual/insurancePage/Form'
 import BarMenu from '../../src/component/BarMenu'

@@ -2,7 +2,7 @@ import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import { AllCarDto, CarDto } from "../../../@types/dto"
+import { CarDto } from "../../../@types/dto"
 import { InfoCarHeader } from "../../../src/component/actual/currentCar/InfoCarHeader"
 import { InfoCarHeaderMobile } from "../../../src/component/actual/currentCar/InfoCarHeaderMobile.tsx"
 import { InfoCarTable } from "../../../src/component/actual/currentCar/InfoCarTable"

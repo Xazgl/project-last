@@ -1,12 +1,11 @@
 
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
 import { FooterMain } from '../../src/component/actual/FooterMain'
 import { CarSale } from '../../src/component/actual/tradeinPage/CarSale'
 import { MainBannerTradeIn } from '../../src/component/actual/tradeinPage/MainBannerTradeIn'
 import { ModalPrice } from '../../src/component/actual/tradeinPage/ModalPrice'
-import { TradeInForm } from '../../src/component/actual/tradeinPage/TradeInForm'
 import { TradeinStepper } from '../../src/component/actual/tradeinPage/TradeinStepper'
 import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'

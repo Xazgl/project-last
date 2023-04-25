@@ -39,7 +39,7 @@ export default async function sendmailInsurance(req: NextApiRequest, res: NextAp
                 secure: true,
                 auth: {
                     user: 'UriyAPKOHT@yandex.ru',
-                    pass: 'sgqwqfsmmnajkskr',
+                    pass: 'bmcxzevnqlokiqgy',
                 },
             })
 
@@ -65,7 +65,9 @@ export default async function sendmailInsurance(req: NextApiRequest, res: NextAp
                     стоимостью  ${adminFromReq.price}.Водителей в страховке: ${adminFromReq.drivers}. КАСКО:${boolStr(adminFromReq.insuranceTypeKASKO)},
                     ОСАГО:${boolStr(adminFromReq.insuranceTypeKASKO)},охранная система:${boolStr(adminFromReq.alarmSystem)},
                     машина в депозите:${boolStr(adminFromReq.carDeposit)}, рассрочка:${boolStr(adminFromReq.installmentPlan)}`,
-            })
+            }).catch((error) => {
+                console.error(error);
+            });
             //регистрация в базу
             const clientSend = await db.calcInsurance.create({
                 data: {

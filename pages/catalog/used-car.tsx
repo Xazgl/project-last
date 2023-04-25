@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
-import { AllUsedCarDto, CarDtoWithoutFavorite, CarUsedInclude } from '../../@types/dto'
+import { AllUsedCarDto, CarUsedInclude } from '../../@types/dto'
 import db from '../../prisma'
 import { UsedCarComponent } from '../../src/component/actual/allUsedCarPage/UsedCarComponent';
 import { FooterMain } from '../../src/component/actual/FooterMain'
@@ -63,6 +63,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       });
       // Сохраняем данные в Redis
       redisClient.set('carsUsed', JSON.stringify(cars), 'EX', 86400);
+      // redisClient.set('carsUsed', JSON.stringify(cars, (key, value) => {
+      //   if (key === 'createdAt') {
+      //     return value.toISOString(); // преобразование даты в строку
+      //   }
+      //   return value;
+      // }), 'EX', 86400);
       (err, reply) => {
         if (err) {
           console.log('Ошибка при записи данных в Redis:', err);
@@ -74,8 +80,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       cars = JSON.parse(carsUsedData) as AllUsedCarDto; // Преобразование строки в массив объектов типа UsedCar
     }
     // Устанавливаем заголовки Cache-Control и ETag
-    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('Cache-Control', 'public, max-age=86400'); // Максимальное время кэширования - 4 часа
     context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    context.res.setHeader('X-XSS-Protection', '1; mode=block');
+    context.res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    context.res.setHeader('X-Content-Type-Options', 'nosniff');
     return {
       props: {
         cars: cars

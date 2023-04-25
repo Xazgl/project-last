@@ -1,5 +1,4 @@
 import { Modal } from '../../src/component/Modal'
-import { QuestionAnswer } from "@mui/icons-material"
 import { Job } from "@prisma/client"
 import { NextPage } from "next"
 import Head from 'next/head'

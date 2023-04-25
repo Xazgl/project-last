@@ -30,7 +30,7 @@ export function Login() {
             <div className="background">
                 <form className="form" onSubmit={submit}>
                     <div className="mb-3">
-                        <h1 className="loginTitle" >АРКОНТ ADMIN</h1>
+                        <h1 className="loginTitle">АРКОНТ ADMIN</h1>
                     </div>
                     <div className="mb-3">
                         <label>

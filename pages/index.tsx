@@ -20,17 +20,17 @@ import { SwiperElUsed } from '../src/component/actual/sliderUsed/SwiperUsed'
 import { getDataFromRedis, redisClient } from '../src/services/redis'
 
 
-
 const Home: NextPage<{ cars: AllCarDto, carsUsed: AllUsedCarDto }> = ({ cars, carsUsed }) => {
 
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
-
-  const refSales = useRef<HTMLDivElement>(null)
-  const refTop = useRef<HTMLDivElement>(null)
-  const refContact = useRef<HTMLDivElement>(null)
-  const refAdvatages = useRef<HTMLDivElement>(null)
   const refFooter = useRef<HTMLDivElement>(null)
+  const [mobileAdaptive, setMobileAdaptive] = useState(false);
+
+  // const refSales = useRef<HTMLDivElement>(null)
+  // const refTop = useRef<HTMLDivElement>(null)
+  // const refContact = useRef<HTMLDivElement>(null)
+  // const refAdvatages = useRef<HTMLDivElement>(null)
 
   // const [modelName, setModelName] = useState<string>(null)
   // useEffect(() => {
@@ -40,8 +40,6 @@ const Home: NextPage<{ cars: AllCarDto, carsUsed: AllUsedCarDto }> = ({ cars, ca
   //   }
   // }, [])
   // const { utm_mdl } = useUtm(['utm_mdl'])
-
-  const [mobileAdaptive, setMobileAdaptive] = useState(false);
 
   // Определение количества отображаемых элементов в зависимости от ширины экрана
   useEffect(() => {
@@ -102,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // Получаем данные из Redis и парсим их в массив объектов
     const carsData: string = await getDataFromRedis('cars');
     const carsUsedData: string = await getDataFromRedis('carsUsed');
-    
+
     if (!carsData) {
       cars = await db.car.findMany(
         {
@@ -118,8 +116,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           },
         }
       );
-      // Сохраняем данные в Redis на день
+      // Сохраняем данные в Redis на день и преобразовываем дату 
       redisClient.set('cars', JSON.stringify(cars), 'EX', 86400);
+      // redisClient.set('cars', JSON.stringify(cars, (key, value) => {
+      //   if (key === 'createdAt') {
+      //     return new Date(value).toISOString(); // преобразование даты в строку
+      //   }
+      //   return value;
+      // }), 'EX', 86400);
     } else {
       cars = JSON.parse(carsData) as CarDtoWithoutFavorite[]; // Преобразование строки в массив объектов типа Car
     }
@@ -130,9 +134,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           active: true,
         }
       });
-      
-      // Сохраняем данные в Redis
+
+      // Сохраняем данные в Redis и преобразовываем дату 
       redisClient.set('carsUsed', JSON.stringify(carsUsed), 'EX', 86400);
+      // redisClient.set('carsUsed', JSON.stringify(carsUsed, (key, value) => {
+      //   if (key === 'createdAt') {
+      //     return new Date(value).toISOString(); // преобразование даты в строку
+      //   }
+      //   return value;
+      // }), 'EX', 86400);
       (err, reply) => {
         if (err) {
           console.log('Ошибка при записи данных в Redis:', err);
@@ -144,8 +154,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       carsUsed = JSON.parse(carsUsedData) as AllUsedCarDto; // Преобразование строки в массив объектов типа UsedCar
     }
     // Устанавливаем заголовки Cache-Control и ETag
-    context.res.setHeader('Cache-Control', 'public, max-age=14400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('Cache-Control', 'public, max-age=86400'); // Максимальное время кэширования - 4 часа
     context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    // Защита от атак XSS
+    context.res.setHeader('X-XSS-Protection', '1; mode=block');
+    // Защита от клик-джекинга
+    context.res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    // Защита от MIME-типа сниффинга
+    context.res.setHeader('X-Content-Type-Options', 'nosniff');
     return {
       props: {
         cars,
@@ -162,6 +178,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
-
 
 export default Home
