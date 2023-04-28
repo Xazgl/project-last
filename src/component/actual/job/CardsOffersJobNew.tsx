@@ -111,6 +111,14 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
         return uniqueArr;
     };
 
+    function cityName (str){
+        if(str == 'VLG') {
+            return str = 'Волгоград'
+        } else {
+            return str = 'Волжский'
+        }
+    }
+
     if (Array.isArray(job) && job.length > 0) {
 
         return (
@@ -256,8 +264,9 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                                     <div className="column" id="contentColumn" >
                                         <div className='titleCard'>{job.title}</div>
                                         {/* <div className='textCard'>{job.description}</div> */}
-                                        <div className='textCard' id="city">{job.office} г.{job.city}</div>
-                                        <div className='salaryCard'>{job.salary}&#8381;</div>
+                                        <div className='textCard' id="city">{job.office}</div>
+                                        <div className='textCard' id="city">{cityName(job.city)}</div>
+                                        <div className='salaryCard'>{job.salary} &#8381;</div>
                                         <div className='btnDiv'>
                                             {/* <Link href={`/job/${encodeURIComponent(sale.id)}`}> */}
                                             <Link href={{
@@ -271,12 +280,11 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                                 </div>
                             })
                         }
-                        <div className="card emptyCard" style={{  opacity: '0'}} />
+                        <div className="card emptyCard" id="lastCard" style={{  opacity: '0'}} />
                     </div>
                 </div >
 
-                <style jsx>{`
-
+        <style jsx>{`
                 .cardBlock{
                     display:flex;
                     width:100%;
@@ -310,7 +318,6 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     flex-direction:row;
                     flex-wrap:wrap;
                 }
-
                 
                 .card {
                     display:flex;
@@ -336,22 +343,22 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     border-left:solid 2px #005baa;;
                 }
 
-            
                 #contentColumn{
                     width:100%;
                     padding: 40px;
+                    justify-content: left;
                 }
 
                 .column {
                     display:flex;
                     justify-content:center;
                     flex-direction:column;
-                    align-items:center;
+                    align-items:left;
                 }
 
                 .titleCard {
                     display:flex;
-                    justify-content:center;
+                    justify-content:left;
                     flex-direction:;
                     align-items:start;
                     flex-direction:row;
@@ -365,7 +372,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
 
                 .textCard {
                     display:flex;
-                    justify-content:center;
+                    justify-content:left;
                     flex-direction:row;
                     align-items:center;
                     flex-direction:row;
@@ -373,23 +380,22 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     margin-top:10px;
                     flex-wrap: wrap;
                     font-family: 'Roboto','sans-serif'; 
-                    text-align: center;
                     margin-top:10px;
                 }
+
                 .salaryCard {
                     display:flex;
-                    justify-content:center;
+                    justify-content:left;
                     flex-direction:;
                     align-items:center; 
                     font-weight: bold;
                     font-size:20px; 
                     margin-top:10px;
                 }
-
                
                 .btnDiv{
                     display:flex;
-                    justify-content:center;
+                    justify-content:left;
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
@@ -398,7 +404,6 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 #city {
                     font-size:16px;
                 }
-
 
                 .btnModal{
                     display: flex;
@@ -459,14 +464,33 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 }
 
                 @media(max-width: 720px) {
+                    .cardBlock{
+                        flex-direction: column;
+                        height: 100%;
+                    }
+
                     .title { 
                         font-size:25px;
                     }
+
                     .titleMini {
                         font-size:15px;
                     }
+
                     .MainBanner { 
                         height: 400px;
+                    }
+
+                    .btnModal{
+                        width:100%;
+                    }
+
+                    .background{
+                        margin-top: 10px;
+                    }
+
+                    #lastCard{
+                        display: none;
                     }
                 }
 
@@ -491,6 +515,13 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     }
                     .MainBanner { 
                         height: 150px;
+                    }
+                    .card {
+                        width: 100%;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        transform: none;
+
                     }
                 }
 

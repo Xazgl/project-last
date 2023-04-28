@@ -6,7 +6,7 @@ export function MainBanner() {
     return (
         <>
             <div className="MainBanner">
-               {/* <Image
+                {/* <Image
                     src={banner}
                     alt="opel"
                     width={1000}
@@ -15,17 +15,17 @@ export function MainBanner() {
 
                 {/* <img  className="ImgBanner" src={banner.src} alt="opel" /> */}
                 {/* <div  className="ImgBanner2" /> */}
-                    <div className="title">
-                       <div>АРКОНТ ВАКАНСИИ</div>
-                        <div className="titleMini">
-                          <div  className="сol">
+                <div className="title">
+                    <div>АРКОНТ ВАКАНСИИ</div>
+                    <div className="titleMini">
+                        <div className="сol">
                             <button className="btn">Найти вакансию</button>
-                          </div>
-                          <div  className="сol">
-                            <button  className="btn">О компании</button>
-                          </div>
                         </div>
-                   </div>
+                        <div className="сol">
+                            <button className="btn">О компании</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <style jsx>{`
@@ -122,44 +122,19 @@ export function MainBanner() {
                         height: 400px;
                     }
                 }
-                @media(max-width: 540px) {
-                    .title { 
-                        font-size:18px;
-                    }
-                    .titleMini {
-                        font-size:12px;
-                    }
-                    .MainBanner { 
-                        height: 250px;
-                    }
+
+                @media(max-width: 500px) {
+                   .btn {
+                      width: 180px;
+                   }
                 }
-                @media(max-width: 350px) {
-                    .title { 
-                        font-size:12px;
-                    }
-                    .titleMini {
-                        font-size:9px;
-                    }
-                    .MainBanner { 
-                        height: 150px;
-                    }
+
+                @media(max-width: 400px) {
+                   .btn {
+                      width: 140px;
+                   }
                 }
-                @media(max-width: 250px) {
-                    .title { 
-                        font-size:9px;
-                        margin-top:10px;
-                    }
-                    .titleMini {
-                        font-size:7px;
-                    }
-                    .MainBanner { 
-                        height: 130px;
-                    }
-                    .titleMini{
-                        margin-bottom:00px;
-                        margin-top:10px;
-                    }
-                }
+               
             `}</style>
         </>
     )
