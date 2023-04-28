@@ -78,7 +78,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                             {
                                 carArr.map(car => {
                                     return <Link href={{
-                                        pathname: '/catalog/car/[id]',
+                                        pathname: '/catalog/used-car/[id]',
                                         query: { id: car.id }
                                     }}>
                                         <div className="card">
@@ -166,7 +166,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                 }
 
                 <div className="btnDiv">
-                    <Link href={'/catalog/new-car'}>
+                    <Link href={'/catalog/used-car'}>
                         <button className="btnAllCar">Смотреть все новые автомобили</button>
                     </Link>
                 </div>

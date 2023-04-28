@@ -31,7 +31,7 @@ export function UsedCarCard({ car }: { car: UsedCars }) {
             {car !== null ?
                 <>
                     <Link href={{
-                        pathname: '/catalog/car/[id]',
+                        pathname: '/catalog/used-car/[id]',
                         query: { id: car.id }
                     }}>
                         <div className="card">

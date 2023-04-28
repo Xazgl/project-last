@@ -369,8 +369,10 @@ model Job {
   title       String //должность
   description String //описание
   salary      String //зп
-  exp         Exp      @default(ZERO) //опыт работы 
-  office      Office   @default(ARKONT_GK) //ДЦ
+  // exp         Exp      @default(ZERO) //опыт работы 
+  // office      Office   @default(ARKONT_GK) //ДЦ
+  exp         String
+  office      String
   city        City     @default(VLG) //город по умолчанию ВЛГ
   carBrend    String //бренд ДЦ
   active      Boolean

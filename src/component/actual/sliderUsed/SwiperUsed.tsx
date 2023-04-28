@@ -70,7 +70,7 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                 : <CircularProgress />
             }
             <div className="btnDiv">
-                <Link href={'/catalog/new-car'}>
+                <Link href={'/catalog/used-car'}>
                     <button className="btnAllCar">Смотреть все автомобили c пробегом</button>
                 </Link>
             </div>

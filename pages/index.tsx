@@ -117,13 +117,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       );
       // Сохраняем данные в Redis на день и преобразовываем дату 
-      redisClient.set('cars', JSON.stringify(cars), 'EX', 86400);
-      // redisClient.set('cars', JSON.stringify(cars, (key, value) => {
-      //   if (key === 'createdAt') {
-      //     return new Date(value).toISOString(); // преобразование даты в строку
-      //   }
-      //   return value;
-      // }), 'EX', 86400);
+      // redisClient.set('cars', JSON.stringify(cars), 'EX', 86400);
+      redisClient.set('cars', JSON.stringify(cars, (key, value) => {
+        if (key === 'createdAt') {
+          return new Date(value).toISOString(); // преобразование даты в строку
+        }
+        return value;
+      }), 'EX', 86400);
     } else {
       cars = JSON.parse(carsData) as CarDtoWithoutFavorite[]; // Преобразование строки в массив объектов типа Car
     }
@@ -136,13 +136,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       });
 
       // Сохраняем данные в Redis и преобразовываем дату 
-      redisClient.set('carsUsed', JSON.stringify(carsUsed), 'EX', 86400);
-      // redisClient.set('carsUsed', JSON.stringify(carsUsed, (key, value) => {
-      //   if (key === 'createdAt') {
-      //     return new Date(value).toISOString(); // преобразование даты в строку
-      //   }
-      //   return value;
-      // }), 'EX', 86400);
+      // redisClient.set('carsUsed', JSON.stringify(carsUsed), 'EX', 86400);
+      redisClient.set('carsUsed', JSON.stringify(carsUsed, (key, value) => {
+        if (key === 'createdAt') {
+          return new Date(value).toISOString(); // преобразование даты в строку
+        }
+        return value;
+      }), 'EX', 86400);
       (err, reply) => {
         if (err) {
           console.log('Ошибка при записи данных в Redis:', err);

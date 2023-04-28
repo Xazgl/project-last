@@ -1,5 +1,5 @@
 import { Job } from '@prisma/client'
-import { Dispatch, SetStateAction, useState, MouseEvent } from 'react'
+import { Dispatch, SetStateAction, useState, MouseEvent, useEffect, useMemo } from 'react'
 import * as React from 'react';
 import { Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -16,6 +16,11 @@ type JobProps = {
     // isAdmin?: boolean;
 }
 
+type FilteredJobs = {
+    office: string[],
+    exp: string[],
+    city: string[],
+}
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -28,34 +33,6 @@ const MenuProps = {
     },
 };
 
-const names = {
-    ARKONT_GK: 'ГК Арконт',
-    ARKONT_VOLZSKY: 'Renault Арконт Волжский',
-    ARKONT_KIA: 'KIA Арконт',
-    ARKONT_NISSAN: 'Nissan Арконт',
-};
-// const names = [
-//     'ГК Арконт',
-//     'Renault Арконт Волжский',
-//     'KIA Арконт',
-//     'Nissan Арконт',
-//     'Hyundai Арконт',
-//     'Mitsubishi Арконт',
-//     'Chery & EXEED Арконт',
-//     'Land Rover & Jaguar Арконт',
-//     'OPEL Арконт',
-// ];
-
-const exp = {
-    ZERO: 'Без опыта',
-    BEGINNER: 'от 1 года',
-    MIDDLE: 'от 3 лет',
-};
-
-const city = {
-    VOLGOGRAD: 'Волгоград',
-    VOLZSKY: 'Волжский',
-};
 
 function getStyles(name: string, selectName: string, theme: Theme) {
     return {
@@ -66,37 +43,73 @@ function getStyles(name: string, selectName: string, theme: Theme) {
     };
 }
 
-export function CardsOffers({ setShowModal, job }: JobProps) {
+export function CardsOffersNew({ setShowModal, job }: JobProps) {
     const theme = useTheme();
     const [officeSelect, setOfficeSelect] = React.useState('');
     const [expSelect, setExpSelect] = React.useState('');
     const [citySelect, setCitySelect] = React.useState('');
-    const [salaries, setSalaries] = React.useState(job);
 
-   
-    const findObjKey =  (obj: { [key: string]: string }, value: string) => {
-        return Object.keys(obj).find(key => obj[key] === value);
-      }
+    const [filterSelectJobs, setFilterSelectJobs] = useState<FilteredJobs>({
+        office: [],
+        exp: [],
+        city: [],
+    });
 
-      
-    const handleSelect = async (event: SelectChangeEvent<string>, setState: Dispatch<SetStateAction<string>>) => {
-        setState((event.target.value))
-        console.log(officeSelect)
-        console.log(expSelect)
-        console.log(citySelect)
-        const res = await fetch(`/api/filter?${officeSelect ? `office=${findObjKey(names, officeSelect)}&` : ''
-            + citySelect ? `city=${findObjKey(city, citySelect)}&` : ''
-                + expSelect ? `office=${findObjKey(exp, expSelect)}&` : ''
-            }`)
-        if (res.ok) {
-            const salariesFromDB = await res.json() as Job[]
-            // setSalaries(salariesFromDB)
-            console.log(salariesFromDB);
-
-        }
+    // проверяет на пустоту, если значение пустое значит выбранно null (Все) и обнуляет,
+    // значение есть то в конец его добавит 
+    const updateFilterSelectJobs = (key, value) => {
+        setFilterSelectJobs(prevState => {
+            const newValue = Array.from(new Set([...prevState[key], value]));
+            const updatedState = {
+                ...prevState,
+                [key]: newValue,
+            };
+            if (!value) {
+                updatedState[key] = [];
+            }
+            return updatedState;
+        });
     }
 
+    useEffect(() => {
+        if (officeSelect) {
+            updateFilterSelectJobs('office', officeSelect);
+        } else {
+            updateFilterSelectJobs('office', null);
+        }
+        if (expSelect) {
+            updateFilterSelectJobs('exp', expSelect);
+        } else {
+            updateFilterSelectJobs('exp', null);
+        }
+    }, [officeSelect, expSelect, job]);
 
+    const filteredJobs = useMemo(() => {
+        if (filterSelectJobs.office.length > 0 || filterSelectJobs.exp.length > 0) {
+            const uniqueOffices = new Set(filterSelectJobs.office);
+            return job.filter(job => {
+                const matchesOffice = uniqueOffices.size === 0 || uniqueOffices.has(job.office);
+                const matchesExp = filterSelectJobs.exp.length === 0 || filterSelectJobs.exp.includes(job.exp);
+                return matchesOffice && matchesExp;
+            });
+        } else {
+            return job;
+        }
+    }, [filterSelectJobs, job]);
+
+
+
+    const removeDuplicates = (arr) => {
+        const uniqueArr = [];
+        const set = new Set();
+        arr.forEach(item => {
+            if (!set.has(item)) {
+                uniqueArr.push(item);
+                set.add(item);
+            }
+        });
+        return uniqueArr;
+    };
 
     if (Array.isArray(job) && job.length > 0) {
 
@@ -112,23 +125,78 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                             id="demo-multiple-name"
                             // multiple
                             value={officeSelect}
-                            onChange={e => handleSelect(e, setOfficeSelect)}
+                            onChange={e => setOfficeSelect(e.target.value)}
                             input={<OutlinedInput label="Name" />}
                             MenuProps={MenuProps}
                         >
-                            {Object.values(names).map((name) => (
+                            <MenuItem value={null}>
+                                <em>Все</em>
+                            </MenuItem>
+                            {removeDuplicates(filteredJobs.map(job => job.office)).map((office) => (
                                 <MenuItem
-                                    key={name}
-                                    value={name}
-                                    style={getStyles(name, officeSelect, theme)}
+                                    key={office}
+                                    value={office}
+                                    style={getStyles(office, officeSelect, theme)}
                                 >
-                                    {name}
+                                    {office}
                                 </MenuItem>
                             ))}
                         </Select>
                     </FormControl>
-
                     <FormControl sx={{ m: 1, width: 300 }}>
+                        <InputLabel id="demo-multiple-name-label">Опыт</InputLabel>
+                        <Select
+                            name=''
+                            labelId="demo-multiple-name-label"
+                            id="demo-multiple-name"
+                            // multiple
+                            value={expSelect}
+                            onChange={e => setExpSelect(e.target.value)}
+                            input={<OutlinedInput label="Name" />}
+                            MenuProps={MenuProps}
+                        >
+                            <MenuItem value={null}>
+                                <em>Все</em>
+                            </MenuItem>
+                            {removeDuplicates(filteredJobs.map(job => job.exp)).map((exp) => (
+                                <MenuItem
+                                    key={exp}
+                                    value={exp}
+                                    style={getStyles(exp, expSelect, theme)}
+                                >
+                                    {exp}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    {/* <FormControl sx={{ m: 1, width: 300 }}>
+                        <InputLabel id="demo-multiple-name-label">Город</InputLabel>
+                        <Select
+                            name=''
+                            labelId="demo-multiple-name-label"
+                            id="demo-multiple-name"
+                            // multiple
+                            value={citySelect}
+                            onChange={e => setCitySelect(e.target.value)}
+                            input={<OutlinedInput label="Name" />}
+                            MenuProps={MenuProps}
+                        >
+                            <MenuItem value={null}>
+                                <em>Все</em>
+                            </MenuItem>
+                            {removeDuplicates(filteredJobs.map(job => job.city)).map((city) => (
+                                <MenuItem
+                                    key={city}
+                                    value={city}
+                                    style={getStyles(city, expSelect, theme)}
+                                >
+                                    {city}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl> */}
+
+                    {/* <FormControl sx={{ m: 1, width: 300 }}>
                         <InputLabel id="demo-multiple-name-label">Стаж</InputLabel>
                         <Select
                             labelId="demo-multiple-name-label"
@@ -149,10 +217,10 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                                     {exp}
                                 </MenuItem>
                             ))}
-                        </Select>
-                    </FormControl>
+                        </Select> */}
+                    {/* </FormControl> */}
 
-                    <FormControl sx={{ m: 1, width: 300 }}>
+                    {/* <FormControl sx={{ m: 1, width: 300 }}>
                         <InputLabel id="demo-multiple-name-label">Город</InputLabel>
                         <Select
                             labelId="demo-multiple-name-label"
@@ -175,25 +243,25 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                                 </MenuItem>
                             ))}
                         </Select>
-                    </FormControl>
-                </div>
+                    </FormControl> */}
+                </div >
 
                 {/*Карточки с базы*/}
-                <div className="background">
+                < div className="background" >
                     <div className="cards">
                         {
-                            job.map(job => {
+                            filteredJobs.map(job => {
                                 return <div className="card" id="c4">
                                     {/* <div className="column" id="contentColumn"  src={'/uploads/' + params.row.img} > */}
                                     <div className="column" id="contentColumn" >
                                         <div className='titleCard'>{job.title}</div>
-                                        <div className='textCard'>{job.description}</div>
+                                        {/* <div className='textCard'>{job.description}</div> */}
                                         <div className='textCard' id="city">{job.office} г.{job.city}</div>
                                         <div className='salaryCard'>{job.salary}&#8381;</div>
                                         <div className='btnDiv'>
                                             {/* <Link href={`/job/${encodeURIComponent(sale.id)}`}> */}
                                             <Link href={{
-                                                pathname: 'job/[id]',
+                                                pathname: '/job/[id]',
                                                 query: { id: job.id }
                                             }}>
                                                 <button className='btnModal' >Подробнее &#10095;</button>
@@ -203,10 +271,11 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                                 </div>
                             })
                         }
+                        <div className="card emptyCard" style={{  opacity: '0'}} />
                     </div>
-                </div>
+                </div >
 
-     <style jsx>{`
+                <style jsx>{`
 
                 .cardBlock{
                     display:flex;
@@ -267,6 +336,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     border-left:solid 2px #005baa;;
                 }
 
+            
                 #contentColumn{
                     width:100%;
                     padding: 40px;
@@ -445,5 +515,5 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
         )
     }
 
-    return <div style={{display:'flex',width:'100%',justifyContent:'center',height:'50px',alignItems:'center',fontFamily:'Roboto',fontSize:'18px'}}>Вакансии в данный момент  не обнаружены</div>
+    return <div style={{ display: 'flex', width: '100%', justifyContent: 'center', height: '50px', alignItems: 'center', fontFamily: 'Roboto', fontSize: '18px' }}>Вакансии в данный момент  не обнаружены</div>
 }

@@ -145,6 +145,16 @@ const AdminTable: NextPage = () => {
                   </ListItemButton>
                 </Link>
 
+
+                <Link href={'/admin/table/jobs'}>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <ContactPhoneIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Вакансии" />
+                  </ListItemButton>
+                </Link>
+
               </List>
             </div>
           </div>
