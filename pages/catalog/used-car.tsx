@@ -18,12 +18,7 @@ const AllUsedCarPage: NextPage<{ cars: CarUsedInclude[] }> = ({ cars }) => {
 
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
-  const refSales = useRef<HTMLDivElement>(null)
-  const refTop = useRef<HTMLDivElement>(null)
-  const refContact = useRef<HTMLDivElement>(null)
-  const refAdvatages = useRef<HTMLDivElement>(null)
   const refFooter = useRef<HTMLDivElement>(null)
-  const refForm = useRef<HTMLDivElement>(null)
 
   return (
     <>
@@ -44,9 +39,9 @@ const AllUsedCarPage: NextPage<{ cars: CarUsedInclude[] }> = ({ cars }) => {
       {
         showTradeInModal && <TradeinModal showTradeInModal={showTradeInModal} setShowTradeInModal={setShowTradeInModal} />
       }
-
     </>
   )
+
 }
 
 
@@ -85,6 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context.res.setHeader('X-XSS-Protection', '1; mode=block');
     context.res.setHeader('X-Frame-Options', 'SAMEORIGIN');
     context.res.setHeader('X-Content-Type-Options', 'nosniff');
+
     return {
       props: {
         cars: cars
@@ -98,7 +94,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-
 
   // try {
   //   const cars = await db.usedCars.findMany({
@@ -125,8 +120,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //   };
   // }
 };
-
-
 
 
 export default AllUsedCarPage

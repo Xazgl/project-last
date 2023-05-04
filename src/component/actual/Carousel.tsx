@@ -80,20 +80,22 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     }}>
                                         <div className="card" key={car.id}>
                                             <div className="imgDiv">
-                                                <img src={car.img[0]} 
+                                                {/* <img src={car.img[0]} 
                                                 className="cardImg"
                                                 loading="lazy"
                                                 decoding="async"
                                                 alt={car.CarModel.modelName}
-                                                ></img>
-                                                {/* <Image src={car.img[0]}
+                                                ></img> */}
+                                                <Image src={car.img[0]}
                                                     alt="Car Image"
-                                                    width={500}
-                                                    height={300}
-                                                    layout="responsive"
+                                                    width={270}
+                                                    height={200}
+                                                   // width: 221px;
+                                                    //height: 166px;
+                                                    // layout="fill"
                                                     loading="lazy"
-                                                    decoding="async"
-                                                /> */}
+                                                    // sizes="(max-width: 640px) 100vw"
+                                                />
                                             </div>
                                             <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
                                             <div className="cardDesc">
@@ -286,7 +288,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     display: flex;
                     justify-content: center;
                     width: 100%;
-                    height: auto;
                 }
 
                 .cardImg {

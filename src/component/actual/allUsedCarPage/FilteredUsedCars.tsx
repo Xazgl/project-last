@@ -1,34 +1,24 @@
-import { Car } from '@prisma/client'
-import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import HistoryIcon from '@mui/icons-material/History';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CompareIcon from '@mui/icons-material/Compare';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
-import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
-
 import LazyLoad from 'react-lazyload';
 import Image from 'next/image';
-
-
-
 import { AllUsedCarDto } from '../../../../@types/dto';
-import { Box, Button, CircularProgress } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { logoFind, LogoList } from './services/servicesUsedCars';
 
 
@@ -79,7 +69,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
 
-  function showModal(event: MouseEventHandler<HTMLButtonElement>) {
+  function showModal() {
     setShowModal(true)
   }
 
@@ -104,7 +94,6 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
           }
         })
         if (res.ok) {
-          // console.log(res)
           const result = await res.json()
           result !== undefined ?
             setFavArr(result.favoriteCarUser.favoriteUsedCars)
@@ -361,18 +350,38 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   blurDataURL={car.picture[0]} // Указание базового URL для заглушки
                   loading="lazy"
                 /> */}
-                
+
                 {/* <LazyLoad height={194} > */}
-                  <CardMedia
-                    component="img"
-                    height="194"
-                    image={car.picture[0]}
-                    sx={{ cursor: 'pointer' }}
+                {/* <CardMedia
+                  component="img"
+                  height="194"
+                  image={car.picture[0]}
+                  sx={{ cursor: 'pointer' }}
+                  loading="lazy"
+                  decoding='async'
+                  alt="car"
+                /> */}
+
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '203px',
+                    position: 'relative'
+                  }}
+                >
+                  <Image
+                    src={car.picture[0]}
+                    alt={car.picture[0]}
+                    layout="fill"
+                    sizes="(max-width: 750px) 100vw,
+                    (max-width: 1080px) 80vw,
+                    90vw"
                     loading="lazy"
-                    decoding='async'
-                    alt="car"
+                    blurDataURL={car.picture[0]}
                   />
-                {/* </LazyLoad> */}
+                </Box>
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -408,7 +417,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   }
                 </IconButton>
               </CardActions>
-              <button className="credit" onClick={() => showModal}>
+              <button className="credit" onClick={showModal}>
                 <span className="consultation" >Получить консультацию</span>
               </button>
             </Card>
@@ -453,8 +462,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 pathname: '/catalog/car/[id]',
                 query: { id: car.id }
               }}>
-                <LazyLoad height={160}>
-
+                {/* <LazyLoad height={160}>
                   <CardMedia
                     component="img"
                     height="160px"
@@ -468,9 +476,27 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                     decoding='async'
                     alt="car"
                   />
-
-                </LazyLoad>
-
+                </LazyLoad> */}
+                <Box sx={{
+                  display: 'flex',
+                  justifyСontent: 'center',
+                  width: '100%',
+                  height: '170px',
+                  position: 'relative',
+                  padding:'0'
+                }}>
+                  <Image
+                    src={car.picture[0]}
+                    alt={car.picture[0]}
+                    layout="fill"
+                    // 750, 828, 1080
+                    sizes="(max-width: 750px) 70vw,
+                  (max-width: 828px) 40vw,
+                  (max-width: 1080px) 33vw,
+                  20vw"
+                    loading="lazy"
+                  />
+                </Box>
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary" >
@@ -486,12 +512,12 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   sx={{
                     textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto'
                   }}
-                  onClick={() => showModal}>Получить консультацию</Button>
+                  onClick={showModal}>Получить консультацию</Button>
               </div>
             </Card>
           )}
         </div>
-      </div>
+      </div >
 
       <style jsx>{`              
       @keyframes credit-open {
@@ -589,7 +615,6 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       align-items: center;
     }
 
-
     .credit {
       display: none;
       justify-content: center;
@@ -605,7 +630,6 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       text-align: center;
       border:none;
       font-family: 'Roboto','sans-serif'; 
-
     }
 
     .credit:hover {

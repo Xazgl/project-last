@@ -2,6 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { UsedCars } from "@prisma/client";
 import Link from "next/link";
 import { numberWithSpaces } from "../allNewCarPage/servicesNewCar/service";
+import Image from 'next/image';
 
 
 export function UsedCarCard({ car }: { car: UsedCars }) {
@@ -36,13 +37,30 @@ export function UsedCarCard({ car }: { car: UsedCars }) {
                     }}>
                         <div className="card">
                             <div className="imgDiv">
-                                <img
+                                {/* <img
                                     loading="lazy"
                                     decoding='async'
                                     src={car.picture[0]}
                                     className="cardImg">
 
-                                </img>
+                                </img> */}
+                                <Image
+                                    // style={{borderRadius:'7px'}}
+                                    src={car.picture[0]}
+                                    // className="nextPic"
+                                    alt={car.picture[0]}
+                                    
+                                    // width={221}
+                                    // height={166}
+                                    // quality={100}
+                                    layout="fill"
+                                    // 750, 828, 1080
+                                    sizes="(max-width: 750px) 50vw,
+                                            (max-width: 828px) 40vw,
+                                            (max-width: 1080px) 33vw,
+                                            20vw"
+                                    loading="lazy"
+                                />
                             </div>
                             <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
                             <div className="cardDesc">
@@ -87,135 +105,131 @@ export function UsedCarCard({ car }: { car: UsedCars }) {
                     opacity: 0.8;
                 }
 
-                80% {
-                    opacity: 0.9;
-                }
-
-                100% {
-                    opacity: 1;
-                }
-            }
-
-          
-
-                .slider {
-                    display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: auto;
-                margin-top: 100px;
-                align-items: center;
-                position: relative;
-        }
-
-                .slider__container {
-                    overflow - x: hidden;
-                position: relative;
-                transition: transform 0.5s ease-in-out;
-        }
-
-                .slider__slides {
-                    display: flex;
-                overflow: hidden;
-                animation: slideAnimation 1s ease-in-out;
-                flex-grow:1;
-                transition:  transform 0.3 ease;
-        }
-
-                .slider__controls {
-                    display: flex;
-                justify-content: space-between;
-                position: absolute;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100%;
-                max-width: 1980px;
-                padding: 0 20px;
-                box-sizing: border-box;
-                height: 100%;
-                position: absolute;
-        }
-                .slider__control--prev {
-                    left:20px
-        }
-                .slider__control--next {
-                    right:20px
-        }
+                   80% {
+                       opacity: 0.9;
+                   }
+   
+                   100% {
+                       opacity: 1;
+                   }
+               }
+   
+             
+                   .slider {
+                       display: flex;
+                   flex-direction: column;
+                   width: 100%;
+                   height: auto;
+                   margin-top: 100px;
+                   align-items: center;
+                   position: relative;
+           }
+   
+   
+                   .slider__container {
+                       overflow - x: hidden;
+                   position: relative;
+                   transition: transform 0.5s ease-in-out;
+           }
+   
+                   .slider__slides {
+                       display: flex;
+                   overflow: hidden;
+                   animation: slideAnimation 1s ease-in-out;
+                   flex-grow:1;
+                   transition:  transform 0.3 ease;
+           }
+   
+                   .slider__controls {
+                   display: flex;
+                   justify-content: space-between;
+                   position: absolute;
+                   bottom: 20px;
+                   left: 50%;
+                   transform: translateX(-50%);
+                   width: 100%;
+                   max-width: 1980px;
+                   padding: 0 20px;
+                   box-sizing: border-box;
+                   height: 100%;
+                   position: absolute;
+           }
+                   .slider__control--prev {
+                       left:20px
+           }
+                   .slider__control--next {
+                       right:20px
+           }
 
                 .title {
                     display:flex;
-                width: 100%;
-                height: 40px;
-                justify-content: center;
-                text-align: center;
-                font-size: 40px;
-                font-weight: bold;
-                gap:20px;
-                font-family: 'Roboto','sans-serif'; 
-        }
+                    width: 100%;
+                    height: 40px;
+                    justify-content: center;
+                    text-align: center;
+                    font-size: 40px;
+                    font-weight: bold;
+                    gap:20px;
+                    font-family: 'Roboto','sans-serif'; 
+                }
 
                 .sliderbutton {
                     border: none;
-                background-color: transparent;
-                color: #000;
-                font-size: 16px;
-                font-weight: bold;
-                cursor: pointer;
-                box-sizing: border-box;
-                outline: none;
-                transition: all 0.2s ease-in-out;
-                cursor: default;
-        }
-
-
+                    background-color: transparent;
+                    color: #000;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    box-sizing: border-box;
+                    outline: none;
+                    transition: all 0.2s ease-in-out;
+                    cursor: default;
+                    }
 
                 .card {
-                    display: flex;
-                justify-content: center;
-                text-align: center;
-                flex-direction: column;
-                width: 270px;
-                height: 400px;
-                margin-top: 40px;
-                border-radius: 7px;
-                transition: 0.3s;
-                cursor: pointer;
-
-                animation: slideAnimation 1s ease-in-out;        
-        }
+                        display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    flex-direction: column;
+                    width: 270px;
+                    height: 400px;
+                    margin-top: 40px;
+                    border-radius: 7px;
+                    transition: 0.3s;
+                    cursor: pointer;
+                    animation: slideAnimation 1s ease-in-out;        
+                }
 
                 .card.active {
                     opacity: 1;
-                transform: translateX(0px);
-
-        }
+                    transform: translateX(0px);
+                }
 
                 .imgDiv {
                     display: flex;
-                justify-content: center;
-                width: 100%;
-                height: auto;
-                   
+                    justify-content: center;
+                    width: 100%;
+                    height: 166px;
+                    position: relative;
                 }
 
                 .cardImg {
                     display: flex;
-                width: 221px;
-                height: 166px;
-                border-radius: 7px;
+                    width: 221px;
+                    height: 166px;
+                    border-radius: 7px;
                 }
 
                 .cardTitle {
                     display: flex;
-                justify-content: center;
-                text-align: center;
-                font-size: 17px ;
-                align-items:center;
-                width: 100%;
-                height: 32px;
-                color: #005baa;
-                font-family: 'Roboto','sans-serif'; 
+                    justify-content: center;
+                    text-align: center;
+                    font-size: 17px ;
+                    align-items:center;
+                    width: 100%;
+                    height: 32px;
+                    color: #005baa;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .cardDesc {

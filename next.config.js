@@ -13,7 +13,8 @@ const nextConfig = {
 module.exports = {
   ...nextConfig,
   images: {
-    domains: ['s1.maxposter.ru','media.cm.expert']
+    domains: ['s1.maxposter.ru','media.cm.expert'],
+    // deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
 };
 

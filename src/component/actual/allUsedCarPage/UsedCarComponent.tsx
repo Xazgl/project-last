@@ -1,17 +1,5 @@
-import Link from "next/link";
-import Image from 'next/image';
-import banner from '/public/images/1.webp'
-import { Dispatch, FormEvent, SetStateAction, useEffect, useMemo, useState } from "react"
-import { Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Slider, TextField } from "@mui/material";
-import { brendFilterList } from "../../admin/SalesAdmin";
-import suv from '/public/images/carBodyTyp/suv.svg'
-import crossover from '/public/images/carBodyTyp/crossover.svg'
-import hatchback from '/public/images/carBodyTyp/hatchback.svg'
-import liftback from '/public/images/carBodyTyp/liftback.svg'
-import minivan from '/public/images/carBodyTyp/minivan.svg'
-import sedan from '/public/images/carBodyTyp/sedan.svg'
 
-import FilteredNewCars from "./FilteredUsedCars";
+import { Dispatch, FormEvent, SetStateAction,  useState } from "react"
 import { AllUsedCarDto } from "../../../../@types/dto";
 import CarUsedFilterSidebar from "./CarUsedFilterSidebar";
 import CarUsedSidebarMobile from "./CarUsedSidebarMobile";
@@ -45,11 +33,6 @@ type Props = {
 export function UsedCarComponent({ setShowModal, cars }: Props) {
 
     const [filteredCars, setFilteredCars] = useState(cars)
-
-    function showModal(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        setShowModal(true)
-    }
 
     return (
         <>

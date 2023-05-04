@@ -143,7 +143,7 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
     function Item({ carArr }: { carArr: UsedCars[] }) {
         return (
-            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center',gap:'10px' }}>
                 {
                     carArr.map((car) =>
                         <UsedCarCard car={car} />
