@@ -11,6 +11,7 @@ import { AllUsedCarDto } from "../../../@types/dto";
 import CircularProgress from "@mui/material/CircularProgress";
 import SwipeableViews from "react-swipeable-views";
 import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
+import Image from 'next/image';
 
 
 
@@ -77,10 +78,12 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
 
                             {
                                 carArr.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/used-car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/used-car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card">
                                             <div className="imgDiv">
                                                 {/* <Image
@@ -94,13 +97,34 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                     // priority={true}
                                                     //blurDataURL={car.picture[0]} // указываем размытое изображение (может быть base64-кодированное изображение)
                                                 /> */}
-                                           
-                                                <img src={car.picture[0]}
+
+                                                {/* <img src={car.picture[0]}
                                                     loading="lazy"
                                                     decoding='async'
                                                     className="cardImg"
                                                     alt={car.modelShortName}
-                                                ></img>
+                                                ></img> */}
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        justifyСontent: 'center',
+                                                        width: '100%',
+                                                        height: '170px',
+                                                        position: 'relative',
+                                                        padding: '0'
+                                                    }}
+                                                >
+                                                    <Image
+                                                        src={car.picture[0]}
+                                                        alt={car.picture[0]}
+                                                        layout="fill"
+                                                        sizes="(max-width: 750px) 70vw,
+                                                            (max-width: 828px) 40vw,
+                                                            (max-width: 1080px) 33vw,
+                                                            20vw"
+                                                        loading="lazy"
+                                                    />
+                                                </Box>
                                             </div>
                                             <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
                                             <div className="cardDesc">
@@ -170,7 +194,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                         <button className="btnAllCar">Смотреть все новые автомобили</button>
                     </Link>
                 </div>
-            </div>
+            </div >
             <style jsx>{`
 
                    
@@ -279,14 +303,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
         transition: 0.3s;
     }
 
-    .card:hover {    
-        transform: scale(1.03);
-       -webkit-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.9);
-       -moz-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.9);
-       box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.09);
-       height: 450px;
-       border: none;
-    }
+  
 
     .imgDiv {
         display: flex;

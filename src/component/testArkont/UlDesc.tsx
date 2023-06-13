@@ -13,7 +13,7 @@ export function UlDesc({ car }: { car: CarDto }) {
             <div className='background'>
                 <div className="desc">
                     <ul>
-                        {car.img.map((img) => <li>
+                        {car.img.map((img) => <li key={img}>
 
                             <FormControlLabel
                                 control={<Checkbox />}

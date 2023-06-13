@@ -101,7 +101,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
     }),
   }));
 
-  function showModal(event) {
+  function showModal() {
     event.preventDefault()
     setShowModal(true)
   }
@@ -140,7 +140,6 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
     }
   }
 
-
   async function deleteToFavorite(id) {
     const res = await fetch('/api/favorite/del/' + id, {
       method: 'POST',
@@ -169,9 +168,6 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       start()
     }
   }
-
-
-
 
   async function addToCompare(id) {
     const res = await fetch('/api/favorite/compare/' + id, {
@@ -506,7 +502,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
                   sx={{ textAlign: 'center', fontSize: '12px', fontFamily: 'Roboto', width: '95%', }}
-                  onClick={e => showModal}>Получить консультацию</Button>
+                  onClick={showModal}>Получить консультацию</Button>
               </div>
             </Card>
           )}

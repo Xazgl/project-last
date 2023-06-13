@@ -11,6 +11,7 @@ import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 import { getDataFromRedis, redisClient } from '../../src/services/redis'
+import { ServiceBanner } from '../../src/component/actual/serviceCarPage/ServiceBanner'
 
 
 const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
@@ -33,7 +34,8 @@ const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
       </Head>
       <MenuBar />
       <BarMenu />
-      <ServiceForm />
+      <ServiceBanner refs={{ refForm}}/>
+      <ServiceForm  refs={{ refForm}}/>
       <CardsSpecialOffers  setShowModal={setShowModal} offers={ offers } />
       <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
 

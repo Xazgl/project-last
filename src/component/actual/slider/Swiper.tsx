@@ -64,6 +64,7 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
             maxWidth: "1000px",
             margin: '0 auto',
             marginTop: '70px',
+            gap: '10px'
         }}>
 
             <div className="banner"></div>
@@ -149,10 +150,10 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
 
     function Item({ carArr }: { carArr: CarDto[] }) {
         return (
-            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center',gap:'6px' }}>
                 {
                     carArr.map((car) =>
-                        <NewCarCard car={car} />
+                        <NewCarCard car={car} key={car.id}/>
                     )
                 }
             </Box>

@@ -139,7 +139,7 @@ export function AddJob() {
                                             <em>None</em>
                                         </MenuItem>
                                         {Object.values(dealerList).map((dealer) => (
-                                            <MenuItem value={dealer.name}>{dealer.name}</MenuItem>
+                                            <MenuItem value={dealer.name} key={dealer.id}>{dealer.name}</MenuItem>
                                         ))}
                                     </Select>
                                 </FormControl>

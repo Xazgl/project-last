@@ -100,11 +100,11 @@ export function Slider({ cars }: { cars: AllCarDto }) {
 
     const handlePrevSlide = () => {
         setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
-      };
+    };
 
-      const handleNextSlide = () => {
+    const handleNextSlide = () => {
         setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
-      };
+    };
 
     //   const handleTouchMove = (e) => {
     //     const xDiff = startX - e.changedTouches[0].clientX;
@@ -187,7 +187,7 @@ export function Slider({ cars }: { cars: AllCarDto }) {
         }
     };
 
-    const [touchStart,setTouchStart] = useState(0)
+    const [touchStart, setTouchStart] = useState(0)
     const handleTouchMove = (e: TouchEvent) => {
         const touchEnd = e.changedTouches[0].clientX;
         if (touchStart - touchEnd > 30) {
@@ -212,10 +212,12 @@ export function Slider({ cars }: { cars: AllCarDto }) {
                         {slides.length > 0 ?
                             <>
                                 {slides.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card">
                                             <div className="imgDiv">
                                                 <img src={car.img[0]} className="cardImg"></img>

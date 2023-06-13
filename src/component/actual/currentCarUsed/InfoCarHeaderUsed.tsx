@@ -144,7 +144,7 @@ export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCar, setSho
                         <div className="row" style={{ width: '100%', height: 'auto' }}>
                             <Box sx={{ display: 'flex', width: '100%', height: '650px', justifyContent: 'center' }}>
                                 {car.picture.map((item) => (
-                                    <img
+                                    <img 
                                         width={1000}
                                         src={`${item}?w=164&h=164&fit=crop&auto=format`}
                                         srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -153,6 +153,7 @@ export function InfoCarHeaderUsed({ car, showModal, setShowModal, setCar, setSho
                                         decoding='async'
                                         onClick={() => showModalImgFunction(item)}
                                         style={{ borderRadius: '7px' }}
+                                        key={item}
                                     />
                                 ))}
                             </Box>

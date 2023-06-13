@@ -384,21 +384,21 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                         <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
                             onChange={selectFilterMainPeopleHandler}>
                             <option value={'Null'} selected >Выберите тип авто</option>
-                            {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain}</option>)}
+                            {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                             onChange={selectDetailFilterBrandHandler}>
                             <option value={'Null'} selected >Выберите бренд</option>
-                            {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain}</option>)}
+                            {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
                             onChange={selectDetailFilterModeHandler}>
                             <option value={'Null'} selected >Выберите модель</option>
-                            {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain}</option>)}
+                            {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                 </div>
@@ -788,6 +788,10 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     }
                 }
                 @media(max-width: 720px) {
+                    .mainNam {
+                         font-size: 40px;
+                    }
+
                     .title { 
                         font-size:25px;
                     }
@@ -797,8 +801,18 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     .MainBanner { 
                         height: 400px;
                     }
+                    .center{
+                        flex-direction: column;
+                        width: 60%;
+                     }
+                     .rowFilter {
+                        margin-top:10px;
+                     }
                 }
                 @media(max-width: 620px) {
+                    .mainNam {
+                         font-size: 30px;
+                    }
                     .background {
                         height: 100%;
                     }
@@ -809,7 +823,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     .card {
                         width:100%;
                         margin-top: 40px;
-                        height: 174px;
+                        height: 180px;
                     }
                     #c4 {
                         display:none;
@@ -820,6 +834,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     }
                     .selectModel {
                         width:90%;
+                        font-size: 16px;
                     }
                     .titleQuestion {
                         margin-top:20px;
@@ -828,8 +843,17 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     .btnCall {
                         width:300px;
                     }
+
                     .row {
                         justify-content: center;
+                        align-items: left;
+                        flex-direction: column;
+                    }
+
+                    .salesDiv {
+                        align-items: left;
+                        justify-content: left;
+                        width: 100%;
                     }
                 }
                 @media(max-width: 540px) {
@@ -889,6 +913,9 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     }
                     .card {
                         width: 287px;
+                    }
+                    .selectModel {
+                        font-size: 14px;
                     }
                     
                 }

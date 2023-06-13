@@ -194,7 +194,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     const [valueSliderPrice, setValueSliderPrice] = React.useState<[number, number]>([minPrice, maxPrice]);
 
 
-   
+
 
     useEffect(() => {
         setMaxPrice(Math.max(...cars.map(car => car.price)))
@@ -457,7 +457,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     </ButtonGroup>
                 </div>
                 <div className="rowSideBar" id="center" >
-                    <Accordion  sx={{width:'100%'}}>
+                    <Accordion sx={{ width: '100%' }}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
@@ -578,6 +578,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             <div id="color" >
                                 {filteredProps.colors.map(color =>
                                     <div
+                                        key={color}
                                         //  onClick={() => setColor(color)}
                                         onClick={() => {
                                             setCurrentFilter(prevFilterState => {
@@ -644,7 +645,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         <AccordionDetails>
                             <div id="carBodyType" >
                                 {filteredProps.carsBodyTypes.map(bodyType =>
-                                    <div className="carTypeDiv">
+                                    <div className="carTypeDiv" key={bodyType}>
                                         <img
                                             className="imgCarType"
                                             src={carBodyImgChange(bodyType).src}

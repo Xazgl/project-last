@@ -275,14 +275,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     transition: 0.3s;
                 }
 
-                .card:hover {    
-                    transform: scale(1.03);
-                   -webkit-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.9);
-                   -moz-box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.9);
-                   box-shadow: 0px -1px 11px 9px rgba(34, 60, 80, 0.09);
-                   height: 450px;
-                   border: none;
-                }
 
                 .imgDiv {
                     display: flex;

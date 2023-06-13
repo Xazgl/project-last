@@ -2,6 +2,7 @@ import { CircularProgress } from "@mui/material";
 import Link from "next/link";
 import { CarDto } from "../../../../@types/dto";
 import { numberWithSpaces } from "../allNewCarPage/servicesNewCar/service";
+import Image from 'next/image';
 
 
 export function NewCarCard({ car }: { car: CarDto }) {
@@ -15,8 +16,18 @@ export function NewCarCard({ car }: { car: CarDto }) {
                         query: { id: car.id }
                     }}>
                         <div className="card">
-                            <div className= "imgDiv">
-                                <img src={car.img[0]} className="cardImg"></img>
+                            <div className="imgDiv">
+                                <Image
+                                    src={car.img[0]}
+                                    alt={car.img[0]}
+                                    layout="fill"
+                                    sizes="(max-width: 750px) 50vw,
+                                            (max-width: 828px) 40vw,
+                                            (max-width: 1080px) 33vw,
+                                            20vw"
+                                    loading="lazy"
+                                />
+                                {/* <img src={car.img[0]} className="cardImg"></img> */}
                             </div>
                             <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
                             <div className="cardDesc">
@@ -32,9 +43,9 @@ export function NewCarCard({ car }: { car: CarDto }) {
                                 <div className="elDesc">MT</div>
                             </div>
                             <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
-                                <div className="cardPriceMonth">
-                                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
-                                </div>
+                            <div className="cardPriceMonth">
+                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
+                            </div>
                             <div className="credit">
                                 <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
                             </div>
@@ -45,7 +56,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                 : <CircularProgress />
             }
 
-            <style jsx>{`
+<style jsx>{`
             @keyframes credit-open {
                     0% {
                         opacity: 0;
@@ -61,135 +72,59 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     opacity: 0.8;
                 }
 
-                80% {
-                    opacity: 0.9;
-                }
-
-                100% {
-                    opacity: 1;
-                }
-            }
-
-          
-
-                .slider {
-                    display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: auto;
-                margin-top: 100px;
-                align-items: center;
-                position: relative;
-        }
-
-                .slider__container {
-                    overflow - x: hidden;
-                position: relative;
-                transition: transform 0.5s ease-in-out;
-        }
-
-                .slider__slides {
-                    display: flex;
-                overflow: hidden;
-                animation: slideAnimation 1s ease-in-out;
-                flex-grow:1;
-                transition:  transform 0.3 ease;
-        }
-
-                .slider__controls {
-                    display: flex;
-                justify-content: space-between;
-                position: absolute;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100%;
-                max-width: 1980px;
-                padding: 0 20px;
-                box-sizing: border-box;
-                height: 100%;
-                position: absolute;
-        }
-                .slider__control--prev {
-                    left:20px
-        }
-                .slider__control--next {
-                    right:20px
-        }
-
-                .title {
-                    display:flex;
-                width: 100%;
-                height: 40px;
-                justify-content: center;
-                text-align: center;
-                font-size: 40px;
-                font-weight: bold;
-                gap:20px;
-                font-family: 'Roboto','sans-serif'; 
-        }
-
-                .sliderbutton {
-                    border: none;
-                background-color: transparent;
-                color: #000;
-                font-size: 16px;
-                font-weight: bold;
-                cursor: pointer;
-                box-sizing: border-box;
-                outline: none;
-                transition: all 0.2s ease-in-out;
-                cursor: default;
-        }
-
-
+                   80% {
+                       opacity: 0.9;
+                   }
+   
+                   100% {
+                       opacity: 1;
+                   }
+               }
 
                 .card {
-                    display: flex;
-                justify-content: center;
-                text-align: center;
-                flex-direction: column;
-                width: 270px;
-                height: 400px;
-                margin-top: 40px;
-                border-radius: 7px;
-                transition: 0.3s;
-                cursor: pointer;
-
-                animation: slideAnimation 1s ease-in-out;        
-        }
+                        display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    flex-direction: column;
+                    width: 270px;
+                    height: 400px;
+                    margin-top: 40px;
+                    border-radius: 7px;
+                    transition: 0.3s;
+                    cursor: pointer;
+                    animation: slideAnimation 1s ease-in-out;        
+                }
 
                 .card.active {
                     opacity: 1;
-                transform: translateX(0px);
-
-        }
+                    transform: translateX(0px);
+                }
 
                 .imgDiv {
                     display: flex;
-                justify-content: center;
-                width: 100%;
-                height: auto;
-                   
+                    justify-content: center;
+                    width: 100%;
+                    height: 166px;
+                    position: relative;
                 }
 
                 .cardImg {
                     display: flex;
-                width: 221px;
-                height: 166px;
-                border-radius: 7px;
+                    width: 221px;
+                    height: 166px;
+                    border-radius: 7px;
                 }
 
                 .cardTitle {
                     display: flex;
-                justify-content: center;
-                text-align: center;
-                font-size: 17px ;
-                align-items:center;
-                width: 100%;
-                height: 32px;
-                color: #005baa;
-                font-family: 'Roboto','sans-serif'; 
+                    justify-content: center;
+                    text-align: center;
+                    font-size: 17px ;
+                    align-items:center;
+                    width: 100%;
+                    height: 50px;
+                    color: #005baa;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .cardDesc {
@@ -263,15 +198,15 @@ export function NewCarCard({ car }: { car: CarDto }) {
                 align-items: center;
                 width: 100%;
                 height: 60px;
-                border-top:1px solid #deded8;
                 transition: 1s;
                 margin-top:-10em;
                 cursor: pointer;
                 font-family: 'Roboto','sans-serif'; 
+                top: -100px;
                 }
 
                 .credit:hover {
-                    background - color:#0088ff;;
+                    background - color:#0088ff;
                 }
 
 
@@ -325,31 +260,24 @@ export function NewCarCard({ car }: { car: CarDto }) {
                 -moz-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;
                 box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;
                 }
-                
-                .credit {
-                    display: none;
-                    justify-content: center;
-                    text-align: center;
-                    align-items: center;
-                    width: 100%;
-                    height: 60px;
-                    border-top:1px solid #deded8;
-                    transition: 1s;
-                    margin-top:-10em;
-                    cursor: pointer;
-                    font-family: 'Roboto','sans-serif'; 
-                }
 
                 .credit:hover {
                     background-color:#0088ff;;
                 }
                 
+                .card:hover {
+                    position: relative;
+
+                }
+
                 .card:hover .credit {
                     display: flex;
                     transition: 1s;
                     animation:credit-open.5s ;
-                    margin-top: 40px;
+                    margin-top: 240px;
                     background-color:#005baa;
+                    position: absolute;
+                    top: 0;
                 }
                 
                 .btn:hover {

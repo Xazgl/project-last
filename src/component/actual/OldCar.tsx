@@ -33,12 +33,12 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
     const [carArr, setCarArr] = useState<AllUsedCarDto>([]);
     useEffect(() => {
-        if (!Array.isArray(carsUsed ) || !carsUsed .length) {
+        if (!Array.isArray(carsUsed) || !carsUsed.length) {
             return;
         }
-        const shuffledCars = Array(4).fill(0).map(el => carsUsed [Math.floor(Math.random() * carsUsed .length)]);
+        const shuffledCars = Array(4).fill(0).map(el => carsUsed[Math.floor(Math.random() * carsUsed.length)]);
         setCarArr(shuffledCars);
-    }, [carsUsed ]);
+    }, [carsUsed]);
 
 
     const id = [
@@ -87,10 +87,12 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                         (<div className="cardsSlider">
                             {
                                 carArr.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card">
                                             <div className="imgDiv">
                                                 <img

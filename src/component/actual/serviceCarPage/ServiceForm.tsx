@@ -1,6 +1,6 @@
 
 import { IMaskInput } from "react-imask"
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, MutableRefObject, useEffect, useRef, useState } from "react";
 import {  Checkbox} from "@mui/material";
 import MuiModal from "../modalAfterSubmit/MuiModal";
 
@@ -89,7 +89,15 @@ const officeList: Office[] = [
     },
 ]
 
-export function ServiceForm() {
+
+
+type FormType = {
+    refs: {
+      refForm: MutableRefObject<HTMLDivElement>,
+    }
+  }
+
+export function ServiceForm( {refs}:FormType) {
     const [officeId, setOfficeId] = useState(0) //ДЦ
     const [name, setName] = useState('')   //Имя клиента
     const [phone, setPhone] = useState('') //Телефон
@@ -146,7 +154,7 @@ export function ServiceForm() {
     return (
         <>
             <div className="background">
-                <div className="column">
+                <div className="column" ref={refs.refForm}>
                     <div className="title">Запись на сервис</div>
                     <div className="desc">Заполните форму и мы с вами обязательно свяжемся</div>
                     <div className="form">
@@ -182,7 +190,7 @@ export function ServiceForm() {
                                     id="inputP"
                                     className="phone"
                                     mask={'+{7}(000)000-00-00'}
-                                    placeholder="+7 ___ ___ __ __"
+                                    placeholder="+7(9b00)000-00-00"
                                     required
                                     value={phone}
                                     name="phone"
@@ -190,7 +198,7 @@ export function ServiceForm() {
                                 />
                             </div>
                             <div className="divForm">
-                                <div className="inputTitle">Выберите ДЦ</div>
+                                <div className="inputTitle">Дилерский центр</div>
                                 <select className="selectModel" value={officeId} name="office" onChange={event => setOfficeId(+event.target.value)}>
                                     <option value={0} selected disabled></option>
                                     {officeList.map(brand => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
@@ -348,7 +356,7 @@ export function ServiceForm() {
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
-                padding: '11px 12px';
+                padding: 11px 12px;
                 outline:none;
             }
 
@@ -360,7 +368,7 @@ export function ServiceForm() {
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
-                padding: '11px 12px';
+                padding: 11px 12px;
                 resize: none;
             }
 
@@ -371,6 +379,7 @@ export function ServiceForm() {
                 font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
+                padding: 2px ;
            }
             
            .btn {

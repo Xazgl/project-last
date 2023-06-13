@@ -121,7 +121,7 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
     };
 
 
-    
+
 
     function matchesEngine(engine) {
         let arr = engine.toString().split(/\s*,\s*/)
@@ -147,8 +147,8 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         <>
             <div className="slider"
                 onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
-                // onTouchMove={handleTouchMove}
-                >
+            // onTouchMove={handleTouchMove}
+            >
                 <div className="title">Автомобили с пробегом</div>
                 <div className="slider__container">
                     <div
@@ -158,10 +158,12 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                         {slides.length > 0 ?
                             <>
                                 {slides.map(car => {
-                                     return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card">
                                             <div className="imgDiv">
                                                 <img src={car.picture[0]}
@@ -186,7 +188,7 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                                             </div>
                                             <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
                                             <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.price/120)))} Р/мес</button>
+                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.price / 120)))} Р/мес</button>
                                             </div>
                                             <div className="credit">
                                                 <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>

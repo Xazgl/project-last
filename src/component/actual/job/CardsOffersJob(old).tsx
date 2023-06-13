@@ -183,7 +183,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     <div className="cards">
                         {
                             job.map(job => {
-                                return <div className="card" id="c4">
+                                return <div  className="card" id="c4" key={job.id}>
                                     {/* <div className="column" id="contentColumn"  src={'/uploads/' + params.row.img} > */}
                                     <div className="column" id="contentColumn" >
                                         <div className='titleCard'>{job.title}</div>

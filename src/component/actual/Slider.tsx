@@ -93,8 +93,8 @@ export function Slider({ cars }: { cars: AllCarDto }) {
 
     const slides = getSlidesToShow();
 
- 
-    
+
+
 
     // const [touchStart, setTouchStart] = useState(0)
     // const handleTouchMove = (e: TouchEvent) => {
@@ -127,8 +127,8 @@ export function Slider({ cars }: { cars: AllCarDto }) {
         <>
             <div className="slider"
                 onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
-                // onTouchMove={handleTouchMove}
-                >
+            // onTouchMove={handleTouchMove}
+            >
                 <div className="title">Новые автомобили</div>
                 <div className="slider__container">
                     <div
@@ -138,10 +138,12 @@ export function Slider({ cars }: { cars: AllCarDto }) {
                         {slides.length > 0 ?
                             <>
                                 {slides.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card">
                                             <div className="imgDiv">
                                                 <img src={car.img[0]} className="cardImg"></img>

@@ -527,7 +527,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         <AccordionDetails>
                             <div id="carBodyType" >
                                 {filteredProps.carsBodyTypes.map(bodyType =>
-                                    <div className="carTypeDiv">
+                                    <div className="carTypeDiv" key={bodyType}>
                                         <img
                                             className="imgCarType"
                                             src={carBodyImgChange(bodyType).src}

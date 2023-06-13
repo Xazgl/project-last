@@ -317,7 +317,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
     return (
         <>
             <div className="sideBar">
-            <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
+                <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
                     sx={{ backgroundColor: '#0076dd', color: 'white', margin: '10px', width: '100%' }}
                 >
                     <AccordionSummary
@@ -472,6 +472,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                                     <div id="color" >
                                         {filteredProps.colors.map(color =>
                                             <div
+                                                key={color}
                                                 //  onClick={() => setColor(color)}
                                                 onClick={() => {
                                                     setCurrentFilter(prevFilterState => {
@@ -538,7 +539,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                                 <AccordionDetails>
                                     <div id="carBodyType" >
                                         {filteredProps.carsBodyTypes.map(bodyType =>
-                                            <div className="carTypeDiv">
+                                            <div className="carTypeDiv" key={bodyType}>
                                                 <img
                                                     className="imgCarType"
                                                     src={carBodyImgChange(bodyType).src}
@@ -647,8 +648,9 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) 
                         <div className="rowSideBar" id="column" >
                             <Button
                                 variant="outlined"
-                                sx={{ width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto' 
-                            }}
+                                sx={{
+                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto'
+                                }}
                                 onClick={resetFilteredCars}>
                                 Сбросить фильтры
                             </Button>

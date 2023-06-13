@@ -40,7 +40,7 @@ export default function MyEditorTwo({setDescription,description}: MyEditorProp,)
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
-    // console.log(draftjsToMd(convertToRaw(editorState.getCurrentContent())))
+    console.log(draftjsToMd(convertToRaw(editorState.getCurrentContent())))
   };
 
 

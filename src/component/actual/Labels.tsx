@@ -23,6 +23,16 @@ import exeed from '/public/images/logo-brends/exeed.webp';
 import usedcars from '/public/images/logo-brends/usedcars.webp';
 import lovol from '/public/images/logo-brends/lov.webp';
 
+import arkontSelect from '/public/images/logo-brends/arkontSelect.webp';
+import baic from '/public/images/logo-brends/baic.webp';
+import jac from '/public/images/logo-brends/jac.webp';
+import jetour from '/public/images/logo-brends/jetour.webp';
+import kaiyi from '/public/images/logo-brends/kaiyi.webp';
+import jetta from '/public/images/logo-brends/jetta.webp';
+
+
+
+
 
 
 export function Labels() {
@@ -96,7 +106,24 @@ export function Labels() {
                     <div className="label" >
                         <img alt="" src={usedcars.src} title="" ></img>
                     </div>
-
+                    <div className="label" >
+                        <img alt="" src={arkontSelect.src} title="" ></img>
+                    </div>
+                    <div className="label" >
+                        <img alt="" src={baic.src} title="" ></img>
+                    </div>
+                    <div className="label" >
+                        <img alt="" src={jac.src} title="" ></img>
+                    </div>
+                    <div className="label" >
+                        <img alt="" src={jetour.src} title="" ></img>
+                    </div>
+                    <div className="label" >
+                        <img alt="" src={kaiyi.src} title="" ></img>
+                    </div>
+                    <div className="label" >
+                        <img alt="" src={jetta.src} title="" ></img>
+                    </div>
                 </div>
             </div>
 
@@ -116,7 +143,8 @@ export function Labels() {
                     display:flex; 
                     width: 1100px;
                     height: 100%;
-                    justify-content: center; 
+                    justify-content: left; 
+                    align-items: center;
                     gap:20px;
                     flex-wrap: wrap;
                 }
@@ -125,6 +153,8 @@ export function Labels() {
                 .label {
                     display: flex;
                     transition: 0.6s;
+                    align-items: center;
+
                 }
 
                 .label:hover {

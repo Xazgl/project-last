@@ -1,4 +1,4 @@
-import { Car, Office, Offices } from '@prisma/client'
+import { Car, Offices } from '@prisma/client'
 import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react'
 import { styled, useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -94,7 +94,9 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       <div className='background'>
         <div className='cards' id="desktop">
           {filteredOffices.map(dealer =>
-            <Card sx={{
+            <Card 
+            key={dealer.id}
+            sx={{
               width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
@@ -154,7 +156,9 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
 
         <div className='cards' id="mob">
           {filteredOffices.map(dealer =>
-            <Card sx={{
+            <Card 
+            key={dealer.id}
+            sx={{
               width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },

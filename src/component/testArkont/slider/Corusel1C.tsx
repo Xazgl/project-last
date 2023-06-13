@@ -122,7 +122,7 @@ export function Corusel1C({ car }: { car: CarDto }) {
             <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center' }}>
                 {
                     imgArr.map((img) =>
-                        <ImgCard img={img} />
+                        <ImgCard img={img} key={img} />
                     )
                 }
             </Box>

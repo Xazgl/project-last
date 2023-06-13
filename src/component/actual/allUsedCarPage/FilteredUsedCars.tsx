@@ -306,7 +306,9 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
         <div className='cards' id="desktop">
           {filteredCars.map(car =>
-            <Card sx={{
+            <Card 
+            key={car.id}
+            sx={{
               width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
@@ -426,7 +428,9 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
         <div className='cards' id="mob">
           {filteredCars.map(car =>
-            <Card sx={{
+            <Card 
+            key={car.id}
+            sx={{
               width: '90%', height: 430, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
@@ -459,7 +463,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               />
 
               <Link href={{
-                pathname: '/catalog/car/[id]',
+                pathname: '/catalog/used-car/[id]',
                 query: { id: car.id }
               }}>
                 {/* <LazyLoad height={160}>

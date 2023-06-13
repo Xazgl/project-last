@@ -72,19 +72,21 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                 <div className='background'>
                     <div className='cards' id="desktop">
                         {cars.map(car =>
-                            <Card sx={{
-                                width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
-                                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
-                                '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-                                '&:hover .credit': {
-                                    display: 'flex',
-                                    transition: '1s',
-                                    animation: 'credit-open.5s',
-                                    marginTop: '400px',
-                                    backgroundColor: '#0c7ee1',
-                                    position: 'absolute'
-                                }
-                            }} >
+                            <Card
+                                key={car.id}
+                                sx={{
+                                    width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
+                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+                                    '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
+                                    '&:hover .credit': {
+                                        display: 'flex',
+                                        transition: '1s',
+                                        animation: 'credit-open.5s',
+                                        marginTop: '400px',
+                                        backgroundColor: '#0c7ee1',
+                                        position: 'absolute'
+                                    }
+                                }} >
                                 <CardHeader
                                     avatar={
                                         <Avatar sx={{}} aria-label="recipe"
@@ -100,22 +102,22 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                                     title={car.CarModel.brandName}
                                     subheader={car.CarModel.modelName}
                                 />
-{/* 
+                                {/* 
                                 <Link href={{
                                     pathname: '/catalog/car/[id]',
                                     query: { id: car.id }
                                 }}>
                                    */}
-                                    <CardMedia
-                                        component="img"
-                                        height="194"
-                                        image={car.img[0]}
-                                        sx={{
-                                            cursor: 'pointer',
-                                        }}
+                                <CardMedia
+                                    component="img"
+                                    height="194"
+                                    image={car.img[0]}
+                                    sx={{
+                                        cursor: 'pointer',
+                                    }}
 
-                                        alt="car"
-                                    />
+                                    alt="car"
+                                />
                                 {/* </Link> */}
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
@@ -156,11 +158,13 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
 
                     <div className='cards' id="mob">
                         {cars.map(car =>
-                            <Card sx={{
-                                width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
-                                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
-                                '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-                            }} >
+                            <Card
+                                key={car.id} 
+                                sx={{
+                                    width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
+                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+                                    '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
+                                }} >
                                 <CardHeader
                                     sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
                                     avatar={
@@ -181,7 +185,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                                     title={car.CarModel.brandName}
                                     subheader={car.CarModel.modelName}
                                 />
-
+                                 
                                 <Link href={{
                                     pathname: '/catalog/car/[id]',
                                     query: { id: car.id }

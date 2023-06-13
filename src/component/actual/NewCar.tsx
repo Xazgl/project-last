@@ -36,10 +36,10 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
 
     const [carArr, setCarArr] = useState<AllCarDto>([]);
     useEffect(() => {
-        if (!Array.isArray(cars ) || !cars .length) {
+        if (!Array.isArray(cars) || !cars.length) {
             return;
         }
-        const shuffledCars = Array(4).fill(0).map(el => cars [Math.floor(Math.random() * cars.length)]);
+        const shuffledCars = Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)]);
         setCarArr(shuffledCars);
     }, [cars]);
 
@@ -88,10 +88,12 @@ export function NewCar({ cars }: { cars: AllCarDto }) {
                     (<div className="cardsSlider">
                         {
                             carArr.map(car => {
-                                return <Link href={{
-                                    pathname: '/catalog/car/[id]',
-                                    query: { id: car.id }
-                                }}>
+                                return <Link
+                                    key={car.id}
+                                    href={{
+                                        pathname: '/catalog/car/[id]',
+                                        query: { id: car.id }
+                                    }}>
                                     <div className="card">
                                         <div className="imgDiv">
                                             <img loading="lazy"

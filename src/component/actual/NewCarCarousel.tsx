@@ -156,10 +156,12 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                         <div className="cardsRow" ref={cardsRowRef}>
                             {
                                 carArr.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card" ref={carRef} >
                                             <div className="imgDiv">
                                                 <img src={car.img[0]} className="cardImg"></img>
