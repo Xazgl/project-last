@@ -2,10 +2,12 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 // import styles from "./Menu.module.css";
-import label from '/public/images/label.png'
+import label from '/public/images/label2.png'
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Script from "next/script";
-
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import SearchIcon from '@mui/icons-material/Search';
 
 const hundler = (event: React.SyntheticEvent) => {
   console.log('Click');
@@ -42,100 +44,122 @@ export function MenuBar() {
 
 
   return <nav>
-
-    <div className="container">
-      <Script strategy="afterInteractive">
-        {`
+    <div className='background'>
+      <div className='content'>
+        <div className="container">
+          <Script strategy="afterInteractive">
+            {`
           (function(w,d,n,c){w.CalltouchDataObject=n;w[n]=function(){w[n]["callbacks"].push(arguments)};if(!w[n]["callbacks"]){w[n]["callbacks"]=[]}w[n]["loaded"]=false;if(typeof c!=="object"){c=[c]}w[n]["counters"]=c;for(var i=0;i<c.length;i+=1){p(c[i])}function p(cId){var a=d.getElementsByTagName("script")[0],s=d.createElement("script"),i=function(){a.parentNode.insertBefore(s,a)},m=typeof Array.prototype.find === 'function',n=m?"init-min.js":"init.js";s.async=true;s.src="https://mod.calltouch.ru/"+n+"?id="+cId;if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",i,false)}else{i()}}})(window,document,"ct","1oroglta");
         `}
-      </Script>
-    </div>
-
-    <ul className="bar">
-      <li className="menuEL">
-        <Link href={'/'}>
-          <a rel="noopener noreferrer"><div className="label"></div></a>
-        </Link>
-      </li>
-      <li className="menuEL" id="catalog">
-        <span>Каталог </span>
-        <ul className="bottomUl">
-          <Link href={'/catalog/new-car'}>
-            <a rel="noopener noreferrer"> <li className="f">Автомобили в наличии</li></a>
-          </Link>
-          <Link href={'/catalog/used-car'}>
-            <a rel="noopener noreferrer"> <li className="f">Автомобили с пробегом</li></a>
-          </Link>
-          <Link href={'/catalog/tradein'}>
-            <a rel="noopener noreferrer"> <li className="f">Онлайн-оценка автомобиля</li></a>
-          </Link>
-          <Link href={'/catalog/special-offers'}>
-            <a rel="noopener noreferrer"> <li className="f">Специальные предложения</li></a>
-          </Link>
+          </Script>
+        </div>
+        <ul className="barMini">
+          <div className="columBar">
+            <li className="menuEL">
+              <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
+                <a rel="noopener noreferrer" ><AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> <span className="city">Волгоград </span></a>
+              </Link>
+            </li>
+          </div>
+          <div className="columBar" style={{justifyContent:'end',gap:'40px'}}>
+            <li className="menuEL">
+              <Link href={'tel:+78442292505'}>
+                <a rel="noopener noreferrer" ><LocalPhoneIcon sx={{ color: '#f9b518',fontSize:'14px' }} /> <span className="city">+7 (8442) 29 25 05</span></a>
+              </Link>
+            </li>
+            <li className="menuEL">
+              <Link href={'tel:+78442292505'}>
+                <a rel="noopener noreferrer" > <span className="city">Заказать звонок</span> < SearchIcon sx={{ color: '#f9b518',fontSize:'14px' }} /></a>
+              </Link>
+            </li>
+          </div>
         </ul>
-      </li>
-      <li className="menuEL" id="catalog">
-        <span>Услуги</span>
-        <ul className="bottomUl">
-          {/* <Link href={'/catalog/new-car'}>
+
+        <ul className="bar">
+          <li className="menuEL">
+            <Link href={'/'}>
+              <a rel="noopener noreferrer"><div className="label"></div></a>
+            </Link>
+          </li>
+          <li className="menuEL" id="catalog">
+            <span>Каталог </span>
+            <ul className="bottomUl">
+              <Link href={'/catalog/new-car'}>
+                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличии</li></a>
+              </Link>
+              <Link href={'/catalog/used-car'}>
+                <a rel="noopener noreferrer"> <li className="f">Автомобили с пробегом</li></a>
+              </Link>
+              <Link href={'/catalog/tradein'}>
+                <a rel="noopener noreferrer"> <li className="f">Онлайн-оценка автомобиля</li></a>
+              </Link>
+              <Link href={'/catalog/special-offers'}>
+                <a rel="noopener noreferrer"> <li className="f">Специальные предложения</li></a>
+              </Link>
+            </ul>
+          </li>
+          <li className="menuEL" id="catalog">
+            <span>Услуги</span>
+            <ul className="bottomUl">
+              {/* <Link href={'/catalog/new-car'}>
             <li className="f">Кредитный калькулятор</li>
           </Link> */}
-          <Link href={'/services/insurance'}>
-            <a rel="noopener noreferrer">  <li className="f">Страхование</li></a>
-          </Link>
-          {/* <Link href={'/services/insurance'}>
+              <Link href={'/services/insurance'}>
+                <a rel="noopener noreferrer">  <li className="f">Страхование</li></a>
+              </Link>
+              {/* <Link href={'/services/insurance'}>
             <li className="f">Выкуп автомобилей</li>
           </Link> */}
-          <Link href={'/services/accident-assistant'}>
-            <a rel="noopener noreferrer">  <li className="f">Аварийный комиссар</li></a>
-          </Link>
-          <Link href={'/services/number-for-cars'}>
-            <a rel="noopener noreferrer"> <li className="f">Изготовление номерных знаков</li></a>
-          </Link>
-        </ul>
-      </li>
+              <Link href={'/services/accident-assistant'}>
+                <a rel="noopener noreferrer">  <li className="f">Аварийный комиссар</li></a>
+              </Link>
+              <Link href={'/services/number-for-cars'}>
+                <a rel="noopener noreferrer"> <li className="f">Изготовление номерных знаков</li></a>
+              </Link>
+            </ul>
+          </li>
 
-      <li className="menuEL" id="catalog">
-        <span>Владельцам</span>
-        <ul className="bottomUl">
-          <Link href={'/catalog/special-offers'}>
-            <a rel="noopener noreferrer"> <li className="f">Спец предложения сервиса</li></a>
-          </Link>
-          <Link href={'/car-repair/service-form'}>
-            <a rel="noopener noreferrer"> <li className="f">Сервис</li></a>
-          </Link>
-          <Link href={'https://ckr.arkont.ru/'}>
-            <a rel="noopener noreferrer">  <li className="f">Кузовной ремонт</li></a>
-          </Link>
-          <Link href={'https://gbo.arkont.ru/'}>
-            <a rel="noopener noreferrer">  <li className="f">Перевод авто на газ</li></a>
-          </Link>
-          <Link href={'/services/tires'}>
-            <a rel="noopener noreferrer">  <li className="f">Шиномонтаж</li></a>
-          </Link>
-          <Link href={'/services/special'}>
-            <a rel="noopener noreferrer"> <li className="f">Дисконтная программа SPECIAL</li></a>
-          </Link>
-        </ul>
-      </li>
-      <li className="menuEL" >
-        <Link href={'/job/joball'}><a rel="noopener noreferrer"><span>Вакансии</span></a></Link>
-      </li>
-      <li className="menuEL" id="catalog">
-        <span>О компании</span>
-        <ul className="bottomUl">
-          <Link href={'/company/contact'}>
-            <a rel="noopener noreferrer">   <li className="f">Контакты</li> </a>
-          </Link>
-          <Link href={'/company/protection'}>
-            <a rel="noopener noreferrer">  <li className="f">Охрана труда</li> </a>
-          </Link>
-          <Link href={'/company/send'}>
-            <a rel="noopener noreferrer">  <li className="f">Напишите нам</li> </a>
-          </Link>
-        </ul>
-      </li>
-      {/* <li className="menuEL">
+          <li className="menuEL" id="catalog">
+            <span>Владельцам</span>
+            <ul className="bottomUl">
+              <Link href={'/catalog/special-offers'}>
+                <a rel="noopener noreferrer"> <li className="f">Спец предложения сервиса</li></a>
+              </Link>
+              <Link href={'/car-repair/service-form'}>
+                <a rel="noopener noreferrer"> <li className="f">Сервис</li></a>
+              </Link>
+              <Link href={'https://ckr.arkont.ru/'}>
+                <a rel="noopener noreferrer">  <li className="f">Кузовной ремонт</li></a>
+              </Link>
+              <Link href={'https://gbo.arkont.ru/'}>
+                <a rel="noopener noreferrer">  <li className="f">Перевод авто на газ</li></a>
+              </Link>
+              <Link href={'/services/tires'}>
+                <a rel="noopener noreferrer">  <li className="f">Шиномонтаж</li></a>
+              </Link>
+              <Link href={'/services/special'}>
+                <a rel="noopener noreferrer"> <li className="f">Дисконтная программа SPECIAL</li></a>
+              </Link>
+            </ul>
+          </li>
+          <li className="menuEL" >
+            <Link href={'/job/joball'}><a rel="noopener noreferrer"><span>Вакансии</span></a></Link>
+          </li>
+          <li className="menuEL" id="catalog">
+            <span>О компании</span>
+            <ul className="bottomUl">
+              <Link href={'/company/contact'}>
+                <a rel="noopener noreferrer">   <li className="f">Контакты</li> </a>
+              </Link>
+              <Link href={'/company/protection'}>
+                <a rel="noopener noreferrer">  <li className="f">Охрана труда</li> </a>
+              </Link>
+              <Link href={'/company/send'}>
+                <a rel="noopener noreferrer">  <li className="f">Напишите нам</li> </a>
+              </Link>
+            </ul>
+          </li>
+          {/* <li className="menuEL">
             <a onClick={(e) => {
               e.preventDefault()
               refs.refContact.current.scrollIntoView({
@@ -144,23 +168,41 @@ export function MenuBar() {
               })
             }}><span>КОНТАКТЫ</span></a>
           </li> */}
-      {/* <li className="menuEL">
+          {/* <li className="menuEL">
             <a href="tel:+78442222222"><span>+7(8442)22-70-72</span></a>
           </li> */}
-    </ul >
-
+        </ul >
+      </div>
+    </div>
 
 
     <style jsx>{`
 
+    .barMini{
+      width: 100%;
+      top:0;
+      z-index:9999;
+      margin-top:0;
+      height: 60px;
+      margin-bottom: 0px;
+      border-bottom: solid 2px #366aa3 ;
+      justify-content: start;
+
+    }
+
+    .columBar{
+      display: flex;
+      width: 50%;
+      align-items: center;
+    }
+
     .bar {
-        justify-content: center;
+        justify-content: start;
         gap:60px; 
         font-family: 'Roboto','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:21px;
         width: 100%;
-        background-color:white;
         border:none;
         z-index:9999;
         margin-top:0;
@@ -169,10 +211,11 @@ export function MenuBar() {
         height: 92px;
         color:black;
         top:0;
-        border-bottom: 1px solid #eaeae6;
-        -webkit-box-shadow: 1px 18px 8px -14px rgba(34, 60, 80, 0.2);
-        -moz-box-shadow: 1px 18px 8px -14px rgba(34, 60, 80, 0.2);
-        box-shadow: 1px 18px 8px -14px rgba(34, 60, 80, 0.2);
+      }
+
+      .city {
+       font-size:14px;
+       font-family: 'Roboto','sans-serif'; 
       }
 
       ul {
@@ -181,7 +224,7 @@ export function MenuBar() {
         border-bottom: 1px solid #0e0d0d;   
         font-size:18px;
         width: 100%;
-        background-color:white;
+        background-color: #0c54a0;
         border:none;
         z-index:9999;
         margin-top:0;
@@ -222,12 +265,13 @@ export function MenuBar() {
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        color:white;
       }
 
 
       a{
         text-decoration: none;
-        color:black;
+        color:white;
       }
 
       span::after{
@@ -287,7 +331,53 @@ export function MenuBar() {
         transition: 0.2s;
       }
        
-    
+      .background {
+            display: flex; 
+            justify-content: center;
+            width: '100%' ;
+            background-color:#0c54a0;
+          }
+  
+          .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 1179px; 
+          }
+
+          @media(max-width: 1300px) {
+            .content {  
+              width: 970px; 
+            }
+          }
+
+          @media(max-width: 900px) {
+            .content{  
+              width: 640px; 
+            }
+          }
+
+          @media(max-width: 640px) {
+            .content{  
+              width: 450px; 
+            }
+          }    
+          
+          @media(max-width: 450px) {
+            .content{  
+              width: 360px; 
+            }
+          }
+
+          @media(max-width: 360px) {
+            .background {
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            .content{  
+              width:90%; 
+            }
+          }
 
       @media(max-width: 1000px) {
         ul {

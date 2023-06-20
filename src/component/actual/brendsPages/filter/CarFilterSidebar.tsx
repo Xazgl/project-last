@@ -9,7 +9,7 @@ import RangeSlider from './RangeSlider';
 import { FilterUserOptions } from './typeForFilter';
 import { brandNameFilter, carBodyTypeNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from './carFilters';
 import { AllCarDto } from '../../../../../@types/dto';
-import { LogoList, carBodyImgChange, driverTypeName, engineTypeName, gearBoxName, logoFind } from '../../../../services/functions';
+import { LogoList, ModelPhotoList, carBodyImgChange, driverTypeName, engineTypeName, gearBoxName, logoFind, modelPhotoFind } from '../../../../services/functions';
 import { useRouter } from 'next/router';
 
 
@@ -45,8 +45,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
     const router = useRouter();
     const [selectedBrand, setSelectedBrand] = useState('');
 
-
-
+ 
 
     useEffect(() => {
         setMaxPrice(Math.max(...cars.map(car => car.price)))
@@ -386,7 +385,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
 
                 {detailFilterBrandResult !== null && detailFilterBrandResult !== undefined &&
                     <div className="rowSideBar" id="column" >
-                        <Accordion>
+                        <Accordion defaultExpanded={true}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
@@ -395,11 +394,20 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                                 <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Модель</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <div id="column" >
-                                    {filteredProps.models.map(model =>
+                                <div id="column">
+                                    {filteredProps.models.map(model => (
                                         <FormControlLabel
                                             key={model}
-                                            control={<Checkbox checked={currentFilter.modelName?.includes(model)} />}
+                                            control={
+                                                <Box sx={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'center' }}>
+                                                    <Checkbox checked={currentFilter.modelName?.includes(model)} />
+                                                    <Avatar
+                                                        sx={{ width: '60px', marginLeft: '10px' }}
+                                                        aria-label="brand"
+                                                        src={modelPhotoFind(ModelPhotoList, model)}
+                                                    />
+                                                </Box>
+                                            }
                                             label={model}
                                             onClick={() => {
                                                 setCurrentFilter(prevFilterState => {
@@ -413,8 +421,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                                                 });
                                             }}
                                         />
-                                    )
-                                    }
+                                    ))}
                                 </div>
                             </AccordionDetails>
                         </Accordion>
@@ -449,7 +456,8 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                                         }}
                                         style={{
                                             background: color, width: '30px',
-                                            height: '30px', cursor: 'pointer'
+                                            height: '30px', cursor: 'pointer',
+                                            border: color === 'white' ? '1px solid black' : 'none' // Условие для применения рамки
                                         }}></div>
                                 )}
                             </div>
@@ -635,7 +643,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                     display:flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 400px;
+                    width: 420px;
                     height: 80vh;
                     border:1px solid #d4d3d36f;
                     overflow: auto;

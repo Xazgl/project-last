@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -74,10 +74,12 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                         >
                             {
                                 carArr.map(car => {
-                                    return <Link href={{
-                                        pathname: '/catalog/car/[id]',
-                                        query: { id: car.id }
-                                    }}>
+                                    return <Link
+                                        key={car.id}
+                                        href={{
+                                            pathname: '/catalog/car/[id]',
+                                            query: { id: car.id }
+                                        }}>
                                         <div className="card" key={car.id}>
                                             <div className="imgDiv">
                                                 {/* <img src={car.img[0]} 
@@ -90,11 +92,11 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                                     alt="Car Image"
                                                     width={270}
                                                     height={200}
-                                                   // width: 221px;
+                                                    // width: 221px;
                                                     //height: 166px;
                                                     // layout="fill"
                                                     loading="lazy"
-                                                    // sizes="(max-width: 640px) 100vw"
+                                                // sizes="(max-width: 640px) 100vw"
                                                 />
                                             </div>
                                             <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
@@ -133,7 +135,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     onClick={handleNext}
                                     disabled={activeStep === maxSteps - 1}
                                 >
-                                   
+
                                     {theme.direction === 'rtl' ? (
                                         <KeyboardArrowLeft />
                                     ) : (
@@ -148,7 +150,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     ) : (
                                         <KeyboardArrowLeft />
                                     )}
-                                    
+
                                 </Button>
                             }
                         />

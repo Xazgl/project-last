@@ -22,7 +22,7 @@ import { nanoid } from 'nanoid';
 
 
 import TuneIcon from '@mui/icons-material/Tune';
-import { LogoList, carBodyImgChange, driverTypeName, engineTypeName, gearBoxName, logoFind } from '../../../../services/functions';
+import { LogoList, ModelPhotoList, carBodyImgChange, driverTypeName, engineTypeName, gearBoxName, logoFind, modelPhotoFind } from '../../../../services/functions';
 import { AllCarDto } from '../../../../../@types/dto';
 import router from 'next/router';
 
@@ -217,19 +217,19 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
     function resetFilteredCars() {
         setFilteredCars(cars);
         setCurrentFilter(prevFilterState => ({
-          ...prevFilterState,
-          modelName: [], 
-          dealerOffice: [],
-          brandName: null,
-          colorName: [],
-          gearBoxName: [],
-          carBodyTypeName: [],
-          driverTypeName: [],
-          engineTypeName: [],
-          minPrice: null,
-          maxPrice: null
+            ...prevFilterState,
+            modelName: [],
+            dealerOffice: [],
+            brandName: null,
+            colorName: [],
+            gearBoxName: [],
+            carBodyTypeName: [],
+            driverTypeName: [],
+            engineTypeName: [],
+            minPrice: null,
+            maxPrice: null
         }));
-      }
+    }
 
     function selectBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterBrandResult(event.target.value)
@@ -271,7 +271,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
         <>
             <div className="sideBar">
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
-                    sx={{ backgroundColor: '#0076dd', color: 'white', margin: '10px', width: '100%' }}
+                    sx={{ backgroundColor: '#0c54a0f0', color: 'white', margin: '1px', width: '100%' }}
                 >
                     <AccordionSummary
                         expandIcon={<TuneIcon sx={{ color: 'white', width: '40px' }} />}
@@ -282,7 +282,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                             Параметры поиска
                         </Typography>
                     </AccordionSummary>
-                    <AccordionDetails sx={{ backgroundColor: '#efe9e9', width: '100%' }}>
+                    <AccordionDetails sx={{ backgroundColor: '#f2f2f2', width: '100%' }}>
                         <div className="rowSideBar" id="center" >
 
                             <ButtonGroup
@@ -345,7 +345,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography sx={{ fontSize: '14px' }}>Стоимость</Typography>
+                                    <Typography sx={{ fontSize: '14px' }}>Цена</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <RangeSlider
@@ -445,7 +445,16 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                             {filteredProps.models.map(model =>
                                                 <FormControlLabel
                                                     key={model}
-                                                    control={<Checkbox checked={currentFilter.modelName?.includes(model)} />}
+                                                    control={
+                                                        <Box sx={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'center' }}>
+                                                            <Checkbox checked={currentFilter.modelName?.includes(model)} />
+                                                            <Avatar
+                                                                sx={{ width: '70px', marginLeft: '10px' }}
+                                                                aria-label="brand"
+                                                                src={modelPhotoFind(ModelPhotoList, model)}
+                                                            />
+                                                        </Box>
+                                                    }
                                                     label={model}
                                                     onClick={() => {
                                                         setCurrentFilter(prevFilterState => {
@@ -495,7 +504,8 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                                 }}
                                                 style={{
                                                     background: color, width: '30px',
-                                                    height: '30px', cursor: 'pointer'
+                                                    height: '30px', cursor: 'pointer',
+                                                    border: color === 'white' ? '1px solid black' : 'none' // Условие для применения рамки
                                                 }}></div>
                                         )}
                                     </div>
@@ -516,7 +526,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                         {filteredProps.gearBoxTypes.map(gearBox =>
                                             <FormControlLabel
                                                 key={gearBox}
-                                                control={<Checkbox  checked={currentFilter.gearBoxName?.includes(gearBox)}/>}
+                                                control={<Checkbox checked={currentFilter.gearBoxName?.includes(gearBox)} />}
                                                 label={gearBoxName(gearBox)}
                                                 onClick={() => {
                                                     setCurrentFilter(prevFilterState => {
@@ -597,7 +607,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                             {filteredProps.driverTypes.map(driver =>
                                                 <FormControlLabel
                                                     key={driver}
-                                                    control={<Checkbox  checked={currentFilter.driverTypeName?.includes(driver)}/>}
+                                                    control={<Checkbox checked={currentFilter.driverTypeName?.includes(driver)} />}
                                                     label={driverTypeName(driver)}
                                                     onClick={() => {
                                                         setCurrentFilter(prevFilterState => {
@@ -657,10 +667,10 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                             <Button
                                 variant="outlined"
                                 sx={{
-                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto'
+                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto', backgroundColor: 'white', color: '#005baa',
                                 }}
                                 onClick={resetFilteredCars}>
-                                Сбросить фильтры
+                                Очистить фильтры
                             </Button>
                         </div >
                     </AccordionDetails>
@@ -681,6 +691,10 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                     align-items: center;
                     width: 100%;
                     height: auto;
+                    position: sticky; 
+                    top: 0;
+                    left:0;
+                    z-index:2;
                 }
 
                 .rowSideBar {

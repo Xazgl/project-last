@@ -10,7 +10,7 @@ import { Avatar, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CardMe
 import RangeSlider from '../RangeSlider';
 import { FilterUserOptions } from '../typeForFilter';
 import { brandNameFilter, carBodyTypeNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from '../carFilters';
-import { LogoList, ModelPhotoList, carBodyImgChange, driverTypeName, engineTypeName, gearBoxName, logoFind, modelPhotoFind, numberWithSpaces } from '../../../../../services/functions';
+import { LogoList, ModelPhotoList, carBodyImgChange, driverTypeName, engineTypeName, engineWithReplace, gearBoxName, gearboxName, logoFind, modelPhotoFind, numberWithSpaces } from '../../../../../services/functions';
 import { useRouter } from 'next/router';
 import RoomIcon from '@mui/icons-material/Room';
 import { AllCarDto } from '../../../../../../@types/dto';
@@ -233,16 +233,33 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                             }
                             return acc;
                         }, []);
-
                         // Шаг 7: Подсчитать количество доступных цветов
                         const totalColors = colors.length;
+                        // // Шаг 8: Доступные кпп
+                        // const transmissions = filteredCars.reduce((acc, car) => {
+                        //     if (!acc.includes(car.CarModification.gearboxType)) {
+                        //         acc.push(car.CarModification.gearboxType);
+                        //     }
+                        //     return acc;
+                        // }, []);
+                        // // Шаг 9: Доступные двигатели
+                        // const engines = filteredCars.reduce((acc, car) => {
+                        //     const engine = engineWithReplace(car.CarModification.name);
+                        //     if (!acc.includes(engine)) {
+                        //         acc.push(engine);
+                        //     }
+                        //     return acc;
+                        // }, []);
+
 
                         return (
                             <Card key={model} sx={{
-                                width: 230, height: 420, display: 'flex', border: '2px  solid #d1d7dd',
+                                width: 240, height: 390, display: 'flex', border: '2px  solid #d1d7dd',
                                 flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
                                 borderRadius: '0px',
-                                '&:hover': { transform: 'scale(1.04)', },
+                                '&:hover': {
+                                    transform: 'scale(1.04)',
+                                },
                                 '&:hover .credit': {
                                     display: 'flex',
                                     transition: '1s',
@@ -291,7 +308,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
                                         <>
-                                            <Box sx={{display:'flex', gap:'10px'}}>
+                                            <Box sx={{ display: 'flex', gap: '10px' }}>
                                                 {totalCars > 1 ?
                                                     <h5>{totalCars} автомобиля</h5>
                                                     :
@@ -308,8 +325,177 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                                     )}
 
                                             </Box>
-                                            <div className='price'> <h3 >{model}</h3></div>
-                                            <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}*</span>  ₽</h3></div>
+                                            <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
+                                            {/* <div className='descDiv'>
+                                                <ul >
+                                                    <li><div className='price'>Двигатель: {engines.join(' / ')}</div></li>
+                                                    <li><div className='price'>Трансмиссия: {gearboxName(transmissions.join(' / '))}</div></li>
+
+                                                </ul>
+                                            </div> */}
+                                            <div className='priceMonth'>
+                                                {/* <button className="btn">от {numberWithSpaces(Math.round(Number(minPrice / 150)))} ₽/мес
+                                                </button> */}
+                                                <button
+                                                    onClick={() => {
+                                                        setCurrentFilter(prevFilterState => {
+                                                            if (prevFilterState.modelName?.includes(model)) {
+                                                                return {
+                                                                    ...prevFilterState,
+                                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                                }
+                                                            }
+                                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                                        })
+                                                    }}
+                                                    className="btn">Подробнее
+                                                </button>
+                                            </div>
+                                            {/* < div className='priceMonth' >
+                                                <button className="btn"
+                                                    onClick={() => {
+                                                        setCurrentFilter(prevFilterState => {
+                                                            if (prevFilterState.modelName?.includes(model)) {
+                                                                return {
+                                                                    ...prevFilterState,
+                                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                                }
+                                                            }
+                                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                                        })
+                                                    }}
+                                                >Выбрать модель
+                                                </button>
+                                            </div> */}
+                                        </>
+                                    </Typography>
+                                </CardContent>
+                            </Card >
+                        )
+                    }
+                    )
+                    }
+                </div>
+
+                <div className='cards' id="mob">
+                    {filteredProps.models.map(model => {
+                        const filteredCars = cars.filter(car => model.includes(car.CarModel.modelName));
+                        // Шаг 2: Посчитать количество автомобилей
+                        const totalCars = filteredCars.length;
+                        // Шаг 3: Получить цены всех автомобилей
+                        const prices = filteredCars.map(car => car.price);
+                        // Шаг 4: Найти минимальную цену
+                        const minPrice = Math.min(...prices);
+                        // Шаг 5: Найти бренд для каждой модели
+                        const brand = filteredCars.length > 0 ? filteredCars[0].CarModel.brandName : '';
+                        // Шаг 6: Получить список всех доступных цветов для каждой модели
+                        const colors = filteredCars.reduce((acc, car) => {
+                            if (!acc.includes(car.color)) {
+                                acc.push(car.color);
+                            }
+                            return acc;
+                        }, []);
+                        // Шаг 7: Подсчитать количество доступных цветов
+                        const totalColors = colors.length;
+                        // // Шаг 8: Доступные кпп
+                        // const transmissions = filteredCars.reduce((acc, car) => {
+                        //     if (!acc.includes(car.CarModification.gearboxType)) {
+                        //         acc.push(car.CarModification.gearboxType);
+                        //     }
+                        //     return acc;
+                        // }, []);
+                        // // Шаг 9: Доступные двигатели
+                        // const engines = filteredCars.reduce((acc, car) => {
+                        //     const engine = engineWithReplace(car.CarModification.name);
+                        //     if (!acc.includes(engine)) {
+                        //         acc.push(engine);
+                        //     }
+                        //     return acc;
+                        // }, []);
+
+
+                        return (
+                            <Card key={model} sx={{
+                                width: 270, height: 350, display: 'flex', border: '2px  solid #d1d7dd',
+                                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                                borderRadius: '0px',
+                                '&:hover': {
+                                    transform: 'scale(1.04)',
+                                },
+                                '&:hover .credit': {
+                                    display: 'flex',
+                                    transition: '1s',
+                                    animation: 'credit-open.5s',
+                                    marginTop: '400px',
+                                    backgroundColor: '#0c7ee1',
+                                    position: 'absolute'
+                                }
+                            }} >
+
+                                <CardHeader
+                                    sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
+                                    avatar={
+                                        <Avatar sx={{}} aria-label="recipe"
+                                            src={logoFind(LogoList, brand)}>
+                                        </Avatar>
+                                    }
+
+                                    title={brand}
+                                    subheader={model}
+
+
+                                />
+                                <CardMedia
+                                    component="img"
+
+                                    image={modelPhotoFind(ModelPhotoList, model)}
+                                    sx={{
+                                        cursor: 'pointer',
+                                        height: '100px'
+                                    }}
+                                    loading="lazy"
+                                    decoding='async'
+                                    onClick={() => {
+                                        setCurrentFilter(prevFilterState => {
+                                            if (prevFilterState.modelName?.includes(model)) {
+                                                return {
+                                                    ...prevFilterState,
+                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                }
+                                            }
+                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                        })
+                                    }}
+                                    alt="car"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        <>
+                                            <Box sx={{ display: 'flex', gap: '10px' }}>
+                                                {totalCars > 1 ?
+                                                    <h5>{totalCars} автомобиля</h5>
+                                                    :
+                                                    <h5>{totalCars} автомобиль</h5>
+                                                }
+
+                                                {totalColors === 1 ? (
+                                                    <h5>{totalColors} цвет</h5>
+                                                ) :
+                                                    totalColors > 1 && totalColors <= 4 ? (
+                                                        <h5>{totalColors} цвета</h5>
+                                                    ) : (
+                                                        <h5>Более {totalColors} цветов</h5>
+                                                    )}
+
+                                            </Box>
+                                            <div className='price'> <h3 >Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
+                                            {/* <div className='descDiv'>
+                                                <ul >
+                                                    <li><div className='price'>Двигатель: {engines.join(' / ')}</div></li>
+                                                    <li><div className='price'>Трансмиссия: {gearboxName(transmissions.join(' / '))}</div></li>
+
+                                                </ul>
+                                            </div> */}
                                             <div className='priceMonth'>
                                                 {/* <button className="btn">от {numberWithSpaces(Math.round(Number(minPrice / 150)))} ₽/мес
                                                 </button> */}
@@ -365,6 +551,16 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                    overflow: auto;
                    background-color: #f5f2f261;
                }   
+
+               
+                 #mob{
+                   display: none;
+                   gap:10px;
+                   flex-direction: column;
+                   align-items: center;
+                   justify-content: start;
+                   flex-wrap: nowrap;
+                 }
             
                 .cards {
                     display: flex;
@@ -377,12 +573,30 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                       
                 .price {
                   font-size: 12px;
-                  line-height: 10px;
+                  line-height: 12px;
                   display: flex;
                   align-items: center;
                   letter-spacing: normal;
                   font-family: 'Roboto',sans-serif;
                   color:black;
+                }
+
+                .descDiv{
+                  display: flex;
+                  justify-content: start;
+                  font-family: 'Roboto',sans-serif;
+                  font-size: 12px;
+                  font-weight: bold;
+                }
+
+                ul {
+                  padding-inline-start: 20px;
+                  color:#0c54a0;
+                  margin-top:0px;
+                }
+
+                li {
+                  margin-top:10px;
                 }
 
                 .priceMonth {
@@ -405,9 +619,9 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   color:white;
                   background-color: #005baa;
                   font-size: 15px;
-                  font-weight: bold;
                   transition: 0.6s;
                   font-family: 'Roboto','sans-serif'; 
+                  cursor: pointer;
             
                 }
 
@@ -415,8 +629,21 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   background-color:#005baabd; 
                   color:white;
                   transform: scale(0.99);
+                }   
 
-                }        
+                 @media(max-width: 660px) {
+                  #desktop{
+                    display: none;
+                  }
+                  
+                  #mob{
+                    display: flex;
+                  } 
+
+                  .btn {
+                    width:100%;
+                  }
+                }     
             `}</style>
         </>
     )

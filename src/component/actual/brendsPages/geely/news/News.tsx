@@ -12,16 +12,53 @@ import { logoFind } from '../../../allNewCarPage/servicesNewCar/service';
 import news1 from '/public/images/catalogPages/geely/news/news_1.jpg'
 import news2 from '/public/images/catalogPages/geely/news/news_2.png'
 
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import MobileStepper from '@mui/material/MobileStepper';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
 
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const images = [
+  {
+    label: '',
+    imgPath: news1.src
+  },
+  {
+    label: '',
+    imgPath: news2.src
+  },
+];
 
 function News({ }) {
 
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStepChange = (step: number) => {
+    setActiveStep(step);
+  };
 
   return (
     <>
       <div className='background'>
 
-        <div className="leftC" ></div>
+        {/* <div className="leftC" ></div> */}
         <div className='cards' id="desktop">
 
           <div className='descBrand'>
@@ -44,11 +81,76 @@ function News({ }) {
                 <img
                   loading="lazy"
                   decoding='async'
-                  src={news1.src}
+                  src={news2.src}
                   className="cardImg">
 
                 </img>
 
+
+                <div className='stepper'>
+                  <Paper
+                    square
+                    elevation={0}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 0,
+                      pl: 2,
+                      bgcolor: 'transparent',
+                    }}
+                  >
+
+                    <Typography>{images[activeStep].label}</Typography>
+                  </Paper>
+                  <AutoPlaySwipeableViews
+                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                    index={activeStep}
+                    onChangeIndex={handleStepChange}
+                    enableMouseEvents
+                  >
+                    {images.map((step, index) => (
+                      <div key={step.label}>
+                        {Math.abs(activeStep - index) <= 2 ? (
+                          <img
+                            className="imgStepper"
+                            src={step.imgPath}
+                            alt={step.label}
+                          />
+                        ) : null}
+                      </div>
+                    ))}
+                  </AutoPlaySwipeableViews>
+                  <MobileStepper
+                    sx={{ backgroundColor: 'transparent' }}
+                    steps={maxSteps}
+                    position="static"
+                    activeStep={activeStep}
+                    nextButton={
+                      <Button
+                        size="small"
+                        onClick={handleNext}
+                        disabled={activeStep === maxSteps - 1}
+                      >
+
+                        {theme.direction === 'rtl' ? (
+                          <KeyboardArrowLeft />
+                        ) : (
+                          <KeyboardArrowRight />
+                        )}
+                      </Button>
+                    }
+                    backButton={
+                      <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                        {theme.direction === 'rtl' ? (
+                          <KeyboardArrowRight />
+                        ) : (
+                          <KeyboardArrowLeft />
+                        )}
+
+                      </Button>
+                    }
+                  />
+                </div>
                 {/* <Card sx={{
                   width: 345, height: 'auto', display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
@@ -87,10 +189,6 @@ function News({ }) {
 
           </div>
         </div>
-
-        <div className='cards' id="mob">
-
-        </div>
       </div >
 
       <style jsx>{`              
@@ -123,7 +221,6 @@ function News({ }) {
       justify-content: center;
       overflow: auto;
       background-color: #f5f2f261;
-      margin-top: 20px;
     }
 
     .leftC{
@@ -142,7 +239,7 @@ function News({ }) {
     .titleBrand {
       display: flex;
       justify-content: flex-start;
-      font-size: 25px;
+      font-size: 20px;
       font-weight: bold;
     }
 
@@ -168,6 +265,7 @@ function News({ }) {
     }
 
     .cardImg {
+      display: flex;
       width: 100%;
       border: 2px solid #d1d7dd;
     }
@@ -212,7 +310,19 @@ function News({ }) {
       height: auto;
     }
 
-    
+    .stepper {
+      display:none;
+      max-width: 400;
+      flex-grow: 1 
+    }
+
+    .imgStepper {
+      height: 255;
+      display: block;
+      max-width: 400;
+      overflow: hidden;
+      width: 100%;
+    }
 
 
 
@@ -229,15 +339,17 @@ function News({ }) {
       .leftC{
        display: none;
       }
-      .rowColumn {
-        flex-direction: column;
-      }
     }
 
     @media(max-width: 660px) {
-    
+      .rowColumn {
+        flex-direction: column;
+      }
+      .columnBrand{
+        width: 100%;
+      }
 
-      .btn {
+      .btn{
         height: 30px;
         font-size: 12px;
       }
@@ -245,8 +357,25 @@ function News({ }) {
       .office{
         font-size: 9px;
       }
+
       .background{
         height: auto;
+      }
+
+      .cardImg {
+        display: none;
+      }
+
+      .stepper {
+        display:flex;
+        flex-direction: column;
+      }
+    }
+
+
+    @media(max-width: 1100px) {
+      .cards {
+       justify-content: center;
       }
     }
 
@@ -257,14 +386,19 @@ function News({ }) {
       h3{
         font-weight: 300;
       }
+      
     }
 
-    @media(max-width: 1100px) {
-      .cards {
-       justify-content: center;
+    @media(max-width: 340px) {
+      .titleBrand{
+        font-size:20px;
       }
-    }
 
+      .txtBrand {
+        font-size: 14px;
+      }
+
+    }
   
             
   `}</style>

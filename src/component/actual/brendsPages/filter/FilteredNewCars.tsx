@@ -502,7 +502,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
         <div className='cards' id="mob">
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
-              width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
+              width: '90%', height: 480, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
@@ -557,7 +557,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                   {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
                   <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
                   <div className='priceMonth'>
-                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
+                    <button className="btn"  onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
                   </div>
                   <div className='office'>
                     <span>{car.DealerModel.name}</span>    <RoomIcon />
@@ -603,9 +603,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       height: 100%;
       padding: 20px;
       justify-content: center;
-      overflow: auto;
       background-color: #f5f2f261;
-      
     }
     
     .descBrand{

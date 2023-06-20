@@ -8,6 +8,7 @@ import Link from "next/link";
 import label from '/public/images/label.png'
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
+
 export default function BarMenu() {
   return (
     <div className='bar'>
@@ -255,7 +256,7 @@ li {
 }
 
 
-@media(min-width: 800px) {
+@media(min-width: 1000px) {
     .bar {
       display:none;
     }
