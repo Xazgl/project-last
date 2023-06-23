@@ -1,12 +1,12 @@
 //@ts-check
 
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from 'react'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Avatar, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CardMedia, Checkbox, FormControlLabel, FormGroup, FormLabel, IconButton, Link, Paper, Slider, TextField } from "@mui/material";
+import { Avatar, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CardMedia, Checkbox, FormControlLabel, FormGroup, FormLabel, Grow, IconButton, Link, Paper, Slide, Slider, TextField } from "@mui/material";
 import RangeSlider from '../RangeSlider';
 import { FilterUserOptions } from '../typeForFilter';
 import { brandNameFilter, carBodyTypeNameFilter, carTypeFilter, colorNameFilter, dealerOfficeFilter, driverTypeNameFilter, engineTypeNameFilter, gearBoxNameFilter, modelNameFilter, priceFilter } from '../carFilters';
@@ -14,6 +14,7 @@ import { LogoList, ModelPhotoList, carBodyImgChange, driverTypeName, engineTypeN
 import { useRouter } from 'next/router';
 import RoomIcon from '@mui/icons-material/Room';
 import { AllCarDto } from '../../../../../../@types/dto';
+import { Circle } from '@mui/icons-material';
 
 
 type Brand = {
@@ -210,11 +211,40 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
 
 
 
+    const [isVisible, setIsVisible] = useState(false);
+    const visibleElementRef = useRef(null);
+
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const windowHeight = window.innerHeight;
+
+            const isElementVisible = (element) => {
+                const { top, bottom } = element.getBoundingClientRect();
+                return top < windowHeight && bottom >= 0;
+            };
+
+            const element = visibleElementRef.current;
+
+            if (isElementVisible(element)) {
+                setIsVisible(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
     return (
         <>
-            <div className='background'>
+            <div className='background' ref={visibleElementRef}>
                 <div className='cards' id="desktop">
                     {filteredProps.models.map(model => {
                         const filteredCars = cars.filter(car => model.includes(car.CarModel.modelName));
@@ -253,105 +283,113 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
 
 
                         return (
-                            <Card key={model} sx={{
-                                width: 240, height: 390, display: 'flex', border: '2px  solid #d1d7dd',
-                                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
-                                borderRadius: '0px',
-                                '&:hover': {
-                                    transform: 'scale(1.04)',
-                                },
-                                '&:hover .credit': {
-                                    display: 'flex',
-                                    transition: '1s',
-                                    animation: 'credit-open.5s',
-                                    marginTop: '400px',
-                                    backgroundColor: '#0c7ee1',
-                                    position: 'absolute'
-                                }
-                            }} >
+                            // <Grow in={isVisible} key={model}>
+                            <Slide in={isVisible} key={model} direction="right" timeout={500}>
 
-                                <CardHeader
-                                    sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
-                                    avatar={
-                                        <Avatar sx={{}} aria-label="recipe"
-                                            src={logoFind(LogoList, brand)}>
-                                        </Avatar>
+                                <Card key={model} sx={{
+                                    width: 240, height: 390, display: 'flex', border: '2px  solid #d1d7dd',
+                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                                    borderRadius: '0px',
+                                    '&:hover': {
+                                        transform: 'scale(1.04)',
+                                        webkitBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2);',
+                                        mozBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2);',
+                                        boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2);'
+                                    },
+                                    '&:hover .credit': {
+                                        display: 'flex',
+                                        transition: '1s',
+                                        animation: 'credit-open.5s',
+                                        marginTop: '400px',
+                                        backgroundColor: '#0c7ee1',
+                                        position: 'absolute'
                                     }
+                                }} >
 
-                                    title={brand}
-                                    subheader={model}
+                                    <CardHeader
+                                        sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
+                                        avatar={
+                                            <Avatar sx={{}} aria-label="recipe"
+                                                src={logoFind(LogoList, brand)}>
+                                            </Avatar>
+                                        }
+
+                                        title={brand}
+                                        subheader={model}
 
 
-                                />
-                                <CardMedia
-                                    component="img"
+                                    />
+                                    <CardMedia
+                                        component="img"
 
-                                    image={modelPhotoFind(ModelPhotoList, model)}
-                                    sx={{
-                                        cursor: 'pointer',
-                                    }}
-                                    loading="lazy"
-                                    decoding='async'
-                                    onClick={() => {
-                                        setCurrentFilter(prevFilterState => {
-                                            if (prevFilterState.modelName?.includes(model)) {
-                                                return {
-                                                    ...prevFilterState,
-                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                        image={modelPhotoFind(ModelPhotoList, model)}
+                                        sx={{
+                                            cursor: 'pointer',
+                                        }}
+                                        loading="lazy"
+                                        decoding='async'
+                                        onClick={() => {
+                                            setCurrentFilter(prevFilterState => {
+                                                if (prevFilterState.modelName?.includes(model)) {
+                                                    return {
+                                                        ...prevFilterState,
+                                                        modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                    }
                                                 }
-                                            }
-                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
-                                        })
-                                    }}
-                                    alt="car"
-                                />
-                                <CardContent>
-                                    <Typography variant="body2" color="text.secondary">
-                                        <>
-                                            <Box sx={{ display: 'flex', gap: '10px' }}>
-                                                {totalCars > 1 ?
-                                                    <h5>{totalCars} автомобиля</h5>
-                                                    :
-                                                    <h5>{totalCars} автомобиль</h5>
-                                                }
+                                                return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                            })
+                                        }}
+                                        alt="car"
+                                    />
+                                    <CardContent>
+                                        <Typography variant="body2" color="text.secondary">
+                                            <>
+                                                <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                                    {totalCars > 1 ?
+                                                        <h5>{totalCars} автомобиля</h5>
+                                                        :
+                                                        <h5>{totalCars} автомобиль</h5>
+                                                    }
+                                                    <Circle sx={{ fontSize: '4px' }} />
 
-                                                {totalColors === 1 ? (
-                                                    <h5>{totalColors} цвет</h5>
-                                                ) :
-                                                    totalColors > 1 && totalColors <= 4 ? (
-                                                        <h5>{totalColors} цвета</h5>
-                                                    ) : (
-                                                        <h5>Более {totalColors} цветов</h5>
-                                                    )}
 
-                                            </Box>
-                                            <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
-                                            {/* <div className='descDiv'>
+                                                    {totalColors === 1 ? (
+                                                        <h5>{totalColors} цвет</h5>
+                                                    ) :
+                                                        totalColors > 1 && totalColors <= 4 ? (
+                                                            <h5>{totalColors} цвета</h5>
+                                                        ) : (
+                                                            <h5>Более {totalColors} цветов</h5>
+                                                        )}
+
+                                                </Box>
+                                                <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
+                                                {/* <div className='descDiv'>
                                                 <ul >
                                                     <li><div className='price'>Двигатель: {engines.join(' / ')}</div></li>
                                                     <li><div className='price'>Трансмиссия: {gearboxName(transmissions.join(' / '))}</div></li>
 
                                                 </ul>
                                             </div> */}
-                                            <div className='priceMonth'>
-                                                {/* <button className="btn">от {numberWithSpaces(Math.round(Number(minPrice / 150)))} ₽/мес
+                                                <div className='priceMonth'>
+                                                    {/* <button className="btn">от {numberWithSpaces(Math.round(Number(minPrice / 150)))} ₽/мес
                                                 </button> */}
-                                                <button
-                                                    onClick={() => {
-                                                        setCurrentFilter(prevFilterState => {
-                                                            if (prevFilterState.modelName?.includes(model)) {
-                                                                return {
-                                                                    ...prevFilterState,
-                                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                    <button
+                                                        onClick={() => {
+                                                            setCurrentFilter(prevFilterState => {
+                                                                if (prevFilterState.modelName?.includes(model)) {
+                                                                    return {
+                                                                        ...prevFilterState,
+                                                                        modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                                    }
                                                                 }
-                                                            }
-                                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
-                                                        })
-                                                    }}
-                                                    className="btn">Подробнее
-                                                </button>
-                                            </div>
-                                            {/* < div className='priceMonth' >
+                                                                return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                                            })
+                                                        }}
+                                                        className="btn">Подробнее
+                                                    </button>
+                                                </div>
+                                                {/* < div className='priceMonth' >
                                                 <button className="btn"
                                                     onClick={() => {
                                                         setCurrentFilter(prevFilterState => {
@@ -367,15 +405,17 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                                 >Выбрать модель
                                                 </button>
                                             </div> */}
-                                        </>
-                                    </Typography>
-                                </CardContent>
-                            </Card >
+                                            </>
+                                        </Typography>
+                                    </CardContent>
+                                </Card >
+                            </Slide>
+                            // </Grow>
                         )
                     }
                     )
                     }
-                </div>
+                </div >
 
                 <div className='cards' id="mob">
                     {filteredProps.models.map(model => {
@@ -415,106 +455,110 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
 
 
                         return (
-                            <Card key={model} sx={{
-                                width: 270, height: 350, display: 'flex', border: '2px  solid #d1d7dd',
-                                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
-                                borderRadius: '0px',
-                                '&:hover': {
-                                    transform: 'scale(1.04)',
-                                },
-                                '&:hover .credit': {
-                                    display: 'flex',
-                                    transition: '1s',
-                                    animation: 'credit-open.5s',
-                                    marginTop: '400px',
-                                    backgroundColor: '#0c7ee1',
-                                    position: 'absolute'
-                                }
-                            }} >
+                            <Slide in={isVisible} key={model} direction="right" timeout={600}>
 
-                                <CardHeader
-                                    sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
-                                    avatar={
-                                        <Avatar sx={{}} aria-label="recipe"
-                                            src={logoFind(LogoList, brand)}>
-                                        </Avatar>
+                                <Card key={model} sx={{
+                                    width: 270, height: 350, display: 'flex', border: '2px  solid #d1d7dd',
+                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                                    borderRadius: '0px',
+                                    '&:hover': {
+                                        transform: 'scale(1.04)',
+                                    },
+                                    '&:hover .credit': {
+                                        display: 'flex',
+                                        transition: '1s',
+                                        animation: 'credit-open.5s',
+                                        marginTop: '400px',
+                                        backgroundColor: '#0c7ee1',
+                                        position: 'absolute'
                                     }
+                                }} >
 
-                                    title={brand}
-                                    subheader={model}
+                                    <CardHeader
+                                        sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
+                                        avatar={
+                                            <Avatar sx={{}} aria-label="recipe"
+                                                src={logoFind(LogoList, brand)}>
+                                            </Avatar>
+                                        }
+
+                                        title={brand}
+                                        subheader={model}
 
 
-                                />
-                                <CardMedia
-                                    component="img"
+                                    />
+                                    <CardMedia
+                                        component="img"
 
-                                    image={modelPhotoFind(ModelPhotoList, model)}
-                                    sx={{
-                                        cursor: 'pointer',
-                                        height: '100px'
-                                    }}
-                                    loading="lazy"
-                                    decoding='async'
-                                    onClick={() => {
-                                        setCurrentFilter(prevFilterState => {
-                                            if (prevFilterState.modelName?.includes(model)) {
-                                                return {
-                                                    ...prevFilterState,
-                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                        image={modelPhotoFind(ModelPhotoList, model)}
+                                        sx={{
+                                            cursor: 'pointer',
+                                            height: '100px'
+                                        }}
+                                        loading="lazy"
+                                        decoding='async'
+                                        onClick={() => {
+                                            setCurrentFilter(prevFilterState => {
+                                                if (prevFilterState.modelName?.includes(model)) {
+                                                    return {
+                                                        ...prevFilterState,
+                                                        modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                    }
                                                 }
-                                            }
-                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
-                                        })
-                                    }}
-                                    alt="car"
-                                />
-                                <CardContent>
-                                    <Typography variant="body2" color="text.secondary">
-                                        <>
-                                            <Box sx={{ display: 'flex', gap: '10px' }}>
-                                                {totalCars > 1 ?
-                                                    <h5>{totalCars} автомобиля</h5>
-                                                    :
-                                                    <h5>{totalCars} автомобиль</h5>
-                                                }
+                                                return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                            })
+                                        }}
+                                        alt="car"
+                                    />
+                                    <CardContent>
+                                        <Typography variant="body2" color="text.secondary">
+                                            <>
+                                                <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                                    {totalCars > 1 ?
+                                                        <h5>{totalCars} автомобиля</h5>
+                                                        :
+                                                        <h5>{totalCars} автомобиль</h5>
+                                                    }
 
-                                                {totalColors === 1 ? (
-                                                    <h5>{totalColors} цвет</h5>
-                                                ) :
-                                                    totalColors > 1 && totalColors <= 4 ? (
-                                                        <h5>{totalColors} цвета</h5>
-                                                    ) : (
-                                                        <h5>Более {totalColors} цветов</h5>
-                                                    )}
+                                                    <Circle sx={{ fontSize: '4px' }} />
 
-                                            </Box>
-                                            <div className='price'> <h3 >Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
-                                            {/* <div className='descDiv'>
+                                                    {totalColors === 1 ? (
+                                                        <h5>{totalColors} цвет</h5>
+                                                    ) :
+                                                        totalColors > 1 && totalColors <= 4 ? (
+                                                            <h5>{totalColors} цвета</h5>
+                                                        ) : (
+                                                            <h5>Более {totalColors} цветов</h5>
+                                                        )}
+
+                                                </Box>
+                                                <div className='price'> <h3 >Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
+                                                {/* <div className='descDiv'>
                                                 <ul >
                                                     <li><div className='price'>Двигатель: {engines.join(' / ')}</div></li>
                                                     <li><div className='price'>Трансмиссия: {gearboxName(transmissions.join(' / '))}</div></li>
 
                                                 </ul>
                                             </div> */}
-                                            <div className='priceMonth'>
-                                                {/* <button className="btn">от {numberWithSpaces(Math.round(Number(minPrice / 150)))} ₽/мес
+                                                <div className='priceMonth'>
+                                                    {/* <button className="btn">от {numberWithSpaces(Math.round(Number(minPrice / 150)))} ₽/мес
                                                 </button> */}
-                                                <button
-                                                    onClick={() => {
-                                                        setCurrentFilter(prevFilterState => {
-                                                            if (prevFilterState.modelName?.includes(model)) {
-                                                                return {
-                                                                    ...prevFilterState,
-                                                                    modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                    <button
+                                                        onClick={() => {
+                                                            setCurrentFilter(prevFilterState => {
+                                                                if (prevFilterState.modelName?.includes(model)) {
+                                                                    return {
+                                                                        ...prevFilterState,
+                                                                        modelName: prevFilterState.modelName.filter(el => el !== model)
+                                                                    }
                                                                 }
-                                                            }
-                                                            return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
-                                                        })
-                                                    }}
-                                                    className="btn">Подробнее
-                                                </button>
-                                            </div>
-                                            {/* < div className='priceMonth' >
+                                                                return { ...prevFilterState, modelName: [...prevFilterState.modelName, model] }
+                                                            })
+                                                        }}
+                                                        className="btn">Подробнее
+                                                    </button>
+                                                </div>
+                                                {/* < div className='priceMonth' >
                                                 <button className="btn"
                                                     onClick={() => {
                                                         setCurrentFilter(prevFilterState => {
@@ -530,16 +574,17 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                                 >Выбрать модель
                                                 </button>
                                             </div> */}
-                                        </>
-                                    </Typography>
-                                </CardContent>
-                            </Card >
+                                            </>
+                                        </Typography>
+                                    </CardContent>
+                                </Card >
+                            </Slide>
                         )
                     }
                     )
                     }
                 </div>
-            </div>
+            </div >
             <style jsx>{`
 
                .background {

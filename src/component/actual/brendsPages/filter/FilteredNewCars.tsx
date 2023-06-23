@@ -451,7 +451,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                     </button>
                   </div>
                   <div className='office'>
-                    <span>{car.DealerModel.name}</span>    <RoomIcon />
+                    <span>{car.DealerModel.name}</span>    <RoomIcon sx={{fontSize:'16px'}} />
                   </div>
                 </Typography>
               </CardContent>
@@ -699,7 +699,6 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       font-weight: bold;
       transition: 0.6s;
       font-family: 'Roboto','sans-serif'; 
-
     }
 
     .btn:hover {
@@ -720,6 +719,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       font-size: 12px;
       align-items: center;
       font-family: 'Roboto','sans-serif'; 
+      align-items: center;
 
     }
 
@@ -743,7 +743,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
     }
 
     .credit:hover {
-      background-color:#0088ff;
+      background-color:#0c54a0;
     }
 
     #mob{
@@ -782,10 +782,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       font-weight: bold;
       margin-top:20px;
       font-family: 'Roboto','sans-serif'; 
-
     }
-
-
 
     @media(max-width: 1100px) {
       .cards {

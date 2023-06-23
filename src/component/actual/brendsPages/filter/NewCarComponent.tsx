@@ -28,7 +28,7 @@ import { SwiperEl } from "../sliders/desk/swiperTest/Swiper";
 import { CarouselComponent } from "../sliders/mod/Carousel";
 import News from "../geely/news/News";
 import SwiperTest from "../sliders/desk/swiperTest/News";
-import MapBrand from "../geely/MapBrand";
+import MapBrand from "../kaiyi/MapBrand";
 
 
 
@@ -66,9 +66,9 @@ type Props = {
 export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, cars, brands }: Props) {
     //Отфильтрованные машины, по умолчанию все машины конкретного бренда
     const [filteredCars, setFilteredCars] = useState(cars)
-
     // Определение количества отображаемых элементов в зависимости от ширины экрана
     const [mobileAdaptive, setMobileAdaptive] = useState(false);
+
     useEffect(() => {
         function handleResize() {
             if (window.innerWidth < 768) {
@@ -112,10 +112,10 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
     };
     
 
-    useEffect(() => {
-        // Прокрутка к элементу при каждом изменении filteredCars
-        scrollToTargetElement();
-    }, [filteredCars]);
+    // useEffect(() => {
+    //     // Прокрутка к элементу при каждом изменении filteredCars
+    //     scrollToTargetElement();
+    // }, [filteredCars]);
 
 
 
@@ -123,6 +123,13 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
         event.preventDefault()
         setShowModal(true)
     }
+
+
+    useEffect(() => {
+       console.log(`${currentFilter.modelName.length }`)
+    }, [currentFilter.modelName]);
+
+
 
 
     return (

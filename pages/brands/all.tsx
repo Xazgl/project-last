@@ -26,7 +26,6 @@ const BrandsPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, bran
   const [showModalFavorite, setShowModalFavorite] = useState(false)
   const refFooter = useRef<HTMLDivElement>(null)
 
-
   return (
     <>
       <Head>
@@ -101,8 +100,7 @@ const BrandsPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, bran
               width: 450px; 
             }
           }
-
-          
+ 
           @media(max-width: 450px) {
             .content{  
               width: 360px; 

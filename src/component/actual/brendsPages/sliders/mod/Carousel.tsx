@@ -270,6 +270,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     height: 32px; 
                     color: #0c54a0;
                     font-family: 'Roboto',sans-serif;
+                    font-weight: 500;
 
                     
                 }
@@ -297,6 +298,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     font-size:.777777778em;
                     border:1px solid #d1d7dd;
                     padding: 0.5px;
+                    background-color: #f2f2f2;
                 }
 
 
@@ -327,8 +329,8 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
 
 
                 .btn {
-                    background: #f2f2f2;
-                    color: #0c54a0 ;
+                    background: #0c54a0;
+                    color: white ;
                     cursor: pointer;
                     opacity: 1;
                     transition: opacity .5s ease-in-out;
@@ -337,7 +339,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     height: 30px;
                     transition: 0.5s;
                     font-family: 'Roboto',sans-serif;
-                    border: solid 2px #d1d7dd;
+                    border: solid 2px #0c54a0;
                     font-weight: bold;
 
                 }

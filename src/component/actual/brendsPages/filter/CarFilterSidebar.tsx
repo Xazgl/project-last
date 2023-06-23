@@ -219,6 +219,8 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
         console.log(allCheckedTypeGearBox, automatiCheckedTypeGearBox, notAutomatiCheckedTypeGearBox)
     }, [allCheckedTypeGearBox, automatiCheckedTypeGearBox, notAutomatiCheckedTypeGearBox])
 
+
+
     return (
         <>
 
@@ -362,27 +364,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                         </AccordionDetails>
                     </Accordion>
                 </div>
-                <div className="rowSideBar" id="column" >
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Цена,    ₽</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <RangeSlider
-                                minPrice={minPrice}
-                                maxPrice={maxPrice}
-                                valueSliderPrice={valueSliderPrice}
-                                setValueSliderPrice={setValueSliderPrice}
-                            />
-
-                        </AccordionDetails>
-                    </Accordion>
-                </div>
-
+            
                 {detailFilterBrandResult !== null && detailFilterBrandResult !== undefined &&
                     <div className="rowSideBar" id="column" >
                         <Accordion defaultExpanded={true}>
@@ -427,6 +409,27 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                         </Accordion>
                     </div>
                 }
+                
+                <div className="rowSideBar" id="column" >
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Цена,    ₽</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <RangeSlider
+                                minPrice={minPrice}
+                                maxPrice={maxPrice}
+                                valueSliderPrice={valueSliderPrice}
+                                setValueSliderPrice={setValueSliderPrice}
+                            />
+
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
 
                 <div className="rowSideBar" id="column" >
                     <Accordion>

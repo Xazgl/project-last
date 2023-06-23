@@ -28,6 +28,7 @@ import jaguar from '/public/images/logo-around/jaguar.webp';
 import lovol from '/public/images/logo-around/lovol.webp';
 import peugeot from '/public/images/logo-around/peugeot.webp';
 import geely from '/public/images/logo-around/geely.webp';
+import kaiyi from '/public/images/logo-around/kaiyi.webp';
 import all from '/public/images/logo-around/all.webp';
 
 
@@ -66,6 +67,8 @@ export function carBodyImgChange(x) {
 
 }
 
+
+
 export function driverTypeName(x) {
     if (x === 'full_4wd') {
         return 'Полный'
@@ -77,10 +80,10 @@ export function driverTypeName(x) {
 
 export function engineTypeName(x) {
     if (x === 'diesel') {
-        return 'дизель'
+        return 'Дизель'
     }
     if (x === 'petrol') {
-        return 'бензин'
+        return 'Бензин'
     }
 }
 
@@ -226,6 +229,11 @@ export const LogoList: LogoArr[] = [
         name: 'Любой',
         img: `${all.src}`
     },
+    {
+        id: 27,
+        name: 'Kaiyi',
+        img: `${kaiyi.src}`
+    },
     
 ]
 
@@ -282,16 +290,38 @@ import tugella from '/public/images/catalogPages/geely/models/tugella.webp';
 import atlas_pro from '/public/images/catalogPages/geely/models/atlas_pro.webp';
 import coolray from '/public/images/catalogPages/geely/models/coolray.webp';
 import monjaro from '/public/images/catalogPages/geely/models/monjaro.webp';
+//Chery
+import tiggo4 from '/public/images/catalogPages/chery/models/tiggo4.png';
+import tiggo7pro from '/public/images/catalogPages/chery/models/tiggo7pro.png';
+import tiggo8 from '/public/images/catalogPages/chery/models/tiggo8.png';
+import tiggo8pro from '/public/images/catalogPages/chery/models/tiggo8pro.png';
+import tiggo8promax from '/public/images/catalogPages/chery/models/tiggo8promax.webp';
+import arrizo8 from '/public/images/catalogPages/chery/models/arrizo8.webp';
+//Kaiyi
+import e5 from '/public/images/catalogPages/kaiyi/models/e5.webp';
+
+
+
 import { useEffect, useState } from 'react'
 
 
-export function modelPhotoFind(ModelPhotoList, str) {
-    if (ModelPhotoList.find(model => model.name === str)) {
-        const imgModel = ModelPhotoList.find(model => model.name === str)?.img
-        return imgModel
-    }
-}
+// export function modelPhotoFind(ModelPhotoList, str) {
+//     if (ModelPhotoList.find(model => model.name === str)) {
+//         const imgModel = ModelPhotoList.find(model => model.name === str)?.img
+//         return imgModel
+//     }
+// }
 
+export function modelPhotoFind(ModelPhotoList, str) {
+    const normalizeString = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  
+    const matchModel = ModelPhotoList.find(
+      (model) => normalizeString(model.name) === normalizeString(str)
+    );
+  
+    return matchModel ? matchModel.img : null;
+  }
+  
 
 
 export const ModelPhotoList: Model[] = [
@@ -314,6 +344,45 @@ export const ModelPhotoList: Model[] = [
         id: 4,
         name: 'Atlas Pro',
         img: `${atlas_pro.src}`
+    },
+
+     //chery
+    {
+        id: 5,
+        name: 'Tiggo 4 Pro',
+        img: `${tiggo4.src}`
+    },
+    {
+        id: 6,
+        name: 'Tiggo 8 Pro Max',
+        img: `${tiggo8promax.src}`
+    },
+    {
+        id: 7,
+        name: 'Tiggo 7 Pro Max',
+        img: `${tiggo7pro.src}`
+    },
+    {
+        id: 8,
+        name: 'Tiggo 8',
+        img: `${tiggo8.src}`
+    },
+
+    {
+        id: 9,
+        name: 'Tiggo 8 Pro',
+        img: `${tiggo8pro.src}`
+    },
+    {
+        id: 10,
+        name: 'Arrizo 8',
+        img: `${arrizo8.src}`
+    },
+    //kaiyi
+    {
+        id: 11,
+        name: 'E5',
+        img: `${e5.src}`
     },
     
 ]
@@ -400,7 +469,7 @@ import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
 export const brandsCards = [
     { id: 'arkontSelect', card: selectCard, card2: selectCard2, title: 'Арконт селект' },
     { id: 'baic', card: baicCard, card2: baicCard2, title: 'Baic' },
-    { id: 'chery', card: cheryCard, card2: cheryCard2, title: 'Chery' },
+    { id: 'chery', card: cheryCard, card2: cheryCard2, title: 'Chery', link:'/brands/chery' },
     { id: 'exeed', card: exeedCard, card2: exeedCard2, title: 'EXEED' },
     { id: 'faw', card: fawCard, card2: fawCard2, title: 'FAW' },
     { id: 'geely', card: geelyCard, card2: geelyCard2, title: 'Geely', link: '/brands/geely' },

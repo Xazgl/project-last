@@ -5,12 +5,12 @@ import { FormEvent, useState } from "react";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 type ModelProps = {
-    showModalImg: boolean,    
+    showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
     carImg: string,
 }
 
-export function ModalImg({showModalImg, setShowModalImg, carImg}: ModelProps) {
+export function ModalImg({ showModalImg, setShowModalImg, carImg }: ModelProps) {
     const [closeStarting, setCloseStarting] = useState(false)
     function closeModal() {
         setCloseStarting(true)
@@ -19,17 +19,17 @@ export function ModalImg({showModalImg, setShowModalImg, carImg}: ModelProps) {
             setCloseStarting(false)
         }, 500)
     }
-   
+
     const backgroundEl = useRef(null)
     const className = [
         'modalBackground',
-        showModalImg ? 'modalBackground_show': '',
-        closeStarting ? 'modalBackground_close-starting': '', 
+        showModalImg ? 'modalBackground_show' : '',
+        closeStarting ? 'modalBackground_close-starting' : '',
     ]
-    return <>    
-        <div className={className.join(' ')} style={{color: 'red'}} id="modalBackground" ref={backgroundEl} onClick={(event) => {
-                if (event.target === backgroundEl.current) closeModal()
-            }}>
+    return <>
+        <div className={className.join(' ')} style={{ color: 'red' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
+            if (event.target === backgroundEl.current) closeModal()
+        }}>
             <div className="modalWindow" id="modalWindow">
             </div>
         </div>
@@ -57,8 +57,7 @@ export function ModalImg({showModalImg, setShowModalImg, carImg}: ModelProps) {
                 overflow: hidden;
             }
 
-            .modalBackground
-            {
+            .modalBackground {
                 display: none;
                 position: fixed;
                 justify-content: center;
@@ -68,6 +67,8 @@ export function ModalImg({showModalImg, setShowModalImg, carImg}: ModelProps) {
                 height: 100vh;
                 background-color: rgb(0,0,0, 0.5);
                 align-items: center;
+                z-index: 2;
+                cursor: pointer;
             }
 
             .modalBackground_show {

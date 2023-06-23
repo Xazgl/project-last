@@ -1,8 +1,8 @@
 
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { useRef, useState } from 'react'
-import { AllCarDto} from '../../@types/dto'
+import { useEffect, useRef, useState } from 'react'
+import { AllCarDto } from '../../@types/dto'
 import db from '../../prisma'
 import BarMenu from '../../src/component/BarMenu'
 import { Modal } from '../../src/component/Modal'
@@ -11,7 +11,8 @@ import { TradeinModal } from '../../src/component/ModalTwo'
 import { GeelyImgDestop } from '../../src/component/actual/brendsPages/geely/banner/GeelyImg'
 import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
-import { FilterWithPageComponent } from '../../src/component/actual/brendsPages/filter/NewCarComponent'
+import { Grow, Paper } from '@mui/material'
+import { FilterWithPageComponent } from '../../src/component/actual/brendsPages/geely/NewCarComponent'
 
 
 type Brand = {
@@ -20,8 +21,6 @@ type Brand = {
 }
 
 const GeelyPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brands }) => {
-
-  console.log(brands)
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
   const [showModalFavorite, setShowModalFavorite] = useState(false)
@@ -123,7 +122,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       },
       include: {
-        CarModel: true,
+        CarModel: {
+          include: {
+            brandNews: true,
+          },
+        },
         CarComplectation: true,
         CarModification: true,
         extras: true,
@@ -153,7 +156,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     //     }
     //   },
     // });
-    
+
     // Устанавливаем заголовки Cache-Control и ETag
     context.res.setHeader('Cache-Control', 'public, max-age=14400,must-revalidate'); // Максимальное время кэширования - 4 часа
     context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
