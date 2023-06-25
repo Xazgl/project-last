@@ -91,7 +91,7 @@ export type LogoArr = {
     id: number,
     name: string
     img: string,
-  }
+}
 
 export const LogoList: LogoArr[] = [
     {
@@ -234,7 +234,7 @@ export const LogoList: LogoArr[] = [
         name: 'Kaiyi',
         img: `${kaiyi.src}`
     },
-    
+
 ]
 
 export function logoFind(LogoList, str) {
@@ -244,7 +244,7 @@ export function logoFind(LogoList, str) {
     }
 }
 
-export function engineWithReplace(str){
+export function engineWithReplace(str) {
     return str.toString().replace(/\).*/, ')')
 }
 
@@ -264,25 +264,25 @@ export function driverTypeStr(x) {
 }
 export function gearboxName(transmissions) {
     const gearboxMap = {
-      automatic: 'Автомат',
-      robotized: 'Робот',
-      variator: 'Вариатор',
-      manual: 'Механика'
+        automatic: 'Автомат',
+        robotized: 'Робот',
+        variator: 'Вариатор',
+        manual: 'Механика'
     };
-  
+
     if (Array.isArray(transmissions)) {
-      return transmissions.map(transmission => gearboxMap[transmission] || '');
+        return transmissions.map(transmission => gearboxMap[transmission] || '');
     } else {
-      return gearboxMap[transmissions] || '';
+        return gearboxMap[transmissions] || '';
     }
-  }
+}
 
 
 export type Model = {
     id: number,
     name: string
     img: string,
-  }
+}
 
 
 //Geely
@@ -299,29 +299,39 @@ import tiggo8promax from '/public/images/catalogPages/chery/models/tiggo8promax.
 import arrizo8 from '/public/images/catalogPages/chery/models/arrizo8.webp';
 //Kaiyi
 import e5 from '/public/images/catalogPages/kaiyi/models/e5.webp';
-
-
-
-import { useEffect, useState } from 'react'
-
-
-// export function modelPhotoFind(ModelPhotoList, str) {
-//     if (ModelPhotoList.find(model => model.name === str)) {
-//         const imgModel = ModelPhotoList.find(model => model.name === str)?.img
-//         return imgModel
-//     }
-// }
+//FAW
+import b70 from '/public/images/catalogPages/faw/models/b70.png';
+import t55 from '/public/images/catalogPages/faw/models/t55.png';
+import t77 from '/public/images/catalogPages/faw/models/t77.png';
+//EXEED
+import awd from '/public/images/catalogPages/exeed/models/awd.png';
+import lx from '/public/images/catalogPages/exeed/models/lx.png';
+import txl from '/public/images/catalogPages/exeed/models/txl.png';
+import txl2 from '/public/images/catalogPages/exeed/models/txl2.0.png';
+import vx from '/public/images/catalogPages/exeed/models/vx.webp';
+//УАЗ
+import hunter from '/public/images/catalogPages/uaz/models/hunter.webp';
+import patriot from '/public/images/catalogPages/uaz/models/patriot.png';
+import sgr from '/public/images/catalogPages/uaz/models/sgr.webp';
+import sgrFarmer from '/public/images/catalogPages/uaz/models/cgr-farmer.webp';
+import sgrBort from '/public/images/catalogPages/uaz/models/cgr-bort.webp';
+import patriotPickup from '/public/images/catalogPages/uaz/models/patriot-pickup.webp';
+import patriotProfi from '/public/images/catalogPages/uaz/models/patriot-profi.webp';
+import ptriotProfiReferedj from '/public/images/catalogPages/uaz/models/ptriot-profi-referedj.webp';
+//hundai
+import tucson from '/public/images/catalogPages/hyundai/models/tucson.png';
+import santaFE from '/public/images/catalogPages/hyundai/models/santafe.png';
 
 export function modelPhotoFind(ModelPhotoList, str) {
     const normalizeString = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-  
+
     const matchModel = ModelPhotoList.find(
-      (model) => normalizeString(model.name) === normalizeString(str)
+        (model) => normalizeString(model.name) === normalizeString(str)
     );
-  
+
     return matchModel ? matchModel.img : null;
-  }
-  
+}
+
 
 
 export const ModelPhotoList: Model[] = [
@@ -346,7 +356,7 @@ export const ModelPhotoList: Model[] = [
         img: `${atlas_pro.src}`
     },
 
-     //chery
+    //chery
     {
         id: 5,
         name: 'Tiggo 4 Pro',
@@ -384,7 +394,96 @@ export const ModelPhotoList: Model[] = [
         name: 'E5',
         img: `${e5.src}`
     },
-    
+    //faw
+    {
+        id: 12,
+        name: 'Bestune T77',
+        img: `${t77.src}`
+    },
+    {
+        id: 13,
+        name: 'Bestune B70',
+        img: `${b70.src}`
+    },
+    {
+        id: 14,
+        name: 'Bestune T55',
+        img: `${t55.src}`
+    },
+    //exeed
+    {
+        id: 15,
+        name: 'LX AWD',
+        img: `${awd.src}`
+    },
+    {
+        id: 16,
+        name: 'TXL',
+        img: `${txl.src}`
+    },
+    {
+        id: 17,
+        name: 'LX',
+        img: `${lx.src}`
+    },
+    {
+        id: 18,
+        name: 'Bestune T55',
+        img: `${t55.src}`
+    },
+    {
+        id: 19,
+        name: 'TXL 2.0',
+        img: `${txl2.src}`
+    },
+    {
+        id: 20,
+        name: 'VX',
+        img: `${vx.src}`
+    },
+    //УАЗ
+    {
+        id: 21,
+        name: 'Patriot',
+        img: `${patriot.src}`
+    },
+    {
+        id: 22,
+        name: 'Pickup',
+        img: `${patriotPickup.src}`
+    },
+    {
+        id: 23,
+        name: '3741',
+        img: `${sgr.src}`
+    },
+    {
+        id: 24,
+        name: 'Sgr',
+        img: `${sgr.src}`
+    },
+    {
+        id: 25,
+        name: 'Profi',
+        img: `${patriotProfi.src}`
+    },
+    {
+        id: 27,
+        name: 'Hunter',
+        img: `${hunter.src}`
+    },
+    //hundai
+    {
+        id: 28,
+        name: 'Santa Fe',
+        img: `${santaFE.src}`
+    },
+    {
+        id: 29,
+        name: 'Tuscon',
+        img: `${tucson.src}`
+    },
+
 ]
 
 
@@ -469,7 +568,7 @@ import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
 export const brandsCards = [
     { id: 'arkontSelect', card: selectCard, card2: selectCard2, title: 'Арконт селект' },
     { id: 'baic', card: baicCard, card2: baicCard2, title: 'Baic' },
-    { id: 'chery', card: cheryCard, card2: cheryCard2, title: 'Chery', link:'/brands/chery' },
+    { id: 'chery', card: cheryCard, card2: cheryCard2, title: 'Chery', link: '/brands/chery' },
     { id: 'exeed', card: exeedCard, card2: exeedCard2, title: 'EXEED' },
     { id: 'faw', card: fawCard, card2: fawCard2, title: 'FAW' },
     { id: 'geely', card: geelyCard, card2: geelyCard2, title: 'Geely', link: '/brands/geely' },
