@@ -10,6 +10,8 @@ import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import Image from 'next/image';
+import { SwiperImg } from "./slider/SwiperImg";
 
 type Props = {
     car: CarDto,
@@ -139,9 +141,9 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
             setImgLength(car.img.length)
             if (imgLength >= 10) {
                 setColImg(8)
-            } else if (5<imgLength && imgLength <= 8) {
+            } else if (5 < imgLength && imgLength <= 8) {
                 setColImg(4)
-            } else if (1<imgLength && imgLength <= 5) {
+            } else if (1 < imgLength && imgLength <= 5) {
                 setColImg(3)
             } else if (imgLength === 1) {
                 setColImg(1)
@@ -156,69 +158,89 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
     }, [])
 
 
+    const [isLoading, setIsLoading] = useState(true);
+
+    const handleImageLoad = () => {
+        setIsLoading(false);
+    };
+
+
     return (
         <>
             <div className="background" id="desktop">
                 {car !== null ?
                     <>
                         <div className="row" style={{ width: '100%', height: 'auto' }}>
-                            {/* <div style={{
-                                flexDirection: 'column', width: '50%',
-                                overflow: 'hidden'
-                            }}>
-
-                                <ImageList sx={{ width: '80%', height: 'auto' }} cols={1} rowHeight={'auto'}>
-                                <ImageListItem key={1} >
-                                    <img
-                                        src={`${car.img[0]}`}
-                                        alt={car.img[0]}
-                                        loading="lazy"
-                                        className="headerPhoto"
-                                        style={{ objectFit: 'fill' }}
-                                    />
-                                      </ImageListItem>
-                                              </ImageList>
-                                    {/* <div className="headerPhoto" style={{backgroundImage: `${url(car.img[0])}` }}></div> 
-                            </div>
-
-                             <div style={{ flexDirection: 'column', width: '50%' }}> */}
-
-
-                            <ImageList sx={{ width: '100%', height: '100%' }} cols={colImg} rowHeight={'auto'}>
+                            <ImageList sx={{ width: '100%', height: 350 }} cols={colImg} rowHeight={'auto'}>
+                                {/* <ImageList sx={{ width: '100%', height: '100%' }} cols={colImg} rowHeight={'auto'}> */}
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
                                         sx={{ cursor: 'zoom-in' }}
                                     >
-                                        <img
+                                        {/* <img
                                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
                                             srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                             alt={item}
                                             loading="lazy"
                                             decoding='async'
                                             onClick={() => showModalImgFunction(item)}
-                                        />
+                                        /> */}
+                                        <>
+                                            {isLoading && (
+                                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                                                    <CircularProgress />
+                                                </div>
+                                            )}
+
+                                            <Image
+                                                src={item}
+                                                alt={item}
+                                                layout="fill"
+                                                sizes="(max-width: 750px) 50vw,
+                                                  (max-width: 828px) 40vw,
+                                                  (max-width: 1080px) 33vw,
+                                                  20vw"
+                                                loading="lazy"
+                                                onClick={() => showModalImgFunction(item)}
+                                                onLoad={handleImageLoad}
+                                            />
+
+                                        </>
                                     </ImageListItem>
                                 ))}
                             </ImageList>
                             {/* </div> */}
                         </div>
-                        <div className="backgroundDesc" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'center' }}>
+                        <div className="backgroundDesc" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'start' }}>
                             <div className="desc" style={{
                                 display: 'flex', width: '1000px', height: '300px', gap: '80px',
                                 flexDirection: 'row', alignItems: 'start', marginTop: '50px',
                             }}>
                                 <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', padding: '5px' }}>
                                     <div className="name">{car.CarModel.brandName} {car.CarModel.modelName} {car.CarComplectation.name}</div>
-                                    <div className="rowColumn" style={{ display: 'flex', marginTop: '10px', justifyContent: 'space-between', alignItems: 'baseline' }} >
+                                    <div className="rowColumn"
+                                        style={{
+                                            display: 'flex', marginTop: '10px', gap: '10px',
+                                            alignItems: 'center'
+                                        }}
+                                    >
                                         <Circle sx={{ color: 'green', fontSize: '12px' }} />
                                         <span>В наличии</span>
-                                        <Circle sx={{ color: '#0076dd', fontSize: '4px' }} />
+                                        <Circle sx={{ color: '#0c54a0 ', fontSize: '4px' }} />
                                         <span style={{ color: '#7b7979' }}>{car.DealerModel.name} <RoomIcon sx={{ fontSize: '15px' }} /></span>
-                                        <Circle sx={{ color: '#0076dd', fontSize: '4px' }} />
-                                        <a href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
+                                        {/* <Circle sx={{ color: '0c54a0 ', fontSize: '4px' }} /> */}
+
+                                        {/* <a style={{ color: '#0c54a0', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a> */}
+                                    </div>
+                                    <div className="rowColumn" style={{ display: 'flex', marginTop: '10px', justifyContent: 'start', alignItems: 'center' }} >
+                                        <a style={{ color: '#0c54a0', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
+
                                     </div>
                                     <div className="rowColumn" style={{ gap: 15, marginTop: '50px' }}>
-                                        <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
+                                        <div className="Icon" style={{
+                                            display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px',
+                                            width: '60px', height: '60px', border: '1px solid #a19f9f', cursor: 'pointer'
+                                        }}>
                                             {car.FavoriteCarsToCar.length <= 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => addToFavorite(car.id)}
@@ -230,7 +252,10 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                                     sx={{ color: 'red', fontSize: '30px' }} />
                                             }
                                         </div>
-                                        <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
+                                        <div className="Icon" style={{
+                                            display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px',
+                                            width: '60px', height: '60px', border: '1px solid #a19f9f', cursor: 'pointer',
+                                        }}>
                                             {car.CompareCarsToCar.length <= 0 &&
                                                 <AddRoadIcon
                                                     onClick={() => addToCompare(car.id)}
@@ -245,27 +270,28 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                         <div id="tradeIn">
                                             <Link sx={{ textDecoration: "none" }} href={'/catalog/tradein'}>
                                                 <button className="btnTradeIn"> Записаться на оценку
-                                                    <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                    <AutorenewIcon sx={{ '&:hover  ': { color: 'green' }, fontSize: '30px', color: '#a19f9f', cursor: 'pointer' }} />
                                                 </button>
                                             </Link >
                                         </div>
                                     </div>
                                 </div>
                                 <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', padding: '5px' }}>
-                                    <div className="rowColumn" style={{ gap: 30, marginTop: '20px' }}>
+                                    <div className="rowColumn" style={{ gap: 30, marginTop: '20px',alignItems:'center'  }}>
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
-                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px' }}
+                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', cursor: 'pointer' }}
                                                 onClick={showModalFunction}
                                             >Купить онлайн</Button>
                                         </div>
                                     </div>
-                                    <div className="rowColumn" style={{ gap: 30, marginTop: '50px' }}>
+                                    
+                                    <div className="rowColumn" style={{ gap: 30, marginTop: '50px',alignItems:'center' }}>
                                         <div className="name" style={{ fontSize: '18px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
                                             <Button variant="outlined"
-                                                sx={{ fontWeight: 'bold', height: '50px' }}
+                                                sx={{ fontWeight: 'bold', height: '50px', cursor: 'pointer' }}
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
@@ -282,6 +308,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                 </div>
                             </div>
                         </div>
+                        {/* <SwiperImg img={car.img} /> */}
 
                         <div className="backgroundDescMore" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'center', backgroundColor: '' }}>
                         </div>
@@ -303,6 +330,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                     width: 100%;
                     height:auto;
                     flex-direction: column;
+                    z-index: -1;
                 }
 
                 .headerPhoto {
@@ -312,7 +340,6 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                     object-fit: cover;
                     width: 100%;
                     height:auto;
-
                 }
 
                 .row{
@@ -320,6 +347,10 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                     width: 100%;
                     height: 500px;
                     overflow: hidden;
+                }
+
+                .Icon:hover {
+                    background-color:#005baa;
                 }
 
                 .column{
@@ -341,6 +372,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                     width: 250px;  
                     height: 60px; 
                     border: 1px solid #a19f9f; 
+                    cursor: pointer;
                 }
 
                 .btnTradeIn{
@@ -357,6 +389,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                     font-weight: bold;
                     text-decoration: none;
                     font-family: 'Roboto','sans-serif'; 
+                    cursor: pointer;
                 }
 
                 #tradeIn:hover {
@@ -379,12 +412,14 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                 .name {
                     font-size: 30px;
                     font-weight: bold;
+                    font-family: 'Roboto','sans-serif'; 
                 }
 
                 .btnName {
                     display: flex;
                     width: auto;
                     height: auto;
+                    cursor: pointer;
                 }
 
                 @media (max-width: 1000px) {

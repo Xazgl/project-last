@@ -3,7 +3,7 @@ import { AxiosError } from 'axios'
 import AdminLayout from "../../src/component/admin/AdminLayout"
 import { SalesAdminComponent } from "../../src/component/admin/SalesAdmin"
 import { useQuery } from 'react-query'
-import { Admin, getSession, RedirectError, useSession } from "../../src/services/apiClient"
+import { Admin, getSession, RedirectError } from "../../src/services/apiClient"
 import { useRouter } from "next/router"
 import { CircularProgress } from "@mui/material"
 import { TableSales } from "../../src/component/admin/TableSales"
@@ -38,7 +38,7 @@ const AdminTable: NextPage = () => {
     };
     
   // const { isLoading, error, status , data, isSuccess} = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
-  const { isLoading, error, data, isSuccess } = useSession()
+  const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
   if (isLoading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}><CircularProgress size="lg" /></div>
 
 

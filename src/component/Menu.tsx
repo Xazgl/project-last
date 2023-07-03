@@ -47,7 +47,7 @@ export function MenuBar() {
     <div className='background'>
       <div className='content'>
         <div className="container">
-          <Script strategy="afterInteractive">
+          <Script strategy="afterInteractive" id="calltouch">
             {`
           (function(w,d,n,c){w.CalltouchDataObject=n;w[n]=function(){w[n]["callbacks"].push(arguments)};if(!w[n]["callbacks"]){w[n]["callbacks"]=[]}w[n]["loaded"]=false;if(typeof c!=="object"){c=[c]}w[n]["counters"]=c;for(var i=0;i<c.length;i+=1){p(c[i])}function p(cId){var a=d.getElementsByTagName("script")[0],s=d.createElement("script"),i=function(){a.parentNode.insertBefore(s,a)},m=typeof Array.prototype.find === 'function',n=m?"init-min.js":"init.js";s.async=true;s.src="https://mod.calltouch.ru/"+n+"?id="+cId;if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",i,false)}else{i()}}})(window,document,"ct","1oroglta");
         `}
@@ -181,7 +181,6 @@ export function MenuBar() {
     .barMini{
       width: 100%;
       top:0;
-      z-index:9999;
       margin-top:0;
       height: 60px;
       margin-bottom: 0px;
@@ -204,7 +203,6 @@ export function MenuBar() {
         font-size:21px;
         width: 100%;
         border:none;
-        z-index:9999;
         margin-top:0;
         display:flex;
         align-items:center;
@@ -226,7 +224,6 @@ export function MenuBar() {
         width: 100%;
         background-color: #0c54a0;
         border:none;
-        z-index:9999;
         margin-top:0;
         display:flex;
         align-items:center;

@@ -106,12 +106,6 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}
 
 
 
-
-
-
-
-
-
     return (
         <>
             <div className="background"  ref={refCredit}>
@@ -142,6 +136,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}
                                             max={car.price - 300000}
                                             value={firstPrice}
                                             onChange={handleChange}
+                                            sx={{color:'#0c54a0 '}}
                                         />
                                     </div>
                                     <div className="column">
@@ -162,6 +157,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}
                                             max={60}
                                             value={month}
                                             onChange={handleChangeTime}
+                                            sx={{color:'#0c54a0 '}}
                                         />
                                     </div>
 
@@ -206,11 +202,11 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}
                                     <div className="btn">
                                         <Button variant="outlined"
                                             sx={{
-                                                width: '100%', height: '100%', border: 'solid 2px #005baa', fontSize: '18px',
-                                                backgroundColor: '#005baa', color: 'white',
+                                                width: '100%', height: '90%', border: 'solid 2px #005baa', fontSize: '15px',
+                                                backgroundColor: '#0c54a0', color: 'white',
                                                 '&:hover': {
                                                     backgroundColor: "white",
-                                                    color: '#005baa'
+                                                    color: '#0c54a0'
                                                 }
                                             }}
                                             type="submit"

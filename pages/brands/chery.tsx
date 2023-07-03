@@ -35,9 +35,9 @@ const CheryPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
+      <BarMenu />
       <div className='background'>
         <div className='content'>
-          <BarMenu />
           <CheryImgDestop />
           <FilterWithPageComponent setShowModal={setShowModal}
             setShowModalFavorite={setShowModalFavorite}
@@ -45,7 +45,7 @@ const CheryPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
           />
         </div>
       </div >
-      <FooterMainNew setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+      <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
@@ -59,7 +59,7 @@ const CheryPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
         showModalFavorite && <ModalFavorite showModalFavorite={showModalFavorite} setShowModalFavorite={setShowModalFavorite} cars={cars} />
       }
 
-      
+
 
       <style jsx>
         {` 

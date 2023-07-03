@@ -75,19 +75,19 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                                 </div>
                                 <div className="salesBlock">
                                     <FormGroup ><h3>ДОСТУПНЫЕ ВЫГОДЫ</h3>
-                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                        <FormControlLabel control={<Checkbox disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ПО TRADE-IN</Typography>} />
-                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                        <FormControlLabel control={<Checkbox disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ПРИ ПОКУПКЕ В КРЕДИТ</Typography>} />
-                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                        <FormControlLabel control={<Checkbox  disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ПРИ СТРАХОВАНИИ</Typography>} />
-                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                        <FormControlLabel control={<Checkbox disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ПРИ ПОКУПКЕ ДОП. ОБОРУДОВАНИЯ</Typography>} />
-                                        <FormControlLabel control={<Checkbox defaultChecked />}
+                                        <FormControlLabel control={<Checkbox disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ДОПОЛНИТЕЛЬНО</Typography>} />
                                     </FormGroup>
@@ -124,7 +124,7 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                     height:auto;
                     flex-direction: column;
                     align-items: center;
-                    background-color:#d5d5d55c;
+                    background-color:#f2f2f2;
                     justify-content: center;
                     padding: 20px;
                 }
@@ -144,7 +144,6 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                     height: 650px;
                     border:1px solid #e0e0e0;
                     background-color: white;
-                    margin-top:100px;
                     border-radius: 7px;
                 }
 
@@ -152,7 +151,7 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                     display: flex;
                     width: 100%;
                     position: relative;
-                    background: #555353;
+                    background: #0c54a0;
                     color: #fff;
                     text-transform: uppercase;
                     letter-spacing: normal;
@@ -199,7 +198,7 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                 .price {
                     display: flex;
                     justify-content: start;
-                    color: #005baa;
+                    color: #0c54a0;
                     font-size: 30px;
                     font-weight: bold;
                     font-family: 'Roboto','sans-serif'; 
@@ -220,6 +219,18 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                     }
                 }
 
+                @media(max-width: 900px) {
+                    .background {
+                         align-items: start;
+                    }
+                }
+
+                    
+                @media(max-width: 640px) {
+                    .background {
+                         align-items: center;
+                    }
+                }
                 @media(max-width: 400px) {
                     .background {
                           padding: 1px;

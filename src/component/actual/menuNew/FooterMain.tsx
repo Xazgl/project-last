@@ -8,19 +8,19 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import res from '/public/images/catalogPages/footer/res.svg'
 
 type Footer = {
-  setShowTradeInModal: Dispatch<SetStateAction<boolean>>,
+  setShowModal: Dispatch<SetStateAction<boolean>>,
   refs: {
     refFooter: MutableRefObject<HTMLDivElement>,
   }
 }
 
-export function FooterMainNew({ setShowTradeInModal, refs }: Footer) {
+export function FooterMainNew({ setShowModal, refs }: Footer) {
 
 
 
   function showModal(event) {
     event.preventDefault()
-    setShowTradeInModal(true)
+    setShowModal(true)
   }
 
   //MUI
@@ -64,29 +64,49 @@ export function FooterMainNew({ setShowTradeInModal, refs }: Footer) {
                   </button>
                 </Box>
               </Box>
-              <div className="el">
-                Автомобили в продаже
-              </div>
-              <div className="el">
-                Запись на сервис
-              </div>
-              <div className="el">
-                Услуги
-              </div>
-              <div className="el">
-                Контакты
-              </div>
+              <Link href={'/brands/all'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Автомобили в продаже
+                  </div>
+                </a>
+              </Link>
+              <Link href={'/car-repair/service-form'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Запись на сервис
+                  </div>
+                </a>
+              </Link>
+              <Link href={'/job/joball'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Вакансии
+                  </div>
+                </a>
+              </Link>
+              <Link href={'/company/contact'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Контакты
+                  </div>
+                </a>
+              </Link>
             </div>
             <div className='rowleft' >
               <div className='column' id="left">
                 <Box sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
-                  <div className="circle">Telegram</div>
+                  <Link href={'tg://resolve?domain=arkont_service/'}>
+                    <a rel="noopener noreferrer">
+                      <div className="circle">Telegram</div>
+                    </a>
+                  </Link>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                   <div className="circle">Online-чат</div>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'start', width: '100%' }}>
-                  <div className="circle">Звонок</div>
+                  <div className="circle" onClick={showModal}>Звонок</div>
                 </Box>
               </div>
             </div>
@@ -104,6 +124,7 @@ export function FooterMainNew({ setShowTradeInModal, refs }: Footer) {
         background-color: #0c54a0;
         padding-top: 10px;
         padding-bottom: 10px;
+        margin-top: 20px;
       }
 
       .background {
@@ -118,6 +139,10 @@ export function FooterMainNew({ setShowTradeInModal, refs }: Footer) {
         align-items: baseline;
         justify-content: start;
         width: 1179px; 
+      }
+
+      a{
+        text-decoration: none;
       }
 
       .label {

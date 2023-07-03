@@ -170,7 +170,7 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                                 </div>
                             </div>
                             <div className="descMobile">
-                                <Accordion sx={{ width: '100%' }}>
+                                <Accordion sx={{ width: '100%' }} defaultExpanded>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon style={{ color: '#1565c0' }} />}
                                         aria-controls="panel1a-content"
@@ -252,16 +252,16 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                     align-items: center;
                     background-color:#d5d5d55c;
                     justify-content: center;
+                    padding-top:20px ;
                 }
 
                 .tablebackground {
                     display:flex; 
-                    width: 1000px;
+                    width: 85%;
                     height:250px;
                     flex-direction: column;
                     border:1px solid #e0e0e0;
                     background-color: white;
-                    margin-top:50px;
                 }
 
                 .headerRowTable {
@@ -333,6 +333,7 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                     display:none;
                     width: 100%;
                     height: 100%;
+
                 }
 
                 @media (max-width: 1000px) {
@@ -344,7 +345,12 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
                    }
                 }
 
-                @media (max-width: 800px) {
+                @media (max-width: 850px) {
+                    .background {
+                      padding-top: 0px;
+                      padding-bottom: 0px;
+                   }
+
                    .tablebackground {
                       width: 100%;
                    }

@@ -1,7 +1,7 @@
 
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import {  useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { AllCarDto } from '../../@types/dto'
 import db from '../../prisma'
 import BarMenu from '../../src/component/BarMenu'
@@ -33,17 +33,17 @@ const UazPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brands 
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
+      <BarMenu />
       <div className='background'>
         <div className='content'>
-          <BarMenu />
-          <UazImgDestop/>
+          <UazImgDestop />
           <FilterWithPageComponent setShowModal={setShowModal}
             setShowModalFavorite={setShowModalFavorite}
             cars={cars} brands={brands}
           />
         </div>
       </div >
-      <FooterMainNew setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+      <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

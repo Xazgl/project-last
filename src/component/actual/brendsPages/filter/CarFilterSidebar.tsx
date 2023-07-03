@@ -45,7 +45,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
     const router = useRouter();
     const [selectedBrand, setSelectedBrand] = useState('');
 
- 
+
 
     useEffect(() => {
         setMaxPrice(Math.max(...cars.map(car => car.price)))
@@ -232,17 +232,20 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                         aria-label="Disabled elevation buttons"
                         sx={{ width: '100%', justifyContent: 'center' }}
                     >
-                        <Button
-                            sx={{
-                                width: 'auto', height: '35px', fontSize: '11px',
-                                border: 'solid 2px #d1d7dd', borderRadius: '0px', color: 'black', backgroundColor: '#f2f2f2'
-                            }}
-                            onClick={(event) => {
-                                setCarType('new')
-                                changeFilter({ carType: 'new' })
-                            }}>Новые</Button>
+                        <Link href={'/brands/all'} sx={{ textDecoration: 'none' }}>
+                            <Button
+                                sx={{
+                                    width: 'auto', height: '35px', fontSize: '11px',
+                                    border: 'solid 2px #d1d7dd', borderRadius: '0px', color: 'black', backgroundColor: '#f2f2f2'
+                                }}
+                                onClick={(event) => {
+                                    setCarType('new')
+                                    changeFilter({ carType: 'new' })
+                                }}>Новые</Button>
+                        </Link>
 
-                        <Link href={'/catalog/used-car'} sx={{ textDecoration: 'none' }}>
+
+                        <Link href={'/brands/arkont-select'} sx={{ textDecoration: 'none' }}>
                             <Button
                                 sx={{
                                     width: 'auto', height: '35px', fontSize: '11px',
@@ -364,7 +367,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                         </AccordionDetails>
                     </Accordion>
                 </div>
-            
+
                 {detailFilterBrandResult !== null && detailFilterBrandResult !== undefined &&
                     <div className="rowSideBar" id="column" >
                         <Accordion defaultExpanded={true}>
@@ -409,7 +412,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                         </Accordion>
                     </div>
                 }
-                
+
                 <div className="rowSideBar" id="column" >
                     <Accordion>
                         <AccordionSummary

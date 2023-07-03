@@ -230,7 +230,7 @@ model News {
 model BrandNews {
   id        String   @id @default(cuid())
   brandName String
-  news      News[]
+  news      News[]   
   carModel  CarModel @relation(fields: [carModelId], references: [id])
   carModelId String
 }
@@ -246,7 +246,7 @@ model CarModel {
   generationId_1c Int? //поколение 
   generationIName String? //
   cars            Car[]
-  brandNews       BrandNews[]
+  brandNews       BrandNews[] 
 }
 
 model CarModification {

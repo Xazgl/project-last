@@ -29,7 +29,13 @@ import lovol from '/public/images/logo-around/lovol.webp';
 import peugeot from '/public/images/logo-around/peugeot.webp';
 import geely from '/public/images/logo-around/geely.webp';
 import kaiyi from '/public/images/logo-around/kaiyi.webp';
+import jetour from '/public/images/logo-around/jetour.webp';
+import jetta from '/public/images/logo-around/jetta.webp';
+import jac from '/public/images/logo-around/jac.webp';
+
+
 import all from '/public/images/logo-around/all.webp';
+import arkontSelect from '/public/images/logo-around/usedCars/arkont_select.png';
 
 
 
@@ -176,7 +182,7 @@ export const LogoList: LogoArr[] = [
     },
     {
         id: 16,
-        name: 'AUC',
+        name: 'АРКОНТ СЕЛЕКТ',
         img: `${usedcars34.src}`
     },
     {
@@ -226,13 +232,33 @@ export const LogoList: LogoArr[] = [
     },
     {
         id: 26,
-        name: 'Любой',
-        img: `${all.src}`
+        name: 'АРКОНТ СЕЛЕКТ',
+        img: `${arkontSelect.src}`
     },
     {
         id: 27,
         name: 'Kaiyi',
         img: `${kaiyi.src}`
+    },
+    {
+        id: 28,
+        name: 'Любой',
+        img: `${arkontSelect.src}`
+    },
+    {
+        id: 29,
+        name: 'Jetour',
+        img: `${jetour.src}`
+    },
+    {
+        id: 30,
+        name: 'Jetta',
+        img: `${jetta.src}`
+    },
+    {
+        id: 31,
+        name: 'JAC',
+        img: `${jac.src}`
     },
 
 ]
@@ -251,8 +277,6 @@ export function engineWithReplace(str) {
 export function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
-
-
 
 export function driverTypeStr(x) {
     if (x === 'front') {
@@ -309,6 +333,7 @@ import lx from '/public/images/catalogPages/exeed/models/lx.png';
 import txl from '/public/images/catalogPages/exeed/models/txl.png';
 import txl2 from '/public/images/catalogPages/exeed/models/txl2.0.png';
 import vx from '/public/images/catalogPages/exeed/models/vx.webp';
+import rx from '/public/images/catalogPages/exeed/models/rx.webp';
 //УАЗ
 import hunter from '/public/images/catalogPages/uaz/models/hunter.webp';
 import patriot from '/public/images/catalogPages/uaz/models/patriot.png';
@@ -321,6 +346,23 @@ import ptriotProfiReferedj from '/public/images/catalogPages/uaz/models/ptriot-p
 //hundai
 import tucson from '/public/images/catalogPages/hyundai/models/tucson.png';
 import santaFE from '/public/images/catalogPages/hyundai/models/santafe.png';
+//kia
+import ceed from '/public/images/catalogPages/kia/models/ceed.png';
+//jetour
+import dashing from '/public/images/catalogPages/jetour/models/dashing.webp';
+import x90 from '/public/images/catalogPages/jetour/models/x90.webp';
+//jetta
+import va3 from '/public/images/catalogPages/jetta/models/va3.webp';
+import vs5 from '/public/images/catalogPages/jetta/models/vs5.webp';
+import vs7 from '/public/images/catalogPages/jetta/models/vs7.webp';
+//jac
+import j7 from '/public/images/catalogPages/jac/models/j7.webp';
+import js6 from '/public/images/catalogPages/jac/models/js6.webp';
+import s3 from '/public/images/catalogPages/jac/models/s3.webp';
+import t6 from '/public/images/catalogPages/jac/models/t6.webp';
+
+
+
 
 export function modelPhotoFind(ModelPhotoList, str) {
     const normalizeString = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -441,29 +483,34 @@ export const ModelPhotoList: Model[] = [
         name: 'VX',
         img: `${vx.src}`
     },
-    //УАЗ
     {
         id: 21,
+        name: 'RX',
+        img: `${rx.src}`
+    },
+    //УАЗ
+    {
+        id: 22,
         name: 'Patriot',
         img: `${patriot.src}`
     },
     {
-        id: 22,
+        id: 23,
         name: 'Pickup',
         img: `${patriotPickup.src}`
     },
     {
-        id: 23,
+        id: 24,
         name: '3741',
         img: `${sgr.src}`
     },
     {
-        id: 24,
+        id: 25,
         name: 'Sgr',
         img: `${sgr.src}`
     },
     {
-        id: 25,
+        id: 26,
         name: 'Profi',
         img: `${patriotProfi.src}`
     },
@@ -480,8 +527,62 @@ export const ModelPhotoList: Model[] = [
     },
     {
         id: 29,
-        name: 'Tuscon',
+        name: 'Tucson',
         img: `${tucson.src}`
+    },
+    //kia
+    {
+        id: 30,
+        name: 'Ceed',
+        img: `${ceed.src}`
+    },
+    //jetour
+    {
+        id: 31,
+        name: 'X90 PLUS',
+        img: `${x90.src}`
+    },
+    {
+        id: 32,
+        name: 'DASHING',
+        img: `${dashing.src}`
+    },
+    //jetta
+    {
+        id: 33,
+        name: 'VA3',
+        img: `${va3.src}`
+    },
+    {
+        id: 34,
+        name: 'VS5',
+        img: `${vs5.src}`
+    },
+    {
+        id: 35,
+        name: 'VS7',
+        img: `${vs7.src}`
+    },
+    //jac
+    {
+        id: 36,
+        name: 'J7',
+        img: `${j7.src}`
+    },
+    {
+        id: 37,
+        name: 'JS6',
+        img: `${js6.src}`
+    },
+    {
+        id: 38,
+        name: 'S3',
+        img: `${s3.src}`
+    },
+    {
+        id: 39,
+        name: 'T6',
+        img: `${t6.src}`
     },
 
 ]
@@ -566,29 +667,54 @@ import lrCard from '/public/images/catalogPages/all/cards/blue/lr.webp';
 import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
 
 export const brandsCards = [
-    { id: 'arkontSelect', card: selectCard, card2: selectCard2, title: 'Арконт селект' },
+    { id: 'arkontSelect', card: selectCard, card2: selectCard2, title: 'Арконт селект', link: '/brands/arkont-select' },
     { id: 'baic', card: baicCard, card2: baicCard2, title: 'Baic' },
     { id: 'chery', card: cheryCard, card2: cheryCard2, title: 'Chery', link: '/brands/chery' },
-    { id: 'exeed', card: exeedCard, card2: exeedCard2, title: 'EXEED' },
-    { id: 'faw', card: fawCard, card2: fawCard2, title: 'FAW' },
+    { id: 'exeed', card: exeedCard, card2: exeedCard2, title: 'EXEED', link: '/brands/exeed' },
+    { id: 'faw', card: fawCard, card2: fawCard2, title: 'FAW', link: '/brands/faw' },
     { id: 'geely', card: geelyCard, card2: geelyCard2, title: 'Geely', link: '/brands/geely' },
-    { id: 'hyundai', card: hyundaiCard, card2: hyundaiCard2, title: 'Hyundai' },
-    { id: 'jac', card: jacCard, card2: jacCard2, title: 'JAC' },
-    { id: 'jetour', card: jetourCard, card2: jetourCard2, title: 'Jetour' },
-    { id: 'jetta', card: jettaCard, card2: jettaCard2, title: 'Jetta' },
-    { id: 'kaiyi', card: kaiyiCard, card2: kaiyiCard2, title: 'KAIYI' },
-    { id: 'kia', card: kiaCard, card2: kiaCard2, title: 'KIA' },
-    { id: 'uaz', card: uazCard, card2: uazCard2, title: 'УАЗ' },
-    { id: 'hisun', card: hisunCard, card2: hisunCard2, title: 'Hisun' },
-    { id: 'lovol', card: lovolCard, card2: lovolCard2, title: 'Lovol' },
-    { id: 'mitsubishi', card: mmcCard, card2: mmcCard2, title: 'Mitsubishi' },
-    { id: 'nissan', card: nissanCard, card2: nissanCard2, title: 'Nissan' },
-    { id: 'opel', card: opelCard, card2: opelCard2, title: 'Opel' },
-    { id: 'peugeot', card: peugeotCard, card2: peugeotCard2, title: 'Peugeot' },
-    { id: 'renault', card: renaultCard, card2: renaultCard2, title: 'Renault' },
-    { id: 'subaru', card: subaruCard, card2: subaruCard2, title: 'Subaru' },
-    { id: 'suzuki', card: suzukiCard, card2: suzukiCard2, title: 'Suzuki' },
-    { id: 'volkswagen', card: vCard, card2: vCard2, title: 'Volkswagen' },
-    { id: 'jaguar', card: jaguarCard, card2: jaguarCard2, title: 'Jaguar' },
-    { id: 'landrover', card: lrCard, card2: lrCard2, title: 'Land Rover' }
+    { id: 'hyundai', card: hyundaiCard, card2: hyundaiCard2, title: 'Hyundai', link: '/brands/hyundai' },
+    { id: 'jac', card: jacCard, card2: jacCard2, title: 'JAC', link: '/brands/jac' },
+    { id: 'jetour', card: jetourCard, card2: jetourCard2, title: 'Jetour', link: '/brands/jetour' },
+    { id: 'jetta', card: jettaCard, card2: jettaCard2, title: 'Jetta', link: '/brands/jetta' },
+    { id: 'kaiyi', card: kaiyiCard, card2: kaiyiCard2, title: 'KAIYI', link: '/brands/kaiyi' },
+    { id: 'kia', card: kiaCard, card2: kiaCard2, title: 'KIA', link: '/brands/kia' },
+    { id: 'uaz', card: uazCard, card2: uazCard2, title: 'УАЗ', link: '/brands/uaz' },
+    { id: 'hisun', card: hisunCard, card2: hisunCard2, title: 'Hisun', link: 'hisun-arkont.ru' },
+    { id: 'lovol', card: lovolCard, card2: lovolCard2, title: 'Lovol', link: 'lovol-arkont.ru' },
+    { id: 'mitsubishi', card: mmcCard, card2: mmcCard2, title: 'Mitsubishi', link: 'service.mitsubishi-volgograd.ru' },
+    { id: 'nissan', card: nissanCard, card2: nissanCard2, title: 'Nissan', link: 'nissan.arkont-service.ru' },
+    { id: 'opel', card: opelCard, card2: opelCard2, title: 'Opel', link: 'opel.arkont-service.ru' },
+    { id: 'peugeot', card: peugeotCard, card2: peugeotCard2, title: 'Peugeot', link: 'peugeot.arkont-service.ru' },
+    { id: 'renault', card: renaultCard, card2: renaultCard2, title: 'Renault', link: 'renault.arkont-service.ru' },
+    { id: 'subaru', card: subaruCard, card2: subaruCard2, title: 'Subaru', link: 'subaru.arkont-service.ru' },
+    { id: 'suzuki', card: suzukiCard, card2: suzukiCard2, title: 'Suzuki', link: 'service.suzuki-volgograd.ru' },
+    { id: 'volkswagen', card: vCard, card2: vCard2, title: 'Volkswagen', link: 'volkswagen.arkont-service.ru' },
+    { id: 'jaguar', card: jaguarCard, card2: jaguarCard2, title: 'Jaguar', link: 'jlr.arkont-service.ru' },
+    { id: 'landrover', card: lrCard, card2: lrCard2, title: 'Land Rover', link: 'jlr.arkont-service.ru' }
 ];
+
+
+
+export function matchesEngine(engine) {
+    let arr = engine.toString().split(/\s*,\s*/)
+    return arr[2].replace(/\s/g, '');
+}
+
+export function gearboxType(gearbox) {
+    if (gearbox === 'Механическая') {
+        return 'MT'
+    } else {
+        return 'АТ'
+
+    }
+}
+
+
+
+
+
+export function engineArrStr(engine) {
+    let arr = engine.toString().split(/\s*,\s*/)
+    return arr[1]
+}

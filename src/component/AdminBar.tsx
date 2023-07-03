@@ -127,7 +127,7 @@ const AdminBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, color: 'white' }}>
             {pages.map((page) => (
-              <Link href={page.href}>
+              <Link href={page.href} key={page.text}>
                 <Typography
                   key={page.href}
                   onClick={handleCloseNavMenu}

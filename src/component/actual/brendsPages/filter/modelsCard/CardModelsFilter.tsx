@@ -241,6 +241,15 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
         };
     }, []);
 
+    function getCarDeclension(number) {
+        if (number === 1) {
+            return 'автомобиль';
+        } else if (number >= 2 && number <= 4) {
+            return 'автомобиля';
+        } else {
+            return 'автомобилей';
+        }
+    }
 
     return (
         <>
@@ -285,11 +294,10 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                         return (
                             // <Grow in={isVisible} key={model}>
                             <Slide in={isVisible} key={model} direction="right" timeout={500}>
-
                                 <Card key={model} sx={{
                                     width: 240, height: 390, display: 'flex', border: '2px  solid #d1d7dd',
                                     flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
-                                    borderRadius: '0px',
+                                    borderRadius: '0px', boxShadow:'none',
                                     '&:hover': {
                                         transform: 'scale(1.04)',
                                         webkitBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2);',
@@ -345,11 +353,14 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                         <Typography variant="body2" color="text.secondary">
                                             <>
                                                 <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                                                    {totalCars > 1 ?
-                                                        <h5>{totalCars} автомобиля</h5>
+                                                    {totalCars > 0 ?
+                                                        <h5>{totalCars} {getCarDeclension(totalCars)}</h5>
                                                         :
-                                                        <h5>{totalCars} автомобиль</h5>
+                                                        <h5>{totalCars} автомобилей</h5>
                                                     }
+
+
+
                                                     <Circle sx={{ fontSize: '4px' }} />
 
 
@@ -360,7 +371,8 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                                             <h5>{totalColors} цвета</h5>
                                                         ) : (
                                                             <h5>Более {totalColors} цветов</h5>
-                                                        )}
+                                                        )
+                                                    }
 
                                                 </Box>
                                                 <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
@@ -460,7 +472,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                 <Card key={model} sx={{
                                     width: 270, height: 350, display: 'flex', border: '2px  solid #d1d7dd',
                                     flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
-                                    borderRadius: '0px',
+                                    borderRadius: '0px', boxShadow:'none',
                                     '&:hover': {
                                         transform: 'scale(1.04)',
                                     },
@@ -591,7 +603,8 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                    display:flex;
                    width: 100%;
                    height: 100%;
-                   padding: 20px;
+                   padding: ${cars.length > 0 ? '20px' : '0'};
+
                    justify-content: center;
                    overflow: auto;
                    background-color: #f5f2f261;

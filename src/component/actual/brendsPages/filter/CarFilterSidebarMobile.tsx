@@ -291,13 +291,13 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 aria-label="Disabled elevation buttons"
                                 sx={{ width: '100%', justifyContent: 'space-between' }}
                             >
-                                <Link href={'/catalog/new-car'} sx={{ textDecoration: 'none' }}>
+                                <Link href={'/brands/all'} sx={{ textDecoration: 'none' }}>
                                     <Button sx={{ width: '120px', height: '40px', fontSize: '11px', backgroundColor: 'white' }} onClick={(event) => {
                                         setCarType('new')
                                     }}>Новые  <CheckIcon sx={{ fontSize: '14px' }} /></Button>
                                 </Link>
 
-                                <Link href={'/catalog/used-car'} sx={{ textDecoration: 'none' }}>
+                                <Link href={'/brands/arkont-select'} sx={{ textDecoration: 'none' }}>
                                     <Button sx={{ width: '120px', height: '40px', fontSize: '11px', backgroundColor: 'white' }} onClick={(event) => {
                                         setCarType('old')
                                     }} >С пробегом</Button>

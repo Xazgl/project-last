@@ -330,13 +330,16 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
                     }
                 }
 
-                @media(max-width: 800px) {
+                @media(max-width: 820px) {
                     .backgroundBlock{
                         width:100%;
                     }
                 }
 
-                @media(max-width: 600px) {
+                @media(max-width: 700px) {
+                    .title {
+                        align-items: start;
+                    }
                     .row{
                         height: auto;
                         flex-direction: column-reverse;

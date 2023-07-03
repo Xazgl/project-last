@@ -102,16 +102,16 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
     const refCars = useRef<HTMLDivElement>(null)
 
     const scrollToTargetElement = () => {
-        if (refCars .current) {
+        if (refCars.current) {
             // Используйте метод прокрутки, который подходит для вашего случая
             // Например, если у вас есть контейнер с прокруткой, вы можете использовать его метод прокрутки
-            refCars .current.scrollIntoView({
+            refCars.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start',
             })
         }
     };
-    
+
 
     // useEffect(() => {
     //     // Прокрутка к элементу при каждом изменении filteredCars
@@ -127,7 +127,7 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
 
 
     useEffect(() => {
-       console.log(`${currentFilter.modelName.length }`)
+        console.log(`${currentFilter.modelName.length}`)
     }, [currentFilter.modelName]);
 
 
@@ -148,26 +148,30 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                 />
                 <div className="carBlock">
                     <MapBrand />
-                    {currentFilter.modelName.length <= 0 ?
-                        <div className="block" ref={refCars}>
-                            <CardModelsFilter cars={cars} filteredCars={filteredCars}
-                                setFilteredCars={setFilteredCars}
-                                setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
-                            />
-                        </div>
-                        :
-                        <>
-                            <div className="block" id="carScroll" ref={refCars}>
-                                <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal}
-                                    setShowModalFavorite={setShowModalFavorite} cars={cars}
+                    <>
+                    
+                        {currentFilter.modelName.length <= 0 ?
+                            <div className="block" ref={refCars}>
+                                <CardModelsFilter cars={cars} filteredCars={filteredCars}
                                     setFilteredCars={setFilteredCars}
+                                    setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                                 />
                             </div>
-                        </>
-                    }
-                    <div className="block" >
+                            :
+                            <>
+                                <div className="block" id="carScroll" ref={refCars}>
+                                    <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal}
+                                        setShowModalFavorite={setShowModalFavorite} cars={cars}
+                                        setFilteredCars={setFilteredCars}
+                                    />
+                                </div>
+                            </>
+                        }
+                    </>
+
+                    {/* <div className="block" >
                         <News />
-                    </div>
+                    </div> */}
                     <div className="block" >
                         {mobileAdaptive == false ?
                             <>
@@ -200,8 +204,8 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                 }
 
                 .block {
-                    margin-top: 30px;
-                }
+                  margin-top: ${cars.length > 0 ? '30px' : '0'};
+                }    
 
                 #carScroll{
                   height: 100%;

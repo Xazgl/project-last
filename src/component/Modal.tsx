@@ -104,7 +104,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                             />
                         </div>
                         <div className="mb-3">
-                            <button className="btn-modal" type="submit" onClick={() => setAlert(true)}>Отправить &#10095;</button>
+                            <button className="btn-modal" type="submit" onClick={() => setAlert(true)}>Отправить заявку</button>
                         </div>
                     </form>
                 </div>
@@ -158,6 +158,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 background-color: rgb(0,0,0, 0.5);
                 align-items: center;
                 font-family: 'Roboto','sans-serif'; 
+                z-index: 3;
             }
 
             .modalBackground_show {

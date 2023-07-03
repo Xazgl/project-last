@@ -14,7 +14,7 @@ import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
 import { Grow, Paper } from '@mui/material'
 import { KaiyiImgDestop } from '../../src/component/actual/brendsPages/kaiyi/banner/KaiyiImg'
 import { FilterWithPageComponent } from '../../src/component/actual/brendsPages/exeed/NewCarComponent'
-import { ExeedImgDestop} from '../../src/component/actual/brendsPages/exeed/banner/ExeedImg'
+import { ExeedImgDestop } from '../../src/component/actual/brendsPages/exeed/banner/ExeedImg'
 
 
 type Brand = {
@@ -36,17 +36,17 @@ const ExeedPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
+      <BarMenu />
       <div className='background'>
         <div className='content'>
-          <BarMenu />
-          <ExeedImgDestop/>
+          <ExeedImgDestop />
           <FilterWithPageComponent setShowModal={setShowModal}
             setShowModalFavorite={setShowModalFavorite}
             cars={cars} brands={brands}
           />
         </div>
       </div >
-      <FooterMainNew setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+      <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

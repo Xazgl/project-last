@@ -36,17 +36,17 @@ const FawPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brands 
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
+      <BarMenu />
       <div className='background'>
         <div className='content'>
-          <BarMenu />
-          <FawImgDestop/>
+          <FawImgDestop />
           <FilterWithPageComponent setShowModal={setShowModal}
             setShowModalFavorite={setShowModalFavorite}
             cars={cars} brands={brands}
           />
         </div>
       </div >
-      <FooterMainNew setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+      <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />

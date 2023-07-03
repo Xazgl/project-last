@@ -10,6 +10,7 @@ import RoomIcon from '@mui/icons-material/Room';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import { SwiperImg } from "./slider/SwiperImg";
 
 type Props = {
     car: CarDto,
@@ -145,6 +146,8 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                     style={{ display: 'flex', width: '100%', height: '100%' }}
                                 />
                             </div>
+                            {/* <SwiperImg img={car.img} /> */}
+
                             <ImageList sx={{ width: '100%', height: '100%', gridTemplateColumns: { xl: 'repeat(8, 1fr)', lg: 'repeat(8, 1fr)', md: 'repeat(8, 1fr)', sm: 'repeat(6, 1fr)', xs: 'repeat(4, 1fr)' } }} cols={8} rowHeight={'auto'}>
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
@@ -166,18 +169,22 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                             <div className="desc" style={{
                                 display: 'flex', width: '100%', height: 'auto',
                                 flexDirection: 'column', alignItems: 'start', marginTop: '50px',
-                                padding: '30px'
+                                paddingBottom:'20px',paddingTop:'20px'
+                        
                             }}>
-                                <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', alignItems: 'center', padding: '5px' }}>
+                                <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', alignItems: 'start', padding: '5px' }}>
                                     <div className="name">{car.CarModel.brandName} {car.CarModel.modelName} {car.CarComplectation.name}</div>
                                     <div className="rowColumn" style={{ display: 'flex', marginTop: '10px', justifyContent: 'space-between', alignItems: 'baseline', flexDirection: 'column' }} >
                                         <span><Circle sx={{ color: 'green', fontSize: '12px' }} />  В наличии</span>
                                         <span style={{ color: '#7b7979' }}>{car.DealerModel.name} <RoomIcon sx={{ fontSize: '15px' }} /></span>
-                                        <a href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
+                                        <a style={{ color: '#0c54a0', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
                                     </div>
 
-                                    <div className="rowIcon" style={{ gap: 15, marginTop: '50px', justifyContent: 'center' }}>
-                                        <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
+                                    <div className="rowIcon" style={{ gap: 15, marginTop: '50px', justifyContent: 'start' }}>
+                                        <div className="Icon" style={{
+                                            display: 'flex', justifyContent: 'center', alignItems: 'center',
+                                            borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f', cursor: 'pointer'
+                                        }}>
                                             {car.FavoriteCarsToCar.length <= 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => addToFavorite(car.id)}
@@ -189,7 +196,10 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                                     sx={{ color: 'red', fontSize: '30px' }} />
                                             }
                                         </div>
-                                        <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
+                                        <div className="Icon" style={{
+                                            display: 'flex', justifyContent: 'center', alignItems: 'center',
+                                            borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f', cursor: 'pointer'
+                                        }}>
                                             {car.CompareCarsToCar.length <= 0 &&
                                                 <AddRoadIcon
                                                     onClick={() => addToCompare(car.id)}
@@ -212,7 +222,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                 </div>
 
                                 <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', padding: '5px' }}>
-                                    <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                                    <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'start', gap: '10px' }}>
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
@@ -221,7 +231,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                             >Купить онлайн</Button>
                                         </div>
                                     </div>
-                                    <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                                    <div className="rowColumn" style={{ marginTop: '20px', flexDirection: 'column', alignItems: 'start', gap: '10px' }}>
                                         <div className="name" style={{ fontSize: '15px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
                                             <Button variant="outlined"
@@ -255,15 +265,15 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     </Box>
                 }
             </div>
-
-
-
             <style jsx>{`
                 .background {
                     display:flex; 
                     width: 100%;
                     height:auto;
                     flex-direction: column;
+                    align-items: start;
+                    margin-top: 20px;
+
                 }
 
                 .headerPhoto {
@@ -273,7 +283,6 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     object-fit: cover;
                     width: 100%;
                     height:auto;
-
                 }
 
                 .row{
@@ -293,7 +302,6 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     padding-left:50px;
                 }
 
-
                 #tradeIn { 
                     display: flex; 
                     justify-content: center; 
@@ -302,6 +310,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     width: 250px;  
                     height: 60px; 
                     border: 1px solid #a19f9f; 
+                    cursor: pointer;
                 }
 
                 .btnTradeIn{
@@ -330,7 +339,6 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     transition:  0.7s;
                 }
 
-               
                 .rowColumn{
                     display: flex;
                     width: 100%;
@@ -347,6 +355,8 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                 .name {
                     font-size: 30px;
                     font-weight: bold;
+                    display: flex;
+                    flex-wrap: wrap;
                 }
 
                 .btnName {
@@ -378,21 +388,19 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     }
                 }
 
-                @media (max-width: 460px) {
+                @media (max-width: 780px) {
                     .rowIcon {
                         display:none;
                     }
-   
-                }
-              
-
-                @media (max-width: 360px) {
                     .imgMobile  {
                         display: flex;
                     }
                     #rowHeader{
                         flex-direction: column;
                     }
+                }
+          
+                @media (max-width: 360px) {
                     .btnName{
                       width:250px;
                     }
@@ -400,14 +408,6 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                         font-size:25px; 
                     }
                 }
-
-
-           
-           
-
-
-
-
 
             `}</style>
         </>

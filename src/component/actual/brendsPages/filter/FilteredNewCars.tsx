@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useRef, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,13 +16,14 @@ import CompareIcon from '@mui/icons-material/Compare';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
-import { Box, Button, createTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, Slide, createTheme, useMediaQuery } from '@mui/material';
 import { LogoList, driverTypeStr, logoFind, numberWithSpaces } from '../../../../services/functions';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import bannerDc from '/public/images/catalogPages/geely/dc.jpg'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CardModelsFilter from './modelsCard/CardModelsFilter';
 import { AllCarDto } from '../../../../../@types/dto';
+import CarWithoutImg from '/public/images/noPhoto.png'
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -35,7 +36,7 @@ type Props = {
 
 
 
-function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, cars,  setFilteredCars  }: Props) {
+function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, cars, setFilteredCars }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -250,9 +251,45 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
 
 
   }, [])
+
+
+
+
+
+  const [isVisible, setIsVisible] = useState(false);
+  const visibleElementRef = useRef(null);
+
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+
+      const isElementVisible = (element) => {
+        const { top, bottom } = element.getBoundingClientRect();
+        return top < windowHeight && bottom >= 0;
+      };
+
+      const element = visibleElementRef.current;
+
+      if (isElementVisible(element)) {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <>
-      <div className='background'>
+      <div className='background'  >
         <Box
           sx={{
             display: 'flex', position: 'fixed', flexDirection: 'column', bottom: '0', right: '0',
@@ -313,7 +350,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
           }
         </Box>
 
-        <div className='cards' id="desktop">
+        <div className='cards' id="desktop" ref={visibleElementRef}>
 
           {/* <div className='descBrand'>
             <div className='titleBrand'>О Geely</div>
@@ -396,9 +433,11 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
           </div> */}
 
           {filteredCars.map(car =>
+            // <Slide in={isVisible} key={car.id} direction="right" timeout={500}>
             <Card key={car.id} sx={{
               width: 345, height: 490, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', 
+              fontFamily: 'Roboto', boxShadow:'none',
               '&:hover': { transform: 'scale(1.04)', },
               '&:hover .credit': {
                 display: 'flex',
@@ -425,14 +464,29 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                 subheader={car.CarModel.modelName}
               />
 
-              <Link href={{
-                pathname: '/catalog/car/[id]',
-                query: { id: car.id }
-              }}>
+              {car.img.length > 0 ?
+                <Link href={{
+                  pathname: '/catalog/car/[id]',
+                  query: { id: car.id }
+                }}>
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={car.img[0]}
+                    sx={{
+                      cursor: 'pointer',
+                    }}
+                    loading="lazy"
+                    decoding='async'
+
+                    alt="car"
+                  />
+                </Link>
+                :
                 <CardMedia
                   component="img"
                   height="194"
-                  image={car.img[0]}
+                  image={CarWithoutImg.src}
                   sx={{
                     cursor: 'pointer',
                   }}
@@ -441,7 +495,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
 
                   alt="car"
                 />
-              </Link>
+              }
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
@@ -451,7 +505,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                     </button>
                   </div>
                   <div className='office'>
-                    <span>{car.DealerModel.name}</span>    <RoomIcon sx={{fontSize:'16px'}} />
+                    <span>{car.DealerModel.name}</span>    <RoomIcon sx={{ fontSize: '16px' }} />
                   </div>
                 </Typography>
               </CardContent>
@@ -489,6 +543,8 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                 <span className="consultation" >Получить консультацию</span>
               </button>
             </Card>
+            // </Slide>
+
           )}
           {/* {filteredCars.length > 0 && (
             <Card sx={{
@@ -503,7 +559,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: '90%', height: 480, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',  boxShadow:'none',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
               <CardHeader
@@ -534,30 +590,45 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                 subheader={car.CarModel.modelName}
               />
 
-              <Link href={{
-                pathname: '/catalog/car/[id]',
-                query: { id: car.id }
-              }}>
+              {car.img.length > 0 ?
+                <Link href={{
+                  pathname: '/catalog/car/[id]',
+                  query: { id: car.id }
+                }}>
+                  <CardMedia
+                    component="img"
+                    height="180px"
+                    image={car.img[0]}
+                    sx={{
+                      cursor: 'pointer',
+                      backgroundSize: 'contain'
+                    }}
+
+                    loading="lazy"
+                    decoding='async'
+                    alt="car"
+                  />
+                </Link>
+                :
                 <CardMedia
                   component="img"
                   height="180px"
-                  image={car.img[0]}
+                  image={CarWithoutImg.src}
                   sx={{
                     cursor: 'pointer',
                     backgroundSize: 'contain'
                   }}
-
                   loading="lazy"
                   decoding='async'
                   alt="car"
                 />
-              </Link>
+              }
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
                   <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
                   <div className='priceMonth'>
-                    <button className="btn"  onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
+                    <button className="btn" onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
                   </div>
                   <div className='office'>
                     <span>{car.DealerModel.name}</span>    <RoomIcon />
@@ -576,27 +647,31 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
 
       <style jsx>{`              
       @keyframes credit-open {
-                0% {
-                    opacity: 0;
-                    margin-top:-100%;
-                }
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
 
-                50% {
-                    opacity: 0.5;
-                }
+    30% {
+        opacity: 0.5;
+        transform: translateY(-70%);
+    }
 
-                60% {
-                    opacity: 0.8;
-                }
-                80% {
-                    opacity: 0.9;
-                }
-        
-                100% {
-                    opacity: 1;
-                }
-      }
- 
+    60% {
+        opacity: 0.8;
+        transform: translateY(-30%);
+    }
+
+    90% {
+        opacity: 0.9;
+        transform: translateY(-10%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
     .background {
       display:flex;
       width: 100%;
@@ -693,7 +768,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       width:80%;
       height: 100%;
       border:solid 1px #d1d7dd;
-      color:#005baa;
+      color:#0c54a0;
       background-color: #f2f2f2;
       font-size: 15px;
       font-weight: bold;
@@ -732,13 +807,16 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       width: 100%;
       height: 50px;
       transition: 1.2s;
-      margin-top:-10em;
       cursor: pointer;
       border:none;
       color:white;
       font-size:16px;
       text-align: center;
       font-family: 'Roboto','sans-serif'; 
+      background-color: #0c54a0;
+      cursor: pointer;
+      animation: credit-open 1.5s ease-in-out forwards;
+      border-radius: 5px;
 
     }
 

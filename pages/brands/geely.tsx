@@ -20,12 +20,13 @@ type Brand = {
   count: string
 }
 
+
 const GeelyPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brands }) => {
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
   const [showModalFavorite, setShowModalFavorite] = useState(false)
   const refFooter = useRef<HTMLDivElement>(null)
-
+  console.log(cars)
   return (
     <>
       <Head>
@@ -34,9 +35,9 @@ const GeelyPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
+      <BarMenu />
       <div className='background'>
         <div className='content'>
-          <BarMenu />
           <GeelyImgDestop />
           <FilterWithPageComponent setShowModal={setShowModal}
             setShowModalFavorite={setShowModalFavorite}
@@ -44,7 +45,7 @@ const GeelyPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
           />
         </div>
       </div >
-      <FooterMainNew setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+      <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
@@ -119,14 +120,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         active: true,
         CarModel: {
           brandName: 'Geely',
-        }
-      },
+        }      },
       include: {
         CarModel: {
           include: {
             brandNews: true,
           },
         },
+        // CarModel:true,
         CarComplectation: true,
         CarModification: true,
         extras: true,
