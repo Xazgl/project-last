@@ -3,6 +3,8 @@ import { Dispatch, FormEvent, SetStateAction, useEffect, useMemo, useState } fro
 import OfficeFilterSidebar from "./OfficeFilterSidebar";
 import FilteredOffice from "./FilteredOffice";
 import { Offices } from "@prisma/client";
+import { Circle } from "@mui/icons-material";
+import Link from "next/link";
 
 
 
@@ -29,8 +31,26 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
     return (
         <>
             <div className="background">
-                <div className="title">Дилерские центры</div>
-                <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
+                <div className='road'>
+                    <Link href="/">
+                        <a className="menuRoad" rel="noopener noreferrer" >
+                            Главная
+                        </a>
+                    </Link>
+
+                    <Circle sx={{ fontSize: '8px', color: '#0c54a0' }} />
+
+                    <Link href="/company/contact">
+                        <a className="menuRoad" rel="noopener noreferrer" >
+                            Дилерские центры
+                        </a>
+                    </Link>
+
+                </div>
+                <div className="flexContainer">
+                    <div className="title">Дилерские центры</div>
+                    <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
+                </div>
                 <div className="dealerBlock">
                     <FilteredOffice filteredOffices={filteredOffices} setShowModal={setShowModal} />
                 </div>
@@ -42,17 +62,41 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     height:auto;
                     margin-top: 100px;
                     flex-direction: column;
-                    
+                }
+
+                .road{
+                    display: flex;
+                    justify-content: start;
+                    gap:10px;
+                    align-items: center;
+                }
+
+                .menuRoad{
+                    display: flex;
+                    text-decoration: none;
+                    color:black;
+                }
+
+                .flexContainer {
+                    display: flex;
+                    height: auto;
+                    position: sticky; 
+                    top: 0;
+                    left:0;
+                    z-index:2;
+                    background-color: white;
+           
                 }
 
                 .title {
                     display: flex;
-                    justify-content: center;
+                    justify-content: start;
                     width: 100%;
                     font-size: 45px;
                     font-weight: bold;
                     text-align: center;
                     font-family: 'Roboto','sans-serif'; 
+                    margin-top:20px;
 
                 }
 
@@ -153,7 +197,14 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     background-color: #d4d3d3
                 }
 
-              
+                @media(max-width: 1000px) {
+                     .flexContainer {
+                          flex-direction: column;
+                          align-items: center;
+                          justify-content: center;
+                     }
+                }
+                
                 @media(max-width: 600px) {
                     .background {  
                         flex-direction: column;
@@ -162,11 +213,26 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     .title {
                         font-size: 35px;
                     }
+                    .menuRoad{
+                        font-size: 14px;
+                    }
+                }
+
+                @media(max-width: 450px) {
+                    .menuRoad{
+                        font-size: 12px;
+                    }
+                    .title {
+                        font-size: 30px;
+                    }
                 }
 
                 @media(max-width: 350px) {
                     .title {
                         font-size: 25px;
+                    }
+                    .menuRoad{
+                        font-size: 10px;
                     }
                 }
                 

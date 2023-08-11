@@ -3,8 +3,10 @@
 const { PrismaClient } = require("@prisma/client");
 const { AxiosError } = require("axios");
 const fs = require('fs/promises');
+const wait = require('timers/promises').setTimeout
 // const { nanoid } = require("nanoid");
 const path = require("path");
+const { default: pino } = require("pino");
 const xml2js = require('xml2js')
 const carsLinks = require('./cars.json') || [] //ссылка на файлы от Макспостера
 const carsLinksOld = require('./carsOld.json') || [] //ссылка на файлы по бу машинам
@@ -16,8 +18,39 @@ const db = new PrismaClient()
 const parser = new xml2js.Parser()
 
 
+
+
+if (!process.env.LOKI_API_URL) {
+    console.error('The process.env.LOKI_API_URL doesnt exist')
+    process.exit(1)
+}
+
+const lokiUrl = new URL(process.env.LOKI_API_URL)
+
+
+
+const transport = pino.transport({
+    target: "pino-loki",
+    options: {
+        batching: true,
+        interval: 5,
+
+        host: lokiUrl.origin,
+        basicAuth: {
+            username: lokiUrl.username,
+            password: lokiUrl.password,
+        },
+    },
+});
+
+const logger = pino(transport);
+//   logger.error({ foo: 'bar' })
+
 async function start() {
     try {
+        logger.info({
+            message: "XmlTask function start() started"
+        })
         // if (process.env.NODE_ENV !== 'production') {
         //     await db.$transaction([
         //         db.car.deleteMany({}),
@@ -47,14 +80,13 @@ async function start() {
                 const xml = await parser.parseStringPromise(res.data)
                 //  if(xml.vehicles.length > 0) {
                 // console.log(`ответ ${(xml.vehicles.vehicle)}`)
-                return xml.vehicles.vehicle
-                //  } else {
-                //     return null
-                //  }              
+                return xml?.vehicles?.vehicle || []; // возвращаем пустой массив, если нет данных          
             } catch (error) {
-                if (error instanceof AxiosError)
+                if (error instanceof AxiosError) {
                     console.error(error.code + ': ' + error.message)
-                return null
+                    logger.error(error.toJSON())
+                }
+                return [];
             }
         }))).filter(veh => veh !== null).flat()
         // const result = vehicles.filter(arrayVehicle => arrayVehicle !== undefined);
@@ -122,23 +154,28 @@ async function start() {
                                         bodyType: String(vehicle.bodyType),
                                         bodyDoorCount: Number(vehicle.bodyDoorCount),
                                         steeringWheel: String(vehicle.steeringWheel),
-                                        length: String(vehicle.length),
-                                        width: String(vehicle.length),
+                                        length: vehicle.length ? String(vehicle.length) : '',
+                                        width: vehicle.width ? String(vehicle.length) : '',
                                     }
                                 },
                             },
                             CarComplectation: {
                                 connectOrCreate: {
                                     where: {
-                                        id_1c: Number(vehicle.complectation[0].$.id)
+                                        id_1c: vehicle.complectation[0] && vehicle.complectation[0].$.id
+                                            ? Number(vehicle.complectation[0].$.id)
+                                            : 0,
                                     },
                                     create: {
-                                        id_1c: Number(vehicle.complectation[0].$.id),
-                                        name: vehicle.complectation[0]._,
+                                        id_1c: vehicle.complectation[0] && vehicle.complectation[0].$.id
+                                            ? Number(vehicle.complectation[0].$.id)
+                                            : 0,
+                                        name: vehicle.complectation[0] ? vehicle.complectation[0]._ : 'Комплектация не указана',
                                         seatsCar: '5',
-                                    }
-                                }
+                                    },
+                                },
                             },
+
                             DealerModel: {
                                 connectOrCreate: {
                                     where: {
@@ -154,17 +191,17 @@ async function start() {
                             },
                             extras: vehicle.extras && vehicle.extras.length > 0 ? {
                                 connectOrCreate: vehicle.extras.map(extra => ({
-                                  where: {
-                                    name: extra.group[0].element[0]._
-                                  },
-                                  create: {
-                                    groupId: Number(extra.group[0].$.id),
-                                    groupName: extra.group[0].$.name,
-                                    name: extra.group[0].element[0]._
-                                  }
+                                    where: {
+                                        name: extra.group[0].element[0]._
+                                    },
+                                    create: {
+                                        groupId: Number(extra.group[0].$.id),
+                                        groupName: extra.group[0].$.name,
+                                        name: extra.group[0].element[0]._
+                                    }
                                 }))
-                              } : 
-                              {},
+                            } :
+                                {},
                             CarModel: {
                                 connectOrCreate: {
                                     where: {
@@ -177,8 +214,11 @@ async function start() {
                                         modelName: vehicle.model[0]._,
                                         categoryId_1c: Number(vehicle.category[0].$.id),
                                         categoryIdName: vehicle.category[0]._,
-                                        generationId_1c: vehicle.generation[0] ? Number(vehicle.generation[0].$.id) : 0,
+                                        generationId_1c: vehicle.generation[0] && vehicle.generation[0].$.id
+                                            ? Number(vehicle.generation[0].$.id)
+                                            : 0,
                                         generationIName: vehicle.generation[0] ? vehicle.generation[0]._ : '',
+
                                     }
                                 }
                             }
@@ -194,8 +234,13 @@ async function start() {
                 // console.log(car);
             }
         }
+        logger.info({
+            message: "XmlTask function start() completed"
+        })
+        await wait(5000)
     } catch (error) {
         console.error(error)
+        logger.error(('toJSON' in error) ? error.toJSON() : error)
     }
 }
 //         // console.log(cars);
@@ -231,11 +276,11 @@ async function start() {
 start()
 
 
-
-
-
 async function startOld() {
     try {
+        logger.info({
+            message: "XmlTask funtcion startOld() started"
+        })
         // if (process.env.NODE_ENV !== 'production') {
         //     await db.$transaction([
         //         db.usedCars.deleteMany({}),
@@ -306,7 +351,7 @@ async function startOld() {
                                 description: String(offer.description[0]),
                                 sales_notes: String(offer.sales_notes[0]),
                                 picture: {
-                                    set: offer.picture[0]
+                                    set: [offer.picture[0] ]
                                 },
                                 // typePrefix: offer.typePrefix[0],
                                 typePrefix: 'used',
@@ -343,7 +388,7 @@ async function startOld() {
                                 description: String(offer.description[0]),
                                 sales_notes: String(offer.sales_notes[0]),
                                 picture: {
-                                    set: offer.picture[0]
+                                    set: [offer.picture[0]]
                                 },
                                 // typePrefix: offer.typePrefix[0],
                                 typePrefix: 'used',
@@ -365,6 +410,8 @@ async function startOld() {
                     }
                 } catch (error) {
                     console.error(error)
+                    logger.error(('toJSON' in error) ? error.toJSON() : error)
+
                     // console.log(offer.param[5], offer.param.length)
                     // console.log('id: ' +   offer.id, 'param пробег:' + offer.param[0], 'param год выпуска:' + offer.param[1],'param Кузов:' + offer.param[2],'param Руль:'+ offer.param[3], 
                     // 'param Цвет:'+ offer.param[4],'param ПТС:'+offer.param[5],'param кол-во владельцев:'+ offer.param[6],'param Двигатель:' +  offer.param[7], 'param Привод:'+ offer.param[8],
@@ -402,8 +449,14 @@ async function startOld() {
         //     })
         // ]) 
         // console.log("Success"); 
+
+        logger.info({
+            message: "XmlTask function startOld() completed"
+        })
+        await wait(5000)
     } catch (error) {
         console.error(error)
+        logger.error(('toJSON' in error) ? error.toJSON() : error)
     }
 }
 

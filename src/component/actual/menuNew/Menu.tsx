@@ -66,8 +66,8 @@ export function MenuBarNew({ setShowModal }: Props) {
     {
       label: 'Каталог',
       subItems: [
-        { label: 'Автомобили в наличии', link: '/catalog/new-car' },
-        { label: 'Автомобили с пробегом', link: '/catalog/used-car' },
+        { label: 'Автомобили в наличие', link: '/brands/all' },
+        { label: 'Автомобили с пробегом', link: '/brands/arkont-select' },
         { label: 'Онлайн-оценка автомобиля', link: '/catalog/tradein' },
         { label: 'Специальные предложения', link: '/catalog/special-offers' },
       ],
@@ -83,7 +83,7 @@ export function MenuBarNew({ setShowModal }: Props) {
     {
       label: 'Владельцам',
       subItems: [
-        { label: 'Спец предложения сервиса', link: '/catalog/special-offers' },
+        { label: 'Спецпредложения сервиса', link: '/catalog/special-offers' },
         { label: 'Сервис', link: '/car-repair/service-form' },
         { label: 'Кузовной ремонт', link: 'https://ckr.arkont.ru/' },
         { label: 'Перевод авто на газ', link: 'https://gbo.arkont.ru/' },
@@ -116,8 +116,8 @@ export function MenuBarNew({ setShowModal }: Props) {
   ];
 
 
-
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
   let timeoutId;
 
   const handleMouseEnter = (item) => {
@@ -125,13 +125,24 @@ export function MenuBarNew({ setShowModal }: Props) {
     setHoveredItem(item);
   };
 
-
-
   const handleMouseLeave = () => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       setHoveredItem(null);
-    }, 1000);
+      setHoveredSubMenu(null); // Добавьте эту строку
+    }, 300);
+  };
+
+  const handleSubMenuMouseEnter = (subItem) => {
+    clearTimeout(timeoutId);
+    setHoveredSubMenu(subItem);
+  };
+
+  const handleSubMenuMouseLeave = () => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      setHoveredSubMenu(null);
+    }, 20000);
   };
 
   // useEffect(() => {
@@ -170,6 +181,15 @@ export function MenuBarNew({ setShowModal }: Props) {
                 <a rel="noopener noreferrer">
                   <button className='btnMenu' >
                     <AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> Волгоград
+                  </button>
+                </a>
+              </Link>
+            </li>
+            <li className="menuEL">
+              <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт%20волжский/filter/chain_id/3983845841/?ll=44.630788%2C48.765211&sll=44.569402%2C48.726965&sspn=0.689392%2C0.285283&z=12'}>
+                <a rel="noopener noreferrer">
+                  <button className='btnMenu' >
+                    <AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> Волжский
                   </button>
                 </a>
               </Link>
@@ -223,11 +243,11 @@ export function MenuBarNew({ setShowModal }: Props) {
                       key={subIndex}
                       // className={`f ${hoveredItem === item ? 'show' : ''}`}
                       className={`f ${hoveredItem === `bottomUl-${index}` ? 'show' : ''}`}
-                       onMouseEnter={() => handleMouseEnter(`bottomUl-${index}`)}
-                      onMouseLeave={handleMouseLeave}
+                      onMouseEnter={() => handleSubMenuMouseEnter(subItem.label)}
+                      onMouseLeave={handleSubMenuMouseLeave}
                     >
                       <Link href={subItem.link}>
-                        <a rel="noopener noreferrer">{subItem.label}</a>
+                        <a  className="f" rel="noopener noreferrer">{subItem.label}</a>
                       </Link>
                     </li>
                   ))}
@@ -329,6 +349,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         align-items: center;
         cursor: pointer;
         color:white;
+        z-index:9999;
     }
 
     a{
@@ -385,8 +406,11 @@ export function MenuBarNew({ setShowModal }: Props) {
         font-size: 16px;
         position: absolute;
         transition: 0.2s;
-        z-index: 9999;
-        
+        padding: 15px;
+        border-radius: 3px;
+        -webkit-box-shadow: 1px 2px 6px 5px rgba(34, 60, 80, 0.14);
+        -moz-box-shadow: 1px 2px 6px 5px rgba(34, 60, 80, 0.14);
+        box-shadow: 1px 2px 6px 5px rgba(34, 60, 80, 0.14); 
     }
 
     .bottomUl.show {

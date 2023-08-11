@@ -8,7 +8,6 @@ import theme from '../mui/theme';
 import createEmotionCache from '../mui/createEmotionCache';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // import { Provider, } from 'react-redux';
-import storeRedux, { setAdmin } from '../src/services/storeRedux';
 // import { useDispatch } from 'react-redux';
 
 

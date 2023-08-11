@@ -470,7 +470,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                             <Slide in={isVisible} key={model} direction="right" timeout={600}>
 
                                 <Card key={model} sx={{
-                                    width: 270, height: 350, display: 'flex', border: '2px  solid #d1d7dd',
+                                    width: 270, height: 360, display: 'flex', border: '2px  solid #d1d7dd',
                                     flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
                                     borderRadius: '0px', boxShadow:'none',
                                     '&:hover': {
@@ -505,7 +505,8 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                         image={modelPhotoFind(ModelPhotoList, model)}
                                         sx={{
                                             cursor: 'pointer',
-                                            height: '100px'
+                                            height: '120px'
+                                            
                                         }}
                                         loading="lazy"
                                         decoding='async'

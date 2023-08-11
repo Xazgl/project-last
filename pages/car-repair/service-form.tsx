@@ -10,8 +10,9 @@ import BarMenu from '../../src/component/BarMenu'
 import { MenuBar } from '../../src/component/Menu'
 import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
-import { getDataFromRedis, redisClient } from '../../src/services/redis'
+import { getDataFromRedis, getRedisInstance } from '../../src/services/redis'
 import { ServiceBanner } from '../../src/component/actual/serviceCarPage/ServiceBanner'
+import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
 
 
 const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
@@ -37,7 +38,7 @@ const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
       <ServiceBanner refs={{ refForm}}/>
       <ServiceForm  refs={{ refForm}}/>
       <CardsSpecialOffers  setShowModal={setShowModal} offers={ offers } />
-      <FooterMain  setShowTradeInModal={setShowTradeInModal} refs={{ refFooter  }} />
+      <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
         showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
@@ -63,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       })
       // Сохраняем данные в Redis на день
-      redisClient.set('offers', JSON.stringify(offers), 'EX', 86400);
+      getRedisInstance().set('offers', JSON.stringify(offers), 'EX', 86400);
     } else {
       offers = JSON.parse(offersData) as Offer[]; // Преобразование строки в массив объектов типа Car
     }

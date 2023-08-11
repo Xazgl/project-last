@@ -15,53 +15,16 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
 }
 
 
-export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
+export function InfoSale({ car, showModal, setShowModal, }: Props) {
 
-    function driverTypeStr(x) {
-        if (x === 'front') {
-            return "Передний привод"
-        }
-        if (x === 'full_4wd') {
-            return "Полный привод"
-        }
-    }
-
-    function showModalImg(x) {
-        setShowModal(true)
-        setCarImg(x)
-    }
 
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
-    function engineTypeName(x) {
-        if (x === 'diesel') {
-            return 'дизель'
-        }
-        if (x === 'petrol') {
-            return 'бензин'
-        }
-    }
-
-    function gearBoxName(x) {
-        if (x === 'automatic') {
-            return 'Автомат'
-        }
-        if (x === 'robotized') {
-            return 'Автомат'
-        }
-        if (x === 'variator') {
-            return 'Вариатор'
-        }
-        if (x === 'manual') {
-            return 'Механика'
-        }
-    }
 
     return (
         <>
@@ -104,7 +67,7 @@ export function InfoSale({ car, showModal, setShowModal, setCarImg }: Props) {
                                     </div>
                                     <div className="btn">
                                         <Button variant="outlined"
-                                            sx={{ width: '100%', height: '100%', border: 'solid 2px #005baa' }}
+                                            sx={{ width: '100%', height: '100%', border: 'solid 2px #005baa',borderRadius:'0px' }}
                                         >Получить предложение</Button>
                                     </div>
                                 </div>

@@ -311,14 +311,20 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               sx={{
                 width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
                 flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
-                '&:hover': { transform: 'scale(1.04)' },
+                '&:hover': {
+                  transform: 'scale(1.04)',
+                  webkitBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                  mozBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                  boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                  shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
+                },
                 '&:hover .credit': {
                   display: 'flex',
                   transition: '1s',
                   animation: 'credit-open.5s',
                   marginTop: '330px',
                   backgroundColor: '#0c7ee1',
-                  position: 'absolute'
+                  position: 'absolute',
                 }
               }} >
               <CardHeader
@@ -371,7 +377,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                     width: '100%',
                     height: '203px',
                     position: 'relative',
-                    cursor:'pointer'
+                    cursor: 'pointer'
                   }}
                 >
                   <Image
@@ -389,9 +395,9 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   {upFirst(car.engine)} / {car.driverType} / Пробег {numberWithSpaces(car.mileage)} км
-                  <div className='price'><h4>Цена от <span style={{color:'#0c54a0'}}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
+                  <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
                   <div className='priceMonth'>
-                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
+                    <button className="btn" onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
                   </div>
                   {/* <div className='office'>
                     <span>{car.DealerModel.name}</span>    <RoomIcon />
@@ -420,9 +426,9 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   }
                 </IconButton>
               </CardActions>
-              <button className="credit" onClick={showModal}>
+              {/* <button className="credit" onClick={showModal}>
                 <span className="consultation" >Получить консультацию</span>
-              </button>
+              </button> */}
             </Card>
           )}
         </div>
@@ -489,7 +495,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   height: '170px',
                   position: 'relative',
                   padding: '0',
-                  cursor:'pointer'
+                  cursor: 'pointer'
                 }}>
                   <Image
                     src={car.picture[0]}
@@ -507,7 +513,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardContent>
                 <Typography variant="body2" color="text.secondary" >
                   {upFirst(car.engine)} / {car.driverType} привод / Пробег {numberWithSpaces(car.mileage)} км
-                  <div className='price'><h4>Цена от <span style={{color:'#0c54a0'}}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
+                  <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
                   <div className='priceMonth'>
                     <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
                   </div>
@@ -518,8 +524,8 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               }}>
                 <Button variant="contained"
                   sx={{
-                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto',backgroundColor:'#0c54a0',
-                    borderRadius:'0px',height:'35px'
+                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto', backgroundColor: '#0c54a0',
+                    borderRadius: '0px', height: '35px'
                   }}
                   onClick={showModal}>Получить консультацию</Button>
               </div>

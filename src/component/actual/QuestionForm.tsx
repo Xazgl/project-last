@@ -207,10 +207,10 @@ export function QuestionForm() {
                                         height: '40px',
                                         width: '100%',
                                         backgroundColor: '#e7e7e7',
-                                        border: 'none',
                                         padding: '11px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto'
+                                        fontFamily: 'Roboto',
+                                        border: 'solid 1px #ccc7c7',
 
                                     }}
                                     id="inputP"
@@ -257,6 +257,7 @@ export function QuestionForm() {
                 display:flex; 
                 width: 100%;
                 height: 800px;
+                margin-top:10px;
                 justify-content: center;
                 align-items:center;
                 flex-direction: column;
@@ -371,8 +372,9 @@ export function QuestionForm() {
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
-                padding-left: '11px 12px';
+                padding: 11px 12px;
                 outline:none;
+                border: solid 1px #ccc7c7;
            }
 
            select {
@@ -382,6 +384,10 @@ export function QuestionForm() {
                 font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
+                border: solid 1px #ccc7c7;
+                cursor: pointer;
+                transition:  1s;
+
            }
             
            .btn {

@@ -19,7 +19,6 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
 }
 
 type Office = {
@@ -147,10 +146,40 @@ const OfficeList: OfficeArr = [
         name: 'УАЗ',
         map: "https://yandex.ru/map-widget/v1/?um=constructor%3Aeb4240831e67244f171338e33f9abec27592451d805d48e6eea90f52161d3b14&amp;source=constructor"
     },
+    {
+        id: 23,
+        name: 'Jetour',
+        map: "https://yandex.ru/map-widget/v1/?um=constructor%3Aec8401cd524a77e0bb1e7289105802ab62916cc8972ed8dbfa46ff15178d695a&amp;source=constructor"
+    },
+    {
+        id: 24,
+        name: 'JAC',
+        map: "https://yandex.ru/map-widget/v1/?um=constructor%3A2c8d19f7fa288315ffd139664af31d5e895b8219ec73cbee2f0e517baaeddd2e&amp;source=constructor"
+    },
+    {
+        id: 25,
+        name: 'Geely',
+        map: "https://yandex.ru/map-widget/v1/?um=constructor%3A399fb4497c8726800a313dd39c8c20ad93898ba103df9256cab8c789f8a27656&amp;source=constructor"
+    },
+    {
+        id: 26,
+        name: 'FAW',
+        map: "https://yandex.ru/map-widget/v1/?um=constructor%3Ad9d05808de66081e63c2d675691c94f71311f11c7f9fd589d05c85583f871a5c&amp;source=constructor"
+    },
+    {
+        id: 27,
+        name: 'JETTA',
+        map: "https://yandex.ru/map-widget/v1/?um=constructor%3A7c2dd1c61d3b6f0bc20fd356f366f089fcf707601cb647896a4ca2c643da329e&amp;source=constructor"
+    },
+    {
+        id: 28,
+        name: 'Kaiyi',
+        map: "https://yandex.ru/map-widget/v1/?um=constructor%3Ac7cd9133d6c3c25da4ecf06e7c0e392f09e5cc793bdb57727d0e0d1783ebcb78&amp;source=constructor"
+    },
 ]
 
 
-export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
+export function InfoOffice({ car, showModal, setShowModal }: Props) {
 
     const [map, setMap] = useState('')
 
@@ -161,11 +190,6 @@ export function InfoOffice({ car, showModal, setShowModal, setCarImg }: Props) {
         if (x === 'full_4wd') {
             return "Полный привод"
         }
-    }
-
-    function showModalImg(x) {
-        setShowModal(true)
-        setCarImg(x)
     }
 
     function numberWithSpaces(x) {

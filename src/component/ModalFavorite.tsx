@@ -1,7 +1,7 @@
 
 // import styles from "./Menu.module.css";
 
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Link, Typography } from "@mui/material";
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
 import { Dispatch, SetStateAction, useRef } from "react";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,6 +12,7 @@ import RoomIcon from '@mui/icons-material/Room';
 import { driverTypeStr, logoFind, numberWithSpaces } from "./actual/allNewCarPage/servicesNewCar/service";
 import { LogoList } from "./actual/allNewCarPage/type/typeNewCar";
 import { AllCarDto } from "../../@types/dto";
+import Link from 'next/link';
 
 type ModelProps = {
     showModalFavorite: boolean,

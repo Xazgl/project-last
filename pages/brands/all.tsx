@@ -39,6 +39,7 @@ const BrandsPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, bran
         <div className='content'>
           <div className='title'><AnimatedText text={`Бренды`} interval={100} /></div>
           <BrandsCards />
+          
           <div className='title'>Сервисные центры Арконт</div>
           <BrandsMap />
         </div>
@@ -93,6 +94,9 @@ const BrandsPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, bran
             .content{  
               width: 640px; 
             }
+            .title {
+              justify-content: center;
+            }
           }
 
           @media(max-width: 640px) {
@@ -101,10 +105,11 @@ const BrandsPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, bran
             }
           }
  
-          @media(max-width: 450px) {
+          @media(max-width: 460px) {
             .content{  
               width: 360px; 
             }
+
           }
 
           @media(max-width: 360px) {

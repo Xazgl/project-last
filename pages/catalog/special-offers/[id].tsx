@@ -11,6 +11,7 @@ import BarMenu from "../../../src/component/BarMenu"
 import { MenuBar } from "../../../src/component/Menu"
 import { Modal } from "../../../src/component/Modal"
 import { TradeinModal } from "../../../src/component/ModalTwo"
+import { FooterMainNew } from "../../../src/component/actual/menuNew/FooterMain"
 
 const OfferPage: NextPage = () => {
     const [showModal, setShowModal] = useState(false)
@@ -54,7 +55,7 @@ const OfferPage: NextPage = () => {
             <BannerOffer offer={offer} setShowModal={setShowModal} />
             <OfferDesc offer={offer} refForm={refForm} />
             <FormOffer refForm={refForm} />
-            <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+            <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
             {/* <InfoCarHeader car={car} refCredit={refCredit} setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal}
                 showModalImg={showModalImg} setShowModalImg={setShowModalImg}

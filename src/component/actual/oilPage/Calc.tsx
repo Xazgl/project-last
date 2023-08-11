@@ -10,7 +10,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { numberWithSpaces } from '../allNewCarPage/servicesNewCar/service';
 import dynamic from 'next/dynamic';
-const CountUp = dynamic(() => import('react-countup'), { ssr: false });
+// const CountUp = dynamic(() => import('react-countup'), { ssr: false });
 
 
 type Props = {
@@ -27,7 +27,7 @@ export function Calc({ setShowModal }: Props) {
     const [oilVolume, setOilVolume] = useState<number>(0);
     const [airFilter, setAirFilter] = useState<boolean>(false);
     const [cabinFilter, setCabinFilter] = useState<boolean>(false);
-    const [totalCost, setTotalCost] = useState<number>();
+    const [totalCost, setTotalCost] = useState<number>(0);
 
 
     const oilOptions = [
@@ -66,12 +66,10 @@ export function Calc({ setShowModal }: Props) {
 
     return (
         <>
-            <div className="background">
+            {/* <div className="background">
                 <div className="txt">
                     <p className="title">Калькулятор замены масла </p>
                 </div>
-                {/* <div className="banner"></div> */}
-
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -85,7 +83,8 @@ export function Calc({ setShowModal }: Props) {
                         <FormControl sx={{ minWidth: '100%' }}>
                             <InputLabel>Объем масла</InputLabel>
                             <Select value={oilVolume} label="Объем масла"
-                                onChange={(e) => setOilVolume(e.target.value)}
+                            onChange={(e) => setOilVolume(parseInt(e.target.value))}
+
                             >
                                 {oilOptions.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -95,27 +94,7 @@ export function Calc({ setShowModal }: Props) {
                             </Select>
                         </FormControl>
                     </div>
-                    {/* <div className='row'>
-                        <Stack direction="row" spacing={2}>
-                            <FormControlLabel
-                                control={<Checkbox checked={oilVolume === 1} onChange={(e) => setOilVolume(e.target.checked ? 1 : null)} />}
-                                label="1 л"
-                            />
-
-                            <FormControlLabel
-                                control={<Checkbox checked={oilVolume === 2} onChange={(e) => setOilVolume(e.target.checked ? 2 : null)} />}
-                                label="2 л"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox checked={oilVolume === 3} onChange={(e) => setOilVolume(e.target.checked ? 3 : null)} />}
-                                label="3 л"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox checked={oilVolume === 4} onChange={(e) => setOilVolume(e.target.checked ? 4 : null)} />}
-                                label="4 л"
-                            />
-                        </Stack>
-                    </div> */}
+                   
                     <div className='row'>
                         <FormControlLabel
                             control={<Checkbox checked={airFilter} onChange={(e) => setAirFilter(e.target.checked)} />}
@@ -141,19 +120,10 @@ export function Calc({ setShowModal }: Props) {
                         <CountUp start={0} end={totalCost} duration={1.5} separator=" " suffix=" ₽" />
 
                     </div>
-                    {/* <Typography>Стоимость: {numberWithSpaces(totalCost)} ₽</Typography> */}
-                    {/* { totalCost !== 0 &&
-                        <div className='row'>
-                            <Button variant="contained" onClick={calculateMaintenance}
-                                sx={{ width: '100%' }}
-                            >
-                                Записаться
-                            </Button>
-                        </div>
-                    } */}
+
                 </Box>
 
-            </div >
+            </div > */}
             <style jsx>{`
                 
                 .background {

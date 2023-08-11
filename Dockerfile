@@ -1,24 +1,19 @@
-# FROM node:16.5.0-alpine
-# RUN apk add --no-cache bash
-# WORKDIR /app
-# COPY ["package.json", "package-lock.json*", "./"]
-# RUN npm install --silent
-# ENV NODE_ENV=production
-# COPY . .
-# EXPOSE 3000
-# # RUN chown -R node /app
-# # USER node
-# RUN npx prisma generate
-# # RUN chmod +x ./wait-for-it.sh
-# # RUN ./wait-for-it.sh db:5432
-# # RUN npx prisma generate
-# # RUN npx prisma migrate deploy
-# RUN npm run build
-# # CMD ["npm", "start"]
+# multy stage dockerfile
+FROM node:lts-alpine as node_modules_dev
+# Create app directory
+WORKDIR /app
+# Install app dependencies
+COPY package*.json ./
+RUN npm ci
 
+FROM node:lts-alpine as node_modules_prod
+# Create app directory
+WORKDIR /app
+# Install app dependencies
+COPY package*.json ./
+RUN npm ci --omit=dev
 
 FROM node:lts-alpine AS builder
-
 
 # Create app directory
 WORKDIR /app
@@ -27,51 +22,35 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 COPY next.config.js ./
+COPY --from=node_modules_dev /app/node_modules ./node_modules
 
-# Install app dependencies
-RUN npm install
 RUN npx prisma generate
-
 
 COPY . .
 
+ENV NODE_ENV=production
+
 RUN npm run build
 
-FROM node:lts-alpine
+# RUN npx prisma migrate deploy
+
+FROM node:lts-alpine 
 
 WORKDIR /app
 
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+# COPY --from=builder /app/node_modules ./node_modules
+COPY package*.json ./
+COPY --from=node_modules_prod /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/next.config.js ./
-
-
-# Install Redis
-RUN apk add --update redis
-
-
-# # Stop Redis service
-# RUN pkill redis-server && redis-cli shutdown
-
-# Copy Redis configuration file
-COPY redis.conf /usr/local/etc/redis/redis.conf  
-
-
-# Set ownership and permissions for Redis configuration file
-RUN chown redis:redis /usr/local/etc/redis/redis.conf
-
-# Set Redis configuration указать актуальный домен 
-ENV REDIS_HOST=https://test.opel-arkont-volgograd.ru 
-ENV REDIS_PORT=6379
+COPY prisma ./prisma/
+COPY next.config.js ./
+COPY xmlTasks ./xmlTasks 
+# COPY .env.prod .env
+RUN npx prisma generate
 
 ENV NODE_ENV=production
-
-
+# RUN echo "* * * * * /usr/local/bin/node /app/xmlTasks/index.js" >> /etc/crontab
+RUN (crontab -u $(whoami) -l; echo "* * * * * /usr/local/bin/node /app/xmlTasks/index.js" ) | crontab -u $(whoami) -
 
 EXPOSE 3000
-
-CMD ["npx", "prisma", "migrate", "deploy", "--preview-feature"]
-# CMD [ "npm", "run", "start" ]

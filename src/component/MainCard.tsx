@@ -34,12 +34,13 @@ export function MainCard() {
             .mainCards {
                     display:flex; 
                     width: 100%;
-                    height: auto;;
-                    justify-content: center; 
+                    height: auto;
+                    justify-content: space-between; 
                     flex-wrap: wrap;
                     margin-top: 100px;
-                    gap:50px;
                     font-family: 'Roboto','sans-serif'; 
+                    flex: 1;
+                    flex-direction: row;
                 }
 
                 .card {
@@ -55,7 +56,6 @@ export function MainCard() {
                     border:solid 1px transparent;
                     transition: 0.6s;
                     cursor: pointer;
-                    
                 }
                 
                 .card:hover{
@@ -87,16 +87,34 @@ export function MainCard() {
                 }
                
                
-               
-                @media(max-width: 340px) {
+
+                @media(max-width: 1300px) {
+                    .card{
+                        width: 300px;
+                    }
+                }
+
+            
+
+
+                {/* @media(max-width: 1300px) {
                     .mainCards {
+                        justify-content: left;
+                        gap:30px;
+                    }
+                } */}
+              
+                @media(max-width: 940px) {
+                    .mainCards {
+                        width: 100%;
                         flex-direction: column;
-                        align-items: center;
+                        align-items: start;
+                        gap:40px;
                     }
 
                     .card {
-                      width: 250px;
-                      height: 130px;
+                      width:  100%;
+                      height: 200px;
                     }
 
                     .title {

@@ -17,20 +17,22 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>,
+    setCarImg: Dispatch<SetStateAction<string[]>>,
     setCar: Dispatch<SetStateAction<CarDto>>,
     refCredit: MutableRefObject<HTMLDivElement>,
     showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
+    setCarStepImg:(Dispatch<SetStateAction<string>>)
 }
 
 
-export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarImg, refCredit }: Props) {
+export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg,  setCarStepImg, setCarImg, refCredit }: Props) {
 
 
-    function showModalImgFunction(x) {
+    function showModalImgFunction(item) {
         setShowModalImg(true)
-        setCarImg(x)
+        // setCarImg(car.img)
+        setCarStepImg(item)
     }
 
     function showModalFunction() {
@@ -175,7 +177,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                 {/* <ImageList sx={{ width: '100%', height: '100%' }} cols={colImg} rowHeight={'auto'}> */}
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
-                                        sx={{ cursor: 'zoom-in' }}
+                                        sx={{ cursor: 'zoom-in',zIndex:'1'}}
                                     >
                                         {/* <img
                                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
@@ -281,7 +283,10 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
-                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', cursor: 'pointer' }}
+                                                sx={{ 
+                                                    backgroundColor: '#0c54a0', fontWeight: 'bold', height: '50px', 
+                                                    cursor: 'pointer',borderRadius:'0px'
+                                             }}
                                                 onClick={showModalFunction}
                                             >Купить онлайн</Button>
                                         </div>
@@ -291,7 +296,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                         <div className="name" style={{ fontSize: '18px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
                                             <Button variant="outlined"
-                                                sx={{ fontWeight: 'bold', height: '50px', cursor: 'pointer' }}
+                                                sx={{ fontWeight: 'bold', height: '50px', cursor: 'pointer',borderRadius:'0px',border:'solid 1px #0c54a0',color:'#0c54a0' }}
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
@@ -330,7 +335,6 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                     width: 100%;
                     height:auto;
                     flex-direction: column;
-                    z-index: -1;
                 }
 
                 .headerPhoto {

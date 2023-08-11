@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import db from "../../../../prisma"
-import { redisClient } from "../../../../src/services/redis";
+import { getRedisInstance } from "../../../../src/services/redis";
 
 
 
@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (req.method === 'GET') {
                 if (typeof clientToken === 'string') {
                     const cacheKey = `watchedCars:${clientToken}`;
-                    const cachedData = await redisClient.get(cacheKey);
+                    const cachedData = await getRedisInstance().get(cacheKey);
                     if (cachedData) {
                         const watchedCarUser = JSON.parse(cachedData);
                         return res.status(200).send({ watchedCarUser });
@@ -38,8 +38,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             }
                         }
                     );
-                    await redisClient.set(cacheKey, JSON.stringify(watchedCarUser));
-                    await redisClient.set(`${cacheKey}:timestamp`, Date.now().toString());
+                    await getRedisInstance().set(cacheKey, JSON.stringify(watchedCarUser));
+                    await getRedisInstance().set(`${cacheKey}:timestamp`, Date.now().toString());
                     return res.status(200).send({ watchedCarUser});
                 }
             } else if (req.method === 'POST') {
@@ -72,7 +72,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             }
                         });
                         const cacheKey = `watchedCars:${clientToken}`;
-                        await redisClient.del(cacheKey);
+                        await getRedisInstance().del(cacheKey);
                         return res.status(200).send(carWatched);
                     } else {
                         return res.status(200).send('Машина уже добавлена');

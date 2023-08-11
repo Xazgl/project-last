@@ -259,6 +259,9 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                     </ButtonGroup>
                 </div>
                 <div className="rowSideBar" id="column" >
+                    <FormControlLabel control={<Checkbox  />} label="В поставке" />
+                </div>
+                <div className="rowSideBar" id="column" >
                     <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -268,7 +271,8 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                             <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Бренд</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Paper elevation={0} sx={{ maxHeight: '200px', overflow: 'auto' }}>
+                            {/* <Paper elevation={0} sx={{ maxHeight: '200px', overflow: 'auto' }}> */}
+                            <div className='scrollBrand'>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                     <a
                                         href="/brands/any"
@@ -321,8 +325,10 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                                             />
                                         </a>
                                     ))}
+
                                 </Box>
-                            </Paper>
+                            </div>
+                            {/* </Paper> */}
 
                             {/* <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                                 onChange={selectBrandHandler}>
@@ -679,6 +685,33 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                     height: auto;
                     padding:20px;
                     border-bottom: 1px solid #d4d3d34e;
+                }
+
+                .scrollBrand{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    overflow: auto;
+                    max-height: 200px;
+                }
+
+
+                .scrollBrand::-webkit-scrollbar {
+                  width: 7px; /* Ширина скроллбара */
+                }
+                
+                .scrollBrand::-webkit-scrollbar-track {
+                  background-color: #0c53a0ab ; /* Цвет фона трека скроллбара */
+    
+                }
+                
+                .scrollBrand::-webkit-scrollbar-thumb {
+                  border-radius: 4px; 
+                  background-color: #0c54a0 ; /* Цвет ползунка скроллбара */
+                }
+                
+                .scrollBrand::-webkit-scrollbar-thumb:hover {
+                  background-color: #555; /* Цвет ползунка скроллбара при наведении */
                 }
 
                 #center{

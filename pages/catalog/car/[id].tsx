@@ -11,17 +11,20 @@ import { InfoOffice } from "../../../src/component/actual/currentCar/InfoOffice"
 import { InfoSale } from "../../../src/component/actual/currentCar/InfoSale"
 import { FooterMain } from "../../../src/component/actual/FooterMain"
 import BarMenu from "../../../src/component/BarMenu"
-import { MenuBar } from "../../../src/component/Menu"
+
 import { Modal } from "../../../src/component/Modal"
-import { ModalImg } from "../../../src/component/ModalImg"
+import { ModalImgArray } from "../../../src/component/ModalImgArray"
 import { FooterMainNew } from "../../../src/component/actual/menuNew/FooterMain"
+import { MenuBar } from "../../../src/component/Menu"
+import { MenuBarNew } from "../../../src/component/actual/menuNew/Menu"
 
 const CarPage: NextPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
   const refFooter = useRef<HTMLDivElement>(null)
-  const [carImg, setCarImg] = useState('')
+  const [carImg, setCarImg] = useState<string[]>()
+  const [carStepImg, setCarStepImg] = useState('')
   const router = useRouter()
   const [car, setCar] = useState<CarDto>(null) // TODO: написать тип ДТО {}
   const refCredit = useRef<HTMLDivElement>(null)
@@ -40,6 +43,7 @@ const CarPage: NextPage = () => {
         const carFetch = await res.json()
         console.log(carFetch);
         setCar(carFetch)
+        setCarImg(carFetch.img)
       }
       const resWatched = await fetch('/api/favorite/watchedcar/' + router.query.id, {
         method: 'POST',
@@ -67,28 +71,32 @@ const CarPage: NextPage = () => {
         <meta name="description" content="Work with me" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MenuBar />
+      <MenuBarNew setShowModal={setShowModal} />
       <BarMenu />
       <div className='background'>
         <div className='content'>
           <InfoCarHeader car={car} refCredit={refCredit} setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal}
-            showModalImg={showModalImg} setShowModalImg={setShowModalImg}
+            showModalImg={showModalImg} setShowModalImg={setShowModalImg} setCarStepImg={setCarStepImg}
           />
           <InfoCarHeaderMobile car={car} refCredit={refCredit} setCar={setCar} setCarImg={setCarImg}
             showModal={showModal} setShowModal={setShowModal} showModalImg={showModalImg}
-            setShowModalImg={setShowModalImg}
+            setShowModalImg={setShowModalImg} setCarStepImg={setCarStepImg}
           />
-          <InfoCarTable car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-          <InfoSale car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-          <InfoCredit car={car} refCredit={refCredit} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
-          <InfoOffice car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} />
+          <InfoCarTable car={car} showModal={showModal} setShowModal={setShowModal} />
+          <InfoSale car={car} showModal={showModal} setShowModal={setShowModal} />
+          <InfoCredit car={car} refCredit={refCredit} showModal={showModal} setShowModal={setShowModal} />
+          <InfoOffice car={car} showModal={showModal} setShowModal={setShowModal} />
           {/* <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} /> */}
         </div>
       </div >
       <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
-        showModalImg && <ModalImg carImg={carImg} showModalImg={showModalImg} setShowModalImg={setShowModalImg} />
+        showModalImg && <ModalImgArray carImg={carImg}
+          showModalImg={showModalImg}
+          setShowModalImg={setShowModalImg}
+          carStepImg={carStepImg}
+        />
       }
 
       {

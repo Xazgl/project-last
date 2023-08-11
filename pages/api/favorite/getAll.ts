@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import db from "../../../prisma"
-import { redisClient } from "../../../src/services/redis";
+import { getRedisInstance } from "../../../src/services/redis";
 
 
 
@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     // Генерируем уникальный ключ
                     const cacheKey = `favoriteCars:${clientToken}`;
                     // Проверяем Редим кэш
-                    const cachedData = await redisClient.get(cacheKey);
+                    const cachedData = await getRedisInstance().get(cacheKey);
                     if (cachedData) {
                         const favoriteCarUser = JSON.parse(cachedData);
                         return res.status(200).send({ favoriteCarUser });
@@ -40,8 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         },
                     });
                     // Сохраняем в Redis с временными метками 
-                    await redisClient.set(cacheKey, JSON.stringify(favoriteCarUser));
-                    await redisClient.set(`${cacheKey}:timestamp`, Date.now().toString());
+                    await getRedisInstance().set(cacheKey, JSON.stringify(favoriteCarUser));
+                    await getRedisInstance().set(`${cacheKey}:timestamp`, Date.now().toString());
                     return res.status(200).send({ favoriteCarUser });
                 }
             }

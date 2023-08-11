@@ -53,15 +53,19 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     width: '100%',
                     border: '2px solid #d1d7dd',
                     padding: '20px',
-                    display:'flex',
-                    justifyContent:'center',
-                    flexDirection:'column',
-                    alignItems:'center'
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center'
                 }}>
                     <div className="title">Новые автомобили</div>
                     {carArr.length > 0 ?
-                        <Box sx={{ width: 270, flexGrow: 1,display:'flex',
-                        flexDirection:'column' }}>
+                        <Box sx={{
+                            width: 270,
+                            flexGrow: 1,
+                            display: 'flex',
+                            flexDirection: 'column'
+                        }}>
                             <AutoPlaySwipeableViews
                                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                                 index={activeStep}
@@ -70,11 +74,11 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                             >
                                 {
                                     carArr.map(car => {
-                                        return <Link  key={car.id}
-                                        href={{
-                                            pathname: '/catalog/car/[id]',
-                                            query: { id: car.id }
-                                        }}>
+                                        return <Link key={car.id}
+                                            href={{
+                                                pathname: '/catalog/car/[id]',
+                                                query: { id: car.id }
+                                            }}>
                                             <div className="card" key={car.id}>
                                                 <div className="imgDiv" id="desk">
                                                     {/* <img src={car.img[0]} 
@@ -89,7 +93,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                                         height={200}
                                                         // width: 221px;
                                                         //height: 166px;
-                                                        // layout="fill"
+                                                        layout="fill"
                                                         loading="lazy"
                                                     // sizes="(max-width: 640px) 100vw"
                                                     />
@@ -130,7 +134,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     })
                                 }
                             </AutoPlaySwipeableViews>
-                            <MobileStepper 
+                            <MobileStepper
                                 steps={maxSteps}
                                 sx={{ backgroundColor: 'transparent' }}
                                 position="static"
@@ -222,7 +226,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     width: 100%;
                     height: 40px;
                     justify-content: start; 
-                    text-align: center2
+                    text-align: center;
                     font-size: 40px;
                     font-weight: bold;
                     gap:20px;
@@ -271,8 +275,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     color: #0c54a0;
                     font-family: 'Roboto',sans-serif;
                     font-weight: 500;
-
-                    
                 }
 
                 .cardDesc {
@@ -387,7 +389,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                 }
 
 
-                 .btnDiv {
+                .btnDiv {
                     display: flex;
                     width: 100%;
                     height: 50px;

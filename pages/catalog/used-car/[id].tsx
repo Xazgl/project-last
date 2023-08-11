@@ -13,6 +13,8 @@ import BarMenu from "../../../src/component/BarMenu"
 import { MenuBar } from "../../../src/component/Menu"
 import { Modal } from "../../../src/component/Modal"
 import { ModalImg } from "../../../src/component/ModalImg"
+import { MenuBarNew } from "../../../src/component/actual/menuNew/Menu"
+import { FooterMainNew } from "../../../src/component/actual/menuNew/FooterMain"
 
 const CarPage: NextPage = () => {
     const [showModal, setShowModal] = useState(false)
@@ -55,7 +57,7 @@ const CarPage: NextPage = () => {
                 <meta name="description" content="Work with me" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MenuBar />
+            <MenuBarNew setShowModal={setShowModal} />
             <BarMenu />
             <InfoCarHeaderUsed car={car} setCar={setCar} setCarImg={setCarImg}
                 showModal={showModal} setShowModal={setShowModal} showModalImg={showModalImg}
@@ -70,7 +72,7 @@ const CarPage: NextPage = () => {
             <InfoCreditUsed car={car} setCarImg={setCarImg} showModal={showModal}
                 setShowModal={setShowModal} refCredit={refCredit}
             />
-            <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+            <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
             {/* <InfoOffice car={car} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal} /> */}
 

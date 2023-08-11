@@ -16,59 +16,19 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>,
     refCredit: MutableRefObject<HTMLDivElement>,
 }
 
 
-export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}: Props) {
+export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
 
-
-    function driverTypeStr(x) {
-        if (x === 'front') {
-            return "Передний привод"
-        }
-        if (x === 'full_4wd') {
-            return "Полный привод"
-        }
-    }
-
-    function showModalImg(x) {
-        setShowModal(true)
-        setCarImg(x)
-    }
-
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
-
-    function engineTypeName(x) {
-        if (x === 'diesel') {
-            return 'дизель'
-        }
-        if (x === 'petrol') {
-            return 'бензин'
-        }
-    }
-
-    function gearBoxName(x) {
-        if (x === 'automatic') {
-            return 'Автомат'
-        }
-        if (x === 'robotized') {
-            return 'Автомат'
-        }
-        if (x === 'variator') {
-            return 'Вариатор'
-        }
-        if (x === 'manual') {
-            return 'Механика'
-        }
     }
 
 
@@ -259,7 +219,7 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}
                     padding: 10px;
                     border: solid 1px #ecebeb;
                     border-radius: 7px;
-                    
+                    gap:10px;
                 }
 
                 .column{
@@ -297,6 +257,9 @@ export function InfoCredit({ car, showModal, setShowModal, setCarImg ,refCredit}
                     .backgroundBlock{
                         padding: 20px;
                         height: auto;
+                        width: 100%;
+                    }
+                    .column {
                         width: 100%;
                     }
                 }

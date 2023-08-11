@@ -62,7 +62,7 @@ function SwiperTest({ cars }: { cars: AllUsedCarDto  }) {
         {/* <div className="leftC" ></div> */}
         <div className='cards' id="desktop">
           <div className='descBrand'>
-            <div className='titleBrand'>Авто в наличии </div>
+            <div className='titleBrand'>Авто в наличие </div>
               <SwiperEl cars={cars} />
               {/* <div className='columnBrand'>\
                 

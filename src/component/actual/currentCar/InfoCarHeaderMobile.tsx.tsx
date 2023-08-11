@@ -16,20 +16,23 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>,
+    setCarImg: Dispatch<SetStateAction<string[]>>,
     setCar: Dispatch<SetStateAction<CarDto>>,
     refCredit: MutableRefObject<HTMLDivElement>,
     showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
+    setCarStepImg:(Dispatch<SetStateAction<string>>)
 }
 
 
-export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarImg, refCredit }: Props) {
+export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarStepImg, setCarImg, refCredit }: Props) {
 
-    function showModalImgFunction(x) {
+    function showModalImgFunction(item) {
         setShowModalImg(true)
-        setCarImg(x)
+        // setCarImg(car.img)
+        setCarStepImg(item)
     }
+
 
     function showModalFunction() {
         setShowModal(true)
@@ -226,7 +229,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
-                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', width: '100%' }}
+                                                sx={{ backgroundColor: '#0c54a0', fontWeight: 'bold', height: '50px', width: '100%',borderRadius:'0px' }}
                                                 onClick={showModalFunction}
                                             >Купить онлайн</Button>
                                         </div>
@@ -235,7 +238,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                         <div className="name" style={{ fontSize: '15px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
                                             <Button variant="outlined"
-                                                sx={{ fontWeight: 'bold', height: '50px', width: '100%' }}
+                                                sx={{ fontWeight: 'bold', height: '50px', width: '100%',border:'solid 1px #0c54a0',color:'#0c54a0',borderRadius:'0px' }}
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
@@ -326,6 +329,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     font-size: 14px;
                     font-weight: bold;
                     font-family: 'Roboto','sans-serif'; 
+                    cursor: pointer;
                 }
 
                 #tradeIn:hover {

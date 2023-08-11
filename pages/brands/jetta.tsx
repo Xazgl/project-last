@@ -201,7 +201,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 //         }
 //       );
 //       // Сохраняем данные в Redis на день
-//       redisClient.set('cars-Geely', JSON.stringify(cars), 'EX', 21600);
+//       getRedisInstance().set('cars-Geely', JSON.stringify(cars), 'EX', 21600);
 //     } else {
 //       cars = JSON.parse(carsData) as CarDtoWithoutFavorite[]; // Преобразование строки в массив объектов типа Car
 //     }
@@ -215,7 +215,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 //         },
 //       }).then((result) => result.map((item) => item.brandName).filter(Boolean));
 //       // Сохраняем данные в Redis на день
-//       redisClient.set('brands', JSON.stringify(brands), 'EX', 21600);
+//       getRedisInstance().set('brands', JSON.stringify(brands), 'EX', 21600);
 //     } else {
 //       brands = JSON.parse(brandsData) as string[]; // Преобразование строки в массив объектов типа Car
 //     }

@@ -1,45 +1,21 @@
 import Link from "next/link";
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import chevrolet from '/public/images/logo-brends/chev.webp';
-import chery from '/public/images/logo-brends/chery.webp';
-import datsun from '/public/images/logo-brends/da.webp';
-import faw from '/public/images/logo-brends/faw.webp';
-import ford from '/public/images/logo-brends/ford.webp';
-import hyundai from '/public/images/logo-brends/hy.webp';
-import jaguar from '/public/images/logo-brends/ja.webp';
-import kia from '/public/images/logo-brends/kia.webp';
-import landrov from '/public/images/logo-brends/lr.webp';
-import mitsubishi from '/public/images/logo-brends/mmc.webp';
-import nissan from '/public/images/logo-brends/nis.webp';
-import opel from '/public/images/logo-brends/op.webp';
-import peugeot from '/public/images/logo-brends/peu.webp';
-import renault from '/public/images/logo-brends/re.webp';
-import subaru from '/public/images/logo-brends/sub.webp';
-import suzuki from '/public/images/logo-brends/suz.webp';
-import uaz from '/public/images/logo-brends/yaz.webp';
-import hisun from '/public/images/logo-brends/hisun.webp';
-import geely from '/public/images/logo-brends/geely.webp';
-import exeed from '/public/images/logo-brends/exeed.webp';
-import usedcars from '/public/images/logo-brends/usedcars.webp';
-import lovol from '/public/images/logo-brends/lov.webp';
-
-import arkontSelect from '/public/images/logo-brends/arkontSelect.webp';
-import baic from '/public/images/logo-brends/baic.webp';
-import jac from '/public/images/logo-brends/jac.webp';
-import jetour from '/public/images/logo-brends/jetour.webp';
-import kaiyi from '/public/images/logo-brends/kaiyi.webp';
-import jetta from '/public/images/logo-brends/jetta.webp';
-
-
-
-
+import { brandsCards } from "../../services/labelsBrands";
 
 
 export function Labels() {
     return (
         <>
             <div className="background" >
-                <div className="labels" >
+                <div className="labels">
+                    {brandsCards.map((carBrand, index) => (
+                         <Link href={carBrand.link} key={carBrand.id}>
+                        <div className="label" key={index}>
+                            <img alt={carBrand.id} src={carBrand.minLabel.src} title={carBrand.id} />
+                        </div>
+                        </Link>
+                    ))}
+                </div>
+                {/* <div className="labels" >
                     <div className="label" >
                         <img alt="" src={chevrolet.src} title="" ></img>
                     </div>
@@ -124,7 +100,10 @@ export function Labels() {
                     <div className="label" >
                         <img alt="" src={jetta.src} title="" ></img>
                     </div>
-                </div>
+                    <div className="label" >
+                        <img alt="" src={donf.src} title="" ></img>
+                    </div>
+                </div> */}
             </div>
 
             <style jsx>{`
@@ -141,25 +120,23 @@ export function Labels() {
 
                 .labels {
                     display:flex; 
-                    width: 1100px;
+                    width: 100%;
                     height: 100%;
-                    justify-content: left; 
+                    justify-content: space-between; 
                     align-items: center;
-                    gap:20px;
+                    gap:50px;
                     flex-wrap: wrap;
                 }
-
 
                 .label {
                     display: flex;
                     transition: 0.6s;
                     align-items: center;
-
+                    cursor: pointer;
                 }
 
                 .label:hover {
                     transform: scale(1.20);
-                    
                 }
                 
                 img {
@@ -206,6 +183,7 @@ export function Labels() {
                       height: 27px;
                     }
                 }
+                
                 @media(max-width: 250px) {
                     .title { 
                         font-size:9px;

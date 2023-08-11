@@ -129,7 +129,7 @@ export function MenuBarNew({ setShowModal }: Props) {
             <span>Каталог </span>
             <ul className={`bottomUl ${hoveredItemId === 'catalog' ? 'show' : ''}`}>
               <Link href={'/catalog/new-car'}>
-                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличии</li></a>
+                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличие</li></a>
               </Link>
               <Link href={'/catalog/used-car'}>
                 <a rel="noopener noreferrer"> <li className="f">Автомобили с пробегом</li></a>
@@ -260,8 +260,7 @@ export function MenuBarNew({ setShowModal }: Props) {
     }
 
     .bar {
-        justify-content: space-between;;
-        
+        justify-content: space-between;
         font-family: 'Roboto','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:16px;
@@ -271,7 +270,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         margin-top:0;
         display:flex;
         align-items:center;
-        height: 92px;
+        height: 60px;
         color:black;
         top:0;
       }

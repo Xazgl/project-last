@@ -5,7 +5,9 @@ import router from "next/router";
 import { Box } from '@mui/material';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import res from '/public/images/catalogPages/footer/res.svg'
+import TelegramIcon from '@mui/icons-material/Telegram';
+import ChatIcon from '@mui/icons-material/Chat';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 type Footer = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -43,8 +45,8 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
   return (
     <>
       <div className="footer">
-        <div className='background'>
-          <div className='content'>
+        <div className='background' >
+          <div className='content' id="desk">
             <div className='row'>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignContent: 'start', gap: '10px' }}>
                 <Box sx={{ direction: 'flex', justifyContent: 'start' }}>
@@ -67,28 +69,36 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
               <Link href={'/brands/all'}>
                 <a rel="noopener noreferrer">
                   <div className="el">
-                    Автомобили в продаже
+                    <span>
+                      Автомобили в продаже
+                    </span>
                   </div>
                 </a>
               </Link>
               <Link href={'/car-repair/service-form'}>
                 <a rel="noopener noreferrer">
                   <div className="el">
-                    Запись на сервис
+                    <span>
+                      Запись на сервис
+                    </span>
                   </div>
                 </a>
               </Link>
               <Link href={'/job/joball'}>
                 <a rel="noopener noreferrer">
                   <div className="el">
-                    Вакансии
+                    <span>
+                      Вакансии
+                    </span>
                   </div>
                 </a>
               </Link>
               <Link href={'/company/contact'}>
                 <a rel="noopener noreferrer">
                   <div className="el">
-                    Контакты
+                    <span>
+                      Контакты
+                    </span>
                   </div>
                 </a>
               </Link>
@@ -98,19 +108,84 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
                 <Box sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
                   <Link href={'tg://resolve?domain=arkont_service/'}>
                     <a rel="noopener noreferrer">
-                      <div className="circle">Telegram</div>
+                      <div className="circle">
+                        <TelegramIcon />
+                      </div>
                     </a>
                   </Link>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                  <div className="circle">Online-чат</div>
+                  <div className="circle">
+                    <ChatIcon />
+                  </div>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'start', width: '100%' }}>
-                  <div className="circle" onClick={showModal}>Звонок</div>
+                  <div className="circle" onClick={showModal}>
+                    <PhoneIcon />
+                  </div>
                 </Box>
               </div>
             </div>
           </div>
+        </div >
+
+        <div className='content' id="mob">
+          <ul>
+            <li>
+              <div className="label"></div>
+            </li>
+
+            <li>
+              <button className='btnMenu'>
+                <LocalPhoneIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> +7 (8442) 29 25 05
+              </button>
+            </li>
+
+            {/* <li>
+              <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
+                <button className='btnMenu' >
+                  <AddLocationAltIcon sx={{ color: '#f9b518 ', fontSize: '14px' }} /> Волгоград
+                </button>
+              </Link>
+            </li> */}
+
+            <li>
+              <Link href={'/brands/all'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Автомобили в продаже
+                  </div>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href={'/car-repair/service-form'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Запись на сервис
+                  </div>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href={'/job/joball'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Вакансии
+                  </div>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href={'/company/contact'}>
+                <a rel="noopener noreferrer">
+                  <div className="el">
+                    Контакты
+                  </div>
+                </a>
+              </Link>
+            </li>
+          </ul >
         </div >
       </div >
 
@@ -132,6 +207,10 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         justify-content: center;
         width: '100%' ;
         background-color:#0c54a0;
+      }
+
+      #mob {
+        display: none;
       }
   
       .content {
@@ -157,8 +236,8 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
       }
 
       .circle {
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         background-color: #f9b518;
         display: flex;
@@ -222,70 +301,120 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         font-size: 14px;
         margin-top: 10px;
       }
+      ul {
+        list-style: none;
+        cursor: pointer;
+      }
 
+      button {
+        cursor: pointer;
+      }
 
-          @media(max-width: 1300px) {
-            .content {  
-              width: 970px; 
-            }
-          }
+      span::after{
+        position:absolute;
+        content:"";
+        width:0%;
+        height:1.7px;
+        background-color:#fdb913;
+        left:50%;
+        bottom:-1px;  
+        transition:all 0.3s ease-in-out;
+    }
 
-          @media(max-width: 900px) {
-            .content{  
-              width: 640px; 
-            }
-            .row{
-              flex-direction: column;
-              align-items: start;
-              gap:10px;
-            }
-            .column {
-              width: 40%;
-            }
-            .rowLeft {
-              width: 60%;
-              align-items: start;
-            }
-            #left {
-              padding: 0px;
-            }
-          }
+    span:hover {
+        cursor:pointer;
+        transform:scale(1.01);
+        transition:0.2s;
+    }
+      
 
-          @media(max-width: 640px) {
-            .content{  
-              width: 450px; 
-            }
-            .circle {
-              width: 67px;
-              height: 67px;
-              font-size: 13px;
-            }
-          }    
+      @media(max-width: 1300px) {
+        .content {  
+          width: 970px; 
+        }
+      }
+      
+      @media(max-width: 900px) {
+        .content{  
+          width: 640px; 
+        }
+        .row{
+          flex-direction: column;
+          align-items: start;
+          gap:10px;
+        }
+        .column {
+          width: 40%;
+        }
+        .rowLeft {
+          width: 60%;
+          align-items: start;
+        }
+        #left {
+          padding: 0px;
+        }
+      }
+      
+      @media(max-width: 640px) {
+        .content{  
+          width: 450px; 
+        }
+        .circle {
+          width: 67px;
+          height: 67px;
+          font-size: 13px;
+        }
+      }    
+      
+      @media(max-width: 500px) {
+        .content{  
+          width: 360px; 
+        }
+        .rowLeft {
+          display: none;
+          width: 0px;
+        }
+        #left {
+          display: none;
+        }
+        .content {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .row {
+          width: 100%;
+          align-items: center;
+        }
+        #mob {
+          display: flex;
+        }
+        #desk {
+          display: none;
+        }
+        ul {
+          width: 100%;
           
-          @media(max-width: 450px) {
-            .content{  
-              width: 360px; 
-            }
-            .rowLeft{
-              display: none;
-            }
-            #left {
-              display: none;
-            }
-            .row {
-              width: 100%;
-            }
-          }
-
-          @media(max-width: 360px) {
-            .background {
-              padding-left: 10px;
-              padding-right: 10px;
-            }
-            .content{  
-              width:90%; 
-            }
-          }
+        }
+        .label {
+          width:150px
+        }
+      }
+      
+      @media(max-width: 360px) {
+        .background {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .content{  
+          width:90%; 
+        }
+      }
+      @media(max-width: 300px) {
+        .label {
+           width:150px;
+        }
+      }
     `}</style>
     </>
   )

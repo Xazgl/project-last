@@ -317,6 +317,7 @@ import monjaro from '/public/images/catalogPages/geely/models/monjaro.webp';
 //Chery
 import tiggo4 from '/public/images/catalogPages/chery/models/tiggo4.png';
 import tiggo7pro from '/public/images/catalogPages/chery/models/tiggo7pro.png';
+import tiggo7ProMax from '/public/images/catalogPages/chery/models/tiggo7pro.png';
 import tiggo8 from '/public/images/catalogPages/chery/models/tiggo8.png';
 import tiggo8pro from '/public/images/catalogPages/chery/models/tiggo8pro.png';
 import tiggo8promax from '/public/images/catalogPages/chery/models/tiggo8promax.webp';
@@ -343,6 +344,9 @@ import sgrBort from '/public/images/catalogPages/uaz/models/cgr-bort.webp';
 import patriotPickup from '/public/images/catalogPages/uaz/models/patriot-pickup.webp';
 import patriotProfi from '/public/images/catalogPages/uaz/models/patriot-profi.webp';
 import ptriotProfiReferedj from '/public/images/catalogPages/uaz/models/ptriot-profi-referedj.webp';
+import yaz2360 from '/public/images/catalogPages/uaz/models/2360.webp';
+import yaz3303 from '/public/images/catalogPages/uaz/models/3303.webp';
+import yaz3909 from '/public/images/catalogPages/uaz/models/3909.webp';
 //hundai
 import tucson from '/public/images/catalogPages/hyundai/models/tucson.png';
 import santaFE from '/public/images/catalogPages/hyundai/models/santafe.png';
@@ -360,7 +364,13 @@ import j7 from '/public/images/catalogPages/jac/models/j7.webp';
 import js6 from '/public/images/catalogPages/jac/models/js6.webp';
 import s3 from '/public/images/catalogPages/jac/models/s3.webp';
 import t6 from '/public/images/catalogPages/jac/models/t6.webp';
-
+import t8Pro from '/public/images/catalogPages/jac/models/t8.webp';
+//volkswagen
+import taos from '/public/images/catalogPages/volk/models/taos.png';
+//baic
+import bj40 from '/public/images/catalogPages/baic/models/bj40.webp';
+import u5 from '/public/images/catalogPages/baic/models/u5.webp';
+import x35 from '/public/images/catalogPages/baic/models/x35.webp';
 
 
 
@@ -411,289 +421,248 @@ export const ModelPhotoList: Model[] = [
     },
     {
         id: 7,
+        name: 'Tiggo 7 Pro',
+        img: `${tiggo7ProMax.src}`
+    },
+    {
+        id: 8,
         name: 'Tiggo 7 Pro Max',
         img: `${tiggo7pro.src}`
     },
     {
-        id: 8,
+        id: 9,
         name: 'Tiggo 8',
         img: `${tiggo8.src}`
     },
 
     {
-        id: 9,
+        id: 10,
         name: 'Tiggo 8 Pro',
         img: `${tiggo8pro.src}`
     },
     {
-        id: 10,
+        id: 11,
         name: 'Arrizo 8',
         img: `${arrizo8.src}`
     },
     //kaiyi
     {
-        id: 11,
+        id: 12,
         name: 'E5',
         img: `${e5.src}`
     },
     //faw
     {
-        id: 12,
+        id: 13,
         name: 'Bestune T77',
         img: `${t77.src}`
     },
     {
-        id: 13,
+        id: 14,
         name: 'Bestune B70',
         img: `${b70.src}`
     },
     {
-        id: 14,
+        id: 15,
         name: 'Bestune T55',
         img: `${t55.src}`
     },
     //exeed
     {
-        id: 15,
+        id: 16,
         name: 'LX AWD',
         img: `${awd.src}`
     },
     {
-        id: 16,
+        id: 17,
         name: 'TXL',
         img: `${txl.src}`
     },
     {
-        id: 17,
+        id: 18,
         name: 'LX',
         img: `${lx.src}`
     },
     {
-        id: 18,
+        id: 19,
         name: 'Bestune T55',
         img: `${t55.src}`
     },
     {
-        id: 19,
+        id: 20,
         name: 'TXL 2.0',
         img: `${txl2.src}`
     },
     {
-        id: 20,
+        id: 21,
         name: 'VX',
         img: `${vx.src}`
     },
     {
-        id: 21,
+        id: 22,
         name: 'RX',
         img: `${rx.src}`
     },
     //УАЗ
     {
-        id: 22,
+        id: 23,
         name: 'Patriot',
         img: `${patriot.src}`
     },
     {
-        id: 23,
+        id: 24,
         name: 'Pickup',
         img: `${patriotPickup.src}`
     },
     {
-        id: 24,
+        id: 25,
         name: '3741',
         img: `${sgr.src}`
     },
     {
-        id: 25,
+        id: 26,
         name: 'Sgr',
         img: `${sgr.src}`
     },
     {
-        id: 26,
+        id: 27,
         name: 'Profi',
         img: `${patriotProfi.src}`
     },
     {
-        id: 27,
+        id: 28,
         name: 'Hunter',
         img: `${hunter.src}`
     },
+    {
+        id: 29,
+        name: 'CГР',
+        img: `${sgr.src}`
+    },
+    {
+        id: 30,
+        name: 'Профи',
+        img: `${patriotProfi.src}`
+    },
+    {
+        id: 31,
+        name: '2360',
+        img: `${yaz2360.src}`
+    },
+    {
+        id: 32,
+        name: '3303',
+        img: `${yaz3303.src}`
+    },
+    {
+        id: 33,
+        name: '3909',
+        img: `${yaz3909.src}`
+    },
+    {
+        id: 34,
+        name: '3962',
+        img: `${sgr.src}`
+    },
+    {
+        id: 35,
+        name: '452',
+        img: `${sgr.src}`
+    },
     //hundai
     {
-        id: 28,
+        id: 36,
         name: 'Santa Fe',
         img: `${santaFE.src}`
     },
     {
-        id: 29,
+        id: 37,
         name: 'Tucson',
         img: `${tucson.src}`
     },
     //kia
     {
-        id: 30,
+        id: 38,
         name: 'Ceed',
         img: `${ceed.src}`
     },
     //jetour
     {
-        id: 31,
+        id: 39,
         name: 'X90 PLUS',
         img: `${x90.src}`
     },
     {
-        id: 32,
+        id: 40,
         name: 'DASHING',
         img: `${dashing.src}`
     },
     //jetta
     {
-        id: 33,
+        id: 41,
         name: 'VA3',
         img: `${va3.src}`
     },
     {
-        id: 34,
+        id: 42,
         name: 'VS5',
         img: `${vs5.src}`
     },
     {
-        id: 35,
+        id: 43,
         name: 'VS7',
         img: `${vs7.src}`
     },
     //jac
     {
-        id: 36,
+        id: 44,
         name: 'J7',
         img: `${j7.src}`
     },
     {
-        id: 37,
+        id: 45,
         name: 'JS6',
         img: `${js6.src}`
     },
     {
-        id: 38,
+        id: 46,
         name: 'S3',
         img: `${s3.src}`
     },
     {
-        id: 39,
+        id: 47,
         name: 'T6',
         img: `${t6.src}`
     },
+    {
+        id: 52,
+        name: 'T8 Pro',
+        img: `${t8Pro.src}`
+    },
+    //volk
+    {
+        id: 48,
+        name: 'Taos',
+        img: `${taos.src}`
+    },
+    //baic
+    {
+        id: 49,
+        name: 'BJ40',
+        img: `${bj40.src}`
+    },
+    {
+        id: 50,
+        name: 'U5 plus' || 'U5+',
+        img: `${u5.src}`
+    },
+    {
+        id: 51,
+        name: 'X35',
+        img: `${x35.src}`
+    },
 
 ]
-
-
-
-//geely
-import geelyCard from '/public/images/catalogPages/all/cards/blue/geely.webp';
-import geelyCard2 from '/public/images/catalogPages/all/cards/logo/geely.jpg';
-
-//arkont-select
-import selectCard from '/public/images/catalogPages/all/cards/blue/arkont_select.webp';
-import selectCard2 from '/public/images/catalogPages/all/cards/logo/arkont_select.webp';
-//arkont-baic
-import baicCard from '/public/images/catalogPages/all/cards/blue/baic.webp';
-import baicCard2 from '/public/images/catalogPages/all/cards/logo/baic.webp';
-//chery
-import cheryCard from '/public/images/catalogPages/all/cards/blue/chery.webp';
-import cheryCard2 from '/public/images/catalogPages/all/cards/logo/chery.webp';
-//exeed
-import exeedCard from '/public/images/catalogPages/all/cards/blue/exeed.webp';
-import exeedCard2 from '/public/images/catalogPages/all/cards/logo/exeed.webp';
-//faw
-import fawCard from '/public/images/catalogPages/all/cards/blue/faw.webp';
-import fawCard2 from '/public/images/catalogPages/all/cards/logo/faw.webp';
-//hyundai
-import hyundaiCard from '/public/images/catalogPages/all/cards/blue/hyundai.webp';
-import hyundaiCard2 from '/public/images/catalogPages/all/cards/logo/hyundai.webp';
-//jac
-import jacCard from '/public/images/catalogPages/all/cards/blue/jac.webp';
-import jacCard2 from '/public/images/catalogPages/all/cards/logo/jac.webp';
-//jetour
-import jetourCard from '/public/images/catalogPages/all/cards/blue/jetour.webp';
-import jetourCard2 from '/public/images/catalogPages/all/cards/logo/jetour.webp';
-//jetta
-import jettaCard from '/public/images/catalogPages/all/cards/blue/jetta.webp';
-import jettaCard2 from '/public/images/catalogPages/all/cards/logo/jetta.webp';
-//kaiyi
-import kaiyiCard from '/public/images/catalogPages/all/cards/blue/kaiyi.webp';
-import kaiyiCard2 from '/public/images/catalogPages/all/cards/logo/kaiyi.webp';
-//kia
-import kiaCard from '/public/images/catalogPages/all/cards/blue/kia.webp';
-import kiaCard2 from '/public/images/catalogPages/all/cards/logo/kia.webp';
-//uaz
-import uazCard from '/public/images/catalogPages/all/cards/blue/uaz.webp';
-import uazCard2 from '/public/images/catalogPages/all/cards/logo/uaz.webp';
-//hisun
-import hisunCard from '/public/images/catalogPages/all/cards/blue/hisun.webp';
-import hisunCard2 from '/public/images/catalogPages/all/cards/logo/hisun.webp';
-//lovol
-import lovolCard from '/public/images/catalogPages/all/cards/blue/lovol.webp';
-import lovolCard2 from '/public/images/catalogPages/all/cards/logo/lovol.webp';
-//mmc
-import mmcCard from '/public/images/catalogPages/all/cards/blue/mmc.webp';
-import mmcCard2 from '/public/images/catalogPages/all/cards/logo/mmc.webp';
-//nissan
-import nissanCard from '/public/images/catalogPages/all/cards/blue/nissan.webp';
-import nissanCard2 from '/public/images/catalogPages/all/cards/logo/nissan.webp';
-//opel
-import opelCard from '/public/images/catalogPages/all/cards/blue/opel.webp';
-import opelCard2 from '/public/images/catalogPages/all/cards/logo/opel.webp';
-//peugeot
-import peugeotCard from '/public/images/catalogPages/all/cards/blue/peugeot.webp';
-import peugeotCard2 from '/public/images/catalogPages/all/cards/logo/peugeot.webp';
-//renault
-import renaultCard from '/public/images/catalogPages/all/cards/blue/renault.webp';
-import renaultCard2 from '/public/images/catalogPages/all/cards/logo/renault.webp';
-//subaru
-import subaruCard from '/public/images/catalogPages/all/cards/blue/subaru.webp';
-import subaruCard2 from '/public/images/catalogPages/all/cards/logo/subaru.webp';
-//suzuki
-import suzukiCard from '/public/images/catalogPages/all/cards/blue/suzuki.webp';
-import suzukiCard2 from '/public/images/catalogPages/all/cards/logo/suzuki.webp';
-//volkswagen
-import vCard from '/public/images/catalogPages/all/cards/blue/v.webp';
-import vCard2 from '/public/images/catalogPages/all/cards/logo/v.webp';
-//jaguar
-import jaguarCard from '/public/images/catalogPages/all/cards/blue/jaguar.webp';
-import jaguarCard2 from '/public/images/catalogPages/all/cards/logo/jaguar.webp';
-//lr
-import lrCard from '/public/images/catalogPages/all/cards/blue/lr.webp';
-import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
-
-export const brandsCards = [
-    { id: 'arkontSelect', card: selectCard, card2: selectCard2, title: 'Арконт селект', link: '/brands/arkont-select' },
-    { id: 'baic', card: baicCard, card2: baicCard2, title: 'Baic' },
-    { id: 'chery', card: cheryCard, card2: cheryCard2, title: 'Chery', link: '/brands/chery' },
-    { id: 'exeed', card: exeedCard, card2: exeedCard2, title: 'EXEED', link: '/brands/exeed' },
-    { id: 'faw', card: fawCard, card2: fawCard2, title: 'FAW', link: '/brands/faw' },
-    { id: 'geely', card: geelyCard, card2: geelyCard2, title: 'Geely', link: '/brands/geely' },
-    { id: 'hyundai', card: hyundaiCard, card2: hyundaiCard2, title: 'Hyundai', link: '/brands/hyundai' },
-    { id: 'jac', card: jacCard, card2: jacCard2, title: 'JAC', link: '/brands/jac' },
-    { id: 'jetour', card: jetourCard, card2: jetourCard2, title: 'Jetour', link: '/brands/jetour' },
-    { id: 'jetta', card: jettaCard, card2: jettaCard2, title: 'Jetta', link: '/brands/jetta' },
-    { id: 'kaiyi', card: kaiyiCard, card2: kaiyiCard2, title: 'KAIYI', link: '/brands/kaiyi' },
-    { id: 'kia', card: kiaCard, card2: kiaCard2, title: 'KIA', link: '/brands/kia' },
-    { id: 'uaz', card: uazCard, card2: uazCard2, title: 'УАЗ', link: '/brands/uaz' },
-    { id: 'hisun', card: hisunCard, card2: hisunCard2, title: 'Hisun', link: 'hisun-arkont.ru' },
-    { id: 'lovol', card: lovolCard, card2: lovolCard2, title: 'Lovol', link: 'lovol-arkont.ru' },
-    { id: 'mitsubishi', card: mmcCard, card2: mmcCard2, title: 'Mitsubishi', link: 'service.mitsubishi-volgograd.ru' },
-    { id: 'nissan', card: nissanCard, card2: nissanCard2, title: 'Nissan', link: 'nissan.arkont-service.ru' },
-    { id: 'opel', card: opelCard, card2: opelCard2, title: 'Opel', link: 'opel.arkont-service.ru' },
-    { id: 'peugeot', card: peugeotCard, card2: peugeotCard2, title: 'Peugeot', link: 'peugeot.arkont-service.ru' },
-    { id: 'renault', card: renaultCard, card2: renaultCard2, title: 'Renault', link: 'renault.arkont-service.ru' },
-    { id: 'subaru', card: subaruCard, card2: subaruCard2, title: 'Subaru', link: 'subaru.arkont-service.ru' },
-    { id: 'suzuki', card: suzukiCard, card2: suzukiCard2, title: 'Suzuki', link: 'service.suzuki-volgograd.ru' },
-    { id: 'volkswagen', card: vCard, card2: vCard2, title: 'Volkswagen', link: 'volkswagen.arkont-service.ru' },
-    { id: 'jaguar', card: jaguarCard, card2: jaguarCard2, title: 'Jaguar', link: 'jlr.arkont-service.ru' },
-    { id: 'landrover', card: lrCard, card2: lrCard2, title: 'Land Rover', link: 'jlr.arkont-service.ru' }
-];
-
 
 
 export function matchesEngine(engine) {

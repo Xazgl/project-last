@@ -56,11 +56,12 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
     return (
         <Box sx={{
-            maxWidth: "1000px",
+            width: "100%",
             margin: '0 auto',
             marginTop: '70px'
         }}>
-            <div className="banner"></div>
+            {/* <div className="banner"></div> */}
+            <div className="title">Автомобили с пробегом</div>
             {carArr.length > 0 ?
                 <Carousel sx={{ height: 'auto' }} animation="slide" autoPlay={false} swipe indicators cycleNavigation fullHeightHover
                     navButtonsAlwaysVisible
@@ -75,11 +76,21 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                 </Link>
             </div>
             <style jsx>{` 
+
+                .title {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    font-size:25px;
+                    font-family: "Roboto",sans-serif;
+                }
                 
                 .banner{
                     display:flex; 
                     width: 100%;
-                    height: 300px;
+                    height: 400px;
                     justify-content: center;
                     background-position: center center;
                     background-image: url('${banner.src}');

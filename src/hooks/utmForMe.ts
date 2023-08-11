@@ -31,16 +31,16 @@ const keyWordsList:  keyWordsUtm [] = [
 
 
 export function utmForMe() {
-    const [utm, setUtm] = useState('')
-    useEffect(() => {
-        let utmKeywordsStr = new URLSearchParams(location.search).get('utm_term')   
-        let findKey = keyWordsList.map(keyWord => {
-            let myReg = new RegExp(`/+${keyWord.name}+/`)
-            let t = utmKeywordsStr.match(myReg)
+    // const [utm, setUtm] = useState('')
+    // useEffect(() => {
+    //     let utmKeywordsStr = new URLSearchParams(location.search).get('utm_term')   
+    //     let findKey = keyWordsList.map(keyWord => {
+    //         let myReg = new RegExp(`/+${keyWord.name}+/`)
+    //         let t = utmKeywordsStr.match(myReg)
 
-          })
-       return  console.log(findKey)
+    //       })
+    //    return  console.log(findKey)
        
-    }, [])
+    // }, [])
 
 }

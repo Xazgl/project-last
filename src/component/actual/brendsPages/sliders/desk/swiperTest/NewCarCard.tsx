@@ -96,6 +96,12 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     animation: slideAnimation 1s ease-in-out;   
                     border-radius: 0px;  
                     background-color:white;
+                }
+
+                .card:hover {
+                    -webkit-box-shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
+                    -moz-box-shadow:4px 4px 16px -2px rgba(0, 0, 0, 0.2);
+                    box-shadow:4px 4px 16px -2px rgba(0, 0, 0, 0.2);
 
                 }
 

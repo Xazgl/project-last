@@ -6,7 +6,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -17,33 +16,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
-
-import chery from '/public/images/logo-around/chery.webp';
-import chevrolet from '/public/images/logo-around/chevrolet.webp';
-import datsun from '/public/images/logo-around/datsun.webp';
-import exeed from '/public/images/logo-around/exeed.webp';
-import faw from '/public/images/logo-around/faw.webp';
-import ford from '/public/images/logo-around/ford.webp';
-import hisun from '/public/images/logo-around/hisun.webp';
-import hyundai from '/public/images/logo-around/hyundai.webp';
-import jeep from '/public/images/logo-around/jeep.webp';
-import kia from '/public/images/logo-around/kia.webp';
-import landrover from '/public/images/logo-around/landrover.webp';
-import mithsubishi from '/public/images/logo-around/mithsubishi.webp';
-import nissan from '/public/images/logo-around/nissan.webp';
-import renault from '/public/images/logo-around/renault.webp';
-import subaru from '/public/images/logo-around/subaru.webp';
-import suzuki from '/public/images/logo-around/suzuki.webp';
-import uaz from '/public/images/logo-around/uaz.webp';
-import usedcars34 from '/public/images/logo-around/usedcars34.webp';
-import volkswagen from '/public/images/logo-around/volkswagen.webp';
-import opel from '/public/images/logo-around/opel.webp';
-import jaguar from '/public/images/logo-around/jaguar.webp';
-import lovol from '/public/images/logo-around/lovol.webp';
-import peugeot from '/public/images/logo-around/peugeot.webp';
-import { AllCarDto } from '../../../../@types/dto';
 import { Button, createTheme, useMediaQuery } from '@mui/material';
-import { width } from '@mui/system';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -77,38 +51,37 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
   }));
 
 
-  function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  }
-
-
-
   function showModal(event) {
     setShowModal(true)
   }
 
-  
 
   return (
     <>
       <div className='background'>
         <div className='cards' id="desktop">
           {filteredOffices.map(dealer =>
-            <Card 
-            key={dealer.id}
-            sx={{
-              width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
-              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-              '&:hover .credit': {
-                display: 'flex',
-                transition: '1s',
-                animation: 'credit-open.5s',
-                marginTop: '400px',
-                backgroundColor: '#0c7ee1',
-                position: 'absolute'
-              }
-            }} >
+            <Card
+              key={dealer.id}
+              sx={{
+                width: 345, height: 410, display: 'flex', border: '1px  solid transparent',
+                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+                '&:hover': {
+                  transform: 'scale(1.04)',
+                  webkitBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                  mozBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                  boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                  shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
+                },
+                '&:hover .credit': {
+                  display: 'flex',
+                  transition: '1s',
+                  animation: 'credit-open.5s',
+                  marginTop: '360px',
+                  backgroundColor: '#0c54a0',
+                  position: 'absolute'
+                }
+              }} >
               <CardHeader
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
@@ -120,7 +93,12 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title={dealer.name}
+                title={<Typography
+                  sx={{
+                    color: '#151515', fontWeight: 'bold', fontSize: '13px'
+                  }}>
+                  {dealer.name}
+                </Typography>}
               />
 
               <Link href={{
@@ -140,11 +118,19 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                  {dealer.city}, {dealer.address}
-                  <div className='price'><h3>{dealer.phone}</h3></div>
+                  {/* {dealer.city}, {dealer.address} */}
                   <div className='office'>
-                    <span>{dealer.address}</span>    <RoomIcon />
+                    <>
+                      <div className="circle"> <RoomIcon sx={{ fontSize: '1p9x' }} /> </div> <span>{dealer.address}</span>
+                    </>
                   </div>
+                  <div className='price'>
+                    <>
+                      <div className="circle" id="circlePhone"> <LocalPhoneIcon sx={{ fontSize: '14px' }} /> </div>
+                      <h3>{dealer.phone}</h3>
+                    </>
+                  </div>
+
                 </Typography>
               </CardContent>
               <button className="credit" onClick={() => showModal}>
@@ -156,13 +142,15 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
 
         <div className='cards' id="mob">
           {filteredOffices.map(dealer =>
-            <Card 
-            key={dealer.id}
-            sx={{
-              width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
-              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-            }} >
+            <Card
+              key={dealer.id}
+              sx={{
+                width: '90%', height: 410, display: 'flex', border: '1px  solid transparent',
+                flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+                '&:hover': {
+                  transform: 'scale(1.04)'
+                },
+              }} >
               <CardHeader
                 sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
                 avatar={
@@ -170,7 +158,12 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
                     src={dealer.label}>
                   </Avatar>
                 }
-                title={dealer.name}
+                title={<Typography
+                  sx={{
+                    color: '#151515', fontWeight: 'bold', fontSize: '13px'
+                  }}>
+                  {dealer.name}
+                </Typography>}
               />
 
               <Link href={{
@@ -191,16 +184,22 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                  {dealer.city}, {dealer.address}
-                  <div className='price'><h3>{dealer.phone}</h3></div>
                   <div className='office'>
-                    <span>{dealer.address}</span>    <RoomIcon />
+                    <>
+                      <div className="circle"> <RoomIcon sx={{ fontSize: '1p9x' }} /> </div> <span>{dealer.address}</span>
+                    </>
+                  </div>
+                  <div className='price'>
+                    <>
+                      <div className="circle" id="circlePhone"> <LocalPhoneIcon sx={{ fontSize: '14px' }} /> </div>
+                      <h3 id="phone">{dealer.phone}</h3>
+                    </>
                   </div>
                 </Typography>
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', backgroundColor: '#0c54a0', borderRadius: '0' }}
                   onClick={showModal}>Связаться</Button>
               </div>
             </Card>
@@ -234,11 +233,9 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
     .background {
       display:flex;
       width: 100%;
-      height: 110vh;
+      height: 100%;
       padding: 20px;
       justify-content: center;
-      overflow: auto;
-      border-top: 1px solid #d4d3d3;
       background-color: #f5f2f261;
     }
     
@@ -259,7 +256,8 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       font-weight: 400;
       letter-spacing: normal;
       font-family: 'Roboto',sans-serif;
-      color:black;
+      color:#151515;
+      gap:10px;
     }
 
     .priceMonth {
@@ -267,6 +265,24 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       justify-content: start;
       width: 80%;
       height: 35px;
+    }
+
+    .circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:  #0c54a0;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    #circlePhone {
+      background-color: #0c54a0;
+      color:  white;
 
     }
 
@@ -278,7 +294,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #005baa;
+      border:solid 1px #0c54a0;
       color:#005baa;
       background-color: transparent;
       border-radius: 3px;
@@ -301,6 +317,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
     .office{
       display: flex;
       justify-content: start;
+      gap:10px;
       margin-top: 10px;
       font-size: 12px;
       align-items: center;
@@ -374,10 +391,6 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
         height: 30px;
         font-size: 12px;
       }
-
-      .office{
-        font-size: 9px;
-      }
       .background{
         height: auto;
       }
@@ -389,6 +402,15 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       }
       h3{
         font-weight: 300;
+      }
+      #phone {
+        font-size: 15px;
+      }
+    }
+
+    @media(max-width: 320px) {
+      #phone {
+        font-size: 13px;
       }
     }
 

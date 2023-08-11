@@ -41,7 +41,14 @@ export function KaiyiImgDestop() {
                                 Волгограде
                             </a>
                         </Link>
-                    </span>
+                        <a> и </a>
+                        <Link href="https://yandex.ru/maps/38/volgograd/?from=api-maps&ll=44.609223%2C48.729195&mode=routes&origin=jsapi_2_1_79&rtext=~48.757240%2C44.790844&rtt=auto&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNjI4MzMwMzI5EnjQoNC-0YHRgdC40Y8sINCS0L7Qu9Cz0L7Qs9GA0LDQtNGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCDQktC-0LvQttGB0LrQuNC5LCDQv9GA0L7RgdC_0LXQutGCINC40LzQtdC90Lgg0JvQtdC90LjQvdCwLCAzNTkiCg3UKTNCFWoHQ0I%2C&z=11.92">
+                            <a className="city" rel="noopener noreferrer" >
+                                 Волжском
+                            </a>
+                        </Link>
+                    </span> 
+                    
                 </div>
                 <div className="banner">
                     <div className="title">

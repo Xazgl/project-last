@@ -304,6 +304,21 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 </Link>
                             </ButtonGroup>
                         </div>
+
+                        <div className="rowSideBar" id="center" >
+                            <Accordion sx={{ width: '100%' }}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                >
+                                    <Typography sx={{ fontSize: '14px' }}>Авто в поставке</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <FormControlLabel control={<Checkbox />} label="В поставке" />
+                                </AccordionDetails>
+                            </Accordion>
+                        </div>
                         <div className="rowSideBar" id="center" >
                             <Accordion sx={{ width: '100%' }}>
                                 <AccordionSummary

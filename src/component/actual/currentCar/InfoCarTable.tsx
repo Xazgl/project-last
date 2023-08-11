@@ -22,14 +22,13 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    setCarImg: Dispatch<SetStateAction<string>>
 }
 
 
 
 
 
-export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props) {
+export function InfoCarTable({ car, showModal, setShowModal}: Props) {
 
 
     function driverTypeStr(x) {
@@ -41,10 +40,7 @@ export function InfoCarTable({ car, showModal, setShowModal, setCarImg }: Props)
         }
     }
 
-    function showModalImg(x) {
-        setShowModal(true)
-        setCarImg(x)
-    }
+
 
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");

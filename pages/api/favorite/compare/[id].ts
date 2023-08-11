@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import db from "../../../../prisma"
-import { redisClient } from "../../../../src/services/redis";
+import { getRedisInstance } from "../../../../src/services/redis";
 
 
 
@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             // Очищаем кэш пользователя после добавления новой машины к сравнению
             const cacheKey = `compareCars:${clientToken}`;
-            await redisClient.del(cacheKey);
+            await getRedisInstance().del(cacheKey);
 
             res.status(200).send(compareCar);
           } else {

@@ -29,11 +29,14 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
         function handleResize() {
             if (window.innerWidth < 768) {
                 setItemsPerPage(1);
-            } else if (window.innerWidth < 1200) {
+              } else if (768 <= window.innerWidth && window.innerWidth < 950) {
+                setItemsPerPage(2);
+              } else if (950 <= window.innerWidth && window.innerWidth < 1300) {
                 setItemsPerPage(3);
-            } else if (window.innerWidth > 1200) {
+              } else if (window.innerWidth >= 1300) {
                 setItemsPerPage(4);
-            }
+              }
+            
         }
         window.addEventListener("resize", handleResize);
         // Вызываем handleResize сразу при монтировании компонента
@@ -61,16 +64,17 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
 
     return (
         <Box sx={{
-            maxWidth: "1000px",
+            width: "100%",
             margin: '0 auto',
             marginTop: '70px',
             gap: '10px'
         }}>
 
-            <div className="banner"></div>
+            {/* <div className="banner"></div> */}
+            <div className="title">Новые автомобили</div>
             {carArr.length > 0 ?
                 <Carousel sx={{ height: 'auto' }} animation="slide" autoPlay={false} swipe indicators cycleNavigation fullHeightHover
-                    navButtonsAlwaysVisible 
+                    navButtonsAlwaysVisible
                 >
                     {resultArr.map((carArr) => <Item key={carArr.id} carArr={carArr} />)}
                 </Carousel>
@@ -82,11 +86,21 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
                 </Link>
             </div>
             <style jsx>{` 
+
+                .title {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    font-size:25px;
+                    font-family: "Roboto",sans-serif;
+                }
                 
                 .banner{
                     display:flex; 
                     width: 100%;
-                    height: 300px;
+                    height: 400px;
                     justify-content: center;
                     background-position: center center;
                     background-image: url('${banner.src}');
@@ -150,10 +164,10 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
 
     function Item({ carArr }: { carArr: CarDto[] }) {
         return (
-            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center',gap:'6px' }}>
+            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center', gap: '6px' }}>
                 {
                     carArr.map((car) =>
-                        <NewCarCard car={car} key={car.id}/>
+                        <NewCarCard car={car} key={car.id} />
                     )
                 }
             </Box>

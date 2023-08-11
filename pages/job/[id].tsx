@@ -9,9 +9,11 @@ import { MenuBar } from "../../src/component/Menu"
 import { TradeinModal } from "../../src/component/ModalTwo"
 import { More } from '../../src/component/actual/job/More'
 import { VacancyForm } from '../../src/component/actual/job/VacancyForm'
+import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
+import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
 
 
-const Job: NextPage = () => {
+const JobPage: NextPage = () => {
     const [job, setJob] = useState('')
     const router = useRouter()
     const { id } = router.query
@@ -55,12 +57,12 @@ const Job: NextPage = () => {
                 <meta name="description" content="Work with me" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MenuBar />
+            <MenuBarNew setShowModal={setShowModal} />
             <More job={job} setOpen={setOpen} />
-            {open=== true &&
-                <VacancyForm  job={job} />
+            {open === true &&
+                <VacancyForm job={job} />
             }
-            <FooterMain setShowTradeInModal={setShowTradeInModal} refs={{ refFooter }} />
+            <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
             {
                 showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
@@ -74,4 +76,4 @@ const Job: NextPage = () => {
 
 }
 
-export default Job
+export default JobPage

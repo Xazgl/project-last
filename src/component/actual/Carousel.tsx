@@ -7,11 +7,13 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { AllCarDto } from "../../../@types/dto";
+
 import CircularProgress from "@mui/material/CircularProgress";
 import SwipeableViews from "react-swipeable-views";
-import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
 import Image from 'next/image';
+import { AllCarDto } from "../../../@types/dto";
+import { numberWithSpaces } from "./allNewCarPage/servicesNewCar/service";
+
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -45,129 +47,135 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
         setActiveStep(step);
     };
 
-
-    const id = [
-        'newFilt',
-        filterOpen ? 'newFilt_active' : '',
-        // filterClosed ? 'newFilt_close-starting' : '',
-    ]
-
-    function active() {
-        setFilterOpen(true)
-        console.log(filterOpen)
-    }
-
-
-
     return (
         <>
             <div className="background" >
-                <div className="title">Новые автомобили</div>
-                {carArr.length > 0 ?
-                    <Box sx={{ maxWidth: 270, flexGrow: 1 }}>
-
-                        <AutoPlaySwipeableViews
-                            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                            index={activeStep}
-                            onChangeIndex={handleStepChange}
-                            enableMouseEvents
-                        >
-                            {
-                                carArr.map(car => {
-                                    return <Link
-                                        key={car.id}
+                <Box sx={{
+                    width: '100%',
+                    border: '2px solid #d1d7dd',
+                    padding: '20px',
+                    display:'flex',
+                    justifyContent:'center',
+                    flexDirection:'column',
+                    alignItems:'center'
+                }}>
+                    <div className="title">Новые автомобили</div>
+                    {carArr.length > 0 ?
+                        <Box sx={{ width: 270, flexGrow: 1,display:'flex',
+                        flexDirection:'column' }}>
+                            <AutoPlaySwipeableViews
+                                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                                index={activeStep}
+                                onChangeIndex={handleStepChange}
+                                enableMouseEvents
+                            >
+                                {
+                                    carArr.map(car => {
+                                        return <Link  key={car.id}
                                         href={{
                                             pathname: '/catalog/car/[id]',
                                             query: { id: car.id }
                                         }}>
-                                        <div className="card" key={car.id}>
-                                            <div className="imgDiv">
-                                                {/* <img src={car.img[0]} 
+                                            <div className="card" key={car.id}>
+                                                <div className="imgDiv" id="desk">
+                                                    {/* <img src={car.img[0]} 
                                                 className="cardImg"
                                                 loading="lazy"
                                                 decoding="async"
                                                 alt={car.CarModel.modelName}
                                                 ></img> */}
-                                                <Image src={car.img[0]}
-                                                    alt="Car Image"
-                                                    width={270}
-                                                    height={200}
-                                                    // width: 221px;
-                                                    //height: 166px;
-                                                    // layout="fill"
-                                                    loading="lazy"
-                                                // sizes="(max-width: 640px) 100vw"
-                                                />
-                                            </div>
-                                            <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
-                                            <div className="cardDesc">
-                                                <div className="elDesc">АИ-95</div>
-                                                <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume)) * 100) / 100000).toFixed(1)} л.</div>
-                                                <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
-                                                {car.CarModification.driveType === 'front' &&
-                                                    <div className="elDesc">FWD</div>
-                                                }
-                                                {car.CarModification.driveType === 'full_4wd' &&
-                                                    <div className="elDesc">4WD</div>
-                                                }
-                                                {/* <div className="elDesc">{(car.CarModification.driveType)}FWD</div> */}
-                                                <div className="elDesc">MT</div>
-                                            </div>
-                                            <div className="cardPrice">{numberWithSpaces(Number(car.price))} ₽</div>
-                                            <div className="cardPriceMonth">
-                                                <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
-                                            </div>
-                                            <div className="credit">
-                                                <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                })
-                            }
-                        </AutoPlaySwipeableViews>
-                        <MobileStepper
-                            steps={maxSteps}
-                            position="static"
-                            activeStep={activeStep}
-                            nextButton={
-                                <Button
-                                    size="small"
-                                    onClick={handleNext}
-                                    disabled={activeStep === maxSteps - 1}
-                                >
+                                                    <Image src={car.img[0]}
+                                                        alt="Car Image"
+                                                        width={270}
+                                                        height={200}
+                                                        // width: 221px;
+                                                        //height: 166px;
+                                                        // layout="fill"
+                                                        loading="lazy"
+                                                    // sizes="(max-width: 640px) 100vw"
+                                                    />
+                                                </div>
+                                                <div className="imgDiv" id="mob">
+                                                    <Image src={car.img[0]}
+                                                        alt="Car Image"
+                                                        width={170}
+                                                        height={120}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                                <div className="cardTitle">{car.CarModel.brandName} {car.CarModel.modelName}</div>
+                                                <div className="cardPrice">от {numberWithSpaces(Number(car.price))} ₽</div>
 
-                                    {theme.direction === 'rtl' ? (
-                                        <KeyboardArrowLeft />
-                                    ) : (
-                                        <KeyboardArrowRight />
-                                    )}
-                                </Button>
-                            }
-                            backButton={
-                                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                                    {theme.direction === 'rtl' ? (
-                                        <KeyboardArrowRight />
-                                    ) : (
-                                        <KeyboardArrowLeft />
-                                    )}
+                                                <div className="cardDesc">
+                                                    {/* <div className="elDesc">АИ-95</div> */}
+                                                    <div className="elDesc">{(Math.round((Number(car.CarModification.engineVolume)) * 100) / 100000).toFixed(1)} л.</div>
+                                                    <div className="elDesc">{car.CarModification.enginePower}л.с.</div>
+                                                    {car.CarModification.driveType === 'front' &&
+                                                        <div className="elDesc">FWD</div>
+                                                    }
+                                                    {car.CarModification.driveType === 'full_4wd' &&
+                                                        <div className="elDesc">4WD</div>
+                                                    }
+                                                    {/* <div className="elDesc">{(car.CarModification.driveType)}FWD</div> */}
+                                                    <div className="elDesc">MT</div>
+                                                </div>
+                                                {/* <div className="cardPrice">от {numberWithSpaces(Number(car.price))} ₽</div> */}
+                                                <div className="cardPriceMonth">
+                                                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
+                                                </div>
+                                                <div className="credit">
+                                                    <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    })
+                                }
+                            </AutoPlaySwipeableViews>
+                            <MobileStepper 
+                                steps={maxSteps}
+                                sx={{ backgroundColor: 'transparent' }}
+                                position="static"
+                                activeStep={activeStep}
+                                nextButton={
+                                    <Button
+                                        size="small"
+                                        onClick={handleNext}
+                                        disabled={activeStep === maxSteps - 1}
+                                    >
 
-                                </Button>
-                            }
-                        />
-                    </Box>
-                    :
-                    <CircularProgress />
-                }
-                {
-                    carArr.length <= 0 &&
-                    <h1>Авто в пути</h1>
-                }
+                                        {theme.direction === 'rtl' ? (
+                                            <KeyboardArrowLeft />
+                                        ) : (
+                                            <KeyboardArrowRight />
+                                        )}
+                                    </Button>
+                                }
+                                backButton={
+                                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                                        {theme.direction === 'rtl' ? (
+                                            <KeyboardArrowRight />
+                                        ) : (
+                                            <KeyboardArrowLeft />
+                                        )}
 
-                <div className="btnDiv">
+                                    </Button>
+                                }
+                            />
+                        </Box>
+                        :
+                        <CircularProgress />
+                    }
+                    {
+                        carArr.length <= 0 &&
+                        <h1>Авто в пути</h1>
+                    }
+
+                    {/* <div className="btnDiv">
                     <Link href={'/catalog/new-car'}>
                         <button className="btnAllCar">Смотреть все новые автомобили</button>
                     </Link>
-                </div>
+                </div> */}
+                </Box>
             </div>
             <style jsx>{`
 
@@ -198,70 +206,29 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
             }
 
                 .background {
-                    display:none; 
+                    display:flex; 
                     width: 100%;
-                    height: 630px;
+                    height: auto;
                     justify-content: center; 
                     align-items: center;
                     margin-top:10px;
-                    padding:30px;
+                    padding:20px;
                     flex-direction: column;
+                    background-color: #f5f2f261;
+                    
                 }
 
                 .title {
                     display:flex; 
                     width: 100%;
                     height: 40px;
-                    justify-content: center; 
-                    text-align: center;
+                    justify-content: start; 
+                    text-align: center2
                     font-size: 40px;
                     font-weight: bold;
                     gap:20px;
                     font-family: 'Roboto',sans-serif;
 
-                }
-
-                .cardsSlider{
-                    display:flex; 
-                    flex-direction: row;
-                    width: 1000px;
-                    height: 600px;
-                    overflow: hidden;
-                    justify-content: center;
-                }
-
-                .cardsRow{
-                    display:flex; 
-                    flex-direction: row;
-                    justify-content: center;
-                    width: auto;
-                    gap:30px;
-                    height: 100%;
-                    transition: 1s;
-                }
-
-
-                .filt {
-                    display: flex;
-                    justify-content: center;
-                    text-align: center;
-                    margin-top:30px;
-                    color: #005baa;
-                    cursor: pointer;
-                    font-size: 20px;
-                    transition: 0.5s;
-                    gap: 30px;
-                    border-bottom: 1px solid #deded8;
-                    height: 50px;
-                    
-                }
-
-                #newFilt {
-                    border-bottom: 2px solid transparent;
-                }
-
-                #newFilt_active{
-                    border-bottom: 2px solid #fdb913;
                 }
 
                 .card {
@@ -271,7 +238,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     flex-direction: column;
                     width: 270px;
                     height: 400px;
-                    border: 1px solid #deded8;
                     margin-top: 40px;
                     border-radius: 7px;
                     transition: 0.3s;
@@ -282,6 +248,10 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     display: flex;
                     justify-content: center;
                     width: 100%;
+                }
+
+                #mob {
+                    display: none;
                 }
 
                 .cardImg {
@@ -299,8 +269,9 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     align-items:center;
                     width: 100%;
                     height: 32px; 
-                    color: #005baa;
+                    color: #0c54a0;
                     font-family: 'Roboto',sans-serif;
+                    font-weight: 500;
 
                     
                 }
@@ -316,7 +287,6 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     padding-left: 10px;
                     padding-right: 10px;
                     font-family: 'Roboto',sans-serif;
-
                 }
 
                 .elDesc{
@@ -324,10 +294,12 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     justify-content: center;
                     text-align: center;
                     align-items: center;
-                    width:45px;
+                    width:54px;
                     height: 30px;
                     font-size:.777777778em;
-                    border:1px solid #deded8;
+                    border:1px solid #d1d7dd;
+                    padding: 0.5px;
+                    background-color: #f2f2f2;
                 }
 
 
@@ -354,22 +326,22 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     align-items: center;
                     margin-top: 10px;
                     font-family: 'Roboto',sans-serif;
-
                 }
 
 
                 .btn {
-                    background: #fdb913;
-                    color: #fff;
+                    background: #0c54a0;
+                    color: white ;
                     cursor: pointer;
                     opacity: 1;
                     transition: opacity .5s ease-in-out;
-                    border-radius: 5px;
                     border:none;
                     width: 150px;
                     height: 30px;
                     transition: 0.5s;
                     font-family: 'Roboto',sans-serif;
+                    border: solid 2px #0c54a0;
+                    font-weight: bold;
 
                 }
 
@@ -399,7 +371,8 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                 }
                 
                 .btn:hover {
-                    background: #d19a0f;
+                    background: #005baa;
+                    color:white;
                     transform: scale(0.99);
                 }
 
@@ -479,7 +452,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     }
 
                     .title { 
-                        font-size:25px;
+                        font-size:20px;
                     }
                 }
             
@@ -491,7 +464,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                         height: 250px;
                     }
                 }
-                @media(max-width: 350px) {
+                @media(max-width: 380px) {
                     .title { 
                         font-size:18px;
                     }
@@ -500,6 +473,26 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     }
                     .MainBanner { 
                         height: 150px;
+                    }
+                    #mob {
+                        display: flex;
+                    }
+
+                    #desk{
+                        display: none;
+                    }
+
+                    .cardDesc {}
+
+                    .elDesc {
+                        width: 42px;
+                    }
+                    .btn {
+                        width: 60%;
+                    }
+
+                    .background{
+                        border:none;
                     }
                 }
                 @media(max-width: 250px) {

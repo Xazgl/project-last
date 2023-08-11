@@ -71,7 +71,7 @@ export function SwiperEl({ cars }: { cars: AllUsedCarDto }) {
         // }}>
         <div className="background">
              <div className='descBrand'></div>
-                <div className='title'>Автомобили в наличии </div>
+                <div className='title'>Автомобили в наличие </div>
                 {carArr.length > 0 ?
                     <Carousel sx={{ height: 'auto' }} animation="slide" autoPlay={false} swipe indicators cycleNavigation fullHeightHover
                         navButtonsAlwaysVisible

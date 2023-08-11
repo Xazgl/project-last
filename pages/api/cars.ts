@@ -133,7 +133,7 @@ apiRoute.post(async (req, res, next) => {
                         mileageUnit: 'km',
                         year: String(year),
                         img: {
-                            set: String(img)
+                            set: [String(img)]
                         },
                         priceMonth: Number(price) / 150,
                         price: Number(price),

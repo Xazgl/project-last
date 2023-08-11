@@ -206,7 +206,7 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                 select {
                     background-color: transparent;
                     color:#3d3d3d;
-                    font-family: 'TacticSans-Reg','sans-serif'; 
+                    font-family: "Roboto","sans-serif";
                     width: 100%;
                     height: 50px;
                     border:solid 2px #3d3d3d;

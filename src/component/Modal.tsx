@@ -69,7 +69,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 <div className='icon'>
                     <CloseIcon sx={{
                         cursor: 'pointer',
-                        '&:hover': { color: 'red' }
+                        '&:hover': { color: '#a22d2d' }
                     }}
                         onClick={() => { closeModal() }}
                     />
@@ -91,11 +91,14 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                         <div className="mb-3">
                             <label htmlFor="phone" className="form-label"></label>
                             <IMaskInput
-                                style={{ fontSize: '20px', height: '100%', padding: '10px 10px', width: '60%',outline:'none' }}
+                                style={{
+                                    fontSize: '20px', height: '100%', padding: '10px 10px', width: '60%', outline: 'none',
+                                    display: 'flex', alignItems: 'center'
+                                }}
                                 id="inputP"
                                 className="phone"
                                 mask={'+{7}(000)000-00-00'}
-                                placeholder="+7(___) __ __ __"
+                                placeholder="+7(***)*** ** **"
                                 required
                                 value={phone}
                                 name="phone"
@@ -188,7 +191,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 flex-direction: column;
                 border-radius: 3px;
                 box-shadow: 0px 3px 11px 3px #000000bd;
-                color: #ffffff;
+                color: #eeebeb;
                 border: none;
                 position: relative;
             }
@@ -221,14 +224,12 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
           
 
             .btn-modal {
-                border-radius: 3px;
-                border:solid;
-                border-width: 1px;
-                border-color:black;
+                border:none;
+                cursor: pointer;
                 transition: transform.3s ;
                 color: black;
                 font-size: 20px;
-                background-color:#005baa;
+                background-color:#0c54a0 ;
                 color:white;
                 width: 60%;
                 height: 45px;
@@ -238,10 +239,12 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 text-align: center;
                 align-items: center;
                 font-family: 'Roboto','sans-serif'; 
+                transition: 0.5s;
             }
 
             .btn-modal:hover {
-                background-color:#0c8bfa;
+                background-color:#004c9d ;
+                transition: scale(0.9);
             }
 
             #modalTitle {

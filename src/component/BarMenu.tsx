@@ -12,7 +12,7 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 export default function BarMenu() {
   return (
     <div className='bar'>
-      <Accordion>
+      <Accordion sx={{padding:'0px'}}>
         <AccordionSummary
           expandIcon={<DehazeIcon  />}
           aria-controls="panel1a-content"
@@ -26,7 +26,7 @@ export default function BarMenu() {
             </Link>
           </Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ paddingLeft: '0' }}>
+        <AccordionDetails sx={{ padding: '0' }}>
           <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
             <ul className={"menu"}>
               <li className={"menuEl"}>
@@ -42,7 +42,7 @@ export default function BarMenu() {
                   <AccordionDetails>
                     <ul className="menu">
                       <Link href={'/catalog/new-car'}>
-                      <a rel="noopener noreferrer"> <li className="barTwoLevel">Автомобили в наличии</li></a>
+                      <a rel="noopener noreferrer"> <li className="barTwoLevel">Автомобили в наличие</li></a>
                       </Link>
                       <Link href={'/catalog/used-car'}>
                       <a rel="noopener noreferrer">   <li className="barTwoLevel">Автомобили с пробегом</li></a>

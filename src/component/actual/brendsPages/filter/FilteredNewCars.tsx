@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useRef, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,14 +16,11 @@ import CompareIcon from '@mui/icons-material/Compare';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RoomIcon from '@mui/icons-material/Room';
 import Link from 'next/link';
-import { Box, Button, Slide, createTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, } from '@mui/material';
 import { LogoList, driverTypeStr, logoFind, numberWithSpaces } from '../../../../services/functions';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import bannerDc from '/public/images/catalogPages/geely/dc.jpg'
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import CardModelsFilter from './modelsCard/CardModelsFilter';
 import { AllCarDto } from '../../../../../@types/dto';
 import CarWithoutImg from '/public/images/noPhoto.png'
+import Image from 'next/image';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
@@ -436,15 +433,21 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
             // <Slide in={isVisible} key={car.id} direction="right" timeout={500}>
             <Card key={car.id} sx={{
               width: 345, height: 490, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', 
-              fontFamily: 'Roboto', boxShadow:'none',
-              '&:hover': { transform: 'scale(1.04)', },
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
+              fontFamily: 'Roboto', boxShadow: 'none',
+              '&:hover': {
+                transform: 'scale(1.04)',
+                webkitBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                mozBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
+                shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
+              },
               '&:hover .credit': {
                 display: 'flex',
                 transition: '1s',
                 animation: 'credit-open.5s',
                 marginTop: '400px',
-                backgroundColor: '#0c7ee1',
+                backgroundColor: '#0c54a0',
                 position: 'absolute'
               }
             }} >
@@ -469,6 +472,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                   pathname: '/catalog/car/[id]',
                   query: { id: car.id }
                 }}>
+
                   <CardMedia
                     component="img"
                     height="194"
@@ -481,6 +485,23 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
 
                     alt="car"
                   />
+                  {/* <Box
+                    sx={{
+                      display: 'flex', width: '100%',height: "194", position: 'relative',
+                      marginTop:'0px',paddingTop: '0px'
+                    }}
+                  >
+                    <Image
+                      src={car.img[0]}
+                      alt={car.img[0]}
+                      layout="fill"
+                      sizes="(max-width: 750px) 50vw,
+                            (max-width: 828px) 40vw,
+                            (max-width: 1080px) 33vw,
+                            20vw"
+                      loading="lazy"
+                    />
+                  </Box> */}
                 </Link>
                 :
                 <CardMedia
@@ -501,7 +522,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                   {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
                   <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.price))}*</span>  ₽</h3></div>
                   <div className='priceMonth'>
-                    <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес
+                    <button className="btn" onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес
                     </button>
                   </div>
                   <div className='office'>
@@ -539,9 +560,9 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                     <ExpandMoreIcon />
                   </ExpandMore> */}
               </CardActions>
-              <button className="credit" onClick={showModal}>
+              {/* <button className="credit" onClick={showModal}>
                 <span className="consultation" >Получить консультацию</span>
-              </button>
+              </button> */}
             </Card>
             // </Slide>
 
@@ -559,8 +580,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: '90%', height: 480, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',  boxShadow:'none',
-              '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', boxShadow: 'none'
             }} >
               <CardHeader
                 sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
@@ -637,8 +657,107 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', fontFamily: 'Roboto', width: '95%', }}
+                  sx={{
+                    textAlign: 'center', fontSize: '12px', fontFamily: 'Roboto', width: '95%', height: '100%',
+                    backgroundColor: '#0c54a0', borderRadius: '0'
+                  }}
                   onClick={showModal}>Получить консультацию</Button>
+              </div>
+            </Card>
+          )}
+        </div>
+
+
+        <div className='cards' id="mobMini">
+          {filteredCars.map(car =>
+            <Card key={car.id} sx={{
+              width: '99%', height: 370, display: 'flex', border: '1px  solid transparent',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', boxShadow: 'none'
+            }} >
+              <CardHeader
+                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center' }}
+                avatar={
+                  <Avatar sx={{}} aria-label="recipe"
+                    src={logoFind(LogoList, car.CarModel.brandName)}>
+                  </Avatar>
+                }
+                action={
+                  <IconButton aria-label="settings" sx={{
+                    marginTop: '-10px',
+                    marginRight: '-5px'
+                  }}>
+                    <IconButton aria-label="add to favorites">
+                      {favArr.find(carFav => carFav.car.id === car.id) ?
+                        <FavoriteIcon sx={{ color: 'red' }}
+                          onClick={() => deleteToFavorite(car.id)}
+                        /> :
+                        <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                          onClick={() => addToFavorite(car.id)}
+                        />
+                      }
+                    </IconButton>
+                  </IconButton>
+                }
+                title={car.CarModel.brandName}
+                subheader={car.CarModel.modelName}
+              />
+
+              {car.img.length > 0 ?
+                <Link href={{
+                  pathname: '/catalog/car/[id]',
+                  query: { id: car.id }
+                }}>
+                  <CardMedia
+                    component="img"
+                    height="140px"
+                    image={car.img[0]}
+                    sx={{
+                      cursor: 'pointer',
+                      backgroundSize: 'contain'
+                    }}
+
+                    loading="lazy"
+                    decoding='async'
+                    alt="car"
+                  />
+                </Link>
+                :
+                <CardMedia
+                  component="img"
+                  height="140px"
+                  image={CarWithoutImg.src}
+                  sx={{
+                    cursor: 'pointer',
+                    backgroundSize: 'contain'
+                  }}
+                  loading="lazy"
+                  decoding='async'
+                  alt="car"
+                />
+              }
+              <CardContent>
+                <Typography variant="body2" color="text.secondary" >
+                  {car.CarModification.name} <br /> {driverTypeStr(car.CarModification.driveType)}
+                  <div className='price'><h3>{numberWithSpaces(Number(car.price))} ₽</h3></div>
+                  <div className='priceMonth'>
+                    <button className="btn" onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес</button>
+                  </div>
+                  <div className='office'>
+                    <span>{car.DealerModel.name}</span>  <RoomIcon />
+                  </div>
+                </Typography>
+              </CardContent>
+              <div
+                style={{
+                  display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px'
+                }}
+              >
+                {/* <Button variant="contained"
+                  sx={{
+                    textAlign: 'center', fontSize: '10px', fontFamily: 'Roboto', width: '100%', height:'40px',
+                    backgroundColor: '#0c54a0', borderRadius: '0'
+                  }}
+                  onClick={showModal}>Получить консультацию</Button> */}
               </div>
             </Card>
           )}
@@ -646,32 +765,33 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
+    @keyframes credit-open {
+          0% {
+              opacity: 0;
+              transform: translateY(-100%);
+          }
+      
+          30% {
+              opacity: 0.5;
+              transform: translateY(-70%);
+          }
+      
+          60% {
+              opacity: 0.8;
+              transform: translateY(-30%);
+          }
+      
+          90% {
+              opacity: 0.9;
+              transform: translateY(-10%);
+          }
+      
+          100% {
+              opacity: 1;
+              transform: translateY(0%);
+          }
     }
 
-    30% {
-        opacity: 0.5;
-        transform: translateY(-70%);
-    }
-
-    60% {
-        opacity: 0.8;
-        transform: translateY(-30%);
-    }
-
-    90% {
-        opacity: 0.9;
-        transform: translateY(-10%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
     .background {
       display:flex;
       width: 100%;
@@ -749,14 +869,11 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       color:black;
     }
 
-   
-
     .priceMonth {
       display: flex;
       justify-content: start;
       width: 80%;
       height: 35px;
-
     }
 
     .btn {
@@ -774,13 +891,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       font-weight: bold;
       transition: 0.6s;
       font-family: 'Roboto','sans-serif'; 
+      cursor: pointer;
     }
 
     .btn:hover {
       background-color:#005baa; 
       color:white;
       transform: scale(0.99);
-
     }
 
     ul {
@@ -813,7 +930,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       font-size:16px;
       text-align: center;
       font-family: 'Roboto','sans-serif'; 
-      background-color: #0c54a0;
+      background-color: #0c54a0; 
       cursor: pointer;
       animation: credit-open 1.5s ease-in-out forwards;
       border-radius: 5px;
@@ -825,6 +942,15 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
     }
 
     #mob{
+      display: none;
+      gap:10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      flex-wrap: nowrap;
+    }
+
+    #mobMini{
       display: none;
       gap:10px;
       flex-direction: column;
@@ -898,10 +1024,34 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       }
     }
 
-  
+    @media(max-width: 360px) {
+      #mob {
+        display: none;
+      }
 
-  
-            
+      #mobMini {
+        display: flex;
+      }
+
+      .priceMonth {
+        width: 100%;
+      }
+      
+      .price {
+        font-size: 18px;
+      }
+
+      .btn {
+        width: 100%;
+        height: 35px;
+        font-size: 13px;
+      }
+
+      .office {
+          display: none;
+      }
+    }
+    
   `}</style>
     </>
   )

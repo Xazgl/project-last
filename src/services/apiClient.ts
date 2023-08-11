@@ -65,8 +65,8 @@ export const getSession = async (req?: any) => {
 
 export const useSession = () => {
     const router = useRouter()
+    const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
     try {
-      const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
       if (error && error.response && error.response.data && error.response.data.redirectUrl) {
         router.push(error.response.data.redirectUrl)
       }

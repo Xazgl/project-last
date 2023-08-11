@@ -1,0 +1,17 @@
+/node_modules
+/.next
+/.vscode
+
+docker-compose.dev.yml
+docker-compose.prod.yml
+docker-compose.test.yml
+Dockerfile
+.env
+.env.example
+.gitignore
+.env.prod
+vehicle.json
+wait-for-it.sh
+xmlcreator.build.sh
+xmlcreator.run.sh
+/scripts
