@@ -65,7 +65,7 @@ export function Login() {
         top: 0;
         right: 0;
         left: 0;
-        height: 88vh;
+        height: 100vh;
         background-position: center center;
         background: rgba(0, 0, 0, .10);
         background-blend-mode: darken;
@@ -95,17 +95,20 @@ export function Login() {
         font-family: 'Montserrat', 'sans-serif';
         font-size: 20px;
         outline:none;
+        border: none;
+        padding: 11px 11px;
     }
     
     .btn {
         font-family: 'Montserrat', 'sans-serif';
         transition: transform.3s ;
         color: #ffffff;
-        background-color: #005baa;
+        background-color: #0c54a0;
         width: 500px;
         height: 50px;
         font-size: 20px;
         cursor: pointer;
+        border: none;
     }
     
     .btn:hover {

@@ -100,6 +100,8 @@ export function NewCarCard({ car }: { car: CarDto }) {
 
                 }
 
+                
+
                 .card.active {
                     opacity: 1;
                     transform: translateX(0px);

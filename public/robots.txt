@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://test.opel-arkont-volgograd.ru
+
+# Sitemaps
+Sitemap: https://test.opel-arkont-volgograd.ru/sitemap.xml

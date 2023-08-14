@@ -475,7 +475,6 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     height:auto;
                     justify-content: center;
                     align-items:center;
-                    background-color:#3d3d3d;
                     transition: 0.6s;
                     transform-style:preserve-3d
                     
@@ -486,7 +485,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     align-items:center;
                     width:100%;
                     justify-content: baseline;
-                    background-color:#3d3d3d;
+                    background-color:#0c54a0;
                     flex-direction: column;
                     height: 200px;
                     padding-top:50px;
@@ -564,10 +563,11 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 .selector {
                     display:flex; 
                     width: 100%;
-                    background-color:#3d3d3d;
+                    background-color:#0c54a0;
                     justify-content:center;
                     align-items:center;
                     padding-top: 30px;
+                    outline:none;
                 }
 
                 .selectModel {
@@ -584,7 +584,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
               
                 option {
-                    background-color: #3d3d3d;
+                    background-color: #0c54a0;
                     color:white;
                     font-family: 'Roboto','sans-serif'; 
                     font-size:21px; 
@@ -611,8 +611,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     font-family: 'Roboto','sans-serif'; 
                     font-size:50px;
                     text-align: center;
-                    background-color:#3d3d3d;
-                
+                    background-color:#0c54a0;
                 }
 
                 .cards {
@@ -767,6 +766,10 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     font-family: 'Roboto','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
+                }
+
+                input {
+                    outline:none;
                 }
             
 

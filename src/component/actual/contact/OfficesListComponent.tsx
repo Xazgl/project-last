@@ -5,7 +5,9 @@ import FilteredOffice from "./FilteredOffice";
 import { Offices } from "@prisma/client";
 import { Circle } from "@mui/icons-material";
 import Link from "next/link";
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 
@@ -25,7 +27,21 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
         setShowModal(true)
     }
 
+    // Определение количества отображаемых элементов в зависимости от ширины экрана
+    const [mobileAdaptive, setMobileAdaptive] = useState(false);
 
+    useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth < 1000) {
+                setMobileAdaptive(true);
+            } else {
+                setMobileAdaptive(false);
+            }
+        }
+        window.addEventListener("resize", handleResize);
+        handleResize();
+        return () => window.removeEventListener("resize", handleResize);
+    }, [])
 
 
     return (
@@ -47,14 +63,47 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     </Link>
 
                 </div>
-                <div className="flexContainer">
-                    <div className="title">Дилерские центры</div>
-                    <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
-                </div>
-                <div className="dealerBlock">
-                    <FilteredOffice filteredOffices={filteredOffices} setShowModal={setShowModal} />
-                </div>
-            </div >
+                {mobileAdaptive == false ?
+                    <div className="flexContainer">
+                        <>
+                            <div className="title">Дилерские центры</div>
+
+                            <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
+                        </>
+                    </div>
+                    :
+                    <>
+                        <Accordion sx={{
+                            marginTop: '30px',
+                            opacity:'90%',
+                            height: 'auto',
+                            position: 'sticky',
+                            top: '0',
+                            left: '0',
+                            zIndex:'2'
+                        }}>
+                        <AccordionSummary sx={{ backgroundColor: '#0c54a0', color: 'white' }}
+                            expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography>Дилерские центры</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails sx={{ display: 'flex',flexDirection:'column', alignItems:'center' }}>
+                            <Typography>
+                                <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
+
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+            </>
+                }
+
+
+            <div className="dealerBlock">
+                <FilteredOffice filteredOffices={filteredOffices} setShowModal={setShowModal} />
+            </div>
+        </div >
             <style jsx>{`
                 .background {
                     display:flex; 

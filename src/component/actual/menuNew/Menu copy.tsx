@@ -129,7 +129,7 @@ export function MenuBarNew({ setShowModal }: Props) {
             <span>Каталог </span>
             <ul className={`bottomUl ${hoveredItemId === 'catalog' ? 'show' : ''}`}>
               <Link href={'/catalog/new-car'}>
-                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличие</li></a>
+                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличии</li></a>
               </Link>
               <Link href={'/catalog/used-car'}>
                 <a rel="noopener noreferrer"> <li className="f">Автомобили с пробегом</li></a>

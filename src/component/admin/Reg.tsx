@@ -85,18 +85,19 @@ export function RegComponent() {
     font-family: 'Montserrat', 'sans-serif';
     transition: transform.3s ;
     color: #ffffff;
-    background-color: #48484d;
+    background-color: #0c54a0;
     width: 500px;
     height: 50px;
     font-size: 20px;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
-
-    color:red;
-    transform: scale(1.02);
     box-shadow: -3px 15px 9px 3px rgba(34, 60, 80, 0.2);
+    background-color: #113d6c;
 } 
+
 @media(max-width: 600px) {
     .input {
       width: 300px;

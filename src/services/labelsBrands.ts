@@ -108,6 +108,10 @@ import jaguarCard2 from '/public/images/catalogPages/all/cards/logo/jaguar.webp'
 //lr
 import lrCard from '/public/images/catalogPages/all/cards/blue/lr.webp';
 import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
+//dongfeng
+import dongfengCard from '/public/images/catalogPages/all/cards/blue/dong.webp';
+import dongfengCard2 from '/public/images/catalogPages/all/cards/logo/dong.webp';
+
 
 // export const brandsCards = [
 //     { id: 'arkontSelect', card: selectCard, card2: selectCard2, title: 'Арконт селект', link: '/brands/arkont-select' },
@@ -142,8 +146,9 @@ import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
 
 export const brandsCards = [
   { id: 'arkontSelect', card: selectCard, card2: selectCard2, minLabel: arkontSelect, title: 'Арконт селект', link: '/brands/arkont-select' },
-  { id: 'baic', card: baicCard, card2: baicCard2, minLabel: baic, title: 'Baic', link: '/brands/baic' },
+  { id: 'baic', card: baicCard, card2: baicCard2, minLabel: baic, title: 'Baic', link: 'https://arkont-baic.ru' },
   { id: 'chery', card: cheryCard, card2: cheryCard2, minLabel: chery, title: 'Chery', link: '/brands/chery' },
+  { id: 'dondfeng', card: dongfengCard, card2: dongfengCard2, minLabel: donf, title: 'Dongfeng', link: 'https://dongfeng-arkont.ru' },
   { id: 'exeed', card: exeedCard, card2: exeedCard2, minLabel: exeed, title: 'EXEED', link: '/brands/exeed' },
   { id: 'faw', card: fawCard, card2: fawCard2, minLabel: faw, title: 'FAW', link: '/brands/faw' },
   { id: 'geely', card: geelyCard, card2: geelyCard2, minLabel: geely, title: 'Geely', link: '/brands/geely' },

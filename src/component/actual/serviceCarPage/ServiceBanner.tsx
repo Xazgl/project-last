@@ -57,7 +57,7 @@ export function ServiceBanner({ refs }: FormType) {
               width: 100%;
               position: relative;
               overflow: hidden;
-              z-index: 1;
+              z-index: -1;
             }
     
             .banner-overlay {

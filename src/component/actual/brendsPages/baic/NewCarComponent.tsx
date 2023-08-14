@@ -1,5 +1,24 @@
-
+import Link from "next/link";
+import Image from 'next/image';
+import banner from '/public/images/1.webp'
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import exeed from '/public/images/logo-brends/exeed.jpg';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Dispatch, FormEvent, SetStateAction, useEffect, useMemo, useRef, useState } from "react"
+import { Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Slider, TextField } from "@mui/material";
+import suv from '/public/images/carBodyTyp/suv.svg'
+import crossover from '/public/images/carBodyTyp/crossover.svg'
+import hatchback from '/public/images/carBodyTyp/hatchback.svg'
+import liftback from '/public/images/carBodyTyp/liftback.svg'
+import minivan from '/public/images/carBodyTyp/minivan.svg'
+import sedan from '/public/images/carBodyTyp/sedan.svg'
+import { Car } from "@prisma/client";
+
+
+
 import { SwiperEl } from "../sliders/desk/swiperTest/Swiper";
 import { CarouselComponent } from "../sliders/mod/Carousel";
 import SwiperTest from "../sliders/desk/swiperTest/News";
@@ -9,9 +28,8 @@ import CarFilterSidebarMobile from "../filter/CarFilterSidebarMobile";
 import CarFilterSidebar from "../filter/CarFilterSidebar";
 import CardModelsFilter from "../filter/modelsCard/CardModelsFilter";
 import FilteredNewCars from "../filter/FilteredNewCars";
-
+import MapBrand from "./MapBrand";
 import News from "./news/News";
-import MapBrand from "../baic/MapBrand";
 
 
 
@@ -147,9 +165,9 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                             </div>
                         </>
                     }
-                    {/* <div className="block" >
+                    <div className="block" >
                         <News />
-                    </div> */}
+                    </div>
                     <div className="block" >
                         {mobileAdaptive == false ?
                             <>

@@ -54,7 +54,7 @@ export function ModalImgArray({ showModalImg, setShowModalImg, carImg, carStepIm
 
             <div className="modalWindow" id="modalWindow">
 
-                <Paper
+                {/* <Paper
                     square
                     elevation={0}
                     sx={{
@@ -65,54 +65,54 @@ export function ModalImgArray({ showModalImg, setShowModalImg, carImg, carStepIm
                         bgcolor: 'background.default',
                     }}
                 >
-                </Paper>
+                </Paper> */}
                 <div className="imagesContainer">
 
                     {/* <Image
-                                    src={img}
-                                    alt={img}
+                                    src={carImg[activeStep - 1]}
+                                    alt={carImg[activeStep - 1]}
                                     layout="fill"
                                     sizes="(max-width: 750px) 50vw,
                                             (max-width: 828px) 40vw,
                                             (max-width: 1080px) 33vw,
                                             20vw"
                                     loading="lazy"
-                                /> */}
+                                />
 
                     <Image src={carImg[activeStep - 1]}
                         alt="Car Image"
-                        width={300}
+                        width={'100%'}
                         height={200}
                         loading="lazy"
-                    />
+                    /> */}
                 </div>
 
-           
 
-            <MobileStepper
-                sx={{ display: 'flex', width: '100%' }}
-                variant="text"
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                    < Button
-                        size="small"
-                        onClick={handleNext}
-                        disabled={activeStep === maxSteps - 1}
-                    >
-                        <KeyboardArrowRight />
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        <KeyboardArrowLeft />
-                    </Button>
-                }
-            />
-        </div>
 
-    </div >
+                <MobileStepper
+                    sx={{ display: 'flex', width: '100%',color:'#0c54a0' }}
+                    variant="text"
+                    steps={maxSteps}
+                    position="static"
+                    activeStep={activeStep}
+                    nextButton={
+                        < Button
+                            size="small"
+                            onClick={handleNext}
+                            disabled={activeStep === maxSteps - 1}
+                        >
+                            <KeyboardArrowRight sx={{color:'#0c54a0'}} />
+                        </Button>
+                    }
+                    backButton={
+                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                            <KeyboardArrowLeft   sx={{color:'#0c54a0'}}/>
+                        </Button>
+                    }
+                />
+            </div>
+
+        </div >
 
         <style jsx>{`
             @keyframes modalBackground-open {
@@ -160,45 +160,69 @@ export function ModalImgArray({ showModalImg, setShowModalImg, carImg, carStepIm
                 animation:modalBackground-close.5s ;
             }
 
+            .imagesContainer {
+                display: flex;
+                height: 600px;
+                width: 800px;
+                background-image: url('${carImg[activeStep]}');
+                background-size:contain;
+                background-repeat: no-repeat;  
+            }
+
+
             .modalWindow {
-                height: 500px;
-                width: 700px;
+                height: 700px;
+                width: 800px;
                 background-position: center center;
                 background-repeat: no-repeat;
                 overflow: hidden;
                 background-size:contain;
-                flex-direction: column; /* Добавьте это свойство */
-
             }
 
 
-            .imagesContainer {
-                display: flex;
-                flex-direction: row;
-                overflow-x: auto; /* Добавьте это свойство для горизонтальной прокрутки */
-            }
-            
-            .card{
-                max-width: 400;
-                flex-grow: 1 ;
-            }
-
-            @media(max-width: 1100px) {
+            @media(max-width: 840px) {
                 .modalWindow {
-                 height: 400px;
+                    height: 450px;
+                    width: 500px;
+                }
+
+                .imagesContainer {
+                  height: 400px;
                   width: 600px;
                 }
             }
+
             @media(max-width: 600px) {
                 .modalWindow {
-                 height: 300px;
-                  width: 500px;
+                    height: 310px;
+                    width: 400px;
+                }
+
+                .imagesContainer {
+                  height: 260px;
+                  width: 400px;
+                  background-size: cover;
                 }
             }
-            @media(max-width: 360px) {
+            @media(max-width: 414px) {
                 .modalWindow {
-                 height: 200px;
-                  width: 100%;
+                    height: 250px;
+                    width: 300px;
+                }
+
+                .imagesContainer {
+                  height: 200px;
+                  width: 300px;
+                }
+            }
+
+            @media(max-width: 320px) {
+                .modalWindow {
+                    width: 250px;
+                }
+
+                .imagesContainer {
+                  width: 250px;
                 }
             }
             

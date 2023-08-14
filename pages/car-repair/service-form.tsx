@@ -15,8 +15,8 @@ import { ServiceBanner } from '../../src/component/actual/serviceCarPage/Service
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
 
 
-const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
-  
+const ServicePage: NextPage<{ offers: Offer[] }> = ({ offers }) => {
+
   const [showModal, setShowModal] = useState(false)
   const [showTradeInModal, setShowTradeInModal] = useState(false)
   const refSales = useRef<HTMLDivElement>(null)
@@ -35,9 +35,9 @@ const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
       </Head>
       <MenuBar />
       <BarMenu />
-      <ServiceBanner refs={{ refForm}}/>
-      <ServiceForm  refs={{ refForm}}/>
-      <CardsSpecialOffers  setShowModal={setShowModal} offers={ offers } />
+      <ServiceBanner refs={{ refForm }} />
+      <ServiceForm refs={{ refForm }} />
+      <CardsSpecialOffers setShowModal={setShowModal} offers={offers} />
       <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
@@ -53,7 +53,7 @@ const ServicePage: NextPage <{ offers: Offer[] }> = ({ offers }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  let offers: Offer[] = []; // Объявление переменной job
+  let offers: Offer[] = []; // Объявление переменной 
   try {
     // Получаем данные из Redis и парсим их в массив объектов
     const offersData: string = await getDataFromRedis('offers');
@@ -64,13 +64,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       })
       // Сохраняем данные в Redis на день
-      getRedisInstance().set('offers', JSON.stringify(offers), 'EX', 86400);
+      // getRedisInstance().set('offers', JSON.stringify(offers), 'EX',10);
+      getRedisInstance().set('offers', JSON.stringify(offers, (key, value) => {
+        if (key === 'createdAt') {
+          return new Date(value).toISOString(); // преобразование даты в строку
+        }
+        return value;
+      }), 'EX', 86400);
     } else {
       offers = JSON.parse(offersData) as Offer[]; // Преобразование строки в массив объектов типа Car
     }
     // Устанавливаем заголовки Cache-Control и ETag
-    context.res.setHeader('Cache-Control', 'public, max-age=86400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('Cache-Control', 'public'); // Максимальное время кэширования - 4 часа
     context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
+    // Защита от атак XSS
+    context.res.setHeader('X-XSS-Protection', '1; mode=block');
+    // Защита от клик-джекинга
+    context.res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    // Защита от MIME-типа сниффинга
+    context.res.setHeader('X-Content-Type-Options', 'nosniff');
     return {
       props: {
         offers

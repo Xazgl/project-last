@@ -66,7 +66,7 @@ export function MenuBarNew({ setShowModal }: Props) {
     {
       label: 'Каталог',
       subItems: [
-        { label: 'Автомобили в наличие', link: '/brands/all' },
+        { label: 'Автомобили в наличии', link: '/brands/all' },
         { label: 'Автомобили с пробегом', link: '/brands/arkont-select' },
         { label: 'Онлайн-оценка автомобиля', link: '/catalog/tradein' },
         { label: 'Специальные предложения', link: '/catalog/special-offers' },

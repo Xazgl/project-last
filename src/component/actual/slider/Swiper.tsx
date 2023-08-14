@@ -122,7 +122,7 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    background:#005baa;
+                    background:#0c54a0;
                     color: white;
                     width: 350px;
                     height: 100%;

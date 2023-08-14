@@ -42,7 +42,7 @@ export default function BarMenu() {
                   <AccordionDetails>
                     <ul className="menu">
                       <Link href={'/catalog/new-car'}>
-                      <a rel="noopener noreferrer"> <li className="barTwoLevel">Автомобили в наличие</li></a>
+                      <a rel="noopener noreferrer"> <li className="barTwoLevel">Автомобили в наличии</li></a>
                       </Link>
                       <Link href={'/catalog/used-car'}>
                       <a rel="noopener noreferrer">   <li className="barTwoLevel">Автомобили с пробегом</li></a>

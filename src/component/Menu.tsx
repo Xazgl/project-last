@@ -85,7 +85,7 @@ export function MenuBar() {
             <span>Каталог </span>
             <ul className="bottomUl">
               <Link href={'/catalog/new-car'}>
-                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличие</li></a>
+                <a rel="noopener noreferrer"> <li className="f">Автомобили в наличии</li></a>
               </Link>
               <Link href={'/catalog/used-car'}>
                 <a rel="noopener noreferrer"> <li className="f">Автомобили с пробегом</li></a>

@@ -32,8 +32,7 @@ import kaiyi from '/public/images/logo-around/kaiyi.webp';
 import jetour from '/public/images/logo-around/jetour.webp';
 import jetta from '/public/images/logo-around/jetta.webp';
 import jac from '/public/images/logo-around/jac.webp';
-
-
+import baic from '/public/images/logo-around/baic.webp';
 import all from '/public/images/logo-around/all.webp';
 import arkontSelect from '/public/images/logo-around/usedCars/arkont_select.png';
 
@@ -259,6 +258,11 @@ export const LogoList: LogoArr[] = [
         id: 31,
         name: 'JAC',
         img: `${jac.src}`
+    },
+    {
+        id: 32,
+        name: 'BAIC',
+        img: `${baic.src}`
     },
 
 ]
@@ -653,7 +657,7 @@ export const ModelPhotoList: Model[] = [
     },
     {
         id: 50,
-        name: 'U5 plus' || 'U5+',
+        name: 'U5 Plus',
         img: `${u5.src}`
     },
     {

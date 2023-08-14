@@ -63,7 +63,10 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
             {/* <div className="banner"></div> */}
             <div className="title">Автомобили с пробегом</div>
             {carArr.length > 0 ?
-                <Carousel sx={{ height: 'auto' }} animation="slide" autoPlay={false} swipe indicators cycleNavigation fullHeightHover
+                <Carousel sx={{
+                    height: 'auto',
+                }}
+                    animation="slide" autoPlay={false} swipe indicators cycleNavigation fullHeightHover
                     navButtonsAlwaysVisible
                 >
                     {resultArr.map((carArr) => <Item key={carArr.id} carArr={carArr} />)}
@@ -71,7 +74,7 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                 : <CircularProgress />
             }
             <div className="btnDiv">
-                <Link href={'/catalog/used-car'}>
+                <Link href={'/brands/arkont-select'}>
                     <button className="btnAllCar">Смотреть все автомобили c пробегом</button>
                 </Link>
             </div>
@@ -112,7 +115,7 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    background:#005baa;
+                    background:#0c54a0;
                     color: white;
                     width: 350px;
                     height: 100%;
@@ -157,7 +160,7 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
             <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center', gap: '6px' }}>
                 {
                     carArr.map((car) =>
-                        <UsedCarCard car={car} key={car.id}/>
+                        <UsedCarCard car={car} key={car.id} />
                     )
                 }
             </Box>

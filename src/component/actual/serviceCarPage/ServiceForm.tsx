@@ -190,7 +190,7 @@ export function ServiceForm( {refs}:FormType) {
                                     id="inputP"
                                     className="phone"
                                     mask={'+{7}(000)000-00-00'}
-                                    placeholder="+7(9b00)000-00-00"
+                                    placeholder="+7(900)000-00-00"
                                     required
                                     value={phone}
                                     name="phone"

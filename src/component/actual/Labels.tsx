@@ -8,10 +8,10 @@ export function Labels() {
             <div className="background" >
                 <div className="labels">
                     {brandsCards.map((carBrand, index) => (
-                         <Link href={carBrand.link} key={carBrand.id}>
-                        <div className="label" key={index}>
-                            <img alt={carBrand.id} src={carBrand.minLabel.src} title={carBrand.id} />
-                        </div>
+                        <Link href={carBrand.link} key={carBrand.id}>
+                            <div className="label" key={index}>
+                                <img alt={carBrand.id} src={carBrand.minLabel.src} title={carBrand.id} />
+                            </div>
                         </Link>
                     ))}
                 </div>
@@ -153,6 +153,11 @@ export function Labels() {
                       width: 65px;
                       height: 65px;
                     }
+
+                    .labels {
+                        justify-content: center;
+                        width: 100%;
+                    };
                 }
                 @media(max-width: 1000px) {
                     img {

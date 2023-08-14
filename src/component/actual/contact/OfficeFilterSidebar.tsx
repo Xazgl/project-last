@@ -230,16 +230,19 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                     background-color: #d4d3d3
                 }
 
-               
-                @media(max-width: 600px) {
-                    .sideBar{
-                       flex-direction: column;
-                       align-items: center;
-                    }
+                @media(max-width: 1000px) {
 
-                    .rowSideBar {
-                        width: 100%;
+                    .sideBar {
+                     flex-direction: column;
+                     width: 100%;
                     }
+                    
+                }
+
+                @media(max-width: 600px) {
+
+
+              
 
                     select {
                         height: 35px;
