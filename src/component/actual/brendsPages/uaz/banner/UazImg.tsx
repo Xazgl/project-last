@@ -135,7 +135,7 @@ export function UazImgDestop() {
                     align-items:center;
                     flex-direction:column;
                     color:black;
-                    font-family: 'Montserrat'; 
+                    font-family: 'Roboto'; 
                 }
 
                 @media(max-width: 1300px) {

@@ -111,8 +111,8 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
         return uniqueArr;
     };
 
-    function cityName (str){
-        if(str == 'VLG') {
+    function cityName(str) {
+        if (str == 'VLG') {
             return str = 'Волгоград'
         } else {
             return str = 'Волжский'
@@ -123,11 +123,12 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
 
         return (
             <>
-                <div className="cardBlock" id="black">ВАКАНСИИ</div>
+                <div className="cardBlock" id="blue">ВАКАНСИИ</div>
                 <div className="cardBlock">
-                    <FormControl sx={{ m: 1, width: 300 }}>
+                    <FormControl sx={{ m: 1, width: 300, color: '#0c54a0' }}>
                         <InputLabel id="demo-multiple-name-label">ДЦ</InputLabel>
                         <Select
+                            sx={{ borderColor: '#0c54a0', borderRadius: '0px' }}
                             name=''
                             labelId="demo-multiple-name-label"
                             id="demo-multiple-name"
@@ -154,6 +155,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     <FormControl sx={{ m: 1, width: 300 }}>
                         <InputLabel id="demo-multiple-name-label">Опыт</InputLabel>
                         <Select
+                            sx={{ borderColor: '#0c54a0', borderRadius: '0px' }}
                             name=''
                             labelId="demo-multiple-name-label"
                             id="demo-multiple-name"
@@ -266,25 +268,27 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                                         {/* <div className='textCard'>{job.description}</div> */}
                                         <div className='textCard' id="city">{job.office}</div>
                                         <div className='textCard' id="city">{cityName(job.city)}</div>
-                                        <div className='salaryCard'>{job.salary} &#8381;</div>
+                                        {/* <div className='salaryCard'>{job.salary} &#8381;</div> */}
                                         <div className='btnDiv'>
                                             {/* <Link href={`/job/${encodeURIComponent(sale.id)}`}> */}
                                             <Link href={{
                                                 pathname: '/job/[id]',
                                                 query: { id: job.id }
                                             }}>
-                                                <button className='btnModal' >Подробнее &#10095;</button>
+                                                <button className='btnModal' >{job.salary}  &#8381;</button>
+
+                                                {/* <button className='btnModal' >Подробнее &#10095;</button> */}
                                             </Link>
                                         </div>
                                     </div>
                                 </div>
                             })
                         }
-                        <div className="card emptyCard" id="lastCard" style={{  opacity: '0'}} />
+                        <div className="card emptyCard" id="lastCard" style={{ opacity: '0' }} />
                     </div>
                 </div >
 
-        <style jsx>{`
+                <style jsx>{`
                 .cardBlock{
                     display:flex;
                     width:100%;
@@ -296,8 +300,8 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     font-size:40px;
                 }  
 
-                #black {
-                    background-color: black;
+                #blue {
+                    background-color: #0c54a0;
                 }
 
                 .background {
@@ -327,8 +331,10 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     width:350px;
                     height:300px;
                     background:white;
-                    border-radius:13px;
-                    background: #f6f3ef;
+                    -webkit-box-shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
+                    -moz-box-shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
+                    box-shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
+                    shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
                     margin-top:10px;
                     transition: all .3s ease;
                     padding-top:10px;
@@ -358,7 +364,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
 
                 .titleCard {
                     display:flex;
-                    justify-content:left;
+                    justify-content:center;
                     flex-direction:;
                     align-items:start;
                     flex-direction:row;
@@ -372,7 +378,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
 
                 .textCard {
                     display:flex;
-                    justify-content:left;
+                    justify-content:center;
                     flex-direction:row;
                     align-items:center;
                     flex-direction:row;
@@ -381,6 +387,8 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     flex-wrap: wrap;
                     font-family: 'Roboto','sans-serif'; 
                     margin-top:10px;
+                    color:#0c54a0;
+                    text-align: center;
                 }
 
                 .salaryCard {
@@ -395,7 +403,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                
                 .btnDiv{
                     display:flex;
-                    justify-content:left;
+                    justify-content:center;
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
@@ -422,6 +430,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     background: #005baa;
                     color: white;
                     font-size: 16px;
+                    cursor: pointer;
                 }
 
                 .btnModal:hover{
@@ -446,7 +455,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     flex-direction:column;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Montserrat'; 
+                    font-family: 'Roboto', sans-serif; 
                     font-size:20px;
                     font-weight: bold;
                 }

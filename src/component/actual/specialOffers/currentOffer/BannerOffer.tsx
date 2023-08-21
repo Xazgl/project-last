@@ -70,7 +70,7 @@ export function BannerOffer({ setShowModal, offer }: Props) {
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Montserrat'; 
+                    font-family: 'Roboto', sans-serif; 
                     font-size:20px;
                     font-weight: bold;
                 }

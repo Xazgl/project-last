@@ -13,6 +13,9 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
+import { TradeInForm } from '../../src/component/actual/tradeinPage/TradeInForm'
+import { TradeForm } from '../../src/component/actual/tradeinPage/TradeForm'
+import BrandsMap from '../../src/component/actual/brendsPages/all/BrandsMap'
 
 
 const TradeInPage: NextPage = () => {
@@ -39,8 +42,17 @@ const TradeInPage: NextPage = () => {
       <BarMenu />
       <MainBannerTradeIn setShowModal={setShowModal} refs={{ refForm }} />
       <CarSale  setCarPrice={setCarPrice} carPrice={carPrice}  setShowModalPrice={setShowModalPrice}/>
-      <TradeinStepper refs={{ refForm }} />
+      {/* <TradeinStepper refs={{ refForm }} /> */}
       {/* <TradeInForm /> */}
+      <TradeForm  refs={{ refForm }}/>
+      
+      <div className='background'>
+        <div className='content'>
+          <div className='title'>Сервисные центры Арконт</div>
+          <BrandsMap />
+        </div>
+      </div >
+
       <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {
@@ -55,6 +67,71 @@ const TradeInPage: NextPage = () => {
         showModalPrice && <ModalPrice   carPrice={carPrice} showModalPrice={showModalPrice} setShowModalPrice={setShowModalPrice} />
       }
 
+<style jsx>
+        {` 
+          .background {
+            display: flex; 
+            justify-content: center;
+            width: '100%' ;
+            background-color: #f5f2f216;
+          }
+  
+          .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 1179px; 
+          }
+
+          .title {
+            display: flex;
+            justify-content: start;
+            width: 100%;
+            font-family: 'Roboto',sans-serif;
+            margin-top: 20px;
+            font-size: 25px;
+            font-weight: bold;
+          }
+
+          @media(max-width: 1300px) {
+            .content {  
+              width: 970px; 
+            }
+          }
+
+          @media(max-width: 900px) {
+            .content{  
+              width: 640px; 
+            }
+            .title {
+              justify-content: center;
+            }
+          }
+
+          @media(max-width: 640px) {
+            .content{  
+              width: 450px; 
+            }
+          }
+ 
+          @media(max-width: 460px) {
+            .content{  
+              width: 360px; 
+            }
+
+          }
+
+          @media(max-width: 360px) {
+            .background {
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            .content{  
+              width:90%; 
+            }
+          }
+        `}
+      </style>
     </>
   )
 }

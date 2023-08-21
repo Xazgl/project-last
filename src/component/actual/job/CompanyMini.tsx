@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import banner1 from '/public/images/icon_1/1.png';
-import banner2 from '/public/images/icon_1/2.png';
-import banner3 from '/public/images/icon_1/3.png';
-import banner4 from '/public/images/icon_1/4.png';
+import banner1 from '/public/images/icon_1/1(blue).png';
+import banner2 from '/public/images/icon_1/2(blue).png';
+import banner3 from '/public/images/icon_1/3(blue).png';
+import banner4 from '/public/images/icon_1/4(blue).png';
 
 import banner5 from '/public/images/icon_2/1.png';
 import banner6 from '/public/images/icon_2/2.png';
@@ -39,10 +39,12 @@ export function CompanyMini() {
                     </div>
                 </div>
             </div>
-            <div className="background">
-                <div className='btnDiv'>
-                    <Link href={'/companyPage'}><span>О КОМПАНИИ</span></Link>
-                </div>
+            <div className="background" id="two">
+                <Link href={'/companyPage'}>
+                    <div className='btnDiv'>
+                        О компании
+                    </div>
+                </Link>
             </div>
 
 
@@ -58,8 +60,8 @@ export function CompanyMini() {
                     align-items: center;
                     width:100%;
                     height: 270px;
-                  
                 }
+
                 #background2{
                     margin-top:50px
                 }
@@ -72,11 +74,12 @@ export function CompanyMini() {
                     width:1000px;
                     height: 270px;
                     flex-direction: row;
-                   
                 }
+
                 #content2 {
                     width:900px;
                 }
+
                 #content3 {
                     width:900px;
                 }
@@ -104,9 +107,11 @@ export function CompanyMini() {
                     width:100%;
                     font-weight: bold;
                     font-family: 'Roboto','sans-serif'; 
-                    font-size:15px;
+                    font-size:16px;
                     text-align: center;
+                    color:#0c54a0;
                 }
+
                 #elText2 {
                     padding:30px;
                 }
@@ -117,49 +122,39 @@ export function CompanyMini() {
                     align-items: center;
                     font-family: 'Roboto','sans-serif'; 
                     font-size:16px;
-                    font-size: 20px;
-                    width: 250px;
-                    height: 60px;
+                    width: 300px;
+                    height: 45px;
                     font-weight: bold;
-                    border: solid black;
-
+                    border: solid #0c54a0;
+                    background-color: #0c54a0;
+                    color:white;
+                    cursor: pointer;
                 }
+
                 .btnDiv:hover {
                     background: #eab330;
+                    border: solid #eab330;
+                    transform: scale(0.99);
                 }
+
                 #icn1 {
                     background-image: url('${banner1.src}'); 
                 }
+
                 #icn2 {
                     background-image: url('${banner2.src}');
                 }
+
                 #icn3 {
                     background-image: url('${banner3.src}'); 
                 }
+
                 #icn4 {
                     background-image:  url('${banner4.src}'); 
                 }
 
-                span::after{
-        position:absolute;
-        content:"";
-        width:0%;
-        height:1.7px;
-        background-color:black;
-        left:50%;
-        bottom:-1px;  
-        transition:all 0.3s ease-in-out;
-        height: 1px;
-        color:white;
-      }
+     
 
-      span:hover {
-        font-weight: bold;
-        cursor:pointer;
-        transform:scale(1.04);
-        transition:0.4s;
-       
-      }
 
       span:hover:after {
         cursor:pointer;
@@ -177,6 +172,9 @@ export function CompanyMini() {
         width: 100px;
         height: 100px;
        }
+       #two {
+        height: 100px;
+       }
     }
 
     @media(max-width: 550px) {
@@ -187,25 +185,32 @@ export function CompanyMini() {
        .elText {
         font-size: 11px;
        }
+       .background {
+           height: 300px;
+        }
+        .content{
+          flex-direction: column;
+          padding-top:10px;
+          padding-bottom:10px;
+       }
+
+       #two {
+        height: 290px;
+       }
     }
 
     @media(max-width: 400px) {
-       .el {
-        width: 70px;
-        height: 70px;
-       }
-       .elText {
-        font-size: 11px;
-       }
-    }
+        .btnDiv {
+                 width: 250px;
+        }
+     }
 
-    @media(max-width: 350px) {
-        .content{
-        display: none;
-       }
-    }
-                
+    @media(max-width: 320px) {
 
+        .btnDiv {
+                width: 210px;
+        }
+     }
         `}</style>
         </>
     )

@@ -1,102 +1,28 @@
 
 import { IMaskInput } from "react-imask"
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { Box, Checkbox, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import MuiModal from "./modalAfterSubmit/MuiModal";
+import { ChangeEvent, FormEvent, MutableRefObject, useEffect, useRef, useState } from "react";
+import { Checkbox } from "@mui/material";
+import MuiModal from "../modalAfterSubmit/MuiModal";
+import banner from '/public/images/tradein/main2.png'
 
-type Office = {
-    id: number,
-    name: string,
+
+type MuneProps = {
+    refs: {
+        refForm: MutableRefObject<HTMLDivElement>,
+    }
 }
 
 
-const officeList: Office[] = [
-    {
-        id: 0,
-        name: 'Выберите ДЦ',
-    },
-    {
-        id: 1,
-        name: 'Renault Арконт Волгоград',
-    },
-    {
-        id: 2,
-        name: 'KIA Арконт',
-    },
-    {
-        id: 3,
-        name: 'Volkswagen Арконт на Монолите',
-    },
-    {
-        id: 4,
-        name: 'Nissan Арконт на Еременко 7Б',
-    },
-    {
-        id: 5,
-        name: 'Mitsubishi Арконт на Землячке',
-    },
-    {
-        id: 6,
-        name: 'Hyundai Арконт',
-    },
-    {
-        id: 7,
-        name: 'Арконт с пробегом на Землячке',
-    },
-    {
-        id: 8,
-        name: 'Арконт с пробегом в Волжском',
-    },
-    {
-        id: 9,
-        name: 'УАЗ Арконт',
-    },
-    {
-        id: 10,
-        name: 'Chery Арконт',
-    },
-    {
-        id: 11,
-        name: 'EXEED Арконт',
-    },
-    {
-        id: 12,
-        name: 'Официальный сервис Datsun «Арконт»',
-    },
-    {
-        id: 13,
-        name: 'Официальный сервис Datsun «Арконт» (Волжский)',
-    },
-    {
-        id: 14,
-        name: 'Официальный сервис Opel «Арконт»',
-    },
-    {
-        id: 15,
-        name: 'Официальный сервис Ford «Арконт»',
-    },
-    {
-        id: 16,
-        name: 'FAW Арконт',
-    },
-    {
-        id: 17,
-        name: 'Geely Арконт',
-    },
-    {
-        id: 18,
-        name: 'HISUN Арконт',
-    },
-]
 
-
-
-export function QuestionForm() {
-    const [officeId, setOfficeId] = useState(0) //ДЦ
+export function TradeForm({ refs }: MuneProps) {
     const [name, setName] = useState('')   //Имя клиента
     const [phone, setPhone] = useState('') //Телефон
+    const [carModel, setCarModel] = useState('')//модель авто
+    const [carYear, setCarYear] = useState<number>()//год авто
     const [checked, setChecked] = useState(false);
     const [disabledBtn, setDisabledBtn] = useState(true)
+    const [data, setData] = useState(new Date())
+
 
     const formBtn = useRef(null)
 
@@ -108,58 +34,36 @@ export function QuestionForm() {
     };
 
     useEffect(() => {
-        if (checked === true && name > '' && phone > '' && officeId > 0) {
+        if (checked === true && name > '' && phone > '' && carYear > 0 && carModel > '') {
             // formBtn.current.disable = false
             setDisabledBtn(false)
         } else {
             setDisabledBtn(true)
         }
 
-    }, [checked, name, phone, officeId])
+    }, [checked, name, phone, carYear, carModel])
 
     const className = [
         'btn',
         disabledBtn === false ? 'btn_show' : '',
     ]
 
-    const officeName = officeList.find(office => office.id === officeId)?.name
 
     async function sendmail(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         if (checked === true) {
-            const res = await fetch('/api/sendmailMain', {
+            const res = await fetch('/api/sendmailTradein', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ officeName, name, phone })
+                body: JSON.stringify({ name, phone, carModel, carYear })
             })
             if (res.ok) {
                 const result = await res.json()
                 setOpen(true)
                 console.log(result)
-                //calltouch service
-                // let ct_site_id = '57914'
-                // let ct_data = {
-                //     fio: `${name}`,
-                //     phoneNumber: `${phone}`,
-                //     subject: 'Заявка с сайта arkont.ru',
-                //     tags: 'Главная страница,Вопросы',
-                //     comment: `${name} оставил заявку по вопросам тед ${phone} дилерский центр ${officeName}`,
-                //     requestUrl: location.href,
-                //     //@ts-ignore!
-                //     sessionId: window.ct('calltracking_params', '1oroglta').sessionId,
-                // }
 
-                // await fetch('https://api.calltouch.ru/calls-service/RestAPI/requests/' + ct_site_id + '/register/', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Accept': 'application/json, text/plain, */*',
-                //         'Content-Type': 'application/x-www-form-urlencoded',
-                //     },
-                //     //@ts-ignore!
-                //     body: `fio=${name}&phoneNumber=${phone}&subject='Заявка с сайта arkont.ru&tags=Главная страница,Вопросы, Opel&comment=${name} оставил заявку по вопросам тед ${phone} дилерский центр ${officeName}&requestUrl=${location.href}&sessionId=${window.ct('calltracking_params', '1oroglta').sessionId}`
-                // })
             }
         }
     }
@@ -168,10 +72,10 @@ export function QuestionForm() {
 
     return (
         <>
-            <div className="background">
+            <div className="background" ref={refs.refForm}>
                 <div className="column">
                     <div className="title">
-                        ОСТАЛИСЬ <br /> ВОПРОСЫ?
+                        ОЦЕНИТЕ <br /> АВТОМОБИЛЬ
                     </div>
                     <div className="desc">
                         Оставьте нам ваши данные <br />  и мы свяжемся с  вами в
@@ -223,11 +127,23 @@ export function QuestionForm() {
                             </div>
 
                             <div className="divForm">
-                                {/* <div className="inputTitle">Выберите ДЦ</div> */}
-                                <select className="selectModel" value={officeId} name="office" onChange={event => setOfficeId(+event.target.value)}>
-                                    <option value={0} selected disabled>Дилерский центр</option>
-                                    {officeList.map(brand => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
-                                </select>
+                                <input type="number"
+                                    placeholder="Год выпуска"
+                                    min="2000" max={data.getUTCFullYear()}
+                                    value={carYear}
+                                    onChange={event => setCarYear(+event.target.value)}
+                                />
+                                <input type="text"
+                                    className="name"
+                                    id="name"
+                                    name="carModel"
+                                    placeholder="Модель вашего авто"
+                                    required
+                                    value={carModel}
+                                    onChange={event => setCarModel(event.target.value)} />
+                            </div>
+
+                            <div className="divForm">
                                 <MuiModal open={open} setOpen={setOpen} />
                                 <button className={className.join(' ')} ref={formBtn}
                                     type="submit"
@@ -237,6 +153,14 @@ export function QuestionForm() {
                                 </button>
                             </div>
                             <div className="divForm" id="formFooter" style={{ alignItems: "center", justifyContent: 'start' }}>
+
+                                {/* <MuiModal open={open} setOpen={setOpen} />
+                                <button className={className.join(' ')} ref={formBtn}
+                                    type="submit"
+                                    disabled={disabledBtn}
+                                >
+                                    Оправить
+                                </button> */}
                                 <Checkbox
                                     checked={checked}
                                     onChange={handleChange}
@@ -267,10 +191,14 @@ export function QuestionForm() {
                 justify-content: center;
                 align-items:center;
                 flex-direction: row;
-                background-position: center center;
-                background-color:#fcfafad2;
                 background-repeat:no-repeat;
                 background-size:cover;
+                background-blend-mode: darken;
+                background: rgba(0, 0, 0, 0.304);
+                background-position: center center;
+                background-image: url('${banner.src}');
+                background-repeat: no-repeat;
+                background-size: cover;
             }
 
             .first {
@@ -327,7 +255,7 @@ export function QuestionForm() {
                 font-family: 'Roboto','sans-serif'; 
                 font-size:43px;
                 text-align: start;
-                color:#0c54a0;
+                color:white;
             
            }
            
@@ -339,6 +267,7 @@ export function QuestionForm() {
                 margin-top:20px;
                 font-family: 'Roboto','sans-serif'; 
                 font-size:18px;
+                color:white;
            }
 
            .form {
@@ -460,13 +389,17 @@ export function QuestionForm() {
                    flex-direction: column;
                    height: auto;
                    align-items: center;
+                   padding: 10px;
                 } 
+                
                 .column {
                     width:70%;
                 } 
+
                 br {
                     display: none;
                 }
+
             }
 
            @media(max-width: 640px) {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
-import banner from '/public/images/12.jpg'
+import banner from '/public/images/tradein/main.png'
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from "react";
 
 type MuneProps = {
@@ -31,7 +31,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                 {/* <img  className="ImgBanner" src={banner.src} alt="opel" /> */}
                 {/* <div  className="ImgBanner2" /> */}
                 <div className="title">
-                    {/* <div>АРКОНТ Trade-In</div> */}
+                    <div>АРКОНТ TRADE-IN</div>
                     <div className="titleMini">
                         <div className="сol">
                             <button className="btn" onClick={(e) => {
@@ -54,24 +54,26 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                 .MainBanner {
                     display:flex; 
                     width: 100%;
-                    height: 700px;
-                    justify-content: center;
+                    height: 450px;
+                    justify-content: start;
                     background-blend-mode: darken;
                     background: rgba(0, 0, 0, 0.304);
                     background-position: center center;
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;
                     background-color: white;
+                    background-size: contain;
                 }
                 .title {
                     display:flex;
                     justify-content:center;
                     align-items:center;
                     flex-direction:column;
-                    color:white;
+                    color:black;
                     font-family: 'Roboto','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
+                    padding-left:10%;
                 }
                 .titleMini {
                     display:flex;
@@ -100,7 +102,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     font-family: 'Roboto','sans-serif'; 
                     transition: transform.1s;
                     width: 300px;
-                    height: 55px;
+                    height: 45px;
                     background:#005baa;
                     border: 1px solid white;
                     font-weight: bold;
@@ -131,25 +133,30 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                         background-size: cover;
                     }
                 }
-                @media(max-width: 900px) {
+
+                @media(max-width: 1000px) {
+                    .MainBanner { 
+                     height: 400px;
+                    }
                     .title { 
-                        font-size:30px;
+                        font-size:40px;
                     }
                 }
-                @media(max-width: 720px) {
-                    .title { 
-                        font-size:25px;
-                    }
+
+                @media(max-width: 760px) {
                     .titleMini {
                         font-size:15px;
                     }
                     .MainBanner { 
-                        height: 400px;
+                        height: 300px;
                     }
                 }
-                @media(max-width: 640px) {
+                @media(max-width: 660px) {
                     .title { 
                         font-size:40px;
+                        color:transparent;
+                        padding-left: none;
+                        justify-content: center;
                     }
 
                     .titleMini {
@@ -157,10 +164,11 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                         margin-top: 0px;
                         width: 400px;
                     }
-                    .MainBanner { 
-                        height: 600px;
-                    }
 
+                    .MainBanner { 
+                        justify-content: center;
+                        background-position: center right;
+                    }
 
                     .btn {
                         margin-top:10px;
@@ -168,9 +176,10 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                         text-align: center;
                     }
                 }
-                @media(max-width:400px) {
+
+                @media(max-width:550px) {
                     .MainBanner { 
-                        height: 350px;
+                        height: 250px;
                     }
 
                     .titleMini {
@@ -181,8 +190,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                         margin-top:10px;
                         width: 100%;
                         text-align: center;
-                        height: 42px;
-                        font-size: 13px;
+                        font-size: 14px;
                     }
 
                     .title { 
@@ -190,21 +198,14 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     }
                 }
 
-                @media(max-width: 250px) {
-                    .title { 
-                        font-size:9px;
-                        margin-top:10px;
-                    }
-                    .titleMini {
-                        font-size:7px;
-                    }
+                @media(max-width: 400px) {
                     .MainBanner { 
-                        height: 130px;
+                        height: 200px;
                     }
-                    .titleMini{
-                        margin-bottom:00px;
-                        margin-top:10px;
+                    .btn {
+                        width: 80%;
                     }
+
                 }
             `}</style>
         </>

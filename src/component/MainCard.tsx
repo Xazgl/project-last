@@ -17,7 +17,7 @@ export function MainCard() {
                         <div className="title">Специальные предложeния по сервису</div>
                     </div>
                 </Link>
-                <Link href={'/catalog/used-car'}>
+                <Link href={'/brands/arkont-select'}>
                     <div className="card" id="oldCar">
                         <div className="title">Автомобили с пробегом</div>
                     </div>

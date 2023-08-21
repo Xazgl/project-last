@@ -77,12 +77,23 @@ const AdminTable: NextPage = () => {
     <>
       {data && data.login ?
         <div style={{
-          width: '100%', height: '35px', display: 'flex', justifyContent: 'start',
-          backgroundColor: '#005baa', color: 'white', paddingLeft: '15px', alignItems: 'center'
+          width: '100%', height: '40px', display: 'flex', justifyContent: 'start',
+          backgroundColor: '#0c54a0', color: 'white', paddingLeft: '15px', alignItems: 'center',gap:'10px'
         }}>
-          <Typography sx={{ fontSize: '16px' }}><AccountCircleIcon />  <AnimatedText text={`Добро пожаловать, ${data.login}`} interval={100} /></Typography></div>
+          <Typography sx={{ fontSize: '16px',display:'flex' }} >
+            <AccountCircleIcon sx={{ fontSize: '19px' }} />
+          </Typography>
+          <Typography sx={{ fontSize: '16px',display:'flex' }} >
+            <AnimatedText text={`Добро пожаловать, ${data.login}`} interval={100} />
+          </Typography>
+        </div>
         :
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
+        <div
+          style={{
+            display: 'flex', justifyContent: 'center',
+            alignItems: 'center', width: '100%', height: '100vh',
+          }}
+        >
           <CircularProgress />
         </div>
       }

@@ -92,7 +92,7 @@ export function Login() {
     input {
         width: 500px;
         height: 50px;
-        font-family: 'Montserrat', 'sans-serif';
+        font-family: 'Roboto', 'sans-serif';
         font-size: 20px;
         outline:none;
         border: none;
@@ -100,7 +100,7 @@ export function Login() {
     }
     
     .btn {
-        font-family: 'Montserrat', 'sans-serif';
+        font-family: 'Roboto', 'sans-serif';
         transition: transform.3s ;
         color: #ffffff;
         background-color: #0c54a0;

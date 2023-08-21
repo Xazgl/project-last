@@ -53,7 +53,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Montserrat'; 
+                    font-family: 'Roboto', sans-serif; 
                     font-size:20px;
                     font-weight: bold;
                 }

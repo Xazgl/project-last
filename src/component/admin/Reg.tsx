@@ -77,12 +77,15 @@ export function RegComponent() {
 .input {
     width: 500px;
     height: 50px;
-    font-family: 'Montserrat', 'sans-serif';
+    font-family: 'Roboto', sans-serif; 
     font-size: 20px;
+    padding: 11px 11px;
+    border:none;
+    outline: none;
 }
 
 .btn {
-    font-family: 'Montserrat', 'sans-serif';
+    font-family: 'Roboto', sans-serif; 
     transition: transform.3s ;
     color: #ffffff;
     background-color: #0c54a0;

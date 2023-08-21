@@ -122,7 +122,7 @@ export function JetourImgDestop() {
                     align-items:center;
                     flex-direction:column;
                     color:black;
-                    font-family: 'Montserrat'; 
+                    font-family: 'Roboto', sans-serif; 
                 }
 
                 @media(max-width: 1300px) {

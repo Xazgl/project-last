@@ -41,10 +41,10 @@ export default function BarMenu() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
-                      <Link href={'/catalog/new-car'}>
+                      <Link href={'/brands/all'}>
                       <a rel="noopener noreferrer"> <li className="barTwoLevel">Автомобили в наличии</li></a>
                       </Link>
-                      <Link href={'/catalog/used-car'}>
+                      <Link href={'/brands/arkont-select'}>
                       <a rel="noopener noreferrer">   <li className="barTwoLevel">Автомобили с пробегом</li></a>
                       </Link>
                       <Link href={'/catalog/tradein'}>
@@ -180,7 +180,7 @@ export default function BarMenu() {
       <style jsx>{`
 
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dongle&family=Montserrat&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dongle&family=Roboto&family=Roboto:wght@300;400;500;700&display=swap');
 
 
 .bar {

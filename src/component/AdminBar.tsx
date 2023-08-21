@@ -11,14 +11,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import label from '/public/images/label.png'
+import label from '/public/images/label2.png'
 import Link from 'next/link';
 
 
-const pages = [{
-  text: `На главную`,
-  href: '/admin'
-}];
+const pages = [
+  {
+    text: `НА ГЛАВНУЮ `,
+    href: '/admin'
+  },
+
+];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const AdminBar = () => {
@@ -33,7 +36,13 @@ const AdminBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ fontFamily: 'Montserrat', backgroundColor: 'black', color: '#005baa', }}>
+    <AppBar position="static"
+      sx={{
+        display: 'flex', alignItems: 'center', fontFamily: 'Roboto',
+        backgroundColor: '#0c54a0;', color: 'white',
+        boxShadow: 'box-shadow: 1px 7px 8px 0px rgba(34, 60, 80, 0.2)',
+        borderTop:'solid 2px#366aa3'
+      }}>
       <Container maxWidth="xl" sx={{ display: 'flex', alignItems: 'center' }}>
         <Toolbar disableGutters>
           <Typography
@@ -42,17 +51,35 @@ const AdminBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: 'white', alignItems: 'center' }}
           >
-            <Link href={'/admin'}>
+            {/* <Link href={'/admin'}>
               <Typography sx={{
-                color: 'rgb(0, 91, 170)',
+
                 textDecoration: 'none',
                 fontSize: '30px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                fontFamily: 'Roboto',
+                color: '#0ff', // Цвет текста
+                textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff', // Стили тени текста
+                animation: 'pulse 2s infinite', // Анимация пульсации текста
+                '@keyframes pulse': {
+                  '0%': {
+                    opacity: 0.2,
+                    textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff',
+                  },
+                  '50%': {
+                    opacity: 1,
+                    textShadow: '0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff, 0 0 80px #0ff',
+                  },
+                  '100%': {
+                    opacity: 0.2,
+                    textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff',
+                  },
+                },
               }}>
                 ADMIN
               </Typography>
-            </Link>
-            <Link href={'/admin'}>
+            </Link> */}
+            <Link href={'/'}>
               <div className="label"></div>
             </Link>
           </Typography>
@@ -87,7 +114,7 @@ const AdminBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.href} onClick={handleCloseNavMenu} >
+                <MenuItem key={page.href} onClick={handleCloseNavMenu}>
                   <Typography sx={{ color: 'white', textDecoration: 'none' }}>
                     <Link href={'/'}><span style={{ color: 'white' }}>{page.text}</span></Link>
                   </Typography>
@@ -102,7 +129,7 @@ const AdminBar = () => {
             sx={{
               flexGrow: 1,
               display: { xs: 'flex', md: 'none' },
-              fontFamily: 'sans-serif',
+              fontFamily: 'Roboto',
               fontSize: '24px', // Размер шрифта
               color: '#0ff', // Цвет текста
               textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff', // Стили тени текста
@@ -125,13 +152,13 @@ const AdminBar = () => {
           >
             Arkont ADMIN
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, color: 'white' }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: '10px', color: 'white' }}>
             {pages.map((page) => (
               <Link href={page.href} key={page.text}>
                 <Typography
                   key={page.href}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'white', display: 'block', cursor: 'pointer' }}
                 >
                   {page.text}
                 </Typography>
