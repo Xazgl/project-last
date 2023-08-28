@@ -2,6 +2,9 @@ import { Box, Button } from '@mui/material'
 import React, { Dispatch, SetStateAction } from 'react'
 import { Driver, Drivers, Genders } from '../../type'
 
+
+
+
 type Props = {
     setDrivers: Dispatch<SetStateAction<Drivers>>,
     driver: Driver
@@ -92,7 +95,9 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
             </Box>
             <Box sx={{width:'100%',display:'flex',justifyContent:'end'}}>
                 {
-                    driver.id > 0 ? <Button onClick={() => {
+                    driver.id > 0 ? <Button 
+                    
+                    onClick={() => {
                         setDrivers(drivers => {
                             return drivers.filter(d => d.id !== driver.id)
                         })
@@ -147,7 +152,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
             }
 
             .rightInput {
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -170,40 +175,40 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 justify-content: center;
                 align-items: baseline;
                 width:900px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
 
 
-           .title {
+            .title {
                 display:flex; 
                 width: 100%;
                 justify-content: start;
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
-           }
+            }
            
-           .desc {
+            .desc {
                 display:flex; 
                 width: 100%;
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
-           }
+            }
 
-           .form {
+            .form {
                 display:flex;
                 width: 100%;
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
                 flex-direction: column;
-           }
+            }
 
            .divForm {
                 display:flex;
@@ -218,36 +223,36 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
 
            .inputTitle {
                 display:flex;
-                width: 900px;
                 justify-content: start;
                 align-items:center;
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
            }
            
-
-           input {
+           
+            input {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
-                background-color: #e7e7e7;
-                border:none;
-                font-weight: bold;
-                padding: 11px 12px;
+                font-family: 'Roboto','sans-serif'; 
+                border:2px solid #005baa; 
+                padding: 12px 12px;
                 outline:none;
-           }
+                background-color: white;
+            }
 
-           select {
+            select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
-                background-color: #e7e7e7;
-                border:none;
-           }
+                font-family: 'Roboto','sans-serif'; 
+                border:2px solid #005baa; 
+                outline: none;
+                background-color: white;
+                
+            }
             
            .btn {
                 display:flex;
@@ -255,7 +260,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'TacticSans-Reg','sans-serif';
+                font-family: 'Roboto','sans-serif';
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;
@@ -264,12 +269,12 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 margin-top:40px;
                 font-size:20px;
                 text-align: center;
-           }
+            }
            
            .btn_show:hover {
                 background:#005baa;
                 color:white;
-           }
+            }
 
            @media(max-width: 600px) {
                 .title {

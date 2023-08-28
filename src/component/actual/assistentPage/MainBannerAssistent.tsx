@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
-import banner from '/public/images/komiss.jpg'
+import banner from '/public/images/komiss2.jpg'
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from "react";
 
 type MuneProps = {
@@ -37,7 +37,7 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                 .MainBanner {
                     display:flex; 
                     width: 100%;
-                    height: 700px;
+                    height: 900px;
                     justify-content: center;
                     background-blend-mode: darken;
                     background: rgba(0, 0, 0, 0.304);
@@ -46,6 +46,7 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                     background-repeat: no-repeat;
                     background-color: white;
                     margin-bottom:50px;
+                    background-size: cover;
                 }
 
                 .title {
@@ -112,29 +113,45 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                     display:flex;
                 }
 
-                @media(max-width: 1200px) {
+
+                @media(max-width: 1850px) {
                     .MainBanner { 
-                        background-size: contain;
-                        height: 600px;
+                        height: 700px;
                     }
                 }
-                @media(max-width: 900px) {
+
+                @media(max-width: 1300px) {
+                    .MainBanner { 
+                        height: 500px;
+                    }
+                }
+
+                @media(max-width: 1000px) {
                     .title { 
                         font-size:30px;
-                    }
-                }
-                @media(max-width: 720px) {
-                    .title { 
-                        font-size:25px;
-                    }
-                    .titleMini {
-                        font-size:15px;
                     }
                     .MainBanner { 
                         height: 400px;
                     }
                 }
-                @media(max-width: 640px) {
+
+                @media(max-width: 720px) {
+                    .title { 
+                        font-size:25px;
+                    }
+                    
+                    .titleMini {
+                        font-size:15px;
+                    }
+
+                    .MainBanner { 
+                        background-size: contain;
+                        background-position: top;
+                        height: 350px;
+                    }
+                }
+
+                @media(max-width: 540px) {
                     .title { 
                         font-size:40px;
                     }
@@ -144,10 +161,10 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                         margin-top: 0px;
                         width: 400px;
                     }
-                    .MainBanner { 
-                        height: 600px;
-                    }
 
+                    .MainBanner { 
+                        height: 150px;
+                    }
 
                     .btn {
                         margin-top:10px;
@@ -155,11 +172,8 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                         text-align: center;
                     }
                 }
-                @media(max-width:400px) {
-                    .MainBanner { 
-                        height: 350px;
-                    }
 
+                @media(max-width:400px) {
                     .titleMini {
                         width: 300px;
                     }
@@ -182,13 +196,9 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                         font-size:9px;
                         margin-top:10px;
                     }
+
                     .titleMini {
                         font-size:7px;
-                    }
-                    .MainBanner { 
-                        height: 130px;
-                    }
-                    .titleMini{
                         margin-bottom:00px;
                         margin-top:10px;
                     }

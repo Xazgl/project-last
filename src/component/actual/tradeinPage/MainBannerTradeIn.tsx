@@ -54,7 +54,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                 .MainBanner {
                     display:flex; 
                     width: 100%;
-                    height: 450px;
+                    height: 570px;
                     justify-content: start;
                     background-blend-mode: darken;
                     background: rgba(0, 0, 0, 0.304);
@@ -126,6 +126,17 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     
                     background-position: center center;
                     display:flex;
+                }
+
+
+
+                @media(max-width: 1650px) {
+                    .MainBanner { 
+                        display:flex; 
+                        width: 100%;
+                        height: 450px;
+                        background-size: cover;
+                    }
                 }
 
                 @media(max-width: 1200px) {

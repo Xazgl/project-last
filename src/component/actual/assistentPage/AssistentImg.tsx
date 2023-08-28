@@ -70,6 +70,7 @@ export function AssistentImg(){
                     flex-direction: row;
                     width:1000px;
                     height:auto;
+                    gap:30px;
             }
 
             .column {
@@ -89,17 +90,26 @@ export function AssistentImg(){
             .desc {
                     display: flex;
                     width: 100%;
-                    color: #0000CD;
+                    color: #0c54a0;
                     text-align: center;
                     line-height: 1.6666666667rem;
                     margin-top:21px;
                     font-size: 16px;
                     justify-content: center;
                     font-family: 'Roboto','sans-serif'; 
+                    font-weight: bold;
 
             }
 
-            @media(max-width: 900px) {
+
+            @media(max-width: 1200px) {
+                .imgContainer{
+                        width:900px;
+                        gap:20px;
+                }
+            }
+
+            @media(max-width: 1000px) {
                 .imgContainer{
                     width: 600px;
                     margin-top:50px;
@@ -111,11 +121,12 @@ export function AssistentImg(){
                 }
             }
 
-           @media(max-width: 650px) {
+           @media(max-width: 670px) {
                 .imgContainer{
                         width:100%;
                         flex-direction: column;
                         margin-top: 20px;
+                        height: auto;
                 }
                 
                 .desc {
@@ -126,8 +137,8 @@ export function AssistentImg(){
 
             @media(max-width: 650px) {
                 .img{
-                    height: 100px;
-                    width: 100px;
+                    height: 200px;
+                    width: 200px;
                 }
 
                 .desc {

@@ -262,25 +262,30 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                         {
                             filteredJobs.map(job => {
                                 return <div className="card" id="c4" key={job.id}>
-                                    {/* <div className="column" id="contentColumn"  src={'/uploads/' + params.row.img} > */}
-                                    <div className="column" id="contentColumn" >
-                                        <div className='titleCard'>{job.title}</div>
-                                        {/* <div className='textCard'>{job.description}</div> */}
-                                        <div className='textCard' id="city">{job.office}</div>
-                                        <div className='textCard' id="city">{cityName(job.city)}</div>
-                                        {/* <div className='salaryCard'>{job.salary} &#8381;</div> */}
-                                        <div className='btnDiv'>
-                                            {/* <Link href={`/job/${encodeURIComponent(sale.id)}`}> */}
-                                            <Link href={{
-                                                pathname: '/job/[id]',
-                                                query: { id: job.id }
-                                            }}>
-                                                <button className='btnModal' >{job.salary}  &#8381;</button>
+                                    <Link href={{
+                                        pathname: '/job/[id]',
+                                        query: { id: job.id }
+                                    }}>
+                                        {/* <div className="column" id="contentColumn"  src={'/uploads/' + params.row.img} > */}
+                                        <div className="column" id="contentColumn" >
+                                            <div className='titleCard'>{job.title}</div>
+                                            {/* <div className='textCard'>{job.description}</div> */}
+                                            <div className='textCard' id="city">{job.office}</div>
+                                            <div className='textCard' id="city">{cityName(job.city)}</div>
+                                            {/* <div className='salaryCard'>{job.salary} &#8381;</div> */}
+                                            <div className='btnDiv'>
+                                                {/* <Link href={`/job/${encodeURIComponent(sale.id)}`}> */}
+                                                <Link href={{
+                                                    pathname: '/job/[id]',
+                                                    query: { id: job.id }
+                                                }}>
+                                                    <button className='btnModal' >{job.salary}</button>
 
-                                                {/* <button className='btnModal' >Подробнее &#10095;</button> */}
-                                            </Link>
+                                                    {/* <button className='btnModal' >Подробнее &#10095;</button> */}
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </div>
                             })
                         }
@@ -339,6 +344,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     transition: all .3s ease;
                     padding-top:10px;
                     padding-bottom:10px;
+                    cursor: pointer;
                 }
 
                 .card:hover { 
@@ -422,7 +428,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     flex-direction:row;
                     font-family: 'Roboto','sans-serif'; 
                     transition: transform.3s;
-                    width: 140px;
+                    width: 80%;
                     height: 40px;
                     border: none;
                     font-weight: bold;

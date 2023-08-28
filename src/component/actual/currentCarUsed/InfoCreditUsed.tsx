@@ -14,7 +14,7 @@ type Props = {
 }
 
 
-export function InfoCreditUsed({ car, showModal, setShowModal,  refCredit, setCarImg }: Props) {
+export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCarImg }: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
@@ -121,15 +121,23 @@ export function InfoCreditUsed({ car, showModal, setShowModal,  refCredit, setCa
                                             value={name}
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2',outline:'none',
+                                                borderBottom: 'solid 1px #1976d2', outline: 'none',
                                             }}
-                                            onChange={event => setName(event.target.value)} />
+                                            onChange={(event) => {
+                                                const inputValue = event.target.value;
+                                                const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                                const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                                if (capitalizedValue.length <= 50) {
+                                                    setName(capitalizedValue);
+                                                }
+                                            }}
+                                        />
                                     </div>
                                     <div className="column">
                                         <IMaskInput
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2',outline:'none',
+                                                borderBottom: 'solid 1px #1976d2', outline: 'none',
                                             }}
                                             id="inputP"
                                             className="phone"
@@ -279,7 +287,8 @@ export function InfoCreditUsed({ car, showModal, setShowModal,  refCredit, setCa
 
 
             `}</style>
-        </>)
+        </>
+    )
 }
 
 

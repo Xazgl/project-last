@@ -59,6 +59,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     justifyContent: 'center',
                     flexDirection: 'column',
                     alignItems: 'center',
+
                 }}>
                     <div className="title">Автомобили с пробегом</div>
                     {carArr.length > 0 ?
@@ -102,7 +103,8 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                             (max-width: 828px) 40vw,
                                                             (max-width: 1080px) 33vw,
                                                             20vw"
-                                                        loading="lazy"  />
+                                                        loading="lazy"
+                                                    />
                                                 </div>
                                                 <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
                                                 <div className="cardPrice">от {numberWithSpaces(Number(car.price))} ₽</div>
@@ -248,6 +250,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     display: flex;
                     justify-content: center;
                     width: 100%;
+                    cursor: pointer;
                 }
 
                 #mob {
@@ -513,3 +516,15 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
         </>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+

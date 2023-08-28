@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react';
-import banner from '/public/images/bannerService.webp'
+import banner from '/public/images/services/bannerService.webp'
 
 import Image from 'next/image';
 
@@ -116,11 +116,13 @@ export function ServiceBanner({ refs }: FormType) {
                 cursor: pointer;
                 width: 40%;
                 font-size:30px;
+                transition: all 0.5s;
             }
             
             .btn:hover {
-                background-color: black;
-
+                background-color: #0c54a0;
+                border: 3px solid #0c54a0;
+                transform:  scale(0.99);
             }
 
             @media(max-width: 1000px) {

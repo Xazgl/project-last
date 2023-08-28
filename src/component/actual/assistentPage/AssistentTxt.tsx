@@ -18,15 +18,15 @@ export function AssistentTxt() {
                         а также окажут консультационную, правовую и психологическую поддержку.
                     </p>
                     <ul><p className="titleMini">АВАРИЙНЫЙ КОМИССАР «АРКОНТ» ПОМОЖЕТ ВАМ:</p>
-                        <li> <DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} /> вызвать сотрудников ГИБДД на место ДТП</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />правильно оформить все документы для возмещения ущерба</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />дать объяснения сотрудникам ГИБДД</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} /> отстоять вашу точку зрения в случае психологического давления</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />провести необходимые замеры и фото-, видеосъёмку</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />при необходимости эвакуировать автомобиль с места ДТП</li>
-                        <li><DoneOutlineIcon sx={{ color: '#0000CD', fontSize: '14px' }} />рассчитать предварительную стоимость ремонта</li>
+                        <li> <DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} /> Вызвать сотрудников ГИБДД на место ДТП</li>
+                        <li><DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} />Правильно оформить все документы для возмещения ущерба</li>
+                        <li><DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} />Дать объяснения сотрудникам ГИБДД</li>
+                        <li><DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} /> Отстоять вашу точку зрения в случае психологического давления</li>
+                        <li><DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} />Провести необходимые замеры и фото, видеосъёмку</li>
+                        <li><DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} />При необходимости эвакуировать автомобиль с места ДТП</li>
+                        <li><DoneOutlineIcon sx={{ color: '#0c54a0', fontSize: '14px' }} />Рассчитать предварительную стоимость ремонта</li>
                     </ul>
-                    <h4 style={{ color: '#0000CD' }}>
+                    <h4 style={{ color: '#0c54a0' }}>
                         ТЕЛЕФОН: +7(8442)52−45−44
                     </h4>
 
@@ -37,7 +37,8 @@ export function AssistentTxt() {
                         justifyContent:'center',
                         width:'100%',
                         height:'100%',
-                        fontSize:'16px'
+                        fontSize:'16px',
+                        backgroundColor:'#0c54a0'
                     }}
                     variant="contained"
                     href="tel:+78442524544">Связаться</Button>
@@ -71,7 +72,7 @@ export function AssistentTxt() {
                     text-align: start;
                     font-size:18px;
                     justify-content: start;
-                    color: #0000CD;
+                    color: #0c54a0;
                     font-family: 'Roboto','sans-serif'; 
 
                 }
@@ -101,6 +102,7 @@ export function AssistentTxt() {
                     align-items: center;
                     justify-content: start;
                     margin-top:15px;
+                    gap:10px;
                 }
 
                 .divBtn{
@@ -147,6 +149,10 @@ export function AssistentTxt() {
 
                 .titleMini {
                     font-size:16px;
+                }
+
+                li {
+                    align-items: baseline;
                 }
             }
 

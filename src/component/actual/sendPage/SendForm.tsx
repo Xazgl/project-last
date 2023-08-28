@@ -128,7 +128,7 @@ export function SendForm() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ officeName, name, phone,comment})
+                body: JSON.stringify({ officeName, name, phone, comment })
             })
             if (res.ok) {
                 const result = await res.json()
@@ -154,7 +154,15 @@ export function SendForm() {
                                     placeholder="Александр"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Телефон* </div>
@@ -167,7 +175,7 @@ export function SendForm() {
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
                                         padding: '11px 12px',
-                                        outline:'none',
+                                        outline: 'none',
                                         fontFamily: 'Roboto'
                                     }}
                                     id="inputP"
@@ -188,7 +196,7 @@ export function SendForm() {
                                 </select>
                             </div>
                             <div className="divForm" style={{ alignItems: "start" }}>
-                                <div className="inputTitle" style={{ fontSize: '14px',fontFamily: 'Roboto' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
+                                <div className="inputTitle" style={{ fontSize: '14px', fontFamily: 'Roboto' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                                 <Checkbox
                                     checked={checked}
                                     onChange={handleChange}

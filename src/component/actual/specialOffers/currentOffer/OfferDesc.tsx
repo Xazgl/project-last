@@ -27,7 +27,9 @@ return (
                                 width: '100%',
                                 height: '100%',
                                 fontSize: '16px',
-                                fontFamily: 'Roboto'
+                                fontFamily: 'Roboto',
+                                backgroundColor:'#0c54a0',
+                                borderRadius:'0px'
                             }}
                             onClick={
                                 (e) => {

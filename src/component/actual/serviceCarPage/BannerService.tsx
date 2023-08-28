@@ -1,36 +1,44 @@
 import Link from "next/link";
 import Image from 'next/image';
-import banner from '/public/images/11.webp'
-import { Dispatch, FormEvent, SetStateAction, useMemo, useState } from "react"
+import banner from '/public/images/services/banner.png'
 
-export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>> }) {
+import {  MutableRefObject } from "react"
 
-    function showModal(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        setShowModal(true)
+
+type FormType = {
+    refs: {
+        refForm: MutableRefObject<HTMLDivElement>,
     }
+}
+
+export function BannerService({ refs }:FormType) {
 
     return (
         <>
             <div className="Banner">
                 <div className="title">
-                    <div>Желаете работать в АРКОНТ?</div>
+                    <div>Сервисный центр АРКОНТ</div>
                     <div className="titleMini">
-                        <form onSubmit={showModal}>
-                            <button className="btn">Отправить резюме</button>
-                        </form>
-                    </div>
+                        <button className="btn"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                refs.refForm.current.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                })
+                            }}> Записаться</button>
                 </div>
             </div>
+        </div >
 
             <style jsx>{`
                 .Banner {
                     display:flex; 
                     width: 100%;
-                    height: 500px;
+                    height: 600px;
                     justify-content: start;
                     background-blend-mode: darken;
-                    background: rgba(0, 0, 0, .30);
+                    background: rgba(0, 0, 0, .20);
                     background-position: center center;
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;

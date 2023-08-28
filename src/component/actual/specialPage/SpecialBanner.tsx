@@ -186,7 +186,10 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                 justifyContent: 'center',
                                 textAlign: 'center',
                                 width: '100%',
-                                height: '40px'
+                                height: '45px',
+                                backgroundColor:'#0c54a0',
+                                borderRadius:'0px'
+
                             }}
                             variant="contained"
                             onClick={showModal}
@@ -268,9 +271,11 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                     margin-top: 10px;
                 }
 
+  
                 @media(max-width: 1000px) {
                     .banner {
                         width: 600px;
+                        background-size: contain;
                     }
                     .txt {
                         width: 600px;

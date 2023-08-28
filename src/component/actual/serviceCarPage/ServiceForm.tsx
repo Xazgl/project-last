@@ -1,8 +1,9 @@
 
 import { IMaskInput } from "react-imask"
 import { ChangeEvent, FormEvent, MutableRefObject, useEffect, useRef, useState } from "react";
-import {  Checkbox} from "@mui/material";
+import { Checkbox } from "@mui/material";
 import MuiModal from "../modalAfterSubmit/MuiModal";
+import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
 
 type Office = {
     id: number,
@@ -93,11 +94,11 @@ const officeList: Office[] = [
 
 type FormType = {
     refs: {
-      refForm: MutableRefObject<HTMLDivElement>,
+        refForm: MutableRefObject<HTMLDivElement>,
     }
-  }
+}
 
-export function ServiceForm( {refs}:FormType) {
+export function ServiceForm({ refs }: FormType) {
     const [officeId, setOfficeId] = useState(0) //ДЦ
     const [name, setName] = useState('')   //Имя клиента
     const [phone, setPhone] = useState('') //Телефон
@@ -153,9 +154,11 @@ export function ServiceForm( {refs}:FormType) {
 
     return (
         <>
+            <div className="title"><PlaylistAddCheckCircleIcon 
+             sx={{fontSize:'35px'}}
+            /> Запись на сервис</div>
             <div className="background">
                 <div className="column" ref={refs.refForm}>
-                    <div className="title">Запись на сервис</div>
                     <div className="desc">Заполните форму и мы с вами обязательно свяжемся</div>
                     <div className="form">
                         <form id="submit-form" onSubmit={sendmail}>
@@ -169,7 +172,15 @@ export function ServiceForm( {refs}:FormType) {
                                     placeholder="Александр"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Телефон* </div>
@@ -179,13 +190,10 @@ export function ServiceForm( {refs}:FormType) {
                                         fontSize: '18px',
                                         height: '40px',
                                         width: '100%',
-                                        backgroundColor: '#e7e7e7',
-                                        border: 'none',
-                                        padding: '11px 12px',
+                                        border: '2px solid #005baa',
+                                        padding: '12px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto'
-
-
+                                        fontFamily: 'Roboto',
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -217,6 +225,7 @@ export function ServiceForm( {refs}:FormType) {
                             <div className="divForm" style={{ alignItems: "start" }}>
                                 <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                                 <Checkbox
+                                    sx={{ color: '#005baa' }}
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
@@ -290,7 +299,7 @@ export function ServiceForm( {refs}:FormType) {
                 flex-direction: column;
                 justify-content: center;
                 align-items: baseline;
-                width:500px;
+                width:auto;
                 font-family: 'Roboto','sans-serif'; 
            }
 
@@ -298,13 +307,16 @@ export function ServiceForm( {refs}:FormType) {
            .title {
                 display:flex; 
                 width: 100%;
-                justify-content: start;
+                justify-content: center;
                 align-items:center;
-                margin-top:10px;
-                font-weight: bold;
                 font-family: 'Roboto','sans-serif'; 
-                font-size:30px;
+                font-size:40px;
                 text-align: start;
+                background-color: #005baa;
+                gap:10px;
+                color:white;
+                text-align: center;
+                padding: 20px;
             
            }
            
@@ -353,11 +365,10 @@ export function ServiceForm( {refs}:FormType) {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                background-color: #e7e7e7;
                 border:none;
-                font-weight: bold;
-                padding: 11px 12px;
-                outline:none;
+                padding: 12px 12px;
+                border:2px solid #005baa; 
+                outline: none;
             }
 
             textarea  {
@@ -365,21 +376,20 @@ export function ServiceForm( {refs}:FormType) {
                 height: 200px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                background-color: #e7e7e7;
-                border:none;
-                font-weight: bold;
-                padding: 11px 12px;
+                border:2px solid #005baa; 
+                padding: 12px 12px;
                 resize: none;
+                outline: none;
             }
 
            select {
                 width: 100%;
                 height: 40px;
-                font-size: 18px; 
+                font-size: 15px; 
                 font-family: 'Roboto','sans-serif'; 
-                background-color: #e7e7e7;
-                border:none;
-                padding: 2px ;
+                border:2px solid #005baa; 
+                padding: 2px;
+                outline: none;
            }
             
            .btn {

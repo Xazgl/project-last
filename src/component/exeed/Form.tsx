@@ -46,7 +46,15 @@ export function Form() {
                                     placeholder="Имя"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
                             </div>
                             <div className="divForm">
                                 <IMaskInput

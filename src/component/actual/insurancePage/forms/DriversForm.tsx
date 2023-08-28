@@ -22,7 +22,7 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 })
             }
             <Button
-            sx={{marginTop:'20px'}}
+            sx={{marginTop:'20px', backgroundСolor: '#0c54a0',borderRadius:'0px'}}
             variant="contained"
             onClick={() => {setDrivers(drivers => [...drivers, {
                 id: drivers.length, 
@@ -113,7 +113,7 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
            }
@@ -124,7 +124,7 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
            }
 

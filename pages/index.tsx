@@ -91,9 +91,9 @@ const Home: NextPage<{ cars: AllCarDto, carsUsed: AllUsedCarDto }> = ({ cars, ca
           }
         </div>
       </div >
-      <QuestionForm />
       <div className='background'>
         <div className='content'>
+          <QuestionForm />
           <div className='title'>Сервисные центры Арконт</div>
           <BrandsMap />
         </div>

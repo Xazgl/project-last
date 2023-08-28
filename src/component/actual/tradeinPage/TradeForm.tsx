@@ -99,7 +99,15 @@ export function TradeForm({ refs }: MuneProps) {
                                     placeholder="Ваше имя"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
 
                                 <label htmlFor="phone" className="form-label"></label>
                                 <IMaskInput
@@ -186,8 +194,9 @@ export function TradeForm({ refs }: MuneProps) {
            .background {
                 display:flex; 
                 width: 100%;
-                height: 400px;
+                height: 500px;
                 margin-top:10px;
+                gap:300px;
                 justify-content: center;
                 align-items:center;
                 flex-direction: row;
@@ -376,11 +385,23 @@ export function TradeForm({ refs }: MuneProps) {
 
 
         
+           @media(max-width: 1600px) {
+            .background {
+                gap:200px;
+            }
+                .column {
+                    width: 400px;
+                } 
+            }
+
 
             @media(max-width: 1150px) {
                 .column {
                     width: 400px;
                 } 
+                .background {
+                  gap:0px;
+                }   
             }
 
             

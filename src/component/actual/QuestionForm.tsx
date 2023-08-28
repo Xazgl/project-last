@@ -195,7 +195,15 @@ export function QuestionForm() {
                                     placeholder="Ваше имя"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
 
                                 <label htmlFor="phone" className="form-label"></label>
                                 <IMaskInput
@@ -262,15 +270,16 @@ export function QuestionForm() {
            .background {
                 display:flex; 
                 width: 100%;
-                height: 400px;
+                height: 500px;
                 margin-top:10px;
-                justify-content: center;
+                justify-content: space-between;
                 align-items:center;
                 flex-direction: row;
                 background-position: center center;
-                background-color:#fcfafad2;
                 background-repeat:no-repeat;
                 background-size:cover;
+                
+                margin-top: 50px;
             }
 
             .first {
@@ -343,7 +352,7 @@ export function QuestionForm() {
 
            .form {
                 display:flex;
-                width: 110%;
+                width: 100%;
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
@@ -480,7 +489,9 @@ export function QuestionForm() {
                 } 
                 .form {
                     width: 100%;
+                    border-radius: 20px;
                 }
+                
                 input {
                     height: 40px;
                 }

@@ -9,7 +9,7 @@ type Office = {
 }
 
 type Props = {
-    refForm:MutableRefObject<HTMLDivElement>,
+    refForm: MutableRefObject<HTMLDivElement>,
 }
 
 
@@ -92,7 +92,7 @@ const officeList: Office[] = [
     },
 ]
 
-export function FormOffer({refForm}:Props) {
+export function FormOffer({ refForm }: Props) {
     const [officeId, setOfficeId] = useState(0) //ДЦ
     const [name, setName] = useState('')   //Имя клиента
     const [phone, setPhone] = useState('') //Телефон
@@ -108,7 +108,7 @@ export function FormOffer({refForm}:Props) {
 
     useEffect(() => {
         // if (checked === true && name > '' && phone > '' && officeId > 0) {
-            if (checked === true && name > '' && phone > '') {
+        if (checked === true && name > '' && phone > '') {
             // formBtn.current.disable = false
             setDisabledBtn(false)
         } else {
@@ -160,7 +160,15 @@ export function FormOffer({refForm}:Props) {
                                     placeholder="Александр"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Телефон* </div>
@@ -173,7 +181,7 @@ export function FormOffer({refForm}:Props) {
                                         backgroundColor: '#e7e7e7',
                                         border: 'none',
                                         padding: '11px 12px',
-                                        outline:'none',
+                                        outline: 'none',
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -212,7 +220,7 @@ export function FormOffer({refForm}:Props) {
                     </div>
                 </div>
             </div>
-        <style jsx>{`
+            <style jsx>{`
             
            .background {
                 display:flex; 

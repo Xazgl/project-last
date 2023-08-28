@@ -40,6 +40,7 @@ export function MainBanner() {
                     background-position: center center;
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;
+                    background-size: cover;
                 }
 
                 .title {

@@ -126,14 +126,14 @@ export function VacancyForm(job) {
 
     useEffect(() => {
         if (checked === true && name > '' && surname > '' && patronymic > ''
-        && companyName > '' && companyPosition > '' && startData !==null && endData  !==null ) {
+            && companyName > '' && companyPosition > '' && startData !== null && endData !== null) {
             // formBtn.current.disable = false
             setDisabledBtn(false)
         } else {
             setDisabledBtn(true)
         }
 
-    }, [checked, name, surname, patronymic, phone, salary,companyName, companyPosition,startData,endData])
+    }, [checked, name, surname, patronymic, phone, salary, companyName, companyPosition, startData, endData])
 
     const className = [
         'btn',
@@ -150,8 +150,10 @@ export function VacancyForm(job) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, surname, patronymic, phone,companyName,
-                     companyPosition,startData,endData,text,textTwo,salary})
+                body: JSON.stringify({
+                    name, surname, patronymic, phone, companyName,
+                    companyPosition, startData, endData, text, textTwo, salary
+                })
             })
             if (res.ok) {
                 const result = await res.json()
@@ -177,8 +179,17 @@ export function VacancyForm(job) {
                                     placeholder="Александр"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+                                />
                             </div>
+
                             <div className="divForm">
                                 <label htmlFor="name" className="form-label"></label>
                                 <div className="inputTitle">Фамилия*</div>
@@ -191,6 +202,7 @@ export function VacancyForm(job) {
                                     value={surname}
                                     onChange={event => setSurname(event.target.value)} />
                             </div>
+
                             <div className="divForm">
                                 <label htmlFor="name" className="form-label"></label>
                                 <div className="inputTitle">Отчество*</div>
@@ -215,6 +227,7 @@ export function VacancyForm(job) {
                                     value={salary}
                                     onChange={event => setSalary(event.target.value)} />
                             </div>
+
                             <div className="divForm">
                                 <div className="inputTitle">Телефон* </div>
                                 <label htmlFor="phone" className="form-label"></label>
@@ -223,10 +236,9 @@ export function VacancyForm(job) {
                                         fontSize: '18px',
                                         height: '40px',
                                         width: '100%',
-                                        backgroundColor: '#e7e7e7',
+                                        padding: '12px 12px',
                                         border: 'none',
-                                        padding: '11px 12px'
-
+                                        outline: 'none'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -238,6 +250,7 @@ export function VacancyForm(job) {
                                     onChange={(event: ChangeEvent<HTMLInputElement>) => setPhone(event.target.value)}
                                 />
                             </div>
+
                             <div className="divForm">
                                 <div className="inputTitle">Данные о последнем месте работы </div>
                                 <input type="text"
@@ -250,6 +263,7 @@ export function VacancyForm(job) {
                                     onChange={event => setCompanyName(event.target.value)}
                                 />
                             </div>
+
                             <div className="divForm">
                                 <input type="text"
                                     className="name"
@@ -263,7 +277,8 @@ export function VacancyForm(job) {
                             </div>
 
                             <div className="divForm" id="dateForm">
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <LocalizationProvider
+                                    dateAdapter={AdapterDayjs}>
                                     <DesktopDatePicker
                                         label="От"
                                         inputFormat="MM/DD/YYYY"
@@ -278,7 +293,8 @@ export function VacancyForm(job) {
                                         inputFormat="MM/DD/YYYY"
                                         value={endData}
                                         onChange={handleChangeDateEnd}
-                                        renderInput={(params) => <TextField {...params} />}
+                                        renderInput={(params) => <TextField
+                                            {...params} />}
                                     />
                                 </LocalizationProvider>
                             </div>
@@ -288,7 +304,14 @@ export function VacancyForm(job) {
                                 <TextareaAutosize
                                     aria-label="empty textarea"
                                     placeholder=""
-                                    style={{ width: '100%', height: '100px', resize: 'none' }}
+                                    style={{
+                                        width: '100%',
+                                        height: '100px',
+                                        resize: 'none',
+                                        padding: '12px 12px',
+                                        border: '#e7e7e7 solid 2px',
+                                        outline: 'none'
+                                    }}
                                     value={text}
                                     onChange={event => setText(event.target.value)}
                                 />
@@ -298,7 +321,14 @@ export function VacancyForm(job) {
                                 <TextareaAutosize
                                     aria-label="empty textarea"
                                     placeholder="Например: график и условия работы, предпочтительный автоцентр или район города"
-                                    style={{ width: '100%', height: '100px', resize: 'none' }}
+                                    style={{
+                                        width: '100%',
+                                        height: '100px',
+                                        resize: 'none',
+                                        padding: '12px 12px',
+                                        border: '#e7e7e7 solid 2px',
+                                        outline: 'none'
+                                    }}
                                     value={textTwo}
                                     onChange={event => setTextTwo(event.target.value)}
                                 />
@@ -334,9 +364,9 @@ export function VacancyForm(job) {
                 align-items:center;
                 flex-direction: column;
                 background-position: center center;
-                background-color:#f3f0f09d;
                 background-repeat:no-repeat;
                 background-size:cover;
+                margin-top:50px;
             }
 
             .first {
@@ -356,10 +386,9 @@ export function VacancyForm(job) {
             }
 
             .rightInput {
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
-                
             }
 
             .border {
@@ -378,8 +407,8 @@ export function VacancyForm(job) {
                 flex-direction: column;
                 justify-content: center;
                 align-items: baseline;
-                width:500px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                width:900px;
+                font-family: 'Roboto','sans-serif'; 
            }
 
 
@@ -390,10 +419,9 @@ export function VacancyForm(job) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
-            
            }
            
            .desc {
@@ -402,7 +430,7 @@ export function VacancyForm(job) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
            }
 
@@ -425,7 +453,7 @@ export function VacancyForm(job) {
            }
 
            #dateForm {
-            flex-direction: row;
+                flex-direction: row;
            }
 
            .inputTitle {
@@ -436,7 +464,7 @@ export function VacancyForm(job) {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'TacticSans-Reg','sans-serif';  
+                font-family: 'Roboto','sans-serif'; 
            }
            
 
@@ -444,18 +472,19 @@ export function VacancyForm(job) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
-                background-color: #e7e7e7;
+                font-family: 'Roboto','sans-serif'; 
                 border:none;
-                font-weight: bold;
-                padding-left: '11px 12px',
+                padding: 12px 12px;
+                border-bottom:  #e7e7e7 solid 2px;
+                outline: none;
+                margin-top:15px; 
            }
 
            select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'TacticSans-Reg','sans-serif'; 
+                font-family: 'Roboto','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }
@@ -466,7 +495,7 @@ export function VacancyForm(job) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'TacticSans-Reg','sans-serif';
+                font-family: 'Roboto','sans-serif';
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;
@@ -482,7 +511,7 @@ export function VacancyForm(job) {
                 color:white;
            }
 
-           @media(max-width: 600px) {
+           @media(max-width: 900px) {
                 .title {
                     justify-content: center;
                     font-size:25px;

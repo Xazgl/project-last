@@ -13,6 +13,8 @@ import { AllOffersDto } from '../../../../@types/dto';
 import { GetServerSideProps } from 'next';
 import db from '../../../../prisma';
 import { detailBrandFilter, detailModeFilter, mainPeopleFilter } from './carFilters';
+import { Slide } from '@mui/material';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 type Office = {
     id: number,
@@ -231,20 +233,40 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
     const [sales, setSales] = useState<AllOffersDto[]>([])
     const [openStarting, setOpenStarting] = useState(false)
     const [closeStarting, setCloseStarting] = useState(false)
-
     const [filteredOffers, setFilteredOffers] = useState<Offer[]>(offers)
-
-
     const [detailFilterMainPeopleResult, setDetailFilterMainPeople] = useState('')
     const [detailFilterBrandResult, setDetailFilterBrandPeople] = useState('')
     const [detailFilterModeResult, setDetailFilterModePeople] = useState('')
-
     const [isMouseInside, setIsMouseInside] = useState(false);
-
-
+    const [isVisible, setIsVisible] = useState(false);
     const filterMain = filterNameerList.find(service => service.id === filterName)?.name
-
     const refCard = React.useRef<HTMLDivElement>(null)
+    const visibleElementRef = React.useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const windowHeight = window.innerHeight;
+
+            const isElementVisible = (element) => {
+                const { top, bottom } = element.getBoundingClientRect();
+                return top < windowHeight && bottom >= 0;
+            };
+
+            const element = visibleElementRef.current;
+
+            if (isElementVisible(element)) {
+                setIsVisible(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
     //Конкретные выбранные фильтры 
@@ -372,13 +394,69 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
     return (
         <>
-            <div className="mainNam">
-                <div className="border"></div>
-            </div>
+
             <div className="mainNam" id="title">
-                <span id="mainWords">Специальные предложения</span>
+                <LoyaltyIcon sx={{ fontSize: '35px' }} />
+                <span id="mainWords">
+                    Специальные предложения
+                </span>
             </div>
-            <div className='selector'>
+
+            <div className='selector' id="desktop">
+                <div className='center'>
+                    <div className='rowFilter'>
+                        <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
+                            onChange={selectFilterMainPeopleHandler}>
+                            <option value={'Null'} selected >Выберите тип авто</option>
+                            {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                        </select>
+                    </div>
+                    <div className='rowFilter'>
+                        <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
+                            onChange={selectDetailFilterBrandHandler}>
+                            <option value={'Null'} selected >Выберите бренд</option>
+                            {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                        </select>
+                    </div>
+                    <div className='rowFilter'>
+                        <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
+                            onChange={selectDetailFilterModeHandler}>
+                            <option value={'Null'} selected >Выберите модель</option>
+                            {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                        </select>
+                    </div>
+                </div>
+
+
+                <div className='selector' id="mobile">
+                    <div className='center'>
+                        <div className='rowFilter'>
+                            <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
+                                onChange={selectFilterMainPeopleHandler}>
+                                <option value={'Null'} selected >Выберите тип авто</option>
+                                {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            </select>
+                        </div>
+                        <div className='rowFilter'>
+                            <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
+                                onChange={selectDetailFilterBrandHandler}>
+                                <option value={'Null'} selected >Выберите бренд</option>
+                                {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            </select>
+                        </div>
+                        <div className='rowFilter'>
+                            <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
+                                onChange={selectDetailFilterModeHandler}>
+                                <option value={'Null'} selected >Выберите модель</option>
+                                {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className='selector' id="mobile">
+
                 <div className='center'>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
@@ -405,69 +483,88 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
             </div>
 
 
-            <div className="background">
+            <div className="background" id="cardsBackground" ref={visibleElementRef}>
                 {filteredOffers.length > 0 &&
-                    <div className="cards">
+                    <div className="cards" >
                         {
                             filteredOffers.map(offer => {
-                                return <div className={className.join(' ')}
-                                    ref={refCard} onMouseEnter={() => setIsMouseInside(true)}
-                                    onMouseLeave={() => setIsMouseInside(false)}
-                                    key={offer.id} onClick={(event) => {
-                                        if (event.target === refCard.current)
-                                            reversalCard()
-                                    }}
-                                >
-                                    <div className="column" >
-                                        <img style={{
-                                            backgroundSize: 'cover', width: '100%',
-                                            height: '250px', backgroundRepeat: 'no-repeat',
-                                            objectFit: 'cover'
+                                return (<Slide in={isVisible} key={offer.id} direction="right" timeout={600}>
 
+                                    <div className={className.join(' ')}
+                                        ref={refCard} onMouseEnter={() => setIsMouseInside(true)}
+                                        onMouseLeave={() => setIsMouseInside(false)}
+                                        key={offer.id} onClick={(event) => {
+                                            if (event.target === refCard.current)
+                                                reversalCard()
                                         }}
-                                            src={'/uploads/' + offer.img} />
+                                    >
+                                        <Link href={{
+                                            pathname: '/catalog/special-offers/[id]',
+                                            query: { id: offer.id }
+                                        }}>
+                                            <div className="column" >
+                                                <img style={{
+                                                    backgroundSize: 'cover', width: '100%',
+                                                    height: '250px', backgroundRepeat: 'no-repeat',
+                                                    objectFit: 'cover'
 
-                                        <div className="contentCard">
-                                            <div className='titleCard'>{offer.title}</div>
-                                            <div className='textCard'>{offer.shortDesc}</div>
-                                            <div className='row'>
-                                                {offer.price !== '' ?
-                                                    <div className='salesDiv'>{offer.price}</div>
-                                                    :
-                                                    null
-                                                }
-                                                <div className='btnDiv'>
-                                                    <Link href={{
-                                                        pathname: '/catalog/special-offers/[id]',
-                                                        query: { id: offer.id }
-                                                    }}>
-                                                        <button className='btnModal'>Узнать больше	&#10095;</button>
-                                                    </Link>
+                                                }}
+                                                    src={'/uploads/' + offer.img} />
+
+                                                <div className="contentCard">
+                                                    <div className='titleCard'>{offer.title}</div>
+                                                    <div className='textCard'>{offer.shortDesc}</div>
+                                                    <div className='row'>
+                                                        {offer.price !== '' ?
+                                                            <div className='salesDiv'>{offer.price}</div>
+                                                            :
+                                                            null
+                                                        }
+                                                        <div className='btnDiv'>
+                                                            <Link href={{
+                                                                pathname: '/catalog/special-offers/[id]',
+                                                                query: { id: offer.id }
+                                                            }}>
+                                                                <button className='btnModal'>Узнать больше	&#10095;</button>
+                                                            </Link>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </div>
-                                </div>
+                                </Slide>
+                                )
                             })
                         }
                     </div>
                 }
             </div>
-            <div className='backgroundQuestion'>
+            {/* <div className='backgroundQuestion'>
                 <div className='salesQuestion'>
                     <div className='titleQuestion'>
                         <div className='rowQuestion'>Возникли вопросы по акциям?</div>
                         <div className='rowQuestion'>Свяжитесь с нами!</div>
                     </div>
-                    {/* <div className='btnQuestion'>
+                    <div className='btnQuestion'>
                         <form onSubmit={showModal}>
                             <button className="btnCall">ЗАКАЗАТЬ ОБРАТНЫЙ ЗВОНОК &#10095;</button>
                         </form>
-                    </div> */}
+                    </div>
                 </div>
-            </div>
+            </div> */}
 
             <style jsx>{`
+
+                #desktop{
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                #mobile {
+                    display:none;
+                    flex-direction: column;
+                }
 
                 .background {
                     display:flex; 
@@ -491,9 +588,6 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     padding-top:50px;
                 }
 
-                .card:hover {
-                   transform: scale(1.01);
-                }
                 
                 .titleQuestion{
                     display:flex; 
@@ -556,7 +650,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
                 .border {
                     width:960px;
-                    border-top:solid 2px rgb(106, 106, 106)
+                    border-top:solid 0.5px rgb(255, 255, 255)
                 }
 
 
@@ -566,7 +660,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     background-color:#0c54a0;
                     justify-content:center;
                     align-items:center;
-                    padding-top: 30px;
+                    padding: 20px;
                     outline:none;
                 }
 
@@ -578,7 +672,10 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     height: 50px;
                     border:solid 2px white;
                     font-size:21px; 
-                    outline: none:
+                    outline: none;
+                    padding: 5px 5px;
+                    cursor: pointer;
+                    transition: all 2s;
 
                 }
 
@@ -609,9 +706,11 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     align-items: center;
                     color:white;
                     font-family: 'Roboto','sans-serif'; 
-                    font-size:50px;
+                    font-size:40px;
                     text-align: center;
                     background-color:#0c54a0;
+                    padding: 20px;
+                    gap:10px;
                 }
 
                 .cards {
@@ -632,15 +731,17 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     min-height:400px;
                     max-height:auto;
                     background:white;
-                    transition:margin-bottom 500ms;
-                    position:relative;
-                    background: #f6f3ef;
-                    -webkit-box-shadow: 7px -17px 10px 0px rgba(0, 0, 0, 0.23);
-                    -moz-box-shadow: 7px -17px 10px 0px rgba(0, 0, 0, 0.23);
-                    box-shadow: 7px -17px 10px 0px rgba(0, 0, 0, 0.23);
+                    background: #f2f0ed;
                     transition: 0.6s;
-                    transform-style:preserve-3d
-                
+                    cursor:pointer;
+                }
+
+                 .card:hover {
+                    transform: scale(1.10);
+                    -webkit-box-shadow: -1px 8px 20px 0px rgba(34, 60, 80, 0.2);
+                    -moz-box-shadow: -1px 8px 20px 0px rgba(34, 60, 80, 0.2);
+                    box-shadow: -1px 8px 20px 0px rgba(34, 60, 80, 0.2);
+ 
                 }
 
                 .contentCard {
@@ -735,14 +836,17 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     width: 140px;
                     height: 40px;
                     background: transparent;
-                    border: 1px solid;
-                    color: color:#1b1b1b;
+                    border: 2px solid;
+                    color: #1b1b1b;
                     font-weight: bold;
+                    cursor:pointer;
+                    transition:0.6s;
                 }
 
                 .btnModal:hover {
-                    background-color: #1b1b1b;
+                    background-color: #0c54a0;
                     color:white;
+                    border: #0c54a0 2px solid;
                 }
 
 
@@ -753,7 +857,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:column;
                     color:white;
                     font-family: 'Roboto','sans-serif'; 
-                    font-size:55px;
+                    font-size:40px;
                     font-weight: bold;
                 }
                 
@@ -770,6 +874,10 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
                 input {
                     outline:none;
+                }
+
+                #cardsBackground{
+                     padding-bottom: 50px;
                 }
             
 
@@ -790,6 +898,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                         font-size:30px;
                     }
                 }
+
                 @media(max-width: 720px) {
                     .mainNam {
                          font-size: 40px;
@@ -801,40 +910,102 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     .titleMini {
                         font-size:15px;
                     }
+                    
                     .MainBanner { 
                         height: 400px;
                     }
+
                     .center{
                         flex-direction: column;
                         width: 60%;
                      }
+
                      .rowFilter {
                         margin-top:10px;
                      }
+
+                     #desktop{
+                       display:none;
+
+                    }
+
+                    #mobile {
+                        display: flex;
+                    }  
                 }
-                @media(max-width: 620px) {
+                @media(max-width: 640px) {
+                    .selectModel{
+                        width: 100%;
+                    }
+
+                    .rowFilter{
+                        width: auto;
+                    }
+
+                    option {
+                        font-size: 16px;
+                    }
+
                     .mainNam {
                          font-size: 30px;
                     }
                     .background {
                         height: 100%;
                     }
+
                     .cards {
                         width:100%;
                         margin-top: 30px;
                     }
+
+                    .contentCard {
+                        min-height: auto;
+                        padding: 20px;
+                    }
+                    
                     .card {
                         width:100%;
                         margin-top: 40px;
-                        height: 180px;
+                        height: auto;
                     }
+                    
+                    .card:hover {
+                        transition: none;
+                        transform: none;
+                        box-shadow: none;
+                    }
+
+                    .titleCard {
+                        height: auto;
+                        min-height: auto;
+                    }
+
+                    .row{
+                        height: auto;
+                        min-height: auto;
+                    }
+
+                    .titleCard {
+                        height: auto;
+                        min-height: auto;
+                    }
+
                     #c4 {
                         display:none;
                     }
-                    .btnModal {
-                        width:300px;
-                        font-size:15px;
+
+                    .btnDiv {
+                        width: 90%;
+                        margin-top: 10px;
                     }
+
+                    .btnModal {
+                        width:100%;
+                        font-size:16px;
+                        height: 45px;
+                        margin-top:10px;
+                    }
+
                     .selectModel {
                         width:90%;
                         font-size: 16px;
@@ -858,11 +1029,18 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                         justify-content: left;
                         width: 100%;
                     }
+
+                    #title {
+                        padding: 10px;
+                    }
+
+
                 }
                 @media(max-width: 540px) {
                     .title { 
                         font-size:18px;
                     }
+
                     .mainWords{
                         font-size:40px;
                     }
@@ -881,13 +1059,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     #contentColumn{
                         width:100%;
                     }
-                    .btnModal {
-                        width:200px;
-                        height: 35px;
-                    }
-                    .card {
-                        height:220px;
-                    }
+
                 }
                 @media(max-width: 430px) { 
                         .card{

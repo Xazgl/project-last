@@ -58,7 +58,7 @@ const JobPage: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <MenuBarNew setShowModal={setShowModal} />
-            <More job={job} setOpen={setOpen} />
+            <More job={job} setOpen={setOpen} open={open} />
             {open === true &&
                 <VacancyForm job={job} />
             }

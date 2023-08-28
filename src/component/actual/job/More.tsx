@@ -2,11 +2,12 @@ import banner from '/public/images/5.jpg';
 
 
 
-export function More({ job,setOpen }) {
+export function More({ job,setOpen, open }) {
 
    async function send(){
-      setOpen(true)
+      setOpen(!open)
    }
+   
    return (
       <>
          <div className="background" >
@@ -42,7 +43,7 @@ export function More({ job,setOpen }) {
                     justify-content: center;
                     align-items: center;
                     width: 100%;
-                    height: 500px;
+                    height: auto;
                     align-items: center;
                     margin-top:50px;
                  }
@@ -62,7 +63,7 @@ export function More({ job,setOpen }) {
                   font-size: 20px;
                   font-family: 'Roboto','sans-serif'; 
                   flex-direction: column;
-                  margin-top:10px;
+                  margin-top:30px;
                  }
 
                  .title {
@@ -88,6 +89,7 @@ export function More({ job,setOpen }) {
                   border: solid 1px transparent;
                   font-weight: 600;
                   transition: 0.3s;
+                  cursor: pointer;
                  }
 
                  button:hover{
@@ -96,6 +98,25 @@ export function More({ job,setOpen }) {
                   color:#005baa;
                   transform: scale(0.99);
                  }
+
+                 
+           @media(max-width: 900px) {
+               .card{
+                  width: 400px;
+               }
+           }
+
+           @media(max-width: 420px) {
+            .card{
+                    width:300px;
+                }        
+            }
+
+            @media(max-width: 320px) {
+               .card{
+                    width:270px;
+                }
+            }
                  
             `}</style>
       </>

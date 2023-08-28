@@ -36,7 +36,9 @@ export function NumbersBanner({ setShowModal }: Numbers) {
                                         justifyContent: 'center',
                                         textAlign: 'center',
                                         width: '100%',
-                                        height: '40px'
+                                        height: '45px',
+                                        backgroundColor:'#0c54a0',
+                                        borderRadius:'0px'
                                     }}
                                     variant="contained"
                                     onClick={showModal}
@@ -123,17 +125,20 @@ export function NumbersBanner({ setShowModal }: Numbers) {
 
                 @media(max-width: 500px) {
                     .banner {
-                        height: 100px;
-                        width: 200px;
+                        height: 150px;
+                        width: 300px;
                     }
                     .title {
                         font-size: 25px;
                     }
                     .txt {
-                        width: 200px;
+                        width: 300px;
                     }
                     li {
                         font-size: 14px;
+                    }
+                    ul {
+                        padding-left: 0px;
                     }
                 }
 
@@ -141,6 +146,10 @@ export function NumbersBanner({ setShowModal }: Numbers) {
                     .banner {
                         height: 150px;
                         background-size: contain;
+                    }
+
+                    .txt {
+                        width: 250px;
                     }
                 }
             `}</style>

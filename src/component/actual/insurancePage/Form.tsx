@@ -3,10 +3,9 @@ import { IMaskInput } from "react-imask"
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { Box, Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { brendList, Driver, Drivers, Genders } from "./type";
-import { wrap } from "module";
-import { nanoid } from "nanoid";
 import { DriversForm } from "./forms/DriversForm";
-
+import labelBtn from '/public/images/labelbtn.png'
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 type Office = {
     id: number,
@@ -117,8 +116,8 @@ export function Form() {
         gender: 'Мужской',
         exp: ''
     }]) //водители
-    const [carBrendName, setCarBrendName] = useState('')  
-    const [officeName, setOfficeName] = useState('')  
+    const [carBrendName, setCarBrendName] = useState('')
+    const [officeName, setOfficeName] = useState('')
 
 
     useEffect(() => {
@@ -156,8 +155,8 @@ export function Form() {
                 },
                 body: JSON.stringify({
                     name, phone, equipment, year, power, carNumber, city,
-                    carModel, price, officeName, carBrendName, insuranceTypeKASKO, 
-                    insuranceTypeOSAGO,alarmSystem, carDeposit, installmentPlan, drivers
+                    carModel, price, officeName, carBrendName, insuranceTypeKASKO,
+                    insuranceTypeOSAGO, alarmSystem, carDeposit, installmentPlan, drivers
                 })
             })
             if (res.ok) {
@@ -209,12 +208,12 @@ export function Form() {
                                     }}
                                 >
                                     <FormControlLabel
-                                        control={<Checkbox />}
+                                        control={<Checkbox sx={{ color: '#005baa' }} />}
                                         onChange={event => setInsuranceTypeOSAGO(!insuranceTypeOSAGO)}
                                         label="Нужна услуга ОСАГО"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox />}
+                                        control={<Checkbox sx={{ color: '#005baa' }} />}
                                         onChange={event => setInsuranceTypeKASKO(!insuranceTypeKASKO)}
                                         label="Нужна услуга КАСКО"
                                     />
@@ -452,7 +451,16 @@ export function Form() {
                                     placeholder="Александр"
                                     required
                                     value={name}
-                                    onChange={event => setName(event.target.value)} />
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        const sanitizedValue = inputValue.replace(/[^A-Za-zА-Яа-яЁё\s]/g, ''); // Заменяет все символы, кроме букв и пробелов
+                                        const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
+                                        if (capitalizedValue.length <= 50) {
+                                            setName(capitalizedValue);
+                                        }
+                                    }}
+
+                                />
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Телефон* </div>
@@ -462,13 +470,12 @@ export function Form() {
                                         fontSize: '18px',
                                         height: '40px',
                                         width: '100%',
-                                        backgroundColor: '#e7e7e7',
-                                        border: 'none',
-                                        padding: '11px 12px',
-                                        outline:'none',
-                                        fontFamily: 'Roboto'
-
-
+                                        border: '2px solid #005baa',
+                                        marginTop: '10px',
+                                        padding: '12px 12px',
+                                        outline: 'none',
+                                        fontFamily: 'Roboto',
+                                        backgroundColor: 'white'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -491,6 +498,7 @@ export function Form() {
                             <div className="divForm" style={{ alignItems: "start" }}>
                                 <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                                 <Checkbox
+                                    sx={{ color: '#005baa' }}
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
@@ -500,7 +508,11 @@ export function Form() {
                                 <button className={className.join(' ')} ref={formBtn}
                                     type="submit"
                                     disabled={disabledBtn}
+                                    title="Заполните форму, перед отправкой"
                                 >
+                                    <EditNoteIcon
+                                        sx={{fontSize:'30px'}}
+                                    />
                                     Оправить
                                 </button>
                             </div>
@@ -510,11 +522,11 @@ export function Form() {
             </div>
             <style jsx>{`
 
-
             .titleDiv {
                 display: flex;
                 justify-content: center;
                 width: 100%;
+                margin-top: 30px;
             }
 
             .titlePage {
@@ -524,7 +536,6 @@ export function Form() {
                 font-size:45px;
                 font-weight: bold;
                 font-family: 'Roboto','sans-serif'; 
-
             }
             
            .background {
@@ -562,9 +573,6 @@ export function Form() {
                 font-family: 'Roboto','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
-
-                
             }
 
             .border {
@@ -595,11 +603,9 @@ export function Form() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
                 font-size:30px;
                 text-align: start;
                 font-family: 'Roboto','sans-serif'; 
-
            }
            
            .desc {
@@ -611,7 +617,6 @@ export function Form() {
                 font-family: 'Roboto','sans-serif'; 
                 font-size:21px;
                 font-family: 'Roboto','sans-serif'; 
-
            }
 
            .form {
@@ -628,10 +633,11 @@ export function Form() {
                 width: 900px;
                 justify-content: start;
                 align-items:center;
-                margin-top:20px;
+                margin-top: 40px;
                 flex-direction: column;
-                border-top: 1px solid #d4d3d3;
+                border-top: 1px solid #0c54a0;
                 padding: 2px;
+                padding-top: 10px;
            }
 
            .inputTitle {
@@ -643,7 +649,6 @@ export function Form() {
                 flex-direction: row;
                 font-size: 20px;
                 font-family: 'Roboto','sans-serif'; 
-
            }
            
 
@@ -656,27 +661,28 @@ export function Form() {
                 font-size: 20px;
                 font-family: 'Roboto','sans-serif'; 
            }
+
            input {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                background-color: #e7e7e7;
-                border:none;
-                font-weight: bold;
-                padding: 11px 12px;
-                border:none;
+                border: 2px solid #005baa; 
+                padding: 12px 12px;
                 outline:none;
+                margin-top: 10px;
+                background-color: white;
            }
 
-           select {
+            select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                background-color: #e7e7e7;
-                border:none;
-           }
+                border:2px solid #005baa; 
+                margin-top: 10px;
+                background-color: white;
+            }
             
            .btn {
                 display:flex;
@@ -693,6 +699,14 @@ export function Form() {
                 margin-top:40px;
                 font-size:20px;
                 text-align: center;
+                align-items: center;
+                gap:8px;
+                cursor: pointer;
+           }
+
+           .btn_show{
+                background-color: #fdb913;
+                color:black;
            }
            
            .btn_show:hover {
@@ -702,7 +716,7 @@ export function Form() {
 
 
 
-           @media(max-width: 900px) {
+            @media(max-width: 900px) {
               .column {
                    width: 600px;
               }
@@ -718,7 +732,7 @@ export function Form() {
               .inputTitleMini {
                 font-size:16px;
               }
-           }
+            }
 
            @media(max-width: 600px) {
                 .title {

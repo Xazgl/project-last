@@ -13,6 +13,8 @@ import { TradeinModal } from '../../src/component/ModalTwo'
 import { getDataFromRedis, getRedisInstance } from '../../src/services/redis'
 import { ServiceBanner } from '../../src/component/actual/serviceCarPage/ServiceBanner'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
+import { Calc } from '../../src/component/actual/oilPage/Calc'
+import { BannerService } from '../../src/component/actual/serviceCarPage/BannerService'
 
 
 const ServicePage: NextPage<{ offers: Offer[] }> = ({ offers }) => {
@@ -35,9 +37,11 @@ const ServicePage: NextPage<{ offers: Offer[] }> = ({ offers }) => {
       </Head>
       <MenuBar />
       <BarMenu />
-      <ServiceBanner refs={{ refForm }} />
+      {/* <ServiceBanner refs={{ refForm }} /> */}
+      <BannerService  refs={{ refForm }}/>
       <ServiceForm refs={{ refForm }} />
       <CardsSpecialOffers setShowModal={setShowModal} offers={offers} />
+      <Calc  setShowModal={setShowModal}/>
       <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
       {

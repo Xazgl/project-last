@@ -248,6 +248,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     display: flex;
                     justify-content: center;
                     width: 100%;
+                    cursor: pointer;
                 }
 
                 #mob {

@@ -1,16 +1,9 @@
 import { Box, Button, Checkbox, FormControl, FormControlLabel, InputLabel, Link, MenuItem, Select, Stack } from '@mui/material'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import banner from '/public/images/numbers/vse_nomera.png'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { numberWithSpaces } from '../allNewCarPage/servicesNewCar/service';
 import dynamic from 'next/dynamic';
-// const CountUp = dynamic(() => import('react-countup'), { ssr: false });
+import CalculateIcon from '@mui/icons-material/Calculate';
+const CountUp = dynamic(() => import('react-countup'), { ssr: false });
 
 
 type Props = {
@@ -66,25 +59,33 @@ export function Calc({ setShowModal }: Props) {
 
     return (
         <>
-            {/* <div className="background">
+            <div className="background">
                 <div className="txt">
-                    <p className="title">Калькулятор замены масла </p>
+                    <CalculateIcon sx={{fontSize:'35px'}}/>
+                    <span className="title">Калькулятор замены масла </span>
                 </div>
-                <Box sx={{
+
+                {/* <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'start',
                     gap: '8px'
-                }}>
-                    <div className='row'>
-                        <p className='titleRow'>Выберите объем:</p>
-                    </div>
-                    <div className='row'>
-                        <FormControl sx={{ minWidth: '100%' }}>
-                            <InputLabel>Объем масла</InputLabel>
-                            <Select value={oilVolume} label="Объем масла"
-                            onChange={(e) => setOilVolume(parseInt(e.target.value))}
+                }}> */}
 
+                <div className='form'>
+                    {/* <div className='row'>
+                        <p className='titleRow'>Выберите объем:</p>
+                    </div> */}
+                    <div className='row'>
+                        <FormControl sx={{ width: '100%', color: '#0c54a0' }}>
+                            <InputLabel
+                                sx={{ width: '100%', color: '#0c54a0' }}
+                            >
+                                Объем масла
+                            </InputLabel>
+                            <Select value={oilVolume.toString()} label="Объем масла"
+                                onChange={(e) => setOilVolume(parseInt(e.target.value))}
+                                sx={{ border: '#0c54a0' }}
                             >
                                 {oilOptions.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -94,38 +95,49 @@ export function Calc({ setShowModal }: Props) {
                             </Select>
                         </FormControl>
                     </div>
-                   
+
                     <div className='row'>
                         <FormControlLabel
-                            control={<Checkbox checked={airFilter} onChange={(e) => setAirFilter(e.target.checked)} />}
+                            control={<Checkbox
+                                sx={{ color: '#0c54a0' }}
+                                checked={airFilter} onChange={(e) => setAirFilter(e.target.checked)} />}
                             label="Воздушный фильтр"
                         />
                     </div>
+
                     <div className='row'>
                         <FormControlLabel
-                            control={<Checkbox checked={cabinFilter} onChange={(e) => setCabinFilter(e.target.checked)} />}
+                            control={<Checkbox
+                                sx={{ color: '#0c54a0' }}
+                                checked={cabinFilter} onChange={(e) => setCabinFilter(e.target.checked)} />}
                             label="Салонный фильтр"
                         />
                     </div>
+                    
                     <div className='btnDiv'>
                         <Button variant="contained"
                             // onClick={calculateMaintenance}
-                            sx={{ width: '100%' }}
+                            sx={{
+                                width: '100%',
+                                height: '45px',
+                                backgroundColor: '#0c54a0',
+                                borderRadius: '0px'
+                            }}
                             onClick={showModal}
                         >
                             Записаться
                         </Button>
                     </div>
+
                     <div className='row'>
                         <CountUp start={0} end={totalCost} duration={1.5} separator=" " suffix=" ₽" />
-
                     </div>
 
-                </Box>
+                    {/* </Box> */}
+                </div >
 
-            </div > */}
+            </div >
             <style jsx>{`
-                
                 .background {
                     display:flex; 
                     height: auto;
@@ -133,13 +145,12 @@ export function Calc({ setShowModal }: Props) {
                     align-items: center;
                     flex-direction: column;
                     height: 100%;
-                    padding-bottom:80px;
                 }
 
                 .title  {
-                    font-size: 45px;
-                    font-weight: bold;
+                    font-size: 40px;
                     font-family: 'Roboto','sans-serif'; 
+                    height: auto;
                 }
 
                 .titleRow{
@@ -147,25 +158,25 @@ export function Calc({ setShowModal }: Props) {
                     font-family: 'Roboto','sans-serif'; 
                 }
 
-                .banner {
-                    display:flex; 
-                    width: 900px;
-                    height: 500px;
-                    justify-content: center;
-                    background-position: center center;
-                    background-image: url('${banner.src}');
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    padding-top: 42px;
+                .form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    gap: 8px;
+                    width: 600px;
                 }
 
                 .txt{
                     display:flex; 
-                    align-items: start;
-                    width: 900px;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
                     height: auto;
-                    flex-direction: column;
-
+                    background-color: #0c54a0;
+                    color:white;
+                    margin-bottom: 40px;
+                    gap:10px;
+                    padding: 20px;
                 }
 
                 .row {
@@ -196,47 +207,47 @@ export function Calc({ setShowModal }: Props) {
                         height: 300px;
                         width: 600px;
                     }
-                    .txt {
-                        width: 600px;
+                }
+
+                @media(max-width: 800px) {
+                    .title {
+                        font-size: 40px;
                     }
                 }
 
                 @media(max-width: 620px) {
-                    .banner {
-                        height: 200px;
-                        width: 400px;
-                    }
                     .title {
-                        font-size: 35px;
+                        font-size: 30px;
+                        text-align: center;
                     }
-                    .txt {
-                        width: 400px;
-                    }
+
                     li {
                         font-size: 16px;
+                    }
+
+                    .form {
+                      width: 400px;
                     }
                 }
 
                 @media(max-width: 500px) {
-                    .banner {
-                        height: 100px;
-                        width: 200px;
-                    }
-                    .title {
-                        font-size: 25px;
-                    }
-                    .txt {
-                        width: 200px;
-                    }
                     li {
                         font-size: 14px;
                     }
                 }
 
-                @media(max-width: 350px) {
+                @media(max-width: 400px) {
                     .banner {
                         height: 150px;
                         background-size: contain;
+                    }
+
+                    .form {
+                      width: 250px;
+                    }
+
+                    .title {
+                        font-size: 25px;
                     }
                 }
             `}</style>

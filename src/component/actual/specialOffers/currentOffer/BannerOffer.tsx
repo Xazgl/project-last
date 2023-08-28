@@ -53,7 +53,9 @@ export function BannerOffer({ setShowModal, offer }: Props) {
                     height: auto;
                     align-items: center;
                     flex-direction: column;
+                    margin-top:50px;
                 }
+
                 .title {
                     display:flex;
                     justify-content:center;
@@ -105,13 +107,12 @@ export function BannerOffer({ setShowModal, offer }: Props) {
                     background-color: #eab330;
                     color:black;
                     border: 1px solid black;
-                  
                 }
+
                 .ImgBanner2{
                    /* overflow: hidden;
                        border-radius: 5px;
                    */
-                    
                     background-position: center center;
                     display:flex;
                 }
