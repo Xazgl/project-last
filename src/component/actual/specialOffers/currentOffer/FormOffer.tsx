@@ -178,10 +178,9 @@ export function FormOffer({ refForm }: Props) {
                                         fontSize: '18px',
                                         height: '40px',
                                         width: '100%',
-                                        backgroundColor: '#e7e7e7',
-                                        border: 'none',
-                                        padding: '11px 12px',
+                                        padding: '12px 12px',
                                         outline: 'none',
+                                        border:'solid 2px #005baa'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -206,6 +205,7 @@ export function FormOffer({ refForm }: Props) {
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
+                                    sx={{color:'#005baa',outline:'none'}}
                                 />
                             </div>
                             <div className="divForm">
@@ -337,10 +337,8 @@ export function FormOffer({ refForm }: Props) {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif';  
-                background-color: #e7e7e7;
-                border:none;
-                font-weight: bold;
-                padding-left: '11px 12px';
+                border:solid 2px #005baa;
+                padding: 12px 12px;
                 outline:none;
            }
 
@@ -373,6 +371,7 @@ export function FormOffer({ refForm }: Props) {
            .btn_show:hover {
                 background:#005baa;
                 color:white;
+                cursor: pointer;
            }
 
            @media(max-width: 600px) {

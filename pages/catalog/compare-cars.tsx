@@ -10,6 +10,7 @@ import { TradeinModal } from '../../src/component/ModalTwo'
 import { useRouter } from 'next/router'
 import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
+import CompareCarsNew from '../../src/component/actual/compareCarPage/CompareCardsNew'
 
 
 const FavoriteCarPage: NextPage = () => {
@@ -82,7 +83,12 @@ const FavoriteCarPage: NextPage = () => {
             </Head>
             <MenuBarNew setShowModal={setShowModal} />
             <BarMenu />
-            <CompareCars
+            {/* <CompareCars
+                compareArr={compareArr} setCompareArr={setCompareArr}
+                compareArrUsed={compareArrUsed} setCompareArrUsed={setCompareArrUsed}
+                setShowModal={setShowModal}
+            /> */}
+               <CompareCarsNew
                 compareArr={compareArr} setCompareArr={setCompareArr}
                 compareArrUsed={compareArrUsed} setCompareArrUsed={setCompareArrUsed}
                 setShowModal={setShowModal}

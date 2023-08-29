@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import banner from '/public/images/numbers/vse_nomera.png'
 import dynamic from 'next/dynamic';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 const CountUp = dynamic(() => import('react-countup'), { ssr: false });
 
 
@@ -61,7 +62,7 @@ export function Calc({ setShowModal }: Props) {
         <>
             <div className="background">
                 <div className="txt">
-                    <CalculateIcon sx={{fontSize:'35px'}}/>
+                    <CalculateIcon sx={{ fontSize: '35px' }} />
                     <span className="title">Калькулятор замены масла </span>
                 </div>
 
@@ -83,9 +84,15 @@ export function Calc({ setShowModal }: Props) {
                             >
                                 Объем масла
                             </InputLabel>
-                            <Select value={oilVolume.toString()} label="Объем масла"
+                            <Select value={oilVolume.toString()}
+                                label="Объем масла"
                                 onChange={(e) => setOilVolume(parseInt(e.target.value))}
-                                sx={{ border: '#0c54a0' }}
+                                sx={{
+                                    border: '#0c54a0',
+                                    borderRadius: '0px',
+                                    color: "#0c54a0",
+                                    outline: 'none',
+                                }}
                             >
                                 {oilOptions.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -113,25 +120,39 @@ export function Calc({ setShowModal }: Props) {
                             label="Салонный фильтр"
                         />
                     </div>
-                    
+
+                    <div className='row' id="finished">
+                        <span>Итого:</span>
+                        <CountUp start={0} end={totalCost} duration={1.5} separator=" " suffix=" ₽" />
+                    </div>
+
                     <div className='btnDiv'>
                         <Button variant="contained"
                             // onClick={calculateMaintenance}
                             sx={{
+                                display: 'flex',
+                                alignIntems: 'center',
+                                gap: '5px',
                                 width: '100%',
                                 height: '45px',
-                                backgroundColor: '#0c54a0',
-                                borderRadius: '0px'
+                                backgroundColor: '#f9b518',
+                                borderRadius: '0px',
+                                color: 'black',
+                                '&:hover': { 
+                                    backgroundColor: '#0c54a0',
+                                    color: 'white',
+                                }
                             }}
                             onClick={showModal}
                         >
+                            <AssignmentTurnedInIcon sx={{ fontSize: '20px' }} />
                             Записаться
                         </Button>
                     </div>
 
-                    <div className='row'>
+                    {/* <div className='row' id="finished">
                         <CountUp start={0} end={totalCost} duration={1.5} separator=" " suffix=" ₽" />
-                    </div>
+                    </div> */}
 
                     {/* </Box> */}
                 </div >
@@ -200,6 +221,12 @@ export function Calc({ setShowModal }: Props) {
                     display:flex; 
                     width: 100%;
                     font-family: 'Roboto','sans-serif'; 
+                }
+
+                #finished{
+                    justify-content: end;
+                    color:#0c54a0;
+                    gap:10px;
                 }
 
                 @media(max-width: 1000px) {

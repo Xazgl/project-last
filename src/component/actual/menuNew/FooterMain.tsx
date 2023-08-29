@@ -191,15 +191,20 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
 
       <style jsx>{`
       .footer {
-        display:flex;
-        justify-content: center; 
+        display: flex;
+        justify-content: center;
         width: 100%;
         height: auto;
         align-items: center;
         background-color: #0c54a0;
         padding-top: 10px;
         padding-bottom: 10px;
-        margin-top: 20px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding:50px;
+        margin-top: 50px;
+        
       }
 
       .background {

@@ -2,7 +2,7 @@ import { Offer } from "@prisma/client"
 import { NextPage } from "next"
 import Head from 'next/head'
 import { useRouter } from "next/router"
-import { useEffect, useRef, useState } from "react"
+import { MutableRefObject, useEffect, useRef, useState } from "react"
 import { FooterMain } from "../../../src/component/actual/FooterMain"
 import { BannerOffer } from "../../../src/component/actual/specialOffers/currentOffer/BannerOffer"
 import { FormOffer } from "../../../src/component/actual/specialOffers/currentOffer/FormOffer"
@@ -12,6 +12,7 @@ import { MenuBar } from "../../../src/component/Menu"
 import { Modal } from "../../../src/component/Modal"
 import { TradeinModal } from "../../../src/component/ModalTwo"
 import { FooterMainNew } from "../../../src/component/actual/menuNew/FooterMain"
+import ServiceForm from "../../car-repair/service-form"
 
 const OfferPage: NextPage = () => {
     const [showModal, setShowModal] = useState(false)
@@ -47,7 +48,7 @@ const OfferPage: NextPage = () => {
         <>
             <Head>
                 <title>Подробнее о предложении</title>
-                <meta name="description" content="Work with me" />
+                <meta name="description" content="Current offer" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <MenuBar />
@@ -55,6 +56,7 @@ const OfferPage: NextPage = () => {
             <BannerOffer offer={offer} setShowModal={setShowModal} />
             <OfferDesc offer={offer} refForm={refForm} />
             <FormOffer refForm={refForm} />
+            {/* <ServiceForm refs={{ refForm }} /> */}
             <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
             {/* <InfoCarHeader car={car} refCredit={refCredit} setCar={setCar} setCarImg={setCarImg} showModal={showModal} setShowModal={setShowModal}

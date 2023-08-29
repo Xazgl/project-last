@@ -19,7 +19,7 @@ import LazyLoad from 'react-lazyload';
 import Image from 'next/image';
 import { AllUsedCarDto } from '../../../../@types/dto';
 import { Box, Button } from '@mui/material';
-import { logoFind, LogoList } from './services/servicesUsedCars';
+import { logoFind, LogoListUsed } from './services/servicesUsedCars';
 
 
 type Props = {
@@ -324,7 +324,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardHeader
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
-                    src={logoFind(LogoList, car.vendor)}>
+                    src={logoFind(LogoListUsed, car.vendor)}>
 
                   </Avatar>
                 }
@@ -439,7 +439,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center', fontFamily: 'Roboto' }}
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
-                    src={logoFind(LogoList, car.vendor)}>
+                    src={logoFind(LogoListUsed, car.vendor)}>
 
                   </Avatar>
                 }

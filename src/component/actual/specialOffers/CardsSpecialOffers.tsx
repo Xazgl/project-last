@@ -513,7 +513,8 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
                                                 <div className="contentCard">
                                                     <div className='titleCard'>{offer.title}</div>
-                                                    <div className='textCard'>{offer.shortDesc}</div>
+                                                    {/* <div className='textCard'>{offer.shortDesc}</div> */}
+                                                    {offer.shortDesc.length <= 60 ?  offer.shortDesc : `${offer.shortDesc.substring(0, 60)}...`}
                                                     <div className='row'>
                                                         {offer.price !== '' ?
                                                             <div className='salesDiv'>{offer.price}</div>
@@ -525,7 +526,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                                                                 pathname: '/catalog/special-offers/[id]',
                                                                 query: { id: offer.id }
                                                             }}>
-                                                                <button className='btnModal'>Узнать больше	&#10095;</button>
+                                                                <button className='btnModal'>ПОДРОБНЕЕ	&#10095;</button>
                                                             </Link>
                                                         </div>
                                                     </div>
@@ -731,13 +732,15 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     min-height:400px;
                     max-height:auto;
                     background:white;
-                    background: #f2f0ed;
                     transition: 0.6s;
                     cursor:pointer;
+                    -webkit-box-shadow: 0px 0px 24px -9px rgba(34, 60, 80, 0.2);
+                    -moz-box-shadow: 0px 0px 24px -9px rgba(34, 60, 80, 0.2);
+                    box-shadow: 0px 0px 24px -9px rgba(34, 60, 80, 0.2);
                 }
 
                  .card:hover {
-                    transform: scale(1.10);
+                    transform: scale(1.30);
                     -webkit-box-shadow: -1px 8px 20px 0px rgba(34, 60, 80, 0.2);
                     -moz-box-shadow: -1px 8px 20px 0px rgba(34, 60, 80, 0.2);
                     box-shadow: -1px 8px 20px 0px rgba(34, 60, 80, 0.2);
@@ -781,7 +784,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     justify-content:center;
                     flex-direction:row;
                     font-size:16px; 
-                    color:#1b1b1b;
+                    color:#0c54a0;
                     justify-content:start;
                     text-align: start;
                     min-height: 40px;
@@ -835,18 +838,17 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     transition: transform.3s;
                     width: 140px;
                     height: 40px;
-                    background: transparent;
-                    border: 2px solid;
-                    color: #1b1b1b;
+                    background:#0c54a0;
+                    border: none;
                     font-weight: bold;
                     cursor:pointer;
                     transition:0.6s;
+                    color:white;
                 }
 
                 .btnModal:hover {
-                    background-color: #0c54a0;
-                    color:white;
-                    border: #0c54a0 2px solid;
+                    background-color: #eab330;
+                    color:black;
                 }
 
 

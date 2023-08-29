@@ -21,7 +21,7 @@ export function More({ job,setOpen, open }) {
                </div>
                <div className='elCard'>
                <div className='title'>Опыт работы</div>
-                  <div className='descrtiption'>от {job.exp}</div>
+                  <div className='descrtiption'>{job.exp}</div>
                   </div>
                {/* <div className='elCard'>{job.carBrend}</div> */}
                <div className='elCard'>
@@ -29,7 +29,7 @@ export function More({ job,setOpen, open }) {
                   <div className='descrtiption'>Дилерский центр {job.office}</div>
                </div>
                <div className='elCard'>
-                  <div className='title'>Заработная плата от {job.salary}</div>
+                  <div className='title'>Заработная плата {job.salary}</div>
                </div>
                <div className='elCard'>
                   <button onClick={send}>Откликнуться</button>
@@ -85,7 +85,6 @@ export function More({ job,setOpen, open }) {
                   color: #fff;
                   background-color: #005baa;
                   border-color: transparent;
-                  border-radius: 7px;
                   border: solid 1px transparent;
                   font-weight: 600;
                   transition: 0.3s;

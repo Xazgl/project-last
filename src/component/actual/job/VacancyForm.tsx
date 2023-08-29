@@ -334,9 +334,9 @@ export function VacancyForm(job) {
                                 />
                             </div>
 
-                            <div className="divForm" style={{ alignItems: "start" }}>
+                            <div className="divForm" style={{ alignItems: "start",flexDirection:'row' }}>
                                 <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
-                                <Checkbox
+                                <Checkbox 
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
@@ -438,7 +438,7 @@ export function VacancyForm(job) {
                 display:flex;
                 width: 100%;
                 justify-content: start;
-                align-items:center;
+                align-items: start;
                 margin-top:20px;
                 flex-direction: column;
            }
@@ -448,7 +448,7 @@ export function VacancyForm(job) {
                 width: 500px;
                 justify-content: start;
                 align-items:center;
-                margin-top:20px;
+                margin-top:40px;
                 flex-direction: column;
            }
 

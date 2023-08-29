@@ -154,8 +154,8 @@ export function ServiceForm({ refs }: FormType) {
 
     return (
         <>
-            <div className="title"><PlaylistAddCheckCircleIcon 
-             sx={{fontSize:'35px'}}
+            <div className="title"><PlaylistAddCheckCircleIcon
+                sx={{ fontSize: '35px' }}
             /> Запись на сервис</div>
             <div className="background">
                 <div className="column" ref={refs.refForm}>
@@ -207,7 +207,12 @@ export function ServiceForm({ refs }: FormType) {
                             </div>
                             <div className="divForm">
                                 <div className="inputTitle">Дилерский центр</div>
-                                <select className="selectModel" value={officeId} name="office" onChange={event => setOfficeId(+event.target.value)}>
+                                <select className="selectModel"
+                                    value={officeId}
+                                    name="office"
+                                    onChange={event => setOfficeId(+event.target.value)}
+                                    placeholder="Выберете ДЦ"
+                                >
                                     <option value={0} selected disabled></option>
                                     {officeList.map(brand => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
                                 </select>
@@ -222,14 +227,14 @@ export function ServiceForm({ refs }: FormType) {
                                     value={comment}
                                     onChange={event => setComment(event.target.value)} />
                             </div>
-                            <div className="divForm" style={{ alignItems: "start" }}>
-                                <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
+                            <div className="divForm" style={{ alignItems: "start", flexDirection: 'row' }}>
                                 <Checkbox
-                                    sx={{ color: '#005baa' }}
+                                    sx={{ color: '#005baa', padding: '0px' }}
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
                                 />
+                                <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                             </div>
                             <div className="divForm">
                                 <MuiModal open={open} setOpen={setOpen} />
@@ -317,7 +322,6 @@ export function ServiceForm({ refs }: FormType) {
                 color:white;
                 text-align: center;
                 padding: 20px;
-            
            }
            
            .desc {
@@ -452,7 +456,7 @@ export function ServiceForm({ refs }: FormType) {
                 }
             }
 
-        `}</style>
+            `}</style>
         </>
     )
 }

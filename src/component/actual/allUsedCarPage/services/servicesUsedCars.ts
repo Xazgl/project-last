@@ -54,7 +54,7 @@ export type LogoArr = {
 }
 
 
-export const LogoList: LogoArr[] = [
+export const LogoListUsed: LogoArr[] = [
     {
         id: 1,
         name: 'Chery',
