@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
 import CompareCarsNew from '../../src/component/actual/compareCarPage/CompareCardsNew'
+import { BannerCompare } from '../../src/component/actual/compareCarPage/BannerCompare'
 
 
 const FavoriteCarPage: NextPage = () => {
@@ -20,15 +21,11 @@ const FavoriteCarPage: NextPage = () => {
     const [compareArr, setCompareArr] = useState([]);
     const [compareArrUsed, setCompareArrUsed] = useState([]);
 
+
     const router = useRouter()
 
-
-    const refSales = useRef<HTMLDivElement>(null)
-    const refTop = useRef<HTMLDivElement>(null)
-    const refContact = useRef<HTMLDivElement>(null)
-    const refAdvatages = useRef<HTMLDivElement>(null)
     const refFooter = useRef<HTMLDivElement>(null)
-    const refForm = useRef<HTMLDivElement>(null)
+    const refCards = useRef<HTMLDivElement>(null)
 
     //новые  для сравнения 
     useEffect(() => {
@@ -42,14 +39,15 @@ const FavoriteCarPage: NextPage = () => {
             if (res.ok) {
                 const result = await res.json()
                 setCompareArr(result.compareCarUser.compareCars)
-
+            } else {
+                setCompareArrUsed(null)
             }
         }
         start()
     }, [])
 
 
-
+    //с пробегом для сравнения 
     useEffect(() => {
         async function startCompare() {
             const res = await fetch('/api/usedcompare/getAll', {
@@ -72,6 +70,11 @@ const FavoriteCarPage: NextPage = () => {
         startCompare()
     }, [])
 
+    // useEffect(() => {
+    //     console.log( compareArr)
+    //     console.log(compareArrUsed)
+    // }, [ compareArr, compareArrUsed])
+
 
 
     return (
@@ -83,14 +86,18 @@ const FavoriteCarPage: NextPage = () => {
             </Head>
             <MenuBarNew setShowModal={setShowModal} />
             <BarMenu />
+            <BannerCompare refs={{ refCards }} />
             {/* <CompareCars
                 compareArr={compareArr} setCompareArr={setCompareArr}
                 compareArrUsed={compareArrUsed} setCompareArrUsed={setCompareArrUsed}
                 setShowModal={setShowModal}
             /> */}
-               <CompareCarsNew
-                compareArr={compareArr} setCompareArr={setCompareArr}
-                compareArrUsed={compareArrUsed} setCompareArrUsed={setCompareArrUsed}
+            <CompareCarsNew
+                refCards={refCards}
+                compareArr={compareArr}
+                setCompareArr={setCompareArr}
+                compareArrUsed={compareArrUsed}
+                setCompareArrUsed={setCompareArrUsed}
                 setShowModal={setShowModal}
             />
             <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />

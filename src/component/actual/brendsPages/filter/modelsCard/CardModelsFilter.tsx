@@ -501,8 +501,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                     />
                                     <CardMedia
                                         component="img"
-
-                                        image={modelPhotoFind(ModelPhotoList, model)}
+                                        image={modelPhotoFind(ModelPhotoList,model)}
                                         sx={{
                                             cursor: 'pointer',
                                             height: '120px'

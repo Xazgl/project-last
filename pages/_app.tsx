@@ -10,13 +10,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 // import { Provider, } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 
-
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
 const queryClient = new QueryClient()
 const clientSideEmotionCache = createEmotionCache();
+
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;

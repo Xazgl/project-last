@@ -17,7 +17,7 @@ import Link from 'next/link';
 import { AllCarDto } from '../../../../@types/dto';
 import { Button, CircularProgress } from '@mui/material';
 import { driverTypeStr, logoFind, numberWithSpaces } from '../allNewCarPage/servicesNewCar/service';
-import { LogoList } from '../allNewCarPage/type/typeNewCar';
+import { LogoList } from '../../../services/functions';
 
 
 
@@ -277,9 +277,14 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
     .divTitle{
       display:flex;
       width: 100%;
-      font-size:60px;
-      color:rgba(0, 0, 0, 0.6);
+      font-size:40px;
+      align-items: center;
+      gap:10px;
+      color:white;
+      background-color: #0c54a0;
       justify-content: center;
+      font-family: 'Roboto','sans-serif'; 
+      padding: 10px;
     }
 
     .background {

@@ -11,28 +11,28 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Link from 'next/link';
-import RemoveRoadIcon from '@mui/icons-material/RemoveRoad';
+import UpdateDisabledIcon from '@mui/icons-material/UpdateDisabled';
 import { CircularProgress, Slide } from '@mui/material';
-import { driverTypeStr, logoFind, numberWithSpaces } from '../allNewCarPage/servicesNewCar/service';
-import { gearBoxName } from './function';
-import { LogoList, carBodyImgChange } from '../../../services/functions';
-import { LogoListUsed } from '../allUsedCarPage/services/servicesUsedCars';
+import { driverTypeStr, logoFind, numberWithSpaces } from '../../allNewCarPage/servicesNewCar/service';
+import { LogoList, gearBoxName } from '../../../../services/functions';
+import { LogoListUsed } from '../../allUsedCarPage/services/servicesUsedCars';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import CountUp from 'react-countup';
+import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
-  compareArr: any,
-  setCompareArr: Dispatch<SetStateAction<any[]>>,
-  compareArrUsed: any,
-  setCompareArrUsed: Dispatch<SetStateAction<any[]>>,
   refCards: MutableRefObject<HTMLDivElement>,
+  watchedArr: any[],
+  setWatchedArr: Dispatch<SetStateAction<any[]>>,
+  watchedArrUsed: any[],
+  setWatchedArrUsed: Dispatch<SetStateAction<any[]>>,
+
 }
 
 
-
-function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArrUsed, compareArrUsed, refCards }: Props) {
+function WatchedCarsNew({ setShowModal, setWatchedArr, watchedArr, setWatchedArrUsed, watchedArrUsed, refCards }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -40,22 +40,22 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
 
   useEffect(() => {
     const handleScroll = () => {
-        const windowHeight = window.innerHeight;
-        const isElementVisible = (element) => {
-            const { top, bottom } = element.getBoundingClientRect();
-            return top < windowHeight && bottom >= 0;
-        };
-        const element = visibleElementRef.current;
-        if (isElementVisible(element)) {
-            setIsVisible(true);
-        }
+      const windowHeight = window.innerHeight;
+      const isElementVisible = (element) => {
+        const { top, bottom } = element.getBoundingClientRect();
+        return top < windowHeight && bottom >= 0;
+      };
+      const element = visibleElementRef.current;
+      if (isElementVisible(element)) {
+        setIsVisible(true);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => {
-        window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
-}, []);
+  }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -82,8 +82,8 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
   }
 
   // удаление новых
-  async function deleteToCompare(id) {
-    const res = await fetch('/api/favorite/compare/del/' + id, {
+  async function deleteToWatched(id) {
+    const res = await fetch('/api/favorite/watchedcar/del/' + id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
     if (res.ok) {
       console.log(res)
       async function start() {
-        const res = await fetch('/api/favorite/compare/getAll', {
+        const res = await fetch('/api/favorite/watchedcar/getAll', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -102,20 +102,19 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
           // console.log(res)
           const result = await res.json()
           result !== undefined ?
-            setCompareArr(result.compareCarUser.compareCars)
+            setWatchedArr(result.watchedCarUser.watchedCars)
             :
-            setCompareArr(null)
+            setWatchedArr(null)
         }
       }
       start()
     }
   }
-
 
 
   //удаление с пробегом 
-  async function deleteToCompareUsed(id) {
-    const res = await fetch('/api/usedcompare/del/' + id, {
+  async function deleteToWatchedUsed(id) {
+    const res = await fetch('/api/usedwatched/del/' + id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -124,7 +123,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
     if (res.ok) {
       console.log(res)
       async function start() {
-        const res = await fetch('/api/usedcompare/getAll', {
+        const res = await fetch('/api/usedwatched/getAll', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -134,31 +133,33 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
           // console.log(res)
           const result = await res.json()
           result !== undefined ?
-            setCompareArrUsed(result.compareCarUser.compareUsedCars)
+            setWatchedArrUsed(result.watchedCarUser.watchedUsedCars)
             :
-            setCompareArrUsed(null)
+            setWatchedArrUsed(null)
         }
       }
       start()
     }
   }
+
+
 
   return (
     <>
       <div className='divTitle'>
-        <DirectionsCarIcon sx={{ fontSize: '100%' }} />
-        Выбранные авто <span id="sum">
-          <CountUp start={0} end={compareArr.length + compareArrUsed.length} duration={1.5} separator=" " suffix="  шт" />
+        <HistoryToggleOffIcon sx={{ fontSize: '100%' }} />
+        Вы смотрели <span id="sum">
+          <CountUp start={0} end={watchedArr.length + watchedArrUsed.length} duration={1.5} separator=" " suffix="  шт" />
         </span>
       </div>
       <div className='background' ref={refCards}>
-        {compareArr !== null || compareArrUsed !== null ?
+        {watchedArr !== null || watchedArrUsed !== null ?
           (<>
-            <div className='cards' id="desktop"  ref={visibleElementRef}>
+            <div className='cards' id="desktop" ref={visibleElementRef}>
               <>
-                {compareArr !== null ?
+                {watchedArr !== null ?
                   <>
-                    {compareArr.map(car => {
+                    {watchedArr.map(car => {
                       return <Slide in={isVisible} key={car.car.id} direction="right" timeout={500}>
                         <Card key={car.car.id} sx={{
                           width: 345, height: 580, display: 'flex', border: '1px  solid transparent',
@@ -232,8 +233,8 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                           </CardContent>
                           <CardActions disableSpacing>
                             <IconButton aria-label="add to favorites">
-                              <RemoveRoadIcon sx={{ color: 'green' }}
-                                onClick={() => deleteToCompare(car.car.id)}
+                              <UpdateDisabledIcon sx={{ color: 'black' }}
+                                onClick={() => deleteToWatched(car.car.id)}
                               />
                             </IconButton>
                             <IconButton aria-label="share">
@@ -252,10 +253,10 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                 }
               </>
 
-              {compareArrUsed !== null ?
+              {watchedArrUsed !== null || watchedArrUsed.length < 0 ?
                 <>
                   {
-                    compareArrUsed.map(carUsed => {
+                    watchedArrUsed.map(carUsed => {
                       return <Card key={carUsed.car.id} sx={{
                         width: 345, height: 580, display: 'flex', border: '1px  solid transparent',
                         flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
@@ -327,8 +328,8 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                         </CardContent>
                         <CardActions disableSpacing>
                           <IconButton aria-label="add to favorites">
-                            <RemoveRoadIcon sx={{ color: 'green' }}
-                              onClick={() => deleteToCompareUsed(carUsed.car.id)}
+                            <UpdateDisabledIcon sx={{ color: 'black' }}
+                              onClick={() => deleteToWatchedUsed(carUsed.car.id)}
                             />
                           </IconButton>
                           <IconButton aria-label="share">
@@ -349,10 +350,10 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
             </div>
 
             <div className='cards' id="mob">
-              {compareArr !== null ?
+              {watchedArr !== null ?
                 <>
 
-                  {compareArr.map(car =>
+                  {watchedArr.map(car =>
                     <Card key={car.car.id} sx={{
                       width: '90%', height: 600, display: 'flex', border: '1px  solid transparent',
                       flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
@@ -371,8 +372,8 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                             marginRight: '-5px'
                           }}>
                             <IconButton aria-label="add to favorites">
-                              <RemoveRoadIcon sx={{ color: 'green' }}
-                                onClick={() => deleteToCompare(car.car.id)}
+                              <UpdateDisabledIcon sx={{ color: 'black' }}
+                                onClick={() => deleteToWatched(car.car.id)}
                               />
                             </IconButton>
                           </IconButton>
@@ -428,9 +429,9 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                 :
                 <></>
               }
-              {compareArrUsed !== null ?
+              {watchedArrUsed !== null ?
                 <>
-                  {compareArrUsed.map(carUsed =>
+                  {watchedArrUsed.map(carUsed =>
                     <Card key={carUsed.car.id} sx={{
                       width: '90%', height: 600, display: 'flex', border: '1px  solid transparent',
                       flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
@@ -449,8 +450,8 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                             marginRight: '-5px'
                           }}>
                             <IconButton aria-label="add to favorites">
-                              <RemoveRoadIcon sx={{ color: 'green' }}
-                                onClick={() => deleteToCompare(carUsed.car.id)}
+                              <UpdateDisabledIcon sx={{ color: 'black' }}
+                                onClick={() => deleteToWatchedUsed(carUsed.car.id)}
                               />
                             </IconButton>
                           </IconButton>
@@ -730,4 +731,4 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
   )
 }
 
-export default CompareCarsNew
+export default WatchedCarsNew

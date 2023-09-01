@@ -19,7 +19,7 @@
   },
   "prisma": {
     "seed": "node prisma/seed.js"
-  },
+  }, 
   "dependencies": {
     "@emotion/react": "^ 11.8.2",
     "@emotion/server": "^11.4.0",

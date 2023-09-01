@@ -10,6 +10,8 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
+import { BannerFavorite } from '../../src/component/actual/favoriteCarPage/BannerFavorite'
+import FavoriteCarsNew from '../../src/component/actual/favoriteCarPage/cards/FavoriteCardsNew'
 
 
 const FavoriteCarPage: NextPage = () => {
@@ -20,14 +22,9 @@ const FavoriteCarPage: NextPage = () => {
     const [showTradeInModal, setShowTradeInModal] = useState(false)
     const [favArr, setFavArr] = useState([]);
     const [favArrUsed, setFavArrUsed] = useState([]);
-
-
-    const refSales = useRef<HTMLDivElement>(null)
-    const refTop = useRef<HTMLDivElement>(null)
-    const refContact = useRef<HTMLDivElement>(null)
-    const refAdvatages = useRef<HTMLDivElement>(null)
+    const refCards = useRef<HTMLDivElement>(null)
     const refFooter = useRef<HTMLDivElement>(null)
-    const refForm = useRef<HTMLDivElement>(null)
+
 
 
     useEffect(() => {
@@ -76,8 +73,17 @@ const FavoriteCarPage: NextPage = () => {
             </Head>
             <MenuBarNew setShowModal={setShowModal} />
             <BarMenu />
-            <FavoriteCars favArr={favArr} setFavArr={setFavArr} setShowModal={setShowModal} />
-            <FavoriteCardsUsed favArrUsed={favArrUsed} setFavArrUsed={setFavArrUsed} setShowModal={setShowModal} />
+            <BannerFavorite refs={{ refCards }} />
+            <FavoriteCarsNew
+                refCards={refCards}
+                favArr={favArr}
+                setFavArr={setFavArr}
+                favArrUsed={favArrUsed}
+                setFavArrUsed={setFavArrUsed}
+                setShowModal={setShowModal}
+            />
+            {/* <FavoriteCars favArr={favArr} setFavArr={setFavArr} setShowModal={setShowModal} />
+            <FavoriteCardsUsed favArrUsed={favArrUsed} setFavArrUsed={setFavArrUsed} setShowModal={setShowModal} /> */}
             <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
             {

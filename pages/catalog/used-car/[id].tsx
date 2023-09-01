@@ -49,6 +49,23 @@ const CarPage: NextPage = () => {
     }, [router.isReady]);
 
 
+    useEffect(() => {
+        async function startHistory() {
+            const resWatched = await fetch('/api/usedwatched/' + router.query.id, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            if (resWatched.ok) {
+                const carWatched = await resWatched.json()
+                console.log(carWatched);
+            }
+        }
+        startHistory()
+    })
+
+
 
     return (
         <>

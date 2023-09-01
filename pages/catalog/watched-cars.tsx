@@ -9,21 +9,17 @@ import { Modal } from '../../src/component/Modal'
 import { TradeinModal } from '../../src/component/ModalTwo'
 import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../src/component/actual/menuNew/FooterMain'
+import { BannerWatched } from '../../src/component/actual/watchedCarPage/BannerWatched'
+import WatchedCarsNew from '../../src/component/actual/watchedCarPage/cards/WatchedCarsNew'
 
 const WatchedCarPage: NextPage = () => {
 
     const [showModal, setShowModal] = useState(false)
     const [showTradeInModal, setShowTradeInModal] = useState(false)
     const [watchedArr, setWatchedArr] = useState([]);
-
-
-    const refSales = useRef<HTMLDivElement>(null)
-    const refTop = useRef<HTMLDivElement>(null)
-    const refContact = useRef<HTMLDivElement>(null)
-    const refAdvatages = useRef<HTMLDivElement>(null)
+    const [watchedArrUsed, setWatchedArrUsed] = useState([]);
+    const refCards = useRef<HTMLDivElement>(null)
     const refFooter = useRef<HTMLDivElement>(null)
-    const refForm = useRef<HTMLDivElement>(null)
-
 
     useEffect(() => {
         async function start() {
@@ -39,7 +35,27 @@ const WatchedCarPage: NextPage = () => {
             }
         }
         start()
+
+  
     }, [])
+
+    useEffect(() => {
+        async function start() {
+            const res = await fetch('/api/usedwatched/getAll', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (res.ok) {
+                const result = await res.json()
+                setWatchedArrUsed(result.watchedCarUser.watchedUsedCars)
+            }
+            
+        }
+        start()
+    }, [])
+
 
 
 
@@ -53,7 +69,16 @@ const WatchedCarPage: NextPage = () => {
             </Head>
             <MenuBarNew setShowModal={setShowModal} />
             <BarMenu />
-            <WatchedCars watchedArr={watchedArr} setWatchedArr={setWatchedArr} setShowModal={setShowModal} />
+            <BannerWatched refs={{ refCards }} />
+            <WatchedCarsNew
+                refCards={refCards}
+                watchedArr={watchedArr}
+                setWatchedArr={setWatchedArr}
+                watchedArrUsed={watchedArrUsed}
+                setWatchedArrUsed={setWatchedArrUsed}
+                setShowModal={setShowModal}
+            />
+            {/* <WatchedCars watchedArr={watchedArr} setWatchedArr={setWatchedArr} setShowModal={setShowModal} /> */}
             <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
             {
