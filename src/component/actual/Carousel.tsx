@@ -54,15 +54,17 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     width: '100%',
                     border: '2px solid #d1d7dd',
                     padding: '20px',
-                    display:'flex',
-                    justifyContent:'center',
-                    flexDirection:'column',
-                    alignItems:'center'
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center'
                 }}>
                     <div className="title">Новые автомобили</div>
                     {carArr.length > 0 ?
-                        <Box sx={{ width: 270, flexGrow: 1,display:'flex',
-                        flexDirection:'column' }}>
+                        <Box sx={{
+                            width: 270, flexGrow: 1, display: 'flex',
+                            flexDirection: 'column'
+                        }}>
                             <AutoPlaySwipeableViews
                                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                                 index={activeStep}
@@ -71,11 +73,11 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                             >
                                 {
                                     carArr.map(car => {
-                                        return <Link  key={car.id}
-                                        href={{
-                                            pathname: '/catalog/car/[id]',
-                                            query: { id: car.id }
-                                        }}>
+                                        return <Link key={car.id}
+                                            href={{
+                                                pathname: '/catalog/car/[id]',
+                                                query: { id: car.id }
+                                            }}>
                                             <div className="card" key={car.id}>
                                                 <div className="imgDiv" id="desk">
                                                     {/* <img src={car.img[0]} 
@@ -85,7 +87,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                                 alt={car.CarModel.modelName}
                                                 ></img> */}
                                                     <Image src={car.img[0]}
-                                                        alt="Car Image"
+                                                        alt={car.CarModel.brandName}
                                                         width={270}
                                                         height={200}
                                                         // width: 221px;
@@ -97,7 +99,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                                 </div>
                                                 <div className="imgDiv" id="mob">
                                                     <Image src={car.img[0]}
-                                                        alt="Car Image"
+                                                        alt={car.CarModel.brandName}
                                                         width={170}
                                                         height={120}
                                                         loading="lazy"
@@ -131,7 +133,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     })
                                 }
                             </AutoPlaySwipeableViews>
-                            <MobileStepper 
+                            <MobileStepper
                                 steps={maxSteps}
                                 sx={{ backgroundColor: 'transparent' }}
                                 position="static"

@@ -146,7 +146,7 @@ import dongfengCard2 from '/public/images/catalogPages/all/cards/logo/dong.webp'
 
 export const brandsCards = [
   { id: 'arkontSelect', card: selectCard, card2: selectCard2, minLabel: arkontSelect, title: 'Арконт селект', link: '/brands/arkont-select' },
-  { id: 'baic', card: baicCard, card2: baicCard2, minLabel: baic, title: 'Baic', link: 'https://arkont-baic.ru' },
+  { id: 'baic', card: baicCard, card2: baicCard2, minLabel: baic, title: 'Baic', link: '/brands/baic' },
   { id: 'chery', card: cheryCard, card2: cheryCard2, minLabel: chery, title: 'Chery', link: '/brands/chery' },
   { id: 'dondfeng', card: dongfengCard, card2: dongfengCard2, minLabel: donf, title: 'Dongfeng', link: 'https://dongfeng-arkont.ru' },
   { id: 'exeed', card: exeedCard, card2: exeedCard2, minLabel: exeed, title: 'EXEED', link: '/brands/exeed' },

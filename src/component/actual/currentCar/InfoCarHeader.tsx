@@ -144,9 +144,9 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
             if (imgLength >= 10) {
                 setColImg(8)
             } else if (5 < imgLength && imgLength <= 8) {
-                setColImg(4)
+                setColImg(5)
             } else if (1 < imgLength && imgLength <= 5) {
-                setColImg(3)
+                setColImg(5)
             } else if (imgLength === 1) {
                 setColImg(1)
             } else {
@@ -172,8 +172,8 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
             <div className="background" id="desktop">
                 {car !== null ?
                     <>
-                        <div className="row" style={{ width: '100%', height: 'auto' }}>
-                            <ImageList sx={{ width: '100%', height: 350 }} cols={colImg} rowHeight={'auto'}>
+                        <div className="row" style={{ width: '100%', height: '100%' }}>
+                            <ImageList sx={{ width: '100%', height: '350px' }} cols={colImg} rowHeight={'auto'}>
                                 {/* <ImageList sx={{ width: '100%', height: '100%' }} cols={colImg} rowHeight={'auto'}> */}
                                 {car.img.map((item) => (
                                     <ImageListItem key={item}
@@ -198,7 +198,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                                 src={item}
                                                 alt={item}
                                                 layout="fill"
-                                                sizes="(max-width: 750px) 50vw,
+                                                sizes="(max-width: 300px) 50vw,
                                                   (max-width: 828px) 40vw,
                                                   (max-width: 1080px) 33vw,
                                                   20vw"

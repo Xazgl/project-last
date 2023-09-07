@@ -5,7 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Link from 'next/link';
 import { LogoList, logoFind, numberWithSpaces } from '../../../../services/functions';
-import bannerDc from '/public/images/catalogPages/kaiyi/dc.png'
+import bannerDc from '/public/images/catalogPages/baic/dc.png'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 
@@ -43,7 +43,7 @@ function MapBrand({ }) {
                         />
                       }
                       action={
-                        <Link href="https://yandex.ru/maps/38/volgograd/?from=api-maps&ll=44.438373%2C48.705594&mode=routes&origin=jsapi_2_1_79&rtext=~48.705594%2C44.438373&rtt=auto&ruri=~&z=16">
+                        <Link href="tps://yandex.ru/maps/10951/volzhskiy/?ll=44.682852%2C48.763465&mode=routes&rtext=48.757486%2C44.790162~48.772454%2C44.567981&rtt=auto&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzgzMDAzMxJY0KDQvtGB0YHQuNGPLCDQktC-0LvQs9C-0LPRgNCw0LQsINC_0YDQvtGB0L_QtdC60YIg0LjQvNC10L3QuCDQki7QmC4g0JvQtdC90LjQvdCwLCAxMTPQlCIKDZxFMkIV_hZDQg%2C%2C&z=12.59">
                           <a rel="noopener noreferrer">
                             <IconButton aria-label="settings">
                               <AddLocationAltIcon sx={{ cursor: 'pointer' }} />

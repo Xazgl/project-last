@@ -19,7 +19,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                             <div className="imgDiv">
                                 <Image
                                     src={car.img[0]}
-                                    alt={car.img[0]}
+                                    alt={car.CarModel.modelName}
                                     layout="fill"
                                     sizes="(max-width: 750px) 50vw,
                                             (max-width: 828px) 40vw,

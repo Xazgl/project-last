@@ -664,7 +664,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
 
 
 
- 
+
 
     async function addSale(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -716,17 +716,31 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
 
     return <>
         <Button sx={{
-            marginLeft: '30px', marginTop: '20px', marginBottom: '10px', textAlign: 'center', backgroundColor: '#2e2e2e', color: 'white', border: 'solid 2px white', fontFamily: 'TacticSans-Reg',
+            marginLeft: '30px', marginTop: '20px', marginBottom: '10px', 
+            textAlign: 'center', backgroundColor: '#2e2e2e',
+             color: 'white', border: 'solid 2px white', fontFamily: 'Roboto',
             '&:hover': {
                 backgroundColor: '#0069d9',
             },
-        }} onClick={() => setShowAdd(true)} disabled={showAdd}>Создать акцию</Button>
+        }} onClick={() => setShowAdd(!showAdd)} >
+            {!showAdd &&
+                <>
+                    Создать акцию
+                </>
+            }
+            {showAdd &&
+                <>
+                    Назад
+                </>
+            }
+
+        </Button>
         {showAdd &&
             <>
                 <div className='background'>
                     <div className='column'>
                         <div className='row'>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '35px' }}>Добавить спец. предложение</Typography>
+                            <Typography sx={{ fontSize: '35px' }}>Новое предложение</Typography>
                         </div>
                         <form onSubmit={addSale}>
                             <div className='row'>
@@ -779,8 +793,8 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                                     {brendFilterList.find(filterBrend => filterBrend.id === detailFilterBrandResult)?.modelCar.map(type => <option key={type.id} value={type.id}>{type.name}</option>)}
                                 </select>
                             </div>
-                            <div className='row'>Рекомендуемый размер изображения 277 на 230 px</div>
-                            <div className='row'>
+                            <div className='row' style={{ marginTop: '20px' }}>Рекомендуемый размер изображения 277х230px</div>
+                            <div className='row' style={{ marginTop: '20px' }}>
                                 <Button onClick={() => fileRef.current?.click()}
                                     sx={{ width: '100%', textAlign: 'center', display: 'flex', justifyContent: 'center' }}
                                     variant="outlined"
@@ -791,7 +805,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                                 <input type='file' onChange={onImageChange} ref={fileRef} style={{ display: 'none' }}
                                     accept=".jpg,.jpeg,.png,.webp" />
                             </div>
-                            <div className='row'>
+                            <div className='row' style={{ marginTop: '20px' }}>
                                 <Button type='submit'
                                     variant="contained"
                                     sx={{ width: '100%', textAlign: 'center', display: 'flex', justifyContent: 'center' }}
@@ -803,7 +817,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                     </div>
                 </div>
                 <div className='row'>
-                    <ImageList sx={{ width: '300px', height: '300px' }} cols={1} rowHeight={164}>
+                    <ImageList sx={{ width: '300px', height: '300px',backgroundSize:'cover' }} cols={1} rowHeight={164}>
                         <ImageListItem>
                             <img
                                 src={`${imageURL}`}
@@ -837,10 +851,15 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
                     margin-top:10px;
                     width: 100%;
                 }
+
                 select {
                     width:100%;
                     height: 56px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    cursor: pointer;
                 }
+
                 .imgCustom {
                     background-size: contain;
                     height: 300px;

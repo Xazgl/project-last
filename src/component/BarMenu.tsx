@@ -12,7 +12,7 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 export default function BarMenu() {
   return (
     <div className='bar'>
-      <Accordion sx={{padding:'0px'}}>
+      <Accordion sx={{padding:'0px',paddingLeft:'5px',paddingRight:'5px'}}>
         <AccordionSummary
           expandIcon={<DehazeIcon  />}
           aria-controls="panel1a-content"
@@ -252,7 +252,8 @@ li {
 }
 
 .barTwoLevel {
-  font-size: 16px;
+  font-size: 18px;
+  margin-top:20px;
 }
 
 
@@ -269,6 +270,7 @@ li {
 }
 .barTwoLevel{
       color:#776969;
+      font-size: 16px;
     }
 ul {
     font-size:20px;

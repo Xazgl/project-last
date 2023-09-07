@@ -22,10 +22,9 @@ function MapBrand({ }) {
           <div className='descBrand'>
             <div className='titleBrand'>О JETTA</div>
             <div className='txtBrand'>
-              Быстрый ответ
               Jetta – автомобильный бренд, созданный Volkswagen Group и FAW Group в 2019 году.
               Популярная модель Volkswagen Jetta легла в основу новой компании, так как служит
-              ориентиром на высокое качество и безопасность
+              ориентиром на высокое качество и безопасность всего модельного ряда.
             </div>
             <div className='rowColumn'>
               <div className='columnBrand'>

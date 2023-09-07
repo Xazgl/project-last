@@ -48,7 +48,7 @@ export function UsedCarCard({ car }: { car: UsedCars }) {
                                     // style={{borderRadius:'7px'}}
                                     src={car.picture[0]}
                                     // className="nextPic"
-                                    alt={car.picture[0]}
+                                    alt={car.modelFullName}
                                     
                                     // width={221}
                                     // height={166}

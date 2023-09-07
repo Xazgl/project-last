@@ -208,7 +208,7 @@ export function SendForm() {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>

@@ -127,7 +127,7 @@ export function TradeInForm() {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>

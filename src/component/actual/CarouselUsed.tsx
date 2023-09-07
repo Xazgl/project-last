@@ -84,7 +84,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                             }}>
                                             <div className="card" key={car.id}>
                                                 <div className="imgDiv" id="desk">
-                                                    <Image
+                                                    {/* <Image
                                                         src={car.picture[0]}
                                                         alt={car.picture[0]}
                                                         layout="fill"
@@ -93,10 +93,20 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                             (max-width: 1080px) 33vw,
                                                             20vw"
                                                         loading="lazy"
+                                                    /> */}
+                                                    <Image src={car.picture[0]}
+                                                        alt={car.modelFullName}
+                                                        width={270}
+                                                        height={200}
+                                                        // width: 221px;
+                                                        //height: 166px;
+                                                        // layout="fill"
+                                                        loading="lazy"
+                                                    // sizes="(max-width: 640px) 100vw"
                                                     />
                                                 </div>
                                                 <div className="imgDiv" id="mob">
-                                                    <Image src={car.picture[0]}
+                                                    {/* <Image src={car.picture[0]}
                                                         alt="Car Image"
                                                         layout="fill"
                                                         sizes="(max-width: 750px) 70vw,
@@ -104,6 +114,17 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                             (max-width: 1080px) 33vw,
                                                             20vw"
                                                         loading="lazy"
+                                                    /> */}
+
+                                                    <Image src={car.picture[0]}
+                                                        alt={car.modelFullName}
+                                                        width={170}
+                                                        height={120}
+                                                        // width: 221px;
+                                                        //height: 166px;
+                                                        // layout="fill"
+                                                        loading="lazy"
+                                                    // sizes="(max-width: 640px) 100vw"
                                                     />
                                                 </div>
                                                 <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
@@ -226,7 +247,6 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     height: 40px;
                     justify-content: start; 
                     text-align: center;
-                    font-size: 40px;
                     font-weight: bold;
                     gap:20px;
                     font-family: 'Roboto',sans-serif;

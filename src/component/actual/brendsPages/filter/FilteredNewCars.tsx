@@ -348,6 +348,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
         </Box>
 
         <div className='cards' id="desktop" ref={visibleElementRef}>
+        <div className='titleBackground'>Модельный ряд</div>
 
           {/* <div className='descBrand'>
             <div className='titleBrand'>О Geely</div>
@@ -577,6 +578,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
         </div>
 
         <div className='cards' id="mob">
+        <div className='titleBackground'>Модельный ряд</div>
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: '90%', height: 480, display: 'flex', border: '1px  solid transparent',
@@ -800,6 +802,14 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       justify-content: center;
       background-color: #f5f2f261;
     }
+
+    
+    .titleBackground{
+      justify-content: start;
+      width: 100%;
+      font-size: 25px;
+      font-weight: bold;
+    }
     
     .descBrand{
       display: flex; 
@@ -1012,6 +1022,10 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       }
       .background{
         height: auto;
+      }
+
+      .titleBackground {
+         font-size: 20px;
       }
     }
 

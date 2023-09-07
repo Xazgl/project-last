@@ -66,7 +66,7 @@ export function TableSales() {
     { field: 'detailFilterBrand', headerName: 'Бренд', width: 150 },
     { field: 'detailFilterMode', headerName: 'Модель', width: 150 },
     {
-      field: 'picture', headerName: 'Изображение', width: 300, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
+      field: 'picture', headerName: 'Изображение', width: 100, renderCell: (params: GridRenderCellParams<any, AllOffersDto>) => {
         return <img style={{ backgroundSize: 'cover', width: '100%' }} src={'/uploads/' + params.row.img} />
       }
     },
@@ -106,6 +106,7 @@ export function TableSales() {
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection
+     
         />
       </div>
 

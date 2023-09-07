@@ -8,6 +8,7 @@ function BrandsCards({ }) {
   return (
     <>
       <div className='background'>
+        
         {brandsCards.map((brand) => (
           brand.link ? (
             <Link href={brand.link} key={brand.id}>

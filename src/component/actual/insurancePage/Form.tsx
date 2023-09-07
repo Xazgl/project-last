@@ -513,7 +513,7 @@ export function Form() {
                                     <EditNoteIcon
                                         sx={{fontSize:'30px'}}
                                     />
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>

@@ -157,7 +157,7 @@ export function TradeForm({ refs }: MuneProps) {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                             <div className="divForm" id="formFooter" style={{ alignItems: "center", justifyContent: 'start' }}>
@@ -167,7 +167,7 @@ export function TradeForm({ refs }: MuneProps) {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button> */}
                                 <Checkbox
                                     checked={checked}
@@ -375,7 +375,7 @@ export function TradeForm({ refs }: MuneProps) {
            }
 
            .btn_show{
-            background-color: #f9b518;
+            background-color: #f9b518dc;
             cursor: pointer;
            }
            

@@ -305,6 +305,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
 
         <div className='cards' id="desktop">
+        <div className='titleBackground'>Модельный ряд</div>
           {filteredCars.map(car =>
             <Card
               key={car.id}
@@ -434,6 +435,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
         </div>
 
         <div className='cards' id="mob">
+        <div className='titleBackground'>Модельный ряд</div>
           {filteredCars.map(car =>
             <Card
               key={car.id}
@@ -564,8 +566,15 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       padding: 20px;
       justify-content: center;
       overflow: auto;
-
       background-color: #f5f2f261;
+      flex-direction: column;
+    }
+
+    .titleBackground{
+      justify-content: start;
+      width: 100%;
+      font-size: 25px;
+      font-weight: bold;
     }
     
     .cards {
@@ -694,6 +703,11 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       #mob{
         display: flex;
       } 
+
+      .titleBackground {
+         font-size: 20px;
+      }
+
       .btn {
         width: 80%;
         height: 35px;

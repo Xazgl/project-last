@@ -244,7 +244,7 @@ export function QuestionForm() {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>

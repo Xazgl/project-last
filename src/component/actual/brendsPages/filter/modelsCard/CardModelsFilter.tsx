@@ -254,6 +254,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
     return (
         <>
             <div className='background' ref={visibleElementRef}>
+            <div className='titleBackground'>Модельный ряд</div>
                 <div className='cards' id="desktop">
                     {filteredProps.models.map(model => {
                         const filteredCars = cars.filter(car => model.includes(car.CarModel.modelName));
@@ -604,11 +605,18 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                    width: 100%;
                    height: 100%;
                    padding: ${cars.length > 0 ? '20px' : '0'};
-
-                   justify-content: center;
+                   flex-direction: column;
+                   align-items: center;
                    overflow: auto;
                    background-color: #f5f2f261;
                }   
+
+               .titleBackground{
+                   justify-content: start;
+                   width: 100%;
+                   font-size: 25px;
+                   font-weight: bold;
+               }
 
                
                  #mob{
@@ -627,6 +635,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                     width: 100%;
                     flex-direction: row;
                     flex-wrap: wrap;
+                    margin-top: 20px;
                 } 
                       
                 .price {
@@ -697,6 +706,10 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   #mob{
                     display: flex;
                   } 
+
+                  .titleBackground {
+                    font-size: 20px;
+                  }
 
                   .btn {
                     width:100%;

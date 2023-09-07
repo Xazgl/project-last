@@ -241,7 +241,7 @@ export function QuestionForm() {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                             <div className="divForm" id="formFooter" style={{ alignItems: "center", justifyContent: 'start' }}>
@@ -441,7 +441,7 @@ export function QuestionForm() {
                 border: none;
                 font-size:20px;
                 text-align: center;
-                background-color: #b98d27;
+                background-color: #f9b518dc;
                 color:#005baa;
            }
 
