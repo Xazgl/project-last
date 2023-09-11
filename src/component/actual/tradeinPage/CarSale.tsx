@@ -127,7 +127,7 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                 .btn {
                     width: 300px;
                     height: 100%;
-                    background-color:  #005baa;
+                    background-color:   #131313;
                     color:white;
                     border:none;
                     font-size: 16px;

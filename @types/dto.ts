@@ -1,4 +1,5 @@
-import { Offer, Car, CarComplectation, CarModel, CarModification, DealerModel, Extras, ClientTradein, ClientNeedCall, CalcCredit, ClientParts, UsedCars, CompareCarsToCar, FavoriteCarsToCar, FavoriteUsedCarsToCar, CompareUsedCarsToCar } from "@prisma/client";
+import { Offer, Car, CarComplectation, CarModel, CarModification, DealerModel, Extras, ClientTradein, ClientNeedCall, CalcCredit, ClientParts, UsedCars, CompareCarsToCar, FavoriteCarsToCar, FavoriteUsedCarsToCar, CompareUsedCarsToCar, YandexGeo, BrandNews, Brands } from "@prisma/client";
+
 
 // export type ClientDto = Omit<Client, 'updatedAt'>
 export type ClientеTradeInDto = Omit<ClientTradein, 'updatedAt'>
@@ -16,6 +17,13 @@ export type CarDto = Car & {
     FavoriteCarsToCar: FavoriteCarsToCar[],
     CompareCarsToCar: CompareCarsToCar[],
 }
+
+
+export type BrandPageDto = Brands & {
+    map: YandexGeo;
+    news: BrandNews;
+}
+
 
 export type CarDtoWithoutFavorite = Car & {
     CarModel: CarModel;

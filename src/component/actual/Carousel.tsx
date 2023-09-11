@@ -54,15 +54,17 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     width: '100%',
                     border: '2px solid #d1d7dd',
                     padding: '20px',
-                    display:'flex',
-                    justifyContent:'center',
-                    flexDirection:'column',
-                    alignItems:'center'
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center'
                 }}>
                     <div className="title">Новые автомобили</div>
                     {carArr.length > 0 ?
-                        <Box sx={{ width: 270, flexGrow: 1,display:'flex',
-                        flexDirection:'column' }}>
+                        <Box sx={{
+                            width: 270, flexGrow: 1, display: 'flex',
+                            flexDirection: 'column'
+                        }}>
                             <AutoPlaySwipeableViews
                                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                                 index={activeStep}
@@ -71,11 +73,11 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                             >
                                 {
                                     carArr.map(car => {
-                                        return <Link  key={car.id}
-                                        href={{
-                                            pathname: '/catalog/car/[id]',
-                                            query: { id: car.id }
-                                        }}>
+                                        return <Link key={car.id}
+                                            href={{
+                                                pathname: '/catalog/car/[id]',
+                                                query: { id: car.id }
+                                            }}>
                                             <div className="card" key={car.id}>
                                                 <div className="imgDiv" id="desk">
                                                     {/* <img src={car.img[0]} 
@@ -85,7 +87,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                                 alt={car.CarModel.modelName}
                                                 ></img> */}
                                                     <Image src={car.img[0]}
-                                                        alt="Car Image"
+                                                        alt={car.CarModel.brandName}
                                                         width={270}
                                                         height={200}
                                                         // width: 221px;
@@ -97,7 +99,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                                 </div>
                                                 <div className="imgDiv" id="mob">
                                                     <Image src={car.img[0]}
-                                                        alt="Car Image"
+                                                        alt={car.CarModel.brandName}
                                                         width={170}
                                                         height={120}
                                                         loading="lazy"
@@ -131,7 +133,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                                     })
                                 }
                             </AutoPlaySwipeableViews>
-                            <MobileStepper 
+                            <MobileStepper
                                 steps={maxSteps}
                                 sx={{ backgroundColor: 'transparent' }}
                                 position="static"
@@ -270,7 +272,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     align-items:center;
                     width: 100%;
                     height: 32px; 
-                    color: #0c54a0;
+                    color:  #131313;
                     font-family: 'Roboto',sans-serif;
                     font-weight: 500;
 
@@ -331,7 +333,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
 
 
                 .btn {
-                    background: #0c54a0;
+                    background:  #131313;
                     color: white ;
                     cursor: pointer;
                     opacity: 1;
@@ -341,7 +343,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     height: 30px;
                     transition: 0.5s;
                     font-family: 'Roboto',sans-serif;
-                    border: solid 2px #0c54a0;
+                    border: solid 2px  #131313;
                     font-weight: bold;
 
                 }
@@ -368,18 +370,18 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     transition: 1s;
                     animation:credit-open.5s ;
                     margin-top: 40px;
-                    background-color:#005baa;
+                    background-color: #131313;
                 }
                 
                 .btn:hover {
-                    background: #005baa;
+                    background:  #131313;
                     color:white;
                     transform: scale(0.99);
                 }
 
                 .pricCredit{
                     text-align: center;
-                    color: #005baa;
+                    color:  #131313;
                     transition: 0.5s;
                 }
 
@@ -403,7 +405,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                     align-items: center;
                     text-align: center;
                     border: 1px solid #deded8;
-                    background:#005baa;
+                    background: #131313;
                     color: white;
                     width: 350px;
                     height: 100%;
@@ -414,7 +416,7 @@ export function CarouselComponent({ cars }: { cars: AllCarDto }) {
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

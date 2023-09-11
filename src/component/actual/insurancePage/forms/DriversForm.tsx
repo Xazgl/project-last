@@ -13,7 +13,7 @@ type DriversProps = {
 
 
 export function DriversForm({ setDrivers, drivers }: DriversProps) {
-    
+
     return (
         <>
             {
@@ -22,14 +22,21 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 })
             }
             <Button
-            sx={{marginTop:'20px', backgroundСolor: '#0c54a0',borderRadius:'0px'}}
-            variant="contained"
-            onClick={() => {setDrivers(drivers => [...drivers, {
-                id: drivers.length, 
-                yearsOld: '',
-                exp: '',
-                gender: 'Мужской'
-            }])}}>Добавить водителя</Button>
+                // sx={{marginTop:'20px', backgroundСolor: ' #131313',borderRadius:'0px'}}
+                sx={{marginTop:'20px', background: 'black',borderRadius:'0px',
+                '&:hover': { color: '#131313', background: '#f9b518' }
+               
+            
+            }}
+                variant="contained"
+                onClick={() => {
+                    setDrivers(drivers => [...drivers, {
+                        id: drivers.length,
+                        yearsOld: '',
+                        exp: '',
+                        gender: 'Мужской'
+                    }])
+                }}>Добавить водителя</Button>
 
 
             <style jsx>{`

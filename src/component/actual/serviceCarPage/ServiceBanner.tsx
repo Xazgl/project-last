@@ -120,8 +120,8 @@ export function ServiceBanner({ refs }: FormType) {
             }
             
             .btn:hover {
-                background-color: #0c54a0;
-                border: 3px solid #0c54a0;
+                background-color:  #131313;
+                border: 3px solid  #131313;
                 transform:  scale(0.99);
             }
 

@@ -347,7 +347,7 @@ export function VacancyForm(job) {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -507,7 +507,7 @@ export function VacancyForm(job) {
            }
            
            .btn_show:hover {
-                background:#005baa;
+                background: #131313;
                 color:white;
            }
 

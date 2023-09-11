@@ -5,6 +5,8 @@ import multer from 'multer';
 import checkSession from "../../src/services/checkCookie";
 import helmet from "helmet";
 import { z, ZodError } from 'zod';
+import { exec } from 'child_process';
+
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -61,6 +63,14 @@ apiRoute.post(async (req, res, next) => {
             }
         })
         res.status(200).send(newOffer)
+        // exec('bash scripts/docker-build.sh', (error, stdout, stderr) => {
+        //     if (error) {
+        //         console.error(`Ошибка выполнения команды: ${error}`);
+        //         res.status(500).send({ message: "Ошибка сервера" });
+        //         return;
+        //     }
+        //     console.log(`Команда выполнена успешно: ${stdout}`);
+        // });
     } catch (error) {
         console.error(error)
         if (error instanceof ZodError) {

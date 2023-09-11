@@ -84,7 +84,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                             }}>
                                             <div className="card" key={car.id}>
                                                 <div className="imgDiv" id="desk">
-                                                    <Image
+                                                    {/* <Image
                                                         src={car.picture[0]}
                                                         alt={car.picture[0]}
                                                         layout="fill"
@@ -93,10 +93,20 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                             (max-width: 1080px) 33vw,
                                                             20vw"
                                                         loading="lazy"
+                                                    /> */}
+                                                    <Image src={car.picture[0]}
+                                                        alt={car.modelFullName}
+                                                        width={270}
+                                                        height={200}
+                                                        // width: 221px;
+                                                        //height: 166px;
+                                                        // layout="fill"
+                                                        loading="lazy"
+                                                    // sizes="(max-width: 640px) 100vw"
                                                     />
                                                 </div>
                                                 <div className="imgDiv" id="mob">
-                                                    <Image src={car.picture[0]}
+                                                    {/* <Image src={car.picture[0]}
                                                         alt="Car Image"
                                                         layout="fill"
                                                         sizes="(max-width: 750px) 70vw,
@@ -104,6 +114,17 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                             (max-width: 1080px) 33vw,
                                                             20vw"
                                                         loading="lazy"
+                                                    /> */}
+
+                                                    <Image src={car.picture[0]}
+                                                        alt={car.modelFullName}
+                                                        width={170}
+                                                        height={120}
+                                                        // width: 221px;
+                                                        //height: 166px;
+                                                        // layout="fill"
+                                                        loading="lazy"
+                                                    // sizes="(max-width: 640px) 100vw"
                                                     />
                                                 </div>
                                                 <div className="cardTitle">{car.vendor} {car.modelShortName}</div>
@@ -226,7 +247,6 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     height: 40px;
                     justify-content: start; 
                     text-align: center;
-                    font-size: 40px;
                     font-weight: bold;
                     gap:20px;
                     font-family: 'Roboto',sans-serif;
@@ -272,7 +292,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     align-items:center;
                     width: 100%;
                     height: 32px; 
-                    color: #0c54a0;
+                    color:  #131313;
                     font-family: 'Roboto',sans-serif;
                     font-weight: 500;
                 }
@@ -331,7 +351,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
 
 
                 .btn {
-                    background: #0c54a0;
+                    background:  #131313;
                     color: white ;
                     cursor: pointer;
                     opacity: 1;
@@ -341,7 +361,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     height: 30px;
                     transition: 0.5s;
                     font-family: 'Roboto',sans-serif;
-                    border: solid 2px #0c54a0;
+                    border: solid 2px  #131313;
                     font-weight: bold;
 
                 }
@@ -368,18 +388,18 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     transition: 1s;
                     animation:credit-open.5s ;
                     margin-top: 40px;
-                    background-color:#005baa;
+                    background-color: #131313;
                 }
                 
                 .btn:hover {
-                    background: #005baa;
+                    background:  #131313;
                     color:white;
                     transform: scale(0.99);
                 }
 
                 .pricCredit{
                     text-align: center;
-                    color: #005baa;
+                    color:  #131313;
                     transition: 0.5s;
                 }
 
@@ -403,7 +423,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     align-items: center;
                     text-align: center;
                     border: 1px solid #deded8;
-                    background:#005baa;
+                    background: #131313;
                     color: white;
                     width: 350px;
                     height: 100%;
@@ -414,7 +434,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

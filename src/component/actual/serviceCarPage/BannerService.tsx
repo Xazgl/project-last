@@ -85,8 +85,8 @@ export function BannerService({ refs }:FormType) {
                     transition: transform.3s;
                     width: 300px;
                     height: 45px;
-                    background: #0c54a0;
-                    border: 3px solid #0c54a0;
+                    background:  #f9b518;
+                    border: 3px solid  #f9b518;
                     font-weight: bold;
                     margin-top:35px;
                     color:white;

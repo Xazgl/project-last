@@ -161,7 +161,7 @@ function MapBrand({ }) {
     }
 
     #titleMap {
-      border-bottom:solid  #0c54a0  2px;
+      border-bottom:solid   #131313  2px;
     }
 
     .descBrand {
@@ -171,7 +171,7 @@ function MapBrand({ }) {
 
     .href_a{
       text-decoration: none;
-      color:#0c54a0;
+      color: #131313;
     }
 
 
@@ -214,9 +214,9 @@ function MapBrand({ }) {
       padding:1px;
       width:50%;
       height: 35px;
-      border: solid 1px#005baa;
+      border: solid 1px #131313;
       color: white;
-      background-color: #005baa;
+      background-color:  #131313;
       font-size: 15px;
       transition: 0.6s;
       font-family: 'Roboto','sans-serif'; 
@@ -224,7 +224,7 @@ function MapBrand({ }) {
     }
 
     .btn:hover {
-      background-color:#1365ad; 
+      background-color:#fdb913; 
     }
 
     a{

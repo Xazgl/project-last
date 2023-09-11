@@ -377,7 +377,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 align-items:center;
                 width:700;
                 margin-top:30px;
-                background:#005baa3a;
+                background: #1313133a;
                 width: 700px;
                 height: 7px;
                 transition: 0.3s;
@@ -388,7 +388,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 align-items:center;
                 width:140px;
                 height: 7px;
-                background:#005baa;
+                background: #131313;
                 
             }
 
@@ -466,7 +466,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 border:none;
                 transition: transform.3s ;
                 color: white;
-                background-color: #005baa;
+                background-color:  #131313;
                 font-size: 18px;
                 width:100%;
                 height: 45px;
@@ -496,7 +496,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                 transition: transform.3s ;
                 color: white;
                 font-size: 18px;
-                background-color: #005baa;
+                background-color:  #131313;
                 width: 140px;
                 height: 40px;
                 font-weight: 400;

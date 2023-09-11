@@ -15,7 +15,7 @@ function valuetext(value: number) {
 
 function debounce(wait: number) {
     let timeout;
-    return function(func: Function) {
+    return function (func: Function) {
         clearTimeout(timeout);
         timeout = setTimeout(function () {
             timeout = null;
@@ -34,7 +34,7 @@ export default function RangeSlider({ minPrice, maxPrice, valueSliderPrice, setV
     }
 
     const handleChange = (event: Event, newValue: [number, number]) => {
-       setValue(newValue)
+        setValue(newValue)
     };
 
 
@@ -59,6 +59,7 @@ export default function RangeSlider({ minPrice, maxPrice, valueSliderPrice, setV
                 sx={{ width: '50%' }}
                 label="Максимальная" variant="standard" value={`${numberWithSpaces(valueSliderPrice[1])} ₽`} />
             <Slider
+                sx={{ color: 'black' }}
                 getAriaLabel={() => 'Temperature range'}
                 value={value}
                 onChange={handleChange}

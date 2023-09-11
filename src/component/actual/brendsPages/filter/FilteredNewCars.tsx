@@ -298,7 +298,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
               <Link href={'/catalog/watched-cars'}>
                 <HistoryIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'black' }, fontFamily: 'Roboto'
                   }}
                 />
@@ -316,7 +316,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
               <Link href={'/catalog/compare-cars'}>
                 <CompareIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'green' }, fontFamily: 'Roboto'
                   }}
                 />
@@ -333,7 +333,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
               <Link href={'/catalog/favorite-cars'}>
                 <FavoriteBorderIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'red' }, fontFamily: 'Roboto'
                   }}
                 />
@@ -348,6 +348,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
         </Box>
 
         <div className='cards' id="desktop" ref={visibleElementRef}>
+        <div className='titleBackground'>Модельный ряд</div>
 
           {/* <div className='descBrand'>
             <div className='titleBrand'>О Geely</div>
@@ -447,7 +448,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                 transition: '1s',
                 animation: 'credit-open.5s',
                 marginTop: '400px',
-                backgroundColor: '#0c54a0',
+                backgroundColor: ' #131313',
                 position: 'absolute'
               }
             }} >
@@ -520,7 +521,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   {car.CarModification.name} / {driverTypeStr(car.CarModification.driveType)}
-                  <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.price))}*</span>  ₽</h3></div>
+                  <div className='price'> <h3 >Цена от  <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(car.price))}*</span>  ₽</h3></div>
                   <div className='priceMonth'>
                     <button className="btn" onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))} ₽/мес
                     </button>
@@ -577,6 +578,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
         </div>
 
         <div className='cards' id="mob">
+        <div className='titleBackground'>Модельный ряд</div>
           {filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: '90%', height: 480, display: 'flex', border: '1px  solid transparent',
@@ -659,7 +661,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                 <Button variant="contained"
                   sx={{
                     textAlign: 'center', fontSize: '12px', fontFamily: 'Roboto', width: '95%', height: '100%',
-                    backgroundColor: '#0c54a0', borderRadius: '0'
+                    backgroundColor: ' #131313', borderRadius: '0'
                   }}
                   onClick={showModal}>Получить консультацию</Button>
               </div>
@@ -755,7 +757,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
                 {/* <Button variant="contained"
                   sx={{
                     textAlign: 'center', fontSize: '10px', fontFamily: 'Roboto', width: '100%', height:'40px',
-                    backgroundColor: '#0c54a0', borderRadius: '0'
+                    backgroundColor: ' #131313', borderRadius: '0'
                   }}
                   onClick={showModal}>Получить консультацию</Button> */}
               </div>
@@ -800,6 +802,14 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       justify-content: center;
       background-color: #f5f2f261;
     }
+
+    
+    .titleBackground{
+      justify-content: start;
+      width: 100%;
+      font-size: 25px;
+      font-weight: bold;
+    }
     
     .descBrand{
       display: flex; 
@@ -836,7 +846,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
     }
 
     #titleMap {
-      border-bottom:solid  #0c54a0  2px;
+      border-bottom:solid   #131313  2px;
     }
 
     .descBrand {
@@ -846,7 +856,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
 
     .href_a{
       text-decoration: none;
-      color:#0c54a0;
+      color: #131313;
     }
 
 
@@ -885,7 +895,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       width:80%;
       height: 100%;
       border:solid 1px #d1d7dd;
-      color:#0c54a0;
+      color: #131313;
       background-color: #f2f2f2;
       font-size: 15px;
       font-weight: bold;
@@ -895,7 +905,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
     }
@@ -930,7 +940,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       font-size:16px;
       text-align: center;
       font-family: 'Roboto','sans-serif'; 
-      background-color: #0c54a0; 
+      background-color:  #131313; 
       cursor: pointer;
       animation: credit-open 1.5s ease-in-out forwards;
       border-radius: 5px;
@@ -938,7 +948,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
     }
 
     .credit:hover {
-      background-color:#0c54a0;
+      background-color: #131313;
     }
 
     #mob{
@@ -1012,6 +1022,10 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars, car
       }
       .background{
         height: auto;
+      }
+
+      .titleBackground {
+         font-size: 20px;
       }
     }
 

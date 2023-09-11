@@ -180,7 +180,7 @@ export function FormOffer({ refForm }: Props) {
                                         width: '100%',
                                         padding: '12px 12px',
                                         outline: 'none',
-                                        border:'solid 2px #005baa'
+                                        border:'solid 2px  #131313'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -205,7 +205,7 @@ export function FormOffer({ refForm }: Props) {
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
-                                    sx={{color:'#005baa',outline:'none'}}
+                                    sx={{color:' #131313',outline:'none'}}
                                 />
                             </div>
                             <div className="divForm">
@@ -213,7 +213,7 @@ export function FormOffer({ refForm }: Props) {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -337,7 +337,7 @@ export function FormOffer({ refForm }: Props) {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif';  
-                border:solid 2px #005baa;
+                border:solid 2px  #131313;
                 padding: 12px 12px;
                 outline:none;
            }
@@ -369,7 +369,7 @@ export function FormOffer({ refForm }: Props) {
            }
            
            .btn_show:hover {
-                background:#005baa;
+                background: #131313;
                 color:white;
                 cursor: pointer;
            }

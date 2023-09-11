@@ -77,7 +77,7 @@ export function Corusel1C({ car }: { car: CarDto }) {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    background:#005baa;
+                    background: #131313;
                     color: white;
                     width: 350px;
                     height: 100%;
@@ -90,7 +90,7 @@ export function Corusel1C({ car }: { car: CarDto }) {
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

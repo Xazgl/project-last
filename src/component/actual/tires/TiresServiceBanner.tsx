@@ -139,7 +139,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                                 expandIcon={<ExpandMoreIcon sx={{ color: 'white'}} />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
-                                sx={{ color: 'white',backgroundColor:'#0c54a0' }}
+                                sx={{ color: 'white',backgroundColor:' #131313' }}
                             >
                                 <Typography>Прайс-лист на R14-R15</Typography>
                             </AccordionSummary>
@@ -159,7 +159,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                                 expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
-                                sx={{ backgroundColor:'#0c54a0', color: 'white' }}
+                                sx={{ backgroundColor:' #131313', color: 'white' }}
                             >
                                 <Typography>Прайс-лист на R16-R17</Typography>
                             </AccordionSummary>
@@ -179,7 +179,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                                 expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
-                                sx={{ backgroundColor:'#0c54a0', color: 'white' }}
+                                sx={{ backgroundColor:' #131313', color: 'white' }}
                             >
                                 <Typography>Прайс-лист на R18-R19</Typography>
                             </AccordionSummary>
@@ -199,7 +199,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                                 expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
-                                sx={{ backgroundColor:'#0c54a0', color: 'white' }}
+                                sx={{ backgroundColor:' #131313', color: 'white' }}
                             >
                                 <Typography>Прайс-лист на R20+</Typography>
                             </AccordionSummary>
@@ -226,7 +226,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                                 textAlign: 'center',
                                 width: '100%',
                                 height: '40px',
-                                backgroundColor:'#0c54a0',
+                                backgroundColor:' #131313',
                                 borderRadius:'0px'
                             }}
                             variant="contained"

@@ -241,7 +241,7 @@ export function QuestionForm() {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                             <div className="divForm" id="formFooter" style={{ alignItems: "center", justifyContent: 'start' }}>
@@ -336,7 +336,7 @@ export function QuestionForm() {
                 font-family: 'Roboto','sans-serif'; 
                 font-size:43px;
                 text-align: start;
-                color:#0c54a0;
+                color: #131313;
             
            }
            
@@ -357,7 +357,7 @@ export function QuestionForm() {
                 align-items:center;
                 margin-top:20px;
                 flex-direction: column;
-                background-color: #0c54a0;
+                background-color:  #131313;
                 padding: 30px;
                 color:white;
            }
@@ -441,8 +441,8 @@ export function QuestionForm() {
                 border: none;
                 font-size:20px;
                 text-align: center;
-                background-color: #b98d27;
-                color:#005baa;
+                background-color: #f9b518dc;
+                color: #131313;
            }
 
            .btn_show{

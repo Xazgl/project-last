@@ -78,9 +78,9 @@ export function Calc({ setShowModal }: Props) {
                         <p className='titleRow'>Выберите объем:</p>
                     </div> */}
                     <div className='row'>
-                        <FormControl sx={{ width: '100%', color: '#0c54a0' }}>
+                        <FormControl sx={{ width: '100%', color: ' #131313' }}>
                             <InputLabel
-                                sx={{ width: '100%', color: '#0c54a0' }}
+                                sx={{ width: '100%', color: ' #131313' }}
                             >
                                 Объем масла
                             </InputLabel>
@@ -88,9 +88,9 @@ export function Calc({ setShowModal }: Props) {
                                 label="Объем масла"
                                 onChange={(e) => setOilVolume(parseInt(e.target.value))}
                                 sx={{
-                                    border: '#0c54a0',
+                                    border: ' #131313',
                                     borderRadius: '0px',
-                                    color: "#0c54a0",
+                                    color: " #131313",
                                     outline: 'none',
                                 }}
                             >
@@ -106,7 +106,7 @@ export function Calc({ setShowModal }: Props) {
                     <div className='row'>
                         <FormControlLabel
                             control={<Checkbox
-                                sx={{ color: '#0c54a0' }}
+                                sx={{ color: ' #131313' }}
                                 checked={airFilter} onChange={(e) => setAirFilter(e.target.checked)} />}
                             label="Воздушный фильтр"
                         />
@@ -115,7 +115,7 @@ export function Calc({ setShowModal }: Props) {
                     <div className='row'>
                         <FormControlLabel
                             control={<Checkbox
-                                sx={{ color: '#0c54a0' }}
+                                sx={{ color: ' #131313' }}
                                 checked={cabinFilter} onChange={(e) => setCabinFilter(e.target.checked)} />}
                             label="Салонный фильтр"
                         />
@@ -139,7 +139,7 @@ export function Calc({ setShowModal }: Props) {
                                 borderRadius: '0px',
                                 color: 'black',
                                 '&:hover': { 
-                                    backgroundColor: '#0c54a0',
+                                    backgroundColor: ' #131313',
                                     color: 'white',
                                 }
                             }}
@@ -193,7 +193,7 @@ export function Calc({ setShowModal }: Props) {
                     align-items: center;
                     width: 100%;
                     height: auto;
-                    background-color: #0c54a0;
+                    background-color:  #131313;
                     color:white;
                     margin-bottom: 40px;
                     gap:10px;
@@ -225,7 +225,7 @@ export function Calc({ setShowModal }: Props) {
 
                 #finished{
                     justify-content: end;
-                    color:#0c54a0;
+                    color: #131313;
                     gap:10px;
                 }
 

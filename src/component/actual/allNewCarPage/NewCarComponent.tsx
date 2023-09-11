@@ -126,7 +126,7 @@ export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: P
                 input {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
@@ -149,7 +149,7 @@ export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: P
                 select {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                 }
                 

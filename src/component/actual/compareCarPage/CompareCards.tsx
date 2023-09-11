@@ -198,7 +198,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                         <li>Кол-во дверей: {car.car.CarModification.bodyDoorCount}</li>
                       </ul>
 
-                      <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.car.price))}*</span> ₽</h4></div>
+                      <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(car.car.price))}*</span> ₽</h4></div>
 {/* 
                       <div className='price'><h3>{numberWithSpaces(Number(car.car.price))} ₽</h3></div> */}
                       <div className='priceMonth'>
@@ -374,7 +374,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
                         {/* <li>Пробег: {carUsed.car.mileage}км</li> */}
                         <li>Кол-во дверей: {carUsed.car.bodyType}</li>
                       </ul>
-                      <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(carUsed.car.price))}*</span> ₽</h4></div>
+                      <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(carUsed.car.price))}*</span> ₽</h4></div>
                       <div className='priceMonth'>
                         <button className="btn">от {numberWithSpaces(Math.round(Number(carUsed.car.price / 120)))} ₽/мес</button>
                       </div>
@@ -488,7 +488,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
       width: 100%;
       font-size:60px;
       color:white;
-      background-color: #0c54a0;
+      background-color:  #131313;
       justify-content: center;
       font-family: 'Roboto','sans-serif'; 
       border-top: solid 1px white;
@@ -552,7 +552,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
       width:80%;
       height: 100%;
       border:solid 1px #d1d7dd;
-      color:#005baa;
+      color: #131313;
       background-color:  #f2f2f2;
       cursor: pointer;
       font-size: 15px;
@@ -562,7 +562,7 @@ function CompareCars({ setShowModal, setCompareArr, compareArr, setCompareArrUse
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
     }

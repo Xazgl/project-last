@@ -115,12 +115,11 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    background:#0c54a0;
+                    background: #131313;
                     color: white;
                     width: 350px;
                     height: 100%;
                     font-size: 18px;
-                    border-radius: 5px;
                     transition: 0.6s;
                     font-family: 'Roboto',sans-serif;
                     border:none;
@@ -128,7 +127,7 @@ export function SwiperElUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

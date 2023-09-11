@@ -7,8 +7,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Link, Slider, TextField } from "@mui/material";
-import {  Offices } from "@prisma/client";
-import { brandNameFilter,  cityOfficeFilter} from './carFilters';
+import { Offices } from "@prisma/client";
+import { brandNameFilter, cityOfficeFilter } from './carFilters';
 
 
 
@@ -100,10 +100,10 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
             const city = event.target.value === 'Null'
                 ? null
                 : [...(prevFilterState.city ?? []), event.target.value]
-            console.log(city )
+            console.log(city)
             return {
                 ...prevFilterState,
-                city 
+                city
             }
             // return { ...prevFilterState, brandName: event.target.value }
         })
@@ -119,12 +119,12 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
         <>
             <div className="sideBar">
                 <div className="rowSideBar" >
-                        <select className="selectModel" value={detailFilterCity} name="detailFilterBran"
-                                onChange={selectCityHandler}>
-                                <option value={'Null'} selected >Выберите  город</option>
-                                {filteredProps.city.map(dealerCity => <option key={dealerCity} value={dealerCity}>{dealerCity}</option>)}
-                            </select>
-                            {/* <FormGroup>
+                    <select className="selectModel" value={detailFilterCity} name="detailFilterBran"
+                        onChange={selectCityHandler}>
+                        <option value={'Null'} selected >Выберите  город</option>
+                        {filteredProps.city.map(dealerCity => <option key={dealerCity} value={dealerCity}>{dealerCity}</option>)}
+                    </select>
+                    {/* <FormGroup>
                                 {filteredProps.city.map(dealerCity =>
                                     <FormControlLabel
                                         key={dealerCity}
@@ -147,11 +147,11 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                             </FormGroup> */}
                 </div>
                 <div className="rowSideBar" >
-                            <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
-                                onChange={selectBrandHandler}>
-                                <option value={'Null'} selected >Выберите бренд</option>
-                                {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
-                            </select>
+                    <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
+                        onChange={selectBrandHandler}>
+                        <option value={'Null'} selected >Выберите бренд</option>
+                        {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
+                    </select>
                 </div>
             </div >
 
@@ -211,8 +211,9 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                     height: 50px;
                     border:solid 2px #3d3d3d;
                     font-size:21px; 
+                    cursor: pointer;
                 }
-                
+
                 .carTypeDiv {
                    display: flex;
                    justify-content: center;

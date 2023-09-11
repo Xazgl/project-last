@@ -88,7 +88,7 @@ export function RegComponent() {
     font-family: 'Roboto', sans-serif; 
     transition: transform.3s ;
     color: #ffffff;
-    background-color: #0c54a0;
+    background-color:  #131313;
     width: 500px;
     height: 50px;
     font-size: 20px;

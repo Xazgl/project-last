@@ -208,13 +208,13 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                 }
                 
                 #carScroll::-webkit-scrollbar-track {
-                  background-color: #0c53a0ab ; /* Цвет фона трека скроллбара */
+                  background-color: #fdb913 ; /* Цвет фона трека скроллбара */
     
                 }
                 
                 #carScroll::-webkit-scrollbar-thumb {
                     border-radius: 4px; 
-                   background-color: #0c54a0 ; /* Цвет ползунка скроллбара */
+                   background-color:  #131313 ; /* Цвет ползунка скроллбара */
                 }
                 
                 #carScroll::-webkit-scrollbar-thumb:hover {

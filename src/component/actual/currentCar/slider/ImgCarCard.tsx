@@ -2,9 +2,25 @@ import { CircularProgress } from "@mui/material";
 import Link from "next/link";
 
 import Image from 'next/image';
+import { Dispatch, SetStateAction } from "react";
 
 
-export function ImgCarCard({ img}: { img: string }) {
+type Props = {
+    showModalImg: boolean,
+    setShowModalImg: Dispatch<SetStateAction<boolean>>,
+    setCarStepImg: (Dispatch<SetStateAction<string>>)
+    img: string
+}
+
+export function ImgCarCard({ showModalImg, img, setShowModalImg, setCarStepImg }: Props) {
+
+
+    function showModalImgFunction(item) {
+        setShowModalImg(true)
+        // setCarImg(car.img)
+        setCarStepImg(item)
+    }
+
 
     return (
         <>
@@ -21,6 +37,8 @@ export function ImgCarCard({ img}: { img: string }) {
                                             (max-width: 1080px) 33vw,
                                             20vw"
                                     loading="lazy"
+                                    style={{ cursor: 'zoom-in'}}
+                                    onClick={() => showModalImgFunction(img)}
                                 />
                                 {/* <img src={car.img[0]} className="cardImg"></img> */}
                             </div>
@@ -56,7 +74,7 @@ export function ImgCarCard({ img}: { img: string }) {
                }
 
                 .card {
-                        display: flex;
+                    display: flex;
                     justify-content: center;
                     text-align: center;
                     flex-direction: column;
@@ -79,7 +97,7 @@ export function ImgCarCard({ img}: { img: string }) {
                     display: flex;
                     justify-content: center;
                     width: 100%;
-                    height: 200px;
+                    height: 210px;
                     position: relative;
                 }
 
@@ -92,10 +110,10 @@ export function ImgCarCard({ img}: { img: string }) {
 
                 @media(max-width: 1000px) {
                     .cardsSlider{
-                    flex - wrap: wrap;
-                width: auto;
-                justify-content: center;
-                height: auto;
+                         flex - wrap: wrap;
+                         width: auto;
+                         justify-content: center;
+                         height: auto;
                     }
                 .btnDiv {
                     margin - top: 20px;

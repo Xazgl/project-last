@@ -179,7 +179,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                                             marginRight: '-5px'
                                         }}>
                                             <IconButton aria-label="add to favorites">
-                                                <FavoriteIcon sx={{ '&:hover': { color: '#005baa' } }} />
+                                                <FavoriteIcon sx={{ '&:hover': { color: ' #131313' } }} />
                                             </IconButton>
                                         </IconButton>
                                     }
@@ -322,8 +322,8 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
               padding:1px;
               width:80%;
               height: 100%;
-              border:solid 1px #005baa;
-              color:#005baa;
+              border:solid 1px  #131313;
+              color: #131313;
               background-color: transparent;
               border-radius: 3px;
               font-size: 15px;
@@ -332,7 +332,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
             }
         
             .btn:hover {
-              background-color:#005baa; 
+              background-color: #131313; 
               color:white;
               transform: scale(0.99);
         

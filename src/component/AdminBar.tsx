@@ -39,9 +39,9 @@ const AdminBar = () => {
     <AppBar position="static"
       sx={{
         display: 'flex', alignItems: 'center', fontFamily: 'Roboto',
-        backgroundColor: '#0c54a0;', color: 'white',
+        backgroundColor: ' #131313;', color: 'white',
         boxShadow: 'box-shadow: 1px 7px 8px 0px rgba(34, 60, 80, 0.2)',
-        borderTop:'solid 2px#366aa3'
+        borderTop:'solid 2px#bebebe'
       }}>
       <Container maxWidth="xl" sx={{ display: 'flex', alignItems: 'center' }}>
         <Toolbar disableGutters>

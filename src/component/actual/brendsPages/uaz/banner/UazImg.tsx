@@ -17,7 +17,7 @@ export function UazImgDestop() {
                         </a>
                     </Link>
 
-                    <Circle sx={{fontSize:'8px',color:'#0c54a0'}}/>
+                    <Circle sx={{fontSize:'8px',color:' #131313'}}/>
 
                     <Link href="/brands/all">
                         <a className="menuRoad" rel="noopener noreferrer" >
@@ -25,7 +25,7 @@ export function UazImgDestop() {
                         </a>
                     </Link>
 
-                    <Circle sx={{fontSize:'8px',color:'#0c54a0'}}/>
+                    <Circle sx={{fontSize:'8px',color:' #131313'}}/>
 
                     <Link href="/brands/geely">
                         <a className="menuRoad" rel="noopener noreferrer" >
@@ -87,7 +87,7 @@ export function UazImgDestop() {
                 }
 
                 .city {
-                    color: #0c54a0;
+                    color:  #131313;
                     position: relative;
                     text-decoration: none;
                 }
@@ -98,7 +98,7 @@ export function UazImgDestop() {
                     bottom: -1px;
                     left: 0;
                     width: 100%;
-                    border-bottom: 1px solid #0c54a0;
+                    border-bottom: 1px solid  #131313;
                 }   
 
                 .banner {

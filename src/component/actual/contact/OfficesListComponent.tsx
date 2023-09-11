@@ -54,7 +54,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                         </a>
                     </Link>
 
-                    <Circle sx={{ fontSize: '8px', color: '#0c54a0' }} />
+                    <Circle sx={{ fontSize: '8px', color: ' #131313' }} />
 
                     <Link href="/company/contact">
                         <a className="menuRoad" rel="noopener noreferrer" >
@@ -82,7 +82,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                             left: '0',
                             zIndex:'2'
                         }}>
-                        <AccordionSummary sx={{ backgroundColor: '#0c54a0', color: 'white' }}
+                        <AccordionSummary sx={{ backgroundColor: ' #131313', color: 'white' }}
                             expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
@@ -200,7 +200,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                 input {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
@@ -223,7 +223,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                 select {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     font-family: 'Roboto','sans-serif'; 
 

@@ -583,7 +583,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     align-items:center;
                     width:100%;
                     justify-content: baseline;
-                    background-color:#0c54a0;
+                    background-color: #131313;
                     flex-direction: column;
                     height: 200px;
                     padding-top:50px;
@@ -658,7 +658,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 .selector {
                     display:flex; 
                     width: 100%;
-                    background-color:#0c54a0;
+                    background-color: #131313;
                     justify-content:center;
                     align-items:center;
                     padding: 20px;
@@ -682,7 +682,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
               
                 option {
-                    background-color: #0c54a0;
+                    background-color:  #131313;
                     color:white;
                     font-family: 'Roboto','sans-serif'; 
                     font-size:21px; 
@@ -709,7 +709,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     font-family: 'Roboto','sans-serif'; 
                     font-size:40px;
                     text-align: center;
-                    background-color:#0c54a0;
+                    background-color: #131313;
                     padding: 20px;
                     gap:10px;
                 }
@@ -784,7 +784,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     justify-content:center;
                     flex-direction:row;
                     font-size:16px; 
-                    color:#0c54a0;
+                    color: #131313;
                     justify-content:start;
                     text-align: start;
                     min-height: 40px;
@@ -838,7 +838,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     transition: transform.3s;
                     width: 140px;
                     height: 40px;
-                    background:#0c54a0;
+                    background: #131313;
                     border: none;
                     font-weight: bold;
                     cursor:pointer;

@@ -1,15 +1,22 @@
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import Box from '@mui/material/Box';
 import CircularProgress from "@mui/material/CircularProgress";
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
-import { ImgCarCard} from "./ImgCarCard";
+import { ImgCarCard } from "./ImgCarCard";
 import banner from '/public/images/BannerNew.webp'
 import { CarDto } from "../../../../../@types/dto";
 
 
-export function SwiperImg({ img }: { img: string[] }) {
+type Props = {
+    showModalImg: boolean,
+    setShowModalImg: Dispatch<SetStateAction<boolean>>,
+    setCarStepImg: (Dispatch<SetStateAction<string>>)
+    img: string[]
+}
+
+export function SwiperImg({ showModalImg, img, setShowModalImg, setCarStepImg }: Props) {
 
     const [carArrImg, setCarArrImg] = useState<string[]>([]);
 
@@ -64,9 +71,17 @@ export function SwiperImg({ img }: { img: string[] }) {
 
             {carArrImg.length > 0 ?
                 <Carousel sx={{ height: 'auto' }} animation="slide" autoPlay={false} swipe indicators cycleNavigation fullHeightHover
-                    navButtonsAlwaysVisible 
+                    navButtonsAlwaysVisible
                 >
-                    {resultArr.map((carArrImg) => <Item key={carArrImg.id} carArrImg={carArrImg} />)}
+                    {resultArr.map((carArrImg) =>
+                        <Item
+                            setShowModalImg={setShowModalImg}
+                            setCarStepImg={setCarStepImg}
+                            showModalImg={showModalImg}
+                            key={carArrImg.id}
+                            carArrImg={carArrImg}
+                        />
+                    )}
                 </Carousel>
                 : <CircularProgress />
             }
@@ -101,12 +116,23 @@ export function SwiperImg({ img }: { img: string[] }) {
     )
 
 
-    function Item({ carArrImg }: { carArrImg : string[] }) {
+    function Item({ carArrImg, showModalImg, setShowModalImg, setCarStepImg }:
+        {
+            carArrImg: string[], showModalImg: boolean, setShowModalImg: Dispatch<SetStateAction<boolean>>
+                , setCarStepImg: Dispatch<SetStateAction<string>>
+        },
+    ) {
         return (
-            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center',gap:'6px' }}>
+            <Box sx={{ display: 'flex', height: 'auto', justifyContent: 'center', gap: '6px' }}>
                 {
                     carArrImg.map((img) =>
-                        <ImgCarCard img={img} key={img}/>
+                        <ImgCarCard
+                            img={img}
+                            key={img}
+                            setShowModalImg={setShowModalImg}
+                            setCarStepImg={setCarStepImg}
+                            showModalImg={showModalImg}
+                        />
                     )
                 }
             </Box>

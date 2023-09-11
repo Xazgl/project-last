@@ -271,7 +271,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
         <>
             <div className="sideBar">
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
-                    sx={{ backgroundColor: '#0c54a0f0', color: 'white', margin: '1px', width: '100%' }}
+                    sx={{ backgroundColor: ' #131313f0', color: 'white', margin: '1px', width: '100%' }}
                 >
                     <AccordionSummary
                         expandIcon={<TuneIcon sx={{ color: 'white', width: '40px' }} />}
@@ -384,7 +384,10 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 <AccordionDetails>
                                     <Paper elevation={0} sx={{ maxHeight: '200px', overflow: 'auto' }}>
                                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                            <a
+                                            {/* <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
+                                                <a rel="noopener noreferrer" ><AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> <span className="city">Волгоград </span></a>
+                                            </Link> */}
+                                            {/* <a
                                                 href="/brands/any"
                                                 style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
                                                 onClick={(e) => {
@@ -402,7 +405,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                                     control={<Checkbox checked={selectedBrand === 'Любой'} onChange={() => { }} />}
                                                     label="Любой"
                                                 />
-                                            </a>
+                                            </a> */}
 
                                             {brands.map((brand) => (
                                                 <a
@@ -682,7 +685,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                             <Button
                                 variant="outlined"
                                 sx={{
-                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto', backgroundColor: 'white', color: '#005baa',
+                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto', backgroundColor: 'white', color: ' #131313',
                                 }}
                                 onClick={resetFilteredCars}>
                                 Очистить фильтры
@@ -746,7 +749,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                 input {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
@@ -770,7 +773,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                 select {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     font-family: 'Roboto','sans-serif'; 
 

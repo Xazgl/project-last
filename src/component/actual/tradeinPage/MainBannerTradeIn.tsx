@@ -103,7 +103,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     transition: transform.1s;
                     width: 300px;
                     height: 45px;
-                    background:#005baa;
+                    background: #131313;
                     border: 1px solid white;
                     font-weight: bold;
                     margin-top:35px;

@@ -20,37 +20,37 @@ const parser = new xml2js.Parser()
 
 
 
-if (!process.env.LOKI_API_URL) {
-    console.error('The process.env.LOKI_API_URL doesnt exist')
-    process.exit(1)
-}
+// if (!process.env.LOKI_API_URL) {
+//     console.error('The process.env.LOKI_API_URL doesnt exist')
+//     process.exit(1)
+// }
 
-const lokiUrl = new URL(process.env.LOKI_API_URL)
+// const lokiUrl = new URL(process.env.LOKI_API_URL)
 
 
 
-const transport = pino.transport({
-    target: "pino-loki",
-    options: {
-        batching: true,
-        interval: 5,
+// const transport = pino.transport({
+//     target: "pino-loki",
+//     options: {
+//         batching: true,
+//         interval: 5,
 
-        host: lokiUrl.origin,
-        basicAuth: {
-            username: lokiUrl.username,
-            password: lokiUrl.password,
-        },
-    },
-});
+//         host: lokiUrl.origin,
+//         basicAuth: {
+//             username: lokiUrl.username,
+//             password: lokiUrl.password,
+//         },
+//     },
+// });
 
-const logger = pino(transport);
+// const logger = pino(transport);
 //   logger.error({ foo: 'bar' })
 
 async function start() {
     try {
-        logger.info({
-            message: "XmlTask function start() started"
-        })
+        // logger.info({
+        //     message: "XmlTask function start() started"
+        // })
         // if (process.env.NODE_ENV !== 'production') {
         //     await db.$transaction([
         //         db.car.deleteMany({}),
@@ -84,7 +84,7 @@ async function start() {
             } catch (error) {
                 if (error instanceof AxiosError) {
                     console.error(error.code + ': ' + error.message)
-                    logger.error(error.toJSON())
+                    // logger.error(error.toJSON())
                 }
                 return [];
             }
@@ -234,13 +234,13 @@ async function start() {
                 // console.log(car);
             }
         }
-        logger.info({
-            message: "XmlTask function start() completed"
-        })
+        // logger.info({
+        //     message: "XmlTask function start() completed"
+        // })
         await wait(5000)
     } catch (error) {
         console.error(error)
-        logger.error(('toJSON' in error) ? error.toJSON() : error)
+        // logger.error(('toJSON' in error) ? error.toJSON() : error)
     }
 }
 //         // console.log(cars);
@@ -278,9 +278,9 @@ start()
 
 async function startOld() {
     try {
-        logger.info({
-            message: "XmlTask funtcion startOld() started"
-        })
+        // logger.info({
+        //     message: "XmlTask funtcion startOld() started"
+        // })
         // if (process.env.NODE_ENV !== 'production') {
         //     await db.$transaction([
         //         db.usedCars.deleteMany({}),
@@ -410,7 +410,7 @@ async function startOld() {
                     }
                 } catch (error) {
                     console.error(error)
-                    logger.error(('toJSON' in error) ? error.toJSON() : error)
+                    // logger.error(('toJSON' in error) ? error.toJSON() : error)
 
                     // console.log(offer.param[5], offer.param.length)
                     // console.log('id: ' +   offer.id, 'param пробег:' + offer.param[0], 'param год выпуска:' + offer.param[1],'param Кузов:' + offer.param[2],'param Руль:'+ offer.param[3], 
@@ -450,13 +450,13 @@ async function startOld() {
         // ]) 
         // console.log("Success"); 
 
-        logger.info({
-            message: "XmlTask function startOld() completed"
-        })
+        // logger.info({
+        //     message: "XmlTask function startOld() completed"
+        // })
         await wait(5000)
     } catch (error) {
         console.error(error)
-        logger.error(('toJSON' in error) ? error.toJSON() : error)
+        // logger.error(('toJSON' in error) ? error.toJSON() : error)
     }
 }
 

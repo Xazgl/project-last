@@ -44,7 +44,7 @@ export function InfoSale({ car, showModal, setShowModal, }: Props) {
                                         <FormControlLabel control={<Checkbox disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ПРИ ПОКУПКЕ В КРЕДИТ</Typography>} />
-                                        <FormControlLabel control={<Checkbox  disabled defaultChecked />}
+                                        <FormControlLabel control={<Checkbox disabled defaultChecked />}
                                             label={<Typography sx={{ fontSize: { xl: '1rem', lg: '1rem', md: '1rem', sm: '1rem', xs: '15px' } }}>
                                                 ПРИ СТРАХОВАНИИ</Typography>} />
                                         <FormControlLabel control={<Checkbox disabled defaultChecked />}
@@ -67,7 +67,15 @@ export function InfoSale({ car, showModal, setShowModal, }: Props) {
                                     </div>
                                     <div className="btn">
                                         <Button variant="outlined"
-                                            sx={{ width: '100%', height: '100%', border: 'solid 2px #005baa',borderRadius:'0px' }}
+                                            sx={{
+                                                width: '100%', height: '100%', border: 'solid 2px  #131313', borderRadius: '0px',color:'#131313',
+                                                '&:hover': {
+                                                    backgroundColor: "#f9b518",
+                                                    color: ' #131313',
+                                                    border: '#f9b518'
+
+                                                }
+                                            }}
                                         >Получить предложение</Button>
                                     </div>
                                 </div>
@@ -114,7 +122,7 @@ export function InfoSale({ car, showModal, setShowModal, }: Props) {
                     display: flex;
                     width: 100%;
                     position: relative;
-                    background: #0c54a0;
+                    background:  #131313;
                     color: #fff;
                     text-transform: uppercase;
                     letter-spacing: normal;
@@ -161,7 +169,7 @@ export function InfoSale({ car, showModal, setShowModal, }: Props) {
                 .price {
                     display: flex;
                     justify-content: start;
-                    color: #0c54a0;
+                    color:  #131313;
                     font-size: 30px;
                     font-weight: bold;
                     font-family: 'Roboto','sans-serif'; 

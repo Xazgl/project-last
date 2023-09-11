@@ -90,7 +90,7 @@ export function ModalImgArray({ showModalImg, setShowModalImg, carImg, carStepIm
 
 
                 <MobileStepper
-                    sx={{ display: 'flex', width: '100%',color:'#0c54a0' }}
+                    sx={{ display: 'flex', width: '100%',color:' #131313' }}
                     variant="text"
                     steps={maxSteps}
                     position="static"
@@ -101,12 +101,12 @@ export function ModalImgArray({ showModalImg, setShowModalImg, carImg, carStepIm
                             onClick={handleNext}
                             disabled={activeStep === maxSteps - 1}
                         >
-                            <KeyboardArrowRight sx={{color:'#0c54a0'}} />
+                            <KeyboardArrowRight sx={{color:' #131313'}} />
                         </Button>
                     }
                     backButton={
                         <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                            <KeyboardArrowLeft   sx={{color:'#0c54a0'}}/>
+                            <KeyboardArrowLeft   sx={{color:' #131313'}}/>
                         </Button>
                     }
                 />

@@ -264,7 +264,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     -webkit-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
                     -moz-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
                     box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
-                    border-left:solid 2px #005baa;;
+                    border-left:solid 2px  #131313;;
                 }
 
                 #contentColumn{
@@ -344,7 +344,7 @@ export function CardsOffers({ setShowModal, job }: JobProps) {
                     border: none;
                     font-weight: bold;
                     margin-top:35px;
-                    background: #005baa;
+                    background:  #131313;
                     color: white;
                     font-size: 16px;
                 }

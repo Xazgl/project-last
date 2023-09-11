@@ -1,6 +1,6 @@
 import { Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead } from '@mui/material'
 import { Dispatch, SetStateAction } from 'react'
-import banner from '/public/images/special/banner.jpg'
+import banner from '/public/images/special/banner.png'
 import Paper from '@mui/material/Paper';
 import TableRow from '@mui/material/TableRow';
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -187,7 +187,7 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                 textAlign: 'center',
                                 width: '100%',
                                 height: '45px',
-                                backgroundColor:'#0c54a0',
+                                backgroundColor:' #131313',
                                 borderRadius:'0px'
 
                             }}

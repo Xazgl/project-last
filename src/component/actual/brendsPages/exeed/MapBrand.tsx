@@ -88,7 +88,7 @@ function MapBrand({ }) {
                   г. Волгоград, ул. Землячки, 25
                 </div>
                 <div className="descBrand">
-                  <a className='href_a' href="mailto:faw@arkont.ru">exeed@arkont.ru</a>
+                  <a className='href_a' href="mailto:exeed@arkont.ru">exeed@arkont.ru</a>
                 </div>
                 <div className="descBrand">
                   <Link href="https://yandex.ru/maps/10951/volzhskiy/?from=&ll=44.791306%2C48.782364&mode=routes&rtext=~48.758962%2C44.496026&rtt=mt&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Nzg0NTk3MBJB0KDQvtGB0YHQuNGPLCDQktC-0LvQs9C-0LPRgNCw0LQsINGD0LvQuNGG0LAg0JfQtdC80LvRj9GH0LrQuCwgMjUiCg3v-zFCFS0JQ0I%2C&source=wizroute&z=14">
@@ -164,7 +164,7 @@ function MapBrand({ }) {
     }
 
     #titleMap {
-      border-bottom:solid  #0c54a0  2px;
+      border-bottom:solid   #131313  2px;
     }
 
     .descBrand {
@@ -174,7 +174,7 @@ function MapBrand({ }) {
 
     .href_a{
       text-decoration: none;
-      color:#0c54a0;
+      color: #131313;
     }
 
 
@@ -217,9 +217,9 @@ function MapBrand({ }) {
       padding:1px;
       width:50%;
       height: 35px;
-      border: solid 1px#005baa;
+      border: solid 1px #131313;
       color: white;
-      background-color: #005baa;
+      background-color:  #131313;
       font-size: 15px;
       transition: 0.6s;
       font-family: 'Roboto','sans-serif'; 
@@ -227,7 +227,7 @@ function MapBrand({ }) {
     }
 
     .btn:hover {
-      background-color:#1365ad; 
+      background-color:#fdb913; 
     }
 
     a{

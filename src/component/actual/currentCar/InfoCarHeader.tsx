@@ -22,11 +22,11 @@ type Props = {
     refCredit: MutableRefObject<HTMLDivElement>,
     showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
-    setCarStepImg:(Dispatch<SetStateAction<string>>)
+    setCarStepImg: (Dispatch<SetStateAction<string>>)
 }
 
 
-export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg,  setCarStepImg, setCarImg, refCredit }: Props) {
+export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarStepImg, setCarImg, refCredit }: Props) {
 
 
     function showModalImgFunction(item) {
@@ -136,19 +136,24 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
 
 
     const [imgLength, setImgLength] = useState(0)
-    const [colImg, setColImg] = useState(8)
+    const [colImg, setColImg] = useState(4)
+    const [imgHeight, setImgHeight] = useState(450)
 
     useEffect(() => {
         async function howCols() {
             setImgLength(car.img.length)
             if (imgLength >= 10) {
                 setColImg(8)
+                setImgHeight(350)
             } else if (5 < imgLength && imgLength <= 8) {
                 setColImg(4)
+                setImgHeight(450)
             } else if (1 < imgLength && imgLength <= 5) {
-                setColImg(3)
+                setColImg(5)
+                setImgHeight(450)
             } else if (imgLength === 1) {
                 setColImg(1)
+                setImgHeight(600)
             } else {
                 setColImg(8)
             }
@@ -172,14 +177,21 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
             <div className="background" id="desktop">
                 {car !== null ?
                     <>
-                        <div className="row" style={{ width: '100%', height: 'auto' }}>
-                            <ImageList sx={{ width: '100%', height: 350 }} cols={colImg} rowHeight={'auto'}>
-                                {/* <ImageList sx={{ width: '100%', height: '100%' }} cols={colImg} rowHeight={'auto'}> */}
+                        <SwiperImg
+                            img={car.img}
+                            setShowModalImg={setShowModalImg}
+                            setCarStepImg={setCarStepImg}
+                            showModalImg={showModalImg}
+                        />
+
+                        {/* <div className="row" style={{ width: '100%', height: '100%' }}>
+                            
+                            <ImageList sx={{width: '100%', height: `${imgHeight}px`,}}
+                                cols={colImg} rowHeight={'auto'}>
                                 {car.img.map((item) => (
-                                    <ImageListItem key={item}
-                                        sx={{ cursor: 'zoom-in',zIndex:'1'}}
-                                    >
-                                        {/* <img
+                                    <ImageListItem key={item} sx={{ cursor: 'zoom-in', zIndex: '1' }} >
+                                         */}
+                        {/* <img
                                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
                                             srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                             alt={item}
@@ -187,18 +199,18 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                             decoding='async'
                                             onClick={() => showModalImgFunction(item)}
                                         /> */}
-                                        <>
+
+                        {/* <>
                                             {isLoading && (
                                                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
                                                     <CircularProgress />
                                                 </div>
                                             )}
-
                                             <Image
                                                 src={item}
                                                 alt={item}
                                                 layout="fill"
-                                                sizes="(max-width: 750px) 50vw,
+                                                sizes="(max-width: 300px) 50vw,
                                                   (max-width: 828px) 40vw,
                                                   (max-width: 1080px) 33vw,
                                                   20vw"
@@ -206,13 +218,12 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                                 onClick={() => showModalImgFunction(item)}
                                                 onLoad={handleImageLoad}
                                             />
-
-                                        </>
+                                        </> 
                                     </ImageListItem>
                                 ))}
                             </ImageList>
-                            {/* </div> */}
-                        </div>
+                        </div>  */}
+
                         <div className="backgroundDesc" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'start' }}>
                             <div className="desc" style={{
                                 display: 'flex', width: '1000px', height: '300px', gap: '80px',
@@ -228,14 +239,14 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                     >
                                         <Circle sx={{ color: 'green', fontSize: '12px' }} />
                                         <span>В наличии</span>
-                                        <Circle sx={{ color: '#0c54a0 ', fontSize: '4px' }} />
+                                        <Circle sx={{ color: ' #131313 ', fontSize: '4px' }} />
                                         <span style={{ color: '#7b7979' }}>{car.DealerModel.name} <RoomIcon sx={{ fontSize: '15px' }} /></span>
                                         {/* <Circle sx={{ color: '0c54a0 ', fontSize: '4px' }} /> */}
 
-                                        {/* <a style={{ color: '#0c54a0', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a> */}
+                                        {/* <a style={{ color: ' #131313', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a> */}
                                     </div>
                                     <div className="rowColumn" style={{ display: 'flex', marginTop: '10px', justifyContent: 'start', alignItems: 'center' }} >
-                                        <a style={{ color: '#0c54a0', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
+                                        <a style={{ color: ' #131313', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
 
                                     </div>
                                     <div className="rowColumn" style={{ gap: 15, marginTop: '50px' }}>
@@ -279,24 +290,38 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                     </div>
                                 </div>
                                 <div className="columnDesc" style={{ display: 'flex', width: '100%', height: '100%', flexDirection: 'column', padding: '5px' }}>
-                                    <div className="rowColumn" style={{ gap: 30, marginTop: '20px',alignItems:'center'  }}>
+                                    <div className="rowColumn" style={{ gap: 30, marginTop: '20px', alignItems: 'center' }}>
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
-                                                sx={{ 
-                                                    backgroundColor: '#0c54a0', fontWeight: 'bold', height: '50px', 
-                                                    cursor: 'pointer',borderRadius:'0px'
-                                             }}
+                                                sx={{
+                                                    backgroundColor: ' #131313', fontWeight: 'bold', height: '50px',
+                                                    cursor: 'pointer', borderRadius: '0px',
+                                                    '&:hover': {
+                                                        backgroundColor: "#f9b518",
+                                                        color: ' #131313',
+                                                        border: '#f9b518'
+
+                                                    }
+                                                }}
                                                 onClick={showModalFunction}
                                             >Купить онлайн</Button>
                                         </div>
                                     </div>
-                                    
-                                    <div className="rowColumn" style={{ gap: 30, marginTop: '50px',alignItems:'center' }}>
+
+                                    <div className="rowColumn" style={{ gap: 30, marginTop: '50px', alignItems: 'center' }}>
                                         <div className="name" style={{ fontSize: '18px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
                                             <Button variant="outlined"
-                                                sx={{ fontWeight: 'bold', height: '50px', cursor: 'pointer',borderRadius:'0px',border:'solid 1px #0c54a0',color:'#0c54a0' }}
+                                                sx={{
+                                                    fontWeight: 'bold', height: '50px', cursor: 'pointer', borderRadius: '0px', border: 'solid 1px  #131313', color: ' #131313',
+                                                    '&:hover': {
+                                                        backgroundColor: "#f9b518",
+                                                        color: ' #131313',
+                                                        border: 'solid 1px  #f9b518'
+
+                                                    }
+                                                }}
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
@@ -313,7 +338,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                                 </div>
                             </div>
                         </div>
-                        {/* <SwiperImg img={car.img} /> */}
+
 
                         <div className="backgroundDescMore" style={{ display: 'flex', width: '100%', height: 'auto', justifyContent: 'center', backgroundColor: '' }}>
                         </div>
@@ -354,7 +379,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                 }
 
                 .Icon:hover {
-                    background-color:#005baa;
+                    background-color: #131313;
                 }
 
                 .column{
@@ -397,7 +422,7 @@ export function InfoCarHeader({ car, setCar, showModal, setShowModal, showModalI
                 }
 
                 #tradeIn:hover {
-                    background-color: #005baa;
+                    background-color:  #131313;
                     transition: 0.7s;
                 }
 

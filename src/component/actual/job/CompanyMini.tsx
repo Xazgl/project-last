@@ -109,7 +109,7 @@ export function CompanyMini() {
                     font-family: 'Roboto','sans-serif'; 
                     font-size:16px;
                     text-align: center;
-                    color:#0c54a0;
+                    color: #131313;
                 }
 
                 #elText2 {
@@ -125,8 +125,8 @@ export function CompanyMini() {
                     width: 300px;
                     height: 45px;
                     font-weight: bold;
-                    border: solid #0c54a0;
-                    background-color: #0c54a0;
+                    border: solid  #131313;
+                    background-color:  #131313;
                     color:white;
                     cursor: pointer;
                 }

@@ -37,7 +37,7 @@ export function NumbersBanner({ setShowModal }: Numbers) {
                                         textAlign: 'center',
                                         width: '100%',
                                         height: '45px',
-                                        backgroundColor:'#0c54a0',
+                                        backgroundColor:' #131313',
                                         borderRadius:'0px'
                                     }}
                                     variant="contained"

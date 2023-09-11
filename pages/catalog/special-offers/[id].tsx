@@ -13,6 +13,7 @@ import { Modal } from "../../../src/component/Modal"
 import { TradeinModal } from "../../../src/component/ModalTwo"
 import { FooterMainNew } from "../../../src/component/actual/menuNew/FooterMain"
 import ServiceForm from "../../car-repair/service-form"
+import { MenuBarNew } from "../../../src/component/actual/menuNew/Menu"
 
 const OfferPage: NextPage = () => {
     const [showModal, setShowModal] = useState(false)
@@ -51,7 +52,8 @@ const OfferPage: NextPage = () => {
                 <meta name="description" content="Current offer" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MenuBar />
+            <MenuBarNew setShowModal={setShowModal} />
+
             <BarMenu />
             <BannerOffer offer={offer} setShowModal={setShowModal} />
             <OfferDesc offer={offer} refForm={refForm} />

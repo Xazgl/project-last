@@ -234,7 +234,7 @@ export function InfoOffice({ car, showModal, setShowModal }: Props) {
                     <>
                         <div className="backgroundBlock">
                             <div className="title" style={{ justifyContent: 'start' }}>
-                                <h1>АВТОМОБИЛЬ В НАЛИЧИЕ</h1>
+                                <h1>АВТОМОБИЛЬ В НАЛИЧИИ </h1>
                             </div>
                             <div className="row">
                                 <div className="leftColumn">
@@ -254,11 +254,13 @@ export function InfoOffice({ car, showModal, setShowModal }: Props) {
                                     <div className="rowColumn">
                                         <Button variant="outlined"
                                             sx={{
-                                                width: '100%', height: '100%', border: 'solid 2px #005baa', fontWeight: 'bold',
-                                                backgroundColor: '#005baa', color: 'white',
+                                                width: '100%', height: '100%', border: 'solid 2px  #131313', fontWeight: 'bold',
+                                                backgroundColor: ' #131313', color: 'white',borderRadius:'0px',
                                                 '&:hover': {
-                                                    backgroundColor: "white",
-                                                    color: '#005baa'
+                                                    backgroundColor: "#f9b518",
+                                                    color: ' #131313',
+                                                    border:'#f9b518'
+                            
                                                 }
                                             }}
                                         >Заказать звонок</Button>

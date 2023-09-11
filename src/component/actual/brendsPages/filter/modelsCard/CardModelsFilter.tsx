@@ -254,6 +254,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
     return (
         <>
             <div className='background' ref={visibleElementRef}>
+            <div className='titleBackground'>Модельный ряд</div>
                 <div className='cards' id="desktop">
                     {filteredProps.models.map(model => {
                         const filteredCars = cars.filter(car => model.includes(car.CarModel.modelName));
@@ -375,7 +376,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                                     }
 
                                                 </Box>
-                                                <div className='price'> <h3 >Цена от  <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
+                                                <div className='price'> <h3 >Цена от  <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
                                                 {/* <div className='descDiv'>
                                                 <ul >
                                                     <li><div className='price'>Двигатель: {engines.join(' / ')}</div></li>
@@ -544,7 +545,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                                         )}
 
                                                 </Box>
-                                                <div className='price'> <h3 >Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
+                                                <div className='price'> <h3 >Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(minPrice))}  ₽*</span></h3></div>
                                                 {/* <div className='descDiv'>
                                                 <ul >
                                                     <li><div className='price'>Двигатель: {engines.join(' / ')}</div></li>
@@ -604,11 +605,18 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                    width: 100%;
                    height: 100%;
                    padding: ${cars.length > 0 ? '20px' : '0'};
-
-                   justify-content: center;
+                   flex-direction: column;
+                   align-items: center;
                    overflow: auto;
                    background-color: #f5f2f261;
                }   
+
+               .titleBackground{
+                   justify-content: start;
+                   width: 100%;
+                   font-size: 25px;
+                   font-weight: bold;
+               }
 
                
                  #mob{
@@ -627,6 +635,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                     width: 100%;
                     flex-direction: row;
                     flex-wrap: wrap;
+                    margin-top: 20px;
                 } 
                       
                 .price {
@@ -649,7 +658,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
 
                 ul {
                   padding-inline-start: 20px;
-                  color:#0c54a0;
+                  color: #131313;
                   margin-top:0px;
                 }
 
@@ -673,9 +682,9 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   padding:1px;
                   width:80%;
                   height: 100%;
-                  border:solid 1px #005baa;
+                  border:solid 1px  #131313;
                   color:white;
-                  background-color: #005baa;
+                  background-color:  #131313;
                   font-size: 15px;
                   transition: 0.6s;
                   font-family: 'Roboto','sans-serif'; 
@@ -684,7 +693,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                 }
 
                 .btn:hover {
-                  background-color:#005baabd; 
+                  background-color: #131313bd; 
                   color:white;
                   transform: scale(0.99);
                 }   
@@ -697,6 +706,10 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   #mob{
                     display: flex;
                   } 
+
+                  .titleBackground {
+                    font-size: 20px;
+                  }
 
                   .btn {
                     width:100%;

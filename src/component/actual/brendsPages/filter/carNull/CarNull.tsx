@@ -77,7 +77,7 @@ function CarNull({ }) {
             <Typography sx={{ marginTop: '40px',justifyContent:'start',display: 'flex', width:'100%'}} variant="body1" color="text.secondary">Авто в наличии нет</Typography>
             <Link href="/brands/all">
               <a rel="noopener noreferrer">
-                <Button variant="contained" sx={{ width:'250px',marginTop: '40px', backgroundColor: '#0c54a0', borderRadius: '0' }}>Другие бренды</Button>
+                <Button variant="contained" sx={{ width:'250px',marginTop: '40px', backgroundColor: ' #131313', borderRadius: '0' }}>Другие бренды</Button>
               </a>
             </Link>
           </CardContent>

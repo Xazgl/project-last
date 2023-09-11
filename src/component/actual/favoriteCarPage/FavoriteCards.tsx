@@ -281,7 +281,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       align-items: center;
       gap:10px;
       color:white;
-      background-color: #0c54a0;
+      background-color:  #131313;
       justify-content: center;
       font-family: 'Roboto','sans-serif'; 
       padding: 10px;
@@ -338,8 +338,8 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #005baa;
-      color:#005baa;
+      border:solid 1px  #131313;
+      color: #131313;
       background-color: transparent;
       border-radius: 3px;
       font-size: 15px;
@@ -350,7 +350,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
 

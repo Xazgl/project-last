@@ -437,7 +437,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
         <>
             <div className="sideBar">
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBar('panel1')}
-                    sx={{ backgroundColor: '#0c54a0', color: 'white', margin: '10px', width: '100%' }}
+                    sx={{ backgroundColor: ' #131313', color: 'white', margin: '10px', width: '100%' }}
                 >
                     <AccordionSummary
                         expandIcon={<TuneIcon sx={{ color: 'white', width: '40px' }} />}
@@ -813,7 +813,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                 input {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
@@ -833,7 +833,7 @@ function CarUsedSidebarMobile({ cars, setFilteredCars, filteredCars }: Props) {
                 select {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                 }
                 

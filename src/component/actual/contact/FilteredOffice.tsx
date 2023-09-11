@@ -78,7 +78,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
                   transition: '1s',
                   animation: 'credit-open.5s',
                   marginTop: '360px',
-                  backgroundColor: '#0c54a0',
+                  backgroundColor: '#131313',
                   position: 'absolute'
                 }
               }} >
@@ -199,7 +199,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', backgroundColor: '#0c54a0', borderRadius: '0' }}
+                  sx={{ textAlign: 'center', fontSize: '12px', width: '95%', backgroundColor: ' #131313', borderRadius: '0' }}
                   onClick={showModal}>Связаться</Button>
               </div>
             </Card>
@@ -275,13 +275,13 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
         display: flex;
         justify-content: center;
         align-items: center;
-        color:  #0c54a0;
+        color:   #131313;
         font-weight: bold;
         cursor: pointer;
     }
     
     #circlePhone {
-      background-color: #0c54a0;
+      background-color:  #131313;
       color:  white;
 
     }
@@ -294,8 +294,8 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #0c54a0;
-      color:#005baa;
+      border:solid 1px  #131313;
+      color: #131313;
       background-color: transparent;
       border-radius: 3px;
       font-size: 15px;
@@ -304,7 +304,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
 
@@ -341,7 +341,8 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
     }
 
     .credit:hover {
-      background-color:#0088ff;
+      background-color:#f9b518;
+      
     }
 
     #mob{

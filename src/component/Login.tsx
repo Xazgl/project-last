@@ -103,7 +103,7 @@ export function Login() {
         font-family: 'Roboto', 'sans-serif';
         transition: transform.3s ;
         color: #ffffff;
-        background-color: #0c54a0;
+        background-color:  #131313;
         width: 500px;
         height: 50px;
         font-size: 20px;
@@ -118,7 +118,7 @@ export function Login() {
     .loginTitle{
         font-size: 70px;
         font-weight: 600;
-        background-image: linear-gradient(to left, #005baa,white);
+        background-image: linear-gradient(to left,  #131313,white);
         color: transparent;
         background-clip: text;
         -webkit-background-clip: text;

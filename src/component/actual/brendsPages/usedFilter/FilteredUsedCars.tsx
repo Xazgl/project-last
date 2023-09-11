@@ -255,7 +255,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <Link href={'/catalog/watched-cars'}>
                 <HistoryIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'black' }
                   }}
                 />
@@ -272,7 +272,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <Link href={'/catalog/compare-cars'}>
                 <CompareIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'green' }
                   }}
                 />
@@ -289,7 +289,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <Link href={'/catalog/favorite-cars'}>
                 <FavoriteBorderIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'red' }
                   }}
                 />
@@ -305,6 +305,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
 
         <div className='cards' id="desktop">
+        <div className='titleBackground'>Модельный ряд</div>
           {filteredCars.map(car =>
             <Card
               key={car.id}
@@ -395,7 +396,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   {upFirst(car.engine)} / {car.driverType} / Пробег {numberWithSpaces(car.mileage)} км
-                  <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
+                  <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
                   <div className='priceMonth'>
                     <button className="btn" onClick={showModal}>от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
                   </div>
@@ -434,6 +435,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
         </div>
 
         <div className='cards' id="mob">
+        <div className='titleBackground'>Модельный ряд</div>
           {filteredCars.map(car =>
             <Card
               key={car.id}
@@ -513,7 +515,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardContent>
                 <Typography variant="body2" color="text.secondary" >
                   {upFirst(car.engine)} / {car.driverType} привод / Пробег {numberWithSpaces(car.mileage)} км
-                  <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
+                  <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
                   <div className='priceMonth'>
                     <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
                   </div>
@@ -524,7 +526,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               }}>
                 <Button variant="contained"
                   sx={{
-                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto', backgroundColor: '#0c54a0',
+                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto', backgroundColor: ' #131313',
                     borderRadius: '0px', height: '35px'
                   }}
                   onClick={showModal}>Получить консультацию</Button>
@@ -564,8 +566,15 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       padding: 20px;
       justify-content: center;
       overflow: auto;
-
       background-color: #f5f2f261;
+      flex-direction: column;
+    }
+
+    .titleBackground{
+      justify-content: start;
+      width: 100%;
+      font-size: 25px;
+      font-weight: bold;
     }
     
     .cards {
@@ -604,7 +613,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       width:80%;
       height: 100%;
       border:solid 1px #d1d7dd;
-      color:#005baa;
+      color: #131313;
       background-color:  #f2f2f2;
       cursor: pointer;
       font-size: 15px;
@@ -614,7 +623,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
     }
@@ -694,6 +703,11 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       #mob{
         display: flex;
       } 
+
+      .titleBackground {
+         font-size: 20px;
+      }
+
       .btn {
         width: 80%;
         height: 35px;

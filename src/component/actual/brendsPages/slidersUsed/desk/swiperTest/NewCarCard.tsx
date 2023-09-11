@@ -130,7 +130,7 @@ export function NewCarCard({ car }: { car: UsedCars }) {
                     align-items:center;
                     width: 243px;
                     height: 50px;
-                    color: #0c54a0;
+                    color:  #131313;
                     font-family: 'Roboto','sans-serif'; 
                 }
 
@@ -187,7 +187,7 @@ export function NewCarCard({ car }: { car: UsedCars }) {
 
                 .btn {
                     background: #f2f2f2;
-                    color: #0c54a0;
+                    color:  #131313;
                     cursor: pointer;
                     opacity: 1;
                     transition: opacity .5s ease-in-out;
@@ -220,14 +220,14 @@ export function NewCarCard({ car }: { car: UsedCars }) {
                 }
 
                 .btn:hover {
-                    background: #0c54a0;
+                    background:  #131313;
                     transform: scale(0.99);
                     color:white;
                 }
 
                 .pricCredit{
                     text - align: center;
-                    color: #0c54a0;
+                    color:  #131313;
                     transition: 0.5s;
                 }
 
@@ -250,7 +250,7 @@ export function NewCarCard({ car }: { car: UsedCars }) {
                     text-align: center;
                     border: 1px solid #deded8;
                     background:transparent;
-                    color: #005baa;
+                    color:  #131313;
                     width: 350px;
                     height: 100%;
                     font-size: 18px;
@@ -260,7 +260,7 @@ export function NewCarCard({ car }: { car: UsedCars }) {
                 }
 
                 .btnAllCar:hover {
-                    background - color: #005baa9b;
+                    background - color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;
@@ -282,20 +282,20 @@ export function NewCarCard({ car }: { car: UsedCars }) {
                     transition: 1s;
                     animation:credit-open.5s ;
                     margin-top: 240px;
-                    background-color:#005baa;
+                    background-color: #131313;
                     position: absolute;
                     top: 0;
                 }
                 
                 .btn:hover {
-                    background: #0c54a0;
+                    background:  #131313;
                     transform: scale(0.99);
                     color:white;
                 }
 
                 .pricCredit{
                     text-align: center;
-                    color: #0c54a0;
+                    color:  #131313;
                     transition: 0.5s;
                 }
 

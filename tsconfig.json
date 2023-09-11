@@ -22,9 +22,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "**/*.js",
     "**/*.tsx",
     "pages/sitemap.xml.js"
-  ],
+, "prisma/seedBrands.js"  ],
   "exclude": [
     "node_modules"
   ]

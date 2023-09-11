@@ -278,7 +278,7 @@ function News({ }) {
 
     .href_a{
       text-decoration: none;
-      color:#0c54a0;
+      color: #131313;
     }
 
     .cards {

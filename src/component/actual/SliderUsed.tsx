@@ -375,7 +375,7 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                     align-items:center;
                     width: 100%;
                     height: 32px; 
-                    color: #005baa;
+                    color:  #131313;
                     font-family: 'Roboto','sans-serif'; 
                 }
 
@@ -470,7 +470,7 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
 
                 .pricCredit{
                     text-align: center;
-                    color: #005baa;
+                    color:  #131313;
                     transition: 0.5s;
                 }
 
@@ -495,7 +495,7 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                     text-align: center;
                     border: 1px solid #deded8;
                     background:transparent;
-                    color: #005baa;
+                    color:  #131313;
                     width: 350px;
                     height: 100%;
                     font-size: 18px;
@@ -504,7 +504,7 @@ export function SliderUsed({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

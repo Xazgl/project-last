@@ -124,11 +124,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       },
       include: {
-        CarModel: {
-          include: {
-            brandNews: true,
-          },
-        },
+        CarModel: true,
         CarComplectation: true,
         CarModification: true,
         extras: true,

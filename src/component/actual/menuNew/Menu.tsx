@@ -270,7 +270,7 @@ export function MenuBarNew({ setShowModal }: Props) {
       margin-top:0;
       height: 60px;
       margin-bottom: 0px;
-      border-bottom: solid 2px #366aa3 ;
+      border-bottom: solid 2px #bebebe ;
       justify-content: start;
     }
 
@@ -307,7 +307,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         border-bottom: 1px solid #0e0d0d;   
         font-size:18px;
         width: 100%;
-        background-color: #0c54a0;
+        background-color:  #131313;
         border:none;
         z-index:9999;
         margin-top:0;
@@ -434,7 +434,7 @@ export function MenuBarNew({ setShowModal }: Props) {
             display: flex; 
             justify-content: center;
             width: '100%' ;
-            background-color:#0c54a0;
+            background-color: #131313;
       }
   
       .content {

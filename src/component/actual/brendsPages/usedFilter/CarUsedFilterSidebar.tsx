@@ -683,13 +683,13 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                 }
                 
                 .sideBar::-webkit-scrollbar-track {
-                  background-color: #0c53a0ab ; /* Цвет фона трека скроллбара */
+                  background-color: #fdb913 ; /* Цвет фона трека скроллбара */
     
                 }
                 
                 .sideBar::-webkit-scrollbar-thumb {
                     border-radius: 4px; 
-                  background-color: #0c54a0 ; /* Цвет ползунка скроллбара */
+                  background-color:  #131313 ; /* Цвет ползунка скроллбара */
                 }
                 
                 .sideBar::-webkit-scrollbar-thumb:hover {
@@ -731,7 +731,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                 input {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
@@ -751,7 +751,7 @@ function CarUsedFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                 select {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     font-family: 'Roboto','sans-serif'; 
 

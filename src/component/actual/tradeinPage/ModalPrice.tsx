@@ -242,7 +242,7 @@ export function ModalPrice({ showModalPrice, setShowModalPrice, carPrice }: Mode
                 transition: transform.3s ;
                 color: black;
                 font-size: 20px;
-                background-color:#005baa;
+                background-color: #131313;
                 color:white;
                 width: 60%;
                 height: 45px;

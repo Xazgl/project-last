@@ -83,7 +83,7 @@ export function More({ job,setOpen, open }) {
                   height: 45px;
                   font-size: 16px;
                   color: #fff;
-                  background-color: #005baa;
+                  background-color:  #131313;
                   border-color: transparent;
                   border: solid 1px transparent;
                   font-weight: 600;
@@ -93,8 +93,8 @@ export function More({ job,setOpen, open }) {
 
                  button:hover{
                   background:transparent;
-                  border: solid 1px #005baa;
-                  color:#005baa;
+                  border: solid 1px  #131313;
+                  color: #131313;
                   transform: scale(0.99);
                  }
 

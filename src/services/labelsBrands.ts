@@ -33,83 +33,83 @@ import volkswagen from '/public/images/logo-brends/v.webp';
 
 
 //geely
-import geelyCard from '/public/images/catalogPages/all/cards/blue/geely.webp';
+import geelyCard from '/public/images/catalogPages/all/cards/blue/geely.png';
 import geelyCard2 from '/public/images/catalogPages/all/cards/logo/geely.jpg';
 
 //arkont-select
-import selectCard from '/public/images/catalogPages/all/cards/blue/arkont_select.webp';
+import selectCard from '/public/images/catalogPages/all/cards/blue/arkont_select.png';
 import selectCard2 from '/public/images/catalogPages/all/cards/logo/arkont_select.webp';
 //arkont-baic
-import baicCard from '/public/images/catalogPages/all/cards/blue/baic.webp';
+import baicCard from '/public/images/catalogPages/all/cards/blue/baic.png';
 import baicCard2 from '/public/images/catalogPages/all/cards/logo/baic.webp';
 //chery
-import cheryCard from '/public/images/catalogPages/all/cards/blue/chery.webp';
+import cheryCard from '/public/images/catalogPages/all/cards/blue/chery.png';
 import cheryCard2 from '/public/images/catalogPages/all/cards/logo/chery.webp';
 //exeed
-import exeedCard from '/public/images/catalogPages/all/cards/blue/exeed.webp';
+import exeedCard from '/public/images/catalogPages/all/cards/blue/exeed.png';
 import exeedCard2 from '/public/images/catalogPages/all/cards/logo/exeed.webp';
 //faw
-import fawCard from '/public/images/catalogPages/all/cards/blue/faw.webp';
+import fawCard from '/public/images/catalogPages/all/cards/blue/faw.png';
 import fawCard2 from '/public/images/catalogPages/all/cards/logo/faw.webp';
 //hyundai
-import hyundaiCard from '/public/images/catalogPages/all/cards/blue/hyundai.webp';
+import hyundaiCard from '/public/images/catalogPages/all/cards/blue/hyundai.png';
 import hyundaiCard2 from '/public/images/catalogPages/all/cards/logo/hyundai.webp';
 //jac
-import jacCard from '/public/images/catalogPages/all/cards/blue/jac.webp';
+import jacCard from '/public/images/catalogPages/all/cards/blue/jac.png';
 import jacCard2 from '/public/images/catalogPages/all/cards/logo/jac.webp';
 //jetour
-import jetourCard from '/public/images/catalogPages/all/cards/blue/jetour.webp';
+import jetourCard from '/public/images/catalogPages/all/cards/blue/jetour.png';
 import jetourCard2 from '/public/images/catalogPages/all/cards/logo/jetour.webp';
 //jetta
-import jettaCard from '/public/images/catalogPages/all/cards/blue/jetta.webp';
+import jettaCard from '/public/images/catalogPages/all/cards/blue/jetta.png';
 import jettaCard2 from '/public/images/catalogPages/all/cards/logo/jetta.webp';
 //kaiyi
-import kaiyiCard from '/public/images/catalogPages/all/cards/blue/kaiyi.webp';
+import kaiyiCard from '/public/images/catalogPages/all/cards/blue/kaiyi.png';
 import kaiyiCard2 from '/public/images/catalogPages/all/cards/logo/kaiyi.webp';
 //kia
-import kiaCard from '/public/images/catalogPages/all/cards/blue/kia.webp';
+import kiaCard from '/public/images/catalogPages/all/cards/blue/kia.png';
 import kiaCard2 from '/public/images/catalogPages/all/cards/logo/kia.webp';
 //uaz
-import uazCard from '/public/images/catalogPages/all/cards/blue/uaz.webp';
+import uazCard from '/public/images/catalogPages/all/cards/blue/uaz.png';
 import uazCard2 from '/public/images/catalogPages/all/cards/logo/uaz.webp';
 //hisun
-import hisunCard from '/public/images/catalogPages/all/cards/blue/hisun.webp';
+import hisunCard from '/public/images/catalogPages/all/cards/blue/hisun.png';
 import hisunCard2 from '/public/images/catalogPages/all/cards/logo/hisun.webp';
 //lovol
-import lovolCard from '/public/images/catalogPages/all/cards/blue/lovol.webp';
+import lovolCard from '/public/images/catalogPages/all/cards/blue/lovol.png';
 import lovolCard2 from '/public/images/catalogPages/all/cards/logo/lovol.webp';
 //mmc
-import mmcCard from '/public/images/catalogPages/all/cards/blue/mmc.webp';
+import mmcCard from '/public/images/catalogPages/all/cards/blue/mmc.png';
 import mmcCard2 from '/public/images/catalogPages/all/cards/logo/mmc.webp';
 //nissan
-import nissanCard from '/public/images/catalogPages/all/cards/blue/nissan.webp';
+import nissanCard from '/public/images/catalogPages/all/cards/blue/nissan.png';
 import nissanCard2 from '/public/images/catalogPages/all/cards/logo/nissan.webp';
 //opel
-import opelCard from '/public/images/catalogPages/all/cards/blue/opel.webp';
+import opelCard from '/public/images/catalogPages/all/cards/blue/opel.png';
 import opelCard2 from '/public/images/catalogPages/all/cards/logo/opel.webp';
 //peugeot
-import peugeotCard from '/public/images/catalogPages/all/cards/blue/peugeot.webp';
+import peugeotCard from '/public/images/catalogPages/all/cards/blue/peugeot.png';
 import peugeotCard2 from '/public/images/catalogPages/all/cards/logo/peugeot.webp';
 //renault
-import renaultCard from '/public/images/catalogPages/all/cards/blue/renault.webp';
+import renaultCard from '/public/images/catalogPages/all/cards/blue/renault.png';
 import renaultCard2 from '/public/images/catalogPages/all/cards/logo/renault.webp';
 //subaru
-import subaruCard from '/public/images/catalogPages/all/cards/blue/subaru.webp';
+import subaruCard from '/public/images/catalogPages/all/cards/blue/subaru.png';
 import subaruCard2 from '/public/images/catalogPages/all/cards/logo/subaru.webp';
 //suzuki
-import suzukiCard from '/public/images/catalogPages/all/cards/blue/suzuki.webp';
+import suzukiCard from '/public/images/catalogPages/all/cards/blue/suzuki.png';
 import suzukiCard2 from '/public/images/catalogPages/all/cards/logo/suzuki.webp';
 //volkswagen
-import vCard from '/public/images/catalogPages/all/cards/blue/v.webp';
+import vCard from '/public/images/catalogPages/all/cards/blue/v.png';
 import vCard2 from '/public/images/catalogPages/all/cards/logo/v.webp';
 //jaguar
-import jaguarCard from '/public/images/catalogPages/all/cards/blue/jaguar.webp';
+import jaguarCard from '/public/images/catalogPages/all/cards/blue/jaguar.png';
 import jaguarCard2 from '/public/images/catalogPages/all/cards/logo/jaguar.webp';
 //lr
-import lrCard from '/public/images/catalogPages/all/cards/blue/lr.webp';
+import lrCard from '/public/images/catalogPages/all/cards/blue/lr.png';
 import lrCard2 from '/public/images/catalogPages/all/cards/logo/lr.webp';
 //dongfeng
-import dongfengCard from '/public/images/catalogPages/all/cards/blue/dong.webp';
+import dongfengCard from '/public/images/catalogPages/all/cards/blue/dong.png';
 import dongfengCard2 from '/public/images/catalogPages/all/cards/logo/dong.webp';
 
 
@@ -146,7 +146,7 @@ import dongfengCard2 from '/public/images/catalogPages/all/cards/logo/dong.webp'
 
 export const brandsCards = [
   { id: 'arkontSelect', card: selectCard, card2: selectCard2, minLabel: arkontSelect, title: 'Арконт селект', link: '/brands/arkont-select' },
-  { id: 'baic', card: baicCard, card2: baicCard2, minLabel: baic, title: 'Baic', link: 'https://arkont-baic.ru' },
+  { id: 'baic', card: baicCard, card2: baicCard2, minLabel: baic, title: 'Baic', link: '/brands/baic' },
   { id: 'chery', card: cheryCard, card2: cheryCard2, minLabel: chery, title: 'Chery', link: '/brands/chery' },
   { id: 'dondfeng', card: dongfengCard, card2: dongfengCard2, minLabel: donf, title: 'Dongfeng', link: 'https://dongfeng-arkont.ru' },
   { id: 'exeed', card: exeedCard, card2: exeedCard2, minLabel: exeed, title: 'EXEED', link: '/brands/exeed' },

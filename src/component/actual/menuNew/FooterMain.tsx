@@ -196,7 +196,7 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         width: 100%;
         height: auto;
         align-items: center;
-        background-color: #0c54a0;
+        background-color:  #131313;
         padding-top: 10px;
         padding-bottom: 10px;
         bottom: 0;
@@ -211,7 +211,7 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         display: flex; 
         justify-content: center;
         width: '100%' ;
-        background-color:#0c54a0;
+        background-color: #131313;
       }
 
       #mob {
@@ -248,7 +248,7 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #0c54a0;
+        color:  #131313;
         font-size: 13px;
         font-weight: bold;
         cursor: pointer;

@@ -237,7 +237,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 transition: transform.3s ;
                 color: black;
                 font-size: 20px;
-                background-color:#0c54a0 ;
+                background-color: #131313 ;
                 color:white;
                 width: 60%;
                 height: 45px;

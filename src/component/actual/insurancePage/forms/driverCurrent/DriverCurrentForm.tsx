@@ -96,6 +96,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
             <Box sx={{width:'100%',display:'flex',justifyContent:'end'}}>
                 {
                     driver.id > 0 ? <Button 
+                    sx={{color:'#131313'}}
                     
                     onClick={() => {
                         setDrivers(drivers => {
@@ -237,7 +238,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                border:2px solid #005baa; 
+                border:2px solid  #131313; 
                 padding: 12px 12px;
                 outline:none;
                 background-color: white;
@@ -248,7 +249,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                border:2px solid #005baa; 
+                border:2px solid  #131313; 
                 outline: none;
                 background-color: white;
                 
@@ -272,7 +273,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
             }
            
            .btn_show:hover {
-                background:#005baa;
+                background: #131313;
                 color:white;
             }
 

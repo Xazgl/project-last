@@ -77,8 +77,8 @@ const NewCarTable: NextPage = () => {
                 id="panel3bh-header"
                 sx={{ backgroundColor: "#2e2e2e", color: "white", borderBottom: 'solid 1px white ' }}
               >
-                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'TacticSans-Reg' }}>
-                  Таблица Спецпредложения и добавить новое
+                <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'Roboto' }}>
+                  Таблица актуальных спецпредложений
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>

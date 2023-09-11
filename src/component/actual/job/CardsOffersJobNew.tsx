@@ -125,10 +125,10 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
             <>
                 <div className="cardBlock" id="blue">ВАКАНСИИ</div>
                 <div className="cardBlock">
-                    <FormControl sx={{ m: 1, width: 300, color: '#0c54a0' }}>
+                    <FormControl sx={{ m: 1, width: 300, color: ' #131313' }}>
                         <InputLabel id="demo-multiple-name-label">ДЦ</InputLabel>
                         <Select
-                            sx={{ borderColor: '#0c54a0', borderRadius: '0px' }}
+                            sx={{ borderColor: ' #131313', borderRadius: '0px' }}
                             name=''
                             labelId="demo-multiple-name-label"
                             id="demo-multiple-name"
@@ -155,7 +155,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     <FormControl sx={{ m: 1, width: 300 }}>
                         <InputLabel id="demo-multiple-name-label">Опыт</InputLabel>
                         <Select
-                            sx={{ borderColor: '#0c54a0', borderRadius: '0px' }}
+                            sx={{ borderColor: ' #131313', borderRadius: '0px' }}
                             name=''
                             labelId="demo-multiple-name-label"
                             id="demo-multiple-name"
@@ -306,7 +306,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 }  
 
                 #blue {
-                    background-color: #0c54a0;
+                    background-color:  #131313;
                 }
 
                 .background {
@@ -352,7 +352,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     -webkit-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
                     -moz-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
                     box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
-                    border-left:solid 2px #005baa;;
+                    border-left:solid 2px  #131313;;
                 }
 
                 #contentColumn{
@@ -393,7 +393,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     flex-wrap: wrap;
                     font-family: 'Roboto','sans-serif'; 
                     margin-top:10px;
-                    color:#0c54a0;
+                    color: #131313;
                     text-align: center;
                 }
 
@@ -433,7 +433,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     border: none;
                     font-weight: bold;
                     margin-top:35px;
-                    background: #005baa;
+                    background:  #131313;
                     color: white;
                     font-size: 16px;
                     cursor: pointer;

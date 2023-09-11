@@ -274,7 +274,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                             {/* <Paper elevation={0} sx={{ maxHeight: '200px', overflow: 'auto' }}> */}
                             <div className='scrollBrand'>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                    <a
+                                    {/* <a
                                         href="/brands/any"
                                         style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
                                         onClick={(e) => {
@@ -292,7 +292,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                                             control={<Checkbox checked={selectedBrand === 'Любой'} onChange={() => { }} />}
                                             label="Любой"
                                         />
-                                    </a>
+                                    </a> */}
 
                                     {brands.map((brand) => (
                                         <a
@@ -391,7 +391,9 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                                             key={model}
                                             control={
                                                 <Box sx={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'center' }}>
-                                                    <Checkbox checked={currentFilter.modelName?.includes(model)} />
+                                                    <Checkbox sx={{color:''}}
+                                                    
+                                                    checked={currentFilter.modelName?.includes(model)} />
                                                     <Avatar
                                                         sx={{ width: '60px', marginLeft: '10px' }}
                                                         aria-label="brand"
@@ -666,13 +668,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                 }
                 
                 .sideBar::-webkit-scrollbar-track {
-                  background-color: #0c53a0ab ; /* Цвет фона трека скроллбара */
+                  background-color: #fdb913 ; /* Цвет фона трека скроллбара */
     
                 }
                 
                 .sideBar::-webkit-scrollbar-thumb {
                     border-radius: 4px; 
-                  background-color: #0c54a0 ; /* Цвет ползунка скроллбара */
+                  background-color:  #131313 ; /* Цвет ползунка скроллбара */
                 }
                 
                 .sideBar::-webkit-scrollbar-thumb:hover {
@@ -701,13 +703,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                 }
                 
                 .scrollBrand::-webkit-scrollbar-track {
-                  background-color: #0c53a0ab ; /* Цвет фона трека скроллбара */
+                  background-color: #fdb913 ; /* Цвет фона трека скроллбара */
     
                 }
                 
                 .scrollBrand::-webkit-scrollbar-thumb {
                   border-radius: 4px; 
-                  background-color: #0c54a0 ; /* Цвет ползунка скроллбара */
+                  background-color:  #131313 ; /* Цвет ползунка скроллбара */
                 }
                 
                 .scrollBrand::-webkit-scrollbar-thumb:hover {
@@ -741,7 +743,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                 input {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
@@ -765,7 +767,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars, brands, current
                 select {
                     width: 100%;
                     height: 30px;
-                    border:solid 1px #005baa;
+                    border:solid 1px  #131313;
                     font-size:16px;
                     font-family: 'Roboto','sans-serif'; 
 

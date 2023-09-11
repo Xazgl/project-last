@@ -90,7 +90,7 @@ export function AssistentImg(){
             .desc {
                     display: flex;
                     width: 100%;
-                    color: #0c54a0;
+                    color:  #131313;
                     text-align: center;
                     line-height: 1.6666666667rem;
                     margin-top:21px;

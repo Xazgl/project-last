@@ -59,6 +59,7 @@ export default function RangeSlider({ minPrice, maxPrice, valueSliderPrice, setV
                 sx={{ width: '50%' }}
                 label="Максимальная" variant="standard" value={`${numberWithSpaces(valueSliderPrice[1])} ₽`} />
             <Slider
+              sx={{ color: 'black' }}
                 getAriaLabel={() => 'Temperature range'}
                 value={value}
                 onChange={handleChange}

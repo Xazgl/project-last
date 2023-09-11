@@ -96,7 +96,7 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                                             max={car.price - 300000}
                                             value={firstPrice}
                                             onChange={handleChange}
-                                            sx={{color:'#0c54a0 '}}
+                                            sx={{color:' #131313 '}}
                                         />
                                     </div>
                                     <div className="column">
@@ -117,7 +117,7 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                                             max={60}
                                             value={month}
                                             onChange={handleChangeTime}
-                                            sx={{color:'#0c54a0 '}}
+                                            sx={{color:' #131313 '}}
                                         />
                                     </div>
 
@@ -137,7 +137,7 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                                             value={name}
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2',outline:'none',
+                                                borderBottom: 'solid 1px  #131313',outline:'none',
                                             }}
                                             onChange={event => setName(event.target.value)} />
                                     </div>
@@ -145,7 +145,7 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                                         <IMaskInput
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2',outline:'none',
+                                                borderBottom: 'solid 1px  #131313',outline:'none',
                                             }}
                                             id="inputP"
                                             className="phone"
@@ -162,11 +162,12 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                                     <div className="btn">
                                         <Button variant="outlined"
                                             sx={{
-                                                width: '100%', height: '90%', border: 'solid 2px #005baa', fontSize: '15px',
-                                                backgroundColor: '#0c54a0', color: 'white',
+                                                width: '100%', height: '90%', border: 'solid 2px  #131313', fontSize: '15px',
+                                                backgroundColor: ' #131313', color: 'white', borderRadius:'0px',
                                                 '&:hover': {
-                                                    backgroundColor: "white",
-                                                    color: '#0c54a0'
+                                                    backgroundColor: "#f9b518",
+                                                    color: '#131313',
+                                                    border:'#f9b518'
                                                 }
                                             }}
                                             type="submit"

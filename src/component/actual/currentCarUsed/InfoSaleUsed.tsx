@@ -64,7 +64,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                                     </div>
                                     <div className="btn">
                                         <Button variant="outlined"
-                                            sx={{ width: '100%', height: '100%', border: 'solid 2px #005baa' }}
+                                            sx={{ width: '100%', height: '100%', border: 'solid 2px  #131313' }}
                                         >Получить предложение</Button>
                                     </div>
                                 </div>
@@ -167,7 +167,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                 .price {
                     display: flex;
                     justify-content: start;
-                    color: #005baa;
+                    color:  #131313;
                     font-size: 30px;
                     font-weight: bold;
                     font-family: 'Roboto','sans-serif'; 

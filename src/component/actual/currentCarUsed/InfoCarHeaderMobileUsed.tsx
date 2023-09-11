@@ -194,7 +194,7 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
-                                                sx={{ backgroundColor: '#005baa', fontWeight: 'bold', height: '50px', width: '100%' }}
+                                                sx={{ backgroundColor: ' #131313', fontWeight: 'bold', height: '50px', width: '100%' }}
                                                 onClick={showModalFunction}
                                             >Купить онлайн</Button>
                                         </div>
@@ -295,7 +295,7 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                 }
 
                 #tradeIn:hover {
-                    background-color: #005baa;
+                    background-color:  #131313;
                     transition: 0.7s;
                 }
 

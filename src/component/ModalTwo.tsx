@@ -263,7 +263,7 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
                 align-items:center;
                 width:140px;
                 height: 3px;
-                background:#005baa;
+                background: #131313;
                 
             }
 
@@ -358,7 +358,7 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
             }
 
             .btn-modal:hover {
-                background-color:#005baa;
+                background-color: #131313;
                 color:white;
             }
 
@@ -377,7 +377,7 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
                 transition: transform.3s ;
                 color: #e1d9d9;
                 font-size: 14px;
-                background-color: #005baa;
+                background-color:  #131313;
                 width: 120px;
                 height: 30px;
                 font-weight: 400;

@@ -190,7 +190,7 @@ export function ServiceForm({ refs }: FormType) {
                                         fontSize: '18px',
                                         height: '40px',
                                         width: '100%',
-                                        border: '2px solid #005baa',
+                                        border: '2px solid  #131313',
                                         padding: '12px 12px',
                                         outline: 'none',
                                         fontFamily: 'Roboto',
@@ -229,7 +229,7 @@ export function ServiceForm({ refs }: FormType) {
                             </div>
                             <div className="divForm" style={{ alignItems: "start", flexDirection: 'row' }}>
                                 <Checkbox
-                                    sx={{ color: '#005baa', padding: '0px' }}
+                                    sx={{ color: ' #131313', padding: '0px' }}
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
@@ -242,7 +242,7 @@ export function ServiceForm({ refs }: FormType) {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -317,7 +317,7 @@ export function ServiceForm({ refs }: FormType) {
                 font-family: 'Roboto','sans-serif'; 
                 font-size:40px;
                 text-align: start;
-                background-color: #005baa;
+                background-color:  #131313;
                 gap:10px;
                 color:white;
                 text-align: center;
@@ -371,7 +371,7 @@ export function ServiceForm({ refs }: FormType) {
                 font-family: 'Roboto','sans-serif'; 
                 border:none;
                 padding: 12px 12px;
-                border:2px solid #005baa; 
+                border:2px solid  #131313; 
                 outline: none;
             }
 
@@ -380,7 +380,7 @@ export function ServiceForm({ refs }: FormType) {
                 height: 200px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                border:2px solid #005baa; 
+                border:2px solid  #131313; 
                 padding: 12px 12px;
                 resize: none;
                 outline: none;
@@ -391,7 +391,7 @@ export function ServiceForm({ refs }: FormType) {
                 height: 40px;
                 font-size: 15px; 
                 font-family: 'Roboto','sans-serif'; 
-                border:2px solid #005baa; 
+                border:2px solid  #131313; 
                 padding: 2px;
                 outline: none;
            }
@@ -414,7 +414,7 @@ export function ServiceForm({ refs }: FormType) {
            }
            
            .btn_show:hover {
-                background:#005baa;
+                background: #131313;
                 color:white;
            }
 

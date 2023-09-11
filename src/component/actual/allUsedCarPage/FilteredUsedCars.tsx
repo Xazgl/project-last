@@ -255,7 +255,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <Link href={'/catalog/watched-cars'}>
                 <HistoryIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'black' }
                   }}
                 />
@@ -272,7 +272,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <Link href={'/catalog/compare-cars'}>
                 <CompareIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'green' }
                   }}
                 />
@@ -289,7 +289,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <Link href={'/catalog/favorite-cars'}>
                 <FavoriteBorderIcon
                   sx={{
-                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: '#005baa',
+                    display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
                     '&:hover': { color: 'red' }
                   }}
                 />
@@ -592,8 +592,8 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #005baa;
-      color:#005baa;
+      border:solid 1px  #131313;
+      color: #131313;
       background-color: transparent;
       border-radius: 3px;
       font-size: 15px;
@@ -602,7 +602,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
     }

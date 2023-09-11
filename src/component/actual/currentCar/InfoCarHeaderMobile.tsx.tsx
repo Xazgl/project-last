@@ -180,7 +180,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                     <div className="rowColumn" style={{ display: 'flex', marginTop: '10px', justifyContent: 'space-between', alignItems: 'baseline', flexDirection: 'column' }} >
                                         <span><Circle sx={{ color: 'green', fontSize: '12px' }} />  В наличии</span>
                                         <span style={{ color: '#7b7979' }}>{car.DealerModel.name} <RoomIcon sx={{ fontSize: '15px' }} /></span>
-                                        <a style={{ color: '#0c54a0', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
+                                        <a style={{ color: ' #131313', textDecoration: 'none' }} href={`tel:${car.DealerModel.phone}`}>{car.DealerModel.phone}</a>
                                     </div>
 
                                     <div className="rowIcon" style={{ gap: 15, marginTop: '50px', justifyContent: 'start' }}>
@@ -229,7 +229,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                         <div className="name">{numberWithSpaces(Number(car.price))}  ₽</div>
                                         <div className="btnName">
                                             <Button variant="contained"
-                                                sx={{ backgroundColor: '#0c54a0', fontWeight: 'bold', height: '50px', width: '100%',borderRadius:'0px' }}
+                                                sx={{ backgroundColor: ' #131313', fontWeight: 'bold', height: '50px', width: '100%',borderRadius:'0px' }}
                                                 onClick={showModalFunction}
                                             >Купить онлайн</Button>
                                         </div>
@@ -238,7 +238,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                         <div className="name" style={{ fontSize: '15px', color: '#2e2d2d', fontWeight: 'bold' }}>от {numberWithSpaces(Math.round(Number(car.priceMonth)))}  ₽/месяц</div>
                                         <div className="btnName">
                                             <Button variant="outlined"
-                                                sx={{ fontWeight: 'bold', height: '50px', width: '100%',border:'solid 1px #0c54a0',color:'#0c54a0',borderRadius:'0px' }}
+                                                sx={{ fontWeight: 'bold', height: '50px', width: '100%',border:'solid 1px  #131313',color:' #131313',borderRadius:'0px' }}
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
@@ -333,7 +333,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                 }
 
                 #tradeIn:hover {
-                    background-color: #005baa;
+                    background-color:  #131313;
                     transition: 0.7s;
                 }
 

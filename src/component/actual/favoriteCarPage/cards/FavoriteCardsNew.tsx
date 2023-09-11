@@ -220,7 +220,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                                 <li>Пробег: 0 км</li>
                               </ul>
 
-                              <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(car.car.price))}*</span> ₽</h4></div>
+                              <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(car.car.price))}*</span> ₽</h4></div>
                               {/* 
                       <div className='price'><h3>{numberWithSpaces(Number(car.car.price))} ₽</h3></div> */}
                               <div className='priceMonth'>
@@ -317,7 +317,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                               {/* <li>Пробег: {carUsed.car.mileage}км</li> */}
                               <li>Пробег: {numberWithSpaces(carUsed.car.mileage)} км</li>
                             </ul>
-                            <div className='price'><h4>Цена от <span style={{ color: '#0c54a0' }}>{numberWithSpaces(Number(carUsed.car.price))}*</span> ₽</h4></div>
+                            <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(carUsed.car.price))}*</span> ₽</h4></div>
                             <div className='priceMonth'>
                               <button className="btn">от {numberWithSpaces(Math.round(Number(carUsed.car.price / 120)))} ₽/мес</button>
                             </div>
@@ -525,7 +525,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
       align-items: center;
       gap:10px;
       color:white;
-      background-color: #0c54a0;
+      background-color:  #131313;
       justify-content: center;
       font-family: 'Roboto','sans-serif'; 
       padding: 10px;
@@ -593,7 +593,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
       width:80%;
       height: 100%;
       border:solid 1px #d1d7dd;
-      color:#005baa;
+      color: #131313;
       background-color:  #f2f2f2;
       cursor: pointer;
       font-size: 15px;
@@ -603,7 +603,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
     }
 
     .btn:hover {
-      background-color:#005baa; 
+      background-color: #131313; 
       color:white;
       transform: scale(0.99);
     }

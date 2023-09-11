@@ -78,7 +78,7 @@ export function SwiperEl({ cars }: { cars: AllUsedCarDto }) {
                         navButtonsProps={{   // Переместите кнопки вниз. Отмените здесь настройку top, чтобы переопределить стиль по умолчанию.
                             style: {
                                 color: 'white',
-                                backgroundColor: '#0c54a0'
+                                backgroundColor: ' #131313'
                             }
                         }}
                     >
@@ -119,7 +119,7 @@ export function SwiperEl({ cars }: { cars: AllUsedCarDto }) {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    background:#005baa;
+                    background: #131313;
                     color: white;
                     width: 350px;
                     height: 100%;
@@ -132,7 +132,7 @@ export function SwiperEl({ cars }: { cars: AllUsedCarDto }) {
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

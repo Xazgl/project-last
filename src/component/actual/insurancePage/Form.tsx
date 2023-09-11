@@ -208,12 +208,12 @@ export function Form() {
                                     }}
                                 >
                                     <FormControlLabel
-                                        control={<Checkbox sx={{ color: '#005baa' }} />}
+                                        control={<Checkbox sx={{ color: ' #131313' }} />}
                                         onChange={event => setInsuranceTypeOSAGO(!insuranceTypeOSAGO)}
                                         label="Нужна услуга ОСАГО"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox sx={{ color: '#005baa' }} />}
+                                        control={<Checkbox sx={{ color: ' #131313' }} />}
                                         onChange={event => setInsuranceTypeKASKO(!insuranceTypeKASKO)}
                                         label="Нужна услуга КАСКО"
                                     />
@@ -470,7 +470,7 @@ export function Form() {
                                         fontSize: '18px',
                                         height: '40px',
                                         width: '100%',
-                                        border: '2px solid #005baa',
+                                        border: '2px solid  #131313',
                                         marginTop: '10px',
                                         padding: '12px 12px',
                                         outline: 'none',
@@ -498,7 +498,7 @@ export function Form() {
                             <div className="divForm" style={{ alignItems: "start" }}>
                                 <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                                 <Checkbox
-                                    sx={{ color: '#005baa' }}
+                                    sx={{ color: ' #131313' }}
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
@@ -513,7 +513,7 @@ export function Form() {
                                     <EditNoteIcon
                                         sx={{fontSize:'30px'}}
                                     />
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -635,7 +635,7 @@ export function Form() {
                 align-items:center;
                 margin-top: 40px;
                 flex-direction: column;
-                border-top: 1px solid #0c54a0;
+                border-top: 1px solid  #131313;
                 padding: 2px;
                 padding-top: 10px;
            }
@@ -667,7 +667,7 @@ export function Form() {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                border: 2px solid #005baa; 
+                border: 2px solid  #131313; 
                 padding: 12px 12px;
                 outline:none;
                 margin-top: 10px;
@@ -679,7 +679,7 @@ export function Form() {
                 height: 40px;
                 font-size: 18px; 
                 font-family: 'Roboto','sans-serif'; 
-                border:2px solid #005baa; 
+                border:2px solid  #131313; 
                 margin-top: 10px;
                 background-color: white;
             }
@@ -710,7 +710,7 @@ export function Form() {
            }
            
            .btn_show:hover {
-                background:#005baa;
+                background: #131313;
                 color:white;
            }
 

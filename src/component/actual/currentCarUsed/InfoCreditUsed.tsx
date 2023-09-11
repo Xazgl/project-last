@@ -73,6 +73,7 @@ export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCar
                                             }}
                                             label="Первоначальный платеж" variant="standard" value={`${numberWithSpaces(firstPrice)} ₽`} />
                                         <Slider
+                                          sx={{ color: '#131313' }}
                                             size="small"
                                             defaultValue={car.price / 50}
                                             aria-label="Small"
@@ -121,7 +122,7 @@ export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCar
                                             value={name}
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2', outline: 'none',
+                                                borderBottom: 'solid 1px  #131313', outline: 'none',
                                             }}
                                             onChange={(event) => {
                                                 const inputValue = event.target.value;
@@ -137,7 +138,7 @@ export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCar
                                         <IMaskInput
                                             style={{
                                                 fontSize: '16px', height: '100%', padding: '10px 10px', width: '100%', border: 'none',
-                                                borderBottom: 'solid 1px #1976d2', outline: 'none',
+                                                borderBottom: 'solid 1px  #131313', outline: 'none',
                                             }}
                                             id="inputP"
                                             className="phone"
@@ -154,11 +155,11 @@ export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCar
                                     <div className="btn">
                                         <Button variant="outlined"
                                             sx={{
-                                                width: '100%', height: '100%', border: 'solid 2px #005baa', fontSize: '18px',
-                                                backgroundColor: '#005baa', color: 'white',
+                                                width: '100%', height: '100%', border: 'solid 2px  #131313', fontSize: '18px',
+                                                backgroundColor: ' #131313', color: 'white',
                                                 '&:hover': {
                                                     backgroundColor: "white",
-                                                    color: '#005baa'
+                                                    color: ' #131313'
                                                 }
                                             }}
                                             type="submit"

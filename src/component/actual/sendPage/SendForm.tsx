@@ -208,7 +208,7 @@ export function SendForm() {
                                     type="submit"
                                     disabled={disabledBtn}
                                 >
-                                    Оправить
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -379,7 +379,7 @@ export function SendForm() {
            }
            
            .btn_show:hover {
-                background:#005baa;
+                background: #131313;
                 color:white;
            }
 

@@ -7,6 +7,8 @@ import { MenuBar } from '../../src/component/Menu'
 import { useRef, useState } from 'react'
 import BarMenu from '../../src/component/BarMenu'
 import { RegComponent } from '../../src/component/admin/Reg'
+import { MenuBarNew } from '../../src/component/actual/menuNew/Menu'
+import { Modal } from '../../src/component/Modal'
 
 const RegAdmin: NextPage = () => {
 
@@ -15,6 +17,7 @@ const RegAdmin: NextPage = () => {
   const refContact = useRef<HTMLDivElement>(null)
   const refAdvatages = useRef<HTMLDivElement>(null)
   const refFooter = useRef<HTMLDivElement>(null)
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <>
@@ -23,8 +26,11 @@ const RegAdmin: NextPage = () => {
         <meta name="robots" content="noindex" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MenuBar />
+      <MenuBarNew setShowModal={setShowModal} />
       <RegComponent />
+      {
+        showModal && <Modal showModal={showModal} setShowModal={setShowModal} />
+      }
     </>
   )
 }

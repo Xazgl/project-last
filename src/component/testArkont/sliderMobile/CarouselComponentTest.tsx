@@ -188,7 +188,7 @@ export function CarouselComponentTest({ car }: { car: CarDto }) {
                     justify-content: center;
                     text-align: center;
                     margin-top:30px;
-                    color: #005baa;
+                    color:  #131313;
                     cursor: pointer;
                     font-size: 20px;
                     transition: 0.5s;
@@ -250,7 +250,7 @@ export function CarouselComponentTest({ car }: { car: CarDto }) {
                     align-items:center;
                     width: 100%;
                     height: 32px; 
-                    color: #005baa;
+                    color:  #131313;
                     font-family: 'Roboto',sans-serif;
 
                     
@@ -346,7 +346,7 @@ export function CarouselComponentTest({ car }: { car: CarDto }) {
                     transition: 1s;
                     animation:credit-open.5s ;
                     margin-top: 40px;
-                    background-color:#005baa;
+                    background-color: #131313;
                 }
                 
                 .btn:hover {
@@ -356,7 +356,7 @@ export function CarouselComponentTest({ car }: { car: CarDto }) {
 
                 .pricCredit{
                     text-align: center;
-                    color: #005baa;
+                    color:  #131313;
                     transition: 0.5s;
                 }
 
@@ -380,7 +380,7 @@ export function CarouselComponentTest({ car }: { car: CarDto }) {
                     align-items: center;
                     text-align: center;
                     border: 1px solid #deded8;
-                    background:#005baa;
+                    background: #131313;
                     color: white;
                     width: 350px;
                     height: 100%;
@@ -391,7 +391,7 @@ export function CarouselComponentTest({ car }: { car: CarDto }) {
                 }
 
                 .btnAllCar:hover {
-                    background-color: #005baa9b;
+                    background-color:  #1313139b;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

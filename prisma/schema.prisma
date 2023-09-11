@@ -218,27 +218,21 @@ model DealerModel {
 }
 
 model News {
-  id        String   @id @default(cuid())
+  id        String      @id @default(cuid())
   name      String
-  brand     BrandNews[]
+  // brand     BrandNews[]
   shortName String
   desc      String
-  img       String[] 
-  active    Boolean  @default(true)
+  img       String[]
+  active    Boolean     @default(true)
 }
 
-model BrandNews {
-  id        String   @id @default(cuid())
-  brandName String
-  news      News[]   
-  carModel  CarModel @relation(fields: [carModelId], references: [id])
-  carModelId String
-}
+
 
 model CarModel {
-  id              String  @id @default(cuid())
+  id              String      @id @default(cuid())
   id_1c           Int //бренд id
-  modelId_1c      Int     @unique
+  modelId_1c      Int         @unique
   brandName       String //бренд
   modelName       String
   categoryId_1c   Int //легковая или грузовая
@@ -246,7 +240,7 @@ model CarModel {
   generationId_1c Int? //поколение 
   generationIName String? //
   cars            Car[]
-  brandNews       BrandNews[] 
+  // brandNews       BrandNews[]
 }
 
 model CarModification {
@@ -400,15 +394,55 @@ model Job {
 }
 
 model Offices {
-  id      String  @id @default(cuid())
-  name    String?
-  label   String?
-  photo   String?
-  city    String?
-  address String?
-  phone   String?
-  brend   String?
+  id        String   @id @default(cuid())
+  name      String?
+  label     String?
+  photo     String?
+  city      String?
+  address   String?
+  phone     String?
+  brend     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
+
+//Таблица для динамических страниц брендов
+model BrandNews {
+  id          String   @id @default(cuid())
+  title       String
+  description  String?
+  img          String[]
+  // news        News[]
+  brands      Brands[]
+}
+
+
+
+model Brands {
+  id          String      @id @default(cuid())
+  brand       String?
+  banner      String?
+  maps        YandexGeo[]
+  description String?
+  news        BrandNews[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model YandexGeo {
+  id           String   @id @default(cuid())
+  nameDc       String?
+  imgDC        String?
+  linkToYandex String?
+  iframeMapSrc String?
+  phone        String?
+  adress       String?
+  email        String?
+  brand        Brands[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 
 enum City {
   VLG @map("Волгоград")
@@ -427,5 +461,3 @@ enum Exp {
   BEGINNER @map("от 1 года")
   MIDDLE   @map("от 3 лет")
 }
-
-//коризна для сравнениня нескольких моделей хранящихся в рамках одной не авторизированной сессии и избранное 
