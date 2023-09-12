@@ -19,11 +19,42 @@ export type CarDto = Car & {
 }
 
 
-export type BrandPageDto = Brands & {
-    map: YandexGeo;
-    news: BrandNews;
+// export type BrandPageDto = Brands & {
+//     map: YandexGeo;
+//     news: BrandNews;
+// }
+
+
+type Map = {
+    id: string;
+    nameDc: string;
+    imgDC: string;
+    linkToYandex: string;
+    iframeMapSrc: string;
+    phone: string;
+    adress: string;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
+type newsOne =  {
+    id: string;
+    title: string;
+    description: string;
+    img: string[];
+}
+
+export type BrandPageDto = Brands & {
+    id: string;
+    brand: string;
+    banner: string;
+    description: string;
+    createdAt: Date;
+    updatedAt: Date;
+    map: Map[];
+    news: newsOne [];
+}
 
 export type CarDtoWithoutFavorite = Car & {
     CarModel: CarModel;
@@ -37,7 +68,7 @@ export type CarDtoWithoutFavorite = Car & {
 export type CarUsedInclude = UsedCars & {
     FavoriteUsedCarsToCar: FavoriteUsedCarsToCar[],
     CompareUsedCarsToCar: CompareUsedCarsToCar[]
-    
+
 }
 
 export type AllCarDto = CarDto[];

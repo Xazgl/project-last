@@ -6,7 +6,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../mui/theme';
 import createEmotionCache from '../mui/createEmotionCache';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import '../styles/globals.css'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 // import { Provider, } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 
@@ -48,14 +55,14 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
 
   return (
     // <Provider store={storeRedux}>
-      <QueryClientProvider client={queryClient}>
-        <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </CacheProvider>
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </CacheProvider>
+    </QueryClientProvider>
     // </Provider>
   );
 };

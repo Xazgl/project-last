@@ -9,120 +9,132 @@ import bannerDc from '/public/images/catalogPages/faw/dc.webp'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BrandPageDto } from '../../../../../@types/dto';
 import { Box, CircularProgress } from '@mui/material';
+import { YandexGeo } from '@prisma/client';
 
 
 type Props = {
   brand: BrandPageDto,
+  mapsGeo: YandexGeo[]
 
 }
 
-function MapBrandDynamic({ brand }: Props) {
+function MapBrandDynamic({ brand, mapsGeo }: Props) {
 
 
   return (
     <>
-        {brand &&
-      <div className='background'>
-          {/* <div className="leftC" ></div> */ }
+      {brand &&
+        <div className='background'>
+          {/* <div className="leftC" ></div> */}
           < div className='cards' id="desktop">
 
-        <div className='descBrand'>
-          <div className='titleBrand'>О {brand.brand} </div>
-          <div className='txtBrand'>
-            {brand.description}
-          </div>
-          <div className='rowColumn'>
-            <div className='columnBrand'>
-              <div className='cardDiv'>
-                <Card sx={{
-                  width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
-                  flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
-
-                }} >
-                  <CardHeader
-                    avatar={
-                      <Avatar
-                        sx={{ maxWidth: '30px', maxHeight: '50px', marginLeft: '10px' }}
-                        aria-label="brand"
-                        src={logoFind(LogoList, brand.brand)}
-                      />
-                    }
-                    action={
-                      <Link href="https://yandex.ru/maps/10951/volzhskiy/?from=&ll=44.791306%2C48.782364&mode=routes&rtext=~48.814410%2C44.602135&rtt=mt&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozMTQwMjEyMTU3EknQoNC-0YHRgdC40Y8sINCS0L7Qu9Cz0L7Qs9GA0LDQtCwg0JLQuNC70YzQvdGO0YHRgdC60LDRjyDRg9C70LjRhtCwLCA0Mi8yIgoNl2gyQhX0QUNC&source=wizroute&z=14">
-                        <a rel="noopener noreferrer">
-                          <IconButton aria-label="settings">
-                            <AddLocationAltIcon sx={{ cursor: 'pointer' }} />
-                          </IconButton>
-                        </a>
-                      </Link>
-                    }
-                    title={'Официальный дилер'}
-                    subheader={brand.brand}
-                  />
-
-                  <Link href={{
-                    // pathname: `${brand.map.linkToYandex}`,
-                    pathname: `/test`,
-                  }}>
-                    <CardMedia
-                      component="img"
-                      height={194}
-                      image={bannerDc.src}
-                      // image={brand.map.imgDC}
-                      sx={{
-                        cursor: 'pointer',
-                      }}
-                      loading="lazy"
-                      decoding='async'
-
-                      alt="car"
-                    />
-                  </Link>
-                </Card>
+            <div className='descBrand'>
+              <div className='titleBrand'>О {brand.brand} </div>
+              <div className='txtBrand'>
+                {brand.description}
               </div>
+              <div className='rowColumn'>
+                <div className='columnBrand'>
+                  { mapsGeo !== undefined &&
+                    <>
+                      {
+                        mapsGeo.map(dc =>
+                          <div className='cardDiv' key={dc.nameDc}>
+                            <Card sx={{
+                              width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
+                              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
 
+                            }} >
+                              <CardHeader
+                                avatar={
+                                  <Avatar
+                                    sx={{ maxWidth: '30px', maxHeight: '50px', marginLeft: '10px' }}
+                                    aria-label="brand"
+                                    src={logoFind(LogoList, brand.brand)}
+                                  />
+                                }
+                                action={
+                                  <Link href="https://yandex.ru/maps/10951/volzhskiy/?from=&ll=44.791306%2C48.782364&mode=routes&rtext=~48.814410%2C44.602135&rtt=mt&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozMTQwMjEyMTU3EknQoNC-0YHRgdC40Y8sINCS0L7Qu9Cz0L7Qs9GA0LDQtCwg0JLQuNC70YzQvdGO0YHRgdC60LDRjyDRg9C70LjRhtCwLCA0Mi8yIgoNl2gyQhX0QUNC&source=wizroute&z=14">
+                                    <a rel="noopener noreferrer">
+                                      <IconButton aria-label="settings">
+                                        <AddLocationAltIcon sx={{ cursor: 'pointer' }} />
+                                      </IconButton>
+                                    </a>
+                                  </Link>
+                                }
+                                title={'Официальный дилер'}
+                                subheader={brand.brand}
+                              />
+
+                              <Link href={{
+                                pathname: `${dc.linkToYandex}`
+                              }}>
+                                <CardMedia
+                                  component="img"
+                                  height={194}
+                                  // image={bannerDc.src}
+                                  image={dc.imgDC}
+                                  sx={{
+                                    cursor: 'pointer',
+                                  }}
+                                  loading="lazy"
+                                  decoding='async'
+
+                                  alt="car"
+                                />
+                              </Link>
+                            </Card>
+                          </div>
+                        )
+                      }
+                    </>
+                  }
+                  {/* {mapsGeo.length <= 0   &&
+                    null
+                  } */}
+
+                </div>
+                <div className='columnBrand'>
+                  <div className='titleBrand'>
+                    <span id="titleMap">{brand.brand} Арконт</span>
+                  </div>
+                  <div className="descBrand">
+                    <a className='href_a' href="tel:+78442220577">+7 (844) 222-05-77</a>
+                    {/* <a className='href_a' href="tel:+78442220577">{brand.map.phone}</a> */}
+
+                  </div>
+                  <div className="descBrand">
+                    г. Волгограл, ул.Вильнюсская, 42/2
+                    {/* {brand.map.adress} */}
+                  </div>
+                  <div className="descBrand">
+                    <a className='href_a' href="mailto:{brand.brand.toLowerCase}@arkont.ru">{brand.brand.toLowerCase}@arkont.ru</a>
+                  </div>
+                  <div className="descBrand">
+                    <Link href="https://yandex.ru/maps/10951/volzhskiy/?from=&ll=44.791306%2C48.782364&mode=routes&rtext=~48.814410%2C44.602135&rtt=mt&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozMTQwMjEyMTU3EknQoNC-0YHRgdC40Y8sINCS0L7Qu9Cz0L7Qs9GA0LDQtCwg0JLQuNC70YzQvdGO0YHRgdC60LDRjyDRg9C70LjRhtCwLCA0Mi8yIgoNl2gyQhX0QUNC&source=wizroute&z=14">
+                      <a rel="noopener noreferrer">
+                        <button className='btn'>Построить маршрут </button>
+                      </a>
+                    </Link>
+                    {/* <a className='href_a' style={{ color: 'black' }} href="https://yandex.ru/maps/38/volgograd/?from=api-maps&ll=44.438373%2C48.705594&mode=routes&origin=jsapi_2_1_79&rtext=~48.705594%2C44.438373&rtt=auto&ruri=~&z=16">Построить маршрут</a> */}
+                  </div>
+                </div>
+              </div>
+              <div className="descBrand" id='deskMap'>
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad9d05808de66081e63c2d675691c94f71311f11c7f9fd589d05c85583f871a5c&amp;source=constructor" width="100%" height="250" frameBorder="0"></iframe>
+              </div>
+              <div className="descBrand" id='mobMap'>
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad9d05808de66081e63c2d675691c94f71311f11c7f9fd589d05c85583f871a5c&amp;source=constructor" width="100%" height="350" frameBorder="0"></iframe>
+              </div>
             </div>
-            <div className='columnBrand'>
-              <div className='titleBrand'>
-                <span id="titleMap">{brand.brand} Арконт</span>
-              </div>
-              <div className="descBrand">
-                <a className='href_a' href="tel:+78442220577">+7 (844) 222-05-77</a>
-                {/* <a className='href_a' href="tel:+78442220577">{brand.map.phone}</a> */}
-
-              </div>
-              <div className="descBrand">
-                г. Волгограл, ул.Вильнюсская, 42/2
-                {/* {brand.map.adress} */}
-              </div>
-              <div className="descBrand">
-                <a className='href_a' href="mailto:faw@arkont.ru">{brand.brand.toLowerCase}@arkont.ru</a>
-              </div>
-              <div className="descBrand">
-                <Link href="https://yandex.ru/maps/10951/volzhskiy/?from=&ll=44.791306%2C48.782364&mode=routes&rtext=~48.814410%2C44.602135&rtt=mt&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozMTQwMjEyMTU3EknQoNC-0YHRgdC40Y8sINCS0L7Qu9Cz0L7Qs9GA0LDQtCwg0JLQuNC70YzQvdGO0YHRgdC60LDRjyDRg9C70LjRhtCwLCA0Mi8yIgoNl2gyQhX0QUNC&source=wizroute&z=14">
-                  <a rel="noopener noreferrer">
-                    <button className='btn'>Построить маршрут </button>
-                  </a>
-                </Link>
-                {/* <a className='href_a' style={{ color: 'black' }} href="https://yandex.ru/maps/38/volgograd/?from=api-maps&ll=44.438373%2C48.705594&mode=routes&origin=jsapi_2_1_79&rtext=~48.705594%2C44.438373&rtt=auto&ruri=~&z=16">Построить маршрут</a> */}
-              </div>
-            </div>
           </div>
-          <div className="descBrand" id='deskMap'>
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad9d05808de66081e63c2d675691c94f71311f11c7f9fd589d05c85583f871a5c&amp;source=constructor" width="100%" height="250" frameBorder="0"></iframe>
-          </div>
-          <div className="descBrand" id='mobMap'>
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad9d05808de66081e63c2d675691c94f71311f11c7f9fd589d05c85583f871a5c&amp;source=constructor" width="100%" height="350" frameBorder="0"></iframe>
-          </div>
-        </div>
-      </div>
-    </div >
-    }
-    {!brand &&
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh' }}>
-        <CircularProgress sx={{ fontSize: '50px' }} />
-      </Box>
-    }
+        </div >
+      }
+      {!brand &&
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh' }}>
+          <CircularProgress sx={{ fontSize: '50px' }} />
+        </Box>
+      }
 
       <style jsx>{`              
     .background {
@@ -380,7 +392,7 @@ function MapBrandDynamic({ brand }: Props) {
   
             
   `}</style>
-  
+
     </>
   )
 }

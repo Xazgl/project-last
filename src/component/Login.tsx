@@ -73,6 +73,7 @@ export function Login() {
         background-repeat:no-repeat;
         background-size: cover;
         align-items: center;
+        position: absolute;
     }
     
     .form {
@@ -97,22 +98,24 @@ export function Login() {
         outline:none;
         border: none;
         padding: 11px 11px;
+        
     }
     
     .btn {
         font-family: 'Roboto', 'sans-serif';
         transition: transform.3s ;
-        color: #ffffff;
+        color: #f9b518;
         background-color:  #131313;
+        border: solid 2px #f9b518;
         width: 500px;
         height: 50px;
         font-size: 20px;
         cursor: pointer;
-        border: none;
+        transition: all 0.5s;
     }
     
     .btn:hover {
-        background-color: #012d54;
+        box-shadow: 0 0 16px rgba(202,228,225,.92);        
     } 
     
     .loginTitle{

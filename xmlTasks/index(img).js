@@ -301,7 +301,7 @@ async function startOld() {
                                 description: String(offer.description[0]),
                                 sales_notes: String(offer.sales_notes[0]),
                                 picture: {
-                                    set: offer.picture[0]
+                                    set: offer.picture
                                 },
                                 // typePrefix: offer.typePrefix[0],
                                 typePrefix: 'used',
@@ -338,7 +338,7 @@ async function startOld() {
                                 description: String(offer.description[0]),
                                 sales_notes: String(offer.sales_notes[0]),
                                 picture: {
-                                    set: offer.picture[0]
+                                    set: offer.picture
                                 },
                                 // typePrefix: offer.typePrefix[0],
                                 typePrefix: 'used',

@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
 import { AllCarDto, BrandPageDto, CarDtoWithoutFavorite } from '../../../@types/dto'
-import db from '../../../prisma'
+import db, { YandexGeo } from '../../../prisma'
 import BarMenu from '../../../src/component/BarMenu'
 import { Modal } from '../../../src/component/Modal'
 import { ModalFavorite } from '../../../src/component/ModalFavorite'
@@ -30,6 +30,7 @@ const BrandPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
   const router = useRouter()
 
   const [brand, setBrand] = useState<BrandPageDto>()
+  const [mapsGeo, setMapsGeo] = useState<YandexGeo[]>()
   const [banner, setBanner] = useState('')
   const { id } = router.query
 
@@ -46,17 +47,20 @@ const BrandPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
         console.log(brandFetch);
         setBanner(brandFetch.banner)
         setBrand(brandFetch)
+        setMapsGeo(brandFetch.maps)
       }
     }
     if (router.isReady) {
       start()
-      console.log('start');
     }
+    console.log(mapsGeo);
   }, [router.isReady]);
 
 
 
-
+  useEffect(() => {
+    console.log(mapsGeo);
+  }, [mapsGeo]);
 
 
   return (
@@ -78,6 +82,7 @@ const BrandPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
                 setShowModalFavorite={setShowModalFavorite}
                 cars={cars} brands={brands}
                 brand={brand}
+                mapsGeo={mapsGeo}
               />
             </>
           }

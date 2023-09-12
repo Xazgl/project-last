@@ -15,7 +15,7 @@ import hatchback from '/public/images/carBodyTyp/hatchback.svg'
 import liftback from '/public/images/carBodyTyp/liftback.svg'
 import minivan from '/public/images/carBodyTyp/minivan.svg'
 import sedan from '/public/images/carBodyTyp/sedan.svg'
-import { Car } from "@prisma/client";
+import { Car, YandexGeo } from "@prisma/client";
 
 
 
@@ -63,10 +63,11 @@ type Props = {
     // brands:string[]
     brands: Brand[],
     brand?: BrandPageDto,
+    mapsGeo?:YandexGeo[]
     
 }
 
-export function FilterWithPageComponentDynamic({ setShowModal,brand, setShowModalFavorite, cars, brands }: Props) {
+export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, setShowModalFavorite, cars, brands }: Props) {
     //Отфильтрованные машины, по умолчанию все машины конкретного бренда
     const [filteredCars, setFilteredCars] = useState(cars)
     // Определение количества отображаемых элементов в зависимости от ширины экрана
@@ -149,7 +150,7 @@ export function FilterWithPageComponentDynamic({ setShowModal,brand, setShowModa
                     setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                 />
                 <div className="carBlock">
-                    <MapBrandDynamic brand={brand}/>
+                    <MapBrandDynamic brand={brand} mapsGeo={mapsGeo}/>
                     {currentFilter.modelName.length <= 0 ?
                         <div className="block" ref={refCars}>
                             <CardModelsFilter cars={cars} filteredCars={filteredCars}

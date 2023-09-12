@@ -8,15 +8,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (typeof id === 'string') {
                 const answer = await db.brands.findFirst({
                     where: {
-                        brand: id
+                        brand: id,
                     },
-                    include: {
-                        maps: true,
-                        news: true
+                    include:{
+                        maps:true,
+                        news:true
                     }
+                  
                 })
-
-                
                 res.status(200).send(answer)
             }
         } else {

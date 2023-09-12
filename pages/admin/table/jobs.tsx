@@ -33,7 +33,7 @@ const JobTable: NextPage = () => {
   useEffect(() => {
     async function start() {
       const res = await fetch('/api/getSession', {
-        method: 'GET',
+        // method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache'
