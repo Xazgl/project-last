@@ -1,11 +1,13 @@
-@import url(/Fonts/montserat/MONTSERRAT-MEDIUM.woff);
+
+@import url(/Fonts/gilroy/stylesheet.css);
+
 
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,  Gilroy, sans-serif;
 }
 
 a {

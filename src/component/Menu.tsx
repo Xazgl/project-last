@@ -57,19 +57,19 @@ export function MenuBar() {
           <div className="columBar">
             <li className="menuEL">
               <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
-                <a rel="noopener noreferrer" ><AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> <span className="city">Волгоград </span></a>
+                <a rel="noopener noreferrer" ><AddLocationAltIcon sx={{ color: '#D1AC02 ' }} /> <span className="city">Волгоград </span></a>
               </Link>
             </li>
           </div>
           <div className="columBar" style={{justifyContent:'end',gap:'40px'}}>
             <li className="menuEL">
               <Link href={'tel:+78442292505'}>
-                <a rel="noopener noreferrer" ><LocalPhoneIcon sx={{ color: '#f9b518',fontSize:'14px' }} /> <span className="city">+7 (8442) 29 25 05</span></a>
+                <a rel="noopener noreferrer" ><LocalPhoneIcon sx={{ color: '#D1AC02',fontSize:'14px' }} /> <span className="city">+7 (8442) 29 25 05</span></a>
               </Link>
             </li>
             <li className="menuEL">
               <Link href={'tel:+78442292505'}>
-                <a rel="noopener noreferrer" > <span className="city">Заказать звонок</span> < SearchIcon sx={{ color: '#f9b518',fontSize:'14px' }} /></a>
+                <a rel="noopener noreferrer" > <span className="city">Заказать звонок</span> < SearchIcon sx={{ color: '#D1AC02',fontSize:'14px' }} /></a>
               </Link>
             </li>
           </div>
@@ -198,7 +198,7 @@ export function MenuBar() {
     .bar {
         justify-content: start;
         gap:60px; 
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:21px;
         width: 100%;
@@ -213,12 +213,12 @@ export function MenuBar() {
 
       .city {
        font-size:14px;
-       font-family: 'Roboto','sans-serif'; 
+       font-family: 'Gilroy','sans-serif'; 
       }
 
       ul {
         justify-content: center;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:18px;
         width: 100%;
@@ -238,7 +238,7 @@ export function MenuBar() {
       }
       
       .f:hover {
-        color:#fdb913;
+        color:#D1AC02;
       }
        
       .label {
@@ -276,7 +276,7 @@ export function MenuBar() {
         content:"";
         width:0%;
         height:1.7px;
-        background-color:#fdb913;
+        background-color:#D1AC02;
         left:50%;
         bottom:-1px;  
         transition:all 0.3s ease-in-out;

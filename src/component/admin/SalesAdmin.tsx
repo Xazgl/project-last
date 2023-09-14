@@ -639,7 +639,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
     };
     /////////////////////////////////////////////
 
-    //////////////////////////// sun text redactor 
+    //////////////////////////// sun text blackactor 
     const SunEditor = dynamic(() => import("suneditor-react"), {
         ssr: false,
     });
@@ -718,7 +718,7 @@ export function SalesAdminComponent({ }: SalesAdminProps) {
         <Button sx={{
             marginLeft: '30px', marginTop: '20px', marginBottom: '10px', 
             textAlign: 'center', backgroundColor: '#2e2e2e',
-             color: 'white', border: 'solid 2px white', fontFamily: 'Roboto',
+             color: 'white', border: 'solid 2px white', fontFamily: 'Gilroy',
             '&:hover': {
                 backgroundColor: '#0069d9',
             },

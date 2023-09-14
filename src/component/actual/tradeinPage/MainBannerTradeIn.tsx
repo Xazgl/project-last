@@ -70,7 +70,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     align-items:center;
                     flex-direction:column;
                     color:black;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
                     padding-left:10%;
@@ -81,9 +81,10 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
+                    gap:10px;
                 }
 
                 .col {
@@ -91,6 +92,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     justify-content: center;
                     flex-direction: column;
                     align-items: center;
+                    
                 }
 
                 .btn{
@@ -99,7 +101,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.1s;
                     width: 300px;
                     height: 45px;
@@ -110,11 +112,13 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     color:white;
                     font-size: 16px;
                     cursor: pointer;
+                    border:1px white  1px solid;
+                    border-radius: 10px;
                 }
 
                 .btn:hover{
                     transform: scale(0.98);
-                    background-color: #eab330;
+                    background-color: #D1AC02;
                     color:black;
                     border: 1px solid black;
                   

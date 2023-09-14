@@ -120,8 +120,8 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
                                             <div className="cardPriceMonth">
                                                 <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} Р/мес</button>
                                             </div>
-                                            <div className="credit">
-                                                <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
+                                            <div className="cblackit">
+                                                <span className="pricCblackit">РАССЧИТАТЬ КРЕДИТ</span>
                                             </div>
                                         </div>
                                     </Link>
@@ -141,7 +141,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
             <style jsx>{`
 
                    
-@keyframes credit-open {
+@keyframes cblackit-open {
     0% {
         opacity: 0;
         margin-top:-5em;
@@ -186,7 +186,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         font-size: 40px;
         font-weight: bold;
         gap:20px;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
     .cardsSlider{
@@ -219,7 +219,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
     }
 
     #newFilt_active{
-        border-bottom: 2px solid #fdb913;
+        border-bottom: 2px solid #D1AC02;
     }
 
     .card {
@@ -268,7 +268,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         width: 100%;
         height: 32px; 
         color:  #131313;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
     .cardDesc {
@@ -281,7 +281,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         margin-top:20px;
         padding-left: 10px;
         padding-right: 10px;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
     .elDesc{
@@ -307,7 +307,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         line-height: 24px;
         min-height: 24px;
         margin-top:5px;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
     .cardPriceMonth{
@@ -317,12 +317,12 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         justify-content: center;
         align-items: center;
         margin-top: 10px;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
 
     .btn {
-        background: #fdb913;
+        background: #D1AC02;
         color: #fff;
         cursor: pointer;
         opacity: 1;
@@ -332,10 +332,10 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         width: 150px;
         height: 30px;
         transition: 0.5s;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
-    .credit {
+    .cblackit {
         display: none;
         justify-content: center;
         text-align: center;
@@ -346,17 +346,17 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         transition: 1s;
         margin-top:-10em;
         cursor: pointer;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
-    .credit:hover {
+    .cblackit:hover {
         background-color:#0088ff;;
     }
     
-    .card:hover .credit {
+    .card:hover .cblackit {
         display: flex;
         transition: 1s;
-        animation:credit-open.5s ;
+        animation:cblackit-open.5s ;
         margin-top: 40px;
         background-color: #131313;
     }
@@ -366,14 +366,14 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         transform: scale(0.99);
     }
 
-    .pricCredit{
+    .pricCblackit{
         text-align: center;
         color:  #131313;
         transition: 0.5s;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
     }
 
-    .card:hover .pricCredit{
+    .card:hover .pricCblackit{
         color:white;
 
     }
@@ -385,7 +385,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         height: 50px;
         justify-content: center;
         align-items: center;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
      }
 
      .btnAllCar {
@@ -400,7 +400,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
         font-size: 18px;
         border-radius: 5px;
         transition: 0.6s;
-        font-family: 'Roboto',sans-serif;
+        font-family: 'Gilroy',sans-serif;
         border:none;
         cursor:pointer;
      }
@@ -440,7 +440,7 @@ export function OldCar({ carsUsed }: { carsUsed: AllUsedCarDto }) {
              display:none;
         }
 
-        .card:hover .credit {
+        .card:hover .cblackit {
            display: none;
         }
         .card:hover {    

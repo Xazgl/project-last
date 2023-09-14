@@ -193,7 +193,8 @@ export function ServiceForm({ refs }: FormType) {
                                         border: '2px solid  #131313',
                                         padding: '12px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Gilroy',
+                                        borderRadius:'10px'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -282,7 +283,7 @@ export function ServiceForm({ refs }: FormType) {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -305,7 +306,7 @@ export function ServiceForm({ refs }: FormType) {
                 justify-content: center;
                 align-items: baseline;
                 width:auto;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -314,7 +315,7 @@ export function ServiceForm({ refs }: FormType) {
                 width: 100%;
                 justify-content: center;
                 align-items:center;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:40px;
                 text-align: start;
                 background-color:  #131313;
@@ -330,7 +331,7 @@ export function ServiceForm({ refs }: FormType) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
            }
 
@@ -360,7 +361,7 @@ export function ServiceForm({ refs }: FormType) {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
             }
            
 
@@ -368,32 +369,35 @@ export function ServiceForm({ refs }: FormType) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:none;
                 padding: 12px 12px;
                 border:2px solid  #131313; 
                 outline: none;
+                border-radius: 10px;
             }
 
             textarea  {
                 width: 100%;
                 height: 200px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:2px solid  #131313; 
                 padding: 12px 12px;
                 resize: none;
                 outline: none;
+                border-radius: 10px;
             }
 
            select {
                 width: 100%;
                 height: 40px;
                 font-size: 15px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:2px solid  #131313; 
                 padding: 2px;
                 outline: none;
+                border-radius: 10px;
            }
             
            .btn {
@@ -402,7 +406,7 @@ export function ServiceForm({ refs }: FormType) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;
@@ -411,6 +415,7 @@ export function ServiceForm({ refs }: FormType) {
                 margin-top:40px;
                 font-size:20px;
                 text-align: center;
+                border-radius: 10px;
            }
            
            .btn_show:hover {

@@ -120,8 +120,8 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
         }))
     }, [currentFilter])
 
-    //filteredProps выводит все возможные фильтры для выбора по данным из БД
-    const filteredProps = useMemo(() => {
+    //filteblackProps выводит все возможные фильтры для выбора по данным из БД
+    const filteblackProps = useMemo(() => {
         let filteredCarsProps = {
             dealers: [],
             brands: [],
@@ -147,23 +147,23 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
             filteredCarsProps.driverTypes.push(car.CarModification.driveType)
             filteredCarsProps.engineTypes.push(car.CarModification.engineType)
         })
-        console.log(filteredCars, 'отфильтрованные машины')
+        console.log( filteredCars, 'отфильтрованные машины')
         return {
-            dealers: [...new Set(filteredCarsProps.dealers)],
-            brands: [...new Set(filteredCarsProps.brands)], // TODO es6-set polyfill
-            models: [...new Set(filteredCarsProps.models)],
-            colors: [...new Set(filteredCarsProps.colors)],
-            // price: [...new Set(filteredCarsProps.price)],
-            gearBoxTypes: [...new Set(filteredCarsProps.gearBoxTypes)],
-            carsBodyTypes: [...new Set(filteredCarsProps.carsBodyTypes)],
-            driverTypes: [...new Set(filteredCarsProps.driverTypes)],
-            engineTypes: [...new Set(filteredCarsProps.engineTypes)],
+            dealers: [...new Set( filteredCarsProps.dealers)],
+            brands: [...new Set( filteredCarsProps.brands)], // TODO es6-set polyfill
+            models: [...new Set( filteredCarsProps.models)],
+            colors: [...new Set( filteredCarsProps.colors)],
+            // price: [...new Set( filteredCarsProps.price)],
+            gearBoxTypes: [...new Set( filteredCarsProps.gearBoxTypes)],
+            carsBodyTypes: [...new Set( filteredCarsProps.carsBodyTypes)],
+            driverTypes: [...new Set( filteredCarsProps.driverTypes)],
+            engineTypes: [...new Set( filteredCarsProps.engineTypes)],
 
 
-            // brands: [...new Set(filteredCars.map(car => car.CarModel.brandName))],
+            // brands: [...new Set( filteredCars.map(car => car.CarModel.brandName))],
         }
 
-    }, [filteredCars])
+    }, [ filteredCars])
 
 
 
@@ -209,12 +209,12 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
 
 
 
-    // function resetFilteredCars() {
+    // function resetFilteblackCars() {
     //     setFilteredCars(cars)
     // }
 
 
-    function resetFilteredCars() {
+    function resetFilteblackCars() {
         setFilteredCars(cars);
         setCurrentFilter(prevFilterState => ({
             ...prevFilterState,
@@ -233,7 +233,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
 
     function selectBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterBrandResult(event.target.value)
-        if (event.target.value === 'Null') resetFilteredCars()
+        if (event.target.value === 'Null') resetFilteblackCars()
         setCurrentFilter(prevFilterState => {
             const brandName = event.target.value === 'Null'
                 ? null
@@ -330,10 +330,10 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <FormGroup>
-                                        {filteredProps.dealers.map(dealer =>
+                                        {filteblackProps.dealers.map(dealer =>
                                             <FormControlLabel
                                                 key={dealer}
-                                                control={<Checkbox checked={currentFilter.dealerOffice?.includes(dealer) || (filteredProps.dealers.length === 1 && filteredProps.dealers[0] === dealer)} />}
+                                                control={<Checkbox checked={currentFilter.dealerOffice?.includes(dealer) || (filteblackProps.dealers.length === 1 && filteblackProps.dealers[0] === dealer)} />}
                                                 label={dealer}
                                                 onClick={() => {
                                                     setCurrentFilter(prevFilterState => {
@@ -385,7 +385,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                     <Paper elevation={0} sx={{ maxHeight: '200px', overflow: 'auto' }}>
                                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                             {/* <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
-                                                <a rel="noopener noreferrer" ><AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> <span className="city">Волгоград </span></a>
+                                                <a rel="noopener noreferrer" ><AddLocationAltIcon sx={{ color: '#D1AC02 ' }} /> <span className="city">Волгоград </span></a>
                                             </Link> */}
                                             {/* <a
                                                 href="/brands/any"
@@ -443,7 +443,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                     {/* <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                                         onChange={selectBrandHandler}>
                                         <option value={'Null'} selected >Выберите бренд</option>
-                                        {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
+                                        {filteblackProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
                                     </select> */}
                                 </AccordionDetails>
                             </Accordion>
@@ -460,7 +460,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <div id="column" >
-                                            {filteredProps.models.map(model =>
+                                            {filteblackProps.models.map(model =>
                                                 <FormControlLabel
                                                     key={model}
                                                     control={
@@ -505,7 +505,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <div id="color" >
-                                        {filteredProps.colors.map(color =>
+                                        {filteblackProps.colors.map(color =>
                                             <div
                                                 key={color}
                                                 //  onClick={() => setColor(color)}
@@ -541,7 +541,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <FormGroup>
-                                        {filteredProps.gearBoxTypes.map(gearBox =>
+                                        {filteblackProps.gearBoxTypes.map(gearBox =>
                                             <FormControlLabel
                                                 key={gearBox}
                                                 control={<Checkbox checked={currentFilter.gearBoxName?.includes(gearBox)} />}
@@ -574,7 +574,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <div id="carBodyType" >
-                                        {filteredProps.carsBodyTypes.map(bodyType =>
+                                        {filteblackProps.carsBodyTypes.map(bodyType =>
                                             <div className="carTypeDiv" key={bodyType}>
                                                 <img
                                                     className="imgCarType"
@@ -622,7 +622,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                           
                                         }}
                                     /> */}
-                                            {filteredProps.driverTypes.map(driver =>
+                                            {filteblackProps.driverTypes.map(driver =>
                                                 <FormControlLabel
                                                     key={driver}
                                                     control={<Checkbox checked={currentFilter.driverTypeName?.includes(driver)} />}
@@ -658,7 +658,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <div className="rowSideBar" id="column" >
-                                        {filteredProps.engineTypes.map(engine =>
+                                        {filteblackProps.engineTypes.map(engine =>
                                             <FormControlLabel
                                                 key={engine}
                                                 control={<Checkbox checked={currentFilter.engineTypeName?.includes(engine)} />}
@@ -685,9 +685,9 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                             <Button
                                 variant="outlined"
                                 sx={{
-                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto', backgroundColor: 'white', color: ' #131313',
+                                    width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Gilroy', backgroundColor: 'white', color: ' #131313',
                                 }}
-                                onClick={resetFilteredCars}>
+                                onClick={resetFilteblackCars}>
                                 Очистить фильтры
                             </Button>
                         </div >
@@ -753,13 +753,13 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
                 #price {
                     display: flex;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -775,7 +775,7 @@ function CarFilterSidebarMobile({ cars, setFilteredCars, filteredCars, currentFi
                     height: 30px;
                     border:solid 1px  #131313;
                     font-size:16px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
                 

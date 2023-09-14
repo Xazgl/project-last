@@ -23,14 +23,14 @@ export default function BarMenu() {
           sx={{ width: '100%',     borderRadius: '0px' }}
 
         >
-          <Typography sx={{ fontFamily: 'Roboto' }}>
+          <Typography sx={{ fontFamily: 'Gilroy' }}>
             <Link href={'/'}>
               <div className="logo"></div>
             </Link>
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ padding: '0' }}>
-          <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
+          <Typography sx={{ fontFamily: 'Gilroy', fontSize: '18px', color: 'white' }}>
             <ul className={"menu"}>
               <li className={"menuEl"}>
                 <Accordion sx={{ background: '#131313',color:'white'}}>
@@ -40,7 +40,7 @@ export default function BarMenu() {
                     id="panel1a-header"
                     sx={{ backgroundColor: ' #131313' }}
                   >
-                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>Каталог</Typography>
+                    <Typography sx={{ fontFamily: 'Gilroy', fontSize: '18px', color: 'white' }}>Каталог</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
@@ -68,7 +68,7 @@ export default function BarMenu() {
                     id="panel1a-header"
                     sx={{ backgroundColor: ' #131313' }}
                   >
-                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>Услуги</Typography>
+                    <Typography sx={{ fontFamily: 'Gilroy', fontSize: '18px', color: 'white' }}>Услуги</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
@@ -97,7 +97,7 @@ export default function BarMenu() {
                     id="panel1a-header"
                     sx={{ backgroundColor: ' #131313' }}
                   >
-                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>Владельцам</Typography>
+                    <Typography sx={{ fontFamily: 'Gilroy', fontSize: '18px', color: 'white' }}>Владельцам</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul className="menu">
@@ -131,7 +131,7 @@ export default function BarMenu() {
                     id="panel1a-header"
     
                   >
-                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
+                    <Typography sx={{ fontFamily: 'Gilroy', fontSize: '18px', color: 'white' }}>
                       Работа в Арконт
                     </Typography>
                   </AccordionSummary>
@@ -152,7 +152,7 @@ export default function BarMenu() {
                     id="panel1a-header"
                     sx={{ backgroundColor: ' #131313' }}
                   >
-                    <Typography sx={{ fontFamily: 'Roboto', fontSize: '18px', color: 'white' }}>
+                    <Typography sx={{ fontFamily: 'Gilroy', fontSize: '18px', color: 'white' }}>
                       О компании
                     </Typography>
                   </AccordionSummary>
@@ -183,7 +183,7 @@ export default function BarMenu() {
       <style jsx>{`
 
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dongle&family=Roboto&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dongle&family=Gilroy&family=Gilroy:wght@300;400;500;700&display=swap');
 
 
 .bar {
@@ -194,7 +194,7 @@ export default function BarMenu() {
 .title {
   display: flex;
   flex-direction:row;
-  font-family: 'Roboto','sans-serif'; 
+  font-family: 'Gilroy','sans-serif'; 
 }
 .menu {
     display: flex;
@@ -220,7 +220,7 @@ a{
   }
   
 ul {
-    font-family: 'Roboto','sans-serif'; 
+    font-family: 'Gilroy','sans-serif'; 
     border-bottom: 1px solid #eaeaea;   
     font-size:20px;
     width: 100%;

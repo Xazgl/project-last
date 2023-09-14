@@ -27,7 +27,7 @@ return (
                                 width: '100%',
                                 height: '100%',
                                 fontSize: '16px',
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Gilroy',
                                 backgroundColor:' #131313',
                                 borderRadius:'0px'
                             }}

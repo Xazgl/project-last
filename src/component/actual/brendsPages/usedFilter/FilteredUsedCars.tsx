@@ -28,7 +28,7 @@ type Props = {
 }
 
 
-function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
+function FilteblackUsedCars({ setShowModal, filteredCars }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
   const [favArr, setFavArr] = React.useState([]);
@@ -290,7 +290,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 <FavoriteBorderIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
-                    '&:hover': { color: 'red' }
+                    '&:hover': { color: 'black' }
                   }}
                 />
               </Link>
@@ -305,8 +305,8 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
 
         <div className='cards' id="desktop">
-        <div className='titleBackground'>Модельный ряд</div>
-          {filteredCars.map(car =>
+          <div className='titleBackground'>Модельный ряд</div>
+          { filteredCars.map(car =>
             <Card
               key={car.id}
               sx={{
@@ -319,10 +319,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
                   shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
                 },
-                '&:hover .credit': {
+                '&:hover .cblackit': {
                   display: 'flex',
                   transition: '1s',
-                  animation: 'credit-open.5s',
+                  animation: 'cblackit-open.5s',
                   marginTop: '330px',
                   backgroundColor: '#0c7ee1',
                   position: 'absolute',
@@ -408,10 +408,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                   {favArr.find(carFav => carFav.car.id === car.id) ?
-                    <FavoriteIcon sx={{ color: 'red' }}
+                    <FavoriteIcon sx={{ color: 'black' }}
                       onClick={() => deleteToFavorite(car.id)}
                     /> :
-                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                    <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                       onClick={() => addToFavorite(car.id)}
                     />
                   }
@@ -427,7 +427,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   }
                 </IconButton>
               </CardActions>
-              {/* <button className="credit" onClick={showModal}>
+              {/* <button className="cblackit" onClick={showModal}>
                 <span className="consultation" >Получить консультацию</span>
               </button> */}
             </Card>
@@ -435,17 +435,17 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
         </div>
 
         <div className='cards' id="mob">
-        <div className='titleBackground'>Модельный ряд</div>
-          {filteredCars.map(car =>
+          <div className='titleBackground'>Модельный ряд</div>
+          { filteredCars.map(car =>
             <Card
               key={car.id}
               sx={{
-                width: '70%', height: 440, display: 'flex', border: '1px  solid transparent',
+                width: '70%', height: 400, display: 'flex', border: '1px  solid transparent',
                 flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                 '&:hover': { transform: 'scale(1.04)' },
               }} >
               <CardHeader
-                sx={{ display: 'flex', height: '60px', dispaly: 'flex', alignItems: 'center', fontFamily: 'Roboto' }}
+                sx={{ display: 'flex', height: '60px', dispaly: 'flex', alignItems: 'center', fontFamily: 'Gilroy' }}
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
                     src={logoFind(LogoList, car.vendor)}>
@@ -455,13 +455,13 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 action={
                   <IconButton aria-label="settings" sx={{
                     marginTop: '-10px',
-                    marginRight: '-5px'
+                    marginRight: '-5px',
                   }}>
                     {favArr.find(carFav => carFav.car.id === car.id) ?
-                      <FavoriteIcon sx={{ color: 'red' }}
+                      <FavoriteIcon sx={{ color: 'black' }}
                         onClick={() => deleteToFavorite(car.id)}
                       /> :
-                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                      <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                         onClick={() => addToFavorite(car.id)}
                       />
                     }
@@ -514,30 +514,41 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               </Link>
               <CardContent>
                 <Typography variant="body2" color="text.secondary" >
-                  {upFirst(car.engine)} / {car.driverType} привод / Пробег {numberWithSpaces(car.mileage)} км
+                  {upFirst(car.engine)}
+                  <br />
+                  {car.driverType} привод
+                  <br />
+                  Пробег {numberWithSpaces(car.mileage)} км
                   <div className='price'><h4>Цена от <span style={{ color: ' #131313' }}>{numberWithSpaces(Number(car.price))}*</span> ₽</h4></div>
-                  <div className='priceMonth'>
+                  {/* <div className='priceMonth'>
                     <button className="btn">от {numberWithSpaces(Math.round(Number(car.price) / 150))} ₽/мес</button>
-                  </div>
+                  </div> */}
                 </Typography>
+
+                <div style={{
+                  display: "flex", width: '100%', height: 'auto', justifyContent: 'center', padding: '6px'
+                }}>
+                  <Button variant="contained"
+                    sx={{
+                      textAlign: 'center', fontSize: '10px', width: '100%', fontFamily: 'Gilroy', backgroundColor: ' #131313',
+                      height: '35px', borderRadius: '10px',
+                      '&:hover': {
+                        backgroundColor: '#D1AC02'
+                      }
+                    }}
+                    onClick={showModal}>
+                    Получить консультацию
+                  </Button>
+                </div>
               </CardContent>
-              <div style={{
-                display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px'
-              }}>
-                <Button variant="contained"
-                  sx={{
-                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto', backgroundColor: ' #131313',
-                    borderRadius: '0px', height: '35px'
-                  }}
-                  onClick={showModal}>Получить консультацию</Button>
-              </div>
+
             </Card>
           )}
         </div>
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -593,7 +604,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -602,6 +613,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       justify-content: start;
       width: 80%;
       height: 35px;
+      border
     }
 
     .btn {
@@ -612,9 +624,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #d1d7dd;
-      color: #131313;
-      background-color:  #f2f2f2;
+      border-radius: 10px;
+      background-color: black;
+      border:none;
+      color:white;
       cursor: pointer;
       font-size: 15px;
       font-weight: bold;
@@ -623,7 +636,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
     }
 
     .btn:hover {
-      background-color: #131313; 
+      background-color: #D1AC02; 
       color:white;
       transform: scale(0.99);
     }
@@ -640,7 +653,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       align-items: center;
     }
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -654,10 +667,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       font-size:16px;
       text-align: center;
       border:none;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
     }
 
-    .credit:hover {
+    .cblackit:hover {
       background-color:#0088ff;
     }
 
@@ -736,4 +749,4 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
   )
 }
 
-export default FilteredUsedCars
+export default FilteblackUsedCars

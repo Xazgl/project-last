@@ -16,11 +16,11 @@ type Props = {
     car: CarDto,
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
-    refCredit: MutableRefObject<HTMLDivElement>,
+    refCblackit: MutableRefObject<HTMLDivElement>,
 }
 
 
-export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
+export function InfoCblackit({ car, showModal, setShowModal,refCblackit}: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
@@ -45,11 +45,11 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
     }
 
 
-    async function sendCredit(event: FormEvent<HTMLFormElement>) {
+    async function sendCblackit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         let carName = car.CarModel.modelName
         let carId = car.id
-        const res = await fetch('/api/credit/send', {
+        const res = await fetch('/api/cblackit/send', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,11 +68,11 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
 
     return (
         <>
-            <div className="background"  ref={refCredit}>
+            <div className="background"  ref={refCblackit}>
                 {car !== null ?
                     <>
                         <div className="backgroundBlock">
-                            <form id="submit-form" onSubmit={sendCredit}>
+                            <form id="submit-form" onSubmit={sendCblackit}>
                                 <div className="title">
                                     <h1>РАССЧИТАТЬ КРЕДИТ</h1>
                                 </div>
@@ -165,9 +165,9 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                                                 width: '100%', height: '90%', border: 'solid 2px  #131313', fontSize: '15px',
                                                 backgroundColor: ' #131313', color: 'white', borderRadius:'0px',
                                                 '&:hover': {
-                                                    backgroundColor: "#f9b518",
+                                                    backgroundColor: "#D1AC02",
                                                     color: '#131313',
-                                                    border:'#f9b518'
+                                                    border:'#D1AC02'
                                                 }
                                             }}
                                             type="submit"
@@ -229,12 +229,12 @@ export function InfoCredit({ car, showModal, setShowModal,refCredit}: Props) {
                     align-items: center;
                     justify-content: start;
                     width: 300px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
                 .btn {
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     display: flex;
                     justify-content: start;
                     align-items: center;

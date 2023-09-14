@@ -53,15 +53,6 @@ type Props = {
     filteredCars: AllCarDto
 }
 
-// type FilterUserOptions = {
-//     carType?: 'new' | 'old'
-//     dillerOffice?: string[]
-//     minPrice?: number
-//     maxPrice?: number
-//     brandName?: string[]
-//     modelName?: string[]
-// }
-
 
 const LogoList: LogoArr[] = [
     {
@@ -237,8 +228,8 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
     }, [currentFilter])
 
 
-    //filteredProps выводит все возможные фильтры для выбора по данным из БД
-    const filteredProps = useMemo(() => {
+    //filteblackProps выводит все возможные фильтры для выбора по данным из БД
+    const filteblackProps = useMemo(() => {
         let filteredCarsProps = {
             dealers: [],
             brands: [],
@@ -264,25 +255,25 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
             filteredCarsProps.driverTypes.push(car.CarModification.driveType)
             filteredCarsProps.engineTypes.push(car.CarModification.engineType)
         })
-        console.log(filteredCars, 'отфильтрованные машины')
+        console.log( filteredCars, 'отфильтрованные машины')
         return {
-            dealers: [...new Set(filteredCarsProps.dealers)],
-            brands: [...new Set(filteredCarsProps.brands)], // TODO es6-set polyfill
-            models: [...new Set(filteredCarsProps.models)],
-            colors: [...new Set(filteredCarsProps.colors)],
-            // price: [...new Set(filteredCarsProps.price)],
-            gearBoxTypes: [...new Set(filteredCarsProps.gearBoxTypes)],
-            carsBodyTypes: [...new Set(filteredCarsProps.carsBodyTypes)],
-            driverTypes: [...new Set(filteredCarsProps.driverTypes)],
-            engineTypes: [...new Set(filteredCarsProps.engineTypes)],
+            dealers: [...new Set( filteredCarsProps.dealers)],
+            brands: [...new Set( filteredCarsProps.brands)], // TODO es6-set polyfill
+            models: [...new Set( filteredCarsProps.models)],
+            colors: [...new Set( filteredCarsProps.colors)],
+            // price: [...new Set( filteredCarsProps.price)],
+            gearBoxTypes: [...new Set( filteredCarsProps.gearBoxTypes)],
+            carsBodyTypes: [...new Set( filteredCarsProps.carsBodyTypes)],
+            driverTypes: [...new Set( filteredCarsProps.driverTypes)],
+            engineTypes: [...new Set( filteredCarsProps.engineTypes)],
 
 
-            // brands: [...new Set(filteredCars.map(car => car.CarModel.brandName))],
+            // brands: [...new Set( filteredCars.map(car => car.CarModel.brandName))],
         }
 
-    }, [filteredCars])
+    }, [ filteredCars])
 
-    console.log(filteredProps, 'filteredProps')
+    console.log(filteblackProps, 'filteblackProps')
 
 
     //TypeGearBox
@@ -324,13 +315,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
         setCheckedDriveType([checkedDriveType[0], event.target.checked]);
     };
 
-    function resetFilteredCars() {
+    function resetFilteblackCars() {
         setFilteredCars(cars)
     }
 
     function selectBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterBrandResult(event.target.value)
-        if (event.target.value === 'Null') resetFilteredCars()
+        if (event.target.value === 'Null') resetFilteblackCars()
         setCurrentFilter(prevFilterState => {
             const brandName = event.target.value === 'Null'
                 ? null
@@ -467,7 +458,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionSummary>
                         <AccordionDetails    >
                             <FormGroup >
-                                {filteredProps.dealers.map(dealer =>
+                                {filteblackProps.dealers.map(dealer =>
                                     <FormControlLabel
                                         key={dealer}
                                         control={<Checkbox />}
@@ -497,7 +488,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Стоимость</Typography>
+                            <Typography sx={{ fontSize: '14px', fontFamily: 'Gilroy' }}>Стоимость</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <RangeSlider
@@ -517,13 +508,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Бренд</Typography>
+                            <Typography sx={{ fontSize: '14px', fontFamily: 'Gilroy' }}>Бренд</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                                 onChange={selectBrandHandler}>
                                 <option value={'Null'} selected >Выберите бренд</option>
-                                {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
+                                {filteblackProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
                             </select>
                         </AccordionDetails>
                     </Accordion>
@@ -536,11 +527,11 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Модель</Typography>
+                                <Typography sx={{ fontSize: '14px', fontFamily: 'Gilroy' }}>Модель</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <div id="column" >
-                                    {filteredProps.models.map(model =>
+                                    {filteblackProps.models.map(model =>
                                         <FormControlLabel
                                             key={model}
                                             control={<Checkbox />}
@@ -572,11 +563,11 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Цвет</Typography>
+                            <Typography sx={{ fontSize: '14px', fontFamily: 'Gilroy' }}>Цвет</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div id="color" >
-                                {filteredProps.colors.map(color =>
+                                {filteblackProps.colors.map(color =>
                                     <div
                                         key={color}
                                         //  onClick={() => setColor(color)}
@@ -607,11 +598,11 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Коробка</Typography>
+                            <Typography sx={{ fontSize: '14px', fontFamily: 'Gilroy' }}>Коробка</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <FormGroup>
-                                {filteredProps.gearBoxTypes.map(gearBox =>
+                                {filteblackProps.gearBoxTypes.map(gearBox =>
                                     <FormControlLabel
                                         key={gearBox}
                                         control={<Checkbox />}
@@ -640,11 +631,11 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography sx={{ fontSize: '14px', fontFamily: 'Roboto' }}>Тип кузова</Typography>
+                            <Typography sx={{ fontSize: '14px', fontFamily: 'Gilroy' }}>Тип кузова</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div id="carBodyType" >
-                                {filteredProps.carsBodyTypes.map(bodyType =>
+                                {filteblackProps.carsBodyTypes.map(bodyType =>
                                     <div className="carTypeDiv" key={bodyType}>
                                         <img
                                             className="imgCarType"
@@ -681,7 +672,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         <AccordionDetails>
                             <div className="rowSideBar" id="column" >
                                 <FormGroup>
-                                    {filteredProps.driverTypes.map(driver =>
+                                    {filteblackProps.driverTypes.map(driver =>
                                         <FormControlLabel
                                             key={driver}
                                             control={<Checkbox />}
@@ -717,7 +708,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className="rowSideBar" id="column" >
-                                {filteredProps.engineTypes.map(engine =>
+                                {filteblackProps.engineTypes.map(engine =>
                                     <FormControlLabel
                                         key={engine}
                                         control={<Checkbox />}
@@ -743,8 +734,8 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                 <div className="rowSideBar" id="column" >
                     <Button
                         variant="outlined"
-                        sx={{ width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Roboto' }}
-                        onClick={resetFilteredCars}>
+                        sx={{ width: '100%', fontSize: '12px', height: '40px', fontFamily: 'Gilroy' }}
+                        onClick={resetFilteblackCars}>
                         Сбросить фильтры
                     </Button>
                 </div >
@@ -807,13 +798,13 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
                 #price {
                     display: flex;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -829,7 +820,7 @@ function CarFilterSidebar({ cars, setFilteredCars, filteredCars }: Props) {
                     height: 30px;
                     border:solid 1px  #131313;
                     font-size:16px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
                 

@@ -19,12 +19,6 @@ export type CarDto = Car & {
 }
 
 
-// export type BrandPageDto = Brands & {
-//     map: YandexGeo;
-//     news: BrandNews;
-// }
-
-
 type Map = {
     id: string;
     nameDc: string;
@@ -38,7 +32,7 @@ type Map = {
     updatedAt: Date;
 }
 
-type newsOne =  {
+export type NewsOne =  {
     id: string;
     title: string;
     description: string;
@@ -53,7 +47,7 @@ export type BrandPageDto = Brands & {
     createdAt: Date;
     updatedAt: Date;
     map: Map[];
-    news: newsOne [];
+    news: NewsOne [];
 }
 
 export type CarDtoWithoutFavorite = Car & {

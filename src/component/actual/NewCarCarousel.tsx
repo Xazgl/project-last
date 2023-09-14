@@ -57,8 +57,8 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
 
     //             let customCars = Array(4).fill(0).map(el => cars[Math.floor(Math.random() * cars.length)])
     //             setCarArr(customCars.map(car => {
-    //                 const { id, id_1c, color, bodyColorMetallic, mileage, mileageUnit, vin, year, img, priceMonth, price, special_price, specialOffer, tradeinDiscount, creditDiscount, insuranceDiscount, desc, active, carModelId, carModificationId, carComplectationId, dealerModelId, availability, createdAt } = car
-    //                 return { id, id_1c, color, bodyColorMetallic, mileage, mileageUnit, vin, year, img, priceMonth, price, special_price, specialOffer, tradeinDiscount, creditDiscount, insuranceDiscount, desc, active, carModelId, carModificationId, carComplectationId, dealerModelId, availability, createdAt }
+    //                 const { id, id_1c, color, bodyColorMetallic, mileage, mileageUnit, vin, year, img, priceMonth, price, special_price, specialOffer, tradeinDiscount, cblackitDiscount, insuranceDiscount, desc, active, carModelId, carModificationId, carComplectationId, dealerModelId, availability, createdAt } = car
+    //                 return { id, id_1c, color, bodyColorMetallic, mileage, mileageUnit, vin, year, img, priceMonth, price, special_price, specialOffer, tradeinDiscount, cblackitDiscount, insuranceDiscount, desc, active, carModelId, carModificationId, carComplectationId, dealerModelId, availability, createdAt }
     //             }))
     //         }
     //     }
@@ -184,8 +184,8 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                                             <div className="cardPriceMonth">
                                                 <button className="btn">от {Math.round(Number(car.priceMonth))} Р/мес</button>
                                             </div>
-                                            <div className="credit">
-                                                <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
+                                            <div className="cblackit">
+                                                <span className="pricCblackit">РАССЧИТАТЬ КРЕДИТ</span>
                                             </div>
                                         </div>
                                     </Link>
@@ -209,7 +209,7 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
             <style jsx>{`
 
                    
-            @keyframes credit-open {
+            @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-5em;
@@ -296,7 +296,7 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                 }
 
                 #newFilt_active{
-                    border-bottom: 2px solid #fdb913;
+                    border-bottom: 2px solid #D1AC02;
                 }
 
                 .card {
@@ -394,7 +394,7 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
 
 
                 .btn {
-                    background: #fdb913;
+                    background: #D1AC02;
                     color: #fff;
                     cursor: pointer;
                     opacity: 1;
@@ -406,7 +406,7 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                     transition: 0.5s;
                 }
 
-                .credit {
+                .cblackit {
                     display: none;
                     justify-content: center;
                     text-align: center;
@@ -419,14 +419,14 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                     cursor: pointer;
                 }
 
-                .credit:hover {
+                .cblackit:hover {
                     background-color:#0088ff;;
                 }
                 
-                .card:hover .credit {
+                .card:hover .cblackit {
                     display: flex;
                     transition: 1s;
-                    animation:credit-open.5s ;
+                    animation:cblackit-open.5s ;
                     margin-top: 40px;
                     background-color: #131313;
                 }
@@ -436,13 +436,13 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                     transform: scale(0.99);
                 }
 
-                .pricCredit{
+                .pricCblackit{
                     text-align: center;
                     color:  #131313;
                     transition: 0.5s;
                 }
 
-                .card:hover .pricCredit{
+                .card:hover .pricCblackit{
                     color:white;
  
                 }
@@ -500,7 +500,7 @@ export function NewCarCarousel({ cars }: { cars: AllCarDto }) {
                 }
 
                 @media(max-width: 720px) {
-                    .card:hover .credit {
+                    .card:hover .cblackit {
                        display: none;
                     }
                     .card:hover {    

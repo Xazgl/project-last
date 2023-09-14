@@ -49,7 +49,7 @@ export function ImgCarCard({ showModalImg, img, setShowModalImg, setCarStepImg }
             }
 
 <style jsx>{`
-            @keyframes credit-open {
+            @keyframes cblackit-open {
                     0% {
                         opacity: 0;
                         margin-top:-5em;
@@ -126,7 +126,7 @@ export function ImgCarCard({ showModalImg, img, setShowModalImg, setCarStepImg }
                     display:none;
                     }
 
-                .card:hover .credit {
+                .card:hover .cblackit {
                     display: none;
                     }
                 .card:hover {

@@ -146,8 +146,8 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                                 <div className="cardPriceMonth">
                                                     <button className="btn">от {numberWithSpaces(Math.round(Number(car.price / 120)))} Р/мес</button>
                                                 </div>
-                                                <div className="credit">
-                                                    <span className="pricCredit">РАССЧИТАТЬ КРЕДИТ</span>
+                                                <div className="cblackit">
+                                                    <span className="pricCblackit">РАССЧИТАТЬ КРЕДИТ</span>
                                                 </div>
                                             </div>
                                         </Link>
@@ -161,6 +161,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                 activeStep={activeStep}
                                 nextButton={
                                     <Button
+                                        sx={{ color: 'black' }}
                                         size="small"
                                         onClick={handleNext}
                                         disabled={activeStep === maxSteps - 1}
@@ -174,7 +175,9 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                                     </Button>
                                 }
                                 backButton={
-                                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                                    <Button
+                                        sx={{ color: 'black' }}
+                                        size="small" onClick={handleBack} disabled={activeStep === 0}>
                                         {theme.direction === 'rtl' ? (
                                             <KeyboardArrowRight />
                                         ) : (
@@ -203,7 +206,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
             <style jsx>{`
 
                    
-            @keyframes credit-open {
+            @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-5em;
@@ -249,7 +252,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     text-align: center;
                     font-weight: bold;
                     gap:20px;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
 
                 }
 
@@ -293,7 +296,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     width: 100%;
                     height: 32px; 
                     color:  #131313;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                     font-weight: 500;
                 }
 
@@ -307,7 +310,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     margin-top:20px;
                     padding-left: 10px;
                     padding-right: 10px;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                 }
 
                 .elDesc{
@@ -320,7 +323,6 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     font-size:.777777778em;
                     border:1px solid #d1d7dd;
                     padding: 0.5px;
-                    background-color: #f2f2f2;
                 }
 
 
@@ -335,7 +337,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     line-height: 24px;
                     min-height: 24px;
                     margin-top:5px;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
 
                 }
 
@@ -346,7 +348,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     justify-content: center;
                     align-items: center;
                     margin-top: 10px;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                 }
 
 
@@ -360,13 +362,14 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     width: 150px;
                     height: 30px;
                     transition: 0.5s;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                     border: solid 2px  #131313;
                     font-weight: bold;
+                    border-radius: 10px;
 
                 }
 
-                .credit {
+                .cblackit {
                     display: none;
                     justify-content: center;
                     text-align: center;
@@ -379,14 +382,14 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     cursor: pointer;
                 }
 
-                .credit:hover {
+                .cblackit:hover {
                     background-color:#0088ff;;
                 }
                 
-                .card:hover .credit {
+                .card:hover .cblackit {
                     display: flex;
                     transition: 1s;
-                    animation:credit-open.5s ;
+                    animation:cblackit-open.5s ;
                     margin-top: 40px;
                     background-color: #131313;
                 }
@@ -397,13 +400,13 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     transform: scale(0.99);
                 }
 
-                .pricCredit{
+                .pricCblackit{
                     text-align: center;
                     color:  #131313;
                     transition: 0.5s;
                 }
 
-                .card:hover .pricCredit{
+                .card:hover .pricCblackit{
                     color:white;
  
                 }
@@ -430,7 +433,8 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     font-size: 18px;
                     border-radius: 5px;
                     transition: 0.6s;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
+               
                 }
 
                 .btnAllCar:hover {
@@ -446,7 +450,7 @@ export function CarouselComponentUsed({ carsUsed }: { carsUsed: AllUsedCarDto })
                     .background {
                         display: flex;
                     }
-                    .card:hover .credit {
+                    .card:hover .cblackit {
                        display: none;
                     }
                     .card:hover {    

@@ -96,10 +96,10 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
                   width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-                  '&:hover .credit': {
+                  '&:hover .cblackit': {
                     display: 'flex',
                     transition: '1s',
-                    animation: 'credit-open.5s',
+                    animation: 'cblackit-open.5s',
                     marginTop: '400px',
                     backgroundColor: '#0c7ee1',
                     position: 'absolute'
@@ -159,7 +159,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
                     <IconButton aria-label="share">
                     </IconButton>
                   </CardActions>
-                  <button className="credit" onClick={showModal}>
+                  <button className="cblackit" onClick={showModal}>
                     <span className="consultation" >Получить консультацию</span>
                   </button>
                 </Card>
@@ -188,7 +188,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
                         marginRight: '-5px'
                       }}>
                         <IconButton aria-label="add to favorites">
-                          <DeleteIcon sx={{ color: 'red' }}
+                          <DeleteIcon sx={{ color: 'black' }}
                             onClick={() => deleteToWatched(car.car.id)}
                           />
                         </IconButton>
@@ -245,7 +245,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
 
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -303,7 +303,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -330,7 +330,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -351,12 +351,12 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       margin-top: 10px;
       font-size: 12px;
       align-items: center;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -370,11 +370,11 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       color:white;
       font-size:16px;
       text-align: center;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
-    .credit:hover {
+    .cblackit:hover {
       background-color:#0088ff;
     }
 
@@ -404,7 +404,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       margin-top:15px;
       font-weight: bold;
       width: 100%;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -413,7 +413,7 @@ function WatchedCars({ setShowModal, setWatchedArr, watchedArr }: Props) {
       height: auto;
       font-weight: bold;
       margin-top:20px;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 

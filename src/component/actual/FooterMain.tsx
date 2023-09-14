@@ -59,7 +59,7 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
               <div className="label"></div>
               <div className="labelDesc" >
                 <span className="descEl">Автомобильная компания</span>
-                <span className="descEl"><a href="tel:+78442200895" style={{ textDecoration: 'none', color: '#fdb913' }} >+7 (844) 220-08-95</a></span>
+                <span className="descEl"><a href="tel:+78442200895" style={{ textDecoration: 'none', color: '#D1AC02' }} >+7 (844) 220-08-95</a></span>
               </div>
             </div>
           </Link>
@@ -204,7 +204,7 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
         flex-direction:column;
         font-size: 16px;
         width: 200px;
-        font-family: 'Roboto','sans-serif'; ;
+        font-family: 'Gilroy','sans-serif'; ;
       }
 
       .descEl {
@@ -220,12 +220,12 @@ export function FooterMain({ setShowTradeInModal, refs }: Footer) {
         color:white;
         font-size: 15px;
         cursor: pointer;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
       }
       
       .el:hover {
         transform: scale(1.02);
-        color:#fdb913;
+        color:#D1AC02;
       }
 
       .miniFooter {

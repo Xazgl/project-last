@@ -60,13 +60,13 @@ export default function TableTradeIn() {
      justify-content:center;
      background:black;
      color:white;
-     font-family: 'Roboto', sans-serif;
+     font-family: 'Gilroy', sans-serif;
      font-size:30px;
      margin-top:20px;
     }
     
     .btn {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Gilroy', sans-serif;
     border-radius: 3px;
     border:none;
     transition: transform.3s ;
@@ -81,7 +81,7 @@ export default function TableTradeIn() {
 .btn:hover {
     background-color: #f7ff14;
     border: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Gilroy', sans-serif;
     color:black;
     transform: scale(1.02);
     box-shadow: -3px 15px 9px 3px rgba(34, 60, 80, 0.2);

@@ -38,7 +38,7 @@ export function MainCard() {
                     justify-content: space-between; 
                     flex-wrap: wrap;
                     margin-top: 100px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     flex: 1;
                     flex-direction: row;
                 }
@@ -50,7 +50,7 @@ export function MainCard() {
                     background-position: center center;
                     background-repeat:no-repeat;
                     background-size:cover; 
-                    border-radius: 5px;
+                    border-radius: 10px;
                     justify-content: start;
                     align-items: baseline;
                     border:solid 1px transparent;

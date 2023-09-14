@@ -48,7 +48,7 @@ type Props = {
 
 export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, cars, brands }: Props) {
     //Отфильтрованные машины, по умолчанию все машины конкретного бренда
-    const [filteredCars, setFilteredCars] = useState(cars)
+    const [ filteredCars, setFilteredCars] = useState(cars)
     // Определение количества отображаемых элементов в зависимости от ширины экрана
     const [mobileAdaptive, setMobileAdaptive] = useState(false);
 
@@ -98,7 +98,7 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
     // useEffect(() => {
     //     // Прокрутка к элементу при каждом изменении filteredCars
     //     scrollToTargetElement();
-    // }, [filteredCars]);
+    // }, [ filteredCars]);
 
 
 
@@ -119,12 +119,12 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
         <>
 
             <div className="background">
-                <CarFilterSidebarMobile cars={cars} filteredCars={filteredCars}
+                <CarFilterSidebarMobile cars={cars} filteredCars={ filteredCars}
                     setFilteredCars={setFilteredCars}
                     setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                     brands={brands}
                 />
-                <CarFilterSidebar cars={cars} filteredCars={filteredCars}
+                <CarFilterSidebar cars={cars} filteredCars={ filteredCars}
                     setFilteredCars={setFilteredCars} brands={brands}
                     setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                 />
@@ -133,7 +133,7 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                     {currentFilter.modelName.length <= 0 ?
 
                         <div className="block" ref={refCars}>
-                            <CardModelsFilter cars={cars} filteredCars={filteredCars}
+                            <CardModelsFilter cars={cars} filteredCars={ filteredCars}
                                 setFilteredCars={setFilteredCars}
                                 setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                             />
@@ -141,7 +141,7 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                         :
                         <>
                             <div className="block" id="carScroll" ref={refCars}>
-                                <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal}
+                                <FilteredNewCars filteredCars={ filteredCars} setShowModal={setShowModal}
                                     setShowModalFavorite={setShowModalFavorite} cars={cars}
                                     setFilteredCars={setFilteredCars}
                                 />
@@ -196,7 +196,7 @@ export function FilterWithPageComponent({ setShowModal, setShowModalFavorite, ca
                 }
                 
                 #carScroll::-webkit-scrollbar-track {
-                  background-color: #fdb913 ; /* Цвет фона трека скроллбара */
+                  background-color: #D1AC02 ; /* Цвет фона трека скроллбара */
     
                 }
                 

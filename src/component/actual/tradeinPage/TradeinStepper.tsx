@@ -118,7 +118,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                         border: 'solid 1px rgba(0, 0, 0, 0.23)',
                         padding: '16.5px 14px',
                         borderRadius: '5px',
-                        fontFamily: 'Roboto'
+                        fontFamily: 'Gilroy'
 
                     }}
                     className="phone"
@@ -205,7 +205,7 @@ export function TradeinStepper({ refs }: MuneProps) {
                                         width: '100%',
                                         border: 'solid 1px #d4d3d3',
                                         padding: '10px 10px',
-                                        fontFamily: 'Roboto'
+                                        fontFamily: 'Gilroy'
 
                                     }}
                                     className="phone"
@@ -456,12 +456,12 @@ export function TradeinStepper({ refs }: MuneProps) {
                 width: 100%;
                 padding: 10px 10px;
                 border: 1px solid #d4d3d3;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
 
             }
 
             .btn-modal {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border-radius: 3px;
                 border:none;
                 transition: transform.3s ;
@@ -491,7 +491,7 @@ export function TradeinStepper({ refs }: MuneProps) {
             }
 
             .btn {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border-radius: 3px;
                 transition: transform.3s ;
                 color: white;
@@ -529,7 +529,7 @@ export function TradeinStepper({ refs }: MuneProps) {
             #modalTitle {
                 color: white;
                 font-size:30px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-weight: bold;
                 display: flex;
                 justify-content: center;
@@ -541,7 +541,7 @@ export function TradeinStepper({ refs }: MuneProps) {
             #modalMiniTitle {
                 color: white;
                 font-size:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-weight: bold;
                 display: flex;
                 justify-content: center;

@@ -53,16 +53,16 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
                   <div className="label">
                   </div>
                 </Box>
-                <Box sx={{ direction: 'flex', justifyContent: 'start' }}>
+                <Box sx={{ direction: 'flex', justifyContent: 'start'}}>
                   <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
                     <button className='btnMenu' >
-                      <AddLocationAltIcon sx={{ color: '#f9b518 ', fontSize: '14px' }} /> Волгоград
+                      <AddLocationAltIcon sx={{ color: 'white ', fontSize: '14px' }} /> Волгоград
                     </button>
                   </Link>
                 </Box>
                 <Box sx={{ direction: 'flex', justifyContent: 'start' }}>
                   <button className='btnMenu' >
-                    <LocalPhoneIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> +7 (8442) 29 25 05
+                    <LocalPhoneIcon sx={{ color: 'white', fontSize: '14px' }} /> +7 (8442) 29 25 05
                   </button>
                 </Box>
               </Box>
@@ -137,14 +137,14 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
 
             <li>
               <button className='btnMenu'>
-                <LocalPhoneIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> +7 (8442) 29 25 05
+                <LocalPhoneIcon sx={{ color: 'white', fontSize: '14px' }} /> +7 (8442) 29 25 05
               </button>
             </li>
 
             {/* <li>
               <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
                 <button className='btnMenu' >
-                  <AddLocationAltIcon sx={{ color: '#f9b518 ', fontSize: '14px' }} /> Волгоград
+                  <AddLocationAltIcon sx={{ color: '#D1AC02 ', fontSize: '14px' }} /> Волгоград
                 </button>
               </Link>
             </li> */}
@@ -196,13 +196,12 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         width: 100%;
         height: auto;
         align-items: center;
-        background-color:  #131313;
         padding-top: 10px;
         padding-bottom: 10px;
         bottom: 0;
         left: 0;
         right: 0;
-        padding:50px;
+        padding:20px;
         margin-top: 50px;
         
       }
@@ -211,7 +210,9 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         display: flex; 
         justify-content: center;
         width: '100%' ;
-        background-color: #131313;
+        background-color: black;
+        border-radius: 10px;
+        padding: 20px;
       }
 
       #mob {
@@ -244,7 +245,7 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-color: #f9b518;
+        background-color: white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -292,9 +293,26 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         display: flex;
         justify-content: start;
         color:white;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         cursor: pointer;
       }
+
+      .el::after{
+        position:absolute;
+        content:"";
+        width:0%;
+        height:1.7px;
+        background-color:#D1AC02;
+        left:50%;
+        bottom:-1px;  
+        transition:all 0.3s ease-in-out;
+    }
+
+    .el:hover {
+        cursor:pointer;
+        transform:scale(1.04);
+        transition:0.2s;
+    }
 
       .btnMenu{
         background-color: transparent;
@@ -302,9 +320,10 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         color:white;
         display: flex;
         justify-content: center;
-        font-family: 'Roboto','sans-serif';
+        font-family: 'Gilroy','sans-serif';
         font-size: 14px;
         margin-top: 10px;
+        gap:10px ;
       }
       ul {
         list-style: none;
@@ -320,7 +339,7 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
         content:"";
         width:0%;
         height:1.7px;
-        background-color:#fdb913;
+        background-color:#D1AC02;
         left:50%;
         bottom:-1px;  
         transition:all 0.3s ease-in-out;
@@ -365,44 +384,15 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
           width: 450px; 
         }
         .circle {
-          width: 67px;
-          height: 67px;
+          width: 40px;
+          height: 40px;
           font-size: 13px;
         }
       }    
       
       @media(max-width: 500px) {
         .content{  
-          width: 360px; 
-        }
-        .rowLeft {
-          display: none;
-          width: 0px;
-        }
-        #left {
-          display: none;
-        }
-        .content {
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-        }
-        .row {
-          width: 100%;
-          align-items: center;
-        }
-        #mob {
-          display: flex;
-        }
-        #desk {
-          display: none;
-        }
-        ul {
-          width: 100%;
-          
-        }
-        .label {
-          width:150px
+          width:350px; 
         }
       }
       
@@ -412,13 +402,28 @@ export function FooterMainNew({ setShowModal, refs }: Footer) {
           padding-right: 10px;
         }
         .content{  
-          width:90%; 
+          width:250px; 
+          flex-direction: column;
+        }
+
+        .rowleft {
+          width: auto;
+        }
+
+        #left {
+          flex-direction: row;
+          gap:15px;
+        }
+
+        .circle {
+          margin-top: 20px;
         }
       }
       @media(max-width: 300px) {
         .label {
            width:150px;
         }
+
       }
     `}</style>
     </>

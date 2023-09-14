@@ -16,7 +16,7 @@ type JobProps = {
     // isAdmin?: boolean;
 }
 
-type FilteredJobs = {
+type FilteblackJobs = {
     office: string[],
     exp: string[],
     city: string[],
@@ -49,7 +49,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
     const [expSelect, setExpSelect] = React.useState('');
     const [citySelect, setCitySelect] = React.useState('');
 
-    const [filterSelectJobs, setFilterSelectJobs] = useState<FilteredJobs>({
+    const [filterSelectJobs, setFilterSelectJobs] = useState<FilteblackJobs>({
         office: [],
         exp: [],
         city: [],
@@ -84,7 +84,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
         }
     }, [officeSelect, expSelect, job]);
 
-    const filteredJobs = useMemo(() => {
+    const filteblackJobs = useMemo(() => {
         if (filterSelectJobs.office.length > 0 || filterSelectJobs.exp.length > 0) {
             const uniqueOffices = new Set(filterSelectJobs.office);
             return job.filter(job => {
@@ -141,7 +141,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                             <MenuItem value={null}>
                                 <em>Все</em>
                             </MenuItem>
-                            {removeDuplicates(filteredJobs.map(job => job.office)).map((office) => (
+                            {removeDuplicates(filteblackJobs.map(job => job.office)).map((office) => (
                                 <MenuItem
                                     key={office}
                                     value={office}
@@ -168,7 +168,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                             <MenuItem value={null}>
                                 <em>Все</em>
                             </MenuItem>
-                            {removeDuplicates(filteredJobs.map(job => job.exp)).map((exp) => (
+                            {removeDuplicates(filteblackJobs.map(job => job.exp)).map((exp) => (
                                 <MenuItem
                                     key={exp}
                                     value={exp}
@@ -194,7 +194,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                             <MenuItem value={null}>
                                 <em>Все</em>
                             </MenuItem>
-                            {removeDuplicates(filteredJobs.map(job => job.city)).map((city) => (
+                            {removeDuplicates(filteblackJobs.map(job => job.city)).map((city) => (
                                 <MenuItem
                                     key={city}
                                     value={city}
@@ -260,7 +260,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 < div className="background" >
                     <div className="cards">
                         {
-                            filteredJobs.map(job => {
+                            filteblackJobs.map(job => {
                                 return <div className="card" id="c4" key={job.id}>
                                     <Link href={{
                                         pathname: '/job/[id]',
@@ -301,7 +301,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     justify-content: center;
                     align-items: center;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:40px;
                 }  
 
@@ -378,7 +378,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     font-weight:bold;
                     padding: 9px;
                     flex-wrap: wrap;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     overflow: hidden;
                 }
 
@@ -391,7 +391,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     font-size:18px; 
                     margin-top:10px;
                     flex-wrap: wrap;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     margin-top:10px;
                     color: #131313;
                     text-align: center;
@@ -426,7 +426,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     text-align: center;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.3s;
                     width: 80%;
                     height: 40px;
@@ -450,7 +450,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     align-items:center;
                     flex-direction:column;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
                 }
@@ -461,7 +461,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     flex-direction:column;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto', sans-serif; 
+                    font-family: 'Gilroy', sans-serif; 
                     font-size:20px;
                     font-weight: bold;
                 }
@@ -561,5 +561,5 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
         )
     }
 
-    return <div style={{ display: 'flex', width: '100%', justifyContent: 'center', height: '50px', alignItems: 'center', fontFamily: 'Roboto', fontSize: '18px' }}>Вакансии в данный момент  не обнаружены</div>
+    return <div style={{ display: 'flex', width: '100%', justifyContent: 'center', height: '50px', alignItems: 'center', fontFamily: 'Gilroy', fontSize: '18px' }}>Вакансии в данный момент  не обнаружены</div>
 }

@@ -172,7 +172,7 @@ function News({ }) {
                 </div>
                 {/* <Card sx={{
                   width: 345, height: 'auto', display: 'flex', border: '1px  solid transparent',
-                  flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                  flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
                   borderRadius: '0px'
                 }} >
 
@@ -215,7 +215,7 @@ function News({ }) {
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;

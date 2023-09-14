@@ -87,7 +87,7 @@ export function BaicImgDesktop() {
                     justify-content: start;
                     font-size:25px;
                     font-weight: 600;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     margin-top:20px;
                     
                 }
@@ -141,7 +141,7 @@ export function BaicImgDesktop() {
                     align-items:center;
                     flex-direction:column;
                     color:black;
-                    font-family: 'Roboto'; 
+                    font-family: 'Gilroy'; 
                 }
 
                 @media(max-width: 1300px) {

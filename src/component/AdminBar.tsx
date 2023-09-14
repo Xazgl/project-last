@@ -38,7 +38,7 @@ const AdminBar = () => {
   return (
     <AppBar position="static"
       sx={{
-        display: 'flex', alignItems: 'center', fontFamily: 'Roboto',
+        display: 'flex', alignItems: 'center', fontFamily: 'Gilroy',
         backgroundColor: ' #131313;', color: 'white',
         boxShadow: 'box-shadow: 1px 7px 8px 0px rgba(34, 60, 80, 0.2)',
         borderTop:'solid 2px#bebebe'
@@ -57,7 +57,7 @@ const AdminBar = () => {
                 textDecoration: 'none',
                 fontSize: '30px',
                 cursor: 'pointer',
-                fontFamily: 'Roboto',
+                fontFamily: 'Gilroy',
                 color: '#0ff', // Цвет текста
                 textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff', // Стили тени текста
                 animation: 'pulse 2s infinite', // Анимация пульсации текста
@@ -129,7 +129,7 @@ const AdminBar = () => {
             sx={{
               flexGrow: 1,
               display: { xs: 'flex', md: 'none' },
-              fontFamily: 'Roboto',
+              fontFamily: 'Gilroy',
               fontSize: '24px', // Размер шрифта
               color: '#0ff', // Цвет текста
               textShadow: '0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff', // Стили тени текста

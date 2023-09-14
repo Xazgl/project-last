@@ -5,6 +5,7 @@ import router from "next/router";
 export function Login() {
     const [login, setLogin] = useState('')
     const [pass, setPass] = useState('')
+    
     async function submit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         console.log(login);
@@ -18,7 +19,7 @@ export function Login() {
         })
         if (res.ok) {
             const result = await (await res).json()
-            if (result.redirectUrl) {
+            if (result.blackirectUrl) {
                 router.push(result.redirectUrl as string)
             }
             console.log(result);
@@ -93,7 +94,7 @@ export function Login() {
     input {
         width: 500px;
         height: 50px;
-        font-family: 'Roboto', 'sans-serif';
+        font-family: 'Gilroy', 'sans-serif';
         font-size: 20px;
         outline:none;
         border: none;
@@ -102,11 +103,11 @@ export function Login() {
     }
     
     .btn {
-        font-family: 'Roboto', 'sans-serif';
+        font-family: 'Gilroy', 'sans-serif';
         transition: transform.3s ;
-        color: #f9b518;
+        color: #D1AC02;
         background-color:  #131313;
-        border: solid 2px #f9b518;
+        border: solid 2px #D1AC02;
         width: 500px;
         height: 50px;
         font-size: 20px;

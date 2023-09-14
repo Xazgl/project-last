@@ -55,7 +55,7 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                     align-items:center;
                     flex-direction:column;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:55px;
                     font-weight: bold;
                 }
@@ -66,7 +66,7 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
                 }
@@ -84,7 +84,7 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.1s;
                     width: 300px;
                     height: 55px;
@@ -99,7 +99,7 @@ export function MainBannerAssistent({ setShowModal, refs }: MuneProps) {
 
                 .btn:hover{
                     transform: scale(0.98);
-                    background-color: #eab330;
+                    background-color: #D1AC02;
                     color:black;
                     border: 1px solid black;
                 }

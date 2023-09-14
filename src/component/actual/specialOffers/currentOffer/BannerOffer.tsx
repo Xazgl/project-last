@@ -61,7 +61,7 @@ export function BannerOffer({ setShowModal, offer }: Props) {
                     justify-content:center;
                     align-items:center;
                     flex-direction:column;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:35px;
                     font-weight: bold;
                 }
@@ -72,7 +72,7 @@ export function BannerOffer({ setShowModal, offer }: Props) {
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto', sans-serif; 
+                    font-family: 'Gilroy', sans-serif; 
                     font-size:20px;
                     font-weight: bold;
                 }
@@ -90,7 +90,7 @@ export function BannerOffer({ setShowModal, offer }: Props) {
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.3s;
                     width: 230px;
                     height: 52px;
@@ -104,7 +104,7 @@ export function BannerOffer({ setShowModal, offer }: Props) {
 
                 .btn:hover{
                     transform: scale(0.95);
-                    background-color: #eab330;
+                    background-color: #D1AC02;
                     color:black;
                     border: 1px solid black;
                 }

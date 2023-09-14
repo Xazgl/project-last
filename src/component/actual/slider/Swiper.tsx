@@ -94,7 +94,7 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
                     align-items: center;
                     font-weight: bold;
                     font-size:25px;
-                    font-family: "Roboto",sans-serif;
+                    font-family: "Gilroy",sans-serif;
                 }
                 
                 .banner{
@@ -127,15 +127,15 @@ export function SwiperEl({ cars }: { cars: AllCarDto }) {
                     width: 350px;
                     height: 100%;
                     font-size: 18px;
-
+                    border-radius: 10px;
                     transition: 0.6s;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                     border:none;
                     cursor:pointer;
                 }
 
                 .btnAllCar:hover {
-                    background-color:  #1313139b;
+                    background-color:  #D1AC02;
                     color:white;
                     transform: scale(0.99);
                     -webkit-box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;

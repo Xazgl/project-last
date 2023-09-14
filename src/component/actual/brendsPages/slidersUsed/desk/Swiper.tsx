@@ -126,7 +126,7 @@ export function SwiperEl({ cars }: { cars: AllUsedCarDto }) {
                     font-size: 18px;
                     border-radius: 5px;
                     transition: 0.6s;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                     border:none;
                     cursor:pointer;
                 }

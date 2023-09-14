@@ -214,8 +214,9 @@ export function QuestionForm() {
                                         backgroundColor: 'white',
                                         padding: '12px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Gilroy',
                                         border: 'solid 1px #ccc7c7',
+                                        borderRadius: '10px'
 
                                     }}
                                     id="inputP"
@@ -254,7 +255,7 @@ export function QuestionForm() {
                                         borderRadius: '0xp',
                                         color: 'white',
                                         '&.Mui-checked': {
-                                            color: '#f9b518', // Ваш цвет при нажатом чекбоксе
+                                            color: '#D1AC02', // Ваш цвет при нажатом чекбоксе
                                         },
                                     }}
                                 />
@@ -299,7 +300,7 @@ export function QuestionForm() {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -322,7 +323,7 @@ export function QuestionForm() {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -333,7 +334,7 @@ export function QuestionForm() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:43px;
                 text-align: start;
                 color: #131313;
@@ -346,7 +347,7 @@ export function QuestionForm() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:18px;
            }
 
@@ -360,13 +361,14 @@ export function QuestionForm() {
                 background-color:  #131313;
                 padding: 30px;
                 color:white;
+                border-radius: 10px;
            }
 
            .formHeader{
                 display:flex;
                 width: 100%;
                 flex-direction: column;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
            .formTitle{
@@ -396,7 +398,7 @@ export function QuestionForm() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
 
@@ -404,10 +406,10 @@ export function QuestionForm() {
                 width: 100%;
                 height: 100%;
                 font-size: 16px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color: white;
                 border:none;
-        
+                border-radius: 10px;
                 padding: 12px 12px;
                 outline:none;
                 border: solid 1px white;
@@ -417,7 +419,7 @@ export function QuestionForm() {
                 width: 100%;
                 height: 100%;
                 font-size: 16px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color:white;
                 border:none;
                 border: solid 1px white;
@@ -425,6 +427,7 @@ export function QuestionForm() {
                 transition:  1s;
                 outline: none;
                 padding-left:12px;
+                border-radius: 10px;
            }
             
            .btn {
@@ -433,7 +436,7 @@ export function QuestionForm() {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: transform.3s;
                 width:100%;
                 height: 100%;
@@ -441,12 +444,13 @@ export function QuestionForm() {
                 border: none;
                 font-size:20px;
                 text-align: center;
-                background-color: #f9b518dc;
+                background-color: #D1AC02dc;
                 color: #131313;
+                border-radius: 10px;
            }
 
            .btn_show{
-            background-color: #f9b518;
+            background-color: #D1AC02;
             cursor: pointer;
            }
            

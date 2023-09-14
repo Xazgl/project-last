@@ -15,13 +15,13 @@ import { brandNameFilter, cityOfficeFilter } from './carFilters';
 
 type Props = {
     offices: Offices[],
-    setFilteredOffices: Dispatch<SetStateAction<Offices[]>>,
-    filteredOffices: Offices[]
+    setFilteblackOffices: Dispatch<SetStateAction<Offices[]>>,
+    filteblackOffices: Offices[]
 }
 
 
 
-function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Props) {
+function CarFilterSidebar({ offices, setFilteblackOffices, filteblackOffices }: Props) {
 
     const [detailFilterBrandResult, setDetailFilterBrandResult] = useState('')
     const [detailFilterCity, setDetailFilterCity] = useState('')
@@ -41,43 +41,43 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
     }
 
     useEffect(() => {
-        setFilteredOffices(offices.filter(office => {
+        setFilteblackOffices(offices.filter(office => {
             return cityOfficeFilter(office, currentFilter)
                 && brandNameFilter(office, currentFilter)
         }))
     }, [currentFilter])
 
 
-    //filteredProps выводит все возможные фильтры для выбора по данным из БД
-    const filteredProps = useMemo(() => {
-        let filteredOfficesProps = {
+    //filteblackProps выводит все возможные фильтры для выбора по данным из БД
+    const filteblackProps = useMemo(() => {
+        let filteblackOfficesProps = {
             city: [],
             brands: [],
         } as {
             city: string[], brands: string[]
         }
-        filteredOffices.forEach(office => {
-            filteredOfficesProps.city.push(office.city)
-            filteredOfficesProps.brands.push(office.brend)
+        filteblackOffices.forEach(office => {
+            filteblackOfficesProps.city.push(office.city)
+            filteblackOfficesProps.brands.push(office.brend)
         })
-        console.log(filteredOffices, 'отфильтрованные дилеры')
+        console.log(filteblackOffices, 'отфильтрованные дилеры')
         return {
-            city: [...new Set(filteredOfficesProps.city)],
-            brands: [...new Set(filteredOfficesProps.brands)], // TODO es6-set polyfill
+            city: [...new Set(filteblackOfficesProps.city)],
+            brands: [...new Set(filteblackOfficesProps.brands)], // TODO es6-set polyfill
         }
 
-    }, [filteredOffices])
+    }, [filteblackOffices])
 
-    console.log(filteredProps, 'filteredProps')
+    console.log(filteblackProps, 'filteblackProps')
 
 
-    function resetfilteredOffices() {
-        setFilteredOffices(offices)
+    function resetfilteblackOffices() {
+        setFilteblackOffices(offices)
     }
 
     function selectBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterBrandResult(event.target.value)
-        if (event.target.value === 'Null') resetfilteredOffices()
+        if (event.target.value === 'Null') resetfilteblackOffices()
         setCurrentFilter(prevFilterState => {
             const brandName = event.target.value === 'Null'
                 ? null
@@ -95,7 +95,7 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
 
     function selectCityHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterCity(event.target.value)
-        if (event.target.value === 'Null') resetfilteredOffices()
+        if (event.target.value === 'Null') resetfilteblackOffices()
         setCurrentFilter(prevFilterState => {
             const city = event.target.value === 'Null'
                 ? null
@@ -122,10 +122,10 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                     <select className="selectModel" value={detailFilterCity} name="detailFilterBran"
                         onChange={selectCityHandler}>
                         <option value={'Null'} selected >Выберите  город</option>
-                        {filteredProps.city.map(dealerCity => <option key={dealerCity} value={dealerCity}>{dealerCity}</option>)}
+                        {filteblackProps.city.map(dealerCity => <option key={dealerCity} value={dealerCity}>{dealerCity}</option>)}
                     </select>
                     {/* <FormGroup>
-                                {filteredProps.city.map(dealerCity =>
+                                {filteblackProps.city.map(dealerCity =>
                                     <FormControlLabel
                                         key={dealerCity}
                                         control={<Checkbox />}
@@ -150,7 +150,7 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                     <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                         onChange={selectBrandHandler}>
                         <option value={'Null'} selected >Выберите бренд</option>
-                        {filteredProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
+                        {filteblackProps.brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
                     </select>
                 </div>
             </div >
@@ -206,12 +206,13 @@ function CarFilterSidebar({ offices, setFilteredOffices, filteredOffices }: Prop
                 select {
                     background-color: transparent;
                     color:#3d3d3d;
-                    font-family: "Roboto","sans-serif";
+                    font-family: "Gilroy","sans-serif";
                     width: 100%;
                     height: 50px;
                     border:solid 2px #3d3d3d;
                     font-size:21px; 
                     cursor: pointer;
+                
                 }
 
                 .carTypeDiv {

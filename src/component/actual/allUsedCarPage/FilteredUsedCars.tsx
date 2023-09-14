@@ -28,7 +28,7 @@ type Props = {
 }
 
 
-function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
+function FilteblackUsedCars({ setShowModal, filteredCars }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
   const [favArr, setFavArr] = React.useState([]);
@@ -290,7 +290,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                 <FavoriteBorderIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
-                    '&:hover': { color: 'red' }
+                    '&:hover': { color: 'black' }
                   }}
                 />
               </Link>
@@ -305,17 +305,17 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
 
         <div className='cards' id="desktop">
-          {filteredCars.map(car =>
+          { filteredCars.map(car =>
             <Card 
             key={car.id}
             sx={{
               width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-              '&:hover .credit': {
+              '&:hover .cblackit': {
                 display: 'flex',
                 transition: '1s',
-                animation: 'credit-open.5s',
+                animation: 'cblackit-open.5s',
                 marginTop: '330px',
                 backgroundColor: '#0c7ee1',
                 position: 'absolute'
@@ -400,10 +400,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                   {favArr.find(carFav => carFav.car.id === car.id) ?
-                    <FavoriteIcon sx={{ color: 'red' }}
+                    <FavoriteIcon sx={{ color: 'black' }}
                       onClick={() => deleteToFavorite(car.id)}
                     /> :
-                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                    <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                       onClick={() => addToFavorite(car.id)}
                     />
                   }
@@ -419,7 +419,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                   }
                 </IconButton>
               </CardActions>
-              <button className="credit" onClick={showModal}>
+              <button className="cblackit" onClick={showModal}>
                 <span className="consultation" >Получить консультацию</span>
               </button>
             </Card>
@@ -427,7 +427,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
         </div>
 
         <div className='cards' id="mob">
-          {filteredCars.map(car =>
+          { filteredCars.map(car =>
             <Card 
             key={car.id}
             sx={{
@@ -436,7 +436,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
             }} >
               <CardHeader
-                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center', fontFamily: 'Roboto' }}
+                sx={{ display: 'flex', height: '50px', dispaly: 'flex', alignItems: 'center', fontFamily: 'Gilroy' }}
                 avatar={
                   <Avatar sx={{}} aria-label="recipe"
                     src={logoFind(LogoListUsed, car.vendor)}>
@@ -449,10 +449,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
                     marginRight: '-5px'
                   }}>
                     {favArr.find(carFav => carFav.car.id === car.id) ?
-                      <FavoriteIcon sx={{ color: 'red' }}
+                      <FavoriteIcon sx={{ color: 'black' }}
                         onClick={() => deleteToFavorite(car.id)}
                       /> :
-                      <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                      <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                         onClick={() => addToFavorite(car.id)}
                       />
                     }
@@ -514,7 +514,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
                   sx={{
-                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Roboto'
+                    textAlign: 'center', fontSize: '12px', width: '95%', fontFamily: 'Gilroy'
                   }}
                   onClick={showModal}>Получить консультацию</Button>
               </div>
@@ -524,7 +524,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -573,7 +573,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -619,7 +619,7 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       align-items: center;
     }
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -633,10 +633,10 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
       font-size:16px;
       text-align: center;
       border:none;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
     }
 
-    .credit:hover {
+    .cblackit:hover {
       background-color:#0088ff;
     }
 
@@ -710,4 +710,4 @@ function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
   )
 }
 
-export default FilteredUsedCars
+export default FilteblackUsedCars

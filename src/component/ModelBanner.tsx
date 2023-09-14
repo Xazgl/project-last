@@ -38,7 +38,7 @@ export function ModelBanner() {
                     align-items:center;
                     flex-direction:column;
                     color:black;
-                    font-family: 'Roboto'; 
+                    font-family: 'Gilroy'; 
                 }
                 @media(max-width: 1000px) {
                     .MainBanner {

@@ -65,7 +65,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                 <div className='icon'>
                     <CloseIcon sx={{
                         cursor: 'pointer',
-                        '&:hover': { color: 'red' }
+                        '&:hover': { color: 'black' }
                     }}
                         onClick={() => { closeModal() }}
                     />
@@ -79,10 +79,10 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                                     width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
                                     flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                                     '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-                                    '&:hover .credit': {
+                                    '&:hover .cblackit': {
                                         display: 'flex',
                                         transition: '1s',
-                                        animation: 'credit-open.5s',
+                                        animation: 'cblackit-open.5s',
                                         marginTop: '400px',
                                         backgroundColor: '#0c7ee1',
                                         position: 'absolute'
@@ -134,7 +134,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                                 </CardContent>
                                 <CardActions disableSpacing>
                                     <IconButton aria-label="add to favorites">
-                                        <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                                        <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                                         // onClick={() => addToFavorite(car.id)}
                                         />
                                     </IconButton>
@@ -150,7 +150,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                     <ExpandMoreIcon />
                   </ExpandMore> */}
                                 </CardActions>
-                                {/* <button className="credit" onClick={() => showModal}>
+                                {/* <button className="cblackit" onClick={() => showModal}>
                 <span className="consultation" >Получить консультацию</span>
               </button> */}
                             </Card>
@@ -247,7 +247,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
                 }
             }
 
-            @keyframes credit-open {
+            @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -302,7 +302,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
               align-items: center;
               font-weight: 400;
               letter-spacing: normal;
-              font-family: 'Roboto',sans-serif;
+              font-family: 'Gilroy',sans-serif;
               color:black;
             }
         
@@ -351,7 +351,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
             }
         
         
-            .credit {
+            .cblackit {
               display: none;
               justify-content: center;
               text-align: center;
@@ -367,7 +367,7 @@ export function ModalFavorite({ showModalFavorite, setShowModalFavorite, cars }:
               text-align: center;
             }
         
-            .credit:hover {
+            .cblackit:hover {
               background-color:#0088ff;
             }
         

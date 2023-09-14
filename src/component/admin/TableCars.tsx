@@ -114,7 +114,7 @@ export function TableCars({ showModal, setShowModal, setCarImg }: Props) {
     {
       field: 'createdAt', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, CarDto>) => {
         const { id } = params.row
-        return <button style={{ background: 'red', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => deleteSale({ id })}>Удалить</button>
+        return <button style={{ background: 'black', borderRadius: '5px', color: 'white', border: 'none', width: '100%', height: '60%', fontSize: '18px', fontFamily: 'TacticSans-Reg' }} onClick={() => deleteSale({ id })}>Удалить</button>
       }
     },
     // {

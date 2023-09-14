@@ -46,8 +46,8 @@ export function NewCarCard({ car }: { car: CarDto }) {
                             <div className="cardPriceMonth">
                                 <button className="btn">от {numberWithSpaces(Math.round(Number(car.priceMonth)))} Р/мес</button>
                             </div>
-                            {/* <div className="credit">
-                                <span className="pricCredit">О Модели</span>
+                            {/* <div className="cblackit">
+                                <span className="pricCblackit">О Модели</span>
                             </div> */}
                         </div>
                     </Link>
@@ -57,7 +57,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
             }
 
             <style jsx>{`
-            @keyframes credit-open {
+            @keyframes cblackit-open {
                     0% {
                         opacity: 0;
                         margin-top:-5em;
@@ -136,7 +136,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     width: 243px;
                     height: 50px;
                     color:  #131313;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .cardDesc {
@@ -149,7 +149,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     margin-top:20px;
                     padding-left: 10px;
                     padding-right: 10px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .elDesc{
@@ -176,7 +176,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     line-height: 24px;
                     min-height: 24px;
                     margin-top:15px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .cardPriceMonth{
@@ -186,13 +186,13 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     justify-content: center;
                     align-items: center;
                     margin-top: 10px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
 
                 .btn {
-                    background: #f2f2f2;
-                    color:  #131313;
+                    background: black;
+                    color: white;
                     cursor: pointer;
                     opacity: 1;
                     transition: opacity .5s ease-in-out;
@@ -200,12 +200,13 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     width: 243px;
                     height: 35px;
                     transition: 0.5s;
-                    font-family: 'Roboto','sans-serif'; 
-                    border:solid 2px #d1d7dd;
+                    font-family: 'Gilroy','sans-serif'; 
+                    border:none;
                     font-weight: bold;
+                    border-radius: 10px;
                 }
 
-                .credit {
+                .cblackit {
                     display: none;
                     justify-content: center;
                     text-align: center;
@@ -215,12 +216,12 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     transition: 1s;
                     margin-top:-10em;
                     cursor: pointer;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     top: -100px;
                     border-radius: 3px;
                 }
 
-                .credit:hover {
+                .cblackit:hover {
                     background - color:#0088ff;
                 }
 
@@ -230,13 +231,13 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     color:white;
                 }
 
-                .pricCredit{
+                .pricCblackit{
                     text - align: center;
                     color:  #131313;
                     transition: 0.5s;
                 }
 
-                .card:hover .pricCredit{
+                .card:hover .pricCblackit{
                     color:white;
                 }
 
@@ -261,7 +262,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     font-size: 18px;
                     border-radius: 5px;
                     transition: 0.6s;
-                    font-family: 'Roboto',sans-serif;
+                    font-family: 'Gilroy',sans-serif;
                 }
 
                 .btnAllCar:hover {
@@ -273,7 +274,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     box-shadow: 0px -1px 10px 2px rgba(34, 60, 80, 0.2) inset;
                 }
 
-                .credit:hover {
+                .cblackit:hover {
                     background-color:#0088ff;;
                 }
                 
@@ -282,10 +283,10 @@ export function NewCarCard({ car }: { car: CarDto }) {
 
                 }
 
-                .card:hover .credit {
+                .card:hover .cblackit {
                     display: flex;
                     transition: 1s;
-                    animation:credit-open.5s ;
+                    animation:cblackit-open.5s ;
                     margin-top: 240px;
                     background-color: #131313;
                     position: absolute;
@@ -298,13 +299,13 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     color:white;
                 }
 
-                .pricCredit{
+                .pricCblackit{
                     text-align: center;
                     color:  #131313;
                     transition: 0.5s;
                 }
 
-                .card:hover .pricCredit{
+                .card:hover .pricCblackit{
                     color:white;
  
                 }
@@ -333,7 +334,7 @@ export function NewCarCard({ car }: { car: CarDto }) {
                     display:none;
                     }
 
-                    .card:hover .credit {
+                    .card:hover .cblackit {
                         display: none;
                     }
                     .card:hover {

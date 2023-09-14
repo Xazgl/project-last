@@ -97,7 +97,7 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                         >
                                             <TableCell component="th" scope="row"
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto',
+                                                    fontSize: '16px',fontFamily: 'Gilroy',
                                                     fontWeight: 'bold'
                                                 }}
                                             >
@@ -105,44 +105,44 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'   
+                                                    fontSize: '16px',fontFamily: 'Gilroy'   
 
                                                 }}
                                                 align="right">{row.T0}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'
+                                                    fontSize: '16px',fontFamily: 'Gilroy'
                                                 }}
                                                 align="right">{row.T0_1}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'
+                                                    fontSize: '16px',fontFamily: 'Gilroy'
                                                 }}
                                                 align="right">{row.T0_2}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'
+                                                    fontSize: '16px',fontFamily: 'Gilroy'
                                                 }}
                                                 align="right">{row.T0_3}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'
+                                                    fontSize: '16px',fontFamily: 'Gilroy'
                                                 }}
                                                 align="right">{row.T0_4}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'
+                                                    fontSize: '16px',fontFamily: 'Gilroy'
                                                 }}
                                                 align="right">{row.year_3}
                                             </TableCell>
                                             <TableCell
                                                 sx={{
-                                                    fontSize: '16px',fontFamily: 'Roboto'
+                                                    fontSize: '16px',fontFamily: 'Gilroy'
                                                 }}
                                                 align="right">{row.year_5}
                                             </TableCell>
@@ -188,7 +188,7 @@ export function SpecialBanner({ setShowModal }: Numbers) {
                                 width: '100%',
                                 height: '45px',
                                 backgroundColor:' #131313',
-                                borderRadius:'0px'
+                                borderRadius:'10px'
 
                             }}
                             variant="contained"

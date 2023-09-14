@@ -9,7 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { black } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -21,12 +21,12 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>,
-  filteredOffices: Offices[],
+  filteblackOffices: Offices[],
 }
 
 
 
-function FilteredOffice({ setShowModal, filteredOffices }: Props) {
+function FilteredOffice({ setShowModal, filteblackOffices }: Props) {
 
 
   const [expanded, setExpanded] = React.useState(false);
@@ -60,7 +60,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
     <>
       <div className='background'>
         <div className='cards' id="desktop">
-          {filteredOffices.map(dealer =>
+          {filteblackOffices.map(dealer =>
             <Card
               key={dealer.id}
               sx={{
@@ -73,10 +73,10 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
                   boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
                   shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
                 },
-                '&:hover .credit': {
+                '&:hover .cblackit': {
                   display: 'flex',
                   transition: '1s',
-                  animation: 'credit-open.5s',
+                  animation: 'cblackit-open.5s',
                   marginTop: '360px',
                   backgroundColor: '#131313',
                   position: 'absolute'
@@ -133,7 +133,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
 
                 </Typography>
               </CardContent>
-              <button className="credit" onClick={() => showModal}>
+              <button className="cblackit" onClick={() => showModal}>
                 <span className="consultation" >Позвонить</span>
               </button>
             </Card>
@@ -141,7 +141,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
         </div>
 
         <div className='cards' id="mob">
-          {filteredOffices.map(dealer =>
+          {filteblackOffices.map(dealer =>
             <Card
               key={dealer.id}
               sx={{
@@ -208,7 +208,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       </div>
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -255,7 +255,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:#151515;
       gap:10px;
     }
@@ -324,7 +324,7 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
     }
 
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -340,8 +340,8 @@ function FilteredOffice({ setShowModal, filteredOffices }: Props) {
       text-align: center;
     }
 
-    .credit:hover {
-      background-color:#f9b518;
+    .cblackit:hover {
+      background-color:#D1AC02;
       
     }
 

@@ -80,7 +80,7 @@ export function SaleBlock({ description, title }) {
                                             backgroundColor: 'rgb(231,231,231)',
                                             border: 'none',
                                             paddingLeft: '13px',
-                                            fontFamily: 'Roboto'
+                                            fontFamily: 'Gilroy'
 
                                             //   `&:placeholder`{
                                             //     color:'black'

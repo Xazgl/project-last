@@ -106,7 +106,7 @@ export function CompanyMini() {
                     padding:5px;
                     width:100%;
                     font-weight: bold;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:16px;
                     text-align: center;
                     color: #131313;
@@ -120,7 +120,7 @@ export function CompanyMini() {
                     display:flex;
                     justify-content:center;
                     align-items: center;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:16px;
                     width: 300px;
                     height: 45px;
@@ -129,11 +129,12 @@ export function CompanyMini() {
                     background-color:  #131313;
                     color:white;
                     cursor: pointer;
+                    border-radius: 10px;
                 }
 
                 .btnDiv:hover {
-                    background: #eab330;
-                    border: solid #eab330;
+                    background: #D1AC02;
+                    border: solid #D1AC02;
                     transform: scale(0.99);
                 }
 

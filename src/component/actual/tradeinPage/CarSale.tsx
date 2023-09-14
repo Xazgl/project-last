@@ -81,7 +81,7 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
 
                 h6 {
                     color:#a3a8aa;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -93,7 +93,7 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                     justify-content: center;
                     margin-top:20px;
                     height: 60px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
                 
@@ -104,7 +104,7 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                     font-size: 30px;
                     margin-top:20px;
                     width: 100%;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -120,7 +120,9 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                     height:100%;
                     padding: 12px 12px;
                     font-size: 21px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
+                    border:1px black solid;
+                    border-radius: 10px;
 
                 }
 
@@ -132,7 +134,9 @@ export function CarSale({ setCarPrice, carPrice, setShowModalPrice }: MuneProps)
                     border:none;
                     font-size: 16px;
                     cursor: pointer;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
+                    border:1px black solid;
+                    border-radius: 10px;
 
                 }
 

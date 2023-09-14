@@ -91,8 +91,8 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
     }, [currentFilter])
 
 
-    //filteredProps выводит все возможные фильтры для выбора по данным из БД
-    const filteredProps = useMemo(() => {
+    //filteblackProps выводит все возможные фильтры для выбора по данным из БД
+    const filteblackProps = useMemo(() => {
         let filteredCarsProps = {
             dealers: [],
             brands: [],
@@ -116,22 +116,22 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
             filteredCarsProps.driverTypes.push(car.CarModification.driveType)
             filteredCarsProps.engineTypes.push(car.CarModification.engineType)
         })
-        console.log(filteredCars, 'отфильтрованные машины')
+        console.log( filteredCars, 'отфильтрованные машины')
         return {
-            dealers: [...new Set(filteredCarsProps.dealers)],
-            brands: [...new Set(filteredCarsProps.brands)], // TODO es6-set polyfill
-            models: [...new Set(filteredCarsProps.models)],
-            colors: [...new Set(filteredCarsProps.colors)],
-            // price: [...new Set(filteredCarsProps.price)],
-            gearBoxTypes: [...new Set(filteredCarsProps.gearBoxTypes)],
-            carsBodyTypes: [...new Set(filteredCarsProps.carsBodyTypes)],
-            driverTypes: [...new Set(filteredCarsProps.driverTypes)],
-            engineTypes: [...new Set(filteredCarsProps.engineTypes)],
+            dealers: [...new Set( filteredCarsProps.dealers)],
+            brands: [...new Set( filteredCarsProps.brands)], // TODO es6-set polyfill
+            models: [...new Set( filteredCarsProps.models)],
+            colors: [...new Set( filteredCarsProps.colors)],
+            // price: [...new Set( filteredCarsProps.price)],
+            gearBoxTypes: [...new Set( filteredCarsProps.gearBoxTypes)],
+            carsBodyTypes: [...new Set( filteredCarsProps.carsBodyTypes)],
+            driverTypes: [...new Set( filteredCarsProps.driverTypes)],
+            engineTypes: [...new Set( filteredCarsProps.engineTypes)],
         }
 
-    }, [filteredCars])
+    }, [ filteredCars])
 
-    console.log(filteredProps, 'filteredProps')
+    console.log(filteblackProps, 'filteblackProps')
 
 
     //TypeGearBox
@@ -173,13 +173,13 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
         setCheckedDriveType([checkedDriveType[0], event.target.checked]);
     };
 
-    function resetFilteredCars() {
+    function resetFilteblackCars() {
         setFilteredCars(cars)
     }
 
     function selectBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterBrandResult(event.target.value)
-        if (event.target.value === 'Null') resetFilteredCars()
+        if (event.target.value === 'Null') resetFilteblackCars()
         setCurrentFilter(prevFilterState => {
             const brandName = event.target.value === 'Null'
                 ? null
@@ -256,7 +256,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
             <div className='background' ref={visibleElementRef}>
             <div className='titleBackground'>Модельный ряд</div>
                 <div className='cards' id="desktop">
-                    {filteredProps.models.map(model => {
+                    {filteblackProps.models.map(model => {
                         const filteredCars = cars.filter(car => model.includes(car.CarModel.modelName));
                         // Шаг 2: Посчитать количество автомобилей
                         const totalCars = filteredCars.length;
@@ -297,7 +297,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                             <Slide in={isVisible} key={model} direction="right" timeout={500}>
                                 <Card key={model} sx={{
                                     width: 240, height: 390, display: 'flex', border: '2px  solid #d1d7dd',
-                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
                                     borderRadius: '0px', boxShadow:'none',
                                     '&:hover': {
                                         transform: 'scale(1.04)',
@@ -305,10 +305,10 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                                         mozBoxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2);',
                                         boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2);'
                                     },
-                                    '&:hover .credit': {
+                                    '&:hover .cblackit': {
                                         display: 'flex',
                                         transition: '1s',
-                                        animation: 'credit-open.5s',
+                                        animation: 'cblackit-open.5s',
                                         marginTop: '400px',
                                         backgroundColor: '#0c7ee1',
                                         position: 'absolute'
@@ -431,7 +431,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                 </div >
 
                 <div className='cards' id="mob">
-                    {filteredProps.models.map(model => {
+                    {filteblackProps.models.map(model => {
                         const filteredCars = cars.filter(car => model.includes(car.CarModel.modelName));
                         // Шаг 2: Посчитать количество автомобилей
                         const totalCars = filteredCars.length;
@@ -472,15 +472,15 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
 
                                 <Card key={model} sx={{
                                     width: 270, height: 360, display: 'flex', border: '2px  solid #d1d7dd',
-                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
                                     borderRadius: '0px', boxShadow:'none',
                                     '&:hover': {
                                         transform: 'scale(1.04)',
                                     },
-                                    '&:hover .credit': {
+                                    '&:hover .cblackit': {
                                         display: 'flex',
                                         transition: '1s',
-                                        animation: 'credit-open.5s',
+                                        animation: 'cblackit-open.5s',
                                         marginTop: '400px',
                                         backgroundColor: '#0c7ee1',
                                         position: 'absolute'
@@ -644,14 +644,14 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   display: flex;
                   align-items: center;
                   letter-spacing: normal;
-                  font-family: 'Roboto',sans-serif;
+                  font-family: 'Gilroy',sans-serif;
                   color:black;
                 }
 
                 .descDiv{
                   display: flex;
                   justify-content: start;
-                  font-family: 'Roboto',sans-serif;
+                  font-family: 'Gilroy',sans-serif;
                   font-size: 12px;
                   font-weight: bold;
                 }
@@ -687,7 +687,7 @@ function CardModelsFilter({ cars, setFilteredCars, filteredCars, currentFilter, 
                   background-color:  #131313;
                   font-size: 15px;
                   transition: 0.6s;
-                  font-family: 'Roboto','sans-serif'; 
+                  font-family: 'Gilroy','sans-serif'; 
                   cursor: pointer;
             
                 }

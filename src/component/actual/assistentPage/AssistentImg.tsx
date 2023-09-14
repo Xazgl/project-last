@@ -96,7 +96,7 @@ export function AssistentImg(){
                     margin-top:21px;
                     font-size: 16px;
                     justify-content: center;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-weight: bold;
 
             }

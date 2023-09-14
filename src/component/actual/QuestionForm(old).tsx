@@ -173,7 +173,7 @@ export function QuestionForm() {
     // } = useForm({
     //     defaultValues: {
     //         example: "",
-    //         exampleRequired: ""
+    //         exampleRequiblack: ""
     //     }
     // });
 
@@ -209,7 +209,7 @@ export function QuestionForm() {
                                         backgroundColor: '#e7e7e7',
                                         padding: '11px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Gilroy',
                                         border: 'solid 1px #ccc7c7',
 
                                     }}
@@ -284,7 +284,7 @@ export function QuestionForm() {
             }
 
             .rightInput {
-            font-family: 'Roboto','sans-serif'; 
+            font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -307,7 +307,7 @@ export function QuestionForm() {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -318,7 +318,7 @@ export function QuestionForm() {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:30px;
                 text-align: start;
             
@@ -330,7 +330,7 @@ export function QuestionForm() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
            }
 
@@ -360,7 +360,7 @@ export function QuestionForm() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
 
@@ -368,7 +368,7 @@ export function QuestionForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 font-weight: bold;
@@ -381,7 +381,7 @@ export function QuestionForm() {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
                 border: solid 1px #ccc7c7;
@@ -396,7 +396,7 @@ export function QuestionForm() {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;

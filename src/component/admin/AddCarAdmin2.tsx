@@ -37,7 +37,7 @@ type Car = {
     special_price: String, //спец цена
     specialOffer: String, // спец предложение 
     tradeinDiscount: String, // скидка трейд
-    creditDiscount: String, // скидка
+    cblackitDiscount: String, // скидка
     insuranceDiscount: String, // скидка ?
     description: String, //описание
     carModelId: String,  // по данному полю идет свзяь с CarModel   
@@ -84,7 +84,7 @@ type Car = {
 type ActionTypes = 'id_1c_Car' | 'usedOrNew' | 'color'
     | 'bodyColorMetallic' | 'mileage' | 'mileageUnit' |
     'vin' | 'year' | 'price' | 'special_price' |
-    'specialOffer' | 'tradeinDiscount' | 'creditDiscount' |
+    'specialOffer' | 'tradeinDiscount' | 'cblackitDiscount' |
     'insuranceDiscount' | 'description' | 'carModelId' |
     'carModificationId' | 'carComplectationId' | 'dealerModelId' |
     'modelId_1c' | 'brandName' | 'modelName' |
@@ -102,7 +102,7 @@ type Action = {
     payload: string
 }
 
-function reducer(state: Car, action: Action) {
+function blackucer(state: Car, action: Action) {
     switch (action.type) {
         case 'id_1c_Car':
             return { ...state, id_1c_Car: action.payload };
@@ -126,8 +126,8 @@ function reducer(state: Car, action: Action) {
             return { ...state, specialOffer: action.payload };
         case 'tradeinDiscount':
             return { ...state, tradeinDiscount: action.payload };
-        case 'creditDiscount':
-            return { ...state, creditDiscount: action.payload };
+        case 'cblackitDiscount':
+            return { ...state, cblackitDiscount: action.payload };
         case 'insuranceDiscount':
             return { ...state, insuranceDiscount: action.payload };
         case 'description':
@@ -209,7 +209,7 @@ const initialState = {
     special_price: '',
     specialOffer: '',
     tradeinDiscount: '',
-    creditDiscount: '',
+    cblackitDiscount: '',
     insuranceDiscount: '',
     description: '',
     carModelId: '',
@@ -252,7 +252,7 @@ export function AddCarAdmin2() {
     const fileRef = useRef<HTMLInputElement>(null)
     const [image, setImage] = useState<File | null>(null)
     const [description, setDescription] = useState('')
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(blackucer, initialState);
     function createHandler(type: ActionTypes) {
         return (e: React.ChangeEvent<HTMLInputElement>) => dispatch({ type, payload: e.target.value })
     }
@@ -277,7 +277,7 @@ export function AddCarAdmin2() {
     };
     /////////////////////////////////////////////
 
-    //////////////////////////// sun text redactor 
+    //////////////////////////// sun text blackactor 
     const SunEditor = dynamic(() => import("suneditor-react"), {
         ssr: false,
     });
@@ -300,7 +300,7 @@ export function AddCarAdmin2() {
     //     formData.append('specialOffer', specialOffer)
     //     formData.append('tradeinDiscount', tradeinDiscount)
     //     formData.append('insuranceDiscount', insuranceDiscount)
-    //     formData.append('creditDiscount', creditDiscount)
+    //     formData.append('cblackitDiscount', cblackitDiscount)
     //     formData.append('description', description)
     //     formData.append('price', price)
     //     //model CarModel 
@@ -513,8 +513,8 @@ export function AddCarAdmin2() {
                                 <TextField label="Скидка кредит" variant="outlined" placeholder='300000'
                                     type="number"
                                     sx={{ width: '100%' }}
-                                    value={state.creditDiscount}
-                                    onChange={createHandler('creditDiscount')} />
+                                    value={state.cblackitDiscount}
+                                    onChange={createHandler('cblackitDiscount')} />
                             </div>
                             <div className='row'>
                                 <TextField label="Скидка" variant="outlined" placeholder='300000'

@@ -39,7 +39,7 @@ export function AssistentTxt() {
                         height:'100%',
                         fontSize:'16px',
                         backgroundColor:' #131313',
-                        '&:hover': { color: '#131313', background: '#f9b518' }
+                        '&:hover': { color: '#131313', background: '#D1AC02' }
                     }}
                     variant="contained"
                     href="tel:+78442524544">Связаться</Button>
@@ -64,7 +64,7 @@ export function AssistentTxt() {
                     font-size:18px;
                     justify-content: start;
                     color: #2e2d2d;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -74,7 +74,7 @@ export function AssistentTxt() {
                     font-size:18px;
                     justify-content: start;
                     color:  #131313;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 

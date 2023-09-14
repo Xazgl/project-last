@@ -84,12 +84,13 @@ export function Calc({ setShowModal }: Props) {
                             >
                                 Объем масла
                             </InputLabel>
-                            <Select value={oilVolume.toString()}
+                            <Select
+                                value={oilVolume.toString()}
                                 label="Объем масла"
                                 onChange={(e) => setOilVolume(parseInt(e.target.value))}
                                 sx={{
                                     border: ' #131313',
-                                    borderRadius: '0px',
+                                    borderRadius: '10px',
                                     color: " #131313",
                                     outline: 'none',
                                 }}
@@ -106,6 +107,7 @@ export function Calc({ setShowModal }: Props) {
                     <div className='row'>
                         <FormControlLabel
                             control={<Checkbox
+                                color="default"
                                 sx={{ color: ' #131313' }}
                                 checked={airFilter} onChange={(e) => setAirFilter(e.target.checked)} />}
                             label="Воздушный фильтр"
@@ -115,6 +117,7 @@ export function Calc({ setShowModal }: Props) {
                     <div className='row'>
                         <FormControlLabel
                             control={<Checkbox
+                                color="default"
                                 sx={{ color: ' #131313' }}
                                 checked={cabinFilter} onChange={(e) => setCabinFilter(e.target.checked)} />}
                             label="Салонный фильтр"
@@ -135,10 +138,10 @@ export function Calc({ setShowModal }: Props) {
                                 gap: '5px',
                                 width: '100%',
                                 height: '45px',
-                                backgroundColor: '#f9b518',
-                                borderRadius: '0px',
+                                backgroundColor: '#D1AC02',
+                                borderRadius: '10px',
                                 color: 'black',
-                                '&:hover': { 
+                                '&:hover': {
                                     backgroundColor: ' #131313',
                                     color: 'white',
                                 }
@@ -170,13 +173,13 @@ export function Calc({ setShowModal }: Props) {
 
                 .title  {
                     font-size: 40px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     height: auto;
                 }
 
                 .titleRow{
                     font-size: 25px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .form {
@@ -220,7 +223,7 @@ export function Calc({ setShowModal }: Props) {
                 .btn{
                     display:flex; 
                     width: 100%;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 #finished{

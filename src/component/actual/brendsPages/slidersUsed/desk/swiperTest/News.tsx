@@ -74,7 +74,7 @@ function SwiperTest({ cars }: { cars: AllUsedCarDto  }) {
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;

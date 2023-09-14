@@ -23,8 +23,8 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
             }
             <Button
                 // sx={{marginTop:'20px', backgroundСolor: ' #131313',borderRadius:'0px'}}
-                sx={{marginTop:'20px', background: 'black',borderRadius:'0px',
-                '&:hover': { color: '#131313', background: '#f9b518' }
+                sx={{marginTop:'20px', background: 'black',borderRadius:'10px',
+                '&:hover': { color: '#131313', background: '#D1AC02' }
                
             
             }}
@@ -120,7 +120,7 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:30px;
                 text-align: start;
            }
@@ -131,7 +131,7 @@ export function DriversForm({ setDrivers, drivers }: DriversProps) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
            }
 

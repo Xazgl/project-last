@@ -386,7 +386,7 @@ export function VacancyForm(job) {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
             }
@@ -408,7 +408,7 @@ export function VacancyForm(job) {
                 justify-content: center;
                 align-items: baseline;
                 width:900px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -419,7 +419,7 @@ export function VacancyForm(job) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:30px;
                 text-align: start;
            }
@@ -430,7 +430,7 @@ export function VacancyForm(job) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
            }
 
@@ -464,7 +464,7 @@ export function VacancyForm(job) {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
 
@@ -472,7 +472,7 @@ export function VacancyForm(job) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:none;
                 padding: 12px 12px;
                 border-bottom:  #e7e7e7 solid 2px;
@@ -484,7 +484,7 @@ export function VacancyForm(job) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }
@@ -495,7 +495,7 @@ export function VacancyForm(job) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif';
+                font-family: 'Gilroy','sans-serif';
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;

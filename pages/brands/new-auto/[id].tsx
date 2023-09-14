@@ -2,17 +2,16 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
-import { AllCarDto, BrandPageDto, CarDtoWithoutFavorite } from '../../../@types/dto'
-import db, { YandexGeo } from '../../../prisma'
+import { AllCarDto, BrandPageDto, NewsOne } from '../../../@types/dto'
+import db, { News, YandexGeo } from '../../../prisma'
 import BarMenu from '../../../src/component/BarMenu'
 import { Modal } from '../../../src/component/Modal'
 import { ModalFavorite } from '../../../src/component/ModalFavorite'
 import { TradeinModal } from '../../../src/component/ModalTwo'
-import { GeelyImgDestop } from '../../../src/component/actual/brendsPages/geely/banner/GeelyImg'
 import { MenuBarNew } from '../../../src/component/actual/menuNew/Menu'
 import { FooterMainNew } from '../../../src/component/actual/menuNew/FooterMain'
 import { Box, CircularProgress, Grow, Paper } from '@mui/material'
-import router, { useRouter } from 'next/router'
+import  { useRouter } from 'next/router'
 import { BannerBrand } from '../../../src/component/actual/brendsPages/dynamicPage/banner/BannerBrand'
 import { FilterWithPageComponentDynamic } from '../../../src/component/actual/brendsPages/dynamicPage/FilterWithPageComponentDynamic'
 
@@ -31,6 +30,7 @@ const BrandPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
 
   const [brand, setBrand] = useState<BrandPageDto>()
   const [mapsGeo, setMapsGeo] = useState<YandexGeo[]>()
+  const [newsBrand, setNewsBrand] = useState<NewsOne[]>()
   const [banner, setBanner] = useState('')
   const { id } = router.query
 
@@ -48,6 +48,7 @@ const BrandPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
         setBanner(brandFetch.banner)
         setBrand(brandFetch)
         setMapsGeo(brandFetch.maps)
+        setNewsBrand(brandFetch.news)
       }
     }
     if (router.isReady) {
@@ -77,12 +78,12 @@ const BrandPage: NextPage<{ cars: AllCarDto, brands: Brand[] }> = ({ cars, brand
           {brand &&
             <>
               <BannerBrand brand={brand} />
-
               <FilterWithPageComponentDynamic setShowModal={setShowModal}
                 setShowModalFavorite={setShowModalFavorite}
                 cars={cars} brands={brands}
                 brand={brand}
                 mapsGeo={mapsGeo}
+                newsBrand={newsBrand}
               />
             </>
           }

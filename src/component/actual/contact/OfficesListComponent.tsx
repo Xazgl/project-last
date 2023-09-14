@@ -20,7 +20,7 @@ type Props = {
 export function OfficesListComponent({ setShowModal, offices }: Props) {
 
 
-    const [filteredOffices, setFilteredOffices] = useState<Offices[]>(offices)
+    const [filteblackOffices, setFilteblackOffices] = useState<Offices[]>(offices)
 
     function showModal(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -68,7 +68,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                         <>
                             <div className="title">Дилерские центры</div>
 
-                            <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
+                            <OfficeFilterSidebar offices={offices} filteblackOffices={filteblackOffices} setFilteblackOffices={setFilteblackOffices} />
                         </>
                     </div>
                     :
@@ -91,7 +91,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                         </AccordionSummary>
                         <AccordionDetails sx={{ display: 'flex',flexDirection:'column', alignItems:'center' }}>
                             <Typography>
-                                <OfficeFilterSidebar offices={offices} filteredOffices={filteredOffices} setFilteredOffices={setFilteredOffices} />
+                                <OfficeFilterSidebar offices={offices} filteblackOffices={filteblackOffices} setFilteblackOffices={setFilteblackOffices} />
 
                             </Typography>
                         </AccordionDetails>
@@ -101,7 +101,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
 
 
             <div className="dealerBlock">
-                <FilteredOffice filteredOffices={filteredOffices} setShowModal={setShowModal} />
+                <FilteredOffice filteblackOffices={filteblackOffices} setShowModal={setShowModal} />
             </div>
         </div >
             <style jsx>{`
@@ -144,7 +144,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     font-size: 45px;
                     font-weight: bold;
                     text-align: center;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     margin-top:20px;
 
                 }
@@ -204,13 +204,13 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
                 #price {
                     display: flex;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -225,7 +225,7 @@ export function OfficesListComponent({ setShowModal, offices }: Props) {
                     height: 30px;
                     border:solid 1px  #131313;
                     font-size:16px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
                 

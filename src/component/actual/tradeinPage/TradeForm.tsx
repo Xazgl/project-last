@@ -118,8 +118,9 @@ export function TradeForm({ refs }: MuneProps) {
                                         backgroundColor: 'white',
                                         padding: '12px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Gilroy',
                                         border: 'solid 1px #ccc7c7',
+                                        borderRadius: '10px'
 
                                     }}
                                     id="inputP"
@@ -178,7 +179,7 @@ export function TradeForm({ refs }: MuneProps) {
                                         borderRadius: '0xp',
                                         color: 'white',
                                         '&.Mui-checked': {
-                                            color: '#f9b518', // Ваш цвет при нажатом чекбоксе
+                                            color: '#D1AC02', // Ваш цвет при нажатом чекбоксе
                                         },
                                     }}
                                 />
@@ -227,7 +228,7 @@ export function TradeForm({ refs }: MuneProps) {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -250,7 +251,7 @@ export function TradeForm({ refs }: MuneProps) {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -261,7 +262,7 @@ export function TradeForm({ refs }: MuneProps) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:43px;
                 text-align: start;
                 color:white;
@@ -274,7 +275,7 @@ export function TradeForm({ refs }: MuneProps) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:18px;
                 color:white;
            }
@@ -295,7 +296,7 @@ export function TradeForm({ refs }: MuneProps) {
                 display:flex;
                 width: 100%;
                 flex-direction: column;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
            .formTitle{
@@ -325,7 +326,7 @@ export function TradeForm({ refs }: MuneProps) {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
 
@@ -333,10 +334,10 @@ export function TradeForm({ refs }: MuneProps) {
                 width: 100%;
                 height: 100%;
                 font-size: 16px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color: white;
                 border:none;
-        
+                border-radius: 10px;
                 padding: 12px 12px;
                 outline:none;
                 border: solid 1px white;
@@ -346,7 +347,7 @@ export function TradeForm({ refs }: MuneProps) {
                 width: 100%;
                 height: 100%;
                 font-size: 16px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color:white;
                 border:none;
                 border: solid 1px white;
@@ -362,7 +363,7 @@ export function TradeForm({ refs }: MuneProps) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: transform.3s;
                 width:100%;
                 height: 100%;
@@ -372,10 +373,11 @@ export function TradeForm({ refs }: MuneProps) {
                 text-align: center;
                 background-color: #b98d27;
                 color: #131313;
+                border-radius: 10px;
            }
 
            .btn_show{
-            background-color: #f9b518dc;
+            background-color: #D1AC02dc;
             cursor: pointer;
            }
            

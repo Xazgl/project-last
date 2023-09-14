@@ -53,7 +53,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto', sans-serif; 
+                    font-family: 'Gilroy', sans-serif; 
                     font-size:20px;
                     font-weight: bold;
                 }
@@ -85,7 +85,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
 
                 .btn:hover{
                     transform: scale(0.95);
-                    background-color: #eab330;
+                    background-color: #D1AC02;
                     color:black;
                     border: 1px solid black;
                   

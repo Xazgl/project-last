@@ -252,7 +252,7 @@ export function FormOffer({ refForm }: Props) {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -275,7 +275,7 @@ export function FormOffer({ refForm }: Props) {
                 justify-content: center;
                 align-items: baseline;
                 width:500px;
-                font-family: 'Roboto','sans-serif';
+                font-family: 'Gilroy','sans-serif';
            }
 
 
@@ -286,7 +286,7 @@ export function FormOffer({ refForm }: Props) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:30px;
                 text-align: start;
             
@@ -298,7 +298,7 @@ export function FormOffer({ refForm }: Props) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
            }
 
@@ -328,7 +328,7 @@ export function FormOffer({ refForm }: Props) {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
 
@@ -336,7 +336,7 @@ export function FormOffer({ refForm }: Props) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif';  
+                font-family: 'Gilroy','sans-serif';  
                 border:solid 2px  #131313;
                 padding: 12px 12px;
                 outline:none;
@@ -346,7 +346,7 @@ export function FormOffer({ refForm }: Props) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 background-color: #e7e7e7;
                 border:none;
            }
@@ -357,7 +357,7 @@ export function FormOffer({ refForm }: Props) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;

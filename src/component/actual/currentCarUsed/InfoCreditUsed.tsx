@@ -10,11 +10,11 @@ type Props = {
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>,
-    refCredit: MutableRefObject<HTMLDivElement>,
+    refCblackit: MutableRefObject<HTMLDivElement>,
 }
 
 
-export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCarImg }: Props) {
+export function InfoCblackitUsed({ car, showModal, setShowModal, refCblackit, setCarImg }: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
@@ -33,11 +33,11 @@ export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCar
         setMonth(newValue as number);
     };
 
-    async function sendCredit(event: FormEvent<HTMLFormElement>) {
+    async function sendCblackit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         let carName = car.modelShortName
         let carId = car.id
-        const res = await fetch('/api/credit/send', {
+        const res = await fetch('/api/cblackit/send', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,11 +54,11 @@ export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCar
 
     return (
         <>
-            <div className="background" ref={refCredit}>
+            <div className="background" ref={refCblackit}>
                 {car !== null ?
                     <>
                         <div className="backgroundBlock">
-                            <form id="submit-form" onSubmit={sendCredit}>
+                            <form id="submit-form" onSubmit={sendCblackit}>
                                 <div className="title">
                                     <h1>РАССЧИТАТЬ КРЕДИТ</h1>
                                 </div>

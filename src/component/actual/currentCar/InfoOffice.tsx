@@ -257,9 +257,9 @@ export function InfoOffice({ car, showModal, setShowModal }: Props) {
                                                 width: '100%', height: '100%', border: 'solid 2px  #131313', fontWeight: 'bold',
                                                 backgroundColor: ' #131313', color: 'white',borderRadius:'0px',
                                                 '&:hover': {
-                                                    backgroundColor: "#f9b518",
+                                                    backgroundColor: "#D1AC02",
                                                     color: ' #131313',
-                                                    border:'#f9b518'
+                                                    border:'#D1AC02'
                             
                                                 }
                                             }}
@@ -309,7 +309,7 @@ export function InfoOffice({ car, showModal, setShowModal }: Props) {
                     height: 400px;
                     background-color: white;
                     border-radius: 7px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .leftColumn{
@@ -339,7 +339,7 @@ export function InfoOffice({ car, showModal, setShowModal }: Props) {
                     width:100%;
                     height: 100%;
                     font-size: 15px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .rightColumn{

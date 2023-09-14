@@ -106,57 +106,57 @@ export function MenuBarNew({ setShowModal }: Props) {
     {
       label: 'Сравнение',
       link: '/catalog/compare-cars',
-      icon: <BarChartIcon sx={{ color: '#f9b518', fontSize: '14px' }} />,
+      icon: <BarChartIcon sx={{ color: '#D1AC02', fontSize: '14px' }} />,
     },
     {
       label: 'Избранное',
       link: '/catalog/favorite-cars',
-      icon: <BookmarkIcon sx={{ color: '#f9b518', fontSize: '14px' }} />,
+      icon: <BookmarkIcon sx={{ color: '#D1AC02', fontSize: '14px' }} />,
     },
   ];
 
 
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
+  const [hoveblackItem, setHoveblackItem] = useState(null);
+  const [hoveblackSubMenu, setHoveblackSubMenu] = useState(null);
   let timeoutId;
 
   const handleMouseEnter = (item) => {
     clearTimeout(timeoutId);
-    setHoveredItem(item);
+    setHoveblackItem(item);
   };
 
   const handleMouseLeave = () => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      setHoveredItem(null);
-      setHoveredSubMenu(null); // Добавьте эту строку
+      setHoveblackItem(null);
+      setHoveblackSubMenu(null); // Добавьте эту строку
     }, 300);
   };
 
   const handleSubMenuMouseEnter = (subItem) => {
     clearTimeout(timeoutId);
-    setHoveredSubMenu(subItem);
+    setHoveblackSubMenu(subItem);
   };
 
   const handleSubMenuMouseLeave = () => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      setHoveredSubMenu(null);
+      setHoveblackSubMenu(null);
     }, 20000);
   };
 
   // useEffect(() => {
-  //  console.log(hoveredItem)
-  // }, [hoveredItem])
+  //  console.log(hoveblackItem)
+  // }, [hoveblackItem])
 
 
-  const logHoveredItem = () => {
-    console.log(hoveredItem);
+  const logHoveblackItem = () => {
+    console.log(hoveblackItem);
   };
 
   // useEffect(() => {
-  //   logHoveredItem();
-  // }, [hoveredItem]);
+  //   logHoveblackItem();
+  // }, [hoveblackItem]);
 
   // navItems.map((item, index) => (
   //   console.log(item.label) 
@@ -180,7 +180,7 @@ export function MenuBarNew({ setShowModal }: Props) {
               <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
                 <a rel="noopener noreferrer">
                   <button className='btnMenu' >
-                    <AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> Волгоград
+                    <AddLocationAltIcon sx={{ color: 'white' }} /> Волгоград
                   </button>
                 </a>
               </Link>
@@ -189,7 +189,7 @@ export function MenuBarNew({ setShowModal }: Props) {
               <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт%20волжский/filter/chain_id/3983845841/?ll=44.630788%2C48.765211&sll=44.569402%2C48.726965&sspn=0.689392%2C0.285283&z=12'}>
                 <a rel="noopener noreferrer">
                   <button className='btnMenu' >
-                    <AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> Волжский
+                    <AddLocationAltIcon sx={{ color: 'white' }} /> Волжский
                   </button>
                 </a>
               </Link>
@@ -200,13 +200,13 @@ export function MenuBarNew({ setShowModal }: Props) {
               <Link href={'tel:+78442292505'}>
                 <a rel="noopener noreferrer">
                   <button className='btnMenu' >
-                    <LocalPhoneIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> +7 (8442) 29 25 05
+                    <LocalPhoneIcon sx={{ color: 'white', fontSize: '14px' }} /> +7 (8442) 29 25 05
                   </button>
                 </a>
               </Link>
             </li>
             <li className="menuEL">
-              <button className='btnMenu' onClick={showModal}>Заказать звонок<SearchIcon sx={{ color: '#f9b518', fontSize: '14px' }} /></button>
+              <button className='btnMenu' onClick={showModal}>Заказать звонок<SearchIcon sx={{ color: 'white', fontSize: '14px' }} /></button>
             </li>
           </div>
         </ul>
@@ -237,12 +237,12 @@ export function MenuBarNew({ setShowModal }: Props) {
               )}
               {item.subItems && (
 
-                <ul className={`bottomUl ${hoveredItem === item.label ? 'show' : ''}`}>
+                <ul className={`bottomUl ${hoveblackItem === item.label ? 'show' : ''}`}>
                   {item.subItems.map((subItem, subIndex) => (
                     <li
                       key={subIndex}
-                      // className={`f ${hoveredItem === item ? 'show' : ''}`}
-                      className={`f ${hoveredItem === `bottomUl-${index}` ? 'show' : ''}`}
+                      // className={`f ${hoveblackItem === item ? 'show' : ''}`}
+                      className={`f ${hoveblackItem === `bottomUl-${index}` ? 'show' : ''}`}
                       onMouseEnter={() => handleSubMenuMouseEnter(subItem.label)}
                       onMouseLeave={handleSubMenuMouseLeave}
                     >
@@ -263,6 +263,10 @@ export function MenuBarNew({ setShowModal }: Props) {
 
     <style jsx>{`
 
+      .background{
+        padding-bottom: 20px;
+      }
+
     .barMini{
       width: 100%;
       top:0;
@@ -270,8 +274,9 @@ export function MenuBarNew({ setShowModal }: Props) {
       margin-top:0;
       height: 60px;
       margin-bottom: 0px;
-      border-bottom: solid 2px #bebebe ;
+      border-bottom: solid 1px white ;
       justify-content: start;
+      border-radius: 10px 10px 0 0;
     }
 
     .columBar{
@@ -282,7 +287,7 @@ export function MenuBarNew({ setShowModal }: Props) {
 
     .bar {
         justify-content: space-between;;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:16px;
         width: 100%;
@@ -298,12 +303,12 @@ export function MenuBarNew({ setShowModal }: Props) {
 
     .city {
        font-size:16px;
-       font-family: 'Roboto','sans-serif'; 
+       font-family: 'Gilroy','sans-serif'; 
     }
 
     ul {
         justify-content: center;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: "Gilroy",'sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:18px;
         width: 100%;
@@ -324,7 +329,7 @@ export function MenuBarNew({ setShowModal }: Props) {
     }
       
     .f:hover {
-        color:#fdb913;;
+        color:#D1AC02;
     }
        
     .label {
@@ -362,7 +367,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         content:"";
         width:0%;
         height:1.7px;
-        background-color:#fdb913;
+        background-color:#D1AC02;
         left:50%;
         bottom:-1px;  
         transition:all 0.3s ease-in-out;
@@ -422,7 +427,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         background-color: transparent;
         color: white;
         text-align: center;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         display: flex;
         justify-content: center;
         gap:5px;
@@ -434,7 +439,8 @@ export function MenuBarNew({ setShowModal }: Props) {
             display: flex; 
             justify-content: center;
             width: '100%' ;
-            background-color: #131313;
+            margin-top: 10px;
+            
       }
   
       .content {
@@ -442,6 +448,10 @@ export function MenuBarNew({ setShowModal }: Props) {
             flex-direction: column;
             align-items: center;
             width: 1179px; 
+            background-color: black;
+            border-radius: 10px;
+            padding-right: 15px;
+            padding-left: 15px;
       }
 
       @media(max-width: 1300px) {

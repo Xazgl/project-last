@@ -43,7 +43,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     align-items:start;
                     flex-direction:column;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:45px;
                     font-weight: bold;
                     padding-left: 13%;
@@ -55,7 +55,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     flex-direction:row;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
                 }
@@ -73,7 +73,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.3s;
                     width: 300px;
                     height: 45px;
@@ -88,8 +88,8 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
 
                 .btn:hover{
                     transform: scale(0.99);
-                    background-color: #eab330;
-                    border: 3px solid #eab330;
+                    background-color: #D1AC02;
+                    border: 3px solid #D1AC02;
                 }
                 
                 .ImgBanner2{

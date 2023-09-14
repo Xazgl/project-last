@@ -119,7 +119,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     padding: 20px 30px;
                     border-radius: 7px 7px 0 0 ;
                     font-weight: bold;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -132,7 +132,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     align-items: start;
                     border-bottom:1px solid #e0e0e0;
                     padding: 20px 20px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -144,7 +144,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     height: auto;
                     align-items: start;
                     padding: 20px 20px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -160,7 +160,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     display: flex;
                     text-align: center;
                     justify-content: start;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -170,7 +170,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     color:  #131313;
                     font-size: 30px;
                     font-weight: bold;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -181,7 +181,7 @@ export function InfoSaleUsed({ car, showModal, setShowModal, setCarImg }: Props)
                     width: 100%;
                     height: 60px;
                     margin-top: 10px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 

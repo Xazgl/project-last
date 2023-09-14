@@ -227,7 +227,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                                 width: '100%',
                                 height: '40px',
                                 backgroundColor:' #131313',
-                                borderRadius:'0px'
+                                borderRadius:'10px'
                             }}
                             variant="contained"
                             onClick={showModal}
@@ -249,14 +249,14 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                     font-size: 45px;
                     font-weight: bold;
                     text-align: center;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
                 .titleMini {
                     font-size: 20px;
                     text-align: center;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
@@ -289,7 +289,7 @@ export function TiresServiceBanner({ setShowModal }: Numbers) {
                     font-size: 30px;
                     font-weight: bold;
                     margin-top: 10px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 

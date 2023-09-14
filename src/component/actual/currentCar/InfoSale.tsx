@@ -70,9 +70,9 @@ export function InfoSale({ car, showModal, setShowModal, }: Props) {
                                             sx={{
                                                 width: '100%', height: '100%', border: 'solid 2px  #131313', borderRadius: '0px',color:'#131313',
                                                 '&:hover': {
-                                                    backgroundColor: "#f9b518",
+                                                    backgroundColor: "#D1AC02",
                                                     color: ' #131313',
-                                                    border: '#f9b518'
+                                                    border: '#D1AC02'
 
                                                 }
                                             }}
@@ -172,7 +172,7 @@ export function InfoSale({ car, showModal, setShowModal, }: Props) {
                     color:  #131313;
                     font-size: 30px;
                     font-weight: bold;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .btn {

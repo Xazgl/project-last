@@ -64,18 +64,18 @@ export function MenuBarNew({ setShowModal }: Props) {
 
   
 
-  const [hoveredItemId, setHoveredItemId] = useState(null);
+  const [hoveblackItemId, setHoveblackItemId] = useState(null);
   let timeoutId;
   
   const handleMouseEnter = (itemId) => {
     clearTimeout(timeoutId);
-    setHoveredItemId(itemId);
+    setHoveblackItemId(itemId);
   };
   
   const handleMouseLeave = () => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      setHoveredItemId(null);
+      setHoveblackItemId(null);
     }, 400);
   };
 
@@ -95,7 +95,7 @@ export function MenuBarNew({ setShowModal }: Props) {
               <Link href={'https://yandex.ru/maps/38/volgograd/search/арконт/filter/chain_id/3983845841/?ll=44.569402%2C48.726965&sll=44.516979%2C48.707068&sspn=0.344696%2C0.142698&z=11'}>
                 <a rel="noopener noreferrer">
                   <button className='btnMenu' >
-                    <AddLocationAltIcon sx={{ color: '#f9b518 ' }} /> Волгоград
+                    <AddLocationAltIcon sx={{ color: '#D1AC02 ' }} /> Волгоград
                   </button>
                 </a>
               </Link>
@@ -106,13 +106,13 @@ export function MenuBarNew({ setShowModal }: Props) {
               <Link href={'tel:+78442292505'}>
                 <a rel="noopener noreferrer">
                   <button className='btnMenu' >
-                    <LocalPhoneIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> +7 (8442) 29 25 05
+                    <LocalPhoneIcon sx={{ color: '#D1AC02', fontSize: '14px' }} /> +7 (8442) 29 25 05
                   </button>
                 </a>
               </Link>
             </li>
             <li className="menuEL">
-              <button className='btnMenu' onClick={showModal}>Заказать звонок<SearchIcon sx={{ color: '#f9b518', fontSize: '14px' }} /></button>
+              <button className='btnMenu' onClick={showModal}>Заказать звонок<SearchIcon sx={{ color: '#D1AC02', fontSize: '14px' }} /></button>
             </li>
           </div>
         </ul>
@@ -127,7 +127,7 @@ export function MenuBarNew({ setShowModal }: Props) {
           <li className="menuEL" id="catalog" onMouseEnter={() => handleMouseEnter('catalog')}
           onMouseLeave={handleMouseLeave}>
             <span>Каталог </span>
-            <ul className={`bottomUl ${hoveredItemId === 'catalog' ? 'show' : ''}`}>
+            <ul className={`bottomUl ${hoveblackItemId === 'catalog' ? 'show' : ''}`}>
               <Link href={'/catalog/new-car'}>
                 <a rel="noopener noreferrer"> <li className="f">Автомобили в наличии</li></a>
               </Link>
@@ -145,7 +145,7 @@ export function MenuBarNew({ setShowModal }: Props) {
           <li className="menuEL" id="catalog"  onMouseEnter={() => handleMouseEnter('catalog')}
           onMouseLeave={handleMouseLeave} >
             <span>Услуги</span>
-            <ul className={`bottomUl ${hoveredItemId === 'catalog' ? 'show' : ''}`}>
+            <ul className={`bottomUl ${hoveblackItemId === 'catalog' ? 'show' : ''}`}>
               {/* <Link href={'/catalog/new-car'}>
             <li className="f">Кредитный калькулятор</li>
           </Link> */}
@@ -208,7 +208,7 @@ export function MenuBarNew({ setShowModal }: Props) {
             {/* <Link href={'/catalog/compare-cars'}><a rel="noopener noreferrer"><BarChartIcon /><span>Сравнение</span></a></Link> */}
             <Link href={'/catalog/compare-cars'}>
               <button className='btnMenu' >
-                <BarChartIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> Сравнение
+                <BarChartIcon sx={{ color: '#D1AC02', fontSize: '14px' }} /> Сравнение
               </button>
             </Link >
           </li>
@@ -216,7 +216,7 @@ export function MenuBarNew({ setShowModal }: Props) {
           <li className="menuEL" >
             <Link href={'/catalog/favorite-cars'}>
               <button className='btnMenu' >
-                <BookmarkIcon sx={{ color: '#f9b518', fontSize: '14px' }} /> Избранное
+                <BookmarkIcon sx={{ color: '#D1AC02', fontSize: '14px' }} /> Избранное
               </button>
             </Link >
           </li>
@@ -261,7 +261,7 @@ export function MenuBarNew({ setShowModal }: Props) {
 
     .bar {
         justify-content: space-between;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:16px;
         width: 100%;
@@ -277,12 +277,12 @@ export function MenuBarNew({ setShowModal }: Props) {
 
       .city {
        font-size:16px;
-       font-family: 'Roboto','sans-serif'; 
+       font-family: 'Gilroy','sans-serif'; 
       }
 
       ul {
         justify-content: center;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         border-bottom: 1px solid #0e0d0d;   
         font-size:18px;
         width: 100%;
@@ -303,7 +303,7 @@ export function MenuBarNew({ setShowModal }: Props) {
       }
       
       .f:hover {
-        color:#fdb913;;
+        color:#D1AC02;;
       }
        
       .label {
@@ -341,7 +341,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         content:"";
         width:0%;
         height:1.7px;
-        background-color:#fdb913;
+        background-color:#D1AC02;
         left:50%;
         bottom:-1px;  
         transition:all 0.3s ease-in-out;
@@ -406,7 +406,7 @@ export function MenuBarNew({ setShowModal }: Props) {
         background-color: transparent;
         color: white;
         text-align: center;
-        font-family: 'Roboto','sans-serif'; 
+        font-family: 'Gilroy','sans-serif'; 
         display: flex;
         justify-content: center;
         gap:5px;

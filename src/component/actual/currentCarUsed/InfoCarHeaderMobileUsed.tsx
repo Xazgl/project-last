@@ -13,13 +13,13 @@ type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>,
     setCar: Dispatch<SetStateAction<CarUsedInclude>>,
-    refCredit: MutableRefObject<HTMLDivElement>,
+    refCblackit: MutableRefObject<HTMLDivElement>,
     showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
 }
 
 
-export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setShowModalImg, setCarImg, refCredit }: Props) {
+export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setShowModalImg, setCarImg, refCblackit }: Props) {
 
     function showModalImgFunction(x) {
         setShowModalImg(true)
@@ -161,12 +161,12 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                                             {car.FavoriteUsedCarsToCar.length <= 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => addToFavorite(car.id)}
-                                                    sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                    sx={{ '&:hover': { color: 'black' }, fontSize: '30px', color: '#a19f9f' }} />
                                             }
                                             {car.FavoriteUsedCarsToCar.length > 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => deleteToFavorite(car.id)}
-                                                    sx={{ color: 'red', fontSize: '30px' }} />
+                                                    sx={{ color: 'black', fontSize: '30px' }} />
                                             }
                                         </div>
                                         <div className="Icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '7px', width: '60px', height: '60px', border: '1px solid #a19f9f' }}>
@@ -207,7 +207,7 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
-                                                        refCredit.current.scrollIntoView({
+                                                        refCblackit.current.scrollIntoView({
                                                             behavior: 'smooth',
                                                             block: 'center',
                                                             inline: 'center'

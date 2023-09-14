@@ -50,7 +50,7 @@ type Props = {
 
 export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: Props) {
 
-    const [filteredCars, setFilteredCars] = useState(cars)
+    const [ filteredCars, setFilteredCars] = useState(cars)
 
     function showModal(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -60,10 +60,10 @@ export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: P
     return (
         <>
             <div className="background">
-                <CarFilterSidebarMobile cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
-                <CarFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
+                <CarFilterSidebarMobile cars={cars} filteredCars={ filteredCars} setFilteredCars={setFilteredCars} />
+                <CarFilterSidebar cars={cars} filteredCars={ filteredCars} setFilteredCars={setFilteredCars} />
                 <div className="carBlock">
-                    <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} />
+                    <FilteredNewCars filteredCars={ filteredCars} setShowModal={setShowModal} setShowModalFavorite={setShowModalFavorite} />
                 </div>
             </div >
             <style jsx>{`
@@ -130,13 +130,13 @@ export function NewCarComponent({ setShowModal,  setShowModalFavorite, cars }: P
                     font-size:16px;
                     margin-top:5px;
                     padding: 5px 5px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 
                 #price {
                     display: flex;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 

@@ -45,7 +45,7 @@ export function AddJob() {
         },
     };
 
-    //////////////////////////// sun text redactor 
+    //////////////////////////// sun text blackactor 
     const SunEditor = dynamic(() => import("suneditor-react"), {
         ssr: false,
     });

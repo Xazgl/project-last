@@ -66,12 +66,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       })
       // Сохраняем данные в Redis на день
-      getRedisInstance().set('offers', JSON.stringify(offers), 'EX', 86400);
+      getRedisInstance().set('offers', JSON.stringify(offers), 'EX', 1000);
     } else {
       offers = JSON.parse(offersData) as Offer[]; // Преобразование строки в массив объектов типа Car
     }
     // Устанавливаем заголовки Cache-Control и ETag
-    context.res.setHeader('Cache-Control', 'public, max-age=86400'); // Максимальное время кэширования - 4 часа
+    context.res.setHeader('Cache-Control', 'public, max-age=1000'); // Максимальное время кэширования - 4 часа
     context.res.setHeader('ETag', 'some-unique-value'); // Уникальное значение ETag
     return {
       props: {

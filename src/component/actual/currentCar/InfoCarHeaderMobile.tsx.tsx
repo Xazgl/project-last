@@ -18,14 +18,14 @@ type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string[]>>,
     setCar: Dispatch<SetStateAction<CarDto>>,
-    refCredit: MutableRefObject<HTMLDivElement>,
+    refCblackit: MutableRefObject<HTMLDivElement>,
     showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
     setCarStepImg:(Dispatch<SetStateAction<string>>)
 }
 
 
-export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarStepImg, setCarImg, refCredit }: Props) {
+export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, showModalImg, setShowModalImg, setCarStepImg, setCarImg, refCblackit }: Props) {
 
     function showModalImgFunction(item) {
         setShowModalImg(true)
@@ -191,12 +191,12 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                             {car.FavoriteCarsToCar.length <= 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => addToFavorite(car.id)}
-                                                    sx={{ '&:hover': { color: 'red' }, fontSize: '30px', color: '#a19f9f' }} />
+                                                    sx={{ '&:hover': { color: 'black' }, fontSize: '30px', color: '#a19f9f' }} />
                                             }
                                             {car.FavoriteCarsToCar.length > 0 &&
                                                 <FavoriteIcon
                                                     onClick={() => deleteToFavorite(car.id)}
-                                                    sx={{ color: 'red', fontSize: '30px' }} />
+                                                    sx={{ color: 'black', fontSize: '30px' }} />
                                             }
                                         </div>
                                         <div className="Icon" style={{
@@ -242,7 +242,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
-                                                        refCredit.current.scrollIntoView({
+                                                        refCblackit.current.scrollIntoView({
                                                             behavior: 'smooth',
                                                             block: 'center',
                                                             inline: 'center'
@@ -328,7 +328,7 @@ export function InfoCarHeaderMobile({ car, setCar, showModal, setShowModal, show
                     border-radius: 5px;
                     font-size: 14px;
                     font-weight: bold;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     cursor: pointer;
                 }
 

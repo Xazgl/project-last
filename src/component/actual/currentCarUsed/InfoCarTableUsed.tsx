@@ -297,7 +297,7 @@ export function InfoCarTableUsed({ car, showModal, setShowModal, setCarImg }: Pr
                     color:#7b7979;
                     font-weight: 400;
                     font-size: 12px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                 }
 
                 .columnDesc{
@@ -307,7 +307,7 @@ export function InfoCarTableUsed({ car, showModal, setShowModal, setCarImg }: Pr
                     text-align: center;
                     font-weight: 700;
                     font-size: 13px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
 
                 }
 

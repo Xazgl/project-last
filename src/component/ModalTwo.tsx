@@ -85,7 +85,7 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
         closeStarting ? 'modalBackground_close-starting' : '',
     ]
     return <>
-        <div className={className.join(' ')} style={{ color: 'red' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
+        <div className={className.join(' ')} style={{ color: 'black' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
             if (event.target === backgroundEl.current) closeModal()
         }}>
             <div className="modalWindow" id="modalWindow">
@@ -253,7 +253,7 @@ export function TradeinModal({ showTradeInModal, setShowTradeInModal }: ModelPro
                 align-items:center;
                 width:700;
                 margin-top:30px;
-                background:#fdb913;
+                background:#D1AC02;
                 width: 700px;
                 height: 3px;
             }

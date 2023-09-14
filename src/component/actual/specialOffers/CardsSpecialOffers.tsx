@@ -233,7 +233,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
     const [sales, setSales] = useState<AllOffersDto[]>([])
     const [openStarting, setOpenStarting] = useState(false)
     const [closeStarting, setCloseStarting] = useState(false)
-    const [filteredOffers, setFilteredOffers] = useState<Offer[]>(offers)
+    const [filteblackOffers, setFilteblackOffers] = useState<Offer[]>(offers)
     const [detailFilterMainPeopleResult, setDetailFilterMainPeople] = useState('')
     const [detailFilterBrandResult, setDetailFilterBrandPeople] = useState('')
     const [detailFilterModeResult, setDetailFilterModePeople] = useState('')
@@ -283,7 +283,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
     }
 
     useEffect(() => {
-        setFilteredOffers(offers.filter(offer => {
+        setFilteblackOffers(offers.filter(offer => {
             return mainPeopleFilter(offer, currentFilter)
                 && detailBrandFilter(offer, currentFilter)
                 && detailModeFilter(offer, currentFilter)
@@ -291,9 +291,9 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
     }, [currentFilter])
 
 
-    //filteredProps выводит все возможные фильтры для выбора по данным из БД
-    const filteredProps = useMemo(() => {
-        let filteredOffersProps = {
+    //filteblackProps выводит все возможные фильтры для выбора по данным из БД
+    const filteblackProps = useMemo(() => {
+        let filteblackOffersProps = {
             filterMainPeople: [],
             detailFilterBrand: [],
             detailFilterMode: [],
@@ -302,32 +302,32 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
             detailFilterBrand: string[],
             detailFilterMode: string[],
         }
-        filteredOffers.forEach(office => {
-            filteredOffersProps.filterMainPeople.push(office.filterMainPeople)
-            filteredOffersProps.detailFilterBrand.push(office.detailFilterBrand)
-            filteredOffersProps.detailFilterMode.push(office.detailFilterMode)
+        filteblackOffers.forEach(office => {
+            filteblackOffersProps.filterMainPeople.push(office.filterMainPeople)
+            filteblackOffersProps.detailFilterBrand.push(office.detailFilterBrand)
+            filteblackOffersProps.detailFilterMode.push(office.detailFilterMode)
         })
-        console.log(filteredOffers, 'отфильтрованные акции')
+        console.log(filteblackOffers, 'отфильтрованные акции')
         return {
-            filterMainPeople: [...new Set(filteredOffersProps.filterMainPeople)],
-            detailFilterBrand: [...new Set(filteredOffersProps.detailFilterBrand)],
-            detailFilterMode: [...new Set(filteredOffersProps.detailFilterMode)],
+            filterMainPeople: [...new Set(filteblackOffersProps.filterMainPeople)],
+            detailFilterBrand: [...new Set(filteblackOffersProps.detailFilterBrand)],
+            detailFilterMode: [...new Set(filteblackOffersProps.detailFilterMode)],
         }
 
-    }, [filteredOffers])
+    }, [filteblackOffers])
 
-    console.log(filteredProps, 'filteredProps')
+    console.log(filteblackProps, 'filteblackProps')
 
 
-    function resetFilteredOffers() {
-        setFilteredOffers(offers)
+    function resetFilteblackOffers() {
+        setFilteblackOffers(offers)
     }
 
 
 
     function selectFilterMainPeopleHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterMainPeople(event.target.value)
-        if (event.target.value === 'Null') resetFilteredOffers()
+        if (event.target.value === 'Null') resetFilteblackOffers()
         setCurrentFilter(prevFilterState => {
             const filterMainPeople = event.target.value === 'Null'
                 ? null
@@ -343,7 +343,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
     function selectDetailFilterBrandHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterBrandPeople(event.target.value)
-        if (event.target.value === 'Null') resetFilteredOffers()
+        if (event.target.value === 'Null') resetFilteblackOffers()
         setCurrentFilter(prevFilterState => {
             const detailFilterBrand = event.target.value === 'Null'
                 ? null
@@ -359,7 +359,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
     function selectDetailFilterModeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         setDetailFilterModePeople(event.target.value)
-        if (event.target.value === 'Null') resetFilteredOffers()
+        if (event.target.value === 'Null') resetFilteblackOffers()
         setCurrentFilter(prevFilterState => {
             const detailFilterMode = event.target.value === 'Null'
                 ? null
@@ -408,21 +408,21 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                         <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
                             onChange={selectFilterMainPeopleHandler}>
                             <option value={'Null'} selected >Выберите тип авто</option>
-                            {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            {filteblackProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                             onChange={selectDetailFilterBrandHandler}>
                             <option value={'Null'} selected >Выберите бренд</option>
-                            {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            {filteblackProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
                             onChange={selectDetailFilterModeHandler}>
                             <option value={'Null'} selected >Выберите модель</option>
-                            {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            {filteblackProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                 </div>
@@ -434,21 +434,21 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                             <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
                                 onChange={selectFilterMainPeopleHandler}>
                                 <option value={'Null'} selected >Выберите тип авто</option>
-                                {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                                {filteblackProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                             </select>
                         </div>
                         <div className='rowFilter'>
                             <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                                 onChange={selectDetailFilterBrandHandler}>
                                 <option value={'Null'} selected >Выберите бренд</option>
-                                {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                                {filteblackProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                             </select>
                         </div>
                         <div className='rowFilter'>
                             <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
                                 onChange={selectDetailFilterModeHandler}>
                                 <option value={'Null'} selected >Выберите модель</option>
-                                {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                                {filteblackProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                             </select>
                         </div>
                     </div>
@@ -462,21 +462,21 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                         <select className="selectModel" value={detailFilterMainPeopleResult} name="detailFilterBran"
                             onChange={selectFilterMainPeopleHandler}>
                             <option value={'Null'} selected >Выберите тип авто</option>
-                            {filteredProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            {filteblackProps.filterMainPeople.map(filtMain => <option key={filtMain} value={filtMain}> {filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterBrandResult} name="detailFilterBran"
                             onChange={selectDetailFilterBrandHandler}>
                             <option value={'Null'} selected >Выберите бренд</option>
-                            {filteredProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            {filteblackProps.detailFilterBrand.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                     <div className='rowFilter'>
                         <select className="selectModel" value={detailFilterModeResult} name="detailFilterBran"
                             onChange={selectDetailFilterModeHandler}>
                             <option value={'Null'} selected >Выберите модель</option>
-                            {filteredProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
+                            {filteblackProps.detailFilterMode.map(filtMain => <option key={filtMain} value={filtMain}>{filtMain !== 'undefined' ? filtMain : "Все"}</option>)}
                         </select>
                     </div>
                 </div>
@@ -484,10 +484,10 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
 
             <div className="background" id="cardsBackground" ref={visibleElementRef}>
-                {filteredOffers.length > 0 &&
+                {filteblackOffers.length > 0 &&
                     <div className="cards" >
                         {
-                            filteredOffers.map(offer => {
+                            filteblackOffers.map(offer => {
                                 return (<Slide in={isVisible} key={offer.id} direction="right" timeout={600}>
 
                                     <div className={className.join(' ')}
@@ -623,7 +623,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:row;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.3s;
                     width: 350px;
                     height: 45px;
@@ -645,7 +645,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     text-align: center;
                     flex-direction: row;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size: 25px;
                 }
 
@@ -668,7 +668,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 .selectModel {
                     background-color: transparent;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     width: 300px;
                     height: 50px;
                     border:solid 2px white;
@@ -684,7 +684,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 option {
                     background-color:  #131313;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:21px; 
                 }
                 
@@ -706,7 +706,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     justify-content: center;
                     align-items: center;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:40px;
                     text-align: center;
                     background-color: #131313;
@@ -831,10 +831,9 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     display: flex;
                     display:flex;
                     justify-content:center;
-                    flex-direction:;
                     align-items:center;
                     flex-direction:row;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     transition: transform.3s;
                     width: 140px;
                     height: 40px;
@@ -847,7 +846,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                 }
 
                 .btnModal:hover {
-                    background-color: #eab330;
+                    background-color: #D1AC02;
                     color:black;
                 }
 
@@ -858,7 +857,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     align-items:center;
                     flex-direction:column;
                     color:white;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:40px;
                     font-weight: bold;
                 }
@@ -869,7 +868,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:column;
                     color:white;
                     margin-top:100px;
-                    font-family: 'Roboto','sans-serif'; 
+                    font-family: 'Gilroy','sans-serif'; 
                     font-size:20px;
                     font-weight: bold;
                 }

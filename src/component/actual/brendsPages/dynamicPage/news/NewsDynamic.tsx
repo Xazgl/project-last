@@ -25,6 +25,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { useState } from 'react';
 import { ModalImg } from '../../../../ModalImg';
+import { News } from '@prisma/client';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
@@ -38,7 +39,14 @@ const images = [
   },
 ];
 
-function News({ }) {
+
+type Props ={
+  newsBrand: News[]
+}
+
+
+
+function NewsDynamic({newsBrand}: Props) {
 
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -75,6 +83,7 @@ function News({ }) {
 
           <div className='descBrand'>
             <div className='titleBrand'>Анонсы </div>
+            
             <div className='txtBrand'>
               В Bestune B70 сочетаются динамика и комфорт, дополненные дерзким и
               уверенным профилем.
@@ -169,39 +178,6 @@ function News({ }) {
                     }
                   />
                 </div>
-                {/* <Card sx={{
-                  width: 345, height: 'auto', display: 'flex', border: '1px  solid transparent',
-                  flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
-                  borderRadius: '0px'
-                }} >
-
-                  <CardMedia
-                    component="img"
-                    // height="90%"
-                    image={news2.src}
-                    loading="lazy"
-                    decoding='async'
-                    sx={{ borderRadius: '0px', width: '100%' }}
-
-                    alt="car"
-                  />
-
-                </Card> */}
-                {/* <div className='titleBrand'>
-                  <span id="titleMap">Geely Арконт </span>
-                </div>
-                <div className="descBrand">
-                  <a className='href_a' href="tel:+78442205073">+7 (844) 220-50-73</a>
-                </div>
-                <div className="descBrand">
-                  г. Волгоград, ул. Неждановой, 12
-                </div>
-                <div className="descBrand">
-                  <a className='href_a' href="mailto:geely@arkont.ru">geely@arkont.ru</a>
-                </div>
-                <div className="descBrand">
-                  <a className='href_a' style={{ color: 'black' }} href="https://yandex.ru/maps/38/volgograd/?from=api-maps&ll=44.438373%2C48.705594&mode=routes&origin=jsapi_2_1_79&rtext=~48.705594%2C44.438373&rtt=auto&ruri=~&z=16">Построить маршрут</a>
-                </div> */}
               </div>
             </div>
 
@@ -214,7 +190,7 @@ function News({ }) {
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -430,4 +406,4 @@ function News({ }) {
   )
 }
 
-export default News
+export default NewsDynamic

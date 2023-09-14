@@ -3,7 +3,7 @@ import { Dispatch, FormEvent, SetStateAction,  useState } from "react"
 import { AllUsedCarDto } from "../../../../@types/dto";
 import CarUsedFilterSidebar from "./CarUsedFilterSidebar";
 import CarUsedSidebarMobile from "./CarUsedSidebarMobile";
-import FilteredUsedCars from "./FilteredUsedCars";
+import FilteblackUsedCars from "./FilteblackUsedCars";
 
 
 
@@ -32,15 +32,15 @@ type Props = {
 
 export function UsedCarComponent({ setShowModal, cars }: Props) {
 
-    const [filteredCars, setFilteredCars] = useState(cars)
+    const [ filteredCars, setFilteredCars] = useState(cars)
 
     return (
         <>
             <div className="background">
-                <CarUsedSidebarMobile cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
-                <CarUsedFilterSidebar cars={cars} filteredCars={filteredCars} setFilteredCars={setFilteredCars} />
+                <CarUsedSidebarMobile cars={cars} filteredCars={ filteredCars} setFilteredCars={setFilteredCars} />
+                <CarUsedFilterSidebar cars={cars} filteredCars={ filteredCars} setFilteredCars={setFilteredCars} />
                 <div className="carBlock">
-                    <FilteredUsedCars filteredCars={filteredCars} setShowModal={setShowModal} />
+                    <FilteblackUsedCars filteredCars={ filteredCars} setShowModal={setShowModal} />
                 </div>
             </div >
             <style jsx>{`

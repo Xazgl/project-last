@@ -208,12 +208,22 @@ export function Form() {
                                     }}
                                 >
                                     <FormControlLabel
-                                        control={<Checkbox sx={{ color: ' #131313' }} />}
+                                        control={
+                                            <Checkbox
+                                                color="default"
+                                                sx={{ color: 'black' }}
+                                            />
+                                        }
                                         onChange={event => setInsuranceTypeOSAGO(!insuranceTypeOSAGO)}
                                         label="Нужна услуга ОСАГО"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox sx={{ color: ' #131313' }} />}
+                                        control={
+                                            <Checkbox
+                                                color="default"
+                                                sx={{ color: ' #131313' }}
+                                            />
+                                        }
                                         onChange={event => setInsuranceTypeKASKO(!insuranceTypeKASKO)}
                                         label="Нужна услуга КАСКО"
                                     />
@@ -420,17 +430,17 @@ export function Form() {
                                     }}
                                 >
                                     <FormControlLabel
-                                        control={<Checkbox />}
+                                        control={<Checkbox color="default"   sx={{ color: 'black'}} />}
                                         onChange={event => setAlarmSystem(!alarmSystem)}
                                         label="Противоугонное устройство"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox />}
+                                        control={<Checkbox color="default"  sx={{ color: 'black'}} />}
                                         onChange={event => setInstallmentPlan(!installmentPlan)}
                                         label="Необходима рассрочка"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox />}
+                                        control={<Checkbox color="default" sx={{ color: 'black'}} />}
                                         onChange={event => setCarDeposit(!carDeposit)}
                                         label="Находится ли автомобиль в залоге"
                                     />
@@ -474,8 +484,9 @@ export function Form() {
                                         marginTop: '10px',
                                         padding: '12px 12px',
                                         outline: 'none',
-                                        fontFamily: 'Roboto',
-                                        backgroundColor: 'white'
+                                        fontFamily: 'Gilroy',
+                                        backgroundColor: 'white',
+                                        borderRadius: '10px'
                                     }}
                                     id="inputP"
                                     className="phone"
@@ -498,7 +509,8 @@ export function Form() {
                             <div className="divForm" style={{ alignItems: "start" }}>
                                 <div className="inputTitle" style={{ fontSize: '14px' }}>Даю согласие на обработку своих персональных данных и соглашаюсь с политикой обработки персональных данных</div>
                                 <Checkbox
-                                    sx={{ color: ' #131313' }}
+                                    color="default"
+                                    sx={{ color: 'black' }}
                                     checked={checked}
                                     onChange={handleChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
@@ -511,7 +523,7 @@ export function Form() {
                                     title="Заполните форму, перед отправкой"
                                 >
                                     <EditNoteIcon
-                                        sx={{fontSize:'30px'}}
+                                        sx={{ fontSize: '30px' }}
                                     />
                                     Отправить
                                 </button>
@@ -535,7 +547,7 @@ export function Form() {
                 width:900px;
                 font-size:45px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
             }
             
            .background {
@@ -570,7 +582,7 @@ export function Form() {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
             }
@@ -592,7 +604,7 @@ export function Form() {
                 justify-content: center;
                 align-items: baseline;
                 width:900px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -605,7 +617,7 @@ export function Form() {
                 font-weight: bold;
                 font-size:30px;
                 text-align: start;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
            .desc {
@@ -614,9 +626,9 @@ export function Form() {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
            .form {
@@ -648,7 +660,7 @@ export function Form() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
 
@@ -659,29 +671,32 @@ export function Form() {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
            input {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border: 2px solid  #131313; 
                 padding: 12px 12px;
                 outline:none;
                 margin-top: 10px;
                 background-color: white;
+                border-radius: 10px;
+
            }
 
             select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:2px solid  #131313; 
                 margin-top: 10px;
                 background-color: white;
+                border-radius: 10px;
             }
             
            .btn {
@@ -690,7 +705,7 @@ export function Form() {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;
@@ -702,10 +717,12 @@ export function Form() {
                 align-items: center;
                 gap:8px;
                 cursor: pointer;
+                border-radius: 10px;
+
            }
 
            .btn_show{
-                background-color: #fdb913;
+                background-color: #D1AC02;
                 color:black;
            }
            

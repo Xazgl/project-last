@@ -37,7 +37,7 @@ function MapBrand({ }) {
                 <div className='cardDiv'>
                   <Card sx={{
                     width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
-                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
 
                   }} >
                     <CardHeader
@@ -120,7 +120,7 @@ function MapBrand({ }) {
                 <div className='cardDiv'>
                   <Card sx={{
                     width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
-                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
 
                   }} >
                     <CardHeader
@@ -202,7 +202,7 @@ function MapBrand({ }) {
                 <div className='cardDiv'>
                   <Card sx={{
                     width: '100%', height: 'auto', display: 'flex', border: '1px  solid transparent',
-                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+                    flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
 
                   }} >
                     <CardHeader
@@ -368,7 +368,7 @@ function MapBrand({ }) {
       display: flex;
       align-items: center;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -393,12 +393,13 @@ function MapBrand({ }) {
       background-color:  #131313;
       font-size: 15px;
       transition: 0.6s;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
       cursor: pointer;
+      border-radius: 10px;
     }
 
     .btn:hover {
-      background-color:#fdb913; 
+      background-color:#D1AC02; 
     }
 
     a{
@@ -416,7 +417,7 @@ function MapBrand({ }) {
       margin-top: 10px;
       font-size: 12px;
       align-items: center;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -446,7 +447,7 @@ function MapBrand({ }) {
       margin-top:15px;
       font-weight: bold;
       width: 100%;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -455,7 +456,7 @@ function MapBrand({ }) {
       height: auto;
       font-weight: bold;
       margin-top:20px;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
     }
 
     @media(max-width: 1250px) {

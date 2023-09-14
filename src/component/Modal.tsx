@@ -62,7 +62,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
     ]
 
     return <>
-        <div className={className.join(' ')} style={{ color: 'red' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
+        <div className={className.join(' ')} style={{ color: 'black' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
             if (event.target === backgroundEl.current) closeModal()
         }}>
             <div className="modalWindow" id="modalWindow">
@@ -168,7 +168,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 height: 100vh;
                 background-color: rgb(0,0,0, 0.5);
                 align-items: center;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 z-index: 3;
             }
 
@@ -226,7 +226,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 padding: 10px 10px;
                 width: 60%;
                 outline:none;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
 
             }
           
@@ -246,7 +246,7 @@ export function Modal({ showModal, setShowModal }: ModelProps) {
                 font-weight: bold;
                 text-align: center;
                 align-items: center;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 transition: 0.5s;
             }
 

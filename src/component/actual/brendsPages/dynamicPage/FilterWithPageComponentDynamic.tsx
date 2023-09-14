@@ -1,35 +1,24 @@
 import Link from "next/link";
 import Image from 'next/image';
-import banner from '/public/images/1.webp'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import exeed from '/public/images/logo-brends/exeed.jpg';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Dispatch, FormEvent, SetStateAction, useEffect, useMemo, useRef, useState } from "react"
 import { Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, FormLabel, Slider, TextField } from "@mui/material";
-import suv from '/public/images/carBodyTyp/suv.svg'
-import crossover from '/public/images/carBodyTyp/crossover.svg'
-import hatchback from '/public/images/carBodyTyp/hatchback.svg'
-import liftback from '/public/images/carBodyTyp/liftback.svg'
-import minivan from '/public/images/carBodyTyp/minivan.svg'
-import sedan from '/public/images/carBodyTyp/sedan.svg'
-import { Car, YandexGeo } from "@prisma/client";
-
-
-
-import { SwiperEl } from "../sliders/desk/swiperTest/Swiper";
+import { Car, News, YandexGeo } from "@prisma/client";
 import { CarouselComponent } from "../sliders/mod/Carousel";
 import SwiperTest from "../sliders/desk/swiperTest/News";
-import { AllCarDto, BrandPageDto } from "../../../../../@types/dto";
+import { AllCarDto, BrandPageDto, NewsOne } from "../../../../../@types/dto";
 import { FilterUserOptions } from "../filter/typeForFilter";
-import CarFilterSidebarMobile from "../filter/CarFilterSidebarMobile";
-import CarFilterSidebar from "../filter/CarFilterSidebar";
-import CardModelsFilter from "../filter/modelsCard/CardModelsFilter";
+
+
 import FilteredNewCars from "../filter/FilteredNewCars";
-import News from "./news/News";
 import MapBrandDynamic from "./MapBrandDynamic";
+import NewsDynamic from "./news/NewsDynamic";
+import SwiperNewsBrand from "./news/swiperBrandNews/SwiperNewsBrand";
+import CarFilterSidebarMobile from "./filter/CarFilterSidebarMobile";
+import CarFilterSidebar from "./filter/CarFilterSidebar";
+import CardModelsFilter from "./modelsCard/CardModelsFilter";
+// import CarFilterSidebarMobile from "../filter/CarFilterSidebarMobile";
+// import CarFilterSidebar from "../filter/CarFilterSidebar";
+// import CardModelsFilter from "./modelsCard/CardModelsFilter";
 
 
 
@@ -63,13 +52,14 @@ type Props = {
     // brands:string[]
     brands: Brand[],
     brand?: BrandPageDto,
-    mapsGeo?:YandexGeo[]
-    
+    mapsGeo?: YandexGeo[],
+    newsBrand: NewsOne[],
+
 }
 
-export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, setShowModalFavorite, cars, brands }: Props) {
+export function FilterWithPageComponentDynamic({ setShowModal, brand, mapsGeo, newsBrand, setShowModalFavorite, cars, brands }: Props) {
     //Отфильтрованные машины, по умолчанию все машины конкретного бренда
-    const [filteredCars, setFilteredCars] = useState(cars)
+    const [ filteredCars, setFilteredCars] = useState(cars)
     // Определение количества отображаемых элементов в зависимости от ширины экрана
     const [mobileAdaptive, setMobileAdaptive] = useState(false);
 
@@ -105,21 +95,21 @@ export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, set
     const refCars = useRef<HTMLDivElement>(null)
 
     const scrollToTargetElement = () => {
-        if (refCars .current) {
+        if (refCars.current) {
             // Используйте метод прокрутки, который подходит для вашего случая
             // Например, если у вас есть контейнер с прокруткой, вы можете использовать его метод прокрутки
-            refCars .current.scrollIntoView({
+            refCars.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start',
             })
         }
     };
-    
+
 
     // useEffect(() => {
     //     // Прокрутка к элементу при каждом изменении filteredCars
     //     scrollToTargetElement();
-    // }, [filteredCars]);
+    // }, [ filteredCars]);
 
 
 
@@ -130,7 +120,7 @@ export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, set
 
 
     useEffect(() => {
-       console.log(`${currentFilter.modelName.length }`)
+        console.log(`${currentFilter.modelName.length}`)
     }, [currentFilter.modelName]);
 
 
@@ -140,20 +130,20 @@ export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, set
         <>
 
             <div className="background">
-                <CarFilterSidebarMobile cars={cars} filteredCars={filteredCars}
+                <CarFilterSidebarMobile cars={cars} filteredCars={ filteredCars}
                     setFilteredCars={setFilteredCars}
                     setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                     brands={brands}
                 />
-                <CarFilterSidebar cars={cars} filteredCars={filteredCars}
+                <CarFilterSidebar cars={cars} filteredCars={ filteredCars}
                     setFilteredCars={setFilteredCars} brands={brands}
                     setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                 />
                 <div className="carBlock">
-                    <MapBrandDynamic brand={brand} mapsGeo={mapsGeo}/>
-                    {currentFilter.modelName.length <= 0 ?
+                    <MapBrandDynamic brand={brand} mapsGeo={mapsGeo} />
+                    {currentFilter.modelName.length <= 0  ?
                         <div className="block" ref={refCars}>
-                            <CardModelsFilter cars={cars} filteredCars={filteredCars}
+                            <CardModelsFilter cars={cars} filteredCars={ filteredCars}
                                 setFilteredCars={setFilteredCars}
                                 setCurrentFilter={setCurrentFilter} currentFilter={currentFilter}
                             />
@@ -161,16 +151,19 @@ export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, set
                         :
                         <>
                             <div className="block" id="carScroll" ref={refCars}>
-                                <FilteredNewCars filteredCars={filteredCars} setShowModal={setShowModal}
+                                <FilteredNewCars filteredCars={ filteredCars} setShowModal={setShowModal}
                                     setShowModalFavorite={setShowModalFavorite} cars={cars}
                                     setFilteredCars={setFilteredCars}
                                 />
                             </div>
                         </>
                     }
-                    <div className="block" >
-                        <News />
-                    </div>
+                    {newsBrand !== undefined  &&  newsBrand.length > 0 &&
+                            <div className="block" >
+                                {/* <NewsDynamic  newsBrand={newsBrand} /> */}
+                                {/* <SwiperNewsBrand  newsBrand={newsBrand}/> */}
+                            </div>
+                    }
                     <div className="block" >
                         {mobileAdaptive == false ?
                             <>
@@ -216,7 +209,7 @@ export function FilterWithPageComponentDynamic({ setShowModal,brand,mapsGeo, set
                 }
                 
                 #carScroll::-webkit-scrollbar-track {
-                  background-color: #fdb913 ; /* Цвет фона трека скроллбара */
+                  background-color: #D1AC02 ; /* Цвет фона трека скроллбара */
     
                 }
                 

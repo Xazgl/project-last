@@ -58,23 +58,16 @@ function SwiperTest({ cars }: { cars: AllCarDto }) {
   return (
     <>
       <div className='background'>
-
-        {/* <div className="leftC" ></div> */}
         <div className='cards' id="desktop">
           <div className='descBrand'>
             <div className='titleBrand'>Авто в наличии </div>
               <SwiperEl cars={cars} />
-              {/* <div className='columnBrand'>\
-                
-              </div> */}
-       
-
           </div>
         </div>
       </div >
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;

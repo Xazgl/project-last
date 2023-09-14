@@ -431,7 +431,7 @@ const brandsPages = [
     {
         id: 4,
         brand: 'EXEED',
-        banner: `uploads/catalogPages/exeed/bannerDesktop.png`,
+        banner: `/uploads/catalogPages/exeed/bannerDesktop.png`,
         maps: [
             {
                 id: 1,

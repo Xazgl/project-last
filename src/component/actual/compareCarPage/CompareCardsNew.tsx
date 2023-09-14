@@ -170,10 +170,10 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                             boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
                             shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
                           },
-                          '&:hover .credit': {
+                          '&:hover .cblackit': {
                             display: 'flex',
                             transition: '1s',
-                            animation: 'credit-open.5s',
+                            animation: 'cblackit-open.5s',
                             marginTop: '400px',
                             backgroundColor: '#0c7ee1',
                             position: 'absolute'
@@ -239,7 +239,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                             <IconButton aria-label="share">
                             </IconButton>
                           </CardActions>
-                          {/* <button className="credit" onClick={showModal}>
+                          {/* <button className="cblackit" onClick={showModal}>
                     <span className="consultation" >Получить консультацию</span>
                   </button> */}
                         </Card>
@@ -265,10 +265,10 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                           boxShadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)',
                           shadow: '4px 4px 16px -2px rgba(0, 0, 0, 0.2)'
                         },
-                        '&:hover .credit': {
+                        '&:hover .cblackit': {
                           display: 'flex',
                           transition: '1s',
-                          animation: 'credit-open.5s',
+                          animation: 'cblackit-open.5s',
                           marginTop: '400px',
                           backgroundColor: '#0c7ee1',
                           position: 'absolute'
@@ -334,7 +334,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                           <IconButton aria-label="share">
                           </IconButton>
                         </CardActions>
-                        {/* <button className="credit" onClick={showModal}>
+                        {/* <button className="cblackit" onClick={showModal}>
                     <span className="consultation" >Получить консультацию</span>
                   </button> */}
                       </Card>
@@ -526,7 +526,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       color:white;
       background-color:  #131313;
       justify-content: center;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
       padding: 10px;
     }
 
@@ -572,7 +572,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -624,7 +624,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       align-items: center;
     }
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -638,10 +638,10 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       font-size:16px;
       text-align: center;
       border:none;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
     }
 
-    .credit:hover {
+    .cblackit:hover {
       background-color:#0088ff;
     }
 

@@ -96,7 +96,8 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
             <Box sx={{width:'100%',display:'flex',justifyContent:'end'}}>
                 {
                     driver.id > 0 ? <Button 
-                    sx={{color:'#131313'}}
+                    sx={{color:'black', borderRadius:'10px'
+                }}
                     
                     onClick={() => {
                         setDrivers(drivers => {
@@ -153,7 +154,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
             }
 
             .rightInput {
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size: 11px; 
                 font-weight: bold;
                 
@@ -176,7 +177,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 justify-content: center;
                 align-items: baseline;
                 width:900px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
 
 
@@ -187,7 +188,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 align-items:center;
                 margin-top:10px;
                 font-weight: bold;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:30px;
                 text-align: start;
             }
@@ -198,7 +199,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 justify-content: start;
                 align-items:center;
                 margin-top:20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 font-size:21px;
             }
 
@@ -229,7 +230,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 padding-left:10px;
                 flex-direction: row;
                 font-size: 20px;
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
            }
            
            
@@ -237,21 +238,25 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:2px solid  #131313; 
                 padding: 12px 12px;
                 outline:none;
                 background-color: white;
+                border-radius: 10px;
+
             }
 
             select {
                 width: 100%;
                 height: 40px;
                 font-size: 18px; 
-                font-family: 'Roboto','sans-serif'; 
+                font-family: 'Gilroy','sans-serif'; 
                 border:2px solid  #131313; 
                 outline: none;
                 background-color: white;
+                border-radius: 10px;
+
                 
             }
             
@@ -261,7 +266,7 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 flex-direction:row;
                 align-items:center;
                 flex-direction:row;
-                font-family: 'Roboto','sans-serif';
+                font-family: 'Gilroy','sans-serif';
                 transition: transform.3s;
                 width: 100%;
                 height: 45px;
@@ -270,6 +275,8 @@ function DriverCurrentForm({ driver, setDrivers }: Props) {
                 margin-top:40px;
                 font-size:20px;
                 text-align: center;
+                border-radius: 10px;
+
             }
            
            .btn_show:hover {

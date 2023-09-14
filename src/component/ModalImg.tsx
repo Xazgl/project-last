@@ -27,7 +27,7 @@ export function ModalImg({ showModalImg, setShowModalImg, carImg }: ModelProps) 
         closeStarting ? 'modalBackground_close-starting' : '',
     ]
     return <>
-        <div className={className.join(' ')} style={{ color: 'red' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
+        <div className={className.join(' ')} style={{ color: 'black' }} id="modalBackground" ref={backgroundEl} onClick={(event) => {
             if (event.target === backgroundEl.current) closeModal()
         }}>
             <div className="modalWindow" id="modalWindow">

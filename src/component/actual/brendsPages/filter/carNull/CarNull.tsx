@@ -43,15 +43,15 @@ function CarNull({ }) {
 
         <Card sx={{
           width: 270, height: 350, display: 'flex', border: '2px  solid #d1d7dd',
-          flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+          flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
           borderRadius: '0px',
           '&:hover': {
             transform: 'scale(1.04)',
           },
-          '&:hover .credit': {
+          '&:hover .cblackit': {
             display: 'flex',
             transition: '1s',
-            animation: 'credit-open.5s',
+            animation: 'cblackit-open.5s',
             marginTop: '400px',
             backgroundColor: '#0c7ee1',
             position: 'absolute'

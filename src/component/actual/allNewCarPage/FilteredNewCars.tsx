@@ -10,7 +10,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { black } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
@@ -42,15 +42,15 @@ type Props = {
 function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: Props) {
 
   // useState(() => {
-  //   if(filteredCars.length <=0) {
-  //     setCarArr(Array.isArray(filteredCars) && filteredCars.length ? Array(40).fill(0).map(el => filteredCars[Math.floor(Math.random() * filteredCars.length)])
+  //   if( filteredCars.length <=0) {
+  //     setCarArr(Array.isArray( filteredCars) && filteredCars.length ? Array(40).fill(0).map(el => filteredCars[Math.floor(Math.random() * filteredCars.length)])
   //     )
   //   }
 
   // }, [])
 
   // const [carArr, setCarArr] = useState<Car[]>(
-  //   Array.isArray(filteredCars) && filteredCars.length ? Array(40).fill(0).map(el => filteredCars[Math.floor(Math.random() * filteredCars.length)]) : [])
+  //   Array.isArray( filteredCars) && filteredCars.length ? Array(40).fill(0).map(el => filteredCars[Math.floor(Math.random() * filteredCars.length)]) : [])
 
   // console.log(carArr)
 
@@ -289,13 +289,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 <HistoryIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
-                    '&:hover': { color: 'black' }, fontFamily: 'Roboto'
+                    '&:hover': { color: 'black' }, fontFamily: 'Gilroy'
                   }}
                 />
               </Link>
               <Typography
                 sx={{
-                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Roboto'
+                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Gilroy'
 
                 }}
               >{watchedArr.length}</Typography>
@@ -307,13 +307,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 <CompareIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
-                    '&:hover': { color: 'green' }, fontFamily: 'Roboto'
+                    '&:hover': { color: 'green' }, fontFamily: 'Gilroy'
                   }}
                 />
               </Link>
               <Typography
                 sx={{
-                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Roboto'
+                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Gilroy'
                 }}
               >{compareArr.length}</Typography>
             </>)
@@ -324,13 +324,13 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                 <FavoriteBorderIcon
                   sx={{
                     display: 'flex', fontSize: '40px', bottom: '0', right: '0', color: ' #131313',
-                    '&:hover': { color: 'red' }, fontFamily: 'Roboto'
+                    '&:hover': { color: 'black' }, fontFamily: 'Gilroy'
                   }}
                 />
               </Link>
               <Typography
                 sx={{
-                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Roboto'
+                  display: 'flex', fontSize: '17px', justifyContent: 'center', fontFamily: 'Gilroy'
                 }}
               >{favArr.length}</Typography>
             </>)
@@ -338,15 +338,15 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
         </Box>
 
         <div className='cards' id="desktop">
-          {filteredCars.map(car =>
+          { filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
-              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Roboto',
+              flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear', fontFamily: 'Gilroy',
               '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-              '&:hover .credit': {
+              '&:hover .cblackit': {
                 display: 'flex',
                 transition: '1s',
-                animation: 'credit-open.5s',
+                animation: 'cblackit-open.5s',
                 marginTop: '400px',
                 backgroundColor: '#0c7ee1',
                 position: 'absolute'
@@ -400,10 +400,10 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                   {favArr.find(carFav => carFav.car.id === car.id) ?
-                    <FavoriteIcon sx={{ color: 'red' }}
+                    <FavoriteIcon sx={{ color: 'black' }}
                       onClick={() => deleteToFavorite(car.id)}
                     /> :
-                    <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                    <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                       onClick={() => addToFavorite(car.id)}
                     />
                   }
@@ -427,7 +427,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                     <ExpandMoreIcon />
                   </ExpandMore> */}
               </CardActions>
-              <button className="credit" onClick={showModal}>
+              <button className="cblackit" onClick={showModal}>
                 <span className="consultation" >Получить консультацию</span>
               </button>
             </Card>
@@ -435,7 +435,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
         </div>
 
         <div className='cards' id="mob">
-          {filteredCars.map(car =>
+          { filteredCars.map(car =>
             <Card key={car.id} sx={{
               width: '90%', height: 490, display: 'flex', border: '1px  solid transparent',
               flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
@@ -455,10 +455,10 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
                   }}>
                     <IconButton aria-label="add to favorites">
                       {favArr.find(carFav => carFav.car.id === car.id) ?
-                        <FavoriteIcon sx={{ color: 'red' }}
+                        <FavoriteIcon sx={{ color: 'black' }}
                           onClick={() => deleteToFavorite(car.id)}
                         /> :
-                        <FavoriteIcon sx={{ '&:hover': { color: 'red' } }}
+                        <FavoriteIcon sx={{ '&:hover': { color: 'black' } }}
                           onClick={() => addToFavorite(car.id)}
                         />
                       }
@@ -501,7 +501,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
               </CardContent>
               <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                 <Button variant="contained"
-                  sx={{ textAlign: 'center', fontSize: '12px', fontFamily: 'Roboto', width: '95%', }}
+                  sx={{ textAlign: 'center', fontSize: '12px', fontFamily: 'Gilroy', width: '95%', }}
                   onClick={showModal}>Получить консультацию</Button>
               </div>
             </Card>
@@ -510,7 +510,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       </div>
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -559,7 +559,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -586,7 +586,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -607,12 +607,12 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       margin-top: 10px;
       font-size: 12px;
       align-items: center;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -626,11 +626,11 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       color:white;
       font-size:16px;
       text-align: center;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
-    .credit:hover {
+    .cblackit:hover {
       background-color:#0088ff;
     }
 
@@ -660,7 +660,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       margin-top:15px;
       font-weight: bold;
       width: 100%;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -669,7 +669,7 @@ function FilteredNewCars({ setShowModal, setShowModalFavorite, filteredCars }: P
       height: auto;
       font-weight: bold;
       margin-top:20px;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 

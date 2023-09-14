@@ -102,10 +102,10 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
                   width: 345, height: 500, display: 'flex', border: '1px  solid transparent',
                   flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                   '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
-                  '&:hover .credit': {
+                  '&:hover .cblackit': {
                     display: 'flex',
                     transition: '1s',
-                    animation: 'credit-open.5s',
+                    animation: 'cblackit-open.5s',
                     marginTop: '400px',
                     backgroundColor: '#0c7ee1',
                     position: 'absolute'
@@ -155,14 +155,14 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
                   </CardContent>
                   <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
-                      <FavoriteIcon sx={{ color: 'red' }}
+                      <FavoriteIcon sx={{ color: 'black' }}
                         onClick={() => deleteToFavorite(car.car.id)}
                       />
                     </IconButton>
                     <IconButton aria-label="share">
                     </IconButton>
                   </CardActions>
-                  <button className="credit" onClick={showModal}>
+                  <button className="cblackit" onClick={showModal}>
                     <span className="consultation" >Получить консультацию</span>
                   </button>
                 </Card>
@@ -191,7 +191,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
                         marginRight: '-5px'
                       }}>
                         <IconButton aria-label="add to favorites">
-                          <FavoriteIcon sx={{ color: 'red' }}
+                          <FavoriteIcon sx={{ color: 'black' }}
                             onClick={() => deleteToFavorite(car.car.id)}
                           />
                         </IconButton>
@@ -243,7 +243,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
 
 
       <style jsx>{`              
-      @keyframes credit-open {
+      @keyframes cblackit-open {
                 0% {
                     opacity: 0;
                     margin-top:-100%;
@@ -292,7 +292,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
       width: 100%;
       flex-direction: row;
       flex-wrap: wrap;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
  
@@ -303,7 +303,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
       align-items: center;
       font-weight: 400;
       letter-spacing: normal;
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Gilroy',sans-serif;
       color:black;
     }
 
@@ -312,7 +312,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
       justify-content: start;
       width: 80%;
       height: 35px;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
 
     }
@@ -332,7 +332,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
-      font-family: 'Roboto','sans-serif'; 
+      font-family: 'Gilroy','sans-serif'; 
 
     }
 
@@ -356,7 +356,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
     }
 
 
-    .credit {
+    .cblackit {
       display: none;
       justify-content: center;
       text-align: center;
@@ -372,7 +372,7 @@ function FavoriteCarsUsed({ setShowModal, setFavArrUsed, favArrUsed }: Props) {
       text-align: center;
     }
 
-    .credit:hover {
+    .cblackit:hover {
       background-color:#0088ff;
     }
 
