@@ -114,6 +114,7 @@ export function MainBannerTradeIn({ setShowModal, refs }: MuneProps) {
                     cursor: pointer;
                     border:1px white  1px solid;
                     border-radius: 10px;
+                    transition: all 1s;
                 }
 
                 .btn:hover{

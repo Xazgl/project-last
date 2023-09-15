@@ -2,29 +2,29 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
 import { ClientNeedCall } from '@prisma/client';
 import { useCallback, useEffect, useState } from 'react';
-import { AllClientCblackit } from '../../../@types/dto';
+import { AllClientCredit } from '../../../@types/dto';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 
 
 
-export function TableClientCblackit() {
+export function TableClientCredit() {
 
-  // const [applicationsCalc, setApplicationsCalc,] = useState<AllClientCblackit[]>([])
-  const { data: applicationsCalc, isLoading } = useQuery<AllClientCblackit[]>({
+  // const [applicationsCalc, setApplicationsCalc,] = useState<AllClientCredit[]>([])
+  const { data: applicationsCalc, isLoading } = useQuery<AllClientCredit[]>({
     queryKey: ['applicationsCalc'], queryFn: () => {
       return axios
-        .get('/api/allClientCblackit')
+        .get('/api/AllClientCredit')
         .then((res) => res.data)
     }
   })
 
   // useEffect(() => {
   //   async function start<T>() {
-  //     const res = await fetch('/api/allClientCblackit')
+  //     const res = await fetch('/api/AllClientCredit')
   //     if (res.ok) {
-  //       const applicationsCalcTo:  AllClientCblackit[] = await res.json()
+  //       const applicationsCalcTo:  AllClientCredit[] = await res.json()
   //       setApplicationsCalc(applicationsCalcTo.map(applicationTo => {
   //         const { id, name, phone, firstPrice, month, carName , createdAt } = applicationTo
   //         return { id, name, phone,firstPrice,month, carName , createdAt }
@@ -34,7 +34,7 @@ export function TableClientCblackit() {
   //   start()
   // }, [])
 
-  // const deleteCalcTo = useCallback(async ({ id }: Pick<AllClientCblackit, 'id'>) => {
+  // const deleteCalcTo = useCallback(async ({ id }: Pick<AllClientCredit, 'id'>) => {
   //   const res = await fetch('/api/clientneddcalldel/' + id, {
   //     method: 'POST',
   //     headers: {
@@ -64,7 +64,7 @@ export function TableClientCblackit() {
     { field: 'mont', headerName: 'Колличество в месяцах', width: 100 },
     { field: 'carName', headerName: 'Марка машины', width: 300 },
     {
-      field: 'delete', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, AllClientCblackit>) => {
+      field: 'delete', headerName: 'Удалить', width: 130, renderCell: (params: GridRenderCellParams<any, AllClientCredit>) => {
         const { id } = params.row
         return <button style={{
           background: 'black', borderRadius: '5px', color: 'white',

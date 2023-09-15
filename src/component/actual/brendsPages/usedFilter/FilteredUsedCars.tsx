@@ -28,7 +28,7 @@ type Props = {
 }
 
 
-function FilteblackUsedCars({ setShowModal, filteredCars }: Props) {
+function FilteredUsedCars({ setShowModal, filteredCars }: Props) {
 
   const [expanded, setExpanded] = React.useState(false);
   const [favArr, setFavArr] = React.useState([]);
@@ -749,4 +749,4 @@ function FilteblackUsedCars({ setShowModal, filteredCars }: Props) {
   )
 }
 
-export default FilteblackUsedCars
+export default FilteredUsedCars

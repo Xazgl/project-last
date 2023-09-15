@@ -34,7 +34,11 @@ const SpecialOffersPage: NextPage<{ offers: Offer[] }> = ({ offers }) => {
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
       <BarMenu />
-      <CardsSpecialOffers setShowModal={setShowModal} offers={offers} />
+      <div className='background'>
+        <div className='content'>
+          <CardsSpecialOffers setShowModal={setShowModal} offers={offers} />
+        </div>
+      </div >
       {/* <TradeInForm /> */}
       <FooterMainNew setShowModal={setShowModal} refs={{ refFooter }} />
 
@@ -45,6 +49,71 @@ const SpecialOffersPage: NextPage<{ offers: Offer[] }> = ({ offers }) => {
       {
         showTradeInModal && <TradeinModal showTradeInModal={showTradeInModal} setShowTradeInModal={setShowTradeInModal} />
       }
+
+      <style jsx>
+        {` 
+          .background {
+            display: flex; 
+            justify-content: center;
+            width: '100%' ;
+          }
+  
+          .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 1179px; 
+          }
+
+          .title {
+            display: flex;
+            justify-content: start;
+            width: 100%;
+            font-family: 'Roboto',sans-serif;
+            margin-top: 20px;
+            font-size: 25px;
+            font-weight: bold;
+          }
+
+          @media(max-width: 1300px) {
+            .content {  
+              width: 970px; 
+            }
+          }
+
+          @media(max-width: 900px) {
+            .content{  
+              width: 640px; 
+            }
+          }
+
+          @media(max-width: 640px) {
+            .content{  
+              width: 450px; 
+            }
+            .title {
+              justify-content: center;
+            }
+          }    
+          
+          @media(max-width: 450px) {
+            .content{  
+              width: 360px; 
+            }
+          }
+
+          @media(max-width: 360px) {
+            .background {
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            .content{  
+              width:90%; 
+            }
+          }
+
+        `}
+      </style>
 
     </>
   )

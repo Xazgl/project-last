@@ -43,6 +43,7 @@ export function BannerService({ refs }:FormType) {
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;
                     background-size:cover;
+                    border-radius: 10px;
                 }
 
                 .title {
@@ -85,19 +86,21 @@ export function BannerService({ refs }:FormType) {
                     transition: transform.3s;
                     width: 300px;
                     height: 45px;
-                    background:  #D1AC02;
-                    border: 3px solid  #D1AC02;
+                    background:  white;
                     font-weight: bold;
                     margin-top:35px;
                     color:white;
                     font-size:16px;
                     cursor: pointer;
+                    color:black;
+                    border:none;
+                    transition: all 0.3s;
                 }
 
                 .btn:hover{
                     transform: scale(0.99);
                     background-color: #D1AC02;
-                    border: 3px solid #D1AC02;
+                    color:white;
                 }
                 
                 .ImgBanner2{
@@ -110,13 +113,17 @@ export function BannerService({ refs }:FormType) {
                 }
 
                 @media(max-width: 1200px) {
-                    .MainBanner { 
+                    .Banner { 
                         background-size: cover;
                     }
                 }
                 @media(max-width: 900px) {
                     .title { 
                         font-size:43px;
+                    }
+
+                    .Banner{
+                        height: 400px;
                     }
                 }
                 @media(max-width: 720px) {
@@ -138,6 +145,11 @@ export function BannerService({ refs }:FormType) {
                     .MainBanner { 
                         height: 250px;
                     }
+
+                    .Banner{
+                        height: 300px;
+                        width: 500px;
+                    }
                 }
 
                 @media(max-width: 500px) {
@@ -145,9 +157,13 @@ export function BannerService({ refs }:FormType) {
                         padding-left:0px;
                         align-items: center;
                     }
+
                     .Banner { 
-                        justify-content: center
+                        justify-content: center;
+                        width: 400px;
                     };
+
+
                 }
 
                 @media(max-width: 400px) {
@@ -158,6 +174,13 @@ export function BannerService({ refs }:FormType) {
                     .btn {
                       width: 250px;
                    }
+
+                       
+                   .Banner { 
+                        justify-content: center;
+                        width: 100%;
+                    };
+
                 }
 
                 @media(max-width: 320px) {

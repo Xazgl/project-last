@@ -10,11 +10,11 @@ type Props = {
     showModal: boolean,
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>,
-    refCblackit: MutableRefObject<HTMLDivElement>,
+    refCredit: MutableRefObject<HTMLDivElement>,
 }
 
 
-export function InfoCblackitUsed({ car, showModal, setShowModal, refCblackit, setCarImg }: Props) {
+export function InfoCreditUsed({ car, showModal, setShowModal, refCredit, setCarImg }: Props) {
 
     const [firstPrice, setfirstPrice] = useState<number>(0)
     const [month, setMonth] = useState<number>(36)
@@ -54,7 +54,7 @@ export function InfoCblackitUsed({ car, showModal, setShowModal, refCblackit, se
 
     return (
         <>
-            <div className="background" ref={refCblackit}>
+            <div className="background" ref={refCredit}>
                 {car !== null ?
                     <>
                         <div className="backgroundBlock">

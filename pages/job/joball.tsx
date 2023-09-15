@@ -40,13 +40,14 @@ const JobPage: NextPage<{ job: Job[] }> = ({ job }) => {
       </Head>
       <MenuBarNew setShowModal={setShowModal} />
       <BarMenu />
-      <MainBanner />
-      <CardsOffersNew job={job} setShowModal={setShowModal} />
-      <Banner setShowModal={setShowModal} />
-      <CompanyMini />
-      <Staff />
       <div className='background'>
         <div className='content'>
+          <MainBanner />
+          <CardsOffersNew job={job} setShowModal={setShowModal} />
+          <Banner setShowModal={setShowModal} />
+          <CompanyMini />
+          <Staff />
+
           <QuestionForm />
         </div>
       </div >
@@ -60,7 +61,7 @@ const JobPage: NextPage<{ job: Job[] }> = ({ job }) => {
         showTradeInModal && <TradeinModal showTradeInModal={showTradeInModal} setShowTradeInModal={setShowTradeInModal} />
       }
 
-<style jsx>
+      <style jsx>
         {` 
           .background {
             display: flex; 

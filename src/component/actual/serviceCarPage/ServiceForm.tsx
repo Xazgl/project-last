@@ -323,6 +323,8 @@ export function ServiceForm({ refs }: FormType) {
                 color:white;
                 text-align: center;
                 padding: 20px;
+                border-radius: 10px;
+                margin-top: 150px;
            }
            
            .desc {

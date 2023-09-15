@@ -37,8 +37,12 @@ export function NumbersBanner({ setShowModal }: Numbers) {
                                         textAlign: 'center',
                                         width: '100%',
                                         height: '45px',
-                                        backgroundColor:' #131313',
-                                        borderRadius:'0px'
+                                        backgroundColor: ' #131313',
+                                        borderRadius:'10px',
+                                        marginTop: '10px',
+                                        '&:hover': {
+                                            backgroundColor: ' #D1AC02',
+                                        }
                                     }}
                                     variant="contained"
                                     onClick={showModal}
@@ -81,7 +85,6 @@ export function NumbersBanner({ setShowModal }: Numbers) {
                     width: 900px;
                     height: auto;
                     flex-direction: column;
-
                 }
 
                 li {

@@ -168,35 +168,53 @@ export function CompanyMini() {
     @media(max-width: 770px) {
       .content{
         width: 100%;
+        height: auto;
+        margin-top: 60px;
+        margin-bottom: 60px;
        }
        .el {
         width: 100px;
         height: 100px;
        }
        #two {
-        height: 100px;
+        height: auto;
+        margin-top: 60px;
+        margin-bottom: 60px;
        }
+
+       .background {
+        height: auto;
+       }
+
+       #imgColumn {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: auto;
+       }
+       
     }
 
     @media(max-width: 550px) {
        .el {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
        }
        .elText {
         font-size: 11px;
        }
-       .background {
-           height: 300px;
-        }
+
         .content{
           flex-direction: column;
-          padding-top:10px;
-          padding-bottom:10px;
+ 
        }
 
        #two {
         height: 290px;
+       }
+
+       .titleFlex {
+        margin-top: 20px;
        }
     }
 

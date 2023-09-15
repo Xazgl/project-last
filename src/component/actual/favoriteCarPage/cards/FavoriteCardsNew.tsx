@@ -233,7 +233,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                           </CardContent>
                           <CardActions disableSpacing>
                             <IconButton aria-label="add to favorites">
-                              <FavoriteIcon sx={{ color: 'rgb(249, 17, 85)' }}
+                              <FavoriteIcon sx={{ color: 'black' }}
                                 onClick={() => deleteToFavorite(car.car.id)}
                               />
                             </IconButton>
@@ -328,7 +328,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                         </CardContent>
                         <CardActions disableSpacing>
                           <IconButton aria-label="add to favorites">
-                            <FavoriteIcon sx={{ color: 'rgb(249, 17, 85)' }}
+                            <FavoriteIcon sx={{ color: 'black' }}
                               onClick={() => deleteToFavoriteUsed(carUsed.car.id)}
                             />
                           </IconButton>
@@ -355,7 +355,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
 
                   {favArr.map(car =>
                     <Card key={car.car.id} sx={{
-                      width: '90%', height: 600, display: 'flex', border: '1px  solid transparent',
+                      width: '90%', height: 500, display: 'flex', border: '1px  solid transparent',
                       flexDirection: 'column', marginTop: '10px', transition: ' 0.2s linear',
                       '&:hover': { transform: 'scale(1.04)', border: '1px solid black' },
                     }} >
@@ -372,7 +372,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                             marginRight: '-5px'
                           }}>
                             <IconButton aria-label="add to favorites">
-                              <FavoriteIcon sx={{ color: 'rgb(249, 17, 85)' }}
+                              <FavoriteIcon sx={{ color: 'black' }}
                                 onClick={() => deleteToFavorite(car.car.id)}
                               />
                             </IconButton>
@@ -388,7 +388,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                       }}>
                         <CardMedia
                           component="img"
-                          height="300px"
+                          height="180px"
                           loading="lazy"
                           decoding='async'
                           image={car.car.img[0]}
@@ -450,7 +450,7 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
                             marginRight: '-5px'
                           }}>
                             <IconButton aria-label="add to favorites">
-                              <FavoriteIcon sx={{ color: 'rgb(249, 17, 85)' }}
+                              <FavoriteIcon sx={{ color: 'black' }}
                                 onClick={() => deleteToFavoriteUsed(carUsed.car.id)}
                               />
                             </IconButton>
@@ -529,6 +529,8 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
       justify-content: center;
       font-family: 'Gilroy','sans-serif'; 
       padding: 10px;
+      margin-top: 50px;
+      border-radius: 10px;
     }
 
     #sum {
@@ -544,8 +546,8 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
       justify-content: space-between;
       flex-direction: row;
       overflow: auto;
-      border-top: 1px solid #d4d3d3;
       padding-bottom: 50px;
+      
     }
     
     .cards {
@@ -592,14 +594,15 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #d1d7dd;
-      color: #131313;
-      background-color:  #f2f2f2;
+      border:none;
+      color: white;
+      background-color:  black;
       cursor: pointer;
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
       cursor: pointer;
+      border-radius: 10px;
     }
 
     .btn:hover {
@@ -693,13 +696,15 @@ function FavoriteCarsNew({ setShowModal, setFavArr, favArr, setFavArrUsed, favAr
         display: flex;
       }
 
+     
       .divTitle {
-        font-size:40px;
+        font-size: 25px;
       }
 
       .btn {
-        height: 30px;
-        font-size: 12px;
+        width: 100%;
+        height: 35px;
+        font-size: 14px;
       }
 
       .office{

@@ -35,6 +35,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;
                     background-size:cover;
+                    border-radius: 10px;
                 }
 
                 .title {
@@ -78,18 +79,19 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     width: 300px;
                     height: 45px;
                     background:  #131313;
-                    border: 3px solid  #131313;
+                    border: 2px solid  white;
                     font-weight: bold;
                     margin-top:35px;
                     color:white;
                     font-size:16px;
                     cursor: pointer;
+                    border-radius: 10px;
                 }
 
                 .btn:hover{
                     transform: scale(0.99);
                     background-color: #D1AC02;
-                    border: 3px solid #D1AC02;
+                    border: 2px solid #D1AC02;
                 }
                 
                 .ImgBanner2{
@@ -118,8 +120,8 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                     .titleMini {
                         font-size:15px;
                     }
-                    .MainBanner { 
-                        height: 400px;
+                    .Banner { 
+                        height: 100%;
                     }
                 }
                 @media(max-width: 640px) {
@@ -127,15 +129,14 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                         font-size:30px;
                     }
                  
-                    .MainBanner { 
-                        height: 250px;
-                    }
+              
                 }
 
                 @media(max-width: 500px) {
                     .title {
                         padding-left:0px;
                         align-items: center;
+                        text-align: center;
                     }
                     .Banner { 
                         justify-content: center
@@ -143,9 +144,7 @@ export function Banner({ setShowModal }: { setShowModal: Dispatch<SetStateAction
                 }
 
                 @media(max-width: 400px) {
-                    .title { 
-                        font-size:20px;
-                    }
+
 
                     .btn {
                       width: 250px;

@@ -2,7 +2,7 @@ import { NextPage } from "next"
 import { AxiosError } from 'axios'
 import AdminLayout from "../../src/component/admin/AdminLayout"
 import { SalesAdminComponent } from "../../src/component/admin/SalesAdmin"
-import { useQuery } from 'react-query'
+
 import { Admin, getSession, RedirectError } from "../../src/services/apiClient"
 import { useRouter } from "next/router"
 import { CircularProgress } from "@mui/material"
@@ -23,6 +23,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ModalImg } from "../../src/component/ModalImg"
 import { AddCarAdmin2 } from "../../src/component/admin/AddCarAdmin2"
 import React from 'react';
+import { useQuery } from "@tanstack/react-query"
 
 
 const AdminTable: NextPage = () => {
@@ -38,12 +39,13 @@ const AdminTable: NextPage = () => {
     };
     
   // const { isLoading, error, status , data, isSuccess} = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
-  const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
+  const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>(['sid'], getSession)
   if (isLoading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}><CircularProgress size="lg" /></div>
 
 
   return (
     <>
+
       {data && data.login && <div style={{
         width: '100%', height: '35px', display: 'flex', justifyContent: 'start',
         backgroundColor: '#005baa', color: 'white', paddingLeft: '15px', alignItems: 'center'

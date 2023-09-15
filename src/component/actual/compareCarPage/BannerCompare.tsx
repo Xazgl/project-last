@@ -41,6 +41,7 @@ export function BannerCompare({ refs }:FormType) {
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;
                     background-size:cover;
+                    border-radius: 10px;
                 }
 
                 .title {
@@ -116,6 +117,10 @@ export function BannerCompare({ refs }:FormType) {
                     .title { 
                         font-size:43px;
                     }
+
+                    .Banner {
+                       height: 400px;
+                    }  
                 }
                 @media(max-width: 720px) {
                     .title { 

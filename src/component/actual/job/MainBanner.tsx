@@ -32,7 +32,7 @@ export function MainBanner() {
                 .MainBanner {
                     display:flex; 
                     width: 100%;
-                    height: 550px;
+                    height:600px;
                     justify-content: start;
                     padding-left: 13%;
                     background-blend-mode: darken;
@@ -41,6 +41,7 @@ export function MainBanner() {
                     background-image: url('${banner.src}');
                     background-repeat: no-repeat;
                     background-size: cover;
+                    border-radius: 10px;
                 }
 
                 .title {
@@ -89,6 +90,7 @@ export function MainBanner() {
                     color:white;
                     cursor: pointer;
                     font-size: 16px;
+                    border-radius: 10px;
                 }
 
                 #btn2{
@@ -114,6 +116,13 @@ export function MainBanner() {
                     }
                 }
 
+                @media(max-width: 900px) {
+                    .MainBanner { 
+                       height: 500px;
+                    }
+                }
+
+
                 @media(max-width: 720px) {
                     .title { 
                         font-size:35px;
@@ -127,14 +136,23 @@ export function MainBanner() {
                     }
                     
                     .MainBanner { 
-                        height: 400px;
+                        height: 100%;
                         padding-left: 10%;
                         background-blend-mode: darken;
                         background: rgba(0, 0, 0, .30);
                         background-position: center center;
                         background-image: url('${banner.src}');
                         background-repeat: no-repeat;
+                        justify-content: center;
                     }
+                    .titleMini {
+                        flex-direction: column;
+                        margin-top: 5px;
+                   }
+
+                   .btn {
+                      width:300px;
+                   }
                 }
 
                 @media(max-width: 500px) {
@@ -142,10 +160,6 @@ export function MainBanner() {
                       width:300px;
                    }
                 
-                   .titleMini {
-                        flex-direction: column;
-                        margin-top: 5px;
-                   }
 
                    .MainBanner {
                       justify-content: center;

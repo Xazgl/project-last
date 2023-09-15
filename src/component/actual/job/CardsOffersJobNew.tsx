@@ -128,7 +128,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     <FormControl sx={{ m: 1, width: 300, color: ' #131313' }}>
                         <InputLabel id="demo-multiple-name-label">ДЦ</InputLabel>
                         <Select
-                            sx={{ borderColor: ' #131313', borderRadius: '0px' }}
+                            sx={{ borderColor: ' #131313', borderRadius: '10px' }}
                             name=''
                             labelId="demo-multiple-name-label"
                             id="demo-multiple-name"
@@ -155,7 +155,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     <FormControl sx={{ m: 1, width: 300 }}>
                         <InputLabel id="demo-multiple-name-label">Опыт</InputLabel>
                         <Select
-                            sx={{ borderColor: ' #131313', borderRadius: '0px' }}
+                            sx={{ borderColor: ' #131313', borderRadius: '10px' }}
                             name=''
                             labelId="demo-multiple-name-label"
                             id="demo-multiple-name"
@@ -303,16 +303,18 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     color:white;
                     font-family: 'Gilroy','sans-serif'; 
                     font-size:40px;
+                    margin-top: 50px;
+                    border-radius: 10px;
                 }  
 
                 #blue {
-                    background-color:  #131313;
+                    background-color:  black;
                 }
 
                 .background {
                     display:flex; 
                     width: 100%;
-                    height:100%;
+                    height:auto;
                     justify-content: center;
                     align-items:center;
                     margin-top:50px;
@@ -341,10 +343,11 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     box-shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
                     shadow: 4px 4px 16px -2px rgba(0, 0, 0, 0.2);
                     margin-top:10px;
-                    transition: all .3s ease;
+                    transition: all 0.3s ;
                     padding-top:10px;
                     padding-bottom:10px;
                     cursor: pointer;
+                    border-radius: 10px;
                 }
 
                 .card:hover { 
@@ -437,11 +440,12 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                     color: white;
                     font-size: 16px;
                     cursor: pointer;
+                    border-radius: 10px;
                 }
 
                 .btnModal:hover{
                     transform: scale(0.98);
-                    background-color: black;
+                    background-color: #D1AC02;
                 }
 
                 .title {
@@ -481,9 +485,11 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 @media(max-width: 720px) {
                     .cardBlock{
                         flex-direction: column;
-                        height: 100%;
+                        height: auto;
                     }
-
+                    #blue {
+                        font-size:25px;
+                    }
                     .title { 
                         font-size:25px;
                     }
@@ -510,9 +516,7 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 }
 
                 @media(max-width: 540px) {
-                    .title { 
-                        font-size:18px;
-                    }
+
                     .titleMini {
                         font-size:12px;
                     }
@@ -522,8 +526,8 @@ export function CardsOffersNew({ setShowModal, job }: JobProps) {
                 }
 
                 @media(max-width: 350px) {
-                    .title { 
-                        font-size:12px;
+                    #blue {
+                        font-size:18px;
                     }
                     .titleMini {
                         font-size:9px;

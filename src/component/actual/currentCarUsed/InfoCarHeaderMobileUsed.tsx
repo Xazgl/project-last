@@ -13,13 +13,13 @@ type Props = {
     setShowModal: Dispatch<SetStateAction<boolean>>,
     setCarImg: Dispatch<SetStateAction<string>>,
     setCar: Dispatch<SetStateAction<CarUsedInclude>>,
-    refCblackit: MutableRefObject<HTMLDivElement>,
+    refCredit: MutableRefObject<HTMLDivElement>,
     showModalImg: boolean,
     setShowModalImg: Dispatch<SetStateAction<boolean>>,
 }
 
 
-export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setShowModalImg, setCarImg, refCblackit }: Props) {
+export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, setShowModalImg, setCarImg, refCredit }: Props) {
 
     function showModalImgFunction(x) {
         setShowModalImg(true)
@@ -207,7 +207,7 @@ export function InfoCarHeaderMobileUsed({ car, showModal, setCar, setShowModal, 
                                                 onClick={
                                                     (e) => {
                                                         e.preventDefault()
-                                                        refCblackit.current.scrollIntoView({
+                                                        refCredit.current.scrollIntoView({
                                                             behavior: 'smooth',
                                                             block: 'center',
                                                             inline: 'center'

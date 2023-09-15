@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { Router, useRouter } from "next/router";
-import { useQuery } from "react-query";
+
 
 
 const host = process.env.HOST || 'http://localhost:3000'
@@ -65,7 +66,7 @@ export const getSession = async (req?: any) => {
 
 export const useSession = () => {
     const router = useRouter()
-    const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>('sid', getSession)
+    const { isLoading, error, data, isSuccess } = useQuery<Admin, AxiosError<RedirectError>>(['sid'], getSession)
     try {
       if (error && error.response && error.response.data && error.response.data.redirectUrl) {
         router.push(error.response.data.redirectUrl)

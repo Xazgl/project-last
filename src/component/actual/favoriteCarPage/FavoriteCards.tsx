@@ -234,7 +234,16 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
                   </CardContent>
                   <div style={{ display: "flex", width: '100%', height: '45px', justifyContent: 'center', padding: '6px' }}>
                     <Button variant="contained"
-                      sx={{ textAlign: 'center', fontSize: '12px', width: '95%', }}
+                      sx={{
+                        textAlign: 'center',
+                        fontSize: '12px',
+                        width: '95%',
+                        borderRadius:'10px',
+                        color:'white',
+                        backgroundColor:'black',
+                        border:'none'
+
+                      }}
                       onClick={e => showModal}>Получить консультацию</Button>
                   </div>
                 </Card>
@@ -380,7 +389,7 @@ function FavoriteCars({ setShowModal, setFavArr, favArr }: Props) {
       margin-top:-10em;
       cursor: pointer;
       border:none;
-      color:white;
+      border-radius: 10px;
       font-size:16px;
       text-align: center;
     }

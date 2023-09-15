@@ -663,6 +663,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     align-items:center;
                     padding: 20px;
                     outline:none;
+                    border-radius: 0 0 10px 10px ;
                 }
 
                 .selectModel {
@@ -709,9 +710,11 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     font-family: 'Gilroy','sans-serif'; 
                     font-size:40px;
                     text-align: center;
-                    background-color: #131313;
+                    background-color: black;
                     padding: 20px;
                     gap:10px;
+                    width: 100%;
+                    border-radius: 10px 10px 0 0;
                 }
 
                 .cards {
@@ -763,7 +766,7 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
                     flex-direction:row;
                     font-size:30px; 
                     font-weight:bold;
-                    color:#1b1b1b;
+                    color:black;
                     width: 100%;
                     height: 40px;
                 }
@@ -895,12 +898,12 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
                 }
                 @media(max-width: 900px) {
-                    .title { 
+                    #title { 
                         font-size:30px;
+                        margin-top: 40px;
+                   
                     }
-                }
 
-                @media(max-width: 720px) {
                     .mainNam {
                          font-size: 40px;
                     }
@@ -918,11 +921,12 @@ export function CardsSpecialOffers({ setShowModal, offers }: Props) {
 
                     .center{
                         flex-direction: column;
-                        width: 60%;
+                        width: 100%;
                      }
 
                      .rowFilter {
-                        margin-top:10px;
+                        margin-top:20px;
+                        justify-content: center;
                      }
 
                      #desktop{

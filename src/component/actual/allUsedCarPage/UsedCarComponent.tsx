@@ -3,7 +3,7 @@ import { Dispatch, FormEvent, SetStateAction,  useState } from "react"
 import { AllUsedCarDto } from "../../../../@types/dto";
 import CarUsedFilterSidebar from "./CarUsedFilterSidebar";
 import CarUsedSidebarMobile from "./CarUsedSidebarMobile";
-import FilteblackUsedCars from "./FilteblackUsedCars";
+import FilteredUsedCars from "./FilteredUsedCars";
 
 
 
@@ -40,7 +40,7 @@ export function UsedCarComponent({ setShowModal, cars }: Props) {
                 <CarUsedSidebarMobile cars={cars} filteredCars={ filteredCars} setFilteredCars={setFilteredCars} />
                 <CarUsedFilterSidebar cars={cars} filteredCars={ filteredCars} setFilteredCars={setFilteredCars} />
                 <div className="carBlock">
-                    <FilteblackUsedCars filteredCars={ filteredCars} setShowModal={setShowModal} />
+                    <FilteredUsedCars filteredCars={ filteredCars} setShowModal={setShowModal} />
                 </div>
             </div >
             <style jsx>{`

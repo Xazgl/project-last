@@ -189,6 +189,7 @@ export default function BarMenu() {
 .bar {
   display: block;
   width: 100%;
+  padding-bottom: 20px;
 }
 
 .title {

@@ -17,7 +17,7 @@ export function BannerFavorite({ refs }: FormType) {
         <>
             <div className="Banner">
                 <div className="title">
-                    <div>ИЗБРАННЫЕ АВТО</div>
+                    <div className="titleMain">ИЗБРАННЫЕ АВТО</div>
                     <div className="titleMini">
                         <button className="btn"
                             onClick={(e) => {
@@ -48,7 +48,7 @@ export function BannerFavorite({ refs }: FormType) {
                     justify-content:center;
                     align-items:start;
                     flex-direction:column;
-                    color:white;
+                    color:black;
                     font-family: 'Gilroy','sans-serif'; 
                     font-size:45px;
                     font-weight: bold;
@@ -90,6 +90,7 @@ export function BannerFavorite({ refs }: FormType) {
                     color:white;
                     font-size:16px;
                     cursor: pointer;
+                    border-radius: 10px;
                 }
 
                 .btn:hover{
@@ -113,10 +114,19 @@ export function BannerFavorite({ refs }: FormType) {
                     }
                 }
                 @media(max-width: 900px) {
-                    .title { 
-                        font-size:43px;
+                    .Banner { 
+                        height: 300px;
+                    }
+                    .titleMain {
+                        display: none;
+                    }
+
+                    .titleMini {
+                        display: none;
                     }
                 }
+
+                
                 @media(max-width: 720px) {
                     .title { 
                         font-size:35px;
@@ -124,18 +134,18 @@ export function BannerFavorite({ refs }: FormType) {
                     .titleMini {
                         font-size:15px;
                     }
-                    .MainBanner { 
-                        height: 400px;
-                    }
+               
                 }
+
                 @media(max-width: 640px) {
                     .title { 
                         font-size:30px;
                     }
                  
                     .MainBanner { 
-                        height: 250px;
+                        height: 100%;
                     }
+
                 }
 
                 @media(max-width: 500px) {
@@ -143,9 +153,10 @@ export function BannerFavorite({ refs }: FormType) {
                         padding-left:0px;
                         align-items: center;
                     }
+                    
                     .Banner { 
-                        justify-content: center
-                    };
+                        height: 200px;
+                    }
                 }
 
                 @media(max-width: 400px) {
@@ -156,6 +167,8 @@ export function BannerFavorite({ refs }: FormType) {
                     .btn {
                       width: 250px;
                    }
+
+       
                 }
 
                 @media(max-width: 320px) {

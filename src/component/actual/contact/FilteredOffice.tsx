@@ -9,7 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { black } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

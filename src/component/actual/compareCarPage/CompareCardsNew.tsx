@@ -232,7 +232,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                           </CardContent>
                           <CardActions disableSpacing>
                             <IconButton aria-label="add to favorites">
-                              <RemoveRoadIcon sx={{ color: 'green' }}
+                              <RemoveRoadIcon sx={{ color: 'black' }}
                                 onClick={() => deleteToCompare(car.car.id)}
                               />
                             </IconButton>
@@ -327,7 +327,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                         </CardContent>
                         <CardActions disableSpacing>
                           <IconButton aria-label="add to favorites">
-                            <RemoveRoadIcon sx={{ color: 'green' }}
+                            <RemoveRoadIcon sx={{ color: 'black' }}
                               onClick={() => deleteToCompareUsed(carUsed.car.id)}
                             />
                           </IconButton>
@@ -371,7 +371,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                             marginRight: '-5px'
                           }}>
                             <IconButton aria-label="add to favorites">
-                              <RemoveRoadIcon sx={{ color: 'green' }}
+                              <RemoveRoadIcon sx={{ color: 'black' }}
                                 onClick={() => deleteToCompare(car.car.id)}
                               />
                             </IconButton>
@@ -449,7 +449,7 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
                             marginRight: '-5px'
                           }}>
                             <IconButton aria-label="add to favorites">
-                              <RemoveRoadIcon sx={{ color: 'green' }}
+                              <RemoveRoadIcon sx={{ color: 'black' }}
                                 onClick={() => deleteToCompare(carUsed.car.id)}
                               />
                             </IconButton>
@@ -524,10 +524,12 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       align-items: center;
       gap:10px;
       color:white;
-      background-color:  #131313;
+      background-color:  black;
       justify-content: center;
       font-family: 'Gilroy','sans-serif'; 
       padding: 10px;
+      border-radius: 10px;
+      margin-top: 50px;
     }
 
     #sum {
@@ -543,7 +545,6 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       justify-content: space-between;
       flex-direction: row;
       overflow: auto;
-      border-top: 1px solid #d4d3d3;
       padding-bottom: 50px;
     }
     
@@ -591,14 +592,15 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       padding:1px;
       width:80%;
       height: 100%;
-      border:solid 1px #d1d7dd;
-      color: #131313;
-      background-color:  #f2f2f2;
+      color: white;
+      background-color:  black;
       cursor: pointer;
       font-size: 15px;
       font-weight: bold;
       transition: 0.6s;
       cursor: pointer;
+      border: none;
+      border-radius: 10px;
     }
 
     .btn:hover {
@@ -706,6 +708,10 @@ function CompareCarsNew({ setShowModal, setCompareArr, compareArr, setCompareArr
       }
       .background{
         height: auto;
+      }
+
+      .divTitle {
+        font-size: 25px;
       }
     }
 
